@@ -1,10 +1,10 @@
 // Mini servicio del tablero JusNoticias: devuelve los números de Facebook, Instagram y YouTube.
 // Las claves NO están acá: se cargan en Vercel → Settings → Environment Variables:
-//   META_TOKEN  = token de la página de Facebook (no vence)
-//   FB_PAGE_ID  = id de la página de Facebook de JusNoticias
-//   IG_USER_ID  = id de la cuenta de Instagram vinculada (jus_chubut)
+//   META_TOKEN  = token del usuario del sistema de Meta (no vence)
 //   YT_KEY      = clave de la API de YouTube (opcional)
-const G = 'https://graph.facebook.com/v21.0';
+const G = 'https://graph.facebook.com/v26.0';
+const FB_PAGE = process.env.FB_PAGE_ID || '116101835114568';   // página JusNoticias
+const IG_USER = process.env.IG_USER_ID || '17841410514175238'; // Instagram jus_chubut
 const YT_CANAL = 'UCgmCc2hXjDOUrBBfrl4KOiA'; // Poder Judicial del Chubut
 
 async function get(url) {
@@ -16,7 +16,9 @@ async function get(url) {
 const corto = (s) => (s || '').replace(/\s+/g, ' ').trim().slice(0, 26);
 
 async function facebook(desde) {
-  const { META_TOKEN: t, FB_PAGE_ID: id } = process.env;
+  const id = FB_PAGE;
+  // La "nueva experiencia de páginas" exige un token de la página: se obtiene en el momento.
+  const t = (await get(`${G}/${id}?fields=access_token&access_token=${process.env.META_TOKEN}`)).access_token;
   const page = await get(`${G}/${id}?fields=name,followers_count,fan_count&access_token=${t}`);
   const filas = [];
   let url = `${G}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${desde}&limit=100&access_token=${t}`;
@@ -34,7 +36,7 @@ async function facebook(desde) {
 }
 
 async function instagram(desde) {
-  const { META_TOKEN: t, IG_USER_ID: id } = process.env;
+  const t = process.env.META_TOKEN, id = IG_USER;
   const cuenta = await get(`${G}/${id}?fields=username,followers_count&access_token=${t}`);
   const filas = [];
   let url = `${G}/${id}/media?fields=timestamp,caption,like_count,comments_count&limit=100&access_token=${t}`;
