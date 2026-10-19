@@ -1,0 +1,89 @@
+// Mini servicio del tablero JusNoticias: devuelve los números de Facebook, Instagram y YouTube.
+// Las claves NO están acá: se cargan en Vercel → Settings → Environment Variables:
+//   META_TOKEN  = token de la página de Facebook (no vence)
+//   FB_PAGE_ID  = id de la página de Facebook de JusNoticias
+//   IG_USER_ID  = id de la cuenta de Instagram vinculada (jus_chubut)
+//   YT_KEY      = clave de la API de YouTube (opcional)
+const G = 'https://graph.facebook.com/v21.0';
+const YT_CANAL = 'UCgmCc2hXjDOUrBBfrl4KOiA'; // Poder Judicial del Chubut
+
+async function get(url) {
+  const r = await fetch(url);
+  const j = await r.json();
+  if (!r.ok || j.error) throw new Error((j.error && j.error.message) || ('HTTP ' + r.status));
+  return j;
+}
+const corto = (s) => (s || '').replace(/\s+/g, ' ').trim().slice(0, 26);
+
+async function facebook(desde) {
+  const { META_TOKEN: t, FB_PAGE_ID: id } = process.env;
+  const page = await get(`${G}/${id}?fields=name,followers_count,fan_count&access_token=${t}`);
+  const filas = [];
+  let url = `${G}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${desde}&limit=100&access_token=${t}`;
+  for (let i = 0; url && i < 10; i++) {
+    const j = await get(url);
+    j.data.forEach((p) => filas.push({
+      red: 'Facebook', cuenta: 'JusNoticias (prensastjchubut)', fecha: p.created_time.slice(0, 10), texto: corto(p.message),
+      nota_id: null, me_gusta: p.reactions ? p.reactions.summary.total_count : null,
+      comentarios: p.comments ? p.comments.summary.total_count : null, compartidos: p.shares ? p.shares.count : 0,
+      vistas: null, propia: 'Sí', key: 'fb-' + p.id,
+    }));
+    url = j.paging && j.paging.next;
+  }
+  return { filas, seguidores: page.followers_count ?? page.fan_count ?? null };
+}
+
+async function instagram(desde) {
+  const { META_TOKEN: t, IG_USER_ID: id } = process.env;
+  const cuenta = await get(`${G}/${id}?fields=username,followers_count&access_token=${t}`);
+  const filas = [];
+  let url = `${G}/${id}/media?fields=timestamp,caption,like_count,comments_count&limit=100&access_token=${t}`;
+  for (let i = 0; url && i < 10; i++) {
+    const j = await get(url);
+    const dentro = j.data.filter((m) => m.timestamp.slice(0, 10) >= desde);
+    dentro.forEach((m) => filas.push({
+      red: 'Instagram', cuenta: cuenta.username, fecha: m.timestamp.slice(0, 10), texto: corto(m.caption),
+      nota_id: null, me_gusta: m.like_count ?? null, comentarios: m.comments_count ?? null, compartidos: null,
+      vistas: null, propia: 'Sí', key: 'ig-' + m.id,
+    }));
+    if (dentro.length < j.data.length) break;
+    url = j.paging && j.paging.next;
+  }
+  return { filas, seguidores: cuenta.followers_count ?? null };
+}
+
+async function youtube(desde) {
+  const k = process.env.YT_KEY, Y = 'https://www.googleapis.com/youtube/v3';
+  const ch = (await get(`${Y}/channels?part=statistics,contentDetails&id=${YT_CANAL}&key=${k}`)).items[0];
+  const up = ch.contentDetails.relatedPlaylists.uploads, ids = [];
+  let tok = '';
+  for (let i = 0; i < 10; i++) {
+    const j = await get(`${Y}/playlistItems?part=contentDetails&playlistId=${up}&maxResults=50&key=${k}${tok ? '&pageToken=' + tok : ''}`);
+    const cs = j.items.map((x) => x.contentDetails);
+    cs.filter((c) => (c.videoPublishedAt || '').slice(0, 10) >= desde).forEach((c) => ids.push(c.videoId));
+    if (!j.nextPageToken || cs.every((c) => (c.videoPublishedAt || '').slice(0, 10) < desde)) break;
+    tok = j.nextPageToken;
+  }
+  const filas = [];
+  for (let i = 0; i < ids.length; i += 50) {
+    const j = await get(`${Y}/videos?part=snippet,statistics&id=${ids.slice(i, i + 50).join(',')}&key=${k}`);
+    j.items.forEach((v) => {
+      const s = v.statistics, n = (x) => (s[x] !== undefined ? Number(s[x]) : null);
+      filas.push({ red: 'YouTube', cuenta: 'Poder Judicial del Chubut', fecha: v.snippet.publishedAt.slice(0, 10), texto: corto(v.snippet.title),
+        nota_id: null, me_gusta: n('likeCount'), comentarios: n('commentCount'), compartidos: null, vistas: n('viewCount'), propia: 'Sí', key: 'yt-' + v.id });
+    });
+  }
+  return { filas, seguidores: Number(ch.statistics.subscriberCount) || null };
+}
+
+module.exports = async (req, res) => {
+  const desde = /^\d{4}-\d{2}-\d{2}$/.test(req.query.desde || '') ? req.query.desde : '2026-02-01';
+  const out = { actualizado: new Date().toISOString(), desde, redes: {}, errores: {} };
+  const tareas = { Facebook: facebook, Instagram: instagram };
+  if (process.env.YT_KEY) tareas.YouTube = youtube;
+  await Promise.all(Object.entries(tareas).map(async ([red, fn]) => {
+    try { out.redes[red] = await fn(desde); } catch (e) { out.errores[red] = e.message; }
+  }));
+  res.setHeader('Cache-Control', 's-maxage=600');
+  res.status(200).json(out);
+};
