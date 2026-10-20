@@ -6,7 +6,7 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), {
   status,
   headers: {
     "Content-Type": "application/json; charset=utf-8",
-    "Cache-Control": "public, max-age=0, s-maxage=900, stale-while-revalidate=300"
+    "Cache-Control": status >= 400 ? "no-store" : "public, max-age=0, s-maxage=900, stale-while-revalidate=300"
   }
 });
 
@@ -25,14 +25,22 @@ const decodeBase64 = (value) => {
 };
 
 function dateRange(url) {
-  const iso = (v) => /^\d{4}-\d{2}-\d{2}$/.test(v || "");
+  const isDate = (value) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return false;
+    const parsed = new Date(value + "T00:00:00Z");
+    return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+  };
   const endParam = url.searchParams.get("hasta");
   const startParam = url.searchParams.get("desde");
-  const end = iso(endParam) ? endParam : new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  if (endParam && !isDate(endParam)) throw new Error("La fecha 'hasta' debe ser una fecha válida con formato AAAA-MM-DD.");
+  if (startParam && !isDate(startParam)) throw new Error("La fecha 'desde' debe ser una fecha válida con formato AAAA-MM-DD.");
+  const end = endParam || new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   const startDefault = new Date(Date.parse(end + "T00:00:00Z") - 27 * 86400000).toISOString().slice(0, 10);
-  const start = iso(startParam) ? startParam : startDefault;
+  const start = startParam || startDefault;
   const span = (Date.parse(end + "T00:00:00Z") - Date.parse(start + "T00:00:00Z")) / 86400000;
-  if (start > end || span > 89) throw new Error("Rango inválido: use desde/hasta y un máximo de 90 días.");
+  if (!Number.isFinite(span) || start > end || span > 89) {
+    throw new Error("Rango inválido: use desde/hasta y un máximo de 90 días.");
+  }
   return { start, end };
 }
 
