@@ -89,11 +89,14 @@ module.exports = async (req, res) => {
       metrics: metrics.map(name => ({ name })),
       limit
     });
-    const [summary, channels, devices, pages, gsc, gscPages] = await Promise.all([
+    const [summary, channels, devices, pages, gscSummary, gsc, gscPages] = await Promise.all([
       runGA([], ['totalUsers', 'sessions', 'screenPageViews', 'engagedSessions', 'averageSessionDuration'], 1),
       runGA(['sessionDefaultChannelGroup'], ['totalUsers', 'sessions', 'screenPageViews'], 50),
       runGA(['deviceCategory'], ['totalUsers', 'sessions', 'screenPageViews'], 20),
       runGA(['pageTitle', 'pagePath'], ['totalUsers', 'sessions', 'screenPageViews', 'engagedSessions', 'averageSessionDuration'], 100),
+      googlePost('https://searchconsole.googleapis.com/webmasters/v3/sites/' + encodeURIComponent(process.env.GSC_SITE_URL) + '/searchAnalytics/query', token, {
+        startDate: range.start, endDate: range.end, rowLimit: 1, dataState: 'final'
+      }),
       googlePost('https://searchconsole.googleapis.com/webmasters/v3/sites/' + encodeURIComponent(process.env.GSC_SITE_URL) + '/searchAnalytics/query', token, {
         startDate: range.start, endDate: range.end, dimensions: ['query'], rowLimit: 25, dataState: 'final'
       }),
@@ -122,6 +125,7 @@ module.exports = async (req, res) => {
         paginas: pageRows
       },
       searchConsole: {
+        resumen: (gscSummary.rows || [])[0] || { clicks: 0, impressions: 0, ctr: 0, position: 0 },
         consultas: (gsc.rows || []).map(r => ({ consulta: r.keys[0], clics: r.clicks, impresiones: r.impressions, ctr: r.ctr, posicion: r.position })),
         paginas: (gscPages.rows || []).map(r => ({ pagina: r.keys[0], clics: r.clicks, impresiones: r.impressions, ctr: r.ctr, posicion: r.position }))
       }
