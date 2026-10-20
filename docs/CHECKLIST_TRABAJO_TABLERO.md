@@ -10,7 +10,8 @@
 - [~] Revisión inicial de sintaxis: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios); falta probar interacciones en navegador.
 - [ ] Completar pruebas de regresión del período, pestañas, filtros y estados vacíos.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
-- [~] Vercel reportó límite diario de despliegues en los commits más recientes; hay una vista previa anterior en estado Ready, pero no demuestra que incluya los cambios actuales. Reintentar la vista previa al liberarse la cuota y validar por navegador.
+- [x] Cloudflare Pages desplegó correctamente la vista previa de la rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/ (el check de GitHub informó `Deployed successfully` para el commit `545cd39`). Falta inspección visual e interacción manual en escritorio/móvil.
+- [~] Vercel reportó límite diario de despliegues en los commits más recientes; esa vía es independiente del preview de Cloudflare y no debe confundirse con él.
 - [ ] Confirmar URL oficial de producción. La URL de Pages usada en pruebas fue https://redes-jusnoticias.pages.dev/.
 - [ ] Resolver cómo se relaciona el proyecto anterior `ignacervo-cell/jusnoticias-tablero` con el repositorio institucional `ACJ2026/redes-jusnoticias`; probar ambas páginas por separado y evitar versiones divergentes.
 
