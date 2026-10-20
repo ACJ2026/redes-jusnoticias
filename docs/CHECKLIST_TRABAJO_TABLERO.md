@@ -8,13 +8,13 @@
 - [x] PR #5 abierto contra `feat/cloudflare-pages-google-metrics`: https://github.com/ACJ2026/redes-jusnoticias/pull/5
 - [x] Mantener secretos fuera del HTML y del repositorio.
 - [x] Revisión sintáctica: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios).
-- [x] Suite de regresión del historial y sincronización plantilla/HTML público pasan en GitHub Actions para el commit actual `643ebcf`: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39493528998
+- [x] Suite de regresión del historial y sincronización plantilla/HTML público pasan en GitHub Actions para el commit `d577cc8`: 16 pruebas OK. Ejecuciones: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39512030838 y https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39512025361
 - [x] Pruebas del tablero público: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias y sin claves en el HTML. La suite corre en el mismo workflow de regresión y pasó para el commit actual.
 - [x] Validación de fechas de Google probada con casos válidos, fecha imposible, formato inválido, rango invertido y ventana máxima de 90 días.
 - [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
 - [~] Se ampliaron portada, tarjetas de indicadores, tipografía, pestañas, filtros y áreas táctiles en celular; las tablas permiten desplazamiento horizontal para evitar texto diminuto. Pendiente validar visualmente en un teléfono real tras el despliegue.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
-- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `643ebcf`; la URL estable de vista previa de rama es https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. Falta inspección visual/interacción real en escritorio y móvil.
+- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `d577cc8`; URL de vista previa: https://30af36cd.redes-jusnoticias.pages.dev/ y URL estable de rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. Falta inspección visual/interacción real en escritorio y móvil.
 - [~] Vercel reportó límite diario de despliegues en los commits más recientes; esa vía es independiente del preview de Cloudflare y no debe confundirse con él.
 - [ ] Confirmar URL oficial de producción. La URL de Pages usada en pruebas fue https://redes-jusnoticias.pages.dev/.
 - [!] Hallazgo importante: GitHub informa que `ACJ2026/redes-jusnoticias` está **público**, mientras que el repositorio anterior `ignacervo-cell/jusnoticias-tablero` está privado y el plan previo trataba el destino como privado. No se cambió la visibilidad; confirmar la política institucional antes de fusionar.
@@ -38,7 +38,7 @@
 - [~] Catálogo territorial ampliado con fuentes públicas: Argentar Noticias (Comodoro Rivadavia; https://argentarnoticias.com.ar/), Diario Judicial (CABA; https://www.diariojudicial.com/), El 10 TV (Salta; https://www.el10tv.com/), El Valle Online (cobertura del Valle Inferior; https://www.elvalleonline.com.ar/), Metadata Noticias (https://www.metadatanoticias.com.ar/), Examedia (https://examedia.com.ar/) y Flipr.news (https://flipr.com.ar/). Se mantienen grupos de cobertura provincial/nacional o localidad por verificar cuando la sede física no está confirmada; no se la infiere a partir de una nota aislada.
 - [~] Nueva verificación de medios: Chubut Hoy queda como Chubut con localidad por verificar; Radio de Camioneros y ABC Diario como cobertura provincial; La Tecla Patagonia como cobertura regional; El Extremo Sur en Comodoro Rivadavia; NoticiasdelBolson en El Bolsón; A24.com y Revista Quórum como cobertura nacional. El Periscopio queda como cobertura provincial de Misiones según la cobertura editorial observada; su localidad/sede física no se presume.
 - [ ] Seguir verificando localidad y categoría del catálogo histórico; no convertir agrupaciones de cobertura en afirmaciones sobre la sede física de un medio.
-- [~] La infografía distingue Chubut, Patagonia fuera de Chubut, resto del país y casos con localidad por verificar; revisar manualmente las agrupaciones y sus cifras.
+- [~] La infografía distingue Chubut, Patagonia fuera de Chubut, resto del país y cobertura regional; las sedes no confirmadas se mantienen identificadas como tales. En octubre 2026, las 85 publicaciones relacionadas se agrupan en Chubut (72), Patagonia fuera de Chubut (3) y resto del país (10); falta contraste manual con registros y referentes locales.
 - [ ] Comparar manualmente cifras por localidad, región y tipo contra los registros del período.
 - [ ] Probar filtro, ausencia de datos y diseño móvil.
 - [ ] Mantener la aclaración: se cuentan publicaciones detectadas, no lectores, audiencia ni alcance efectivo.
