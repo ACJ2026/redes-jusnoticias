@@ -51,13 +51,13 @@ Período del informe: 22/09/2026–19/10/2026.
 
 ## Estado actual y próximos pasos
 
-- [ ] Corregir el doble `.decode("utf-8")` en el generador público.
-- [ ] Añadir una API de servidor que consulte GA4 y Search Console con credenciales de entorno.
-- [ ] Añadir una sección Google al tablero que muestre el estado de configuración, tráfico, búsquedas y páginas principales.
-- [ ] Documentar variables de entorno y permisos mínimos necesarios.
+- [x] Corregir el doble `.decode("utf-8")` en el generador público.
+- [x] Añadir una API de servidor que consulte GA4 y Search Console con credenciales de entorno.
+- [x] Añadir una sección Google al tablero que muestre el estado de configuración, tráfico, búsquedas y páginas principales.
+- [x] Documentar variables de entorno y permisos mínimos necesarios.
 - [ ] Ejecutar comprobaciones estáticas y pruebas del generador.
 - [ ] Desplegar y validar con credenciales reales; mientras no se configuren las variables en Vercel, la conexión se considera pendiente.
-- [ ] Registrar los SHA de commits, resultados de CI y URL de PR/despliegue cuando existan.
+- [ ] Registrar los resultados de CI y URL de despliegue cuando existan.
 
 ## Protocolo para la siguiente IA o desarrollador
 
@@ -66,3 +66,27 @@ Período del informe: 22/09/2026–19/10/2026.
 3. Revisar los datos históricos existentes antes de ejecutar procesos que los escriban.
 4. No cambiar los datos de noticias/redes para resolver una falla de interfaz o API.
 5. Actualizar esta bitácora con fecha, archivos, motivo, pruebas, resultados y pendientes en el mismo cambio que modifica el proyecto.
+
+
+### 2026-10-20 — Implementación inicial en rama de trabajo
+
+Archivos creados/modificados:
+- `api/google-metrics.js` (commits `f1dc7e51ba21303191d3298df73a683304d8bcc5`, `da60627cb043e75cc53321d61beb48889f24124a`, `0361234ade0399526dc62983b0dc957b8e6b1988`): endpoint GET de servidor con JWT firmado para cuenta de servicio, consultas de GA4 y Search Console, rango máximo de 90 días, informes separados para evitar sumar usuarios duplicados a través de dimensiones y totales completos de Search Console. Respuestas de configuración pendiente y error son explícitas.
+- `scripts/armar_publico.py` (commits `7a3635d338f5ce476b16e0fa48dae1f539372fb0`, `6eba9f232039b129a3b59b86d186ca25cba73a3d`): eliminada la segunda llamada a `.decode("utf-8")`; se añadió pestaña Google en la plantilla embebida, con filtros de fechas, KPIs, páginas principales, canales, dispositivos, consultas y páginas de Search Console.
+- `docs/GOOGLE_METRICS.md` (commit `fe1efa48d70aeac9082db4742c56de275e586ddd`): pasos de configuración, permisos de solo lectura y variables de entorno.
+- `BITACORA.md` (commit inicial `a6fc8cf23c5f5a3b389fa59e56c5f8856c436bc9`): este registro y protocolo de continuidad.
+
+Validaciones estáticas hechas durante edición:
+- Se comprobó que la plantilla incluye la pestaña `Google`, la llamada a `/api/google-metrics` y el despachador `google: drawGoogle`.
+- Se comprobó que el generador ya no contiene el doble `.decode("utf-8")`.
+- Se corrigió la tarjeta de clics/impresiones para que use los totales de Search Console, no la suma parcial de las 25 consultas principales.
+- Estas comprobaciones son inspecciones estáticas; todavía NO equivalen a una ejecución de Python/Node, una ejecución de GitHub Actions ni una validación con las APIs reales.
+
+Configuración externa pendiente:
+- Variables de Vercel: `GOOGLE_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID`, `GSC_SITE_URL`.
+- Dar acceso de lectura al correo de la cuenta de servicio en GA4 y Search Console.
+- Hasta configurar esas variables y permisos, la pestaña debe mostrar “Pendiente de configuración”; no afirmar que los datos reales ya están conectados.
+
+Próxima acción:
+- Abrir PR desde `feature/google-metrics-and-project-log` hacia `main` para revisar los cambios sin escribir directamente sobre `main`.
+- Antes de publicar, ejecutar pruebas del generador y comprobar los endpoints en el despliegue de Vercel.
