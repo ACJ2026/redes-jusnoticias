@@ -12,6 +12,7 @@
 - [x] Pruebas nuevas del tablero público pasaron en GitHub Actions: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias y sin claves en el HTML: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39485365031
 - [x] Validación de fechas de Google probada con casos válidos, fecha imposible, formato inválido, rango invertido y ventana máxima de 90 días.
 - [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
+- [~] Se ampliaron portada, tarjetas de indicadores, tipografía, pestañas, filtros y áreas táctiles en celular; las tablas permiten desplazamiento horizontal para evitar texto diminuto. Pendiente validar visualmente en un teléfono real tras el despliegue.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
 - [x] Cloudflare Pages confirmó despliegue exitoso para el commit `a3618b1`: https://9917985b.redes-jusnoticias.pages.dev/. La URL estable de vista previa de rama es https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. El cambio de pruebas más reciente está desplegándose por separado; la generación automática regeneró el HTML desde la plantilla. Falta inspección visual/interacción real en escritorio y móvil.
 - [~] Vercel reportó límite diario de despliegues en los commits más recientes; esa vía es independiente del preview de Cloudflare y no debe confundirse con él.
