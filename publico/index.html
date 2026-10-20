@@ -554,7 +554,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       if (requestId !== googleRequest) return;
       if (!response.ok || data.estado !== 'ok') {
         status.textContent = data.estado === 'pendiente_configuracion'
-          ? 'Pendiente de configuración en Vercel: faltan credenciales o identificadores de Google. Ver docs/GOOGLE_METRICS.md en el repositorio.'
+          ? 'Pendiente de configuración en Cloudflare Pages: faltan credenciales o identificadores de Google. Ver docs/GOOGLE_METRICS.md en el repositorio.'
           : 'No se pudieron consultar las métricas: ' + (data.error || ('HTTP ' + response.status));
         ['g-usuarios','g-sesiones','g-vistas','g-clics','g-impresiones'].forEach(id => $(id).textContent = '—');
         return;
