@@ -89,7 +89,7 @@ async function googlePost(url, token, body) {
   return data;
 }
 
-export async function onRequest(context) {
+async function onRequestInner(context) {
   const { request, env } = context;
   if (request.method !== "GET") {
     return new Response(JSON.stringify({ error: "Método no permitido." }), {
@@ -175,5 +175,22 @@ export async function onRequest(context) {
     });
   } catch (error) {
     return json({ estado: "error_google", error: error.message, rango }, 502);
+  }
+}
+
+
+// Última barrera de diagnóstico: convierte excepciones inesperadas en JSON en vez de un 1101.
+export async function onRequest(context) {
+  try {
+    return await onRequestInner(context);
+  } catch (error) {
+    console.error("google-metrics: excepción no controlada", error?.stack || error?.message || error);
+    return new Response(JSON.stringify({
+      estado: "error_interno",
+      error: String(error?.message || error || "Error interno desconocido")
+    }), {
+      status: 500,
+      headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
+    });
   }
 }
