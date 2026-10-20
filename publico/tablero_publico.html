@@ -472,8 +472,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const localidadMedio = {
     'FM Tropical':'Rawson','FM Bahía Engaño':'Rawson',
     'La Posta Comodorense':'Comodoro Rivadavia','El Comodorense':'Comodoro Rivadavia','Comodoro 24':'Comodoro Rivadavia','El Patagónico':'Comodoro Rivadavia',
+    'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','Crónica':'Comodoro Rivadavia','ABC Diario':'Comodoro Rivadavia','El Extremo Sur':'Comodoro Rivadavia',
     'Noticias PMY':'Puerto Madryn','Madryn Ahora':'Puerto Madryn','Canal 12':'Puerto Madryn','LU17':'Puerto Madryn','El Diario Web':'Puerto Madryn',
-    'FM del Lago Esquel':'Esquel','Diario La Portada':'Esquel','Red43':'Esquel',
+    'FM del Lago Esquel':'Esquel','Diario La Portada':'Esquel','Red43':'Esquel','EQS Notas':'Esquel',
     'Radio Chubut':'Trelew','El Chubut':'Trelew','Diario Jornada':'Trelew','Radio 3 Cadena Patagonia':'Trelew','Vivo Trelew':'Trelew',
     'Cholila Online':'Cholila','La Opinión Austral':'Río Gallegos','Tiempo Sur':'Río Gallegos','Diario Nuevo Día':'Río Gallegos',
     'Diario Río Negro':'General Roca','La Voz del Interior':'Córdoba','CHACODIAPORDIA.COM':'Resistencia','El Tribuno':'Salta',
@@ -486,7 +487,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     if (/\bweb\b|\.com$/i.test(medio)) return 'Portal digital';
     if (/radio|\bfm\b|\blu17\b/i.test(medio)) return 'Radio';
     if (/canal|\btv\b/i.test(medio)) return 'TV';
-    if (/diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
+    if (/^crónica$/i.test(medio) || /diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
     return 'Portal digital';
   };
   const regionMedio = localidad => {
