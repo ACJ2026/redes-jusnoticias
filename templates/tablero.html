@@ -1,0 +1,580 @@
+<title>Repercusión JusNoticias</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: encabezado de diario institucional + pestañas; plano 1 (Resumen) arriba, plano 2 (consulta) en pestañas */
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --ink:#18212b; --muted:#5a6673; --line:#dde2e8; --grid:#e9edf1;
+  --accent:#1f5b87; --copia:#b8741a; --c3:#4f7a3a; --c4:#7d4f93; --muted-bar:#c3cbd4; --bad:#b3362c;
+  --pop:#ffffff; --shadow:0 4px 18px rgba(20,30,45,.12);
+  --f-display:"Newsreader","Georgia","Times New Roman",serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --fs-cap:.8125rem; --fs-body:.9375rem; --fs-h:1.0625rem; --fs-title:1.75rem; --fs-big:2.5rem;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11161c; --panel:#18202a; --ink:#e6ebf0; --muted:#98a4b0; --line:#2a3542; --grid:#232d38;
+  --accent:#6aa9d8; --copia:#e0a24e; --c3:#8fbf72; --c4:#bb8fd1; --muted-bar:#46525f; --bad:#ef7d72;
+  --pop:#1f2933; --shadow:0 4px 18px rgba(0,0,0,.45); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161c; --panel:#18202a; --ink:#e6ebf0; --muted:#98a4b0; --line:#2a3542; --grid:#232d38;
+  --accent:#6aa9d8; --copia:#e0a24e; --c3:#8fbf72; --c4:#bb8fd1; --muted-bar:#46525f; --bad:#ef7d72;
+  --pop:#1f2933; --shadow:0 4px 18px rgba(0,0,0,.45); color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:var(--fs-body)}
+.wrap{max-width:76rem;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px;display:flex;flex-direction:column;gap:20px}
+.mast{display:flex;flex-direction:column;gap:6px;border-bottom:2px solid var(--ink);padding-bottom:14px}
+.kicker{font-size:var(--fs-cap);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-family:var(--f-display);font-weight:500;font-size:var(--fs-title);line-height:1.15;margin:0;text-wrap:balance}
+.take{margin:4px 0 0;font-family:var(--f-display);font-size:1.1875rem;line-height:1.45;max-width:62ch}
+.note{color:var(--muted);font-size:var(--fs-cap);margin:0;line-height:1.45}
+.bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lbl{color:var(--muted);font-size:var(--fs-cap)}
+select,input[type=search],.btn{font:inherit;font-size:var(--fs-cap);padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);min-height:2.25rem}
+.btn{cursor:pointer}.btn:disabled{opacity:.5;cursor:default}
+input[type=search]{flex:1 1 14rem;min-width:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{all:unset;cursor:pointer;padding:10px 14px;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap;font-size:var(--fs-body)}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.tabs button:focus-visible{outline:2px solid var(--accent)}
+.tabs .sep{align-self:center;color:var(--muted);font-size:var(--fs-cap);padding:0 6px 0 14px;white-space:nowrap}
+.page{display:flex;flex-direction:column;gap:16px}
+[hidden]{display:none!important}
+.grp{font-size:var(--fs-cap);font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:6px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));gap:12px}
+.kpi{border-top:3px solid var(--ink);padding:10px 2px 4px;display:flex;flex-direction:column;gap:6px}
+.kpi.lead{border-top-color:var(--accent)}
+.big{font-family:var(--f-display);font-size:var(--fs-big);line-height:1;font-variant-numeric:tabular-nums}
+.kpi.lead .big{color:var(--accent)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+h2{font-size:var(--fs-h);font-weight:600;margin:0;text-wrap:balance}
+.bars{display:flex;flex-direction:column;gap:9px}
+.bar-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;align-items:center;font-size:var(--fs-cap)}
+.bar-lab{grid-column:1/-1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{height:10px;background:var(--grid);border-radius:5px;overflow:hidden;display:flex}
+.bar-fill{height:100%}
+.bar-val{text-align:right;font-variant-numeric:tabular-nums;min-width:2.5rem}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:var(--fs-cap);color:var(--muted)}
+.legend i{display:inline-block;width:.65rem;height:.65rem;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.chart{position:relative;min-height:220px}
+.chart svg{display:block}
+.chart text{font-family:var(--f-body);font-size:12px;fill:var(--muted)}
+.tip{position:absolute;pointer-events:none;background:var(--pop);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:6px 10px;font-size:var(--fs-cap);white-space:nowrap;z-index:2}
+.tip .h{color:var(--muted)}
+.tbox{max-height:32rem;overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-cap)}
+th{position:sticky;top:0;background:var(--panel);text-align:left;font-weight:600;border-bottom:1px solid var(--line);padding:6px 8px;white-space:nowrap}
+th button{all:unset;cursor:pointer}th button:focus-visible{outline:2px solid var(--accent)}
+td{border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.zero{color:var(--bad);font-weight:600}
+.dim{color:var(--muted)}
+#t-notas tbody tr{cursor:pointer}
+#t-notas tbody tr:hover td{background:var(--grid)}
+#t-notas tbody tr.sel td{background:var(--grid);font-weight:600}
+#t-det a{color:var(--accent);font-weight:500}
+.pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:var(--fs-cap);border:1px solid var(--line)}
+.pill.ok{border-color:var(--accent);color:var(--accent)}
+.more{align-self:flex-start;font-weight:500}
+.guia p{margin:0;line-height:1.55;max-width:66ch}
+.guia b{font-weight:600}
+.foot{border-top:1px solid var(--line);padding-top:12px}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="kicker">Agencia de Comunicación Judicial · Poder Judicial del Chubut</p>
+    <h1>Repercusión de JusNoticias en medios y redes</h1>
+    <p class="note" id="periodo"></p>
+    <p class="take" id="take"></p>
+  </header>
+
+  <div class="bar">
+    <div class="tools" id="filtro">
+      <span class="lbl">Período</span>
+      <label for="fdesde" class="lbl">Desde</label><select id="fdesde"></select>
+      <label for="fhasta" class="lbl">Hasta</label><select id="fhasta"></select>
+      <button class="btn" id="ftodo" type="button">Todo el período</button>
+    </div>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Secciones">
+    <button role="tab" id="tab-resumen" data-page="resumen" aria-selected="true">Resumen</button>
+    <span class="sep" aria-hidden="true">Tablero completo</span>
+    <button role="tab" id="tab-medios" data-page="medios" aria-selected="false">Medios</button>
+    <button role="tab" id="tab-notas" data-page="notas" aria-selected="false">Notas</button>
+    <button role="tab" id="tab-redes" data-page="redes" aria-selected="false">Redes</button>
+    <button role="tab" id="tab-google" data-page="google" aria-selected="false">Google</button>
+    <button role="tab" id="tab-guia" data-page="guia" aria-selected="false">Cómo leerlo</button>
+  </nav>
+
+  <section class="page" id="resumen">
+    <p class="grp">En medios</p>
+    <div class="kpis">
+      <div class="kpi lead"><div class="big" data-k="pct"></div><div class="lbl">notas con al menos una publicación relacionada</div><p class="note">Porcentaje de nuestras notas que aparecen en otros medios. No confirma, por sí solo, que hayan usado nuestra información.</p></div>
+      <div class="kpi"><div class="big" data-k="notas"></div><div class="lbl">notas publicadas en JusNoticias</div><p class="note">Cantidad de notas que publicamos dentro de las fechas elegidas.</p></div>
+      <div class="kpi"><div class="big" data-k="publicaciones"></div><div class="lbl">publicaciones encontradas en otros medios</div><p class="note">Cuenta publicaciones relacionadas con nuestras notas. Algunas pueden hablar del mismo tema sin usar nuestra información.</p></div>
+      <div class="kpi"><div class="big" data-k="medios"></div><div class="lbl">medios encontrados</div><p class="note">Cantidad de medios diferentes. Cada medio se cuenta una sola vez.</p></div>
+    </div>
+    <p class="grp">En redes</p>
+    <div class="kpis">
+      <div class="kpi"><div class="big" data-k="posteos"></div><div class="lbl">publicaciones en nuestras redes</div><p class="note">Cantidad de publicaciones hechas desde las cuentas oficiales incluidas en el tablero.</p></div>
+      <div class="kpi"><div class="big" data-k="vistas"></div><div class="lbl">vistas en X y YouTube</div><p class="note">Suma las vistas informadas por esas dos redes. Las otras no muestran ese dato.</p></div>
+      <div class="kpi"><div class="big" data-k="seguidores"></div><div class="lbl">seguidores de nuestras cuentas</div><p class="note">Suma los seguidores que muestran las cuentas incluidas hoy. No significa que todos hayan visto nuestras publicaciones.</p></div>
+    </div>
+    <div class="grid2">
+      <div class="card" id="c-mes">
+        <h2>Mes a mes</h2>
+        <p class="note">Compara cuántas notas publicamos cada mes y cuántas aparecieron en otros medios. Los meses fuera de las fechas elegidas se ven más claros.</p>
+        <div class="legend"><span><i style="background:var(--muted-bar)"></i>Publicadas</span><span><i style="background:var(--accent)"></i>Levantadas</span></div>
+        <div class="chart" id="ch-mes"><div class="tip" id="tip-mes" hidden></div></div>
+      </div>
+      <div class="card" id="c-tipo">
+        <h2>Qué temas aparecen más</h2>
+        <p class="note">Porcentaje de notas de cada tema que apareció en otros medios. Por ejemplo, 6 de 7 equivale al 86%. Esto no prueba por sí solo que hayan usado nuestra información.</p>
+        <div class="bars" id="b-tipo"></div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h2>Los 5 medios con más publicaciones</h2><p class="note">Cuenta cuántas notas distintas de JusNoticias encontramos en cada medio. No cuenta varias veces una misma nota.</p><div class="bars" id="b-top5m"></div></div>
+      <div class="card"><h2>Las 5 notas que aparecieron en más medios</h2><p class="note">Cuenta cuántos medios diferentes encontramos para cada nota. No significa necesariamente que todos hayan usado nuestra información.</p><div class="bars" id="b-top5n"></div></div>
+    </div>
+    <button class="btn more" type="button" id="ir-completo">Ver el tablero completo →</button>
+  </section>
+
+  <section class="page" id="medios" hidden>
+    <div class="grid2">
+      <div class="card">
+        <h2>Medios con más publicaciones</h2>
+        <p class="note">Muestra los 15 medios donde encontramos más notas relacionadas con las nuestras. Cada número cuenta notas distintas.</p>
+        <div class="legend"><span><i style="background:var(--copia)"></i>Copia textual</span><span><i style="background:var(--accent)"></i>Reescritura o redacción propia</span><span><i style="background:var(--muted-bar)"></i>Sin dato de texto</span></div>
+        <div class="bars" id="b-medios"></div>
+      </div>
+      <div class="card"><h2>Notas que más viajaron</h2><p class="note">Cantidad de medios que publicaron cada nota (las 12 primeras)</p><div class="bars" id="b-top"></div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h2>Cómo la publican</h2><p class="note">El texto del medio comparado con el nuestro (solo medios con texto disponible)</p><div class="bars" id="b-origen"></div></div>
+      <div class="card"><h2>¿De dónde la tomaron?</h2><p class="note">Publicaciones que nombran a la fuente oficial o a otro medio en el texto</p><div class="bars" id="b-cadena"></div></div>
+    </div>
+  </section>
+
+  <section class="page" id="notas" hidden>
+    <div class="card">
+      <h2>Todas las notas del período</h2>
+      <p class="note">El monitoreo puede encontrar medios que publicaron sobre el mismo tema, pero eso no prueba que hayan tomado la información de JusNoticias. "A revisar" son coincidencias solo por título. Abrí una nota para ver si se menciona la fuente oficial o a otro medio.</p>
+      <div class="tools">
+        <label for="q" class="lbl">Buscar</label><input type="search" id="q" placeholder="Título o medio">
+        <label for="ftipo" class="lbl">Tipo</label>
+        <select id="ftipo"><option value="">Todos</option><option>Fallo o caso</option><option>Institucional</option><option>Agenda y servicios</option></select>
+        <label for="fsin" class="lbl">Mostrar</label>
+        <select id="fsin"><option value="">Todas</option><option value="sin">Solo sin repercusión</option><option value="con">Solo con repercusión</option></select>
+      </div>
+      <p class="note" id="cuenta-notas"></p>
+      <p class="note">En la tabla: “Medios” cuenta dónde apareció la nota; “Textos casi iguales” señala publicaciones muy parecidas a la nuestra; “Medios encontrados” muestra los nombres; “A revisar” son coincidencias que todavía no pudimos confirmar.</p>
+      <div class="tbox">
+        <table id="t-notas"><thead><tr>
+          <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
+          <th><button data-k="n_medios">Medios</button></th><th><button data-k="copias">Textos casi iguales</button></th><th>Medios encontrados</th><th><button data-k="posibles">A revisar</button></th>
+        </tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+    <div class="card" id="c-detalle" hidden>
+      <h2 id="det-titulo"></h2>
+      <p class="note" id="det-sub"></p>
+      <div class="tbox"><table id="t-det"><thead><tr><th>Medio</th><th>Estado</th><th>Qué se pudo comprobar</th><th>Cómo la publicó</th><th>Cómo se encontró</th><th>Enlace</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="page" id="redes" hidden>
+    <div class="card">
+      <h2>Publicaciones nuestras por mes</h2>
+      <p class="note">Muestra cuántas veces publicamos en cada red y cómo cambia de un mes a otro. Facebook propio se empezó a contar en septiembre.</p>
+      <div class="legend" id="lg-redes"></div>
+      <div class="chart" id="ch-redes"><div class="tip" id="tip-redes" hidden></div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h2>Qué respuesta tienen nuestras publicaciones</h2><p class="note">Muestra el promedio: sumamos los “me gusta” o las vistas de nuestras publicaciones y dividimos por la cantidad de publicaciones. “Publicación destacada” es la que tuvo más interacción. Si falta un dato, esa red no lo informa.</p>
+        <div class="tbox"><table id="t-red"><thead><tr><th>Red</th><th>Publicaciones</th><th>Me gusta por publicación</th><th>Vistas por publicación</th><th>Publicación destacada</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="card"><h2>Cuántas personas siguen nuestras cuentas</h2><p class="note">Muestra cuántos seguidores tiene cada cuenta y si sigue activa. Es el dato de hoy: cambiar el mes no cambia esta cifra.</p>
+        <div class="tbox"><table id="t-canales"><thead><tr><th>Red</th><th>Cuenta</th><th>Seguidores</th><th>Estado</th></tr></thead><tbody></tbody></table></div></div>
+    </div>
+    <div class="card">
+      <h2>Publicaciones del período</h2>
+      <p class="note">Lista publicaciones nuestras y de otros medios o cuentas que compartieron nuestras notas. Podés filtrar por red o cuenta. Si una casilla está vacía, la red no informó ese dato.</p>
+      <div class="tools">
+        <label for="fred" class="lbl">Elegí una red</label><select id="fred"><option value="">Todas</option><option>Facebook</option><option>Instagram</option><option>X</option><option>YouTube</option></select>
+        <label for="fprop" class="lbl">De quién es</label><select id="fprop"><option value="">Todas</option><option value="Sí">Nuestras cuentas</option><option value="No">Otras cuentas</option></select>
+      </div>
+      <div class="tbox"><table id="t-redes"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Posteo</th><th>Me gusta</th><th>Comentarios</th><th>Compartidos</th><th>Vistas</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+
+  <section class="page" id="google" hidden>
+    <div class="card guia">
+      <h2>Audiencia y búsquedas en Google</h2>
+      <p class="note">Datos consultados directamente desde Google Analytics 4 y Search Console. No se mezclan con las métricas de repercusión en medios o redes.</p>
+      <div class="tools">
+        <label for="g-desde" class="lbl">Desde</label><input id="g-desde" type="date">
+        <label for="g-hasta" class="lbl">Hasta</label><input id="g-hasta" type="date">
+        <button class="btn" id="g-actualizar" type="button">Consultar</button>
+      </div>
+      <p class="note" id="g-estado" role="status">Consultando configuración…</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi lead"><div class="big" id="g-usuarios">—</div><div class="lbl">usuarios</div></div>
+      <div class="kpi"><div class="big" id="g-sesiones">—</div><div class="lbl">sesiones</div></div>
+      <div class="kpi"><div class="big" id="g-vistas">—</div><div class="lbl">páginas vistas</div></div>
+      <div class="kpi"><div class="big" id="g-clics">—</div><div class="lbl">clics desde Google</div></div>
+      <div class="kpi"><div class="big" id="g-impresiones">—</div><div class="lbl">impresiones en búsquedas</div></div>
+    </div>
+    <div class="card"><h2>Principales páginas de JusNoticias</h2><div class="tbox"><table id="g-tabla-paginas"><thead><tr><th>Contenido</th><th>Vistas</th><th>Sesiones</th><th>Usuarios</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="grid2">
+      <div class="card"><h2>Canales de tráfico</h2><div class="tbox"><table id="g-tabla-canales"><thead><tr><th>Canal</th><th>Sesiones</th><th>Vistas</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="card"><h2>Dispositivos</h2><div class="tbox"><table id="g-tabla-dispositivos"><thead><tr><th>Dispositivo</th><th>Sesiones</th><th>Vistas</th></tr></thead><tbody></tbody></table></div></div>
+    </div>
+    <div class="card"><h2>Consultas que llevan a JusNoticias desde Google</h2><div class="tbox"><table id="g-tabla-consultas"><thead><tr><th>Consulta</th><th>Clics</th><th>Impresiones</th><th>CTR</th><th>Posición</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Páginas en resultados de Google</h2><div class="tbox"><table id="g-tabla-search-paginas"><thead><tr><th>Página</th><th>Clics</th><th>Impresiones</th><th>CTR</th><th>Posición</th></tr></thead><tbody></tbody></table></div></div>
+  </section>
+
+  <section class="page" id="guia" hidden>
+    <div class="grid2">
+      <div class="card guia">
+        <h2>Cómo leer este tablero, en 1 minuto</h2>
+        <p><b>¿Qué mide?</b> Cuánto de lo que publica JusNoticias llega a los medios y a las redes.</p>
+        <p><b>1. Elegí el período</b> arriba (desde y hasta). Todo se recalcula con esas fechas.</p>
+        <p><b>2. Mirá el Resumen.</b> La oración de arriba dice lo principal. Debajo de cada número y gráfico hay una explicación de qué cuenta y de dónde sale.</p>
+        <p><b>3. Para un dato puntual,</b> usá las pestañas <b>Medios</b>, <b>Notas</b> y <b>Redes</b>. La pestaña <b>Google</b> consulta por separado las visitas de Analytics y el rendimiento en búsquedas de Search Console; requiere credenciales configuradas en el servidor.</p>
+        <p><b>4. Se actualiza solo</b> todas las mañanas. Arriba dice "datos al…".</p>
+      </div>
+      <div class="card guia">
+        <h2>Cómo funciona, explicado simple</h2>
+        <p><b>Paso 1.</b> Todos los días un programa lee las notas nuevas de jusnoticias.juschubut.gov.ar.</p>
+        <p><b>Paso 2.</b> Revisa las páginas de unos 35 medios de la provincia y la región y busca títulos parecidos a los nuestros, publicados desde el día anterior hasta 8 días después. <b>Además</b>, busca cada nota en <b>Google Noticias</b> por su título y por dos frases textuales: así aparecen medios que no están en la lista y los que copiaron el texto con otro título. Un medio de afuera de la lista solo cuenta si menciona Chubut o una ciudad de la provincia.</p>
+        <p><b>Paso 3.</b> Si el medio deja ver su texto, lo compara con el nuestro: si la mitad o más es igual, es <b>copia textual</b>; si se parece en parte, <b>reescritura</b>; si casi no se parece, <b>redacción propia</b>. También anota si nombra a JusNoticias como fuente.</p>
+        <p><b>Paso 4.</b> Las coincidencias dudosas (solo se parece el título) no entran en los números principales: aparecen aparte como "posibles".</p>
+        <p><b>Redes:</b> se leen los posteos de nuestras cuentas en X, Instagram, Facebook y YouTube. Instagram y Facebook no muestran vistas.</p>
+        <p><b>Límites:</b> radio, TV, grupos de WhatsApp y portales que Google no indexa no se miden, así que el número es un <b>piso</b>: la repercusión real es mayor. El tipo de nota lo asigna el programa por palabras del título y puede equivocarse.</p>
+      </div>
+    </div>
+    <div class="card"><h2>Medios relevados</h2><p class="note">Qué se pudo revisar de cada medio de la lista</p>
+      <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Cobertura del relevamiento</th><th>Notas encontradas (todas)</th></tr></thead><tbody></tbody></table></div></div>
+  </section>
+
+  <p class="note foot" id="pie"></p>
+</div>
+
+<script type="application/json" id="datos">/*DATOS*/</script>
+<script>
+(function () {
+  const D = JSON.parse(document.getElementById('datos').textContent);
+  const $ = id => document.getElementById(id);
+  const nf = new Intl.NumberFormat('es-AR');
+  const fmt = v => (v === null || v === undefined || v === '') ? '' : nf.format(Number(v));
+  const MES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const mesLargo = m => MES[Number(m.slice(5, 7)) - 1];
+  const mesCorto = m => mesLargo(m).slice(0, 3);
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const ddmm = d => d.slice(8, 10) + '/' + d.slice(5, 7);
+  const REDES = ['X', 'Instagram', 'Facebook', 'YouTube'];
+  const RCOL = ['var(--accent)', 'var(--c4)', 'var(--c3)', 'var(--copia)'];
+  const TIPOS = ['Fallo o caso', 'Institucional', 'Agenda y servicios'];
+  const ORIG = ['Copia textual (≥50%)', 'Reescritura parcial', 'Redacción propia', 'Sin dato'];
+
+  // Base: notas y publicaciones confirmadas
+  const notas = D.notas;
+  const mesDe = new Map(notas.map(n => [Number(n.id), n.mes]));
+  const repOk = D.repercusion.filter(r => r.confianza !== 'Baja').map(r => ({ ...r, mes: mesDe.get(Number(r.nota_id)) }));
+  const porNota = notas.map(n => {
+    const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id));
+    const ok = rs.filter(r => r.confianza !== 'Baja');
+    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: ok.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: ok.map(r => r.medio).join(', '), posibles: rs.length - ok.length };
+  });
+  const meses = [...new Set(notas.map(n => n.mes))].sort();
+  const st = { desde: meses[0], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
+  const en = m => m >= st.desde && m <= st.hasta;
+
+  const calc = () => {
+    const ns = notas.filter(n => en(n.mes)), rs = repOk.filter(r => en(r.mes));
+    const con = new Set(rs.map(r => Number(r.nota_id)));
+    const conTexto = rs.filter(r => r.origen !== 'Sin dato');
+    const ps = D.redes.filter(r => r.propia === 'Sí' && en(r.fecha.slice(0, 7)));
+    const g = new Map();
+    rs.forEach(r => { const x = g.get(r.medio) || { medio: r.medio, notas: 0, copia: 0, otra: 0, sin_dato: 0 }; x.notas++; if (r.origen.startsWith('Copia')) x.copia++; else if (r.origen === 'Sin dato') x.sin_dato++; else x.otra++; g.set(r.medio, x); });
+    const cad = new Map(); rs.forEach(r => (r.cita_otro_medio || '').split(', ').filter(Boolean).forEach(m => cad.set(m, (cad.get(m) || 0) + 1)));
+    return {
+      notas: ns.length,
+      pct: ns.length ? Math.round(ns.filter(n => con.has(Number(n.id))).length / ns.length * 100) : 0,
+      publicaciones: rs.length,
+      medios: g.size,
+      pct_copia: conTexto.length ? Math.round(conTexto.filter(r => r.origen.startsWith('Copia')).length / conTexto.length * 100) : 0,
+      posteos: ps.length,
+      vistas: ps.reduce((s, r) => s + (Number(r.vistas) || 0), 0),
+      seguidores: D.canales.filter(c => c.estado === 'Activa').reduce((s, c) => s + (Number(c.seguidores) || 0), 0),
+      tipo: TIPOS.map(t => { const x = ns.filter(n => n.tipo === t), l = x.filter(n => con.has(Number(n.id))).length; return { tipo: t, notas: x.length, levantadas: l, pct: x.length ? Math.round(l / x.length * 100) : 0 }; }),
+      porMedio: [...g.values()].sort((a, b) => b.notas - a.notas),
+      origen: ORIG.map(o => ({ origen: o, n: rs.filter(r => r.origen === o).length })),
+      cadena: [{ fuente: 'Nombran a JusNoticias o la Agencia de Comunicación Judicial', n: rs.filter(r => r.cita_fuente_oficial === 'Sí').length }].concat([...cad].sort((a, b) => b[1] - a[1]).map(([m, c]) => ({ fuente: 'Nombran a ' + m, n: c }))),
+      notasP: porNota.filter(r => en(r.mes)),
+      porRed: REDES.map(red => {
+        const x = ps.filter(r => r.red === red);
+        const mg = x.filter(r => r.me_gusta !== null && r.me_gusta !== undefined), vi = x.filter(r => r.vistas !== null && r.vistas !== undefined);
+        const best = x.slice().sort((a, b) => ((b.vistas || 0) + (b.me_gusta || 0) * 10) - ((a.vistas || 0) + (a.me_gusta || 0) * 10))[0];
+        return { red, posteos: x.length, mg: mg.length ? Math.round(mg.reduce((s, r) => s + Number(r.me_gusta), 0) / mg.length * 10) / 10 : null, vi: vi.length ? Math.round(vi.reduce((s, r) => s + Number(r.vistas), 0) / vi.length) : null, mejor: best ? best.texto : '' };
+      })
+    };
+  };
+
+  const row = (label, segs, total, max, valTxt) => {
+    const r = document.createElement('div'); r.className = 'bar-row';
+    const l = document.createElement('div'); l.className = 'bar-lab'; l.textContent = label; l.title = label;
+    const t = document.createElement('div'); t.className = 'bar-track';
+    segs.forEach(([v, c]) => { const f = document.createElement('div'); f.className = 'bar-fill'; f.style.width = (max ? v / max * 100 : 0) + '%'; f.style.background = c; t.append(f); });
+    const v = document.createElement('div'); v.className = 'bar-val'; v.textContent = valTxt ?? fmt(total);
+    r.append(l, t, v); return r;
+  };
+  const bars = (id, items) => { const el = $(id); el.replaceChildren(...items); if (!items.length) { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'Sin datos en este período.'; el.append(p); } };
+  const tbl = (sel, rows, cols) => {
+    const tb = document.querySelector(sel + ' tbody');
+    tb.replaceChildren(...rows.map(r => { const tr = document.createElement('tr'); cols.forEach(([f, cls]) => { const td = document.createElement('td'); const v = f(r); td.textContent = (v && typeof v === 'object') ? v.t : v; td.className = [cls, v && v.c].filter(Boolean).join(' '); tr.append(td); }); return tr; }));
+  };
+
+  // Gráfico de barras por mes (SVG a mano, escalado al ancho)
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+  const chart = (boxId, tipId, ms, series, val, stacked, tipLines) => {
+    const box = $(boxId), tip = $(tipId);
+    box.querySelectorAll('svg').forEach(s => s.remove());
+    const W = Math.max(280, box.clientWidth), H = 220;
+    const maxV = Math.max(1, ...ms.map(m => stacked ? series.reduce((s, x) => s + val(m, x), 0) : Math.max(...series.map(x => val(m, x)))));
+    const step = Math.pow(10, Math.floor(Math.log10(maxV))); const unit = [1, 2, 2.5, 5, 10].map(k => k * step).find(u => maxV / u <= 5) || step * 10;
+    const top = Math.ceil(maxV / unit) * unit, ticks = []; for (let v = 0; v <= top + 1e-9; v += unit) ticks.push(v);
+    const svg = el('svg', { width: '100%', viewBox: `0 0 ${W} ${H}`, role: 'img' });
+    box.insertBefore(svg, tip);
+    const probe = el('text', {}); probe.textContent = fmt(top); svg.append(probe);
+    const ml = Math.ceil(probe.getComputedTextLength()) + 10; probe.remove();
+    const m = { t: 10, r: 6, b: 26, l: ml };
+    const y = v => H - m.b - (v / top) * (H - m.t - m.b);
+    const bw = (W - m.l - m.r) / ms.length, pad = bw * 0.22;
+    ticks.forEach(v => { svg.append(el('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--grid)' })); const t = el('text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end' }); t.textContent = fmt(v); svg.append(t); });
+    ms.forEach((mes, i) => {
+      const x0 = m.l + i * bw, g = el('g', { opacity: en(mes) ? 1 : 0.3 }); svg.append(g);
+      if (stacked) {
+        let acc = 0; const w = Math.min(32, bw - 2 * pad), xx = x0 + (bw - w) / 2;
+        series.forEach(s => { const v = val(mes, s); if (!v) return; g.append(el('rect', { x: xx, width: w, y: y(acc + v), height: y(acc) - y(acc + v), fill: s.color })); acc += v; });
+      } else {
+        const w = (bw - 2 * pad) / series.length;
+        series.forEach((s, k) => { const v = val(mes, s); g.append(el('rect', { x: x0 + pad + k * w, width: Math.max(1, w - 2), y: y(v), height: y(0) - y(v), rx: 3, fill: s.color })); });
+      }
+      const t = el('text', { x: x0 + bw / 2, y: H - 8, 'text-anchor': 'middle' }); t.textContent = mesCorto(mes); svg.append(t);
+      const hit = el('rect', { x: x0, width: bw, y: m.t, height: H - m.t - m.b, fill: 'transparent' }); svg.append(hit);
+      hit.addEventListener('mousemove', ev => {
+        tip.hidden = false; tip.replaceChildren();
+        const h = document.createElement('div'); h.className = 'h'; h.textContent = cap(mesLargo(mes)) + ' ' + mes.slice(0, 4); tip.append(h);
+        tipLines(mes).forEach(([c, txt]) => { const l = document.createElement('div'); const i = document.createElement('i'); i.style.cssText = 'display:inline-block;width:.55rem;height:.55rem;border-radius:2px;margin-right:5px;background:' + c; l.append(i, document.createTextNode(txt)); tip.append(l); });
+        const bx = box.getBoundingClientRect(); let lx = ev.clientX - bx.left + 12; if (lx > bx.width - 170) lx -= 190;
+        tip.style.left = Math.max(0, lx) + 'px'; tip.style.top = Math.max(0, ev.clientY - bx.top - 10) + 'px';
+      });
+      hit.addEventListener('mouseleave', () => { tip.hidden = true; });
+    });
+  };
+
+  const drawResumen = (c) => {
+    document.querySelectorAll('#resumen [data-k]').forEach(e => { const k = e.dataset.k; e.textContent = k === 'pct' ? c.pct + '%' : fmt(c[k]); });
+    const pm = new Map(); notas.forEach(n => { const x = pm.get(n.mes) || { p: 0, l: 0 }; x.p++; pm.set(n.mes, x); });
+    const conAll = new Set(repOk.map(r => Number(r.nota_id))); notas.forEach(n => { if (conAll.has(Number(n.id))) pm.get(n.mes).l++; });
+    chart('ch-mes', 'tip-mes', meses, [{ k: 'p', color: 'var(--muted-bar)' }, { k: 'l', color: 'var(--accent)' }], (m, s) => pm.get(m)[s.k], false,
+      m => { const r = pm.get(m); return [['var(--muted-bar)', 'Publicadas: ' + fmt(r.p)], ['var(--accent)', 'Levantadas: ' + fmt(r.l) + ' (' + Math.round(r.l / r.p * 100) + '%)']]; });
+    bars('b-tipo', c.tipo.filter(r => r.notas).map(r => row(r.tipo + ' (' + fmt(r.levantadas) + ' de ' + fmt(r.notas) + ')', [[r.pct, 'var(--accent)']], r.pct, 100, r.pct + '%')));
+    const t5 = c.porMedio.slice(0, 5), mx = t5.length ? t5[0].notas : 1;
+    bars('b-top5m', t5.map(r => row(r.medio, [[r.notas, 'var(--accent)']], r.notas, mx)));
+    const n5 = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 5), mn = n5.length ? n5[0].n_medios : 1;
+    bars('b-top5n', n5.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
+  };
+  const drawMedios = (c) => {
+    const t = c.porMedio.slice(0, 15), mx = t.length ? t[0].notas : 1;
+    bars('b-medios', t.map(r => row(r.medio, [[r.copia, 'var(--copia)'], [r.otra, 'var(--accent)'], [r.sin_dato, 'var(--muted-bar)']], r.notas, mx)));
+    const n = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 12), mn = n.length ? n[0].n_medios : 1;
+    bars('b-top', n.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
+    const mo = Math.max(1, ...c.origen.map(r => r.n));
+    bars('b-origen', c.origen.map(r => row(r.origen, [[r.n, r.origen.startsWith('Copia') ? 'var(--copia)' : r.origen === 'Sin dato' ? 'var(--muted-bar)' : 'var(--accent)']], r.n, mo)));
+    const mc = Math.max(1, ...c.cadena.map(r => r.n));
+    bars('b-cadena', c.cadena.map((r, i) => row(r.fuente, [[r.n, i === 0 ? 'var(--accent)' : 'var(--c4)']], r.n, mc)));
+  };
+  const drawNotas = (c) => {
+    c = c || calc();
+    const q = $('q').value.trim().toLowerCase(), ft = $('ftipo').value, fs = $('fsin').value;
+    let rows = c.notasP.filter(r => (!ft || r.tipo === ft) && (!fs || (fs === 'sin' ? r.n_medios === 0 : r.n_medios > 0)) && (!q || (r.titulo + ' ' + r.medios).toLowerCase().includes(q)));
+    rows.sort((a, b) => { const x = a[st.sort], y = b[st.sort]; return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y))) * st.dir; });
+    $('cuenta-notas').textContent = fmt(rows.length) + ' notas';
+    tbl('#t-notas', rows, [[r => ddmm(r.fecha)], [r => r.titulo], [r => r.tipo], [r => ({ t: fmt(r.n_medios), c: r.n_medios ? '' : 'zero' }), 'num'], [r => fmt(r.copias), 'num'], [r => ({ t: r.medios || 'Ningún medio', c: r.medios ? '' : 'zero' })], [r => r.posibles ? fmt(r.posibles) : '', 'num dim']]);
+    [...document.querySelectorAll('#t-notas tbody tr')].forEach((tr, i) => { tr.dataset.id = rows[i].id; tr.classList.toggle('sel', rows[i].id === st.sel); });
+    document.querySelectorAll('#t-notas th').forEach(th => { const b = th.querySelector('button'); th.setAttribute('aria-sort', b && b.dataset.k === st.sort ? (st.dir > 0 ? 'ascending' : 'descending') : 'none'); });
+  };
+  const drawRedes = (c) => {
+    c = c || calc();
+    const series = REDES.map((red, i) => ({ red, color: RCOL[i] }));
+    $('lg-redes').replaceChildren(...series.map(s => { const sp = document.createElement('span'); const i = document.createElement('i'); i.style.background = s.color; sp.append(i, document.createTextNode(s.red)); return sp; }));
+    const cnt = new Map(); D.redes.filter(r => r.propia === 'Sí').forEach(r => { const k = r.fecha.slice(0, 7) + '|' + r.red; cnt.set(k, (cnt.get(k) || 0) + 1); });
+    const ms = [...new Set(D.redes.filter(r => r.propia === 'Sí').map(r => r.fecha.slice(0, 7)))].sort();
+    const val = (m, s) => cnt.get(m + '|' + s.red) || 0;
+    chart('ch-redes', 'tip-redes', ms, series, val, true, m => series.filter(s => val(m, s)).map(s => [s.color, s.red + ': ' + fmt(val(m, s))]));
+    tbl('#t-red', c.porRed, [[r => r.red], [r => fmt(r.posteos), 'num'], [r => r.mg === null ? '' : String(r.mg).replace('.', ','), 'num'], [r => fmt(r.vi), 'num'], [r => r.mejor]]);
+    tbl('#t-canales', D.canales, [[r => r.red], [r => r.cuenta], [r => fmt(r.seguidores), 'num'], [r => ({ t: r.estado, c: /Inactiva|No existe/.test(r.estado) ? 'zero' : '' })]]);
+    const fr = $('fred').value, fp = $('fprop').value;
+    const score = r => (Number(r.vistas) || 0) + 10 * ((Number(r.me_gusta) || 0) + (Number(r.comentarios) || 0) + (Number(r.compartidos) || 0));
+    const rows = D.redes.filter(r => en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
+    tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
+  };
+  const drawGuia = () => tbl('#t-medios', D.medios.slice().sort((a, b) => b.notas - a.notas), [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió/.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num']]);
+
+  const drawHeader = (c) => {
+    const yd = st.desde.slice(0, 4), yh = st.hasta.slice(0, 4);
+    const per = st.desde === st.hasta ? mesLargo(st.desde) + ' de ' + yd : mesLargo(st.desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(st.hasta) + ' de ' + yh;
+    const ultima = notas.map(n => n.fecha).sort().pop();
+    $('periodo').textContent = cap(per) + ' · datos al ' + ultima.split('-').reverse().join('/');
+    const tp = c.tipo.filter(x => x.notas).sort((a, b) => b.pct - a.pct), hi = tp[0], lo = tp[tp.length - 1];
+    let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% fue levantado por al menos un medio: ' + fmt(c.publicaciones) + ' publicaciones en ' + fmt(c.medios) + ' medios.';
+    if (hi && lo && hi !== lo) t += ' Lo que más viaja es ' + hi.tipo.toLowerCase() + ' (' + hi.pct + '%); lo que menos, ' + lo.tipo.toLowerCase() + ' (' + lo.pct + '%).';
+    if (c.porMedio.length) t += ' ' + c.porMedio[0].medio + ' es el medio que más replica.';
+    if (c.pct_copia >= 50) t += ' En el ' + c.pct_copia + '% de los casos con texto disponible, el medio copió nuestra nota casi sin cambios.';
+    $('take').textContent = c.notas ? t : 'No hay notas en este período.';
+    $('ftodo').disabled = st.desde === meses[0] && st.hasta === meses[meses.length - 1];
+    $('fdesde').value = st.desde; $('fhasta').value = st.hasta;
+  };
+
+  let googleRequest = 0;
+  const drawGoogle = async () => {
+    const requestId = ++googleRequest;
+    const status = $('g-estado');
+    const today = new Date();
+    const yesterday = new Date(Date.now() - 86400000);
+    const iso = d => d.toISOString().slice(0, 10);
+    if (!$('g-hasta').value) $('g-hasta').value = iso(yesterday);
+    if (!$('g-desde').value) $('g-desde').value = iso(new Date(yesterday.getTime() - 27 * 86400000));
+    const start = $('g-desde').value, end = $('g-hasta').value;
+    if (!start || !end || start > end) { status.textContent = 'Elegí un rango de fechas válido.'; return; }
+    status.textContent = 'Consultando Analytics y Search Console…';
+    const number = v => nf.format(Number(v || 0));
+    const pct = v => (Number(v || 0) * 100).toLocaleString('es-AR', { maximumFractionDigits: 2 }) + '%';
+    const fill = (id, rows, cols, empty) => {
+      const body = document.querySelector('#' + id + ' tbody');
+      body.replaceChildren();
+      if (!rows || !rows.length) {
+        const tr = document.createElement('tr'), td = document.createElement('td');
+        td.colSpan = cols.length; td.className = 'dim'; td.textContent = empty || 'Sin datos para este período.';
+        tr.append(td); body.append(tr); return;
+      }
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        cols.forEach(col => {
+          const td = document.createElement('td');
+          const value = col.value(row);
+          td.textContent = value === null || value === undefined ? '—' : String(value);
+          tr.append(td);
+        });
+        body.append(tr);
+      });
+    };
+    try {
+      const response = await fetch('/api/google-metrics?desde=' + encodeURIComponent(start) + '&hasta=' + encodeURIComponent(end), { headers: { Accept: 'application/json' } });
+      const data = await response.json();
+      if (requestId !== googleRequest) return;
+      if (!response.ok || data.estado !== 'ok') {
+        status.textContent = data.estado === 'pendiente_configuracion'
+          ? 'Pendiente de configuración en Vercel: faltan credenciales o identificadores de Google. Ver docs/GOOGLE_METRICS.md en el repositorio.'
+          : 'No se pudieron consultar las métricas: ' + (data.error || ('HTTP ' + response.status));
+        ['g-usuarios','g-sesiones','g-vistas','g-clics','g-impresiones'].forEach(id => $(id).textContent = '—');
+        return;
+      }
+      const a = data.analytics, s = data.searchConsole;
+      $('g-usuarios').textContent = number(a.totalUsers);
+      $('g-sesiones').textContent = number(a.sessions);
+      $('g-vistas').textContent = number(a.screenPageViews);
+      $('g-clics').textContent = number(s.resumen && s.resumen.clicks);
+      $('g-impresiones').textContent = number(s.resumen && s.resumen.impressions);
+      status.textContent = 'Datos de ' + start + ' a ' + end + '. Consulta realizada: ' + new Date(data.actualizado).toLocaleString('es-AR') + '.';
+      fill('g-tabla-paginas', a.paginas, [
+        { value: r => r.titulo || r.ruta }, { value: r => number(r.screenPageViews) },
+        { value: r => number(r.sessions) }, { value: r => number(r.totalUsers) }
+      ]);
+      fill('g-tabla-canales', a.canales, [
+        { value: r => r.nombre }, { value: r => number(r.sessions) }, { value: r => number(r.screenPageViews) }
+      ]);
+      fill('g-tabla-dispositivos', a.dispositivos, [
+        { value: r => r.nombre }, { value: r => number(r.sessions) }, { value: r => number(r.screenPageViews) }
+      ]);
+      fill('g-tabla-consultas', s.consultas, [
+        { value: r => r.consulta }, { value: r => number(r.clics) }, { value: r => number(r.impresiones) },
+        { value: r => pct(r.ctr) }, { value: r => Number(r.posicion || 0).toLocaleString('es-AR', { maximumFractionDigits: 1 }) }
+      ]);
+      fill('g-tabla-search-paginas', s.paginas, [
+        { value: r => r.pagina }, { value: r => number(r.clics) }, { value: r => number(r.impresiones) },
+        { value: r => pct(r.ctr) }, { value: r => Number(r.posicion || 0).toLocaleString('es-AR', { maximumFractionDigits: 1 }) }
+      ]);
+    } catch (error) {
+      if (requestId === googleRequest) status.textContent = 'Error de conexión al consultar Google: ' + error.message;
+    }
+  };
+  $('g-actualizar').addEventListener('click', drawGoogle);
+
+  const draw = () => {
+    const c = calc();
+    drawHeader(c);
+    ({ resumen: drawResumen, medios: drawMedios, notas: drawNotas, redes: drawRedes, google: drawGoogle, guia: drawGuia })[st.page](c);
+  };
+
+  // Controles
+  const opts = meses.map(m => [m, cap(mesLargo(m)) + ' ' + m.slice(0, 4)]);
+  ['fdesde', 'fhasta'].forEach(id => $(id).replaceChildren(...opts.map(([v, t]) => new Option(t, v))));
+  const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; draw(); };
+  $('fdesde').addEventListener('change', e => setRango(e.target.value, st.hasta));
+  $('fhasta').addEventListener('change', e => setRango(st.desde, e.target.value));
+  $('ftodo').addEventListener('click', () => setRango(meses[0], meses[meses.length - 1]));
+  const show = (page) => {
+    if (!$(page) || !$(page).classList.contains('page')) return;
+    st.page = page;
+    document.querySelectorAll('.page').forEach(s => { s.hidden = s.id !== page; });
+    document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.page === page)));
+    try { history.replaceState(null, '', '#' + page); } catch (e) {}
+    draw();
+  };
+  document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
+  $('ir-completo').addEventListener('click', () => { show('medios'); document.querySelector('.tabs').scrollIntoView(); });
+  const detalle = (id) => {
+    const n = porNota.find(x => x.id === id); if (!n) return;
+    st.sel = id;
+    document.querySelectorAll('#t-notas tbody tr').forEach(tr => tr.classList.toggle('sel', Number(tr.dataset.id) === id));
+    const rs = D.repercusion.filter(r => Number(r.nota_id) === id).sort((a, b) => (a.confianza === 'Baja') - (b.confianza === 'Baja') || a.medio.localeCompare(b.medio));
+    $('det-titulo').textContent = n.titulo;
+    $('det-sub').textContent = ddmm(n.fecha) + ' · ' + fmt(n.n_medios) + ' publicaciones encontradas' + (n.posibles ? ' y ' + fmt(n.posibles) + (n.posibles === 1 ? ' posible' : ' posibles') : '') + '. Abrí cada enlace para ver qué publicó y qué fuente menciona.';
+    const tb = document.querySelector('#t-det tbody');
+    tb.replaceChildren(...rs.map(r => {
+      const tr = document.createElement('tr');
+      const c = (txt, cls) => { const td = document.createElement('td'); if (cls) td.className = cls; if (txt instanceof Node) td.append(txt); else td.textContent = txt; tr.append(td); };
+      c(r.medio);
+      const p = document.createElement('span'); p.className = 'pill' + (r.confianza === 'Baja' ? '' : ' ok'); p.textContent = r.confianza === 'Baja' ? 'A revisar' : 'Encontrada'; c(p);
+      const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona JusNoticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'dim');
+      c(r.origen === 'Sin dato' ? '—' : r.origen.replace(' (≥50%)', ''));
+      c(r.metodo || '', 'dim');
+      if (r.url && /^https?:\/\//.test(r.url)) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Abrir ↗'; c(a); } else c('Sin enlace', 'dim');
+      return tr;
+    }));
+    if (!rs.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 6; td.className = 'dim'; td.textContent = 'Ningún medio encontrado para esta nota.'; tr.append(td); tb.append(tr); }
+    $('c-detalle').hidden = false;
+    $('c-detalle').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+  document.querySelector('#t-notas tbody').addEventListener('click', e => { const tr = e.target.closest('tr[data-id]'); if (tr) detalle(Number(tr.dataset.id)); });
+  ['q', 'ftipo', 'fsin'].forEach(id => $(id).addEventListener(id === 'q' ? 'input' : 'change', () => drawNotas()));
+  ['fred', 'fprop'].forEach(id => $(id).addEventListener('change', () => drawRedes()));
+  document.querySelectorAll('#t-notas th button').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; st.dir = st.sort === k ? -st.dir : (['n_medios', 'copias', 'posibles', 'fecha'].includes(k) ? -1 : 1); st.sort = k; drawNotas(); }));
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(draw, 150); });
+
+  $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. Actualizado: ' + D.actualizado + '.';
+  const h = location.hash.slice(1);
+  if (h && h !== 'resumen' && $(h) && $(h).classList.contains('page')) show(h); else draw();
+})();
+</script>
