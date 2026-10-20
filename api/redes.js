@@ -90,12 +90,14 @@ module.exports = async (req, res) => {
   };
   if (paramDesde && !esFechaValida(paramDesde)) return res.status(400).json({ error: "'desde' debe ser una fecha válida con formato AAAA-MM-DD." });
   const desde = paramDesde || '2026-02-01';
+  const dias = (Date.now() - new Date(desde + 'T00:00:00Z').getTime()) / 86400000;
+  if (dias < 0 || dias > 90) return res.status(400).json({ error: "'desde' debe estar entre hoy y los últimos 90 días." });
   const out = { actualizado: new Date().toISOString(), desde, redes: {}, errores: {} };
   const tareas = { Facebook: facebook, Instagram: instagram };
   if (process.env.YT_KEY) tareas.YouTube = youtube;
   await Promise.all(Object.entries(tareas).map(async ([red, fn]) => {
     try { out.redes[red] = await fn(desde); } catch (e) { out.errores[red] = e.message; }
   }));
-  res.setHeader('Cache-Control', 's-maxage=600');
+  res.setHeader('Cache-Control', Object.keys(out.errores).length ? 'no-store' : 's-maxage=600');
   res.status(200).json(out);
 };
