@@ -125,6 +125,13 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("'Revista Quórum':'Cobertura nacional'", template)
         self.assertIn("Chubut Hoy|ABC Diario|La Tecla Patagonia|El Extremo Sur|NoticiasdelBolson", template)
 
+    def test_api_social_no_expone_token_en_url(self):
+        api = (ROOT / "api/redes.js").read_text(encoding="utf-8")
+        self.assertIn("Authorization: 'Bearer ' + token", api)
+        self.assertNotIn("access_token=${t}", api)
+        self.assertNotIn("access_token=${process.env.META_TOKEN}", api)
+        self.assertIn("process.env.YT_CANAL_ID", api)
+
     def test_no_hay_credenciales_en_el_html_publico(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
         self.assertNotRegex(public, r"-----BEGIN PRIVATE KEY-----\s+[A-Za-z0-9+/=]{40,}")
