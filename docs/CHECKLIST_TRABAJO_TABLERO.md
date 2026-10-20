@@ -43,7 +43,7 @@
 - [x] El proceso contempla verificaciones para fallar explícitamente ante fallos de fuentes o caídas sospechosas del volumen.
 - [x] Documentar que Google Noticias encuentra candidatos, pero no prueba copia, atribución ni exhaustividad.
 - [~] GitHub Actions está programado cada dos horas, en el minuto 59, hora argentina.
-- [~] Las dos ejecuciones programadas previas revisadas terminaron correctamente; la ejecución programada más reciente (20/10/2026 19:22 UTC) seguía en curso al revisarla. Verificar su conclusión: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39482960177
+- [x] La ejecución programada del 20/10/2026 19:22 UTC terminó correctamente, incluidos relevamiento, generación del HTML público y guardado: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39482960177. Las dos programadas previas revisadas también terminaron correctamente.
 - [ ] Auditar la lista de medios, fuentes fallidas, paginación y fechas.
 - [ ] Etiquetar coincidencias como posibles hasta verificar evidencia; distinguir tema similar, texto similar y atribución explícita.
 - [ ] No presentar la fecha de la nota de JusNoticias como si fuera la fecha comprobada del artículo externo.
