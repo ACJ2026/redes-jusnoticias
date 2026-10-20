@@ -286,7 +286,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="google" hidden>
     <div class="card guia">
       <h2>Audiencia y búsquedas en Google</h2>
-      <p class="note">Datos consultados directamente desde Google Analytics 4 y Search Console. No se mezclan con las métricas de repercusión en medios o redes.</p>
+      <p class="note">Datos consultados directamente desde Google Analytics 4 y Search Console. No se mezclan con las métricas de repercusión en medios o redes. Google permite consultar hasta 90 días por vez; si elegís un período más largo en el tablero, acá se toma la ventana más reciente de 90 días.</p>
       <div class="tools">
         <label for="g-desde" class="lbl">Desde</label><input id="g-desde" type="date">
         <label for="g-hasta" class="lbl">Hasta</label><input id="g-hasta" type="date">
@@ -666,8 +666,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const [dy, dm] = st.desde.split('-').map(Number), [hy, hm] = st.hasta.split('-').map(Number);
     const start = new Date(dy, dm - 1, 1), monthEnd = new Date(hy, hm, 0), today = new Date();
     const end = monthEnd > today ? today : monthEnd;
+    const maxStart = new Date(end.getFullYear(), end.getMonth(), end.getDate());
+    maxStart.setDate(maxStart.getDate() - 89);
+    const effectiveStart = start < maxStart ? maxStart : start;
     const isoLocal = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-    $('g-desde').value = isoLocal(start); $('g-hasta').value = isoLocal(end);
+    $('g-desde').value = isoLocal(effectiveStart); $('g-hasta').value = isoLocal(end);
   };
   const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; syncGoogleDates(); draw(); };
   $('fdesde').addEventListener('change', e => setRango(e.target.value, st.hasta));
