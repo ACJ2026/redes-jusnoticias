@@ -140,6 +140,35 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   .landing h1{font-size:2.65rem}
   .landing-stat strong{font-size:2.55rem}
 }
+
+/* El tablero completo también prioriza lectura y controles cómodos en pantalla chica */
+@media(max-width:600px){
+  :root{--fs-cap:.9rem;--fs-body:1.05rem;--fs-h:1.15rem;--fs-title:2rem;--fs-big:2.65rem}
+  .wrap{padding:18px 14px 36px;gap:18px}
+  .mast{gap:8px;padding-bottom:16px}
+  .take{font-size:1.15rem;line-height:1.55}
+  .note{font-size:.9rem;line-height:1.5}
+  .bar{align-items:stretch;gap:12px}
+  .tools{gap:10px;width:100%}
+  .tools label,.tools select,.tools button,.tools input,.bar select,.bar button{font-size:1rem;min-height:44px}
+  .tabs{gap:4px;scrollbar-width:thin}
+  .tabs button{padding:13px 14px;min-height:46px;font-size:1rem}
+  .tabs .sep{font-size:.82rem}
+  .kpis{grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{gap:8px;padding:12px 2px 6px}
+  .kpi.lead{grid-column:1/-1}
+  .big{font-size:2.4rem}
+  .kpi .lbl{font-size:.96rem;line-height:1.45}
+  .panel{padding:14px 12px;border-radius:12px}
+  .panel h2,.section-title{font-size:1.2rem;line-height:1.4}
+  .tbox{max-width:100%;overflow:auto;-webkit-overflow-scrolling:touch}
+  table{font-size:.9rem;min-width:540px}
+  th,td{padding:10px 9px}
+  .btn,button{touch-action:manipulation}
+  .btn{min-height:44px;padding:10px 13px}
+  .territorio-tools{display:flex;flex-wrap:wrap;gap:8px}
+  #b-territorio .bar-row{grid-template-columns:minmax(6rem,8rem) minmax(2rem,1fr) 3rem;gap:8px}
+}
 </style>
 
 <section class="landing" id="portada" aria-labelledby="portada-titulo">
