@@ -61,6 +61,13 @@ class TableroPublicoTests(unittest.TestCase):
             for c in canales
         ))
 
+    def test_catalogo_territorial_incluye_medios_verificados(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("'Del Mar Digital':'Comodoro Rivadavia'", template)
+        self.assertIn("'ADN Sur':'Comodoro Rivadavia'", template)
+        self.assertIn("'EQS Notas':'Esquel'", template)
+        self.assertIn("'Digital Chubut':'Puerto Madryn'", template)
+
     def test_no_hay_credenciales_en_el_html_publico(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
         self.assertNotRegex(public, r"-----BEGIN PRIVATE KEY-----\s+[A-Za-z0-9+/=]{40,}")
