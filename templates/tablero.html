@@ -481,7 +481,16 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     'Diario Huarpe':'San Juan','Elonce.com':'Paraná','APFDigital':'Paraná','Somos Jujuy':'San Salvador de Jujuy',
     'Canal Doce Misiones':'Posadas','Info del Estero':'Santiago del Estero','El Monterizo':'San Miguel de Tucumán',
     'LM Neuquén':'Neuquén','Lmneuquen.com':'Neuquén','Diario San Rafael':'San Rafael',
-    'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','EQS Notas':'Esquel','Digital Chubut':'Puerto Madryn'
+    'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','EQS Notas':'Esquel','Digital Chubut':'Puerto Madryn',
+    'Argentar Noticias':'Comodoro Rivadavia',
+    'Diario Judicial':'Ciudad Autónoma de Buenos Aires',
+    'El 10 TV':'Salta',
+    'El Valle Online':'Valle Inferior del Río Chubut',
+    'El Mediador - Santa Cruz':'Santa Cruz (localidad por verificar)',
+    'Metadata Noticias':'Chubut (localidad por verificar)',
+    'Examedia':'Entre Ríos (localidad por verificar)',
+    'Flipr.news':'Cobertura nacional',
+    'Portal Medios Públicos':'Cobertura nacional'
   };
   const tipoMedio = medio => {
     // Si el nombre identifica explícitamente una edición web/digital, no inferir prensa gráfica o TV por otra palabra del nombre.
@@ -492,9 +501,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     return 'Portal digital';
   };
   const regionMedio = localidad => {
-    if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila'].includes(localidad)) return 'Chubut';
-    if (['Río Gallegos','General Roca','Neuquén'].includes(localidad)) return 'Patagonia fuera de Chubut';
-    if (localidad === 'Localidad por verificar') return 'Localidad por verificar';
+    if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)'].includes(localidad)) return 'Chubut';
+    if (['Río Gallegos','General Roca','Neuquén','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (localidad === 'Localidad por verificar' || localidad.includes('(localidad por verificar)')) return localidad.startsWith('Chubut') ? 'Chubut' : localidad.startsWith('Santa Cruz') ? 'Patagonia fuera de Chubut' : 'Localidad por verificar';
     return 'Resto del país';
   };
   const drawTerritorio = () => {
