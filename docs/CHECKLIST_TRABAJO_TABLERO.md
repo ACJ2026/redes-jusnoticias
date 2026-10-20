@@ -78,6 +78,7 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [ ] Confirmar que tokens no aparezcan en logs ni respuestas.
 
 ## 8. Claridad visual y documentación
+- [~] Portada tipo infografía ejecutiva: preparada con indicadores dinámicos y botón de ingreso al tablero completo; falta validación visual en navegador.
 - [~] Preparar etiquetas en lenguaje sencillo para usuarios, sesiones, vistas, clics e impresiones.
 - [~] Manual `docs/MANUAL_TABLERO.md` actualizado con frecuencia cada dos horas.
 - [ ] Corregir referencias restantes a Vercel cuando corresponda Cloudflare Pages.
