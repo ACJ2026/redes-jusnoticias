@@ -1,0 +1,661 @@
+<style>
+.jr{font-family:var(--font-anthropic-sans);display:flex;flex-direction:column;gap:var(--cds-gap-lg)}
+.jr h1{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:0}
+.jr .take{margin:0;font-size:var(--cds-font-size-body);max-width:60rem;line-height:1.5}
+.jr .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));gap:var(--cds-gap-md)}
+.jr .card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
+.jr .big{font-family:var(--font-anthropic-serif);font-weight:400;font-size:calc(var(--cds-font-size-title)*1.5);line-height:1;font-variant-numeric:tabular-nums}
+.jr .lbl{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
+.jr .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:var(--cds-gap-md)}
+.jr h2{font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium);margin:0}
+.jr .grp{font-size:var(--cds-font-size-caption);font-weight:var(--cds-font-weight-medium);color:var(--color-fg-muted);text-transform:uppercase;letter-spacing:.04em;margin:0}
+.jr .note{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);margin:0}
+.jr .page{display:flex;flex-direction:column;gap:var(--cds-gap-md)}
+.jr .page[hidden]{display:none}
+.jr .bars{display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-height:8rem}
+.jr .bar-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--cds-gap-xs) var(--cds-gap-sm);align-items:center;font-size:var(--cds-font-size-caption)}
+.jr .bar-lab{grid-column:1/-1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jr .bar-track{height:10px;background:var(--cds-chart-grid);border-radius:5px;overflow:hidden;display:flex}
+.jr .bar-fill{height:100%}
+.jr .bar-val{text-align:right;font-variant-numeric:tabular-nums;min-width:2.5rem}
+.jr .legend{display:flex;flex-wrap:wrap;gap:var(--cds-gap-md);font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.jr .legend i{display:inline-block;width:.6rem;height:.6rem;border-radius:2px;margin-right:4px;vertical-align:middle}
+.jr .chart{position:relative;min-height:14rem}
+.jr .tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);display:none;white-space:nowrap;z-index:2}
+.jr .tools{display:flex;flex-wrap:wrap;gap:var(--cds-gap-sm);align-items:center}
+.jr input[type=search],.jr select,.jr .btn{font:inherit;font-size:var(--cds-font-size-caption);padding:var(--cds-pad-xs) var(--cds-pad-sm);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);background:var(--color-bg);color:var(--color-fg);min-height:2.25rem}
+.jr .btn{cursor:pointer}
+.jr input[type=search]{flex:1 1 14rem}
+.jr .tabs{display:flex;gap:var(--cds-gap-xs);border-bottom:1px solid var(--color-border-line);overflow-x:auto}
+.jr .tabs button{all:unset;cursor:pointer;padding:var(--cds-pad-sm) var(--cds-pad-md);font-size:var(--cds-font-size-body);color:var(--color-fg-muted);border-bottom:2px solid transparent;white-space:nowrap}
+.jr .tabs button[aria-selected=true]{color:var(--color-fg);border-bottom-color:var(--color-fg);font-weight:var(--cds-font-weight-medium)}
+.jr .tabs .sep{align-self:center;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);padding:0 var(--cds-pad-xs)}
+.jr .more{align-self:flex-start}
+.jr .tbox{max-height:30rem;overflow:auto}
+.jr table{border-collapse:collapse;width:100%;font-size:var(--cds-font-size-caption)}
+.jr th{position:sticky;top:0;background:var(--color-panel);text-align:left;font-weight:var(--cds-font-weight-medium);border-bottom:1px solid var(--color-border-line);padding:var(--cds-pad-xs) var(--cds-pad-sm)}
+.jr th button{all:unset;cursor:pointer}
+.jr td{border-bottom:1px solid var(--color-border-line);padding:var(--cds-pad-xs) var(--cds-pad-sm);vertical-align:top}
+.jr td.num{text-align:right;font-variant-numeric:tabular-nums}
+.jr .zero{color:var(--color-bad);font-weight:var(--cds-font-weight-medium)}
+.jr .muted{color:var(--color-fg-muted)}
+.jr #t-notas tbody tr{cursor:pointer}
+.jr #t-notas tbody tr:hover td,.jr #t-notas tbody tr.sel td{background:var(--cds-chart-grid)}
+.jr #t-det a{color:var(--color-fg);font-weight:var(--cds-font-weight-medium)}
+.jr [data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+.jr .fail{display:flex;align-items:center;justify-content:center;gap:var(--cds-gap-xs);color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);min-height:6rem}
+.jr .fail i{width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad);display:inline-block}
+.jr .metodo p{margin:0 0 var(--cds-gap-sm);font-size:var(--cds-font-size-body);line-height:1.5;max-width:60rem}
+</style>
+<div class="jr">
+  <header style="display:flex;flex-direction:column;gap:var(--cds-gap-xs)">
+    <h1 id="titulo">Repercusión de JusNoticias en medios y redes</h1>
+    <p class="note" id="periodo" data-source="notas">—</p>
+    <p class="take" id="take">—</p>
+  </header>
+
+  <div class="tools" id="filtro">
+    <span class="lbl">Período</span>
+    <label for="fdesde" class="lbl">Desde</label><select id="fdesde" data-source="rangos"></select>
+    <label for="fhasta" class="lbl">Hasta</label><select id="fhasta" data-source="rangos"></select>
+    <button class="btn" id="fult" type="button">Último mes</button>
+    <button class="btn" id="ftodo" type="button">Todo el período</button>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Secciones">
+    <button role="tab" id="tab-resumen" data-page="resumen" aria-selected="true">Resumen</button>
+    <span class="sep" aria-hidden="true">Tablero completo:</span>
+    <button role="tab" id="tab-medios" data-page="medios" aria-selected="false">Medios</button>
+    <button role="tab" id="tab-notas" data-page="notas" aria-selected="false">Notas</button>
+    <button role="tab" id="tab-redes" data-page="redes" aria-selected="false">Redes</button>
+    <button role="tab" id="tab-metodo" data-page="metodo" aria-selected="false">Cómo leerlo</button>
+  </nav>
+
+  <!-- PLANO 1: lectura rápida -->
+  <section class="page" id="resumen">
+    <p class="grp">En medios</p>
+    <div class="kpis">
+      <div class="card"><div class="big" data-source="resumen" data-field="valor" data-k="pct">—</div><div class="lbl">Notas con al menos una publicación relacionada</div><p class="note">Porcentaje de nuestras notas que aparecen en otros medios. No confirma, por sí solo, que hayan usado nuestra información.</p></div>
+      <div class="card"><div class="big" data-source="resumen" data-field="valor" data-k="notas">—</div><div class="lbl">Notas publicadas en JusNoticias</div><p class="note">Cantidad de notas que publicamos dentro de las fechas elegidas.</p></div>
+      <div class="card"><div class="big" data-source="resumen" data-field="valor" data-k="publicaciones">—</div><div class="lbl">Publicaciones encontradas en otros medios</div><p class="note">Cuenta publicaciones relacionadas con nuestras notas. Algunas pueden hablar del mismo tema sin usar nuestra información.</p></div>
+      <div class="card"><div class="big" data-source="resumen" data-field="valor" data-k="medios">—</div><div class="lbl">Medios encontrados</div><p class="note">Cantidad de medios diferentes. Cada medio se cuenta una sola vez.</p></div>
+    </div>
+    <p class="grp">En redes</p>
+    <div class="kpis">
+      <div class="card"><div class="big" data-source="resumen" data-field="valor" data-k="posteos">—</div><div class="lbl">Publicaciones en nuestras redes</div><p class="note">Cantidad de publicaciones hechas desde las cuentas oficiales incluidas en el tablero.</p></div>
+      <div class="card"><div class="big" data-source="resumen" data-field="valor" data-k="vistas">—</div><div class="lbl">Vistas en X y YouTube</div><p class="note">Suma las vistas informadas por esas dos redes. Las otras no muestran ese dato.</p></div>
+      <div class="card"><div class="big" data-source="seguidores" data-field="total">—</div><div class="lbl">Seguidores de nuestras cuentas</div><p class="note">Suma los seguidores que muestran las cuentas incluidas hoy. No significa que todos hayan visto nuestras publicaciones.</p></div>
+    </div>
+    <div class="grid2">
+      <div class="card" id="c-mes">
+        <h2>Mes a mes</h2>
+        <p class="note">Compara cuántas notas publicamos cada mes y cuántas aparecieron en otros medios. Los meses fuera de las fechas elegidas se ven más claros.</p>
+        <div class="legend"><span><i style="background:var(--cds-chart-muted)"></i>Publicadas</span><span><i id="lg-lev"></i>Levantadas</span></div>
+        <div class="chart" id="ch-mes" data-source="por_mes"><div class="tip" id="tip-mes"></div></div>
+      </div>
+      <div class="card" id="c-tipo">
+        <h2>Qué temas aparecen más</h2>
+        <p class="note">Porcentaje de notas de cada tema que apareció en otros medios. Por ejemplo, 6 de 7 equivale al 86%. Esto no prueba por sí solo que hayan usado nuestra información.</p>
+        <div class="bars" id="b-tipo" data-source="por_tipo"></div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card" id="c-top5m">
+        <h2>Los 5 medios con más publicaciones</h2>
+        <p class="note">Cuenta cuántas notas distintas de JusNoticias encontramos en cada medio. No cuenta varias veces una misma nota.</p>
+        <div class="bars" id="b-top5m" data-source="por_medio"></div>
+      </div>
+      <div class="card" id="c-top5n">
+        <h2>Las 5 notas que aparecieron en más medios</h2>
+        <p class="note">Cuenta cuántos medios diferentes encontramos para cada nota. No significa necesariamente que todos hayan usado nuestra información.</p>
+        <div class="bars" id="b-top5n" data-source="por_nota"></div>
+      </div>
+    </div>
+    <button class="btn more" type="button" id="ir-completo">Ver el tablero completo →</button>
+  </section>
+
+  <!-- PLANO 2: consulta puntual -->
+  <section class="page" id="medios" hidden>
+    <div class="grid2">
+      <div class="card" id="c-medios">
+        <h2>Medios con más publicaciones</h2>
+        <p class="note">Muestra los 15 medios donde encontramos más notas relacionadas con las nuestras. Cada número cuenta notas distintas.</p>
+        <div class="legend"><span><i id="lg-copia"></i>Copia textual</span><span><i id="lg-otra"></i>Reescritura o redacción propia</span><span><i style="background:var(--cds-chart-muted)"></i>Sin dato de texto</span></div>
+        <div class="bars" id="b-medios" data-source="por_medio"></div>
+      </div>
+      <div class="card" id="c-top">
+        <h2>Notas que aparecieron en más medios</h2>
+        <p class="note">Muestra las 12 notas para las que encontramos más medios diferentes.</p>
+        <div class="bars" id="b-top" data-source="por_nota"></div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card" id="c-origen">
+        <h2>Cómo aparece nuestra nota</h2>
+        <p class="note">Compara el texto de otros medios con el de JusNoticias. Solo se cuentan los medios cuyo texto se pudo leer.</p>
+        <div class="bars" id="b-origen" data-source="origen"></div>
+      </div>
+      <div class="card" id="c-cadena">
+        <h2>Qué fuente menciona el medio</h2>
+        <p class="note">Muestra si el texto nombra a JusNoticias, a la Agencia o a otro medio. Si no nombra una fuente, no podemos asegurar de dónde salió la información.</p>
+        <div class="bars" id="b-cadena" data-source="cadena"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="notas" hidden>
+    <div class="card" id="c-notas">
+      <h2>Todas las notas del período</h2>
+      <p class="note">El monitoreo puede encontrar medios que publicaron sobre el mismo tema, pero eso no prueba que hayan tomado la información de JusNoticias. "A revisar" son coincidencias solo por título. Abrí una nota para ver si se menciona la fuente oficial o a otro medio.</p>
+      <div class="tools">
+        <label for="q" class="lbl">Buscar</label>
+        <input type="search" id="q" placeholder="Título o medio">
+        <label for="ftipo" class="lbl">Tipo</label>
+        <select id="ftipo"><option value="">Todos</option><option>Fallo o caso</option><option>Institucional</option><option>Agenda y servicios</option></select>
+        <label for="fsin" class="lbl">Mostrar</label>
+        <select id="fsin"><option value="">Todas</option><option value="sin">Solo sin repercusión</option><option value="con">Solo con repercusión</option></select>
+      </div>
+      <p class="note" id="cuenta-notas"></p>
+      <p class="note">En la tabla: “Medios” cuenta dónde apareció la nota; “Textos casi iguales” señala publicaciones muy parecidas a la nuestra; “Medios encontrados” muestra los nombres; “A revisar” son coincidencias que todavía no pudimos confirmar.</p>
+      <div class="tbox">
+        <table id="t-notas" data-source="por_nota" data-row-key="id">
+          <thead><tr>
+            <th data-field="fecha"><button data-k="fecha">Fecha</button></th>
+            <th data-field="titulo"><button data-k="titulo">Nota</button></th>
+            <th data-field="tipo"><button data-k="tipo">Tipo</button></th>
+            <th data-field="n_medios"><button data-k="n_medios">Medios</button></th>
+            <th data-field="copias"><button data-k="copias">Textos casi iguales</button></th>
+            <th data-field="medios">Medios encontrados</th>
+            <th data-field="posibles"><button data-k="posibles">A revisar</button></th>
+            <th data-field="id">ID</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" id="c-detalle" hidden>
+      <h2 id="det-titulo"></h2>
+      <p class="note" id="det-sub"></p>
+      <div class="tbox">
+        <table id="t-det" data-source="repercusion" data-row-key="key">
+          <thead><tr><th data-field="medio">Medio</th><th>Estado</th><th>Qué se pudo comprobar</th><th data-field="origen">Cómo la publicó</th><th data-field="metodo">Cómo se encontró</th><th>Enlace</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="redes" hidden>
+    <div class="card" id="c-redmes">
+      <h2>Publicaciones nuestras por mes</h2>
+      <p class="note">Muestra cuántas veces publicamos en cada red y cómo cambia de un mes a otro. Facebook propio se empezó a contar en septiembre.</p>
+      <div class="legend" id="lg-redes"></div>
+      <div class="chart" id="ch-redes" data-source="redes_mes"><div class="tip" id="tip-redes"></div></div>
+    </div>
+    <div class="grid2">
+      <div class="card" id="c-red">
+        <h2>Qué respuesta tienen nuestras publicaciones</h2>
+        <p class="note">Muestra el promedio: sumamos los “me gusta” o las vistas de nuestras publicaciones y dividimos por la cantidad de publicaciones. “Publicación destacada” es la que tuvo más interacción. Si falta un dato, esa red no lo informa.</p>
+        <div class="tbox">
+          <table id="t-red" data-source="por_red" data-row-key="red">
+            <thead><tr><th data-field="red">Red</th><th data-field="posteos">Publicaciones</th><th data-field="prom_me_gusta">Me gusta por publicación</th><th data-field="prom_vistas">Vistas por publicación</th><th data-field="mejor">Publicación destacada</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" id="c-canales">
+        <h2>Cuántas personas siguen nuestras cuentas</h2>
+        <p class="note">Muestra cuántos seguidores tiene cada cuenta y si sigue activa. Es el dato de hoy: cambiar el mes no cambia esta cifra.</p>
+        <div class="tbox">
+          <table id="t-canales" data-source="canales" data-row-key="cuenta">
+            <thead><tr><th data-field="red">Red</th><th data-field="cuenta">Cuenta</th><th data-field="seguidores">Seguidores</th><th data-field="estado">Estado</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="c-redes">
+      <h2>Publicaciones del período</h2>
+      <p class="note">Lista publicaciones nuestras y de otros medios o cuentas que compartieron nuestras notas. Podés filtrar por red o cuenta. Si una casilla está vacía, la red no informó ese dato.</p>
+      <div class="tools">
+        <label for="fred" class="lbl">Elegí una red</label>
+        <select id="fred"><option value="">Todas</option><option>Facebook</option><option>Instagram</option><option>X</option><option>YouTube</option></select>
+        <label for="fprop" class="lbl">De quién es</label>
+        <select id="fprop"><option value="">Todas</option><option value="Sí">Nuestras cuentas</option><option value="No">Otras cuentas</option></select>
+      </div>
+      <div class="tbox">
+        <table id="t-redes" data-source="redes" data-row-key="key">
+          <thead><tr>
+            <th data-field="fecha">Fecha</th><th data-field="red">Red</th><th data-field="cuenta">Cuenta</th><th data-field="texto">Posteo</th>
+            <th data-field="me_gusta">Me gusta</th><th data-field="comentarios">Coment.</th><th data-field="compartidos">Compart.</th><th data-field="vistas">Vistas</th><th data-field="key">Código</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="metodo" hidden>
+    <div class="card metodo" id="c-metodo">
+      <h2>Cómo leer este tablero, en 1 minuto</h2>
+      <p><b>¿Qué mide?</b> Cuánto de lo que publica JusNoticias llega a los medios y a las redes.</p>
+      <p><b>1. Elegí el período</b> arriba (desde y hasta). Todo el tablero se recalcula con esas fechas.</p>
+      <p><b>2. Mirá el Resumen.</b> La oración de arriba dice lo principal. Debajo de cada número y gráfico hay una explicación de qué cuenta y de dónde sale.</p>
+      <p><b>3. Si necesitás un dato puntual,</b> usá las otras pestañas: <b>Medios</b> (quién nos levanta y cómo), <b>Notas</b> (buscá una nota y fijate qué medios la publicaron; en rojo, las que no levantó nadie) y <b>Redes</b> (posteos y seguidores de nuestras cuentas).</p>
+      <p><b>4. Los datos se actualizan solos</b> cada 2 horas, de 8 a 20. Arriba dice "datos al…" con la fecha de la última nota.</p>
+      <p><b>5. Los números son un mínimo.</b> Cuentan las publicaciones que pudimos encontrar; puede haber otras que el tablero no detectó.</p>
+    </div>
+    <div class="card metodo" id="c-como">
+      <h2>Cómo funciona, explicado simple</h2>
+      <p><b>Paso 1.</b> Todos los días un programa lee las notas nuevas de jusnoticias.juschubut.gov.ar.</p>
+      <p><b>Paso 2.</b> Después revisa las páginas de unos 35 medios de la provincia y la región, y busca títulos que se parezcan a los nuestros, publicados desde el día anterior hasta 8 días después.</p>
+      <p><b>Paso 3.</b> Cuando encuentra una coincidencia y el medio deja ver su texto, lo compara con el nuestro: si la mitad o más es igual, es <b>copia textual</b>; si se parece en parte, <b>reescritura</b>; si casi no se parece, <b>redacción propia</b>. También anota si el medio nombra a JusNoticias como fuente.</p>
+      <p><b>Paso 3 bis.</b> Además, cada nota de los últimos días se busca en la web por su tema, para encontrar medios que cambiaron el título o que no están en la lista. Esas aparecen con método "Buscador web".</p>
+      <p><b>Paso 4.</b> Las coincidencias dudosas (solo se parece el título) no se cuentan en los números principales: aparecen aparte como "posibles".</p>
+      <p><b>Redes:</b> se leen los posteos de nuestras cuentas en X, Instagram, Facebook y YouTube. Instagram y Facebook no muestran vistas, por eso las vistas suman solo X y YouTube.</p>
+      <p><b>Google Noticias:</b> además, cada nota del último mes y medio se busca en Google Noticias por su título y por dos frases textuales; así aparecen los diarios sin índice propio (El Chubut, Jornada, Crónica, El Patagónico, Red43), medios que no están en la lista y los que copiaron el texto con otro título. Un medio de afuera de la lista solo cuenta si menciona Chubut o una ciudad de la provincia.</p>
+      <p><b>Límites:</b> radio, TV, grupos de WhatsApp y portales que Google no indexa no se miden, así que el número es un <b>piso</b>. El tipo de nota lo asigna el programa por palabras del título y puede equivocarse.</p>
+    </div>
+    <div class="card" id="c-relev">
+      <h2>Medios relevados</h2>
+      <p class="note">Qué se pudo revisar de cada medio de la lista</p>
+      <div class="tbox">
+        <table id="t-medios" data-source="medios" data-row-key="medio">
+          <thead><tr><th data-field="medio">Medio</th><th data-field="cobertura">Cobertura del relevamiento</th><th data-field="notas">Notas encontradas (todas)</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+dash.calc('rangos', {
+  title: 'Períodos posibles',
+  description: 'Cada combinación de mes inicial y mes final entre los meses que tienen notas.',
+  inputs: ['notas'],
+  fn: (notas) => {
+    const meses = [...new Set(notas.map(n => n.mes))].sort();
+    const out = [];
+    meses.forEach((d, i) => meses.slice(i).forEach(h => out.push({ rango: d + '_' + h, desde: d, hasta: h })));
+    return out;
+  }
+});
+dash.calc('rep_ok', {
+  title: 'Publicaciones confirmadas',
+  description: 'Publicaciones en medios sin las coincidencias solo por título (confianza baja), con el mes de la nota.',
+  inputs: ['notas', 'repercusion'],
+  fn: (notas, repercusion) => {
+    const mes = new Map(notas.map(n => [Number(n.id), n.mes]));
+    return repercusion.filter(r => r.confianza !== 'Baja').map(r => ({ ...r, mes: mes.get(Number(r.nota_id)) }));
+  }
+});
+dash.calc('por_nota', {
+  title: 'Medios por nota',
+  description: 'Cada nota con los medios que la publicaron (confirmados), cuántos la copiaron textual y cuántas coincidencias posibles hay.',
+  inputs: ['notas', 'repercusion'],
+  fn: (notas, repercusion) => notas.map(n => {
+    const rs = repercusion.filter(r => Number(r.nota_id) === Number(n.id));
+    const ok = rs.filter(r => r.confianza !== 'Baja');
+    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: ok.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: ok.map(r => r.medio).join(', '), posibles: rs.length - ok.length };
+  })
+});
+dash.calc('por_mes', {
+  title: 'Notas por mes',
+  description: 'Notas publicadas por mes y cuántas levantó al menos un medio (confirmado).',
+  inputs: ['notas', 'rep_ok'],
+  fn: (notas, rep_ok) => {
+    const con = new Set(rep_ok.map(r => Number(r.nota_id)));
+    const g = new Map();
+    notas.forEach(n => { const x = g.get(n.mes) || { mes: n.mes, publicadas: 0, levantadas: 0 }; x.publicadas++; if (con.has(Number(n.id))) x.levantadas++; g.set(n.mes, x); });
+    return [...g.values()].sort((a, b) => a.mes.localeCompare(b.mes));
+  }
+});
+dash.calc('resumen', {
+  title: 'Números principales',
+  description: 'Totales de cada período: notas, porcentaje levantado, publicaciones y medios confirmados, copia textual y posteos y vistas propios en redes.',
+  inputs: ['rangos', 'notas', 'rep_ok', 'redes'],
+  fn: (rangos, notas, rep_ok, redes) => rangos.flatMap(({ rango, desde, hasta }) => {
+    const en = m => m >= desde && m <= hasta;
+    const ns = notas.filter(n => en(n.mes)), rs = rep_ok.filter(r => en(r.mes));
+    const con = new Set(rs.map(r => Number(r.nota_id)));
+    const conTexto = rs.filter(r => r.origen !== 'Sin dato');
+    const ps = redes.filter(r => r.propia === 'Sí' && en(r.fecha.slice(0, 7)));
+    const v = [
+      ['notas', ns.length],
+      ['pct', (ns.length ? Math.round(ns.filter(n => con.has(Number(n.id))).length / ns.length * 100) : 0) + '%'],
+      ['sin_rep', ns.filter(n => !con.has(Number(n.id))).length],
+      ['publicaciones', rs.length],
+      ['medios', new Set(rs.map(r => r.medio)).size],
+      ['pct_copia', (conTexto.length ? Math.round(conTexto.filter(r => r.origen.startsWith('Copia')).length / conTexto.length * 100) : 0) + '%'],
+      ['posteos', ps.length],
+      ['vistas', ps.reduce((s, r) => s + (Number(r.vistas) || 0), 0)]
+    ];
+    return v.map(([metrica, valor]) => ({ rango, metrica, valor }));
+  })
+});
+dash.calc('por_tipo', {
+  title: 'Repercusión por tipo',
+  description: 'En cada período, notas de cada tipo y cuántas levantó al menos un medio (confirmado).',
+  inputs: ['rangos', 'notas', 'rep_ok'],
+  fn: (rangos, notas, rep_ok) => {
+    const con = new Set(rep_ok.map(r => Number(r.nota_id)));
+    return rangos.flatMap(({ rango, desde, hasta }) => ['Fallo o caso', 'Institucional', 'Agenda y servicios'].map(tipo => {
+      const ns = notas.filter(n => n.tipo === tipo && n.mes >= desde && n.mes <= hasta);
+      const l = ns.filter(n => con.has(Number(n.id))).length;
+      return { rango, tipo, notas: ns.length, levantadas: l, pct: ns.length ? Math.round(l / ns.length * 100) : 0 };
+    }));
+  }
+});
+dash.calc('por_medio', {
+  title: 'Notas por medio',
+  description: 'En cada período, notas confirmadas que publicó cada medio, separadas por cómo las publicó.',
+  inputs: ['rangos', 'rep_ok'],
+  fn: (rangos, rep_ok) => rangos.flatMap(({ rango, desde, hasta }) => {
+    const g = new Map();
+    rep_ok.filter(r => r.mes >= desde && r.mes <= hasta).forEach(r => {
+      const x = g.get(r.medio) || { rango, medio: r.medio, notas: 0, copia: 0, otra: 0, sin_dato: 0 };
+      x.notas++;
+      if (r.origen.startsWith('Copia')) x.copia++; else if (r.origen === 'Sin dato') x.sin_dato++; else x.otra++;
+      g.set(r.medio, x);
+    });
+    return [...g.values()].sort((a, b) => b.notas - a.notas);
+  })
+});
+dash.calc('origen', {
+  title: 'Cómo publican',
+  description: 'En cada período, publicaciones confirmadas según cuánto de nuestro texto reproducen.',
+  inputs: ['rangos', 'rep_ok'],
+  fn: (rangos, rep_ok) => rangos.flatMap(({ rango, desde, hasta }) => {
+    const rs = rep_ok.filter(r => r.mes >= desde && r.mes <= hasta);
+    return ['Copia textual (≥50%)', 'Reescritura parcial', 'Redacción propia', 'Sin dato'].map(origen => ({ rango, origen, publicaciones: rs.filter(r => r.origen === origen).length }));
+  })
+});
+dash.calc('cadena', {
+  title: 'Fuente citada',
+  description: 'En cada período, publicaciones confirmadas que nombran a la fuente oficial o a otro medio en su texto.',
+  inputs: ['rangos', 'rep_ok'],
+  fn: (rangos, rep_ok) => rangos.flatMap(({ rango, desde, hasta }) => {
+    const rs = rep_ok.filter(r => r.mes >= desde && r.mes <= hasta);
+    const rows = [{ rango, fuente: 'Nombran a JusNoticias o la Agencia de Comunicación Judicial', publicaciones: rs.filter(r => r.cita_fuente_oficial === 'Sí').length }];
+    const g = new Map();
+    rs.forEach(r => (r.cita_otro_medio || '').split(', ').filter(Boolean).forEach(m => g.set(m, (g.get(m) || 0) + 1)));
+    [...g].sort((a, b) => b[1] - a[1]).forEach(([m, c]) => rows.push({ rango, fuente: 'Nombran a ' + m, publicaciones: c }));
+    return rows;
+  })
+});
+dash.calc('redes_mes', {
+  title: 'Publicaciones nuestras por mes',
+  description: 'Cantidad de publicaciones que hicimos en cada red, mes por mes.',
+  inputs: ['redes'],
+  fn: (redes) => {
+    const g = new Map();
+    redes.filter(r => r.propia === 'Sí').forEach(r => { const mes = r.fecha.slice(0, 7); const k = mes + '|' + r.red; const x = g.get(k) || { mes, red: r.red, posteos: 0 }; x.posteos++; g.set(k, x); });
+    return [...g.values()].sort((a, b) => a.mes.localeCompare(b.mes));
+  }
+});
+dash.calc('por_red', {
+  title: 'Qué respuesta tienen nuestras publicaciones',
+  description: 'En cada red, muestra cuántas publicaciones hicimos, el promedio de me gusta y vistas, y la publicación con más interacción.',
+  inputs: ['rangos', 'redes'],
+  fn: (rangos, redes) => rangos.flatMap(({ rango, desde, hasta }) => ['Facebook', 'Instagram', 'X', 'YouTube'].map(red => {
+    const ps = redes.filter(r => r.red === red && r.propia === 'Sí' && r.fecha.slice(0, 7) >= desde && r.fecha.slice(0, 7) <= hasta);
+    const mg = ps.filter(r => r.me_gusta !== null && r.me_gusta !== undefined), vi = ps.filter(r => r.vistas !== null && r.vistas !== undefined);
+    const best = ps.slice().sort((a, b) => ((b.vistas || 0) + (b.me_gusta || 0) * 10) - ((a.vistas || 0) + (a.me_gusta || 0) * 10))[0];
+    return { rango, red, posteos: ps.length, prom_me_gusta: mg.length ? Math.round(mg.reduce((s, r) => s + Number(r.me_gusta), 0) / mg.length * 10) / 10 : null, prom_vistas: vi.length ? Math.round(vi.reduce((s, r) => s + Number(r.vistas), 0) / vi.length) : null, mejor: best ? best.texto : '' };
+  }))
+});
+dash.calc('seguidores', {
+  title: 'Seguidores en cuentas activas',
+  description: 'Suma de seguidores de las cuentas oficiales que figuran como activas.',
+  inputs: ['canales'],
+  fn: (canales) => [{ total: canales.filter(c => c.estado === 'Activa').reduce((s, c) => s + (Number(c.seguidores) || 0), 0) }]
+});
+
+(function () {
+  const fmt = d3.format(',');
+  const big = v => fmt(v);
+  const MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const mesCorto = m => MES[Number(m.split('-')[1]) - 1].slice(0, 3);
+  const mesLargo = m => MES[Number(m.split('-')[1]) - 1];
+  const fecha = d => d3.utcFormat('%d/%m')(new Date(d));
+  const st = { sort: 'fecha', dir: -1, page: 'resumen' };
+  const REDES = ['X', 'Instagram', 'Facebook', 'YouTube'];
+  const $ = id => document.getElementById(id);
+
+  const fail = (el) => { el.textContent = ''; const w = document.createElement('div'); w.className = 'fail'; const i = document.createElement('i'); w.append(i, document.createTextNode('No se pudo cargar')); el.append(w); };
+  const n = v => (v === null || v === undefined || v === '') ? '' : fmt(Number(v));
+  const row = (label, segs, total, max, valTxt) => {
+    const r = document.createElement('div'); r.className = 'bar-row';
+    const l = document.createElement('div'); l.className = 'bar-lab'; l.textContent = label; l.title = label;
+    const t = document.createElement('div'); t.className = 'bar-track';
+    segs.forEach(([v, c]) => { const f = document.createElement('div'); f.className = 'bar-fill'; f.style.width = (max ? v / max * 100 : 0) + '%'; f.style.background = c; t.append(f); });
+    const v = document.createElement('div'); v.className = 'bar-val'; v.textContent = valTxt ?? fmt(total);
+    r.append(l, t, v); return r;
+  };
+  const fill = (id, srcId, draw) => { const el = $(id); const d = dash.data(srcId); el.textContent = ''; el.classList.toggle('dash-skeleton', d.status === 'loading'); if (d.status === 'ok') draw(el, d.data); else if (d.status === 'error') fail(el); };
+  const tbl = (sel, rows, cols) => { const tb = document.querySelector(sel + ' tbody'); tb.textContent = ''; rows.forEach(r => { const tr = document.createElement('tr'); cols.forEach(([f, cls]) => { const td = document.createElement('td'); if (cls) td.className = cls; const v = f(r); td.textContent = (v && v.t !== undefined) ? v.t : v; if (v && v.c) td.className = (td.className + ' ' + v.c).trim(); tr.append(td); }); tb.append(tr); }); };
+
+  // Período elegido
+  const meses = () => { const r = dash.data('rangos'); return r.status === 'ok' ? [...new Set(r.data.map(x => x.desde))].sort() : []; };
+  const periodo = () => {
+    const ms = meses(); const p = dash.params();
+    // Por defecto, el último mes; el período completo se elige con el filtro
+    const ult = ms[ms.length - 1];
+    let h = ms.includes(p.hasta) ? p.hasta : ult, d = ms.includes(p.desde) ? p.desde : (ms.includes(p.hasta) ? p.hasta : ult);
+    if (d && h && d > h) [d, h] = [h, d];
+    return { desde: d, hasta: h, rango: d + '_' + h, en: m => m >= d && m <= h };
+  };
+  const delRango = (id) => { const d = dash.data(id); const rk = periodo().rango; return d.status === 'ok' ? d.data.filter(r => r.rango === rk) : []; };
+  const textoPeriodo = (p) => {
+    const yd = p.desde.slice(0, 4), yh = p.hasta.slice(0, 4);
+    if (p.desde === p.hasta) return mesLargo(p.desde) + ' de ' + yd;
+    return mesLargo(p.desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(p.hasta) + ' de ' + yh;
+  };
+  $('fdesde').addEventListener('change', e => dash.setParams({ desde: e.target.value || null }));
+  $('fhasta').addEventListener('change', e => dash.setParams({ hasta: e.target.value || null }));
+  $('ftodo').addEventListener('click', () => { const ms = meses(); if (ms.length) dash.setParams({ desde: ms[0], hasta: ms[ms.length - 1] }); });
+  $('fult').addEventListener('click', () => dash.setParams({ desde: null, hasta: null }));
+
+  // Pestañas
+  const show = (page) => {
+    if (!$(page)) return;
+    st.page = page;
+    document.querySelectorAll('.jr .page').forEach(s => { s.hidden = s.id !== page; });
+    document.querySelectorAll('.jr .tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.page === page)));
+    dash.setLink(page);
+    draw();
+  };
+  document.querySelectorAll('.jr .tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
+  $('ir-completo').addEventListener('click', () => { show('medios'); $('titulo').scrollIntoView(); });
+
+  // Gráfico de barras por mes (agrupadas o apiladas)
+  const barChart = (boxId, tipId, mesesTodos, series, valor, stacked, tipLines) => {
+    const box = $(boxId), tip = $(tipId), p = periodo();
+    box.querySelectorAll('svg').forEach(s => s.remove());
+    const W = Math.max(280, box.clientWidth), H = 220;
+    const maxV = stacked ? d3.max(mesesTodos, m => d3.sum(series, s => valor(m, s))) : d3.max(mesesTodos, m => d3.max(series, s => valor(m, s)));
+    const y = d3.scaleLinear([0, maxV || 1], [H - 26, 10]).nice();
+    const svg = d3.select(box).insert('svg', '.tip').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const probe = svg.append('text').attr('font-size', 'var(--cds-font-size-caption)').text(fmt(y.domain()[1]));
+    const ml = Math.ceil(probe.node().getComputedTextLength()) + 10; probe.remove();
+    const m = { t: 10, r: 8, b: 26, l: ml };
+    const x = d3.scaleBand(mesesTodos, [m.l, W - m.r]).padding(0.25);
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickFormat(mesCorto).tickSize(0)).attr('font-size', null).attr('font-family', null).call(g => g.select('.domain').attr('stroke', 'var(--cds-chart-axis)')).selectAll('text').attr('fill', 'var(--color-fg-muted)').attr('dy', '1.2em');
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(fmt).tickSize(-(W - m.l - m.r))).attr('font-size', null).attr('font-family', null).call(g => g.select('.domain').remove()).call(g => g.selectAll('line').attr('stroke', 'var(--cds-chart-grid)')).selectAll('text').attr('fill', 'var(--color-fg-muted)');
+    const g = svg.append('g');
+    mesesTodos.forEach(mes => {
+      const gg = g.append('g').attr('opacity', p.en(mes) ? 1 : 0.3);
+      if (stacked) {
+        let acc = 0; const bw = Math.min(32, x.bandwidth()), x0 = x(mes) + (x.bandwidth() - bw) / 2;
+        series.forEach(s => { const v = valor(mes, s); if (!v) return; gg.append('rect').attr('x', x0).attr('width', bw).attr('y', y(acc + v)).attr('height', y(acc) - y(acc + v)).attr('fill', s.color); acc += v; });
+      } else {
+        const bw = x.bandwidth() / series.length;
+        series.forEach((s, i) => { const v = valor(mes, s); gg.append('rect').attr('x', x(mes) + i * bw).attr('width', Math.max(1, bw - 1)).attr('y', y(v)).attr('height', y(0) - y(v)).attr('rx', 3).attr('fill', s.color); });
+      }
+      gg.append('rect').attr('x', x(mes)).attr('width', x.bandwidth()).attr('y', m.t).attr('height', H - m.b - m.t).attr('fill', 'transparent')
+        .on('mousemove', (ev) => {
+          tip.style.display = 'block'; tip.textContent = '';
+          const a = document.createElement('div'); a.style.color = 'var(--cds-text-secondary)'; a.textContent = mesLargo(mes) + ' ' + mes.slice(0, 4); tip.append(a);
+          tipLines(mes).forEach(([c, txt]) => { const l = document.createElement('div'); if (c) { const i = document.createElement('i'); i.style.cssText = 'display:inline-block;width:.5rem;height:.5rem;border-radius:2px;margin-right:4px;background:' + c; l.append(i); } l.append(document.createTextNode(txt)); tip.append(l); });
+          const bx = box.getBoundingClientRect(); let lx = ev.clientX - bx.left + 12; if (lx > bx.width - 170) lx -= 190; tip.style.left = Math.max(0, lx) + 'px'; tip.style.top = (ev.clientY - bx.top - 10) + 'px';
+        })
+        .on('mouseleave', () => { tip.style.display = 'none'; });
+    });
+  };
+
+  const drawResumen = () => {
+    const p = periodo();
+    const res = dash.data('resumen');
+    document.querySelectorAll('.jr [data-source=resumen]').forEach(el => {
+      const k = el.dataset.k; el.setAttribute('data-where', 'rango=' + p.rango + '&metrica=' + k);
+      el.classList.toggle('dash-skeleton', res.status === 'loading');
+      if (res.status !== 'ok') { el.textContent = '—'; return; }
+      const r = res.data.find(x => x.rango === p.rango && x.metrica === k);
+      el.textContent = r ? (typeof r.valor === 'number' ? big(r.valor) : r.valor) : '—';
+    });
+    const sg = dash.data('seguidores'), sgEl = document.querySelector('.jr [data-source=seguidores]');
+    sgEl.classList.toggle('dash-skeleton', sg.status === 'loading');
+    sgEl.textContent = sg.status === 'ok' ? big(sg.data[0].total) : '—';
+
+    const mes = dash.data('por_mes'), box = $('ch-mes');
+    box.classList.toggle('dash-skeleton', mes.status === 'loading');
+    if (mes.status === 'ok') {
+      const byMes = new Map(mes.data.map(r => [r.mes, r]));
+      barChart('ch-mes', 'tip-mes', mes.data.map(r => r.mes), [{ k: 'publicadas', color: 'var(--cds-chart-muted)' }, { k: 'levantadas', color: dash.colors[0] }], (m, s) => byMes.get(m)[s.k], false,
+        m => { const r = byMes.get(m); return [['var(--cds-chart-muted)', 'Publicadas: ' + fmt(r.publicadas)], [dash.colors[0], 'Levantadas: ' + fmt(r.levantadas) + ' (' + Math.round(r.levantadas / r.publicadas * 100) + '%)']]; });
+    } else { box.querySelectorAll('svg').forEach(s => s.remove()); if (mes.status === 'error') fail(box); }
+
+    fill('b-tipo', 'por_tipo', (el) => delRango('por_tipo').forEach(r => el.append(row(r.tipo + ' (' + fmt(r.levantadas) + ' de ' + fmt(r.notas) + ')', [[r.pct, dash.colors[0]]], r.pct, 100, r.pct + '%'))));
+    fill('b-top5m', 'por_medio', (el) => { const top = delRango('por_medio').slice(0, 5); const mx = d3.max(top, r => r.notas) || 1; top.forEach(r => el.append(row(r.medio, [[r.notas, dash.colors[0]]], r.notas, mx))); });
+    fill('b-top5n', 'por_nota', (el, rows) => { const top = rows.filter(r => p.en(r.mes)).sort((a, b) => b.n_medios - a.n_medios).slice(0, 5); const mx = d3.max(top, r => r.n_medios) || 1; top.forEach(r => el.append(row(r.titulo, [[r.n_medios, dash.colors[2]]], r.n_medios, mx))); });
+  };
+
+  const drawMedios = () => {
+    const p = periodo();
+    fill('b-medios', 'por_medio', (el) => { const top = delRango('por_medio').slice(0, 15); const mx = d3.max(top, r => r.notas) || 1; top.forEach(r => el.append(row(r.medio, [[r.copia, dash.colors[1]], [r.otra, dash.colors[0]], [r.sin_dato, 'var(--cds-chart-muted)']], r.notas, mx))); });
+    fill('b-top', 'por_nota', (el, rows) => { const top = rows.filter(r => p.en(r.mes)).sort((a, b) => b.n_medios - a.n_medios).slice(0, 12); const mx = d3.max(top, r => r.n_medios) || 1; top.forEach(r => el.append(row(r.titulo, [[r.n_medios, dash.colors[2]]], r.n_medios, mx))); });
+    fill('b-origen', 'origen', (el) => { const rows = delRango('origen'); const mx = d3.max(rows, r => r.publicaciones) || 1; rows.forEach(r => el.append(row(r.origen, [[r.publicaciones, r.origen.startsWith('Copia') ? dash.colors[1] : r.origen === 'Sin dato' ? 'var(--cds-chart-muted)' : dash.colors[0]]], r.publicaciones, mx))); });
+    fill('b-cadena', 'cadena', (el) => { const rows = delRango('cadena'); const mx = d3.max(rows, r => r.publicaciones) || 1; rows.forEach((r, i) => el.append(row(r.fuente, [[r.publicaciones, i === 0 ? dash.colors[0] : dash.colors[3]]], r.publicaciones, mx))); });
+  };
+
+  const drawNotas = () => {
+    const d = dash.data('por_nota'); const tb = document.querySelector('#t-notas tbody'); tb.textContent = '';
+    if (d.status !== 'ok') { $('cuenta-notas').textContent = ''; return; }
+    const p = periodo();
+    const q = $('q').value.trim().toLowerCase(), ft = $('ftipo').value, fs = $('fsin').value;
+    let rows = d.data.filter(r => p.en(r.mes) && (!ft || r.tipo === ft) && (!fs || (fs === 'sin' ? r.n_medios === 0 : r.n_medios > 0)) && (!q || (r.titulo + ' ' + r.medios).toLowerCase().includes(q)));
+    rows = rows.slice().sort((a, b) => { const x = a[st.sort], y = b[st.sort]; return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y))) * st.dir; });
+    $('cuenta-notas').textContent = fmt(rows.length) + ' notas';
+    tbl('#t-notas', rows, [
+      [r => fecha(r.fecha)], [r => r.titulo], [r => r.tipo],
+      [r => ({ t: fmt(r.n_medios), c: r.n_medios === 0 ? 'zero' : '' }), 'num'], [r => fmt(r.copias), 'num'],
+      [r => ({ t: r.medios || 'Ningún medio', c: r.medios ? '' : 'zero' })], [r => ({ t: r.posibles ? fmt(r.posibles) : '', c: 'muted' }), 'num'], [r => String(r.id), 'num']
+    ]);
+    [...document.querySelectorAll('#t-notas tbody tr')].forEach((tr, i) => { tr.dataset.key = rows[i].id; tr.classList.toggle('sel', rows[i].id === st.sel); });
+    document.querySelectorAll('#t-notas th').forEach(th => { const b = th.querySelector('button'); th.setAttribute('aria-sort', b && b.dataset.k === st.sort ? (st.dir > 0 ? 'ascending' : 'descending') : 'none'); });
+  };
+  const detalle = (id) => {
+    const pn = dash.data('por_nota'), rp = dash.data('repercusion');
+    if (pn.status !== 'ok' || rp.status !== 'ok') return;
+    const n = pn.data.find(x => Number(x.id) === id); if (!n) return;
+    st.sel = id;
+    document.querySelectorAll('#t-notas tbody tr').forEach(tr => tr.classList.toggle('sel', Number(tr.dataset.key) === id));
+    const rs = rp.data.filter(r => Number(r.nota_id) === id).sort((a, b) => (a.confianza === 'Baja') - (b.confianza === 'Baja') || String(a.medio).localeCompare(String(b.medio)));
+    $('det-titulo').textContent = n.titulo;
+    $('det-sub').textContent = fecha(n.fecha) + ' · ' + fmt(n.n_medios) + ' publicaciones encontradas' + (n.posibles ? ' y ' + fmt(n.posibles) + (n.posibles === 1 ? ' posible' : ' posibles') : '') + '. Abrí cada enlace para ver qué publicó y qué fuente menciona.';
+    const tb = document.querySelector('#t-det tbody'); tb.textContent = '';
+    rs.forEach(r => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.key;
+      const c = (x, cls) => { const td = document.createElement('td'); if (cls) td.className = cls; if (x instanceof Node) td.append(x); else td.textContent = x; tr.append(td); };
+      c(r.medio); c(r.confianza === 'Baja' ? 'A revisar' : 'Encontrada', r.confianza === 'Baja' ? 'muted' : ''); const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona JusNoticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'muted'); c(r.origen); c(r.metodo || '', 'muted');
+      if (r.url && /^https?:\/\//.test(r.url)) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Abrir ↗'; c(a); } else c('Sin enlace', 'muted');
+      tb.append(tr);
+    });
+    $('c-detalle').hidden = false;
+    $('c-detalle').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+  document.querySelector('#t-notas tbody').addEventListener('click', e => { const tr = e.target.closest('tr[data-key]'); if (tr) detalle(Number(tr.dataset.key)); });
+  ['q', 'ftipo', 'fsin'].forEach(id => $(id).addEventListener(id === 'q' ? 'input' : 'change', drawNotas));
+  document.querySelectorAll('#t-notas th button').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; st.dir = st.sort === k ? -st.dir : (['n_medios', 'copias', 'posibles', 'fecha'].includes(k) ? -1 : 1); st.sort = k; drawNotas(); }));
+
+  const drawRedes = () => {
+    const p = periodo();
+    const series = REDES.map((red, i) => ({ red, color: dash.colors[i] }));
+    const lg = $('lg-redes'); lg.textContent = '';
+    series.forEach(s => { const sp = document.createElement('span'); const i = document.createElement('i'); i.style.background = s.color; sp.append(i, document.createTextNode(s.red)); lg.append(sp); });
+    const rm = dash.data('redes_mes'), box = $('ch-redes');
+    box.classList.toggle('dash-skeleton', rm.status === 'loading');
+    if (rm.status === 'ok') {
+      const ms = [...new Set(rm.data.map(r => r.mes))].sort();
+      const val = (m, s) => (rm.data.find(r => r.mes === m && r.red === s.red) || {}).posteos || 0;
+      barChart('ch-redes', 'tip-redes', ms, series, val, true, m => series.filter(s => val(m, s)).map(s => [s.color, s.red + ': ' + fmt(val(m, s))]));
+    } else { box.querySelectorAll('svg').forEach(s => s.remove()); if (rm.status === 'error') fail(box); }
+
+    const pr = dash.data('por_red');
+    if (pr.status === 'ok') tbl('#t-red', delRango('por_red'), [[r => r.red], [r => fmt(r.posteos), 'num'], [r => r.prom_me_gusta === null ? '' : String(r.prom_me_gusta).replace('.', ','), 'num'], [r => n(r.prom_vistas), 'num'], [r => r.mejor]]);
+    const ca = dash.data('canales');
+    if (ca.status === 'ok') tbl('#t-canales', ca.data, [[r => r.red], [r => r.cuenta], [r => n(r.seguidores), 'num'], [r => ({ t: r.estado, c: /Inactiva|No existe/.test(r.estado) ? 'zero' : '' })]]);
+
+    const d = dash.data('redes'); const tb = document.querySelector('#t-redes tbody'); tb.textContent = '';
+    if (d.status === 'ok') {
+      const fr = $('fred').value, fp = $('fprop').value;
+      const score = r => (Number(r.vistas) || 0) + 10 * ((Number(r.me_gusta) || 0) + (Number(r.comentarios) || 0) + (Number(r.compartidos) || 0));
+      const rows = d.data.filter(r => p.en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
+      tbl('#t-redes', rows, [[r => fecha(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto], [r => n(r.me_gusta), 'num'], [r => n(r.comentarios), 'num'], [r => n(r.compartidos), 'num'], [r => n(r.vistas), 'num'], [r => r.key, 'muted']]);
+    }
+  };
+  ['fred', 'fprop'].forEach(id => $(id).addEventListener('change', drawRedes));
+
+  const drawMetodo = () => {
+    const me = dash.data('medios');
+    if (me.status === 'ok') tbl('#t-medios', me.data.slice().sort((a, b) => b.notas - a.notas), [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos/.test(r.cobertura) ? 'muted' : '' })], [r => fmt(r.notas), 'num']]);
+  };
+
+  const drawHeader = () => {
+    const ms = meses(), p = periodo();
+    [['fdesde', p.desde], ['fhasta', p.hasta]].forEach(([id, v]) => {
+      const sel = $(id);
+      sel.replaceChildren(...ms.map(m => new Option(mesLargo(m).replace(/^./, c => c.toUpperCase()) + ' ' + m.slice(0, 4), m)));
+      if (v) sel.value = v;
+    });
+    $('ftodo').disabled = !ms.length || (p.desde === ms[0] && p.hasta === ms[ms.length - 1]);
+    $('fult').disabled = !ms.length || (p.desde === ms[ms.length - 1] && p.hasta === ms[ms.length - 1]);
+
+    const no = dash.data('notas'), per = $('periodo');
+    if (no.status === 'ok' && p.desde) {
+      const ultima = no.data.map(x => x.fecha).sort().pop();
+      per.textContent = textoPeriodo(p).replace(/^./, c => c.toUpperCase()) + ' · datos al ' + d3.utcFormat('%d/%m/%Y')(new Date(ultima));
+    } else per.textContent = '—';
+
+    const take = $('take');
+    const res = delRango('resumen'), pt = delRango('por_tipo').filter(x => x.notas > 0), pm = delRango('por_medio');
+    if (res.length && pt.length) {
+      const v = k => (res.find(x => x.metrica === k) || {}).valor;
+      const orden = pt.slice().sort((a, b) => b.pct - a.pct), hi = orden[0], lo = orden[orden.length - 1];
+      let t = 'De ' + fmt(v('notas')) + ' notas publicadas, el ' + v('pct') + ' fue levantado por al menos un medio: ' + fmt(v('publicaciones')) + ' publicaciones en ' + fmt(v('medios')) + ' medios. ';
+      if (hi !== lo) t += 'Lo que más viaja es ' + hi.tipo.toLowerCase() + ' (' + hi.pct + '%); lo que menos, ' + lo.tipo.toLowerCase() + ' (' + lo.pct + '%). ';
+      if (pm.length) t += pm[0].medio + ' es el medio que más replica. ';
+      if (parseInt(v('pct_copia'), 10) >= 50) t += 'En el ' + v('pct_copia') + ' de los casos con texto disponible, el medio copió nuestra nota casi sin cambios.';
+      take.textContent = t.trim();
+    } else take.textContent = '—';
+  };
+
+  const draw = () => {
+    $('lg-lev').style.background = dash.colors[0];
+    $('lg-copia').style.background = dash.colors[1];
+    $('lg-otra').style.background = dash.colors[0];
+    drawHeader();
+    ({ resumen: drawResumen, medios: drawMedios, notas: drawNotas, redes: drawRedes, metodo: drawMetodo })[st.page]();
+  };
+
+  let first = true;
+  dash.onData(() => {
+    if (first && dash.data('rangos').status === 'ok') {
+      first = false;
+      const h = location.hash.slice(1);
+      if (h && h !== st.page && $(h) && $(h).classList.contains('page')) { show(h); return; }
+    }
+    draw();
+  });
+})();
+</script>

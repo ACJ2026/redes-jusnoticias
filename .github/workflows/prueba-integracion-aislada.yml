@@ -1,0 +1,76 @@
+name: Prueba de integración aislada del historial
+
+on:
+  push:
+    branches:
+      - fix/conservar-historial-publicaciones
+      - migracion/proyecto-completo-oct-2026
+    paths:
+      - ".github/workflows/prueba-integracion-aislada.yml"
+      - "scripts/actualizar.py"
+      - "scripts/historial.py"
+      - "scripts/verificar_historial.py"
+      - "data/rep2.json"
+      - "data/notas2.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prueba-integracion-historial
+  cancel-in-progress: false
+
+jobs:
+  integracion-aislada:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Obtener la rama de prueba
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ejecutar el proceso real en salida aislada
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/jusnoticias-prueba
+          sha256sum data/rep2.json data/notas2.json > /tmp/originales.sha256
+          python3 -u scripts/actualizar.py /tmp/jusnoticias-prueba data/rep2.json | tee /tmp/jusnoticias-prueba/run.log
+          grep -q "^OK notas" /tmp/jusnoticias-prueba/run.log
+          python3 scripts/verificar_historial.py data/rep2.json /tmp/jusnoticias-prueba/rep2.json /tmp/jusnoticias-prueba/notas2.json
+
+      - name: Simular pérdida y comprobar que el control la bloquea
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          anteriores = json.load(open("data/rep2.json", encoding="utf-8"))
+          nuevas = json.load(open("/tmp/jusnoticias-prueba/rep2.json", encoding="utf-8"))
+          notas = json.load(open("/tmp/jusnoticias-prueba/notas2.json", encoding="utf-8"))
+          ids = {n["id"] for n in notas}
+          clave = next(((r["nota_id"], r["medio"]) for r in anteriores
+                        if r.get("nota_id") in ids
+                        and any(n.get("nota_id") == r.get("nota_id") and n.get("medio") == r.get("medio") for n in nuevas)), None)
+          if clave is None:
+              raise SystemExit("No se encontró una publicación histórica vigente para simular la pérdida.")
+          rotas = [r for r in nuevas if (r.get("nota_id"), r.get("medio")) != clave]
+          json.dump(rotas, open("/tmp/jusnoticias-prueba/rep2-incompleto.json", "w", encoding="utf-8"), ensure_ascii=False)
+          print(f"Pérdida simulada: nota_id={clave[0]} | medio={clave[1]}")
+          PY
+          if python3 scripts/verificar_historial.py data/rep2.json /tmp/jusnoticias-prueba/rep2-incompleto.json /tmp/jusnoticias-prueba/notas2.json > /tmp/jusnoticias-prueba/verificacion-falla.log 2>&1; then
+            echo "ERROR: el verificador aceptó una salida que perdió historial."
+            exit 1
+          fi
+          grep -q "faltan 1 publicaciones históricas" /tmp/jusnoticias-prueba/verificacion-falla.log
+          cat /tmp/jusnoticias-prueba/verificacion-falla.log
+          echo "OK: la pérdida simulada fue detectada y bloqueada."
+
+      - name: Confirmar que los datos originales siguen intactos
+        run: |
+          sha256sum -c /tmp/originales.sha256
+          git diff --exit-code -- data
+          echo "INTEGRACIÓN AISLADA OK: proceso real validado, pérdida simulada bloqueada y datos originales intactos."
