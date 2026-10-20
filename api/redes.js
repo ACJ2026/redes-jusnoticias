@@ -84,7 +84,7 @@ async function youtube(desde) {
 module.exports = async (req, res) => {
   const paramDesde = req.query.desde;
   const esFechaValida = (v) => {
-    if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(v || '')) return false;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(v || '')) return false;
     const d = new Date(v + 'T00:00:00Z');
     return Number.isFinite(d.getTime()) && d.toISOString().slice(0, 10) === v;
   };
