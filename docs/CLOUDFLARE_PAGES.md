@@ -23,9 +23,13 @@ En la configuración del proyecto Pages, agregar las mismas variables que usa la
 - `GA4_PROPERTY_ID`: ID numérico de la propiedad de Google Analytics 4.
 - `GSC_SITE_URL`: propiedad exacta de Search Console (por ejemplo, URL-prefix o propiedad de dominio, según cómo esté verificada).
 
+Estas variables corresponden solo a Google. La ruta social de Vercel usa `META_TOKEN`, `FB_PAGE_ID`, `IG_USER_ID`, `YT_KEY` y, para el canal correcto, `YT_CANAL_ID`; no son intercambiables con las variables de Google.
+
 La cuenta de servicio debe tener acceso de lectura a la propiedad de GA4 y a Search Console. No copiar credenciales al HTML, al repositorio ni a documentación.
 
 La función `functions/api/google-metrics.js` conserva la ruta y el formato de respuesta de Vercel: `/api/google-metrics?desde=AAAA-MM-DD&hasta=AAAA-MM-DD`. La plantilla del tablero ya consulta esa ruta relativa, por lo que no requiere cambios de URL.
+
+**Importante para redes sociales:** `api/redes.js` es una ruta del runtime de Vercel (usa `req`/`res` y `process.env`) y no se publica automáticamente como Cloudflare Pages Function. Además, la plantilla actual no hace una llamada a `/api/redes`; las redes que aparecen en el tablero proceden del JSON generado por GitHub Actions. Si se migra el tablero a Pages, hay que portar y probar esa ruta como `functions/api/redes.js` antes de afirmar que las métricas de Facebook/Instagram/YouTube en vivo están conectadas. X, TikTok y WhatsApp requieren evaluación separada de APIs y permisos.
 
 ## Validación antes de sustituir Vercel
 
