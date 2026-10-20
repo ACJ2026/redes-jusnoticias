@@ -54,6 +54,7 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [ ] Confirmar titularidad, nombre e identificador de cada cuenta.
 - [~] Corregido el riesgo de atribuir métricas del canal general del Poder Judicial a JusNoticias: YouTube ahora requiere `YT_CANAL_ID` explícito; falta obtener/verificar el ID correcto y configurarlo junto con `YT_KEY`.
 - [ ] Verificar accesos oficiales, permisos y métricas disponibles por plataforma.
+- [ ] Decidir si la ruta social seguirá en Vercel o se portará a Cloudflare Pages; no asumir que `api/redes.js` se ejecuta en Pages ni que el tablero la consume.
 - [ ] Integrar X y TikTok si existe una vía oficial autorizada; no asumir que sus estadísticas se obtienen como datos públicos sin credenciales.
 - [ ] Confirmar que Instagram conectado sea exactamente `jus_chubut` y tenga permisos Meta válidos.
 - [ ] Confirmar que YouTube use el canal de JusNoticias y no se sustituya por el canal general del Poder Judicial si no corresponde.
@@ -62,7 +63,7 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [ ] Mostrar «sin dato disponible» cuando una plataforma no entregue una métrica; no convertirlo en cero.
 - [ ] Probar por red publicaciones, seguidores, reacciones, comentarios, compartidos y vistas solo cuando la plataforma ofrezca cada dato.
 
-**Estado técnico conocido:** `api/redes.js` consultaba Facebook, Instagram y YouTube. X y TikTok no constaban integrados en ese endpoint cuando se revisó el código; verificar el estado de cualquier otra ruta antes de darlo por cerrado.
+**Estado técnico conocido:** `api/redes.js` es una ruta de Vercel que consulta Facebook, Instagram y YouTube, pero la plantilla pública actual no la llama: las redes visibles provienen del JSON generado por GitHub Actions. Por eso, no debe describirse como una integración en vivo del tablero. Si se usa Cloudflare Pages, la ruta social debe portarse como Pages Function y probarse por separado. X y TikTok no están integrados; WhatsApp queda pendiente de verificar métricas disponibles.
 
 ## 6. Google Analytics 4 y Search Console
 - [x] La API de Google de Cloudflare Pages respondió correctamente en una prueba para 01/10/2026–19/10/2026.
