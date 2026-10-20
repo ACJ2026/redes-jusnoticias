@@ -8,8 +8,12 @@ const FB_PAGE = process.env.FB_PAGE_ID || '116101835114568';   // página JusNot
 const IG_USER = process.env.IG_USER_ID || '17841410514175238'; // Instagram jus_chubut
 const YT_CANAL = process.env.YT_CANAL_ID;
 
-async function get(url) {
-  const r = await fetch(url);
+async function get(url, token) {
+  // Nunca enviar tokens de Meta en la URL: proxies y logs suelen registrar la query string.
+  const safeUrl = new URL(url);
+  safeUrl.searchParams.delete('access_token');
+  const headers = token ? { Authorization: 'Bearer ' + token } : {};
+  const r = await fetch(safeUrl.toString(), { headers });
   const j = await r.json();
   if (!r.ok || j.error) throw new Error((j.error && j.error.message) || ('HTTP ' + r.status));
   return j;
@@ -19,12 +23,14 @@ const corto = (s) => (s || '').replace(/\s+/g, ' ').trim().slice(0, 26);
 async function facebook(desde) {
   const id = FB_PAGE;
   // La "nueva experiencia de páginas" exige un token de la página: se obtiene en el momento.
-  const t = (await get(`${G}/${id}?fields=access_token&access_token=${process.env.META_TOKEN}`)).access_token;
-  const page = await get(`${G}/${id}?fields=name,followers_count,fan_count&access_token=${t}`);
+  const metaToken = process.env.META_TOKEN;
+  if (!metaToken) throw new Error('Falta configurar META_TOKEN.');
+  const t = (await get(`${G}/${id}?fields=access_token`, metaToken)).access_token;
+  const page = await get(`${G}/${id}?fields=name,followers_count,fan_count`, t);
   const filas = [];
-  let url = `${G}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${desde}&limit=100&access_token=${t}`;
+  let url = `${G}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${desde}&limit=100`;
   for (let i = 0; url && i < 10; i++) {
-    const j = await get(url);
+    const j = await get(url, t);
     j.data.forEach((p) => filas.push({
       red: 'Facebook', cuenta: 'JusNoticias (prensastjchubut)', fecha: p.created_time.slice(0, 10), texto: corto(p.message),
       nota_id: null, me_gusta: p.reactions ? p.reactions.summary.total_count : null,
@@ -38,11 +44,12 @@ async function facebook(desde) {
 
 async function instagram(desde) {
   const t = process.env.META_TOKEN, id = IG_USER;
-  const cuenta = await get(`${G}/${id}?fields=username,followers_count&access_token=${t}`);
+  if (!t) throw new Error('Falta configurar META_TOKEN.');
+  const cuenta = await get(`${G}/${id}?fields=username,followers_count`, t);
   const filas = [];
-  let url = `${G}/${id}/media?fields=timestamp,caption,like_count,comments_count&limit=100&access_token=${t}`;
+  let url = `${G}/${id}/media?fields=timestamp,caption,like_count,comments_count&limit=100`;
   for (let i = 0; url && i < 10; i++) {
-    const j = await get(url);
+    const j = await get(url, t);
     const dentro = j.data.filter((m) => m.timestamp.slice(0, 10) >= desde);
     dentro.forEach((m) => filas.push({
       red: 'Instagram', cuenta: cuenta.username, fecha: m.timestamp.slice(0, 10), texto: corto(m.caption),
