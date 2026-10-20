@@ -98,6 +98,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <label for="fdesde" class="lbl">Desde</label><select id="fdesde"></select>
       <label for="fhasta" class="lbl">Hasta</label><select id="fhasta"></select>
       <button class="btn" id="ftodo" type="button">Todo el período</button>
+      <button class="btn" id="finfo" type="button">Generar infografía</button>
     </div>
   </div>
 
@@ -264,7 +265,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: ok.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: ok.map(r => r.medio).join(', '), posibles: rs.length - ok.length };
   });
   const meses = [...new Set(notas.map(n => n.mes))].sort();
-  const st = { desde: meses[0], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
+  const st = { desde: meses[meses.length - 1], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
   const en = m => m >= st.desde && m <= st.hasta;
 
   const calc = () => {
@@ -428,7 +429,21 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; draw(); };
   $('fdesde').addEventListener('change', e => setRango(e.target.value, st.hasta));
   $('fhasta').addEventListener('change', e => setRango(st.desde, e.target.value));
+
   $('ftodo').addEventListener('click', () => setRango(meses[0], meses[meses.length - 1]));
+  $('finfo').addEventListener('click', () => {
+    const c = calc();
+    const periodo = st.desde === st.hasta ? cap(mesLargo(st.desde)) + ' ' + st.desde.slice(0, 4) : cap(mesLargo(st.desde)) + ' ' + st.desde.slice(0, 4) + ' — ' + cap(mesLargo(st.hasta)) + ' ' + st.hasta.slice(0, 4);
+    const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const top = c.porMedio.slice(0, 5);
+    const rows = top.map((m, i) => '<text x="86" y="' + (690 + i * 58) + '" font-size="25" fill="#18212b">' + (i + 1) + '. ' + esc(m.medio) + '</text><text x="1110" y="' + (690 + i * 58) + '" font-size="25" text-anchor="end" font-weight="600" fill="#1f5b87">' + fmt(m.notas) + '</text>').join('');
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1100" viewBox="0 0 1200 1100"><rect width="1200" height="1100" fill="#f6f7f9"/><rect x="48" y="48" width="1104" height="1004" rx="24" fill="#fff" stroke="#dde2e8"/><text x="86" y="115" font-size="22" letter-spacing="3" fill="#5a6673">AGENCIA DE COMUNICACIÓN JUDICIAL · CHUBUT</text><text x="86" y="185" font-size="43" font-family="Georgia,serif" fill="#18212b">Tablero de repercusión de JusNoticias</text><text x="86" y="235" font-size="28" fill="#5a6673">' + esc(periodo) + '</text><line x1="86" y1="270" x2="1114" y2="270" stroke="#18212b" stroke-width="2"/><text x="86" y="330" font-size="24" fill="#5a6673">NOTAS PUBLICADAS</text><text x="86" y="405" font-size="66" font-family="Georgia,serif" fill="#1f5b87">' + fmt(c.notas) + '</text><text x="430" y="330" font-size="24" fill="#5a6673">CON REPERCUSIÓN</text><text x="430" y="405" font-size="66" font-family="Georgia,serif" fill="#1f5b87">' + c.pct + '%</text><text x="775" y="330" font-size="24" fill="#5a6673">PUBLICACIONES EN MEDIOS</text><text x="775" y="405" font-size="66" font-family="Georgia,serif" fill="#1f5b87">' + fmt(c.publicaciones) + '</text><text x="86" y="505" font-size="24" fill="#5a6673">POSTEOS EN CUENTAS OFICIALES</text><text x="86" y="570" font-size="52" font-family="Georgia,serif" fill="#18212b">' + fmt(c.posteos) + '</text><text x="430" y="505" font-size="24" fill="#5a6673">MEDIOS CON PUBLICACIONES</text><text x="430" y="570" font-size="52" font-family="Georgia,serif" fill="#18212b">' + fmt(c.medios) + '</text><line x1="86" y1="620" x2="1114" y2="620" stroke="#dde2e8"/><text x="86" y="660" font-size="24" font-weight="600" fill="#18212b">MEDIOS CON MAYOR REPERCUSIÓN</text>' + (rows || '<text x="86" y="710" font-size="25" fill="#5a6673">Sin publicaciones registradas en este período.</text>') + '<text x="86" y="1000" font-size="18" fill="#5a6673">Fuente: Agencia de Comunicación Judicial · Poder Judicial del Chubut</text></svg>';
+    const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'infografia-jusnoticias-' + st.desde + (st.hasta !== st.desde ? '-a-' + st.hasta : '') + '.svg';
+    document.body.append(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  });
   const show = (page) => {
     if (!$(page) || !$(page).classList.contains('page')) return;
     st.page = page;
