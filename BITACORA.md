@@ -15,7 +15,7 @@
 ## Arquitectura observada al iniciar esta intervención
 
 - Tablero público estático: `publico/tablero_publico.html`; Vercel publica la carpeta `publico/` y usa `publico/index.html`.
-- El HTML público se genera desde una plantilla codificada en Base64 dentro de `scripts/armar_publico.py`; los datos del tablero se insertan en el marcador `/*DATOS*/`.
+- La plantilla HTML vive en `templates/tablero.html` como texto plano versionado; `scripts/armar_publico.py` la lee con `pathlib` y los datos se insertan en el marcador `/*DATOS*/`.
 - Recolección histórica de noticias y repercusión: `scripts/actualizar.py`, con datos en `data/notas2.json`, `data/rep2.json`, `data/medios.json`, `data/redes2.json` y `data/canales.json`.
 - API existente de redes sociales: `api/redes.js`; usa variables de entorno de Vercel para credenciales de Meta y, opcionalmente, YouTube.
 - Automatización de actualización: `.github/workflows/actualizar.yml`.
@@ -102,3 +102,12 @@ Próxima acción:
 - Checks de Vercel para el commit inspeccionado informaron `failure` en ambos proyectos (`redes-jusnoticias` y `redes-jusnoticias-67i7`). No se pudo obtener el detalle del log desde la herramienta disponible; causa no determinada. No marcar despliegue como exitoso.
 - El PR sigue abierto y sin merge. No modificar `main` ni afirmar que el cambio está publicado hasta resolver los checks y contar con aprobación explícita para integrar.
 - El endpoint y la pestaña están preparados para informar “Pendiente de configuración” si faltan las variables; los datos reales de Google aún requieren configuración externa.
+
+
+### 2026-10-20 — Refactor de plantilla (respuesta a revisión de DeepSeek)
+
+- Extraído el HTML completo (incluida la pestaña Google añadida en esta rama) desde el Base64 de `scripts/armar_publico.py` a `templates/tablero.html`.
+- El generador ahora carga la plantilla con `Path(__file__).resolve().parent.parent / "templates" / "tablero.html"` y `read_text(encoding="utf-8")`; se elimina la dependencia de Base64 para el HTML.
+- Se conserva el marcador único `/*DATOS*/` para inyectar el JSON serializado de datos.
+- Validación de transformación: plantilla decodificada desde el blob anterior (47129 caracteres), marcador encontrado una vez; el cambio se hizo solo en `feature/google-metrics-and-project-log`, no en `main`.
+- Pendiente obligatorio: ejecutar pruebas reales del generador y comprobar el resultado de GitHub Actions/Vercel. No afirmar que la actualización de medios ni la integración Google estén operativas hasta que pasen.
