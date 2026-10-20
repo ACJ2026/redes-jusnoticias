@@ -85,6 +85,10 @@ No sumes clics e impresiones con usuarios, sesiones o páginas vistas: son medid
 4. En Google, pulsar **Consultar** para volver a pedir el período seleccionado.
 5. Si faltan datos, comprobar la configuración y permisos de la fuente; no compartir contraseñas, claves privadas ni tokens por chat o dentro del repositorio.
 
-## 6. Integración de estadísticas privadas de Facebook
+## 6. Configuración de Google en Cloudflare Pages
+
+Si la pestaña Google muestra **“Pendiente de configuración”**, revisar en el proyecto de Cloudflare Pages las variables de entorno del entorno **Production**: `GA4_PROPERTY_ID`, `GSC_SITE_URL` y el secreto `GOOGLE_SERVICE_ACCOUNT_JSON`. Después de configurarlas, volver a desplegar y consultar un período. No copiar la clave privada al HTML, al repositorio ni al chat.
+
+## 7. Integración de estadísticas privadas de Facebook
 
 Los enlaces públicos permiten identificar páginas, pero no habilitan por sí solos a consultar estadísticas privadas. Para añadir datos como alcance e impresiones, una persona con permisos suficientes debe autorizar la integración oficial de Meta y seleccionar las páginas correctas. Antes de incorporarlas al tablero hay que confirmar la titularidad, el acceso y que no se esté contando dos veces la misma página.
