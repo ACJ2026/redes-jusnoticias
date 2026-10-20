@@ -7,8 +7,10 @@
 - [x] Trabajar las mejoras de explicación y período en `feature/indicadores-faciles-de-entender`.
 - [x] PR #5 abierto contra `feat/cloudflare-pages-google-metrics`: https://github.com/ACJ2026/redes-jusnoticias/pull/5
 - [x] Mantener secretos fuera del HTML y del repositorio.
-- [ ] Revisar el diff completo y ejecutar pruebas de sintaxis/regresión antes de aprobar.
+- [~] Revisión inicial de sintaxis: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios); falta probar interacciones en navegador.
+- [ ] Completar pruebas de regresión del período, pestañas, filtros y estados vacíos.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
+- [~] Vercel reportó límite diario de despliegues en los commits más recientes; hay una vista previa anterior en estado Ready, pero no demuestra que incluya los cambios actuales. Reintentar la vista previa al liberarse la cuota y validar por navegador.
 - [ ] Confirmar URL oficial de producción. La URL de Pages usada en pruebas fue https://redes-jusnoticias.pages.dev/.
 - [ ] Resolver cómo se relaciona el proyecto anterior `ignacervo-cell/jusnoticias-tablero` con el repositorio institucional `ACJ2026/redes-jusnoticias`; probar ambas páginas por separado y evitar versiones divergentes.
 
@@ -36,7 +38,7 @@
 - [x] El proceso contempla verificaciones para fallar explícitamente ante fallos de fuentes o caídas sospechosas del volumen.
 - [x] Documentar que Google Noticias encuentra candidatos, pero no prueba copia, atribución ni exhaustividad.
 - [~] GitHub Actions está programado cada dos horas, en el minuto 59, hora argentina.
-- [ ] Revisar ejecuciones recientes de Actions y confirmar que terminan y publican correctamente.
+- [~] Las dos ejecuciones programadas previas revisadas terminaron correctamente; la ejecución programada más reciente (20/10/2026 19:22 UTC) seguía en curso al revisarla. Verificar su conclusión: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39482960177
 - [ ] Auditar la lista de medios, fuentes fallidas, paginación y fechas.
 - [ ] Etiquetar coincidencias como posibles hasta verificar evidencia; distinguir tema similar, texto similar y atribución explícita.
 - [ ] No presentar la fecha de la nota de JusNoticias como si fuera la fecha comprobada del artículo externo.
@@ -50,6 +52,7 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [x] TikTok — Jus Chubut: https://www.tiktok.com/@juschubut
 - [x] WhatsApp — Agencia de Comunicación Judicial: https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p
 - [ ] Confirmar titularidad, nombre e identificador de cada cuenta.
+- [~] Corregido el riesgo de atribuir métricas del canal general del Poder Judicial a JusNoticias: YouTube ahora requiere `YT_CANAL_ID` explícito; falta obtener/verificar el ID correcto y configurarlo junto con `YT_KEY`.
 - [ ] Verificar accesos oficiales, permisos y métricas disponibles por plataforma.
 - [ ] Integrar X y TikTok si existe una vía oficial autorizada; no asumir que sus estadísticas se obtienen como datos públicos sin credenciales.
 - [ ] Confirmar que Instagram conectado sea exactamente `jus_chubut` y tenga permisos Meta válidos.
@@ -68,7 +71,7 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [ ] Confirmar permisos de solo lectura de la cuenta de servicio en GA4 y Search Console.
 - [ ] Probar la consulta de producción con varios rangos y comprobar errores/fechas incompletas.
 - [ ] Mantener GA4 (actividad dentro del sitio) y Search Console (resultados de búsqueda) separados; no sumar sus métricas.
-- [ ] Corregir `docs/GOOGLE_METRICS.md`, que aún menciona configuración en Vercel aunque esta ruta se preparó para Cloudflare Pages.
+- [x] `docs/GOOGLE_METRICS.md` describe Cloudflare Pages Functions y las variables requeridas; confirmar la configuración real del entorno.
 
 ## 7. Seguridad
 - [x] No incluir claves privadas ni tokens en el HTML público.
@@ -78,10 +81,11 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [ ] Confirmar que tokens no aparezcan en logs ni respuestas.
 
 ## 8. Claridad visual y documentación
-- [~] Portada tipo infografía ejecutiva con identidad visible “JusNoticias” y subtítulo “Tablero de repercusión y comunicación judicial”, título del navegador actualizado, indicadores dinámicos y botón de ingreso al tablero completo; falta validación visual en navegador.
+- [x] Portada tipo infografía ejecutiva con identidad visible “JusNoticias” y subtítulo “Tablero de repercusión y comunicación judicial”, título del navegador actualizado, indicadores dinámicos y botón de ingreso al tablero completo; portada incorporada a la plantilla generadora y archivos públicos regenerados.
+- [~] Validación sintáctica de JavaScript y JSON integrada completada; falta validación visual e interacción en navegador.
 - [~] Preparar etiquetas en lenguaje sencillo para usuarios, sesiones, vistas, clics e impresiones.
 - [~] Manual `docs/MANUAL_TABLERO.md` actualizado con frecuencia cada dos horas.
-- [ ] Corregir referencias restantes a Vercel cuando corresponda Cloudflare Pages.
+- [~] Diferenciar en la documentación las dos vías de publicación observadas (Vercel y Cloudflare Pages) y confirmar cuál es la URL institucional definitiva.
 - [ ] Revisar títulos, leyendas, ortografía, contraste, tablas largas, estados vacíos y móvil.
 - [ ] Distinguir claramente «último registro del período» de «datos generados/actualizados».
 - [ ] Validar visualmente el tablero real después del despliegue.
