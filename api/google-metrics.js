@@ -83,65 +83,43 @@ module.exports = async (req, res) => {
   try {
     const token = await googleAccessToken(service);
     const base = 'https://analyticsdata.googleapis.com/v1beta/properties/' + encodeURIComponent(process.env.GA4_PROPERTY_ID) + ':runReport';
-    const ga = await googlePost(base, token, {
+    const runGA = (dimensions, metrics, limit = 10000) => googlePost(base, token, {
       dateRanges: [{ startDate: range.start, endDate: range.end }],
-      dimensions: [{ name: 'date' }, { name: 'sessionDefaultChannelGroup' }, { name: 'deviceCategory' }, { name: 'pageTitle' }, { name: 'pagePath' }],
-      metrics: [{ name: 'totalUsers' }, { name: 'sessions' }, { name: 'screenPageViews' }, { name: 'engagedSessions' }, { name: 'averageSessionDuration' }],
-      limit: 10000,
-      orderBys: [{ dimension: { dimensionName: 'date' } }]
+      ...(dimensions.length ? { dimensions: dimensions.map(name => ({ name })) } : {}),
+      metrics: metrics.map(name => ({ name })),
+      limit
     });
-    const gsc = await googlePost('https://searchconsole.googleapis.com/webmasters/v3/sites/' + encodeURIComponent(process.env.GSC_SITE_URL) + '/searchAnalytics/query', token, {
-      startDate: range.start,
-      endDate: range.end,
-      dimensions: ['query'],
-      rowLimit: 25,
-      dataState: 'final'
-    });
-    const gscPages = await googlePost('https://searchconsole.googleapis.com/webmasters/v3/sites/' + encodeURIComponent(process.env.GSC_SITE_URL) + '/searchAnalytics/query', token, {
-      startDate: range.start,
-      endDate: range.end,
-      dimensions: ['page'],
-      rowLimit: 25,
-      dataState: 'final'
-    });
-    const rows = (ga.rows || []).map(r => ({
-      fecha: r.dimensionValues[0].value,
-      canal: r.dimensionValues[1].value,
-      dispositivo: r.dimensionValues[2].value,
-      titulo: r.dimensionValues[3].value,
-      ruta: r.dimensionValues[4].value,
-      usuarios: Number(r.metricValues[0].value),
-      sesiones: Number(r.metricValues[1].value),
-      vistas: Number(r.metricValues[2].value),
-      sesionesConInteraccion: Number(r.metricValues[3].value),
-      duracionMedia: Number(r.metricValues[4].value)
-    }));
-    const sum = (key) => rows.reduce((n, r) => n + r[key], 0);
-    const group = (key) => {
-      const map = new Map();
-      rows.forEach(r => {
-        const name = r[key] || '(not set)';
-        if (!map.has(name)) map.set(name, { nombre: name, usuarios: 0, sesiones: 0, vistas: 0 });
-        const x = map.get(name);
-        x.usuarios += r.usuarios; x.sesiones += r.sesiones; x.vistas += r.vistas;
-      });
-      return Array.from(map.values()).sort((a, b) => b.sesiones - a.sesiones).slice(0, 12);
-    };
-    const pagesMap = new Map();
-    rows.forEach(r => {
-      const key = r.ruta || '/';
-      if (!pagesMap.has(key)) pagesMap.set(key, { titulo: r.titulo, ruta: key, usuarios: 0, sesiones: 0, vistas: 0 });
-      const p = pagesMap.get(key); p.usuarios += r.usuarios; p.sesiones += r.sesiones; p.vistas += r.vistas;
-    });
+    const [summary, channels, devices, pages, gsc, gscPages] = await Promise.all([
+      runGA([], ['totalUsers', 'sessions', 'screenPageViews', 'engagedSessions', 'averageSessionDuration'], 1),
+      runGA(['sessionDefaultChannelGroup'], ['totalUsers', 'sessions', 'screenPageViews'], 50),
+      runGA(['deviceCategory'], ['totalUsers', 'sessions', 'screenPageViews'], 20),
+      runGA(['pageTitle', 'pagePath'], ['totalUsers', 'sessions', 'screenPageViews', 'engagedSessions', 'averageSessionDuration'], 100),
+      googlePost('https://searchconsole.googleapis.com/webmasters/v3/sites/' + encodeURIComponent(process.env.GSC_SITE_URL) + '/searchAnalytics/query', token, {
+        startDate: range.start, endDate: range.end, dimensions: ['query'], rowLimit: 25, dataState: 'final'
+      }),
+      googlePost('https://searchconsole.googleapis.com/webmasters/v3/sites/' + encodeURIComponent(process.env.GSC_SITE_URL) + '/searchAnalytics/query', token, {
+        startDate: range.start, endDate: range.end, dimensions: ['page'], rowLimit: 25, dataState: 'final'
+      })
+    ]);
+    const metricObj = (row, names) => Object.fromEntries(names.map((name, i) => [name, Number(row && row.metricValues && row.metricValues[i] ? row.metricValues[i].value : 0)]));
+    const grouped = (report, labelKey) => (report.rows || []).map(r => ({
+      nombre: r.dimensionValues[0].value,
+      ...metricObj(r, ['totalUsers', 'sessions', 'screenPageViews'])
+    })).sort((a, b) => b.sessions - a.sessions);
+    const pageRows = (pages.rows || []).map(r => ({
+      titulo: r.dimensionValues[0].value,
+      ruta: r.dimensionValues[1].value,
+      ...metricObj(r, ['totalUsers', 'sessions', 'screenPageViews', 'engagedSessions', 'averageSessionDuration'])
+    })).sort((a, b) => b.screenPageViews - a.screenPageViews).slice(0, 25);
     return jsonResponse(res, 200, {
       estado: 'ok',
       actualizado: new Date().toISOString(),
       rango: range,
       analytics: {
-        usuarios: sum('usuarios'), sesiones: sum('sesiones'), vistas: sum('vistas'),
-        sesionesConInteraccion: sum('sesionesConInteraccion'),
-        canales: group('canal'), dispositivos: group('dispositivo'),
-        paginas: Array.from(pagesMap.values()).sort((a, b) => b.vistas - a.vistas).slice(0, 25)
+        ...metricObj((summary.rows || [])[0], ['totalUsers', 'sessions', 'screenPageViews', 'engagedSessions', 'averageSessionDuration']),
+        canales: grouped(channels, 'sessionDefaultChannelGroup'),
+        dispositivos: grouped(devices, 'deviceCategory'),
+        paginas: pageRows
       },
       searchConsole: {
         consultas: (gsc.rows || []).map(r => ({ consulta: r.keys[0], clics: r.clicks, impresiones: r.impressions, ctr: r.ctr, posicion: r.position })),
