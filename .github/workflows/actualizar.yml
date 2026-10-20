@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/actualizar.yml'
       - 'scripts/actualizar.py'
+      - 'templates/**'
   schedule:
     # Cron UTC: horas pares, minuto 59; en Argentina (UTC-3) corresponde a horas impares, minuto 59.
     - cron: "59 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
