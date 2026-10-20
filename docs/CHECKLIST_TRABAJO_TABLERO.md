@@ -14,7 +14,9 @@
 - [x] Cloudflare Pages desplegó correctamente la vista previa de la rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/ (el check de GitHub informó `Deployed successfully` para el commit `545cd39`). Falta inspección visual e interacción manual en escritorio/móvil.
 - [~] Vercel reportó límite diario de despliegues en los commits más recientes; esa vía es independiente del preview de Cloudflare y no debe confundirse con él.
 - [ ] Confirmar URL oficial de producción. La URL de Pages usada en pruebas fue https://redes-jusnoticias.pages.dev/.
-- [ ] Resolver cómo se relaciona el proyecto anterior `ignacervo-cell/jusnoticias-tablero` con el repositorio institucional `ACJ2026/redes-jusnoticias`; probar ambas páginas por separado y evitar versiones divergentes.
+- [!] Hallazgo importante: GitHub informa que `ACJ2026/redes-jusnoticias` está **público**, mientras que el repositorio anterior `ignacervo-cell/jusnoticias-tablero` está privado y el plan previo trataba el destino como privado. No se cambió la visibilidad; confirmar la política institucional antes de fusionar.
+- [x] Comparación de historial entre repositorios: los 1.103 pares nota–medio del repositorio anterior aparecen representados en los 1.193 pares del repositorio institucional; el destino tiene 90 pares adicionales. Siete URLs antiguas de Google Noticias fueron sustituidas por URLs distintas para el mismo par nota–medio; conviene revisar una muestra antes de declarar equivalencia perfecta.
+- [ ] Resolver la relación de publicación entre el repositorio anterior `ignacervo-cell/jusnoticias-tablero` y el institucional `ACJ2026/redes-jusnoticias`; evitar versiones divergentes y confirmar cuál dominio debe ser oficial.
 
 ## 2. Período e indicadores
 - [~] El tablero queda preparado para iniciar en el último mes disponible, no en todo el historial.
@@ -54,7 +56,8 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [x] TikTok — Jus Chubut: https://www.tiktok.com/@juschubut
 - [x] WhatsApp — Agencia de Comunicación Judicial: https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p
 - [ ] Confirmar titularidad, nombre e identificador de cada cuenta.
-- [~] Corregido el riesgo de atribuir métricas del canal general del Poder Judicial a JusNoticias: YouTube ahora requiere `YT_CANAL_ID` explícito; falta obtener/verificar el ID correcto y configurarlo junto con `YT_KEY`.
+- [x] Corregido el riesgo de atribuir métricas del canal general del Poder Judicial a JusNoticias: 12 publicaciones históricas de ese canal se conservaron pero dejaron de computarse como propias; el canal general queda identificado como referencia institucional separada.
+- [~] Agregada la cuenta correcta «JusNoticias Prensa» sin inventar seguidores; falta obtener/verificar el ID correcto y configurar `YT_CANAL_ID` junto con `YT_KEY`.
 - [ ] Verificar accesos oficiales, permisos y métricas disponibles por plataforma.
 - [ ] Decidir si la ruta social seguirá en Vercel o se portará a Cloudflare Pages; no asumir que `api/redes.js` se ejecuta en Pages ni que el tablero la consume.
 - [ ] Integrar X y TikTok si existe una vía oficial autorizada; no asumir que sus estadísticas se obtienen como datos públicos sin credenciales.
