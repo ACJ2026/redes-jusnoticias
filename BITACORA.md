@@ -121,3 +121,16 @@ Próxima acción:
 - Se revisó `.github/workflows/actualizar.yml`: antes de copiar el resultado nuevo a `data/rep2.json`, ejecuta `scripts/verificar_historial.py` contra el historial anterior y los nuevos datos. No se ha ejecutado todavía el generador Python real en un entorno local ni una prueba real contra Google/Vercel; no marcar esos puntos como completos.
 - Los despliegues Preview identificados como `Blocked` no se pudieron inspeccionar desde las herramientas disponibles: las páginas privadas de Vercel no son accesibles desde esta sesión. La causa queda **sin determinar**. No se cambiaron permisos, protección ni membresías.
 - Próximo paso de revisión: abrir una PR nueva para el refactor, dado que la PR #2 ya se fusionó antes de estos commits. La integración a `main` queda pendiente de aprobación explícita y de revisar los checks/resultados.
+
+
+### 2026-10-20 — Investigación de la falla de generación en GitHub Actions
+
+- Se consultó la lista de ejecuciones de GitHub Actions y el log del job `actualizar`.
+- El run `39430700181` (evento `schedule`, commit `1a3c22ba`, iniciado a las 13:28:34 UTC) terminó en `failure`: el paso `Revisar medios y Google Noticias` terminó correctamente y falló `Armar versión pública` con `AttributeError: 'str' object has no attribute 'decode'`. El paso `Guardar` no se ejecutó. URL: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39430700181
+- También falló el run `39428259025` (push, commit `1a3c22ba`) con el mismo error, antes de la integración de la corrección de la PR #2.
+- Verificación del archivo actual en `main`: `scripts/armar_publico.py` contiene una sola llamada a `.decode("utf-8")`; no corresponde abrir otra PR para repetir ese arreglo.
+- El commit de producción `304e7e09c6ced968fc1867a50eb5b152cef70714` tiene los dos checks de Vercel en `success`, pero esos checks no prueban la ejecución del workflow de actualización.
+- La última ejecución de actualización disponible en el historial consultado es anterior al merge de la corrección. No se encontró aún una ejecución posterior que demuestre que el generador termina correctamente con el código corregido. Por tanto, la corrección está presente en `main`, pero su verificación de extremo a extremo sigue pendiente.
+- El run `39435202604` de `Pruebas de regresión del historial` en la rama de la PR #3 terminó en `success`; valida esa suite, no el generador completo.
+- Diagnóstico de previews Vercel `Blocked`: sigue sin confirmarse la causa, porque no se dispone del detalle privado del deployment. No se modificaron permisos ni protecciones.
+- Próxima verificación: comprobar el resultado del próximo run de `actualizar` posterior al merge; si no se inicia automáticamente, ejecutarlo manualmente desde GitHub Actions con modo `completo` y revisar los logs antes de considerar validada la generación. No sobrescribir datos históricos ni afirmar éxito sin un run verde.
