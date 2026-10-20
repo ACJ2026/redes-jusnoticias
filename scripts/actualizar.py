@@ -5,7 +5,7 @@ Genera notas2.json, rep2.json y medios.json en la carpeta de salida.
 """
 import json, re, sys, os, gzip, html, unicodedata, time, datetime as dt
 import urllib.request, urllib.parse
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from fuentes import exigir_lista_json
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else '.'
@@ -149,13 +149,30 @@ def wp_site(item):
         t = texts.get(m['pid'])
         out.append((m, classify(t, m['nid']) if t else None))
     return name, len(items), out
+# Aislar fallos temporales por fuente: un sitio caído no debe cancelar
+# toda la actualización ni provocar la pérdida de registros históricos.
 with ThreadPoolExecutor(4) as ex:
-    for name, n, out in ex.map(wp_site, WP.items()):
-        cobertura[name] = 'Revisión completa (texto comparado)' if n else 'Sin datos: el sitio no devolvió notas'
-        for m, c in out:
-            if c: addrow(name, m, 'Revisión completa', c[0], c[1], c[2])
-            else: addrow(name, m, 'Revisión completa')
-        print(name, n, len(out))
+    futures = {ex.submit(wp_site, item): item[0] for item in WP.items()}
+    for fut in as_completed(futures):
+        name = futures[fut]
+        try:
+            name, n, out = fut.result()
+            cobertura[name] = 'Revisión completa (texto comparado)' if n else 'Sin datos: el sitio no devolvió notas'
+            for m, c in out:
+                if c: addrow(name, m, 'Revisión completa', c[0], c[1], c[2])
+                else: addrow(name, m, 'Revisión completa')
+            print(name, n, len(out))
+        except Exception as e:
+            cobertura[name] = 'Fuente temporalmente no disponible; se conserva el historial previo'
+            prev_rows = []
+            if PREV and os.path.exists(PREV):
+                try:
+                    with open(PREV, encoding='utf8') as pf:
+                        prev_rows = [r for r in json.load(pf) if r.get('medio') == name]
+                except Exception:
+                    prev_rows = []
+            rows.extend({k: v for k, v in r.items() if k != 'key'} for r in prev_rows)
+            print(f'{name}: ERROR aislado ({type(e).__name__}); se conservan {len(prev_rows)} registros previos')
 
 # ---------- 3. Sitemaps mensuales (ADN Sur, EQS Notas) ----------
 def months():
