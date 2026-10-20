@@ -6,14 +6,16 @@ Publicar el tablero desde la carpeta `publico/` sin hacer público el repositori
 
 ## Crear el proyecto Pages
 
-Configurar un proyecto Cloudflare Pages conectado al repositorio privado `ACJ2026/redes-jusnoticias`:
+**Estado que debe resolverse antes de la puesta en producción:** al 20/10/2026, GitHub informa que `ACJ2026/redes-jusnoticias` tiene `private: false` (público), aunque el plan de migración lo describía como privado. Confirmar la política institucional y quién puede cambiarla; no asumir que el repositorio es privado ni publicar secretos.
+
+Configurar un proyecto Cloudflare Pages conectado al repositorio `ACJ2026/redes-jusnoticias` una vez confirmada la política de visibilidad:
 
 - **Production branch:** `main`
 - **Root directory:** dejar vacío (raíz del repositorio)
 - **Build command:** `exit 0`
 - **Build output directory:** `publico`
 
-No cambiar la visibilidad del repositorio. Mantener `functions/` en la raíz del repositorio; Cloudflare Pages la utiliza para resolver las rutas de Pages Functions aunque los archivos estáticos se publiquen desde `publico/`.
+Mantener `functions/` en la raíz del repositorio; Cloudflare Pages la utiliza para resolver las rutas de Pages Functions aunque los archivos estáticos se publiquen desde `publico/`. No cambiar la visibilidad de forma automática: requiere una decisión institucional explícita.
 
 ## Configurar Google como secretos
 
