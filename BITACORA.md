@@ -15,7 +15,7 @@
 ## Arquitectura observada al iniciar esta intervención
 
 - Tablero público estático: `publico/tablero_publico.html`; Vercel publica la carpeta `publico/` y usa `publico/index.html`.
-- El HTML público se genera desde una plantilla codificada en Base64 dentro de `scripts/armar_publico.py`; los datos del tablero se insertan en el marcador `/*DATOS*/`.
+- La plantilla HTML vive en `templates/tablero.html` como texto plano versionado; `scripts/armar_publico.py` la lee con `pathlib` y los datos se insertan en el marcador `/*DATOS*/`.
 - Recolección histórica de noticias y repercusión: `scripts/actualizar.py`, con datos en `data/notas2.json`, `data/rep2.json`, `data/medios.json`, `data/redes2.json` y `data/canales.json`.
 - API existente de redes sociales: `api/redes.js`; usa variables de entorno de Vercel para credenciales de Meta y, opcionalmente, YouTube.
 - Automatización de actualización: `.github/workflows/actualizar.yml`.
@@ -102,3 +102,35 @@ Próxima acción:
 - Checks de Vercel para el commit inspeccionado informaron `failure` en ambos proyectos (`redes-jusnoticias` y `redes-jusnoticias-67i7`). No se pudo obtener el detalle del log desde la herramienta disponible; causa no determinada. No marcar despliegue como exitoso.
 - El PR sigue abierto y sin merge. No modificar `main` ni afirmar que el cambio está publicado hasta resolver los checks y contar con aprobación explícita para integrar.
 - El endpoint y la pestaña están preparados para informar “Pendiente de configuración” si faltan las variables; los datos reales de Google aún requieren configuración externa.
+
+
+### 2026-10-20 — Refactor de plantilla (respuesta a revisión de DeepSeek)
+
+- Extraído el HTML completo (incluida la pestaña Google añadida en esta rama) desde el Base64 de `scripts/armar_publico.py` a `templates/tablero.html`.
+- El generador ahora carga la plantilla con `Path(__file__).resolve().parent.parent / "templates" / "tablero.html"` y `read_text(encoding="utf-8")`; se elimina la dependencia de Base64 para el HTML.
+- Se conserva el marcador único `/*DATOS*/` para inyectar el JSON serializado de datos.
+- Validación de transformación: plantilla decodificada desde el blob anterior (47129 caracteres), marcador encontrado una vez; el cambio se hizo solo en `feature/google-metrics-and-project-log`, no en `main`.
+- Pendiente obligatorio: ejecutar pruebas reales del generador y comprobar el resultado de GitHub Actions/Vercel. No afirmar que la actualización de medios ni la integración Google estén operativas hasta que pasen.
+
+
+### 2026-10-20 — Verificación posterior al merge y preparación de PR del refactor
+
+- Se verificó que la PR #2 está cerrada con merge y que el commit de producción registrado es `304e7e09c6ced968fc1867a50eb5b152cef70714`. Los checks de Vercel consultados para ese commit figuran `success`; esto acredita el estado de esos checks, no una prueba funcional de todo el tablero.
+- Se confirmó por comparación de refs que `main` no contiene todavía la extracción a `templates/tablero.html`; la rama de trabajo está 3 commits por delante y 1 por detrás de `main`. El cambio del refactor sigue separado de producción.
+- Validaciones estáticas ejecutadas sobre los archivos versionados en la rama: JSON válido en `data/notas2.json` (279 registros), `data/rep2.json` (1192), `data/redes2.json` (285), `data/canales.json` (6) y `data/medios.json` (64); plantilla de 47.129 caracteres; marcador `/*DATOS*/` presente exactamente una vez; generador referencia la plantilla externa; serialización mantiene el escape de `</`; pestaña Google y endpoint presentes.
+- Se revisó `.github/workflows/actualizar.yml`: antes de copiar el resultado nuevo a `data/rep2.json`, ejecuta `scripts/verificar_historial.py` contra el historial anterior y los nuevos datos. No se ha ejecutado todavía el generador Python real en un entorno local ni una prueba real contra Google/Vercel; no marcar esos puntos como completos.
+- Los despliegues Preview identificados como `Blocked` no se pudieron inspeccionar desde las herramientas disponibles: las páginas privadas de Vercel no son accesibles desde esta sesión. La causa queda **sin determinar**. No se cambiaron permisos, protección ni membresías.
+- Próximo paso de revisión: abrir una PR nueva para el refactor, dado que la PR #2 ya se fusionó antes de estos commits. La integración a `main` queda pendiente de aprobación explícita y de revisar los checks/resultados.
+
+
+### 2026-10-20 — Investigación de la falla de generación en GitHub Actions
+
+- Se consultó la lista de ejecuciones de GitHub Actions y el log del job `actualizar`.
+- El run `39430700181` (evento `schedule`, commit `1a3c22ba`, iniciado a las 13:28:34 UTC) terminó en `failure`: el paso `Revisar medios y Google Noticias` terminó correctamente y falló `Armar versión pública` con `AttributeError: 'str' object has no attribute 'decode'`. El paso `Guardar` no se ejecutó. URL: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39430700181
+- También falló el run `39428259025` (push, commit `1a3c22ba`) con el mismo error, antes de la integración de la corrección de la PR #2.
+- Verificación del archivo actual en `main`: `scripts/armar_publico.py` contiene una sola llamada a `.decode("utf-8")`; no corresponde abrir otra PR para repetir ese arreglo.
+- El commit de producción `304e7e09c6ced968fc1867a50eb5b152cef70714` tiene los dos checks de Vercel en `success`, pero esos checks no prueban la ejecución del workflow de actualización.
+- La última ejecución de actualización disponible en el historial consultado es anterior al merge de la corrección. No se encontró aún una ejecución posterior que demuestre que el generador termina correctamente con el código corregido. Por tanto, la corrección está presente en `main`, pero su verificación de extremo a extremo sigue pendiente.
+- El run `39435202604` de `Pruebas de regresión del historial` en la rama de la PR #3 terminó en `success`; valida esa suite, no el generador completo.
+- Diagnóstico de previews Vercel `Blocked`: sigue sin confirmarse la causa, porque no se dispone del detalle privado del deployment. No se modificaron permisos ni protecciones.
+- Próxima verificación: comprobar el resultado del próximo run de `actualizar` posterior al merge; si no se inicia automáticamente, ejecutarlo manualmente desde GitHub Actions con modo `completo` y revisar los logs antes de considerar validada la generación. No sobrescribir datos históricos ni afirmar éxito sin un run verde.
