@@ -1,4 +1,5 @@
 // Cloudflare Pages Function: conserva el contrato de /api/google-metrics de Vercel.
+// Rebuild de producción para aplicar las variables de entorno actualizadas.
 // Configurar GOOGLE_SERVICE_ACCOUNT_JSON, GA4_PROPERTY_ID y GSC_SITE_URL como secrets/variables.
 // No colocar credenciales en el HTML ni en el repositorio.
 
