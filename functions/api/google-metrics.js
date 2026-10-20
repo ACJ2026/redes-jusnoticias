@@ -6,7 +6,7 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), {
   status,
   headers: {
     "Content-Type": "application/json; charset=utf-8",
-    "Cache-Control": "public, max-age=0, s-maxage=900, stale-while-revalidate=300"
+    "Cache-Control": "no-store"
   }
 });
 
@@ -128,7 +128,9 @@ async function onRequestInner(context) {
       limit
     });
 
-    const gscBase = "https://searchconsole.googleapis.com/webmasters/v3/sites/" + encodeURIComponent(env.GSC_SITE_URL) + "/searchAnalytics/query";
+    // Normaliza el typo histórico por si el entorno de producción aún conserva el valor anterior.
+    const gscSiteUrl = String(env.GSC_SITE_URL).replace("sc-domain:jusniticias.juschubut.gov.ar", "sc-domain:jusnoticias.juschubut.gov.ar");
+    const gscBase = "https://searchconsole.googleapis.com/webmasters/v3/sites/" + encodeURIComponent(gscSiteUrl) + "/searchAnalytics/query";
     const [summary, channels, devices, pages, gscSummary, gsc, gscPages] = await Promise.all([
       runGA([], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 1),
       runGA(["sessionDefaultChannelGroup"], ["totalUsers", "sessions", "screenPageViews"], 50),
