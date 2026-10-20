@@ -1,0 +1,66 @@
+name: Actualizar tablero
+
+on:
+  schedule:
+    # 7:59 y 13:59 hora argentina (UTC-3)
+    - cron: "59 10,16 * * *"
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "completo = revisa medios + Google Noticias y arma el público; publico = solo arma la versión pública"
+        required: false
+        default: completo
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Revisar medios y Google Noticias
+        if: github.event_name == 'schedule' || inputs.modo != 'publico'
+        run: |
+          mkdir -p out
+          python3 -u scripts/actualizar.py out data/rep2.json | tee run.log
+          grep -q "^OK notas" run.log
+          filas=$(python3 -c "import json;print(len(json.load(open('out/rep2.json'))))")
+          antes=$(python3 -c "import json;print(len(json.load(open('data/rep2.json'))))")
+          notas_antes=$(python3 -c "import json;print(len(json.load(open('data/notas2.json'))))")
+          notas_ahora=$(python3 -c "import json;print(len(json.load(open('out/notas2.json'))))")
+          echo "Publicaciones antes: $antes, ahora: $filas"
+          echo "Notas antes: $notas_antes, ahora: $notas_ahora"
+          # Protección por identidad; mismo verificador cubierto por pruebas unitarias.
+          python3 scripts/verificar_historial.py data/rep2.json out/rep2.json out/notas2.json
+          # Si cae bruscamente el volumen de publicaciones o notas, se requiere revisión manual.
+          if [ "$filas" -lt $((antes * 8 / 10)) ]; then echo "Muy pocas publicaciones, no se guarda"; exit 1; fi
+          if [ "$notas_ahora" -lt $((notas_antes * 95 / 100)) ]; then echo "Desaparecieron más del 5% de las notas; no se guarda sin revisión"; exit 1; fi
+          cp out/notas2.json out/rep2.json out/medios.json data/
+
+      - name: Armar versión pública
+        run: |
+          python3 scripts/armar_publico.py data/notas2.json data/rep2.json data/redes2.json data/canales.json data/medios.json publico/tablero_publico.html
+          # Vercel publica solo la carpeta publico/ y abre index.html
+          cp publico/tablero_publico.html publico/index.html
+
+      - name: Guardar
+        run: |
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > data/actualizado.txt
+          git config user.name "jusnoticias-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data publico
+          git diff --cached --quiet && exit 0
+          git commit -m "datos: actualización automática $(TZ=America/Argentina/Buenos_Aires date +'%d/%m %H:%M')"
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && exit 0; sleep 5; done
+          exit 1
