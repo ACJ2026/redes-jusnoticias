@@ -216,7 +216,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="google" hidden>
     <div class="card guia">
       <h2>Audiencia y búsquedas en Google</h2>
-      <p class="note">Datos consultados directamente desde Google Analytics 4 y Search Console. No se mezclan con las métricas de repercusión en medios o redes.</p>
+      <p class="note">Este apartado separa dos cosas: la actividad dentro del sitio (Analytics) y la aparición en búsquedas de Google (Search Console). No se suman entre sí. Elegí las fechas y pulsá «Consultar».</p>
       <div class="tools">
         <label for="g-desde" class="lbl">Desde</label><input id="g-desde" type="date">
         <label for="g-hasta" class="lbl">Hasta</label><input id="g-hasta" type="date">
@@ -225,19 +225,19 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <p class="note" id="g-estado" role="status">Consultando configuración…</p>
     </div>
     <div class="kpis">
-      <div class="kpi lead"><div class="big" id="g-usuarios">—</div><div class="lbl">usuarios</div></div>
-      <div class="kpi"><div class="big" id="g-sesiones">—</div><div class="lbl">sesiones</div></div>
-      <div class="kpi"><div class="big" id="g-vistas">—</div><div class="lbl">páginas vistas</div></div>
-      <div class="kpi"><div class="big" id="g-clics">—</div><div class="lbl">clics desde Google</div></div>
-      <div class="kpi"><div class="big" id="g-impresiones">—</div><div class="lbl">impresiones en búsquedas</div></div>
+      <div class="kpi lead"><div class="big" id="g-usuarios">—</div><div class="lbl">usuarios del sitio</div><p class="note">Usuarios que registraron actividad en JusNoticias durante las fechas elegidas. No son nombres identificados.</p></div>
+      <div class="kpi"><div class="big" id="g-sesiones">—</div><div class="lbl">visitas (sesiones)</div><p class="note">Períodos de visita. Una persona puede tener más de una visita.</p></div>
+      <div class="kpi"><div class="big" id="g-vistas">—</div><div class="lbl">páginas vistas</div><p class="note">Cantidad de cargas de páginas; una página puede contarse varias veces.</p></div>
+      <div class="kpi"><div class="big" id="g-clics">—</div><div class="lbl">clics desde búsquedas de Google</div><p class="note">Veces que alguien hizo clic en un resultado de búsqueda y llegó al sitio.</p></div>
+      <div class="kpi"><div class="big" id="g-impresiones">—</div><div class="lbl">apariciones en resultados de Google</div><p class="note">Veces que una página apareció en resultados. No significa que alguien haya hecho clic.</p></div>
     </div>
-    <div class="card"><h2>Principales páginas de JusNoticias</h2><div class="tbox"><table id="g-tabla-paginas"><thead><tr><th>Contenido</th><th>Vistas</th><th>Sesiones</th><th>Usuarios</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Qué páginas se visitaron más</h2><p class="note">Datos de Analytics. «Vistas» cuenta cargas de página; «sesiones» cuenta visitas; «usuarios» cuenta usuarios con actividad en el período.</p><div class="tbox"><table id="g-tabla-paginas"><thead><tr><th>Contenido</th><th>Vistas de página</th><th>Visitas</th><th>Usuarios</th></tr></thead><tbody></tbody></table></div></div>
     <div class="grid2">
-      <div class="card"><h2>Canales de tráfico</h2><div class="tbox"><table id="g-tabla-canales"><thead><tr><th>Canal</th><th>Sesiones</th><th>Vistas</th></tr></thead><tbody></tbody></table></div></div>
-      <div class="card"><h2>Dispositivos</h2><div class="tbox"><table id="g-tabla-dispositivos"><thead><tr><th>Dispositivo</th><th>Sesiones</th><th>Vistas</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="card"><h2>Cómo llega la gente al sitio</h2><p class="note">«Canal» agrupa el origen de la visita, por ejemplo búsqueda, acceso directo o redes sociales. Los números son visitas y vistas informadas por Analytics.</p><div class="tbox"><table id="g-tabla-canales"><thead><tr><th>Origen agrupado</th><th>Visitas</th><th>Vistas de página</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="card"><h2>Desde qué dispositivos navegan</h2><p class="note">Clasificación de Analytics de los dispositivos usados para visitar JusNoticias.</p><div class="tbox"><table id="g-tabla-dispositivos"><thead><tr><th>Dispositivo</th><th>Visitas</th><th>Vistas de página</th></tr></thead><tbody></tbody></table></div></div>
     </div>
-    <div class="card"><h2>Consultas que llevan a JusNoticias desde Google</h2><div class="tbox"><table id="g-tabla-consultas"><thead><tr><th>Consulta</th><th>Clics</th><th>Impresiones</th><th>CTR</th><th>Posición</th></tr></thead><tbody></tbody></table></div></div>
-    <div class="card"><h2>Páginas en resultados de Google</h2><div class="tbox"><table id="g-tabla-search-paginas"><thead><tr><th>Página</th><th>Clics</th><th>Impresiones</th><th>CTR</th><th>Posición</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Qué buscaron las personas en Google</h2><p class="note">«Clics» son entradas al sitio desde el resultado; «apariciones» son veces que se mostró el resultado. CTR es el porcentaje de apariciones que terminaron en clic. «Posición media» es una ubicación promedio aproximada, no un puesto fijo.</p><div class="tbox"><table id="g-tabla-consultas"><thead><tr><th>Palabra o frase buscada</th><th>Clics al sitio</th><th>Apariciones</th><th>Porcentaje de clics (CTR)</th><th>Posición media</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Qué páginas aparecieron en Google</h2><p class="note">Mismas métricas de búsqueda, agrupadas por página de JusNoticias en lugar de por frase buscada. Una aparición no garantiza que se haya leído el contenido.</p><div class="tbox"><table id="g-tabla-search-paginas"><thead><tr><th>Página de JusNoticias</th><th>Clics al sitio</th><th>Apariciones</th><th>Porcentaje de clics (CTR)</th><th>Posición media</th></tr></thead><tbody></tbody></table></div></div>
   </section>
 
   <section class="page" id="guia" hidden>
@@ -248,7 +248,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <p><b>1. Elegí el período</b> arriba (desde y hasta). Todo se recalcula con esas fechas.</p>
         <p><b>2. Mirá el Resumen.</b> La oración de arriba dice lo principal. Debajo de cada número y gráfico hay una explicación de qué cuenta y de dónde sale.</p>
         <p><b>3. Para un dato puntual,</b> usá las pestañas <b>Medios</b>, <b>Notas</b> y <b>Redes</b>. La pestaña <b>Google</b> consulta por separado las visitas de Analytics y el rendimiento en búsquedas de Search Console; requiere credenciales configuradas en el servidor.</p>
-        <p><b>4. Se actualiza solo</b> todas las mañanas. Arriba dice "datos al…".</p>
+        <p><b>4. El relevamiento se ejecuta dos veces al día</b>, aproximadamente a las 07:59 y 13:59 (hora argentina). La pestaña Google hace una consulta a Google cuando se abre o cuando pulsás «Consultar»; los datos más recientes pueden tardar en completarse.</p>
       </div>
       <div class="card guia">
         <h2>Cómo funciona, explicado simple</h2>
@@ -256,8 +256,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <p><b>Paso 2.</b> Revisa las páginas de unos 35 medios de la provincia y la región y busca títulos parecidos a los nuestros, publicados desde el día anterior hasta 8 días después. <b>Además</b>, busca cada nota en <b>Google Noticias</b> por su título y por dos frases textuales: así aparecen medios que no están en la lista y los que copiaron el texto con otro título. Un medio de afuera de la lista solo cuenta si menciona Chubut o una ciudad de la provincia.</p>
         <p><b>Paso 3.</b> Si el medio deja ver su texto, lo compara con el nuestro: si la mitad o más es igual, es <b>copia textual</b>; si se parece en parte, <b>reescritura</b>; si casi no se parece, <b>redacción propia</b>. También anota si nombra a JusNoticias como fuente.</p>
         <p><b>Paso 4.</b> Las coincidencias dudosas (solo se parece el título) no entran en los números principales: aparecen aparte como "posibles".</p>
-        <p><b>Redes:</b> se leen los posteos de nuestras cuentas en X, Instagram, Facebook y YouTube. Instagram y Facebook no muestran vistas.</p>
-        <p><b>Límites:</b> radio, TV, grupos de WhatsApp y portales que Google no indexa no se miden, así que el número es un <b>piso</b>: la repercusión real es mayor. El tipo de nota lo asigna el programa por palabras del título y puede equivocarse.</p>
+        <p><b>Redes:</b> se leen publicaciones de las cuentas configuradas. Las cifras disponibles cambian según la plataforma y los permisos; una cifra ausente no equivale a cero. Antes de incorporar más páginas de Facebook hay que confirmar que son las cuentas correctas y que no se dupliquen.</p>
+        <p><b>Google Noticias:</b> se usa como buscador complementario para descubrir publicaciones. Google decide qué rastrea, indexa y muestra; no garantiza que aparezcan todas las notas ni que lo haga el mismo día. Encontrar una nota sobre el mismo tema no demuestra que el medio haya usado a JusNoticias como fuente.</p>
+        <p><b>Límites:</b> radio, TV, grupos privados, publicaciones borradas y portales que los buscadores no encuentran pueden quedar afuera. El resultado es un <b>mínimo detectado</b>, no toda la repercusión. La clasificación automática del tipo de nota o de similitud puede equivocarse.</p>
       </div>
     </div>
     <div class="card"><h2>Medios relevados</h2><p class="note">Qué se pudo revisar de cada medio de la lista</p>
