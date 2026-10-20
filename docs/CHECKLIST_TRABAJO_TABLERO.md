@@ -7,8 +7,9 @@
 - [x] Trabajar las mejoras de explicación y período en `feature/indicadores-faciles-de-entender`.
 - [x] PR #5 abierto contra `feat/cloudflare-pages-google-metrics`: https://github.com/ACJ2026/redes-jusnoticias/pull/5
 - [x] Mantener secretos fuera del HTML y del repositorio.
-- [~] Revisión inicial de sintaxis: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios); falta probar interacciones en navegador.
-- [ ] Completar pruebas de regresión del período, pestañas, filtros y estados vacíos.
+- [x] Revisión sintáctica: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios).
+- [x] Suite de regresión del historial pasó en GitHub Actions para este PR: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39484818451
+- [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
 - [x] Cloudflare Pages desplegó correctamente la vista previa de la rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/ (el check de GitHub informó `Deployed successfully` para el commit `545cd39`). Falta inspección visual e interacción manual en escritorio/móvil.
 - [~] Vercel reportó límite diario de despliegues en los commits más recientes; esa vía es independiente del preview de Cloudflare y no debe confundirse con él.
