@@ -535,6 +535,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     'NoticiasdelBolson':'El Bolsón',
     'A24.com':'Cobertura nacional',
     'Revista Quórum':'Cobertura nacional',
+    'El Periscopio':'Cobertura provincial (Misiones)',
     'La Posta Comodorense':'Comodoro Rivadavia','El Comodorense':'Comodoro Rivadavia','Comodoro 24':'Comodoro Rivadavia','El Patagónico':'Comodoro Rivadavia',
     'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','Crónica':'Comodoro Rivadavia',
     'Noticias PMY':'Puerto Madryn','Madryn Ahora':'Puerto Madryn','Canal 12':'Puerto Madryn','LU17':'Puerto Madryn','El Diario Web':'Puerto Madryn','Digital Chubut':'Puerto Madryn',
@@ -569,6 +570,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)','Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)','Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)'].includes(localidad)) return 'Chubut';
     if (['Río Gallegos','General Roca','Neuquén','El Bolsón','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
     if (localidad === 'Cobertura patagónica (localidad por verificar)') return 'Cobertura regional';
+    if (localidad === 'Cobertura provincial (Misiones)') return 'Resto del país';
     if (localidad === 'Localidad por verificar' || localidad.includes('(localidad por verificar)')) return localidad.startsWith('Chubut') ? 'Chubut' : localidad.startsWith('Santa Cruz') ? 'Patagonia fuera de Chubut' : 'Localidad por verificar';
     return 'Resto del país';
   };
