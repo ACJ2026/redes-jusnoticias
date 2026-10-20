@@ -105,6 +105,12 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("'ADN Sur':'Comodoro Rivadavia'", template)
         self.assertIn("'EQS Notas':'Esquel'", template)
         self.assertIn("'Digital Chubut':'Puerto Madryn'", template)
+        self.assertIn("'Argentar Noticias':'Comodoro Rivadavia'", template)
+        self.assertIn("'Diario Judicial':'Ciudad Autónoma de Buenos Aires'", template)
+        self.assertIn("'El 10 TV':'Salta'", template)
+        self.assertIn("'El Valle Online':'Valle Inferior del Río Chubut'", template)
+        self.assertIn("'El Mediador - Santa Cruz':'Santa Cruz (localidad por verificar)'", template)
+        self.assertIn("'Flipr.news':'Cobertura nacional'", template)
 
     def test_no_hay_credenciales_en_el_html_publico(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
