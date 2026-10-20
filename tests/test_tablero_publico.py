@@ -124,7 +124,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("'A24.com':'Cobertura nacional'", template)
         self.assertIn("'Revista Quórum':'Cobertura nacional'", template)
         self.assertIn("'El Periscopio':'Cobertura provincial (Misiones)'", template)
-        self.assertIn("localidad.startsWith('Entre Ríos') return 'Resto del país'", template)
+        self.assertIn("localidad.startsWith('Entre Ríos')) return 'Resto del país'", template)
         self.assertIn("Chubut Hoy|ABC Diario|La Tecla Patagonia|El Extremo Sur|NoticiasdelBolson", template)
 
     def test_api_social_no_expone_token_en_url(self):
