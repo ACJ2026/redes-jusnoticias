@@ -82,6 +82,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .guia p{margin:0;line-height:1.55;max-width:66ch}
 .guia b{font-weight:600}
 .foot{border-top:1px solid var(--line);padding-top:12px}
+
+.territorio-card{border-top:3px solid var(--accent)}
+.territorio-tools{margin:10px 0}
+#b-territorio .bar-row{grid-template-columns:minmax(8rem, 12rem) minmax(3rem,1fr) 3.5rem}
+@media(max-width:520px){#b-territorio .bar-row{grid-template-columns:minmax(6rem,8rem) minmax(2rem,1fr) 3rem}}
 </style>
 
 <div class="wrap">
@@ -125,10 +130,23 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="kpi"><div class="big" data-k="vistas"></div><div class="lbl">vistas en X y YouTube</div><p class="note">Suma las vistas informadas por esas dos redes. Las otras no muestran ese dato.</p></div>
       <div class="kpi"><div class="big" data-k="seguidores"></div><div class="lbl">seguidores de nuestras cuentas</div><p class="note">Suma los seguidores que muestran las cuentas incluidas hoy. No significa que todos hayan visto nuestras publicaciones.</p></div>
     </div>
+    <div class="card territorio-card" id="c-territorio">
+      <h2>Alcance territorial por localidad</h2>
+      <p class="note">Publicaciones encontradas en otros medios vinculadas con notas del período elegido. La localidad indica la sede conocida del medio, no dónde vive cada lector. La fecha corresponde a la nota de JusNoticias relacionada.</p>
+      <div class="tools territorio-tools">
+        <label for="f-territorio-tipo" class="lbl">Tipo de medio</label>
+        <select id="f-territorio-tipo">
+          <option value="">Todos los tipos</option><option value="Radio">Radios</option><option value="TV">Televisión</option><option value="Prensa gráfica">Prensa gráfica</option><option value="Portal digital">Portales digitales</option>
+        </select>
+      </div>
+      <p class="note" id="territorio-resumen" aria-live="polite"></p>
+      <div class="bars" id="b-territorio"></div>
+      <p class="note">Las localidades no verificadas se muestran aparte; la distribución territorial es orientativa y cuenta publicaciones detectadas, no audiencia ni alcance real.</p>
+    </div>
     <div class="grid2">
       <div class="card" id="c-mes">
         <h2>Mes a mes</h2>
-        <p class="note">Compara cuántas notas publicamos cada mes y cuántas aparecieron en otros medios. Los meses fuera de las fechas elegidas se ven más claros.</p>
+        <p class="note">Compara las notas publicadas y las encontradas en otros medios, mostrando únicamente los meses del período elegido.</p>
         <div class="legend"><span><i style="background:var(--muted-bar)"></i>Publicadas</span><span><i style="background:var(--accent)"></i>Levantadas</span></div>
         <div class="chart" id="ch-mes"><div class="tip" id="tip-mes" hidden></div></div>
       </div>
@@ -248,7 +266,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <p><b>1. Elegí el período</b> arriba (desde y hasta). Todo se recalcula con esas fechas.</p>
         <p><b>2. Mirá el Resumen.</b> La oración de arriba dice lo principal. Debajo de cada número y gráfico hay una explicación de qué cuenta y de dónde sale.</p>
         <p><b>3. Para un dato puntual,</b> usá las pestañas <b>Medios</b>, <b>Notas</b> y <b>Redes</b>. La pestaña <b>Google</b> consulta por separado las visitas de Analytics y el rendimiento en búsquedas de Search Console; requiere credenciales configuradas en el servidor.</p>
-        <p><b>4. El relevamiento se ejecuta dos veces al día</b>, aproximadamente a las 07:59 y 13:59 (hora argentina). La pestaña Google hace una consulta a Google cuando se abre o cuando pulsás «Consultar»; los datos más recientes pueden tardar en completarse.</p>
+        <p><b>4. El relevamiento automático está programado para ejecutarse cada dos horas, en el minuto 59 (hora argentina).</b> La actualización visible depende de que la ejecución termine correctamente y se publique. La pestaña Google consulta a Google cuando se abre o cuando pulsás «Consultar»; los datos más recientes pueden tardar en completarse.</p>
       </div>
       <div class="card guia">
         <h2>Cómo funciona, explicado simple</h2>
@@ -262,7 +280,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       </div>
     </div>
     <div class="card"><h2>Medios relevados</h2><p class="note">Qué se pudo revisar de cada medio de la lista</p>
-      <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Cobertura del relevamiento</th><th>Notas encontradas (todas)</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Cobertura del relevamiento</th><th>Publicaciones en el período</th></tr></thead><tbody></tbody></table></div></div>
   </section>
 
   <p class="note foot" id="pie"></p>
@@ -295,7 +313,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: ok.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: ok.map(r => r.medio).join(', '), posibles: rs.length - ok.length };
   });
   const meses = [...new Set(notas.map(n => n.mes))].sort();
-  const st = { desde: meses[0], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
+  const st = { desde: meses[meses.length - 1], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
   const en = m => m >= st.desde && m <= st.hasta;
 
   const calc = () => {
@@ -362,7 +380,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const bw = (W - m.l - m.r) / ms.length, pad = bw * 0.22;
     ticks.forEach(v => { svg.append(el('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--grid)' })); const t = el('text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end' }); t.textContent = fmt(v); svg.append(t); });
     ms.forEach((mes, i) => {
-      const x0 = m.l + i * bw, g = el('g', { opacity: en(mes) ? 1 : 0.3 }); svg.append(g);
+      const x0 = m.l + i * bw, g = el('g', {}); svg.append(g);
       if (stacked) {
         let acc = 0; const w = Math.min(32, bw - 2 * pad), xx = x0 + (bw - w) / 2;
         series.forEach(s => { const v = val(mes, s); if (!v) return; g.append(el('rect', { x: xx, width: w, y: y(acc + v), height: y(acc) - y(acc + v), fill: s.color })); acc += v; });
@@ -385,17 +403,61 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
   const drawResumen = (c) => {
     document.querySelectorAll('#resumen [data-k]').forEach(e => { const k = e.dataset.k; e.textContent = k === 'pct' ? c.pct + '%' : fmt(c[k]); });
-    const pm = new Map(); notas.forEach(n => { const x = pm.get(n.mes) || { p: 0, l: 0 }; x.p++; pm.set(n.mes, x); });
-    const conAll = new Set(repOk.map(r => Number(r.nota_id))); notas.forEach(n => { if (conAll.has(Number(n.id))) pm.get(n.mes).l++; });
-    chart('ch-mes', 'tip-mes', meses, [{ k: 'p', color: 'var(--muted-bar)' }, { k: 'l', color: 'var(--accent)' }], (m, s) => pm.get(m)[s.k], false,
-      m => { const r = pm.get(m); return [['var(--muted-bar)', 'Publicadas: ' + fmt(r.p)], ['var(--accent)', 'Levantadas: ' + fmt(r.l) + ' (' + Math.round(r.l / r.p * 100) + '%)']]; });
+    const mesesElegidos = meses.filter(en), ns = notas.filter(n => en(n.mes)), rs = repOk.filter(r => en(r.mes));
+    const pm = new Map(); ns.forEach(n => { const x = pm.get(n.mes) || { p: 0, l: 0 }; x.p++; pm.set(n.mes, x); });
+    const conPeriodo = new Set(rs.map(r => Number(r.nota_id))); ns.forEach(n => { if (conPeriodo.has(Number(n.id))) pm.get(n.mes).l++; });
+    chart('ch-mes', 'tip-mes', mesesElegidos, [{ k: 'p', color: 'var(--muted-bar)' }, { k: 'l', color: 'var(--accent)' }], (m, s) => pm.get(m)[s.k], false,
+      m => { const r = pm.get(m); return [['var(--muted-bar)', 'Publicadas: ' + fmt(r.p)], ['var(--accent)', 'Encontradas en otros medios: ' + fmt(r.l) + ' (' + Math.round(r.p ? r.l / r.p * 100 : 0) + '%)']]; });
     bars('b-tipo', c.tipo.filter(r => r.notas).map(r => row(r.tipo + ' (' + fmt(r.levantadas) + ' de ' + fmt(r.notas) + ')', [[r.pct, 'var(--accent)']], r.pct, 100, r.pct + '%')));
     const t5 = c.porMedio.slice(0, 5), mx = t5.length ? t5[0].notas : 1;
     bars('b-top5m', t5.map(r => row(r.medio, [[r.notas, 'var(--accent)']], r.notas, mx)));
     const n5 = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 5), mn = n5.length ? n5[0].n_medios : 1;
     bars('b-top5n', n5.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
+    drawTerritorio();
   };
-  const drawMedios = (c) => {
+  // Localidades conocidas de algunos medios; no se presume una sede cuando no está identificada.
+  const localidadMedio = {
+    'FM Tropical':'Rawson','FM Bahía Engaño':'Rawson',
+    'La Posta Comodorense':'Comodoro Rivadavia','El Comodorense':'Comodoro Rivadavia','Comodoro 24':'Comodoro Rivadavia','El Patagónico':'Comodoro Rivadavia',
+    'Noticias PMY':'Puerto Madryn','Madryn Ahora':'Puerto Madryn','Canal 12':'Puerto Madryn','LU17':'Puerto Madryn','El Diario Web':'Puerto Madryn',
+    'FM del Lago Esquel':'Esquel','Diario La Portada':'Esquel','Red43':'Esquel',
+    'Radio Chubut':'Trelew','El Chubut':'Trelew','Diario Jornada':'Trelew','Radio 3 Cadena Patagonia':'Trelew','Vivo Trelew':'Trelew',
+    'Cholila Online':'Cholila','La Opinión Austral':'Río Gallegos','Tiempo Sur':'Río Gallegos','Diario Nuevo Día':'Río Gallegos',
+    'Diario Río Negro':'General Roca','La Voz del Interior':'Córdoba','CHACODIAPORDIA.COM':'Resistencia','El Tribuno':'Salta',
+    'Diario Huarpe':'San Juan','Elonce.com':'Paraná','APFDigital':'Paraná','Somos Jujuy':'San Salvador de Jujuy',
+    'Canal Doce Misiones':'Posadas','Info del Estero':'Santiago del Estero','El Monterizo':'San Miguel de Tucumán',
+    'LM Neuquén':'Neuquén','Lmneuquen.com':'Neuquén','Diario San Rafael':'San Rafael'
+  };
+  const tipoMedio = medio => {
+    if (/radio|\bfm\b|\blu17\b/i.test(medio)) return 'Radio';
+    if (/canal|\btv\b/i.test(medio)) return 'TV';
+    if (/diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
+    return 'Portal digital';
+  };
+  const regionMedio = localidad => {
+    if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila'].includes(localidad)) return 'Chubut';
+    if (['Río Gallegos','General Roca','Neuquén'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (localidad === 'Localidad por verificar') return 'Localidad por verificar';
+    return 'Resto del país';
+  };
+  const drawTerritorio = () => {
+    const tipo = $('f-territorio-tipo').value;
+    const rs = repOk.filter(r => en(r.mes) && (!tipo || tipoMedio(r.medio) === tipo));
+    const localidades = new Map(), regiones = new Map();
+    rs.forEach(r => {
+      const localidad = localidadMedio[r.medio] || 'Localidad por verificar', region = regionMedio(localidad);
+      const item = localidades.get(localidad) || { localidad, publicaciones: 0, medios: new Set() };
+      item.publicaciones++; item.medios.add(r.medio); localidades.set(localidad, item);
+      regiones.set(region, (regiones.get(region) || 0) + 1);
+    });
+    const orden = [...localidades.values()].sort((a,b) => b.publicaciones-a.publicaciones || a.localidad.localeCompare(b.localidad,'es'));
+    const max = orden.length ? orden[0].publicaciones : 1;
+    bars('b-territorio', orden.map(x => row(x.localidad + ' · ' + x.medios.size + (x.medios.size === 1 ? ' medio' : ' medios'), [[x.publicaciones,'var(--accent)']], x.publicaciones, max)));
+    const verif = regiones.get('Localidad por verificar') || 0, conocidas = rs.length - verif;
+    const resumen = [...regiones.entries()].sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+': '+fmt(v)).join(' · ');
+    $('territorio-resumen').textContent = fmt(rs.length)+' publicaciones · '+fmt(localidades.size)+' localidades o grupos · '+fmt(conocidas)+' con localidad identificada · '+fmt(verif)+' por verificar. '+(resumen || 'Sin datos para este período.');
+  };
+\n  const drawMedios = (c) => {
     const t = c.porMedio.slice(0, 15), mx = t.length ? t[0].notas : 1;
     bars('b-medios', t.map(r => row(r.medio, [[r.copia, 'var(--copia)'], [r.otra, 'var(--accent)'], [r.sin_dato, 'var(--muted-bar)']], r.notas, mx)));
     const n = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 12), mn = n.length ? n[0].n_medios : 1;
@@ -419,8 +481,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     c = c || calc();
     const series = REDES.map((red, i) => ({ red, color: RCOL[i] }));
     $('lg-redes').replaceChildren(...series.map(s => { const sp = document.createElement('span'); const i = document.createElement('i'); i.style.background = s.color; sp.append(i, document.createTextNode(s.red)); return sp; }));
-    const cnt = new Map(); D.redes.filter(r => r.propia === 'Sí').forEach(r => { const k = r.fecha.slice(0, 7) + '|' + r.red; cnt.set(k, (cnt.get(k) || 0) + 1); });
-    const ms = [...new Set(D.redes.filter(r => r.propia === 'Sí').map(r => r.fecha.slice(0, 7)))].sort();
+    const cnt = new Map(); D.redes.filter(r => r.propia === 'Sí' && en(r.fecha.slice(0, 7))).forEach(r => { const k = r.fecha.slice(0, 7) + '|' + r.red; cnt.set(k, (cnt.get(k) || 0) + 1); });
+    const ms = meses.filter(en);
     const val = (m, s) => cnt.get(m + '|' + s.red) || 0;
     chart('ch-redes', 'tip-redes', ms, series, val, true, m => series.filter(s => val(m, s)).map(s => [s.color, s.red + ': ' + fmt(val(m, s))]));
     tbl('#t-red', c.porRed, [[r => r.red], [r => fmt(r.posteos), 'num'], [r => r.mg === null ? '' : String(r.mg).replace('.', ','), 'num'], [r => fmt(r.vi), 'num'], [r => r.mejor]]);
@@ -430,13 +492,18 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const rows = D.redes.filter(r => en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
     tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
   };
-  const drawGuia = () => tbl('#t-medios', D.medios.slice().sort((a, b) => b.notas - a.notas), [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió/.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num']]);
+  const drawGuia = () => {
+    const conteo = new Map();
+    repOk.filter(r => en(r.mes)).forEach(r => conteo.set(r.medio, (conteo.get(r.medio) || 0) + 1));
+    const filas = D.medios.map(m => ({ ...m, notas: conteo.get(m.medio) || 0 })).sort((a, b) => b.notas - a.notas);
+    tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió/.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num']]);
+  };
 
   const drawHeader = (c) => {
     const yd = st.desde.slice(0, 4), yh = st.hasta.slice(0, 4);
     const per = st.desde === st.hasta ? mesLargo(st.desde) + ' de ' + yd : mesLargo(st.desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(st.hasta) + ' de ' + yh;
-    const ultima = notas.map(n => n.fecha).sort().pop();
-    $('periodo').textContent = cap(per) + ' · datos al ' + ultima.split('-').reverse().join('/');
+    const ultima = notas.filter(n => en(n.mes)).map(n => n.fecha).sort().pop();
+    $('periodo').textContent = cap(per) + (ultima ? ' · última nota del período: ' + ultima.split('-').reverse().join('/') : ' · sin notas en el período seleccionado');
     const tp = c.tipo.filter(x => x.notas).sort((a, b) => b.pct - a.pct), hi = tp[0], lo = tp[tp.length - 1];
     let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% fue levantado por al menos un medio: ' + fmt(c.publicaciones) + ' publicaciones en ' + fmt(c.medios) + ' medios.';
     if (hi && lo && hi !== lo) t += ' Lo que más viaja es ' + hi.tipo.toLowerCase() + ' (' + hi.pct + '%); lo que menos, ' + lo.tipo.toLowerCase() + ' (' + lo.pct + '%).';
@@ -521,6 +588,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     }
   };
   $('g-actualizar').addEventListener('click', drawGoogle);
+  $('f-territorio-tipo').addEventListener('change', drawTerritorio);
 
   const draw = () => {
     const c = calc();
@@ -531,10 +599,18 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   // Controles
   const opts = meses.map(m => [m, cap(mesLargo(m)) + ' ' + m.slice(0, 4)]);
   ['fdesde', 'fhasta'].forEach(id => $(id).replaceChildren(...opts.map(([v, t]) => new Option(t, v))));
-  const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; draw(); };
+  const syncGoogleDates = () => {
+    const [dy, dm] = st.desde.split('-').map(Number), [hy, hm] = st.hasta.split('-').map(Number);
+    const start = new Date(dy, dm - 1, 1), monthEnd = new Date(hy, hm, 0), today = new Date();
+    const end = monthEnd > today ? today : monthEnd;
+    const isoLocal = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    $('g-desde').value = isoLocal(start); $('g-hasta').value = isoLocal(end);
+  };
+  const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; syncGoogleDates(); draw(); };
   $('fdesde').addEventListener('change', e => setRango(e.target.value, st.hasta));
   $('fhasta').addEventListener('change', e => setRango(st.desde, e.target.value));
   $('ftodo').addEventListener('click', () => setRango(meses[0], meses[meses.length - 1]));
+  syncGoogleDates();
   const show = (page) => {
     if (!$(page) || !$(page).classList.contains('page')) return;
     st.page = page;
