@@ -122,6 +122,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("'El Extremo Sur':'Comodoro Rivadavia'", template)
         self.assertIn("'NoticiasdelBolson':'El Bolsón'", template)
         self.assertIn("'A24.com':'Cobertura nacional'", template)
+        self.assertIn("'Revista Quórum':'Cobertura nacional'", template)
         self.assertIn("Chubut Hoy|ABC Diario|La Tecla Patagonia|El Extremo Sur|NoticiasdelBolson", template)
 
     def test_no_hay_credenciales_en_el_html_publico(self):
