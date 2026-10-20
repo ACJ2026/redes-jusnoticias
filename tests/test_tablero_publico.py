@@ -25,8 +25,9 @@ class TableroPublicoTests(unittest.TestCase):
             public,
         )
         self.assertIsNotNone(embedded)
-        data["actualizado"] = json.loads(embedded.group(1))["actualizado"]
-        payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+        payload = embedded.group(1)
+        data["actualizado"] = json.loads(payload)["actualizado"]
+        self.assertEqual(json.loads(payload), data)
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertEqual(template.count("/*DATOS*/"), 1)
         self.assertEqual(template.replace("/*DATOS*/", payload), public)
