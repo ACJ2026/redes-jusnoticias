@@ -1,4 +1,4 @@
-<title>Repercusión JusNoticias</title>
+<title>JusNoticias | Tablero de repercusión y comunicación judicial</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -87,8 +87,60 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .territorio-tools{margin:10px 0}
 #b-territorio .bar-row{grid-template-columns:minmax(8rem, 12rem) minmax(3rem,1fr) 3.5rem}
 @media(max-width:520px){#b-territorio .bar-row{grid-template-columns:minmax(6rem,8rem) minmax(2rem,1fr) 3rem}}
+/* Portada visual: una infografía ejecutiva antes del tablero de consulta */
+.landing{min-height:100vh;padding:clamp(22px,5vw,64px) max(16px,env(safe-area-inset-left,0px)) 40px max(16px,env(safe-area-inset-right,0px));background:radial-gradient(ellipse at 85% 10%,rgba(91,157,198,.22),transparent 38%),linear-gradient(145deg,#102b43 0%,#174f73 58%,#1f6c82 100%);color:#f7fbff}
+.landing-inner{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.landing-kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#c7e5f4;font-weight:600;margin:0}
+.landing h1{font-family:var(--f-display);font-size:clamp(2.3rem,6vw,5rem);line-height:.99;max-width:850px;letter-spacing:-.025em}
+.landing-intro{font-size:clamp(1rem,2vw,1.25rem);line-height:1.55;color:#e0eef6;max-width:720px;margin:0}
+.landing-visual{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px}
+.landing-stat{position:relative;overflow:hidden;min-height:150px;padding:22px;border:1px solid rgba(255,255,255,.24);border-radius:18px;background:rgba(255,255,255,.09);backdrop-filter:blur(5px);display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.landing-stat:first-child{background:#f3f7fa;color:#153b55;border-color:#f3f7fa}
+.landing-stat .symbol{font-size:1.4rem;line-height:1}
+.landing-stat strong{font-family:var(--f-display);font-size:clamp(2rem,4vw,3.5rem);line-height:1;font-weight:500;font-variant-numeric:tabular-nums}
+.landing-stat span{font-size:.92rem;line-height:1.4;max-width:28ch}
+.landing-stat:first-child span{color:#4d6575}
+.landing-bottom{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;border-top:1px solid rgba(255,255,255,.3);padding-top:22px}
+.landing-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.landing-point{display:flex;gap:10px;align-items:flex-start;color:#e0eef6;font-size:.9rem;line-height:1.4}
+.landing-point b{display:block;color:#fff;margin-bottom:3px}
+.landing-point i{font-style:normal;display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:9px;background:rgba(255,255,255,.14);color:#fff;font-weight:600}
+.landing-actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.landing-enter{border:0;border-radius:999px;padding:15px 23px;background:#fff;color:#123b55;font:600 1rem var(--f-body);cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.18)}
+.landing-enter:hover{background:#dff2fa}
+.landing-small{font-size:.78rem;color:#c7e5f4;max-width:260px;line-height:1.4}
+#dashboard-app{max-width:100%}
+[hidden]{display:none!important}
+@media(max-width:760px){.landing-visual{grid-template-columns:1fr 1fr}.landing-stat:first-child{grid-column:1/-1;min-height:135px}.landing-bottom{grid-template-columns:1fr}.landing-points{grid-template-columns:1fr}.landing-actions{align-items:stretch}.landing-enter{width:100%}}
+@media(prefers-reduced-motion:no-preference){.landing-stat{animation:rise-in .55s both}.landing-stat:nth-child(2){animation-delay:.08s}.landing-stat:nth-child(3){animation-delay:.16s}@keyframes rise-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}}
 </style>
 
+<section class="landing" id="portada" aria-labelledby="portada-titulo">
+  <div class="landing-inner">
+    <p class="landing-kicker">Poder Judicial del Chubut · Agencia de Comunicación Judicial</p>
+    <h1 id="portada-titulo">JusNoticias</h1>
+    <p class="landing-intro landing-subtitle">Tablero de repercusión y comunicación judicial</p>
+    <p class="landing-intro">La presencia de nuestras noticias en medios y redes, en una mirada. Ingresá al tablero para explorar publicaciones, períodos y métricas de audiencia y búsqueda.</p>
+    <div class="landing-visual" aria-label="Indicadores principales">
+      <article class="landing-stat"><div class="symbol" aria-hidden="true">↗</div><strong id="portada-repercusion">—</strong><span>de las notas tuvieron al menos una publicación relacionada en otros medios</span></article>
+      <article class="landing-stat"><div class="symbol" aria-hidden="true">▤</div><strong id="portada-notas">—</strong><span>notas publicadas en JusNoticias durante el período visible</span></article>
+      <article class="landing-stat"><div class="symbol" aria-hidden="true">◎</div><strong id="portada-medios">—</strong><span>medios diferentes donde encontramos publicaciones relacionadas</span></article>
+    </div>
+    <div class="landing-bottom">
+      <div class="landing-points">
+        <div class="landing-point"><i aria-hidden="true">01</i><div><b>Repercusión en medios</b>Qué notas aparecen y dónde se publican.</div></div>
+        <div class="landing-point"><i aria-hidden="true">02</i><div><b>Redes sociales</b>Publicaciones, interacción y seguidores disponibles.</div></div>
+        <div class="landing-point"><i aria-hidden="true">03</i><div><b>Audiencia y búsquedas</b>Analytics y Search Console, por separado.</div></div>
+      </div>
+      <div class="landing-actions">
+        <button class="landing-enter" id="entrar-tablero" type="button">Ingresar al tablero completo <span aria-hidden="true">→</span></button>
+        <span class="landing-small">Las cifras describen registros disponibles; una coincidencia temática no demuestra por sí sola que otro medio haya usado nuestra información.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="dashboard-app" hidden>
 <div class="wrap">
   <header class="mast">
     <p class="kicker">Agencia de Comunicación Judicial · Poder Judicial del Chubut</p>
@@ -284,6 +336,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
   <p class="note foot" id="pie"></p>
 </div>
+</div>
+
 
 <script type="application/json" id="datos">/*DATOS*/</script>
 <script>
@@ -499,6 +553,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió/.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num']]);
   };
 
+  const updateLanding = c => {
+    $('portada-repercusion').textContent = c.pct + '%';
+    $('portada-notas').textContent = fmt(c.notas);
+    $('portada-medios').textContent = fmt(c.medios);
+  };
   const drawHeader = (c) => {
     const yd = st.desde.slice(0, 4), yh = st.hasta.slice(0, 4);
     const per = st.desde === st.hasta ? mesLargo(st.desde) + ' de ' + yd : mesLargo(st.desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(st.hasta) + ' de ' + yh;
@@ -652,6 +711,17 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
   $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. Actualizado: ' + D.actualizado + '.';
   const h = location.hash.slice(1);
-  if (h && h !== 'resumen' && $(h) && $(h).classList.contains('page')) show(h); else draw();
+  updateLanding(calc());
+  $('entrar-tablero').addEventListener('click', () => {
+    $('portada').hidden = true;
+    $('dashboard-app').hidden = false;
+    show('resumen');
+    history.replaceState(null, '', location.pathname + location.search + '#resumen');
+  });
+  if (h && $(h) && $(h).classList.contains('page')) {
+    $('portada').hidden = true;
+    $('dashboard-app').hidden = false;
+    show(h);
+  } else draw();
 })();
 </script>
