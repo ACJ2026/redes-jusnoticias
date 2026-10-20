@@ -6,21 +6,21 @@
 
 ## 1. Cómo leer el tablero
 
-- **Resumen:** panorama general del período elegido.
+- **Resumen:** panorama general del período elegido, incluidos los gráficos mensuales y la infografía de alcance territorial.
 - **Medios:** dónde se encontraron publicaciones relacionadas y qué se pudo comprobar en cada caso.
 - **Notas:** detalle de las notas de JusNoticias que forman la base de la revisión.
 - **Redes:** publicaciones de las cuentas incluidas y datos públicos disponibles de interacción.
 - **Google:** datos del sitio web y de las búsquedas en Google. Son dos fuentes distintas, explicadas abajo.
 - **Cómo leerlo:** explicación breve dentro del propio tablero.
 
-Elegí las fechas para analizar un período. El período afecta los datos históricos que pueden filtrarse por fecha; los seguidores de una cuenta son una cifra de referencia actual y no cambian al cambiar el período.
+Elegí las fechas para analizar un período. Los indicadores y gráficos históricos muestran solo ese rango. La infografía territorial cuenta publicaciones detectadas por localidad de sede del medio y permite filtrar por tipo; no mide dónde viven los lectores. Los medios sin localidad verificada se agrupan aparte. Los seguidores son una cifra de referencia actual y no cambian al cambiar el período.
 
 ## 2. De dónde salen los datos y cada cuánto se actualizan
 
 ### Relevamiento de notas y medios
-El proceso automático está programado para ejecutarse dos veces al día, aproximadamente a las **07:59 y 13:59, hora argentina**, mediante GitHub Actions. La hora que aparece como “actualizado” es la fecha/hora registrada por los datos publicados, no una promesa de que cada sitio externo se haya actualizado a esa hora.
+El proceso automático está programado para ejecutarse **cada dos horas, en el minuto 59 (hora argentina)**, mediante GitHub Actions. La programación no garantiza que cada ejecución termine sin errores: para confirmar la actualización efectiva hay que revisar que GitHub Actions finalice correctamente y que los archivos se publiquen. La fecha que aparece arriba corresponde a la última nota incluida en el período seleccionado; el pie indica cuándo se generó la versión de los datos.
 
-El programa lee las notas de JusNoticias y consulta medios de una lista configurada. Busca títulos parecidos y, además, realiza búsquedas en Google Noticias por título y fragmentos textuales. Los resultados dependen de qué páginas estén accesibles y hayan sido detectadas por Google; no son un archivo completo de todo lo publicado en Internet.
+El programa lee las notas de JusNoticias y consulta medios de una lista configurada. Busca títulos parecidos y, además, realiza búsquedas en Google Noticias por título y fragmentos textuales. Los resultados dependen de qué páginas estén accesibles y hayan sido detectadas por Google; no son un archivo completo de todo lo publicado en Internet. El filtro del tablero usa el mes de publicación de la nota de JusNoticias relacionada; no siempre se dispone de la fecha exacta en que el otro medio publicó su artículo.
 
 ### Google Noticias: qué hace y qué no hace
 Google Noticias es un servicio de Google que selecciona y organiza noticias disponibles en la web. No muestra necesariamente todos los artículos ni los incorpora de inmediato. Que un medio o una nota no aparezca en una búsqueda **no prueba que no exista**. Que aparezca una nota sobre el mismo tema tampoco prueba que haya tomado información de JusNoticias.
