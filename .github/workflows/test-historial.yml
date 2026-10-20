@@ -2,13 +2,10 @@ name: Pruebas de regresión del historial
 
 on:
   pull_request:
-    paths:
-      - "scripts/**"
-      - "tests/**"
-      - ".github/workflows/test-historial.yml"
   push:
     branches:
       - "fix/conservar-historial-publicaciones"
+  workflow_dispatch:
 
 permissions:
   contents: read
