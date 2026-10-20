@@ -1,6 +1,11 @@
 name: Actualizar tablero
 
 on:
+  # Permite lanzar una actualización al modificar el propio proceso o el recolector.
+  push:
+    paths:
+      - '.github/workflows/actualizar.yml'
+      - 'scripts/actualizar.py'
   schedule:
     # Cada dos horas, minuto 59 (horario argentino UTC-3; cron de GitHub en UTC)
     - cron: "59 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
