@@ -457,7 +457,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const resumen = [...regiones.entries()].sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+': '+fmt(v)).join(' · ');
     $('territorio-resumen').textContent = fmt(rs.length)+' publicaciones · '+fmt(localidades.size)+' localidades o grupos · '+fmt(conocidas)+' con localidad identificada · '+fmt(verif)+' por verificar. '+(resumen || 'Sin datos para este período.');
   };
-\n  const drawMedios = (c) => {
+
+  const drawMedios = (c) => {
     const t = c.porMedio.slice(0, 15), mx = t.length ? t[0].notas : 1;
     bars('b-medios', t.map(r => row(r.medio, [[r.copia, 'var(--copia)'], [r.otra, 'var(--accent)'], [r.sin_dato, 'var(--muted-bar)']], r.notas, mx)));
     const n = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 12), mn = n.length ? n[0].n_medios : 1;
