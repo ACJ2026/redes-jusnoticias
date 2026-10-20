@@ -9,6 +9,7 @@
 - [x] Mantener secretos fuera del HTML y del repositorio.
 - [x] Revisión sintáctica: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios).
 - [x] Suite de regresión del historial pasó en GitHub Actions para este PR: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39484818451
+- [x] Pruebas nuevas del tablero público pasaron en GitHub Actions: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias y sin claves en el HTML: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39485365031
 - [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
 - [x] Cloudflare Pages desplegó correctamente la vista previa de la rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/ (el check de GitHub informó `Deployed successfully` para el commit `545cd39`). Falta inspección visual e interacción manual en escritorio/móvil.
