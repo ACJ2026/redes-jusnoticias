@@ -21,7 +21,7 @@ class TableroPublicoTests(unittest.TestCase):
         }
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
         embedded = re.search(
-            r'<script type="application/json" id="datos">([\\s\\S]*?)</script>',
+            r'<script type="application/json" id="datos">([\s\S]*?)</script>',
             public,
         )
         self.assertIsNotNone(embedded)
@@ -62,7 +62,7 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_no_hay_credenciales_en_el_html_publico(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
-        self.assertNotRegex(public, r"-----BEGIN PRIVATE KEY-----\\s+[A-Za-z0-9+/=]{40,}")
+        self.assertNotRegex(public, r"-----BEGIN PRIVATE KEY-----\s+[A-Za-z0-9+/=]{40,}")
         self.assertNotIn("META_TOKEN=", public)
         self.assertNotIn("GOOGLE_SERVICE_ACCOUNT_JSON=", public)
 
