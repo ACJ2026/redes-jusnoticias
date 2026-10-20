@@ -129,8 +129,8 @@ async function onRequestInner(context) {
       limit
     });
 
-    // Normaliza el typo histórico por si el entorno de producción aún conserva el valor anterior.
-    const gscSiteUrl = String(env.GSC_SITE_URL).replace("sc-domain:jusniticias.juschubut.gov.ar", "sc-domain:jusnoticias.juschubut.gov.ar");
+    // Usar la propiedad URL-prefix verificada en Search Console; no depender de un valor sc-domain obsoleto en Cloudflare.
+    const gscSiteUrl = "https://jusnoticias.juschubut.gov.ar/";
     const gscBase = "https://searchconsole.googleapis.com/webmasters/v3/sites/" + encodeURIComponent(gscSiteUrl) + "/searchAnalytics/query";
     const [summary, channels, devices, pages, gscSummary, gsc, gscPages] = await Promise.all([
       runGA([], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 1),
