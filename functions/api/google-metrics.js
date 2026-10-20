@@ -14,7 +14,7 @@ const base64url = (value) => {
   const bytes = typeof value === "string" ? new TextEncoder().encode(value) : value;
   let binary = "";
   for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-  return btoa(binary).replace(/=/g, "").replace(/\\+/g, "-").replace(/\\//g, "_");
+  return btoa(binary).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
 };
 
 const decodeBase64 = (value) => {
@@ -25,7 +25,7 @@ const decodeBase64 = (value) => {
 };
 
 function dateRange(url) {
-  const iso = (v) => /^\\d{4}-\\d{2}-\\d{2}$/.test(v || "");
+  const iso = (v) => /^\d{4}-\d{2}-\d{2}$/.test(v || "");
   const endParam = url.searchParams.get("hasta");
   const startParam = url.searchParams.get("desde");
   const end = iso(endParam) ? endParam : new Date(Date.now() - 86400000).toISOString().slice(0, 10);
@@ -47,7 +47,7 @@ async function googleAccessToken(service) {
     exp: now + 3600
   }));
   const unsigned = head + "." + claim;
-  const pem = service.private_key.replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\\s/g, "");
+  const pem = service.private_key.replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\s/g, "");
   const key = await crypto.subtle.importKey(
     "pkcs8",
     decodeBase64(pem),
