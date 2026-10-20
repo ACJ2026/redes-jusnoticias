@@ -527,6 +527,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   // Localidades conocidas de algunos medios; no se presume una sede cuando no está identificada.
   const localidadMedio = {
     'FM Tropical':'Rawson','FM Bahía Engaño':'Rawson',
+    'Chubut Hoy':'Chubut (localidad por verificar)',
+    'Radio de Camioneros':'Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)',
+    'ABC Diario':'Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)',
+    'La Tecla Patagonia':'Cobertura patagónica (localidad por verificar)',
+    'El Extremo Sur':'Comodoro Rivadavia',
+    'NoticiasdelBolson':'El Bolsón',
+    'A24.com':'Cobertura nacional',
     'La Posta Comodorense':'Comodoro Rivadavia','El Comodorense':'Comodoro Rivadavia','Comodoro 24':'Comodoro Rivadavia','El Patagónico':'Comodoro Rivadavia',
     'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','Crónica':'Comodoro Rivadavia',
     'Noticias PMY':'Puerto Madryn','Madryn Ahora':'Puerto Madryn','Canal 12':'Puerto Madryn','LU17':'Puerto Madryn','El Diario Web':'Puerto Madryn','Digital Chubut':'Puerto Madryn',
@@ -551,14 +558,16 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const tipoMedio = medio => {
     // Si el nombre identifica explícitamente una edición web/digital, no inferir prensa gráfica o TV por otra palabra del nombre.
     if (/\bweb\b|\.com$/i.test(medio)) return 'Portal digital';
+    if (/^(Chubut Hoy|ABC Diario|La Tecla Patagonia|El Extremo Sur|NoticiasdelBolson)$/i.test(medio)) return 'Portal digital';
     if (/radio|\bfm\b|\blu17\b/i.test(medio)) return 'Radio';
     if (/canal|\btv\b/i.test(medio)) return 'TV';
     if (/^crónica$/i.test(medio) || /diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
     return 'Portal digital';
   };
   const regionMedio = localidad => {
-    if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)'].includes(localidad)) return 'Chubut';
-    if (['Río Gallegos','General Roca','Neuquén','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)','Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)','Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)'].includes(localidad)) return 'Chubut';
+    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (localidad === 'Cobertura patagónica (localidad por verificar)') return 'Cobertura regional';
     if (localidad === 'Localidad por verificar' || localidad.includes('(localidad por verificar)')) return localidad.startsWith('Chubut') ? 'Chubut' : localidad.startsWith('Santa Cruz') ? 'Patagonia fuera de Chubut' : 'Localidad por verificar';
     return 'Resto del país';
   };
