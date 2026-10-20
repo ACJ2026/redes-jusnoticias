@@ -487,7 +487,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     if (/\bweb\b|\.com$/i.test(medio)) return 'Portal digital';
     if (/radio|\bfm\b|\blu17\b/i.test(medio)) return 'Radio';
     if (/canal|\btv\b/i.test(medio)) return 'TV';
-    if (/diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
+    if (/^crónica$/i.test(medio) || /diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
     return 'Portal digital';
   };
   const regionMedio = localidad => {
