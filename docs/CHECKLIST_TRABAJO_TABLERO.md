@@ -13,7 +13,7 @@
 - [x] Validación de fechas de Google probada con casos válidos, fecha imposible, formato inválido, rango invertido y ventana máxima de 90 días.
 - [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
-- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `f2ba995`: https://1543593d.redes-jusnoticias.pages.dev/. La URL estable de vista previa de rama es https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. La actualización automática regeneró el HTML desde la plantilla; la sintaxis del JavaScript y el JSON son válidos. Falta inspección visual/interacción real en escritorio y móvil.
+- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `ae2ac34`: https://f73843a6.redes-jusnoticias.pages.dev/. La URL estable de vista previa de rama es https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. La actualización automática regeneró el HTML desde la plantilla; las pruebas de regresión y sincronización pasan. Falta inspección visual/interacción real en escritorio y móvil.
 - [~] Vercel reportó límite diario de despliegues en los commits más recientes; esa vía es independiente del preview de Cloudflare y no debe confundirse con él.
 - [ ] Confirmar URL oficial de producción. La URL de Pages usada en pruebas fue https://redes-jusnoticias.pages.dev/.
 - [!] Hallazgo importante: GitHub informa que `ACJ2026/redes-jusnoticias` está **público**, mientras que el repositorio anterior `ignacervo-cell/jusnoticias-tablero` está privado y el plan previo trataba el destino como privado. No se cambió la visibilidad; confirmar la política institucional antes de fusionar.
