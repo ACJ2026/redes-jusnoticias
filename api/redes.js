@@ -89,7 +89,7 @@ module.exports = async (req, res) => {
     return Number.isFinite(d.getTime()) && d.toISOString().slice(0, 10) === v;
   };
   if (paramDesde && !esFechaValida(paramDesde)) return res.status(400).json({ error: "'desde' debe ser una fecha válida con formato AAAA-MM-DD." });
-  const desde = paramDesde || '2026-02-01';
+  const desde = paramDesde || new Date(Date.now() - 89 * 86400000).toISOString().slice(0, 10);
   const dias = (Date.now() - new Date(desde + 'T00:00:00Z').getTime()) / 86400000;
   if (dias < 0 || dias > 90) return res.status(400).json({ error: "'desde' debe estar entre hoy y los últimos 90 días." });
   const out = { actualizado: new Date().toISOString(), desde, redes: {}, errores: {} };
