@@ -482,6 +482,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     'LM Neuquén':'Neuquén','Lmneuquen.com':'Neuquén','Diario San Rafael':'San Rafael'
   };
   const tipoMedio = medio => {
+    // Si el nombre identifica explícitamente una edición web/digital, no inferir prensa gráfica o TV por otra palabra del nombre.
+    if (/\bweb\b|\.com$/i.test(medio)) return 'Portal digital';
     if (/radio|\bfm\b|\blu17\b/i.test(medio)) return 'Radio';
     if (/canal|\btv\b/i.test(medio)) return 'TV';
     if (/diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
