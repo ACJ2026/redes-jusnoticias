@@ -115,6 +115,14 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("'El Valle Online':'Valle Inferior del Río Chubut'", template)
         self.assertIn("'El Mediador - Santa Cruz':'Santa Cruz (localidad por verificar)'", template)
         self.assertIn("'Flipr.news':'Cobertura nacional'", template)
+        self.assertIn("'Chubut Hoy':'Chubut (localidad por verificar)'", template)
+        self.assertIn("'Radio de Camioneros':'Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)'", template)
+        self.assertIn("'ABC Diario':'Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)'", template)
+        self.assertIn("'La Tecla Patagonia':'Cobertura patagónica (localidad por verificar)'", template)
+        self.assertIn("'El Extremo Sur':'Comodoro Rivadavia'", template)
+        self.assertIn("'NoticiasdelBolson':'El Bolsón'", template)
+        self.assertIn("'A24.com':'Cobertura nacional'", template)
+        self.assertIn("Chubut Hoy|ABC Diario|La Tecla Patagonia|El Extremo Sur|NoticiasdelBolson", template)
 
     def test_no_hay_credenciales_en_el_html_publico(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
