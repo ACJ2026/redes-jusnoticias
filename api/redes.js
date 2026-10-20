@@ -1,11 +1,12 @@
 // Mini servicio del tablero JusNoticias: devuelve los números de Facebook, Instagram y YouTube.
-// Las claves NO están acá: se cargan en Vercel → Settings → Environment Variables:
-//   META_TOKEN  = token del usuario del sistema de Meta (no vence)
-//   YT_KEY      = clave de la API de YouTube (opcional)
+// Las credenciales se configuran solo en el entorno del servidor:
+//   META_TOKEN   = token de Meta con permisos mínimos necesarios
+//   YT_KEY       = clave de la API de YouTube (opcional)
+//   YT_CANAL_ID  = ID confirmado del canal JusNoticias Prensa (no usar el canal general por defecto)
 const G = 'https://graph.facebook.com/v26.0';
 const FB_PAGE = process.env.FB_PAGE_ID || '116101835114568';   // página JusNoticias
 const IG_USER = process.env.IG_USER_ID || '17841410514175238'; // Instagram jus_chubut
-const YT_CANAL = 'UCgmCc2hXjDOUrBBfrl4KOiA'; // Poder Judicial del Chubut
+const YT_CANAL = process.env.YT_CANAL_ID;
 
 async function get(url) {
   const r = await fetch(url);
@@ -56,6 +57,8 @@ async function instagram(desde) {
 
 async function youtube(desde) {
   const k = process.env.YT_KEY, Y = 'https://www.googleapis.com/youtube/v3';
+  if (!k) throw new Error('Falta configurar YT_KEY.');
+  if (!YT_CANAL) throw new Error('Falta configurar YT_CANAL_ID con el ID verificado de JusNoticias Prensa.');
   const ch = (await get(`${Y}/channels?part=statistics,contentDetails&id=${YT_CANAL}&key=${k}`)).items[0];
   const up = ch.contentDetails.relatedPlaylists.uploads, ids = [];
   let tok = '';
@@ -71,7 +74,7 @@ async function youtube(desde) {
     const j = await get(`${Y}/videos?part=snippet,statistics&id=${ids.slice(i, i + 50).join(',')}&key=${k}`);
     j.items.forEach((v) => {
       const s = v.statistics, n = (x) => (s[x] !== undefined ? Number(s[x]) : null);
-      filas.push({ red: 'YouTube', cuenta: 'Poder Judicial del Chubut', fecha: v.snippet.publishedAt.slice(0, 10), texto: corto(v.snippet.title),
+      filas.push({ red: 'YouTube', cuenta: 'JusNoticias Prensa', fecha: v.snippet.publishedAt.slice(0, 10), texto: corto(v.snippet.title),
         nota_id: null, me_gusta: n('likeCount'), comentarios: n('commentCount'), compartidos: null, vistas: n('viewCount'), propia: 'Sí', key: 'yt-' + v.id });
     });
   }
@@ -79,7 +82,14 @@ async function youtube(desde) {
 }
 
 module.exports = async (req, res) => {
-  const desde = /^\d{4}-\d{2}-\d{2}$/.test(req.query.desde || '') ? req.query.desde : '2026-02-01';
+  const paramDesde = req.query.desde;
+  const esFechaValida = (v) => {
+    if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(v || '')) return false;
+    const d = new Date(v + 'T00:00:00Z');
+    return Number.isFinite(d.getTime()) && d.toISOString().slice(0, 10) === v;
+  };
+  if (paramDesde && !esFechaValida(paramDesde)) return res.status(400).json({ error: "'desde' debe ser una fecha válida con formato AAAA-MM-DD." });
+  const desde = paramDesde || '2026-02-01';
   const out = { actualizado: new Date().toISOString(), desde, redes: {}, errores: {} };
   const tareas = { Facebook: facebook, Instagram: instagram };
   if (process.env.YT_KEY) tareas.YouTube = youtube;
