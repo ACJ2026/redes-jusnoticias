@@ -10,6 +10,7 @@
 - [x] Revisión sintáctica: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios).
 - [x] Suite de regresión del historial pasó en GitHub Actions para este PR: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39484818451
 - [x] Pruebas nuevas del tablero público pasaron en GitHub Actions: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias y sin claves en el HTML: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39485365031
+- [x] Validación de fechas de Google probada con casos válidos, fecha imposible, formato inválido, rango invertido y ventana máxima de 90 días.
 - [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
 - [x] Cloudflare Pages desplegó correctamente la vista previa de la rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/ (el check de GitHub informó `Deployed successfully` para el commit `545cd39`). Falta inspección visual e interacción manual en escritorio/móvil.
@@ -32,6 +33,7 @@
 - [~] Vista «Alcance territorial por localidad» añadida al código.
 - [~] Filtro por tipo: radio, televisión, prensa gráfica y portal digital.
 - [~] Localidades no verificadas separadas.
+- [~] En octubre 2026, de las 85 publicaciones relacionadas clasificadas como confianza media/alta, 28 todavía no tienen localidad confirmada. No asignarles una localidad por intuición.
 - [ ] Verificar la localidad y categoría de cada medio: el catálogo inicial es orientativo.
 - [ ] Distinguir claramente Chubut, otras provincias de la Patagonia y alcance nacional/otras provincias usando sedes comprobadas.
 - [ ] Comparar manualmente cifras por localidad, región y tipo contra los registros del período.
@@ -89,7 +91,8 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 
 ## 8. Claridad visual y documentación
 - [x] Portada tipo infografía ejecutiva con identidad visible “JusNoticias” y subtítulo “Tablero de repercusión y comunicación judicial”, título del navegador actualizado, indicadores dinámicos y botón de ingreso al tablero completo; portada incorporada a la plantilla generadora y archivos públicos regenerados.
-- [~] Validación sintáctica de JavaScript y JSON integrada completada; falta validación visual e interacción en navegador.
+- [x] JavaScript de la plantilla y HTML generado parsean correctamente; JSON de datos válido. `api/redes.js` y la función de fechas de Google pasan parseo sintáctico; validación de fechas probada.
+- [~] La herramienta de navegación no permitió inspeccionar visualmente la URL de vista previa; falta abrirla en navegador real y probar el botón, rutas, filtros y diseño móvil.
 - [~] Preparar etiquetas en lenguaje sencillo para usuarios, sesiones, vistas, clics e impresiones.
 - [~] Manual `docs/MANUAL_TABLERO.md` actualizado con frecuencia cada dos horas.
 - [~] Diferenciar en la documentación las dos vías de publicación observadas (Vercel y Cloudflare Pages) y confirmar cuál es la URL institucional definitiva.
