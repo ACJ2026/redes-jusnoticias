@@ -47,7 +47,10 @@ async function googleAccessToken(service) {
     exp: now + 3600
   }));
   const unsigned = head + "." + claim;
-  const pem = service.private_key.replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\s/g, "");
+  // Cloudflare secrets pueden conservar los saltos como texto literal \n.
+  // Normalizarlos evita fallos al importar la clave PKCS#8.
+  const normalizedPrivateKey = String(service.private_key).replace(/\\n/g, "\n").replace(/\\r/g, "");
+  const pem = normalizedPrivateKey.replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\s/g, "");
   const key = await crypto.subtle.importKey(
     "pkcs8",
     decodeBase64(pem),
