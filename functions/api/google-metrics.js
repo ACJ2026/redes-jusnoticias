@@ -174,7 +174,7 @@ async function onRequestInner(context) {
       }
     });
   } catch (error) {
-    return json({ estado: "error_google", error: error.message, rango }, 502);
+    return json({ estado: "error_google", error: error.message, rango: range }, 502);
   }
 }
 
