@@ -90,3 +90,15 @@ Configuración externa pendiente:
 Próxima acción:
 - Abrir PR desde `feature/google-metrics-and-project-log` hacia `main` para revisar los cambios sin escribir directamente sobre `main`.
 - Antes de publicar, ejecutar pruebas del generador y comprobar los endpoints en el despliegue de Vercel.
+
+
+### 2026-10-20 — Pull request y estado de validación
+
+- PR abierto: https://github.com/ACJ2026/redes-jusnoticias/pull/2
+- Rama: `feature/google-metrics-and-project-log`; base `main`.
+- HEAD inspeccionado antes de esta actualización de bitácora: `2d525ea4fc4861203f3a70a16059b2bb3592772b`.
+- Comparación con `main`: 8 commits por delante, 0 por detrás; 4 archivos cambiados (BITACORA.md, api/google-metrics.js, docs/GOOGLE_METRICS.md, scripts/armar_publico.py).
+- GitHub Actions: ejecución `39433106427`, job `pruebas-historial`, resultado `success`. Esto valida las pruebas de regresión del historial, no la API nueva ni el generador completo.
+- Checks de Vercel para el commit inspeccionado informaron `failure` en ambos proyectos (`redes-jusnoticias` y `redes-jusnoticias-67i7`). No se pudo obtener el detalle del log desde la herramienta disponible; causa no determinada. No marcar despliegue como exitoso.
+- El PR sigue abierto y sin merge. No modificar `main` ni afirmar que el cambio está publicado hasta resolver los checks y contar con aprobación explícita para integrar.
+- El endpoint y la pestaña están preparados para informar “Pendiente de configuración” si faltan las variables; los datos reales de Google aún requieren configuración externa.
