@@ -48,15 +48,14 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [x] X: https://x.com/Jus_Noticias
 - [x] Instagram — Jus Chubut: https://www.instagram.com/jus_chubut/
 - [x] TikTok — Jus Chubut: https://www.tiktok.com/@juschubut
-- [x] WhatsApp — nombre informado: Agencia de Comunicación Judicial.
-- [ ] Añadir el enlace exacto del canal/contacto de WhatsApp; no está en los datos recibidos y no debe inventarse.
+- [x] WhatsApp — Agencia de Comunicación Judicial: https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p
 - [ ] Confirmar titularidad, nombre e identificador de cada cuenta.
 - [ ] Verificar accesos oficiales, permisos y métricas disponibles por plataforma.
 - [ ] Integrar X y TikTok si existe una vía oficial autorizada; no asumir que sus estadísticas se obtienen como datos públicos sin credenciales.
 - [ ] Confirmar que Instagram conectado sea exactamente `jus_chubut` y tenga permisos Meta válidos.
 - [ ] Confirmar que YouTube use el canal de JusNoticias y no se sustituya por el canal general del Poder Judicial si no corresponde.
 - [ ] Revisar Facebook: nombre/página institucional correcta y sin duplicados.
-- [ ] Determinar si WhatsApp es canal, comunidad, grupo o WhatsApp Business y qué estadísticas permite.
+- [ ] Determinar qué estadísticas permite el canal de WhatsApp; no asumir que ofrece métricas equivalentes a las de otras redes.
 - [ ] Mostrar «sin dato disponible» cuando una plataforma no entregue una métrica; no convertirlo en cero.
 - [ ] Probar por red publicaciones, seguidores, reacciones, comentarios, compartidos y vistas solo cuando la plataforma ofrezca cada dato.
 
