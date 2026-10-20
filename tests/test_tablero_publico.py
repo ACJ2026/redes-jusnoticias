@@ -1,5 +1,8 @@
 import json
 import re
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -35,6 +38,41 @@ class TableroPublicoTests(unittest.TestCase):
             public,
             (ROOT / "publico/tablero_publico.html").read_text(encoding="utf-8"),
         )
+
+    def test_generador_publico_ejecuta_y_usa_la_plantilla_legible(self):
+        nombres = ["notas", "repercusion", "redes", "canales", "medios"]
+        muestras = {
+            "notas": [{"id": 1, "titulo": "Prueba"}],
+            "repercusion": [{"nota_id": 1, "medio": "Medio de prueba"}],
+            "redes": [],
+            "canales": [],
+            "medios": [],
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = []
+            for nombre in nombres:
+                path = Path(tmp) / f"{nombre}.json"
+                path.write_text(json.dumps(muestras[nombre]), encoding="utf-8")
+                paths.append(str(path))
+            salida = Path(tmp) / "tablero.html"
+            run = subprocess.run(
+                [sys.executable, str(ROOT / "scripts/armar_publico.py"), *paths, str(salida)],
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            html = salida.read_text(encoding="utf-8")
+        self.assertIn("OK publico 1 notas 1 publicaciones 0 posteos", run.stdout)
+        self.assertIn('id="portada"', html)
+        embedded = re.search(
+            r'<script type="application/json" id="datos">([\s\S]*?)</script>',
+            html,
+        )
+        self.assertIsNotNone(embedded)
+        payload = json.loads(embedded.group(1))
+        for nombre in nombres:
+            self.assertEqual(payload[nombre], muestras[nombre])
+        self.assertRegex(payload["actualizado"], r"^\d{2}/\d{2}/\d{4} \d{2}:\d{2}$")
 
     def test_portada_visual_precede_al_tablero_oculto(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
