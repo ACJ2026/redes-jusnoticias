@@ -26,6 +26,7 @@ async function facebook(desde) {
   const metaToken = process.env.META_TOKEN;
   if (!metaToken) throw new Error('Falta configurar META_TOKEN.');
   const t = (await get(`${G}/${id}?fields=access_token`, metaToken)).access_token;
+  if (!t) throw new Error('Meta no devolvió un token de página.');
   const page = await get(`${G}/${id}?fields=name,followers_count,fan_count`, t);
   const filas = [];
   let url = `${G}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${desde}&limit=100`;
