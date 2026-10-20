@@ -8,7 +8,7 @@
 - [x] PR #5 abierto contra `feat/cloudflare-pages-google-metrics`: https://github.com/ACJ2026/redes-jusnoticias/pull/5
 - [x] Mantener secretos fuera del HTML y del repositorio.
 - [x] Revisión sintáctica: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios).
-- [x] Suite de regresión del historial pasó en GitHub Actions para este PR: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39484818451
+- [x] Suite de regresión del historial y sincronización plantilla/HTML público pasan en GitHub Actions para el último commit validado: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39489639736
 - [x] Pruebas nuevas del tablero público pasaron en GitHub Actions: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias y sin claves en el HTML: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39485365031
 - [x] Validación de fechas de Google probada con casos válidos, fecha imposible, formato inválido, rango invertido y ventana máxima de 90 días.
 - [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
@@ -33,8 +33,8 @@
 - [~] Vista «Alcance territorial por localidad» añadida al código.
 - [~] Filtro por tipo: radio, televisión, prensa gráfica y portal digital.
 - [~] Localidades no verificadas separadas.
-- [~] En octubre 2026, de las 85 publicaciones relacionadas clasificadas como confianza media/alta, 28 todavía no tienen localidad confirmada. No asignarles una localidad por intuición.
-- [~] Catálogo territorial actualizado con cuatro ubicaciones corroboradas: Del Mar Digital y ADN Sur (Comodoro Rivadavia), EQS Notas (Esquel) y Digital Chubut (Puerto Madryn). Fuentes consultadas: https://delmardigital.net/, https://www.adnsur.com.ar/, https://www.eqsnotas.com/eqs-notas_t67d0abdfdccdd2c5abb6237c y un clipping institucional que identifica Digital Chubut en Puerto Madryn: https://comunidadfac.org.ar/prensa/2024/clipping%20Semanal%20del%2013-04%20al%2019-04.pdf.
+- [~] En octubre 2026, de las 85 publicaciones relacionadas clasificadas como confianza media/alta, 28 todavía no tienen localidad confirmada. En todo el JSON histórico, quedan medios sin sede corroborada: mantenerlos separados y no asignarlos por intuición.
+- [~] Catálogo territorial actualizado con ubicaciones corroboradas: Del Mar Digital, ADN Sur y Crónica (Comodoro Rivadavia); EQS Notas (Esquel); Digital Chubut (Puerto Madryn). Fuentes: https://delmardigital.net/, https://www.adnsur.com.ar/, https://www.eqsnotas.com/eqs-notas_t67d0abdfdccdd2c5abb6237c, https://prensaescrita.org/argentina/chubut/ y el clipping institucional https://comunidadfac.org.ar/prensa/2024/clipping%20Semanal%20del%2013-04%20al%2019-04.pdf.
 - [ ] Verificar la localidad y categoría de cada medio restante; los medios de cobertura provincial o sin sede confirmada deben seguir como no verificados.
 - [ ] Distinguir claramente Chubut, otras provincias de la Patagonia y alcance nacional/otras provincias usando sedes comprobadas.
 - [ ] Comparar manualmente cifras por localidad, región y tipo contra los registros del período.
