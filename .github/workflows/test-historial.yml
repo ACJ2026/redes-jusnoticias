@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - "fix/conservar-historial-publicaciones"
+      - "feature/indicadores-faciles-de-entender"
   workflow_dispatch:
 
 permissions:
