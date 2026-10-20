@@ -87,8 +87,10 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 
 ## 7. Seguridad
 - [x] No incluir claves privadas ni tokens en el HTML público.
-- [~] `api/redes.js` usa credenciales del servidor para proveedores que las requieren.
+- [x] `api/redes.js` usa credenciales del servidor y ahora envía los tokens de Meta mediante el encabezado `Authorization: Bearer`; se eliminaron de las query strings para reducir exposición en logs/proxies. Validación sintáctica posterior al cambio: OK.
+- [~] Confirmar con llamadas reales autorizadas que el proveedor acepta el flujo y que no quedan URLs de paginación con tokens expuestos.
 - [ ] Revisar si el endpoint de redes puede invocarse sin autenticación y valorar el riesgo según el carácter público/privado de los datos.
+- [ ] No ejecutar ni publicar `api/redes.js` en producción hasta verificar en un entorno de prueba las credenciales, permisos y respuesta real de Meta.
 - [ ] Revisar exposición de errores del proveedor, parámetros de fecha, paginación, caché y posibles URLs con credenciales.
 - [ ] Confirmar que tokens no aparezcan en logs ni respuestas.
 
