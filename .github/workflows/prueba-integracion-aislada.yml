@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - fix/conservar-historial-publicaciones
+      - migracion/proyecto-completo-oct-2026
     paths:
       - ".github/workflows/prueba-integracion-aislada.yml"
       - "scripts/actualizar.py"
