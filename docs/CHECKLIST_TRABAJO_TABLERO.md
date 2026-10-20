@@ -23,7 +23,7 @@
 ## 2. Período e indicadores
 - [~] El tablero queda preparado para iniciar en el último mes disponible, no en todo el historial.
 - [~] Gráficos mensuales, gráficos de redes, totales por medio y fecha destacada preparados para respetar el período seleccionado.
-- [~] Rango de Google preparado para sincronizarse con el período principal.
+- [x] Rango de Google sincronizado con el período principal y limitado automáticamente a los últimos 90 días si la selección supera el máximo permitido; la interfaz explica la limitación. Falta probarlo visualmente en navegador.
 - [ ] Probar mes único, varios meses, rango sin datos y cambios entre pestañas.
 - [ ] Confirmar que la fecha destacada sea la última nota **dentro del período**, y diferenciarla de la fecha/hora en que se generaron los datos.
 - [ ] Identificar seguidores y demás cifras actuales como actuales, no como históricos del período.
