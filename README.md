@@ -15,7 +15,7 @@ Tablero de repercusión y comunicación judicial de la Agencia de Comunicación 
 - `scripts/armar_publico.py` combina la plantilla y los datos para generar `publico/tablero_publico.html`; el workflow copia ese resultado a `publico/index.html`.
 - `.github/workflows/actualizar.yml` programa el relevamiento cada dos horas, en el minuto 59 (cron de GitHub en UTC; en Argentina (UTC-3) corre al minuto 59 de horas impares: 21:59, 23:59, 01:59, 03:59, 05:59, 07:59, 09:59, 11:59, 13:59, 15:59, 17:59 y 19:59).
 - `functions/api/google-metrics.js` es la Pages Function para Google Analytics 4 y Search Console.
-- `api/redes.js` es una ruta heredada de Vercel. No se ejecuta automáticamente en Cloudflare Pages y la plantilla actual no la consume; no presentarla como integración en vivo del tablero.
+- `functions/api/redes.js` prepara la consulta de Facebook, Instagram y YouTube en Cloudflare Pages; `api/redes.js` sigue como ruta heredada de Vercel. La Pages Function requiere IDs y secretos verificados y aún no está conectada a la interfaz, por lo que las cifras sociales visibles no son métricas en vivo.
 
 ## Documentación y pruebas
 
