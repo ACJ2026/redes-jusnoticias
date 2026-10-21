@@ -40,5 +40,11 @@
     "cuenta": "JusNoticias Prensa",
     "seguidores": null,
     "estado": "Pendiente de verificar ID y seguidores"
+  },
+  {
+    "red": "TikTok",
+    "cuenta": "@juschubut",
+    "seguidores": null,
+    "estado": "Pendiente de verificar cuenta, seguidores e integración de métricas"
   }
 ]
