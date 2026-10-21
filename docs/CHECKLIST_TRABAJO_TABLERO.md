@@ -8,14 +8,14 @@
 - [x] PR #5 abierto contra `feat/cloudflare-pages-google-metrics`: https://github.com/ACJ2026/redes-jusnoticias/pull/5
 - [x] Mantener secretos fuera del HTML y del repositorio.
 - [x] Revisión sintáctica: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios).
-- [x] Suite de regresión del historial, generador, sincronización HTML y fechas pasan en GitHub Actions para el commit `734991d`: 18 pruebas OK, incluida la validación de sintaxis JS y la configuración de la ruta social Pages. Ejecución: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39521172686
-- [x] Pruebas del tablero público: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias, errores de YouTube explícitos y sin claves en el HTML. La suite corre en el mismo workflow de regresión y pasó para `734991d`.
+- [x] Suite de regresión del historial, generador, sincronización HTML y fechas pasan en GitHub Actions para el commit `d58f40f`: 20 pruebas OK, incluida la clasificación de registros sin enlace como posibles y la corrección de la URL ajena. Ejecución: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39521584283
+- [x] Pruebas del tablero público: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias, errores de YouTube explícitos y sin claves en el HTML. La suite corre en el mismo workflow de regresión y pasó para `d58f40f`.
 - [x] Validación de fechas de Google probada con casos válidos, fecha imposible, formato inválido, rango invertido y ventana máxima de 90 días.
 - [x] Fecha del relevamiento separada de la fecha de generación: regenerar solo el HTML no cambia `data/actualizado.txt`; prueba automatizada incluida.
 - [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
 - [~] Se ampliaron portada, tarjetas de indicadores, tipografía, pestañas, filtros y áreas táctiles en celular; las tablas permiten desplazamiento horizontal para evitar texto diminuto. Pendiente validar visualmente en un teléfono real tras el despliegue.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
-- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `734991d`; URL de vista previa: https://d704d3b6.redes-jusnoticias.pages.dev/ y URL estable de rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. Falta inspección visual/interacción real en escritorio y móvil.
+- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `d58f40f`; URL de vista previa: https://487b35a6.redes-jusnoticias.pages.dev/ y URL estable de rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. Falta inspección visual/interacción real en escritorio y móvil.
 - [~] Vercel reportó límite diario de despliegues en los commits más recientes; esa vía es independiente del preview de Cloudflare y no debe confundirse con él.
 - [ ] Confirmar URL oficial de producción. La URL de Pages usada en pruebas fue https://redes-jusnoticias.pages.dev/.
 - [!] Hallazgo importante: GitHub informa que `ACJ2026/redes-jusnoticias` está **público**, mientras que el repositorio anterior `ignacervo-cell/jusnoticias-tablero` está privado y el plan previo trataba el destino como privado. No se cambió la visibilidad; confirmar la política institucional antes de fusionar.
