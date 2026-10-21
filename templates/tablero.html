@@ -299,11 +299,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <select id="fsin"><option value="">Todas</option><option value="sin">Solo sin repercusión</option><option value="con">Solo con repercusión</option></select>
       </div>
       <p class="note" id="cuenta-notas"></p>
-      <p class="note">En la tabla: “Medios” cuenta dónde apareció la nota; “Textos casi iguales” señala publicaciones muy parecidas a la nuestra; “Medios encontrados” muestra los nombres; “A revisar” son coincidencias que todavía no pudimos confirmar.</p>
+      <p class="note">“Medios distintos” cuenta cuántos medios diferentes tienen una publicación relacionada con enlace registrado. “Publicaciones con alta coincidencia” cuenta registros cuyo texto coincide en un 50% o más con la nota oficial. “A revisar” son coincidencias que todavía no están confirmadas y no entran en el total principal. Abrí una fila para consultar los enlaces guardados; su vigencia debe comprobarse en el sitio de origen.</p>
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
-          <th><button data-k="n_medios">Medios</button></th><th><button data-k="copias">Textos casi iguales</button></th><th>Medios encontrados</th><th><button data-k="posibles">A revisar</button></th>
+          <th><button data-k="n_medios">Medios distintos</button></th><th><button data-k="copias">Publicaciones con alta coincidencia</button></th><th>Medios encontrados</th><th><button data-k="posibles">Coincidencias por revisar</button></th>
         </tr></thead><tbody></tbody></table>
       </div>
     </div>
@@ -390,8 +390,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <p><b>Límites:</b> radio, TV, grupos de WhatsApp y portales que Google no indexa no se miden, así que el número es un <b>piso</b>: la repercusión real es mayor. El tipo de nota lo asigna el programa por palabras del título y puede equivocarse.</p>
       </div>
     </div>
-    <div class="card"><h2>Medios relevados</h2><p class="note">Qué se pudo revisar de cada medio de la lista</p>
-      <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Cobertura del relevamiento</th><th>Publicaciones en el período</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Medios con publicaciones y enlace de referencia</h2><p class="note">Se muestran medios con al menos un registro confirmado y una dirección web guardada dentro del período elegido. “Estado del relevamiento” describe la revisión registrada, no garantiza que se hayan monitoreado todas las emisiones de radio o televisión. Los enlaces pueden dejar de estar disponibles y deben comprobarse en el sitio de origen.</p>
+      <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Estado del relevamiento</th><th>Publicaciones relacionadas</th><th>Enlace de referencia</th></tr></thead><tbody></tbody></table></div></div>
   </section>
 
   <p class="note foot" id="pie"></p>
@@ -703,8 +703,17 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const drawGuia = () => {
     const conteo = new Map();
     repOk.filter(r => en(r.mes)).forEach(r => conteo.set(r.medio, (conteo.get(r.medio) || 0) + 1));
-    const filas = D.medios.map(m => ({ ...m, notas: conteo.get(m.medio) || 0 })).sort((a, b) => b.notas - a.notas);
-    tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió/.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num']]);
+    const refs = new Map();
+    repOk.filter(r => en(r.mes)).forEach(r => {
+      const n = notas.find(x => Number(x.id) === Number(r.nota_id));
+      const previo = refs.get(r.medio);
+      if (!previo || String(n?.fecha || '') > String(previo.fecha || '')) refs.set(r.medio, { url: r.url, fecha: n?.fecha || '', titulo: n?.titulo || '' });
+    });
+    const filas = D.medios.map(m => ({ ...m, notas: conteo.get(m.medio) || 0, referencia: refs.get(m.medio) || null }))
+      .filter(m => m.notas > 0 && m.referencia?.url)
+      .sort((a, b) => b.notas - a.notas || a.medio.localeCompare(b.medio));
+    tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió|temporalmente no disponible/i.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num'], [r => { const a = document.createElement('a'); a.href = r.referencia.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Abrir enlace ↗'; a.title = 'Referencia relacionada: ' + r.referencia.titulo + ' (' + r.referencia.fecha + ')'; return a; }]]);
+    if (!filas.length) { const tb = document.querySelector('#t-medios tbody'); const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 4; td.textContent = 'No hay medios con enlace de referencia registrado en este período.'; tr.append(td); tb.append(tr); }
   };
 
   const updateLanding = c => {
@@ -846,7 +855,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     document.querySelectorAll('#t-notas tbody tr').forEach(tr => tr.classList.toggle('sel', Number(tr.dataset.id) === id));
     const rs = D.repercusion.filter(r => Number(r.nota_id) === id).sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || a.medio.localeCompare(b.medio));
     $('det-titulo').textContent = n.titulo;
-    $('det-sub').textContent = ddmm(n.fecha) + ' · ' + fmt(n.n_medios) + ' publicaciones encontradas' + (n.posibles ? ' y ' + fmt(n.posibles) + (n.posibles === 1 ? ' posible' : ' posibles') : '') + '. Abrí cada enlace para ver qué publicó y qué fuente menciona.';
+    $('det-sub').textContent = ddmm(n.fecha) + ' · ' + fmt(n.n_medios) + ' medios distintos con publicaciones relacionadas' + (n.posibles ? ' · ' + fmt(n.posibles) + (n.posibles === 1 ? ' coincidencia posible' : ' coincidencias posibles') : '') + '. Abrí cada enlace para consultar la publicación externa registrada y revisar qué fuente menciona.';
     const tb = document.querySelector('#t-det tbody');
     tb.replaceChildren(...rs.map(r => {
       const tr = document.createElement('tr');
