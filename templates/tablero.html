@@ -52,6 +52,7 @@ input[type=search]{flex:1 1 14rem;min-width:0}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
 h2{font-size:var(--fs-h);font-weight:600;margin:0;text-wrap:balance}
 .bars{display:flex;flex-direction:column;gap:9px}
+.bars.all-media{max-height:720px;overflow-y:auto;padding-right:8px}
 .bar-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;align-items:center;font-size:var(--fs-cap)}
 .bar-lab{grid-column:1/-1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar-track{height:10px;background:var(--grid);border-radius:5px;overflow:hidden;display:flex}
@@ -276,15 +277,15 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <div class="grid2">
       <div class="card">
         <h2>Medios con más publicaciones</h2>
-        <p class="note">Muestra los 15 medios donde encontramos más notas relacionadas con las nuestras. Cada número cuenta notas distintas.</p>
-        <div class="legend"><span><i style="background:var(--copia)"></i>Copia textual</span><span><i style="background:var(--accent)"></i>Reescritura o redacción propia</span><span><i style="background:var(--muted-bar)"></i>Sin dato de texto</span></div>
-        <div class="bars" id="b-medios"></div>
+        <p class="note" id="medios-count">Todos los medios con publicaciones confirmadas en el período elegido. Cada cifra cuenta notas distintas.</p>
+        <div class="legend"><span><i style="background:var(--copia)"></i>Copia textual (50% o más del texto)</span><span><i style="background:var(--accent)"></i>Reescritura parcial o redacción propia</span><span><i style="background:var(--muted-bar)"></i>Texto no disponible para comparar</span></div>
+        <div class="bars all-media" id="b-medios"></div>
       </div>
-      <div class="card"><h2>Notas que más viajaron</h2><p class="note">Cantidad de medios que publicaron cada nota (las 12 primeras)</p><div class="bars" id="b-top"></div></div>
+      <div class="card"><h2>Notas que más viajaron</h2><p class="note">Las 12 notas con publicaciones confirmadas en más medios diferentes durante el período elegido. No implica que todos hayan usado nuestra información.</p><div class="bars" id="b-top"></div></div>
     </div>
     <div class="grid2">
-      <div class="card"><h2>Cómo la publican</h2><p class="note">El texto del medio comparado con el nuestro (solo medios con texto disponible)</p><div class="bars" id="b-origen"></div></div>
-      <div class="card"><h2>¿De dónde la tomaron?</h2><p class="note">Publicaciones que nombran a la fuente oficial o a otro medio en el texto</p><div class="bars" id="b-cadena"></div></div>
+      <div class="card"><h2>Cómo la publican</h2><p class="note">Clasificación de las publicaciones confirmadas. “Texto no disponible para comparar” significa que encontramos la publicación, pero no pudimos acceder a su texto o extraerlo; no significa que no haya publicado contenido.</p><div class="bars" id="b-origen"></div></div>
+      <div class="card"><h2>Fuentes que mencionan las publicaciones</h2><p class="note">Cuenta las veces que se nombra a Juschubut Noticias, a la Agencia o a otro medio en el texto. Una publicación puede mencionar más de una fuente; estos valores no son categorías excluyentes y no prueban por sí solos de dónde se obtuvo la información.</p><div class="bars" id="b-cadena"></div></div>
     </div>
   </section>
 
@@ -602,12 +603,14 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   };
 
   const drawMedios = (c) => {
-    const t = c.porMedio.slice(0, 15), mx = t.length ? t[0].notas : 1;
+    const t = c.porMedio, mx = t.length ? Math.max(...t.map(r => r.notas)) : 1;
+    const contador = $('medios-count');
+    if (contador) contador.textContent = fmt(t.length) + ' medios con publicaciones confirmadas en el período elegido. Cada cifra cuenta notas distintas; el orden se actualiza al cambiar las fechas.';
     bars('b-medios', t.map(r => row(r.medio, [[r.copia, 'var(--copia)'], [r.otra, 'var(--accent)'], [r.sin_dato, 'var(--muted-bar)']], r.notas, mx)));
     const n = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 12), mn = n.length ? n[0].n_medios : 1;
     bars('b-top', n.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
     const mo = Math.max(1, ...c.origen.map(r => r.n));
-    bars('b-origen', c.origen.map(r => row(r.origen, [[r.n, r.origen.startsWith('Copia') ? 'var(--copia)' : r.origen === 'Sin dato' ? 'var(--muted-bar)' : 'var(--accent)']], r.n, mo)));
+    bars('b-origen', c.origen.map(r => row(r.origen === 'Sin dato' ? 'Texto no disponible para comparar' : r.origen, [[r.n, r.origen.startsWith('Copia') ? 'var(--copia)' : r.origen === 'Sin dato' ? 'var(--muted-bar)' : 'var(--accent)']], r.n, mo)));
     const mc = Math.max(1, ...c.cadena.map(r => r.n));
     bars('b-cadena', c.cadena.map((r, i) => row(r.fuente, [[r.n, i === 0 ? 'var(--accent)' : 'var(--c4)']], r.n, mc)));
   };
