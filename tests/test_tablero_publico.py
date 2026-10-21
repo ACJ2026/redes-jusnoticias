@@ -347,9 +347,6 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("const ok = rs.filter(esConfirmada)", internal)
 
 
-if __name__ == "__main__":
-    unittest.main()
-
 
 class YouTubeLiveRenderingRegression(unittest.TestCase):
     def test_youtube_live_videos_have_original_links_and_metrics(self):
@@ -363,3 +360,7 @@ class YouTubeLiveRenderingRegression(unittest.TestCase):
         self.assertIn("youtubeResult.filas", template)
         self.assertIn("Abrir video", template)
         self.assertIn("video.vistas", template)
+
+
+if __name__ == "__main__":
+    unittest.main()
