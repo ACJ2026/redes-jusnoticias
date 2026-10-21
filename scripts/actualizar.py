@@ -450,6 +450,16 @@ URLS_DESCARTADAS = {
     (14674, 'Radio 3 Cadena Patagonia',
      'https://radio3cadenapatagonia.com.ar/un-delincuente-que-era-buscado-en-buenos-aires-cayo-en-la-patagonia/')
 }
+# Resultados históricos de Google Noticias para la nota de mujeres rurales.
+# La coincidencia por tema no demuestra que la publicación cubra la campaña de JusNoticias.
+# Se conservan los enlaces para auditoría, pero quedan fuera de las cifras confirmadas hasta revisarlos.
+MEDIOS_TEMA_NO_VERIFICADO = {
+    'Diario Judicial', 'Infobae', 'Acento', 'Presidencia de la República Dominicana',
+    'Diario Sur', 'Radio Sintonía', 'Portal de Cádiz', 'El Atlantico',
+    'Periódico EL JAYA', 'El Peruano', 'Instituto Colombiano Agropecuario - ICA',
+    'TVPerú', 'Caracol Radio', 'Federación de Periodistas del Perú',
+    'elatlantico.do', 'Cholila Online', 'Portal Medios Públicos'
+}
 for r in rows:
     if (r.get('nota_id'), r.get('medio'), r.get('url')) in URLS_DESCARTADAS:
         r['url'] = ''
@@ -458,6 +468,11 @@ for r in rows:
         r['cita_otro_medio'] = ''
         r['confianza'] = 'Baja'
         r['metodo'] = 'Revisión completa'
+    if (r.get('nota_id') == 14851
+            and r.get('medio') in MEDIOS_TEMA_NO_VERIFICADO
+            and (r.get('url') or '').startswith('https://news.google.com/rss/articles/')):
+        r['confianza'] = 'Baja'
+        r['metodo'] = 'Google Noticias (coincidencia temática; relación no verificada)'
     k = (r['nota_id'], r['medio'])
     if k in seen or r['nota_id'] not in ids or FP.search(norm(r.get('url', ''))): continue
     seen.add(k); rep.append(r)
