@@ -31,7 +31,7 @@ async function facebook(desde, env) {
   const ids = [...new Set(String(configuredIds).split(",").map(value => value.trim()).filter(Boolean))];
   const metaToken = env.META_TOKEN;
   if (!ids.length) {
-    throw new Error("Faltan los IDs de las páginas institucionales. Configurar FB_PAGE_IDS (IDs separados por coma) o FB_PAGE_ID y FB_PAGE_ID_2.");
+    throw new Error("Falta configurar FB_PAGE_ID y FB_PAGE_ID_2, o FB_PAGE_IDS con los IDs de ambas páginas institucionales separados por coma.");
   }
   if (!metaToken) throw new Error("Falta configurar META_TOKEN.");
 
