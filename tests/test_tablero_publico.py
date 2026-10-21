@@ -62,6 +62,16 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn("clics desde Google", template)
         self.assertNotIn("impresiones en búsquedas", template)
 
+    def test_redes_sin_integracion_no_se_presentan_como_cero_actividad(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        canales = read_json("data/canales.json")
+        self.assertIn("<option>TikTok</option>", template)
+        self.assertIn("<option>WhatsApp</option>", template)
+        self.assertIn("todavía no están integradas", template)
+        self.assertTrue(any(c["red"] == "TikTok" for c in canales))
+        self.assertTrue(any(c["red"] == "WhatsApp" for c in canales))
+        self.assertTrue(any("pendiente" in c["estado"].lower() for c in canales if c["red"] == "TikTok"))
+
     def test_generador_publico_ejecuta_y_usa_la_plantilla_legible(self):
         nombres = ["notas", "repercusion", "redes", "canales", "medios"]
         muestras = {
