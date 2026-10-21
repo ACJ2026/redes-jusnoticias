@@ -158,5 +158,19 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn('date -u +"%Y-%m-%dT%H:%M:%SZ" > data/actualizado.txt', guardar)
 
 
+    def test_ruta_social_pages_usa_variables_del_entorno_y_no_process_env(self):
+        route = (ROOT / "functions/api/redes.js").read_text(encoding="utf-8")
+        self.assertIn("export async function onRequestGet", route)
+        self.assertIn("env.META_TOKEN", route)
+        self.assertIn("env.FB_PAGE_ID", route)
+        self.assertIn("env.IG_USER_ID", route)
+        self.assertIn("env.YT_KEY", route)
+        self.assertIn("env.YT_CANAL_ID", route)
+        self.assertNotIn("process.env", route)
+        self.assertIn("Falta configurar FB_PAGE_ID", route)
+        self.assertIn("Falta configurar IG_USER_ID", route)
+        self.assertIn("Cache-Control", route)
+
+
 if __name__ == "__main__":
     unittest.main()
