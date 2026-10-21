@@ -246,12 +246,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="kpi"><div class="big">Pendiente</div><div class="lbl">total general de visualizaciones</div><p class="note">No se consolida un total de vistas hasta verificar las métricas y la cobertura de todas las plataformas. Las vistas por fuente deben revisarse individualmente.</p></div>
       <div class="kpi"><div class="big">Pendiente</div><div class="lbl">total general de seguidores</div><p class="note">No se publica una suma hasta verificar la titularidad, la cuenta correcta y los datos de todas las plataformas.</p></div>
     </div>
-    <div class="card territorio-card" id="c-territorio">
-      <h2>Distribución por localidad: pendiente de verificación</h2>
-      <p class="note">No mostramos todavía cifras territoriales porque falta verificar la localidad de cada medio y enlazar cada registro con la publicación original comprobable. Se reincorporará cuando la información sea fehaciente.</p>
-      <p class="note" id="territorio-resumen" aria-live="polite" hidden></p>
-      <div class="bars" id="b-territorio" hidden></div>
-    </div>
     <div class="grid2">
       <div class="card" id="c-tipo" style="grid-column:1/-1">
         <h2>Qué temas de nuestras notas aparecen en otros medios</h2>
@@ -556,77 +550,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     bars('b-top5m', t5.map(r => row(r.medio, [[r.notas, 'var(--accent)']], r.notas, mx)));
     const n5 = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 5), mn = n5.length ? n5[0].n_medios : 1;
     bars('b-top5n', n5.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
-    drawTerritorio();
-  };
-  // Localidades conocidas de algunos medios; no se presume una sede cuando no está identificada.
-  const localidadMedio = {
-    'FM Tropical':'Rawson','FM Bahía Engaño':'Rawson',
-    'Chubut Hoy':'Chubut (localidad por verificar)',
-    'Radio de Camioneros':'Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)',
-    'ABC Diario':'Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)',
-    'La Tecla Patagonia':'Cobertura patagónica (localidad por verificar)',
-    'El Extremo Sur':'Comodoro Rivadavia',
-    'NoticiasdelBolson':'El Bolsón',
-    'A24.com':'Cobertura nacional',
-    'Revista Quórum':'Cobertura nacional',
-    'El Periscopio':'Cobertura provincial (Misiones)',
-    'La Posta Comodorense':'Comodoro Rivadavia','El Comodorense':'Comodoro Rivadavia','Comodoro 24':'Comodoro Rivadavia','El Patagónico':'Comodoro Rivadavia',
-    'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','Crónica':'Comodoro Rivadavia',
-    'Noticias PMY':'Puerto Madryn','Madryn Ahora':'Puerto Madryn','Canal 12':'Puerto Madryn','LU17':'Puerto Madryn','El Diario Web':'Puerto Madryn','Digital Chubut':'Puerto Madryn',
-    'FM del Lago Esquel':'Esquel','Diario La Portada':'Esquel','Red43':'Esquel','EQS Notas':'Esquel',
-    'Radio Chubut':'Trelew','El Chubut':'Trelew','Diario Jornada':'Trelew','Radio 3 Cadena Patagonia':'Trelew','Vivo Trelew':'Trelew',
-    'Cholila Online':'Cholila','La Opinión Austral':'Río Gallegos','Tiempo Sur':'Río Gallegos','Diario Nuevo Día':'Río Gallegos',
-    'Diario Río Negro':'General Roca','La Voz del Interior':'Córdoba','CHACODIAPORDIA.COM':'Resistencia','El Tribuno':'Salta',
-    'Diario Huarpe':'San Juan','Elonce.com':'Paraná','APFDigital':'Paraná','Somos Jujuy':'San Salvador de Jujuy',
-    'Canal Doce Misiones':'Posadas','Info del Estero':'Santiago del Estero','El Monterizo':'San Miguel de Tucumán',
-    'LM Neuquén':'Neuquén','Lmneuquen.com':'Neuquén','Diario San Rafael':'San Rafael',
-    'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','EQS Notas':'Esquel','Digital Chubut':'Puerto Madryn',
-    'Argentar Noticias':'Comodoro Rivadavia',
-    'Diario Judicial':'Ciudad Autónoma de Buenos Aires',
-    'El 10 TV':'Salta',
-    'El Valle Online':'Valle Inferior del Río Chubut',
-    'El Mediador - Santa Cruz':'Santa Cruz (localidad por verificar)',
-    'Metadata Noticias':'Chubut (localidad por verificar)',
-    'Examedia':'Entre Ríos (localidad por verificar)',
-    'Flipr.news':'Cobertura nacional',
-    'Portal Medios Públicos':'Cobertura nacional'
-  };
-  const tipoMedio = medio => {
-    // Si el nombre identifica explícitamente una edición web/digital, no inferir prensa gráfica o TV por otra palabra del nombre.
-    if (/\bweb\b|\.com$/i.test(medio)) return 'Portal digital';
-    if (/^(Chubut Hoy|ABC Diario|La Tecla Patagonia|El Extremo Sur|NoticiasdelBolson)$/i.test(medio)) return 'Portal digital';
-    if (/radio|\bfm\b|\blu17\b/i.test(medio)) return 'Radio';
-    if (/canal|\btv\b/i.test(medio)) return 'TV';
-    if (/^crónica$/i.test(medio) || /diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
-    return 'Portal digital';
-  };
-  const regionMedio = localidad => {
-    if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)','Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)','Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)'].includes(localidad)) return 'Chubut';
-    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
-    if (localidad === 'Cobertura patagónica (localidad por verificar)') return 'Cobertura regional';
-    if (localidad.startsWith('Entre Ríos')) return 'Resto del país';
-    if (localidad === 'Cobertura provincial (Misiones)') return 'Resto del país';
-    if (localidad === 'Localidad por verificar' || localidad.includes('(localidad por verificar)')) return localidad.startsWith('Chubut') ? 'Chubut' : localidad.startsWith('Santa Cruz') ? 'Patagonia fuera de Chubut' : 'Localidad por verificar';
-    return 'Resto del país';
-  };
-  const drawTerritorio = () => {
-    const tipo = $('f-territorio-tipo').value;
-    const rs = repOk.filter(r => en(r.mes) && (!tipo || tipoMedio(r.medio) === tipo));
-    const localidades = new Map(), regiones = new Map();
-    rs.forEach(r => {
-      const localidad = localidadMedio[r.medio] || 'Localidad por verificar', region = regionMedio(localidad);
-      const item = localidades.get(localidad) || { localidad, publicaciones: 0, medios: new Set() };
-      item.publicaciones++; item.medios.add(r.medio); localidades.set(localidad, item);
-      regiones.set(region, (regiones.get(region) || 0) + 1);
-    });
-    const orden = [...localidades.values()].sort((a,b) => b.publicaciones-a.publicaciones || a.localidad.localeCompare(b.localidad,'es'));
-    const max = orden.length ? orden[0].publicaciones : 1;
-    bars('b-territorio', orden.map(x => row(x.localidad + ' · ' + x.medios.size + (x.medios.size === 1 ? ' medio' : ' medios'), [[x.publicaciones,'var(--accent)']], x.publicaciones, max)));
-    const verif = regiones.get('Localidad por verificar') || 0, conocidas = rs.length - verif;
-    const resumen = [...regiones.entries()].sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+': '+fmt(v)).join(' · ');
-    $('territorio-resumen').textContent = fmt(rs.length)+' publicaciones · '+fmt(localidades.size)+' localidades o grupos · '+fmt(conocidas)+' con localidad identificada · '+fmt(verif)+' por verificar. '+(resumen || 'Sin datos para este período.');
-  };
-
+};
   const mostrarReferenciasMedios = (titulo, intro, registros) => {
     const panel = $('medios-detalle'), lista = $('medios-detalle-lista');
     $('medios-detalle-titulo').textContent = titulo;
@@ -900,9 +824,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     }
   };
   $('g-actualizar').addEventListener('click', drawGoogle);
-  $('f-territorio-tipo').addEventListener('change', drawTerritorio);
-
-  const draw = () => {
+const draw = () => {
     const c = calc();
     drawHeader(c);
     ({ resumen: drawResumen, medios: drawMedios, notas: drawNotas, redes: drawRedes, google: drawGoogle, guia: drawGuia })[st.page](c);
