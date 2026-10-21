@@ -769,8 +769,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     }
   };
   const drawGuia = () => {
-    const conteo = new Map();
-    repOk.filter(r => en(r.mes)).forEach(r => conteo.set(r.medio, (conteo.get(r.medio) || 0) + 1));
+    const urlsPorMedio = new Map();
+    repOk.filter(r => en(r.mes)).forEach(r => {
+      if (!urlsPorMedio.has(r.medio)) urlsPorMedio.set(r.medio, new Set());
+      urlsPorMedio.get(r.medio).add(r.url);
+    });
+    const conteo = new Map([...urlsPorMedio].map(([medio, urls]) => [medio, urls.size]));
     const refs = new Map();
     repOk.filter(r => en(r.mes)).forEach(r => {
       const n = notas.find(x => Number(x.id) === Number(r.nota_id));
