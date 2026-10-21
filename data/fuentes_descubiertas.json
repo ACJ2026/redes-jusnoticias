@@ -5,7 +5,7 @@
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-10-21",
     "detecciones": 5,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQSFYwZ3gtVU81ZFAxS0k5MEx2Um0xWkhSeG1fenBPdTZVX3B4WTZWb21aRW9jZlNyWmpQVzR4RE4ydWtLUTNWNUJ1XzJPVHFXcm81emZ6RzNKa3JqWnBZNTNLSzZxeWsySjlVRDgtUkhIYzdWbF96VnBmOFg0MXkzQnJ5MWtrV2FsLW9PRGNsRzJlUlR4a0Faa3k1QldKQ1VoUEViTVBCVUtmRE9MTDA3MVVzTk9YSlBnNHljUkJKVDFBckUxaWQyMXNxLWI1aDA2bElWUUM5bFppa2JwU0t30gHkAUFVX3lxTFBqalB1bS1XWW1YSFNzdWFnY29TOHpTbVB3ZmJTUlVUbEhaVVd6Q0RKX2dGSkUtWUhPb0NYS1owZGE0UTNUb1k3Q19mdFFuTkNBNkQ1d0gyYjVQd1JGVkE2NTFRVHIxbVZob04xNjFwZ0I0eXlvTHhaNUo1Q0NwZGN3djVwNXhaTVJOeTl4V095eGctWkxPNTIydkRkZ3lKUElzSmZoci02dHdkN2d3Q2htYndMYTh4eVVVeUlUQXJ2UzNaNEhIdEpscERjS1Q2RTAxWF81SE5neklHQVdHR2E2aXVDMA?oc=5",
+    "ultima_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQRWVWNXhhVUJtNDZWNWU2RHhCUFdBX2V6NlUtN1F2YjlYN1hvWjlpQi0teGxOQi1ZXzRGZGpDcUctM2pnakMwVTNKQldCWnNtamRNYkdvbGJVaklnNWxlX3ZHSDEyVHg1NUxvQ3dGbDZ0dkhLcVhqYjB4aW1hQkduTWdXMVpTOFo3VFg4U0ljeW01RFRRUUFQMDQ2cW9keFI5STVvQ19CNUg0U1JqZXE1MHhXTV9TUUJfNnVfeXpzOTl4bGwxVE9mZnpn0gHPAUFVX3lxTE5NU2c2cWZrbGNyQmo1ai05RW9USVVNUzU0LURlZXFORkxQTF84QjRuSW9tbXFPTWVKZXIzRVRiZ3ItZHZNSXZ2ak51SUtTRmZtT2t0cDBGN2FPdE1BRU5TR2xiUThJc1Q4QkwyTjB0SEw2ZXhwTVF2RUpHeGkweVU1V29fblVDU2VWTVNGaWNCSks4LXE1cDZLWnF2dFNIQngtTnVHREx0NTZrclVVaEhMcWpEV0dfQi1EcE5MNWRmZWRhdUFnU0xSY0lWc1R1WQ?oc=5",
     "estado": "seguimiento_google_news"
   },
   {
@@ -76,7 +76,7 @@
     "dominio": "canal12web.com",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-10-21",
-    "detecciones": 6,
+    "detecciones": 8,
     "ultima_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQR0FzNkpsMjh3WWp0d2tQXzBncVdhUlJySV9qWlhReHlrWmEwUHJJRUo1RzUxR3FkUTFYSUlXY1JsUWRRSHdrNFp0RzZqN01GbmJqRW9yeXVCaXluVVMtbjYwSUZqbGFndUZRcXdzdGtjTVl0OElfQWFwYlVxemFGTnlUb1B6ZkdEV3A5YkNOUkF3UU5QQnc?oc=5",
     "estado": "seguimiento_google_news"
   },
@@ -328,7 +328,7 @@
     "dominio": "lu17.com",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-10-21",
-    "detecciones": 24,
+    "detecciones": 23,
     "ultima_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQSDRsb1NiVVhsaTRrZ0RIOENBZTR1a2tyYTdRWFVJWmN6UFZyMTVWYUZyUnU3VmJrZFdFTDNJVDloRGdsRlBzWFZPaTM4T3Yyd0F2UGhtaGRWTktoWG9DWjc2emhxUnI4cFNMOUVON3lLZFdmb0VCNHhwRk0tT0lUdkVyUGgtenZoQ0MwcURzdk5LcW82dy1KQ2V4WTJzblplTkFwNTZKVmZ6eWsxN2NFeEhB?oc=5",
     "estado": "seguimiento_google_news"
   },
@@ -364,7 +364,7 @@
     "dominio": "quepasajujuy.com.ar",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-10-21",
-    "detecciones": 1,
+    "detecciones": 2,
     "ultima_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNeVFaZVI2alllQll3UDBLdE96U2FBY2xhd3hSRlU2LXZ3RmVuaXMtdlFVR3dkdXpSdVZPekdEYWZaXy1CNzBjMlgwWWgzclQ5bmctZ2JEYmxzdUJVRzVZWm5BckZhYVNtS1BhY1RpQXdjcDlzcU1LQUlVZy1Ed1RMWEZxc256UGxNc2JXTTR6aTZiU1hjUFFxbnJSNFY?oc=5",
     "estado": "seguimiento_google_news"
   },
