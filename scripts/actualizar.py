@@ -376,8 +376,24 @@ with ThreadPoolExecutor(4) as ex:
                 continue
             ya.add((n['id'], medio)); con_g += 1
             addrow(medio, m, 'Google Noticias (frase de la nota)' if m.get('fuerte') else 'Google Noticias (solo título)')
-            cobertura.setdefault(medio, 'Encontrado por Google Noticias (solo título)')
+            cobertura.setdefault(medio, 'Encontrado por Google Noticias; fuente descubierta automáticamente')
+            dominio = it.get('dominio', '')
+            if dominio and not NO.search(dominio):
+                encontrado = next((r for r in REGISTRO if r.get('dominio') == dominio), None)
+                hoy = dt.date.today().isoformat()
+                if encontrado:
+                    encontrado['nombre'] = medio
+                    encontrado['ultima_deteccion'] = hoy
+                    encontrado['detecciones'] = int(encontrado.get('detecciones', 0)) + 1
+                    if it.get('u'): encontrado['ultima_url'] = it['u']
+                else:
+                    REGISTRO.append({'nombre': medio, 'dominio': dominio, 'primera_deteccion': hoy, 'ultima_deteccion': hoy, 'detecciones': 1, 'ultima_url': it.get('u', ''), 'estado': 'seguimiento_google_news'})
 print('Google Noticias', con_g)
+
+# Guardar el registro para que la siguiente ejecución siga monitorizando los dominios nuevos.
+REGISTRO.sort(key=lambda r: (r.get('ultima_deteccion', ''), r.get('dominio', '')))
+with open(REG_PATH, 'w', encoding='utf8') as rf:
+    json.dump(REGISTRO, rf, ensure_ascii=False, indent=2)
 
 # ---------- Fuentes verificadas manualmente: cobertura del fallo de Puerto Madryn ----------
 # URLs aportadas y comprobadas para la nota 14884. Google Noticias puede omitir medios
