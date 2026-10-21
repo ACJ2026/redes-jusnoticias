@@ -140,6 +140,10 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("process.env.YT_CANAL_ID", api)
         self.assertIn("const tareas = { Facebook: facebook, Instagram: instagram, YouTube: youtube }", api)
         self.assertIn("Falta configurar YT_KEY", api)
+        self.assertIn("Falta configurar FB_PAGE_ID", api)
+        self.assertIn("Falta configurar IG_USER_ID", api)
+        self.assertNotIn("116101835114568", api)
+        self.assertNotIn("17841410514175238", api)
         self.assertIn("Falta configurar YT_CANAL_ID", api)
         self.assertIn("No se encontró el canal indicado por YT_CANAL_ID", api)
 
