@@ -910,7 +910,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     }
   };
   $('g-actualizar').addEventListener('click', drawGoogle);
-  $('f-territorio-tipo').addEventListener('change', drawTerritorio);
+  const filtroTerritorio = $('f-territorio-tipo');
+  if (filtroTerritorio) filtroTerritorio.addEventListener('change', drawTerritorio);
 
   const draw = () => {
     const c = calc();
