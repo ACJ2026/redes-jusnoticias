@@ -67,8 +67,8 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [x] Corregido el riesgo de atribuir métricas del canal general del Poder Judicial a JusNoticias: 12 publicaciones históricas de ese canal se conservaron pero dejaron de computarse como propias; el canal general queda identificado como referencia institucional separada.
 - [~] Agregada la cuenta correcta «JusNoticias Prensa» sin inventar seguidores; falta obtener/verificar el ID correcto y configurar `YT_CANAL_ID` junto con `YT_KEY`.
 - [ ] Verificar accesos oficiales, permisos y métricas disponibles por plataforma.
-- [ ] Decidir si la ruta social seguirá en Vercel o se portará a Cloudflare Pages; no asumir que `api/redes.js` se ejecuta en Pages ni que el tablero la consume.
-- [x] Endurecida la ruta heredada de Vercel: valida fechas reales, limita la consulta a 90 días, usa ventana reciente por defecto y no cachea respuestas con errores. Aún no está conectada al tablero público ni desplegada en Pages.
+- [~] La ruta social ya está portada a `functions/api/redes.js` para Cloudflare Pages; falta configurar secretos e IDs verificados y conectar la interfaz tras pruebas reales. `api/redes.js` sigue como ruta heredada de Vercel.
+- [x] Endurecidas ambas rutas: validan fechas reales, limitan la consulta a 90 días, exigen identificadores oficiales y no cachean respuestas con errores. La Pages Function usa `env.*`; la ruta sigue sin estar conectada al tablero público.
 - [ ] Integrar X y TikTok si existe una vía oficial autorizada; no asumir que sus estadísticas se obtienen como datos públicos sin credenciales.
 - [ ] Confirmar que Instagram conectado sea exactamente `jus_chubut` y tenga permisos Meta válidos.
 - [ ] Confirmar que YouTube use el canal de JusNoticias y no se sustituya por el canal general del Poder Judicial si no corresponde.
@@ -77,7 +77,7 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [ ] Mostrar «sin dato disponible» cuando una plataforma no entregue una métrica; no convertirlo en cero.
 - [ ] Probar por red publicaciones, seguidores, reacciones, comentarios, compartidos y vistas solo cuando la plataforma ofrezca cada dato.
 
-**Estado técnico conocido:** `api/redes.js` es una ruta de Vercel que consulta Facebook, Instagram y YouTube, pero la plantilla pública actual no la llama: las redes visibles provienen del JSON generado por GitHub Actions. Por eso, no debe describirse como una integración en vivo del tablero. Si se usa Cloudflare Pages, la ruta social debe portarse como Pages Function y probarse por separado. X y TikTok no están integrados; WhatsApp queda pendiente de verificar métricas disponibles.
+**Estado técnico conocido:** `api/redes.js` es la ruta heredada de Vercel y `functions/api/redes.js` es la adaptación para Pages. Ninguna está conectada a la plantilla pública: las redes visibles siguen proviniendo del JSON generado por GitHub Actions. No describirlas como métricas en vivo hasta verificar credenciales, IDs, permisos y conectar la interfaz. X y TikTok no están integrados; WhatsApp queda pendiente de verificar métricas disponibles.
 
 ## 6. Google Analytics 4 y Search Console
 - [x] La API de Google de Cloudflare Pages respondió correctamente en una prueba para 01/10/2026–19/10/2026.
