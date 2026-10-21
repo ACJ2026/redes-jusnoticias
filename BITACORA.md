@@ -199,3 +199,13 @@ Próxima acción:
 - Próximos pasos: revisar cómo el recolector obtiene hoy las notas; integrar WordPress si corresponde como fuente de notas usando paginación completa e ID estable; conservar el historial de repercusiones ante errores o ausencias temporales; agregar pruebas y validar GitHub Actions y Cloudflare Pages antes de declarar la integración operativa.
 - Dependencias externas: para esta prueba de lectura pública no se necesita usuario, contraseña, token ni plugin de WordPress. Las métricas de Google Analytics 4/Search Console son una integración distinta y siguen dependiendo de la configuración/credenciales correspondientes en Cloudflare Pages.
 - No se modificó WordPress ni se cambiaron datos históricos. Esta anotación se prepara en una rama separada; no implica despliegue ni integración a `main`.
+
+
+### 2026-10-21 — Cierre de verificación de WordPress y estado de automatizaciones
+
+- Se pasó a revisión y se integró el PR [#34](https://github.com/ACJ2026/redes-jusnoticias/pull/34), que registra la prueba manual de la API REST pública de WordPress. El merge fue confirmado por GitHub con commit `c0fdb2ee0ed17f2179135432ea240793f9aa8fe3`. La bitácora ya forma parte de `main`; el cambio fue documental y no modificó el recolector ni los datos históricos.
+- Los workflows de validación del PR #34 terminaron en `success`: [validación del tablero](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39658653007) y [regresión del historial](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39658652668).
+- El workflow [Reconstruir tablero público](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39655358080) terminó en `success` para el commit `915c9c65a3ceb885ef342d2d931e0df444e7a308). Esto confirma la generación automatizada del HTML y sus comprobaciones de CI; no prueba por sí solo que las funciones de Google y redes devuelvan datos reales en producción.
+- La plantilla fuente tiene el título `Juschubut Noticias`. La verificación directa del dominio público y de los endpoints Pages no pudo completarse desde las herramientas disponibles en esta sesión.
+- Pendientes externos: comprobar el despliegue real en Cloudflare Pages y revisar la respuesta de `/api/google-metrics` y `/api/redes` en producción. Para Google se requieren las variables `GOOGLE_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID` y `GSC_SITE_URL`, más permisos de lectura de la cuenta de servicio. Para redes, revisar los secretos e IDs correspondientes en el entorno Pages.
+- No se alteró WordPress, no se reconstruyeron ni borraron registros históricos y no se declaró validación de extremo a extremo.
