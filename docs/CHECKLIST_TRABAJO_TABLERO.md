@@ -8,14 +8,14 @@
 - [x] PR #5 abierto contra `feat/cloudflare-pages-google-metrics`: https://github.com/ACJ2026/redes-jusnoticias/pull/5
 - [x] Mantener secretos fuera del HTML y del repositorio.
 - [x] Revisión sintáctica: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios).
-- [x] Suite de regresión del historial, generador, sincronización HTML y fechas pasan en GitHub Actions para el commit `f612cc8`: 17 pruebas OK. Ejecución: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39520629380
-- [x] Pruebas del tablero público: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias, errores de YouTube explícitos y sin claves en el HTML. La suite corre en el mismo workflow de regresión y pasó para `f612cc8`.
+- [x] Suite de regresión del historial, generador, sincronización HTML y fechas pasan en GitHub Actions para el commit `b6ad79f`: 18 pruebas OK, incluida la validación de la ruta social Pages. Ejecución: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39520924155
+- [x] Pruebas del tablero público: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias, errores de YouTube explícitos y sin claves en el HTML. La suite corre en el mismo workflow de regresión y pasó para `b6ad79f`.
 - [x] Validación de fechas de Google probada con casos válidos, fecha imposible, formato inválido, rango invertido y ventana máxima de 90 días.
 - [x] Fecha del relevamiento separada de la fecha de generación: regenerar solo el HTML no cambia `data/actualizado.txt`; prueba automatizada incluida.
 - [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
 - [~] Se ampliaron portada, tarjetas de indicadores, tipografía, pestañas, filtros y áreas táctiles en celular; las tablas permiten desplazamiento horizontal para evitar texto diminuto. Pendiente validar visualmente en un teléfono real tras el despliegue.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
-- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `f612cc8`; URL de vista previa: https://db3fff79.redes-jusnoticias.pages.dev/ y URL estable de rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. Falta inspección visual/interacción real en escritorio y móvil.
+- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `b6ad79f`; URL de vista previa: https://e7e19d15.redes-jusnoticias.pages.dev/ y URL estable de rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. Falta inspección visual/interacción real en escritorio y móvil.
 - [~] Vercel reportó límite diario de despliegues en los commits más recientes; esa vía es independiente del preview de Cloudflare y no debe confundirse con él.
 - [ ] Confirmar URL oficial de producción. La URL de Pages usada en pruebas fue https://redes-jusnoticias.pages.dev/.
 - [!] Hallazgo importante: GitHub informa que `ACJ2026/redes-jusnoticias` está **público**, mientras que el repositorio anterior `ignacervo-cell/jusnoticias-tablero` está privado y el plan previo trataba el destino como privado. No se cambió la visibilidad; confirmar la política institucional antes de fusionar.
@@ -67,7 +67,7 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [x] Corregido el riesgo de atribuir métricas del canal general del Poder Judicial a JusNoticias: 12 publicaciones históricas de ese canal se conservaron pero dejaron de computarse como propias; el canal general queda identificado como referencia institucional separada.
 - [~] Agregada la cuenta correcta «JusNoticias Prensa» sin inventar seguidores; falta obtener/verificar el ID correcto y configurar `YT_CANAL_ID` junto con `YT_KEY`.
 - [ ] Verificar accesos oficiales, permisos y métricas disponibles por plataforma.
-- [~] La ruta social ya está portada a `functions/api/redes.js` para Cloudflare Pages; falta configurar secretos e IDs verificados y conectar la interfaz tras pruebas reales. `api/redes.js` sigue como ruta heredada de Vercel.
+- [~] La ruta social ya está portada a `functions/api/redes.js` para Cloudflare Pages y tiene pruebas estáticas de configuración segura; falta configurar secretos e IDs verificados, probar las APIs reales y conectar la interfaz. `api/redes.js` sigue como ruta heredada de Vercel.
 - [x] Endurecidas ambas rutas: validan fechas reales, limitan la consulta a 90 días, exigen identificadores oficiales y no cachean respuestas con errores. La Pages Function usa `env.*`; la ruta sigue sin estar conectada al tablero público.
 - [ ] Integrar X y TikTok si existe una vía oficial autorizada; no asumir que sus estadísticas se obtienen como datos públicos sin credenciales.
 - [ ] Confirmar que Instagram conectado sea exactamente `jus_chubut` y tenga permisos Meta válidos.
