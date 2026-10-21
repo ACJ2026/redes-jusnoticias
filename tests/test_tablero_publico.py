@@ -285,6 +285,15 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("Cache-Control", route)
 
 
+    def test_redes_muestra_advertencias_de_paginas_facebook_parciales(self):
+        route = (ROOT / "functions/api/redes.js").read_text(encoding="utf-8")
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("env.FB_PAGE_IDS", route)
+        self.assertIn("env.FB_PAGE_ID_2", route)
+        self.assertIn("erroresPaginas", route)
+        self.assertIn("error parcial en ", template)
+
+
     def test_publicacion_sin_enlace_no_se_cuenta_como_confirmada(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         rep = read_json("data/rep2.json")
