@@ -349,3 +349,17 @@ class TableroPublicoTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class YouTubeLiveRenderingRegression(unittest.TestCase):
+    def test_youtube_live_videos_have_original_links_and_metrics(self):
+        route_path = ROOT / "functions" / "api" / "redes.js"
+        template_path = ROOT / "templates" / "tablero.html"
+        route = route_path.read_text(encoding="utf-8")
+        template = template_path.read_text(encoding="utf-8")
+        self.assertIn('enlace: "https://www.youtube.com/watch?v=" + encodeURIComponent(video.id)', route)
+        self.assertIn('publicacionesTotales: channel.statistics', route)
+        self.assertIn('id="t-youtube-vivo"', template)
+        self.assertIn("youtubeResult.filas", template)
+        self.assertIn("Abrir video", template)
+        self.assertIn("video.vistas", template)
