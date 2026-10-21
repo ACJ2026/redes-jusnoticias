@@ -80,8 +80,8 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_metricas_de_busqueda_tienen_nombres_claros_y_fuentes_separadas(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn("Clics desde buscadores", template)
-        self.assertIn("Veces que apareció", template)
+        self.assertIn("Clics desde Google", template)
+        self.assertIn("Veces que apareció en Google", template)
         self.assertIn("Porcentaje de clics", template)
         self.assertIn("Posición promedio", template)
         self.assertIn("Actividad dentro del sitio · fuente: Google Analytics 4", template)
