@@ -5,7 +5,7 @@
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-10-21",
     "detecciones": 4,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQRWVWNXhhVUJtNDZWNWU2RHhCUFdBX2V6NlUtN1F2YjlYN1hvWjlpQi0teGxOQi1ZXzRGZGpDcUctM2pnakMwVTNKQldCWnNtamRNYkdvbGJVaklnNWxlX3ZHSDEyVHg1NUxvQ3dGbDZ0dkhLcVhqYjB4aW1hQkduTWdXMVpTOFo3VFg4U0ljeW01RFRRUUFQMDQ2cW9keFI5STVvQ19CNUg0U1JqZXE1MHhXTV9TUUJfNnVfeXpzOTl4bGwxVE9mZnpn0gHPAUFVX3lxTE5NU2c2cWZrbGNyQmo1ai05RW9USVVNUzU0LURlZXFORkxQTF84QjRuSW9tbXFPTWVKZXIzRVRiZ3ItZHZNSXZ2ak51SUtTRmZtT2t0cDBGN2FPdE1BRU5TR2xiUThJc1Q4QkwyTjB0SEw2ZXhwTVF2RUpHeGkweVU1V29fblVDU2VWTVNGaWNCSks4LXE1cDZLWnF2dFNIQngtTnVHREx0NTZrclVVaEhMcWpEV0dfQi1EcE5MNWRmZWRhdUFnU0xSY0lWc1R1WQ?oc=5",
+    "ultima_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQSFYwZ3gtVU81ZFAxS0k5MEx2Um0xWkhSeG1fenBPdTZVX3B4WTZWb21aRW9jZlNyWmpQVzR4RE4ydWtLUTNWNUJ1XzJPVHFXcm81emZ6RzNKa3JqWnBZNTNLSzZxeWsySjlVRDgtUkhIYzdWbF96VnBmOFg0MXkzQnJ5MWtrV2FsLW9PRGNsRzJlUlR4a0Faa3k1QldKQ1VoUEViTVBCVUtmRE9MTDA3MVVzTk9YSlBnNHljUkJKVDFBckUxaWQyMXNxLWI1aDA2bElWUUM5bFppa2JwU0t30gHkAUFVX3lxTFBqalB1bS1XWW1YSFNzdWFnY29TOHpTbVB3ZmJTUlVUbEhaVVd6Q0RKX2dGSkUtWUhPb0NYS1owZGE0UTNUb1k3Q19mdFFuTkNBNkQ1d0gyYjVQd1JGVkE2NTFRVHIxbVZob04xNjFwZ0I0eXlvTHhaNUo1Q0NwZGN3djVwNXhaTVJOeTl4V095eGctWkxPNTIydkRkZ3lKUElzSmZoci02dHdkN2d3Q2htYndMYTh4eVVVeUlUQXJ2UzNaNEhIdEpscERjS1Q2RTAxWF81SE5neklHQVdHR2E2aXVDMA?oc=5",
     "estado": "seguimiento_google_news"
   },
   {
@@ -139,7 +139,7 @@
     "dominio": "diariosur.es",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-10-21",
-    "detecciones": 3,
+    "detecciones": 4,
     "ultima_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOcnlhZVd0cWNOb1VjYUl4a0k0NDNfQ1Zfd2lnT0dUc25pR0pDMlE1QnZpeXBkajBPdkpQdndmN0xiRUozUEJ1UFhKbHB2bEVGNEhjcFRJVU1vNVNRS2VBRngxemprX1FzT1JGTG5obnZLakxpVFNUVk43TWhmWFdMMWpBdlBvcWU3S3M4aDdEYk1KYTFWakFfcTFTU2J3NXBTLVBGcEFTbnh4LVJzWWJHNERHbmdobXU4VnVuVF9vZ9IBxAFBVV95cUxPV3ZLUDF2ZGJVMlZWQWhCblF2cjdKZVBqempXRklEVk8tMWp6c2x2Zk92TnVIZU9RTnFiLVM5cFcyck1JRTAzT3lIQTJHUm9nSlRmM2EzVXdVejlYbzBsMFJuOTZpQU9JNlNhcjlMNFNRcVB4WWRzZ1hIZkpnU0VEVnpBS3JidlRGbE03SU1PQ1lFVHNiSEVPZlhwa3l4ZEdmbjBNTXk3eElRdUE5c09VbmhaRVRKWG5keXE5UGJMbHo4ajJQ?oc=5",
     "estado": "seguimiento_google_news"
   },
@@ -157,7 +157,7 @@
     "dominio": "elatlantico.do",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-10-21",
-    "detecciones": 3,
+    "detecciones": 4,
     "ultima_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQaGp4YjUzTGlUdFdKWmo5NDVLaEE3OU5jV1RSQnBfcElRY2lmSUFwQVJ6ZlQ1QXV0RHRFUVJZRFpNWldOS1RZWTduSS1KeEljVWdXaUNzeXMtZGp0NFRvdkU3bWp1cWJncURuSWg2U2c3cFdJQVdyWS1ZYUdQZWNTVTBBWXhRdXZMR0hPQllvTWJIZHhvVDdUUjAxcHFNWjdPZnFoSVdkOE9LNnlxQkxWSzMwMUd0VllSRUFlQVAyWHhsNGhCRm1NNGtXVTh3Ny1pVXFCdzlzRFNUNDlpNU5mNTEtU04tUQ?oc=5",
     "estado": "seguimiento_google_news"
   },
@@ -184,7 +184,7 @@
     "dominio": "eljaya.com",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-10-21",
-    "detecciones": 2,
+    "detecciones": 3,
     "ultima_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQanRNSWI3MEdRdXBXYUZUamNfTHlab2R6TkdPaTB1TEp1VjJaM0h5MnJBTjNNT2NQSktraXFkelB3SDhGTVhMMGxLc1lZaTlNOXF1QmNyWnNuLS1pMGFpUEFyWE1XdzJWMm9YTERCTDV6YWdpSE00Mkdybmtoc25SSHozNWVxLWQzbnhYd2NTYWVvMklMRm9vSU1zUFl2aVNJa3BQZHpBSmtVRTN1QkRBTnNDYUJMZ2dJNTk5R0NlR3NyU21vRmlmb19B?oc=5",
     "estado": "seguimiento_google_news"
   },
