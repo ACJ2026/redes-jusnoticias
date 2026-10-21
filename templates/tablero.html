@@ -439,7 +439,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     // Una nota oficial cuenta una sola vez por medio, aunque en el futuro aparezcan varios registros para la misma pareja.
     const porMedioNota = new Map();
     rs.forEach(r => {
-      const key = String(r.medio) + '\\u0000' + String(r.nota_id);
+      const key = JSON.stringify([r.medio, Number(r.nota_id)]);
       const previo = porMedioNota.get(key);
       const prioridad = x => (x.origen === 'Sin dato' ? 0 : 2) + (x.confianza === 'Alta' ? 2 : x.confianza === 'Media' ? 1 : 0);
       if (!previo || prioridad(r) > prioridad(previo)) porMedioNota.set(key, r);
