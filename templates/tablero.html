@@ -315,6 +315,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   </section>
 
   <section class="page" id="redes" hidden>
+    <div class="card" id="redes-vivo">
+      <h2>Estado del monitoreo en vivo</h2>
+      <p class="note">Consulta las APIs que ya tiene preparadas el tablero: Facebook, Instagram y YouTube. Esta consulta es independiente del historial guardado. X, TikTok y WhatsApp todavía no están integrados aquí, por lo que no se suman a un total general ni se presentan como cero actividad.</p>
+      <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
+      <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
+      <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th></tr></thead><tbody><tr><td colspan="5">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
+    </div>
     <div class="card">
       <h2>Publicaciones nuestras por mes</h2>
       <p class="note">Muestra las publicaciones registradas en los datos cargados y cómo se distribuyen por mes. Esta vista todavía no consulta las APIs de redes en vivo; Facebook propio se empezó a contar en septiembre.</p>
@@ -700,6 +707,63 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const rows = D.redes.filter(r => en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
     tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
   };
+  let redesVivoConsultado = false;
+  let redesVivoEnCurso = false;
+  const consultarRedesVivo = async () => {
+    if (redesVivoEnCurso) return;
+    redesVivoEnCurso = true;
+    const boton = $('redes-vivo-consultar');
+    const estado = $('redes-vivo-estado');
+    const tb = document.querySelector('#t-redes-vivo tbody');
+    boton.disabled = true;
+    estado.textContent = 'Consultando Facebook, Instagram y YouTube. Las demás redes figuran pendientes de integración.';
+    const unsupported = [
+      { red: 'X', estado: 'API no integrada en este tablero', publicaciones: '—', seguidores: '—', ultima: '—' },
+      { red: 'TikTok', estado: 'Cuenta y API pendientes de verificar', publicaciones: '—', seguidores: '—', ultima: '—' },
+      { red: 'WhatsApp', estado: 'Fuente oficial de métricas pendiente de definir', publicaciones: '—', seguidores: '—', ultima: '—' }
+    ];
+    try {
+      const response = await fetch('/api/redes', { headers: { Accept: 'application/json' }, cache: 'no-store' });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+      const connected = ['Facebook', 'Instagram', 'YouTube'].map(red => {
+        const result = data.redes && data.redes[red];
+        const error = data.errores && data.errores[red];
+        if (error || !result) return { red, estado: 'No disponible: ' + (error || 'la API no devolvió datos'), publicaciones: '—', seguidores: '—', ultima: '—' };
+        const filas = Array.isArray(result.filas) ? result.filas : [];
+        const fechas = filas.map(r => r.fecha).filter(Boolean).sort();
+        return {
+          red,
+          estado: 'API respondió',
+          publicaciones: fmt(filas.length),
+          seguidores: result.seguidores === null || result.seguidores === undefined ? 'No informado' : fmt(result.seguidores),
+          ultima: fechas.length ? fechas[fechas.length - 1] : 'Sin publicaciones en la ventana'
+        };
+      });
+      tb.replaceChildren(...[...connected, ...unsupported].map(r => {
+        const tr = document.createElement('tr');
+        [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima].forEach(value => {
+          const td = document.createElement('td'); td.textContent = value; tr.append(td);
+        });
+        return tr;
+      }));
+      const hasta = data.actualizado ? new Date(data.actualizado).toLocaleDateString('es-AR') : 'fecha no informada';
+      estado.textContent = 'Consulta ejecutada el ' + (data.actualizado ? new Date(data.actualizado).toLocaleString('es-AR') : 'fecha no informada') + '. Ventana desde ' + (data.desde || 'fecha no informada') + ' hasta ' + hasta + '. Solo las APIs que respondieron aportan cifras; no es un total de todas las redes.';
+    } catch (error) {
+      tb.replaceChildren(...[...['Facebook', 'Instagram', 'YouTube'].map(red => ({ red, estado: 'No se pudo consultar la API: ' + error.message, publicaciones: '—', seguidores: '—', ultima: '—' })), ...unsupported].map(r => {
+        const tr = document.createElement('tr');
+        [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima].forEach(value => {
+          const td = document.createElement('td'); td.textContent = value; tr.append(td);
+        });
+        return tr;
+      }));
+      estado.textContent = 'La consulta en vivo no está disponible. Se conserva el historial cargado, pero no debe interpretarse como un monitoreo completo.';
+    } finally {
+      redesVivoConsultado = true;
+      redesVivoEnCurso = false;
+      boton.disabled = false;
+    }
+  };
   const drawGuia = () => {
     const conteo = new Map();
     repOk.filter(r => en(r.mes)).forEach(r => conteo.set(r.medio, (conteo.get(r.medio) || 0) + 1));
@@ -846,7 +910,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.page === page)));
     try { history.replaceState(null, '', '#' + page); } catch (e) {}
     draw();
+    if (page === 'redes' && !redesVivoConsultado) consultarRedesVivo();
   };
+  $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
   document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
   $('ir-completo').addEventListener('click', () => { show('medios'); document.querySelector('.tabs').scrollIntoView(); });
   const detalle = (id) => {
