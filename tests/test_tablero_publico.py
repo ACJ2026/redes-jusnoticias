@@ -204,6 +204,19 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("localidad.startsWith('Entre Ríos')) return 'Resto del país'", template)
         self.assertIn("Chubut Hoy|ABC Diario|La Tecla Patagonia|El Extremo Sur|NoticiasdelBolson", template)
 
+    def test_coincidencias_genericas_de_mujeres_rurales_no_se_cuentan_como_confirmadas(self):
+        rep = read_json("data/rep2.json")
+        matches = [
+            r for r in rep
+            if int(r.get("nota_id", 0)) == 14851
+            and (r.get("url") or "").startswith("https://news.google.com/rss/articles/")
+        ]
+        self.assertGreater(len(matches), 0)
+        self.assertTrue(all(r.get("confianza") == "Baja" for r in matches))
+        actualizador = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
+        self.assertIn("MEDIOS_TEMA_NO_VERIFICADO", actualizador)
+        self.assertIn("Google Noticias (coincidencia temática; relación no verificada)", actualizador)
+
     def test_api_social_no_expone_token_en_url(self):
         api = (ROOT / "api/redes.js").read_text(encoding="utf-8")
         self.assertIn("Authorization: 'Bearer ' + token", api)
