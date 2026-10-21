@@ -133,6 +133,10 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn("access_token=${t}", api)
         self.assertNotIn("access_token=${process.env.META_TOKEN}", api)
         self.assertIn("process.env.YT_CANAL_ID", api)
+        self.assertIn("const tareas = { Facebook: facebook, Instagram: instagram, YouTube: youtube }", api)
+        self.assertIn("Falta configurar YT_KEY", api)
+        self.assertIn("Falta configurar YT_CANAL_ID", api)
+        self.assertIn("No se encontró el canal indicado por YT_CANAL_ID", api)
 
     def test_no_hay_credenciales_en_el_html_publico(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
