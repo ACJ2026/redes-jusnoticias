@@ -8,8 +8,8 @@
 - [x] PR #5 abierto contra `feat/cloudflare-pages-google-metrics`: https://github.com/ACJ2026/redes-jusnoticias/pull/5
 - [x] Mantener secretos fuera del HTML y del repositorio.
 - [x] Revisión sintáctica: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 registros de repercusión, 694 confirmados con URL válida, 285 posteos y 64 medios).
-- [x] Suite de regresión del historial, generador, sincronización HTML y fechas pasan en GitHub Actions para el commit `2669fa1`: 21 pruebas OK, incluida la clasificación de registros sin enlace como posibles, la corrección de la URL ajena y la sintaxis JS de los dos tableros. Ejecución: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39522088058
-- [x] Pruebas del tablero público: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias, errores de YouTube explícitos y sin claves en el HTML. La suite corre en el mismo workflow de regresión y pasó para `2669fa1`.
+- [x] Suite de regresión del historial, generador, sincronización HTML y fechas pasan en GitHub Actions para el commit `6259ec9`: 22 pruebas OK, incluida la clasificación de registros sin enlace como posibles, la corrección de la URL ajena, el conteo de medios únicos por nota y la sintaxis JS de los dos tableros. Ejecución: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39522403573
+- [x] Pruebas del tablero público: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias, errores de YouTube explícitos y sin claves en el HTML. La suite corre en el mismo workflow de regresión y pasó para `6259ec9`.
 - [x] Tablero interno alineado con el criterio de publicación confirmada: confianza media/alta y URL válida; las filas sin enlace se muestran como posibles y no inflan los totales. Sintaxis del JavaScript interno comprobada por CI.
 - [x] Validación de fechas de Google probada con casos válidos, fecha imposible, formato inválido, rango invertido y ventana máxima de 90 días.
 - [x] Fecha del relevamiento separada de la fecha de generación: regenerar solo el HTML no cambia `data/actualizado.txt`; prueba automatizada incluida.
@@ -78,7 +78,7 @@ Los enlaces están recibidos; **la integración técnica de cada uno aún debe v
 - [ ] Mostrar «sin dato disponible» cuando una plataforma no entregue una métrica; no convertirlo en cero.
 - [ ] Probar por red publicaciones, seguidores, reacciones, comentarios, compartidos y vistas solo cuando la plataforma ofrezca cada dato.
 
-**Estado técnico conocido:** `api/redes.js` es la ruta heredada de Vercel y `functions/api/redes.js` es la adaptación para Pages. Ninguna está conectada a la plantilla pública: las redes visibles siguen proviniendo del JSON generado por GitHub Actions. No describirlas como métricas en vivo hasta verificar credenciales, IDs, permisos y conectar la interfaz. X y TikTok no están integrados; WhatsApp queda pendiente de verificar métricas disponibles.
+**Estado técnico conocido:** `api/redes.js` es la ruta heredada de Vercel y `functions/api/redes.js` es la adaptación para Pages. Ninguna está conectada a la plantilla pública: las redes visibles siguen proviniendo del JSON generado por GitHub Actions. La interfaz aclara que son registros/capturas guardadas y que la cifra de seguidores no es necesariamente un dato en vivo. No describirlas como métricas en vivo hasta verificar credenciales, IDs, permisos y conectar la interfaz. X y TikTok no están integrados; WhatsApp queda pendiente de verificar métricas disponibles.
 
 ## 6. Google Analytics 4 y Search Console
 - [x] La API de Google de Cloudflare Pages respondió correctamente en una prueba para 01/10/2026–19/10/2026.
