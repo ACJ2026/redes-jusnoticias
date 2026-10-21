@@ -585,13 +585,54 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     $('territorio-resumen').textContent = fmt(rs.length)+' publicaciones · '+fmt(localidades.size)+' localidades o grupos · '+fmt(conocidas)+' con localidad identificada · '+fmt(verif)+' por verificar. '+(resumen || 'Sin datos para este período.');
   };
 
+  const mostrarReferenciasMedios = (titulo, intro, registros) => {
+    const panel = $('medios-detalle'), lista = $('medios-detalle-lista');
+    $('medios-detalle-titulo').textContent = titulo;
+    $('medios-detalle-intro').textContent = intro;
+    const ns = new Map(notas.map(n => [Number(n.id), n]));
+    const vistos = new Set();
+    const items = registros.filter(r => r.url && /^https?:\\/\\//i.test(r.url) && !vistos.has(r.url) && vistos.add(r.url))
+      .sort((a, b) => String(ns.get(Number(b.nota_id))?.fecha || '').localeCompare(String(ns.get(Number(a.nota_id))?.fecha || '')));
+    lista.replaceChildren();
+    if (!items.length) {
+      const p = document.createElement('p'); p.className = 'note';
+      p.textContent = 'No hay enlaces verificables disponibles para esta selección dentro del período elegido.';
+      lista.append(p);
+    } else {
+      items.forEach(r => {
+        const n = ns.get(Number(r.nota_id));
+        const item = document.createElement('div'); item.className = 'medios-ref';
+        const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.textContent = n ? n.titulo : 'Abrir publicación original';
+        const meta = document.createElement('small');
+        meta.textContent = (r.medio || 'Medio sin identificar') + ' · ' + (n?.fecha || 'Fecha de nota no disponible') + ' · ' + (r.origen || 'Texto sin clasificar') + ' · Confianza: ' + (r.confianza || 'No indicada');
+        item.append(a, meta); lista.append(item);
+      });
+    }
+    panel.hidden = false;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+  const hacerSeleccionable = (elemento, etiqueta, accion) => {
+    elemento.tabIndex = 0; elemento.setAttribute('role', 'button'); elemento.setAttribute('aria-label', etiqueta);
+    elemento.title = etiqueta + '. Seleccioná para ver los enlaces de referencia.';
+    elemento.addEventListener('click', accion);
+    elemento.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); accion(); } });
+  };
   const drawMedios = (c) => {
     const t = c.porMedio, mx = t.length ? Math.max(...t.map(r => r.notas)) : 1;
     const contador = $('medios-count');
-    if (contador) contador.textContent = fmt(t.length) + ' medios con publicaciones confirmadas en el período elegido. Cada cifra cuenta notas distintas; el orden se actualiza al cambiar las fechas.';
+    if (contador) contador.textContent = fmt(t.length) + ' medios con publicaciones confirmadas en el período elegido. Seleccioná una barra para abrir los enlaces originales registrados.';
     bars('b-medios', t.map(r => row(r.medio, [[r.copia, 'var(--copia)'], [r.otra, 'var(--accent)'], [r.sin_dato, 'var(--muted-bar)']], r.notas, mx)));
-    const n = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 12), mn = n.length ? n[0].n_medios : 1;
+    [...$('b-medios').querySelectorAll('.bar-row')].forEach((e, i) => {
+      const r = t[i];
+      hacerSeleccionable(e, 'Ver publicaciones de ' + r.medio, () => mostrarReferenciasMedios('Publicaciones de ' + r.medio, 'Se muestran los enlaces registrados y confirmados para este medio en el período seleccionado. Cada enlace abre la publicación original en otra pestaña.', repOk.filter(x => en(x.mes) && x.medio === r.medio)));
+    });
+    const n = c.notasP.slice().filter(r => r.n_medios > 0).sort((a, b) => b.n_medios - a.n_medios || a.titulo.localeCompare(b.titulo)).slice(0, 12), mn = n.length ? n[0].n_medios : 1;
     bars('b-top', n.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
+    [...$('b-top').querySelectorAll('.bar-row')].forEach((e, i) => {
+      const r = n[i];
+      hacerSeleccionable(e, 'Ver publicaciones relacionadas con ' + r.titulo, () => mostrarReferenciasMedios('Publicaciones relacionadas con esta nota', 'Enlaces originales encontrados para esta nota de JusNoticias. La relación temática no demuestra por sí sola que se haya utilizado nuestra información.', repOk.filter(x => en(x.mes) && Number(x.nota_id) === Number(r.id))));
+    });
     const mo = Math.max(1, ...c.origen.map(r => r.n));
     bars('b-origen', c.origen.map(r => row(r.origen === 'Sin dato' ? 'Texto no disponible para comparar' : r.origen, [[r.n, r.origen.startsWith('Copia') ? 'var(--copia)' : r.origen === 'Sin dato' ? 'var(--muted-bar)' : 'var(--accent)']], r.n, mo)));
     const mc = Math.max(1, ...c.cadena.map(r => r.n));
