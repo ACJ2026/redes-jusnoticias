@@ -16,7 +16,7 @@ Variables que requiere la ruta social de Pages. La ruta heredada de Vercel usa l
 - El perfil administrador `STJ Chubut 1` no se cuenta como página institucional ni se agrega a estas variables. La integración consulta las dos páginas institucionales por separado y conserva el nombre de cada página en las filas. Si una falla, informa el error parcial y conserva los resultados de la otra.
 - `IG_USER_ID`: identificador de Instagram, obligatorio y correspondiente a `@jus_chubut`. La ruta de Pages consulta seguidores y cantidad total de publicaciones, lista publicaciones con fecha, tipo de contenido, enlace, me gusta y comentarios, y solicita alcance diario mediante Insights. El alcance mostrado corresponde al último período diario completo devuelto; si Insights falla, las publicaciones siguen disponibles y el error estadístico se informa por separado.
 - `YT_KEY`: clave de YouTube Data API.
-- `YT_CANAL_ID`: ID de canal confirmado para `@jusnoticiasprensa2865`.
+- `YT_CANAL_ID`: ID permanente del canal, si ya se conoce. Alternativamente, `YT_CANAL_HANDLE` permite resolver el canal por identificador; por defecto se usa `jusnoticiasprensa2865`.
 - `X_BEARER_TOKEN`: token de aplicación autorizado para consultar el timeline público de X.
 - `X_USER_HANDLE`: nombre de usuario de X sin arroba; opcional, por defecto `Jus_Noticias`.
 
@@ -26,7 +26,7 @@ No guardar estos valores ni tokens en el repositorio, HTML, issues o documentaci
 
 - Facebook: JusNoticias (cuenta indicada por el código como `prensastjchubut`); verificar el ID y nombre visibles.
 - Instagram: [@jus_chubut](https://www.instagram.com/jus_chubut/); ID validado en Graph API Explorer: `17841410514175238`. Se comprobaron cuenta, seguidores, cantidad de publicaciones, publicaciones recientes y alcance diario. Falta probar la integración completa desde el entorno de Pages con el secreto definitivo.
-- YouTube: [JusNoticias Prensa](https://www.youtube.com/@jusnoticiasprensa2865); ID y seguidores pendientes de verificar. El canal general del Poder Judicial se conserva como referencia institucional distinta y ya no se cuenta como cuenta propia de JusNoticias.
+- YouTube: [JusNoticias Prensa](https://www.youtube.com/@jusnoticiasprensa2865); la ruta de Pages puede resolverlo por `YT_CANAL_HANDLE` (por defecto `jusnoticiasprensa2865`) o usar el ID estable en `YT_CANAL_ID`. Falta una prueba real con `YT_KEY` configurada. El canal general del Poder Judicial se conserva como referencia institucional distinta y ya no se cuenta como cuenta propia de JusNoticias.
 - X: [@Jus_Noticias](https://x.com/Jus_Noticias); la función de Pages ya consulta la API v2 con `X_BEARER_TOKEN` y `X_USER_HANDLE` (opcional, por defecto `Jus_Noticias`). Requiere una aplicación de desarrollador y acceso autorizado a la API; hasta configurar el token, la interfaz debe mostrar el error de conexión y no un cero.
 - TikTok: [@juschubut](https://www.tiktok.com/@juschubut); integración pendiente.
 - WhatsApp: [Agencia de Comunicación Judicial](https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p); determinar qué estadísticas ofrece el canal antes de diseñar métricas.
