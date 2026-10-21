@@ -428,7 +428,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   // Base: notas y publicaciones confirmadas
   const notas = D.notas;
   const mesDe = new Map(notas.map(n => [Number(n.id), n.mes]));
-  const esConfirmada = r => r.confianza !== 'Baja' && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
+  // Una URL por sí sola no confirma una relación: las coincidencias solo por título quedan "A revisar".
+  // Si además consta una búsqueda por frase de la nota, no se clasifica como solo título.
+  const soloCoincidenciaTitulo = r => /solo t[ií]tulos?/i.test(r.metodo || '') && !/frase de la nota/i.test(r.metodo || '');
+  const esConfirmada = r => r.confianza !== 'Baja' && !soloCoincidenciaTitulo(r) && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
   const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id));
