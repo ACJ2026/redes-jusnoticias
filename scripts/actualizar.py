@@ -348,9 +348,14 @@ def gmatch(it, n):
     # Evitar asignar una noticia por coincidencias genéricas del cuerpo (p. ej. "Patagonia").
     # Además del cuerpo, el titular externo debe compartir al menos dos términos
     # significativos con el título oficial de JusNoticias.
+    # Los términos temáticos amplios no bastan para atribuir una publicación a una nota.
+    # Por ejemplo, compartir solo "mujeres rurales" no acredita relación con la campaña de JusNoticias.
+    GENERICOS_TITULO = {'mujer', 'rural', 'rurale', 'campan', 'homena', 'celebr', 'conmem', 'mundia', 'intern', 'nacion', 'provin'}
     coincidencias_titulo = len(st & STEM(n.get('titulo', '')))
+    coincidencias_especificas = len((st & STEM(n.get('titulo', ''))) - GENERICOS_TITULO)
     if (not best or best['id'] != n['id'] or sc(n['id']) < minimo
-            or len(st & JSTEM[n['id']]) < 2 or coincidencias_titulo < 2):
+            or len(st & JSTEM[n['id']]) < 2 or coincidencias_titulo < 2
+            or coincidencias_especificas < 2):
         return None
     return dict(it, nid=n['id'], sc=sc(n['id']))
 GEO = re.compile(r'chubut|patagon|trelew|rawson|madryn|comodoro|esquel|gaiman|sarmiento|trevelin|puelo|lago puelo|dolavon|rada tilly|superior tribunal|stj')

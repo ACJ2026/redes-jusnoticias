@@ -134,3 +134,11 @@ Próxima acción:
 - El run `39435202604` de `Pruebas de regresión del historial` en la rama de la PR #3 terminó en `success`; valida esa suite, no el generador completo.
 - Diagnóstico de previews Vercel `Blocked`: sigue sin confirmarse la causa, porque no se dispone del detalle privado del deployment. No se modificaron permisos ni protecciones.
 - Próxima verificación: comprobar el resultado del próximo run de `actualizar` posterior al merge; si no se inicia automáticamente, ejecutarlo manualmente desde GitHub Actions con modo `completo` y revisar los logs antes de considerar validada la generación. No sobrescribir datos históricos ni afirmar éxito sin un run verde.
+
+
+## 21/10/2026 — Relevancia de repercusiones y sección territorial
+
+- Se retiró temporalmente de la versión pública la tarjeta «Distribución por localidad» y su lógica asociada. No se publicarán cifras territoriales hasta contar con localidades verificadas y registros enlazados con publicaciones originales comprobables.
+- Se endureció la asignación automática de resultados de Google Noticias: además de las validaciones existentes, exige al menos dos coincidencias de título que no sean términos temáticos amplios. Compartir únicamente expresiones genéricas como «mujeres rurales» ya no basta para asociar una noticia a una nota de JusNoticias.
+- No se modificaron ni eliminaron filas del historial de repercusiones. Los cambios de código están en la rama `fix/relevancia-territorio`; quedan sujetos a revisión y despliegue.
+- Se validó la sintaxis JavaScript de las tres plantillas/salidas HTML modificadas y se confirmó que ya no quedan referencias a la tarjeta territorial retirada.
