@@ -178,3 +178,12 @@ Próxima acción:
 - El HTML generado conserva un único marcador de plantilla antes de la sustitución y deja de incrustar el array antiguo.
 - **Estado final: resuelto.** El usuario confirmó el 21/10/2026 que la portada volvió a funcionar tras la regeneración de los HTML públicos. Se da por validada la corrección funcional en producción.
 - La comprobación automática de GitHub Actions no quedó accesible desde esta sesión; la confirmación funcional del usuario se registra como verificación final.
+
+
+### 2026-10-21 — Fuentes reales de tráfico y explicación de métricas de búsqueda
+
+- Rama de trabajo: `feature/fuentes-reales-y-ayuda-buscadores`, creada desde `main`; no se modificó `main` ni se declaró un despliegue.
+- Se amplió `functions/api/google-metrics.js` para consultar en GA4 las dimensiones reales `sessionSource` y `sessionMedium`, además de sesiones, vistas y usuarios. El endpoint devuelve las fuentes efectivamente registradas, ordenadas por visitas, y una clasificación orientativa en buscador, red social, asistente de IA, otro sitio, acceso directo, origen sin identificar u otra fuente.
+- La tabla conserva y muestra la fuente y el medio originales que entrega GA4. Si el tráfico no puede atribuirse, no se asigna a una plataforma por suposición. La API puede tener demora; no equivale a medición en tiempo real segundo a segundo.
+- Se incorporó en la plantilla una tabla “Fuentes concretas de las visitas” y traducciones al español para canales y dispositivos. Las tablas de Search Console explican el porcentaje de clics (ejemplo: 50 clics de 1.000 apariciones = 5 %) y que la posición promedio es el lugar medio del resultado, donde 1 es el primer puesto.
+- Pendiente: ejecutar pruebas estáticas y de regresión; comprobar el endpoint con credenciales reales; confirmar el resultado en el entorno de Cloudflare Pages. No se considera validada la conexión hasta completar esas pruebas.

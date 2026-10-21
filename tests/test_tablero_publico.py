@@ -80,12 +80,27 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_metricas_de_busqueda_tienen_nombres_claros_y_fuentes_separadas(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn("Visitas desde buscadores", template)
-        self.assertIn("Apariciones en buscadores", template)
+        self.assertIn("Clics desde Google", template)
+        self.assertIn("Veces que apareció en Google", template)
+        self.assertIn("Porcentaje de clics", template)
+        self.assertIn("Posición promedio", template)
         self.assertIn("Actividad dentro del sitio · fuente: Google Analytics 4", template)
         self.assertIn("Presencia en buscadores · fuente actual: Google Search Console", template)
         self.assertNotIn("clics desde Google", template)
         self.assertNotIn("impresiones en búsquedas", template)
+
+    def test_fuentes_reales_de_trafico_y_ayuda_de_busqueda(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        function = (ROOT / "functions/api/google-metrics.js").read_text(encoding="utf-8")
+        self.assertIn('id="g-tabla-fuentes"', template)
+        self.assertIn('fill(\'g-tabla-fuentes\', a.fuentes', template)
+        self.assertIn('runGA(["sessionSource", "sessionMedium"]', function)
+        self.assertIn("fuentes: sourceRows", function)
+        self.assertIn('"Asistente de IA"', function)
+        self.assertIn('"Red social"', function)
+        self.assertIn('"Buscador"', function)
+        self.assertIn("50 clics entre 1.000 apariciones = 5 %", template)
+        self.assertIn("donde 1 es el primer resultado", template)
 
     def test_api_x_muestra_error_si_no_hay_token_y_no_finge_integracion_completa(self):
         function = (ROOT / "functions/api/redes.js").read_text(encoding="utf-8")
