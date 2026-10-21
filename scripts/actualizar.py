@@ -337,7 +337,7 @@ with ThreadPoolExecutor(4) as ex:
             medio = conocidos.get(clave(it['src']), limpio(it['src']))
             # El título puede omitir la ciudad aunque trate el mismo fallo local.
             # La nota de JusNoticias y la ventana temporal ya se validaron en gmatch().
-            if clave(it['src']) not in conocidos and not GEO.search(norm(it['t'] + ' ' + n['titulo'])): continue
+            # La similitud textual y la ventana temporal se validaron en gmatch(); no exigir geografía.
             if NO.search(medio): continue
             if (n['id'], medio) in ya:
                 for r0 in rows:
