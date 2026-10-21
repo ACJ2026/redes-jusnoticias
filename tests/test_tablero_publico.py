@@ -44,6 +44,24 @@ class TableroPublicoTests(unittest.TestCase):
             (ROOT / "publico/tablero_publico.html").read_text(encoding="utf-8"),
         )
 
+    def test_portada_muestra_periodo_y_orden_correcto_de_indicadores(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('id="portada-periodo"', template)
+        self.assertIn('id="portada-notas-repercusion"', template)
+        self.assertLess(template.index('id="portada-notas"'), template.index('id="portada-notas-repercusion"'))
+        self.assertLess(template.index('id="portada-notas-repercusion"'), template.index('id="portada-repercusion"'))
+        self.assertIn("notasConRepercusion:", template)
+        self.assertIn("Indicadores del período:", template)
+
+    def test_metricas_de_busqueda_tienen_nombres_claros_y_fuentes_separadas(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("Visitas desde buscadores", template)
+        self.assertIn("Apariciones en buscadores", template)
+        self.assertIn("Actividad dentro del sitio · fuente: Google Analytics 4", template)
+        self.assertIn("Presencia en buscadores · fuente actual: Google Search Console", template)
+        self.assertNotIn("clics desde Google", template)
+        self.assertNotIn("impresiones en búsquedas", template)
+
     def test_generador_publico_ejecuta_y_usa_la_plantilla_legible(self):
         nombres = ["notas", "repercusion", "redes", "canales", "medios"]
         muestras = {
