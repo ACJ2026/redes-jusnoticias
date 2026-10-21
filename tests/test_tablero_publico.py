@@ -195,6 +195,15 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("const ok = rs.filter(esConfirmada)", template)
 
 
+    def test_actualizador_tiene_guardas_contra_enlaces_mal_asociados(self):
+        actualizador = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
+        # La coincidencia con el cuerpo no alcanza: el titular debe compartir
+        # al menos dos términos significativos con el título oficial.
+        self.assertIn("coincidencias_titulo < 2", actualizador)
+        # Una URL identificada como asociación falsa no debe volver desde el historial.
+        self.assertIn("URLS_DESCARTADAS", actualizador)
+        self.assertIn("un-delincuente-que-era-buscado-en-buenos-aires-cayo-en-la-patagonia", actualizador)
+
     def test_url_radio3_no_se_asocia_a_una_nota_distinta(self):
         rep = read_json("data/rep2.json")
         carta = next(r for r in rep if int(r["nota_id"]) == 14509 and r["medio"] == "Radio 3 Cadena Patagonia")

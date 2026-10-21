@@ -345,7 +345,13 @@ def gmatch(it, n):
     cand = [j for j in notas if addd(j['fecha'], -1) <= it['d'] <= addd(j['fecha'], 8)]
     best = max(cand, key=lambda j: sc(j['id']), default=None)
     minimo = 0.25 if it.get('fuerte') else 0.45
-    if not best or best['id'] != n['id'] or sc(n['id']) < minimo or len(st & JSTEM[n['id']]) < 2: return None
+    # Evitar asignar una noticia por coincidencias genéricas del cuerpo (p. ej. "Patagonia").
+    # Además del cuerpo, el titular externo debe compartir al menos dos términos
+    # significativos con el título oficial de JusNoticias.
+    coincidencias_titulo = len(st & STEM(n.get('titulo', '')))
+    if (not best or best['id'] != n['id'] or sc(n['id']) < minimo
+            or len(st & JSTEM[n['id']]) < 2 or coincidencias_titulo < 2):
+        return None
     return dict(it, nid=n['id'], sc=sc(n['id']))
 GEO = re.compile(r'chubut|patagon|trelew|rawson|madryn|comodoro|esquel|gaiman|sarmiento|trevelin|puelo|lago puelo|dolavon|rada tilly|superior tribunal|stj')
 def limpio(s): return re.sub(r'^[^\w¿¡]+', '', s).strip()
@@ -431,7 +437,22 @@ if PREV and os.path.exists(PREV):
 # ---------- Salida ----------
 ids = {n['id'] for n in notas}; seen = set(); rep = []
 FP = re.compile(r'pity alvarez|dinosaur|papa leon|maradona|reforma laboral fue promulgada')
+# Corrección de una asociación histórica detectada por regresión: este enlace de
+# Radio 3 corresponde a una noticia policial, no a la nota institucional 14674.
+# La limpieza se aplica después de consolidar el historial para impedir que vuelva
+# a introducirse desde una ejecución anterior.
+URLS_DESCARTADAS = {
+    (14674, 'Radio 3 Cadena Patagonia',
+     'https://radio3cadenapatagonia.com.ar/un-delincuente-que-era-buscado-en-buenos-aires-cayo-en-la-patagonia/')
+}
 for r in rows:
+    if (r.get('nota_id'), r.get('medio'), r.get('url')) in URLS_DESCARTADAS:
+        r['url'] = ''
+        r['origen'] = 'Sin dato'
+        r['cita_fuente_oficial'] = 'No'
+        r['cita_otro_medio'] = ''
+        r['confianza'] = 'Baja'
+        r['metodo'] = 'Revisión completa'
     k = (r['nota_id'], r['medio'])
     if k in seen or r['nota_id'] not in ids or FP.search(norm(r.get('url', ''))): continue
     seen.add(k); rep.append(r)
