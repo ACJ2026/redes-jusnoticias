@@ -176,4 +176,5 @@ Próxima acción:
 **Verificación de esta intervención**
 - Revisión estática: 280 notas, 1.222 repercusiones, 285 registros de redes, 8 canales y 88 medios serializados en la estructura esperada.
 - El HTML generado conserva un único marcador de plantilla antes de la sustitución y deja de incrustar el array antiguo.
-- Pendiente: resultado de GitHub Actions y comprobación del despliegue en vivo de Cloudflare Pages.
+- **Estado final: resuelto.** El usuario confirmó el 21/10/2026 que la portada volvió a funcionar tras la regeneración de los HTML públicos. Se da por validada la corrección funcional en producción.
+- La comprobación automática de GitHub Actions no quedó accesible desde esta sesión; la confirmación funcional del usuario se registra como verificación final.
