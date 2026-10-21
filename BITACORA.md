@@ -151,3 +151,29 @@ Próxima acción:
 - Se incorporó una regla permanente en `scripts/actualizar.py` para que esas asociaciones históricas no vuelvan a contarse como confirmadas tras consolidar el historial.
 - Se sincronizaron `data/rep2.json`, `publico/index.html` y `publico/tablero_publico.html`, y se agregó una prueba de regresión.
 - Validación realizada: 17/17 registros identificados en el HTML público y el JSON fuente figuran con confianza Baja; ambos HTML están sincronizados y el JavaScript público pasa validación de sintaxis. La URL pública no pudo verificarse desde esta sesión; queda pendiente confirmar que Cloudflare haya desplegado la actualización.
+
+
+## 21/10/2026 — Incidente repetido: portada pública con indicadores «—»
+
+**Síntoma**
+- En `https://jusnoticias.pages.dev/`, la portada volvió a mostrar guiones en el período y los tres indicadores, y el acceso al tablero no respondía.
+
+**Causa raíz**
+- La plantilla vigente `templates/tablero.html` esperaba un objeto JSON con las claves `notas`, `repercusion`, `redes`, `canales`, `medios`, `actualizado` y `datos_actualizados`.
+- Los archivos publicados `publico/index.html` y `publico/tablero_publico.html` seguían conteniendo un array antiguo de repercusiones, no el objeto esperado. Al ejecutar `D.notas.map(...)`/operaciones equivalentes sobre esa estructura, el JavaScript fallaba durante la inicialización antes de actualizar la portada y registrar el botón de entrada.
+- El workflow de actualización solo se disparaba por cambios en `scripts/actualizar.py` o `data/fuentes_descubiertas.json`; no se ejecutaba al cambiar `templates/tablero.html` o `scripts/armar_publico.py`. La prueba de sincronización ya existente detectaba la diferencia, pero no se ejecutaba porque faltaba un disparador para esos cambios.
+
+**Solución aplicada**
+- Regenerados `publico/index.html` y `publico/tablero_publico.html` desde la plantilla actual y los cinco JSON fuente, manteniendo intactos los datos históricos.
+- Se añadió `.github/workflows/reconstruir-publico.yml`, dedicado a regenerar, validar y guardar el HTML cuando cambian la plantilla o el generador; no ejecuta el relevamiento ni modifica los históricos.
+- Se agregó una prueba que exige la existencia del workflow y verifica que invoque el generador y la suite de regresión.
+
+**Prevención**
+- Mantener la prueba `test_plantilla_y_archivos_publicos_estan_sincronizados`: valida que el JSON embebido coincida con los datos fuente y que los dos HTML sean idénticos.
+- El workflow de reconstrucción queda disparado por cambios en `templates/tablero.html`, `scripts/armar_publico.py` y la propia prueba de sincronización.
+- No considerar resuelto en producción hasta comprobar el deploy de Cloudflare Pages y abrir la portada con los indicadores cargados.
+
+**Verificación de esta intervención**
+- Revisión estática: 280 notas, 1.222 repercusiones, 285 registros de redes, 8 canales y 88 medios serializados en la estructura esperada.
+- El HTML generado conserva un único marcador de plantilla antes de la sustitución y deja de incrustar el array antiguo.
+- Pendiente: resultado de GitHub Actions y comprobación del despliegue en vivo de Cloudflare Pages.
