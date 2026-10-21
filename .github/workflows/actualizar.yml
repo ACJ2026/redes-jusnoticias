@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/actualizar.yml'
       - 'scripts/actualizar.py'
+      - 'data/fuentes_descubiertas.json'
       - 'scripts/armar_publico.py'
       - 'templates/**'
   schedule:
