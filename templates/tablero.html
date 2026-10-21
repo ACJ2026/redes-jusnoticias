@@ -364,11 +364,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card"><h2>Principales páginas de Juschubut Noticias</h2><div class="tbox"><table id="g-tabla-paginas"><thead><tr><th>Contenido</th><th>Vistas</th><th>Sesiones</th><th>Usuarios</th></tr></thead><tbody></tbody></table></div></div>
     <div class="grid2">
-      <div class="card"><h2>Canales de tráfico</h2><div class="tbox"><table id="g-tabla-canales"><thead><tr><th>Canal</th><th>Sesiones</th><th>Vistas</th></tr></thead><tbody></tbody></table></div></div>
-      <div class="card"><h2>Dispositivos</h2><div class="tbox"><table id="g-tabla-dispositivos"><thead><tr><th>Dispositivo</th><th>Sesiones</th><th>Vistas</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="card"><h2>Canales de tráfico</h2><p class="note">Agrupa las visitas por el tipo de vía por la que llegaron. Para ver nombres concretos, consultá la tabla de fuentes de abajo.</p><div class="tbox"><table id="g-tabla-canales"><thead><tr><th>Tipo de canal</th><th>Visitas</th><th>Páginas vistas</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="card"><h2>Dispositivos</h2><div class="tbox"><table id="g-tabla-dispositivos"><thead><tr><th>Dispositivo</th><th>Visitas</th><th>Páginas vistas</th></tr></thead><tbody></tbody></table></div></div>
     </div>
-    <div class="card"><h2>Búsquedas que llevan a Juschubut Noticias</h2><div class="tbox"><table id="g-tabla-consultas"><thead><tr><th>Búsqueda</th><th>Visitas desde buscadores</th><th>Apariciones en buscadores</th><th>Porcentaje de clics</th><th>Posición media</th></tr></thead><tbody></tbody></table></div></div>
-    <div class="card"><h2>Páginas que aparecen en buscadores</h2><div class="tbox"><table id="g-tabla-search-paginas"><thead><tr><th>Página</th><th>Visitas desde buscadores</th><th>Apariciones en buscadores</th><th>Porcentaje de clics</th><th>Posición media</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Fuentes concretas de las visitas</h2><p class="note">Muestra los buscadores, redes sociales, sitios web y asistentes de IA que Analytics registra como origen de las visitas. Se muestran los nombres que devuelve la fuente de datos, no una lista supuesta. «Acceso directo» y «Sin identificar» se mantienen separados. La información se consulta al abrir esta sección o al pulsar «Consultar»; puede tener demora y no identifica un origen que el navegador o el enlace no informan.</p><div class="tbox"><table id="g-tabla-fuentes"><thead><tr><th>Fuente registrada</th><th>Tipo de origen</th><th>Medio de tráfico</th><th>Visitas</th><th>Páginas vistas</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Búsquedas que llevan a Juschubut Noticias</h2><p class="note">El porcentaje de clics es la proporción de apariciones que terminaron en un clic. Ejemplo: 50 clics entre 1.000 apariciones = 5 %. La posición media es el lugar promedio del resultado: 1 significa el primer puesto; cuanto menor el número, más arriba suele aparecer. Es un promedio y puede variar según búsqueda, dispositivo y ubicación.</p><div class="tbox"><table id="g-tabla-consultas"><thead><tr><th>Qué buscaron</th><th>Clics desde buscadores</th><th>Veces que apareció</th><th>Porcentaje de clics</th><th>Posición promedio</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Páginas que aparecen en buscadores</h2><p class="note">Estas cifras corresponden a resultados de búsqueda, no a todas las visitas a la página. El porcentaje de clics compara los clics con las apariciones; la posición promedio indica el lugar medio en que se mostró esa página, donde 1 es el primer resultado.</p><div class="tbox"><table id="g-tabla-search-paginas"><thead><tr><th>Página publicada</th><th>Clics desde buscadores</th><th>Veces que apareció</th><th>Porcentaje de clics</th><th>Posición promedio</th></tr></thead><tbody></tbody></table></div></div>
   </section>
 
   <section class="page" id="guia" hidden>
@@ -856,11 +857,32 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         { value: r => r.titulo || r.ruta }, { value: r => number(r.screenPageViews) },
         { value: r => number(r.sessions) }, { value: r => number(r.totalUsers) }
       ]);
+      const canalLabel = value => ({
+        'Direct': 'Acceso directo',
+        'Organic Search': 'Búsqueda orgánica',
+        'Organic Social': 'Redes sociales (orgánico)',
+        'Paid Search': 'Búsqueda paga',
+        'Paid Social': 'Redes sociales (pago)',
+        'Referral': 'Otros sitios web',
+        'Unassigned': 'Origen sin identificar',
+        'Email': 'Correo electrónico',
+        'Organic Video': 'Video orgánico',
+        'Paid Video': 'Video pago',
+        'Display': 'Anuncios gráficos',
+        'Cross-network': 'Varias redes',
+        'Organic Shopping': 'Compras orgánicas',
+        'Paid Shopping': 'Compras pagas',
+        'AI Assistant': 'Asistentes de IA'
+      })[value] || value;
       fill('g-tabla-canales', a.canales, [
-        { value: r => r.nombre }, { value: r => number(r.sessions) }, { value: r => number(r.screenPageViews) }
+        { value: r => canalLabel(r.nombre) }, { value: r => number(r.sessions) }, { value: r => number(r.screenPageViews) }
       ]);
       fill('g-tabla-dispositivos', a.dispositivos, [
-        { value: r => r.nombre }, { value: r => number(r.sessions) }, { value: r => number(r.screenPageViews) }
+        { value: r => r.nombre === 'mobile' ? 'Celular' : r.nombre === 'desktop' ? 'Computadora' : r.nombre === 'tablet' ? 'Tableta' : r.nombre }, { value: r => number(r.sessions) }, { value: r => number(r.screenPageViews) }
+      ]);
+      fill('g-tabla-fuentes', a.fuentes, [
+        { value: r => r.fuente }, { value: r => r.tipo }, { value: r => r.medio },
+        { value: r => number(r.sessions) }, { value: r => number(r.screenPageViews) }
       ]);
       fill('g-tabla-consultas', s.consultas, [
         { value: r => r.consulta }, { value: r => number(r.clics) }, { value: r => number(r.impresiones) },
