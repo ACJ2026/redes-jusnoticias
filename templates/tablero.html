@@ -92,7 +92,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .landing-inner{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
 .landing-kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#c7e5f4;font-weight:600;margin:0}
 .landing h1{font-family:var(--f-display);font-size:clamp(2.3rem,6vw,5rem);line-height:.99;max-width:850px;letter-spacing:-.025em}
-.landing-intro{font-size:clamp(1rem,2vw,1.25rem);line-height:1.55;color:#e0eef6;max-width:720px;margin:0}
+.landing-intro{font-size:clamp(1rem,2vw,1.25rem);line-height:1.55;color:#e0eef6;max-width:720px;margin:0}.landing-period{font-size:.95rem;letter-spacing:.02em;color:#fff;margin:-4px 0 0;font-weight:600}
 .landing-visual{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px}
 .landing-stat{position:relative;overflow:hidden;min-height:150px;padding:22px;border:1px solid rgba(255,255,255,.24);border-radius:18px;background:rgba(255,255,255,.09);backdrop-filter:blur(5px);display:flex;flex-direction:column;justify-content:space-between;gap:12px}
 .landing-stat:first-child{background:#f3f7fa;color:#153b55;border-color:#f3f7fa}
@@ -176,17 +176,18 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <p class="landing-kicker">Poder Judicial del Chubut · Agencia de Comunicación Judicial</p>
     <h1 id="portada-titulo">JusNoticias</h1>
     <p class="landing-intro landing-subtitle">Tablero de repercusión y comunicación judicial</p>
-    <p class="landing-intro">La presencia de nuestras noticias en medios y redes, en una mirada. Ingresá al tablero para explorar publicaciones, períodos y métricas de audiencia y búsqueda.</p>
-    <div class="landing-visual" aria-label="Indicadores principales">
-      <article class="landing-stat"><div class="symbol" aria-hidden="true">↗</div><strong id="portada-repercusion">—</strong><span>de las notas tuvieron al menos una publicación relacionada en otros medios</span></article>
-      <article class="landing-stat"><div class="symbol" aria-hidden="true">▤</div><strong id="portada-notas">—</strong><span>notas publicadas en JusNoticias durante el período visible</span></article>
-      <article class="landing-stat"><div class="symbol" aria-hidden="true">◎</div><strong id="portada-medios">—</strong><span>medios diferentes donde encontramos publicaciones relacionadas</span></article>
+    <p class="landing-intro">Una mirada a las notas publicadas por JusNoticias y su presencia en otros medios y redes.</p>
+    <p class="landing-period" id="portada-periodo">Indicadores del período: —</p>
+    <div class="landing-visual" aria-label="Indicadores principales del período">
+      <article class="landing-stat"><div class="symbol" aria-hidden="true">▤</div><strong id="portada-notas">—</strong><span>notas publicadas en JusNoticias durante este período</span></article>
+      <article class="landing-stat"><div class="symbol" aria-hidden="true">◎</div><strong id="portada-notas-repercusion">—</strong><span>de esas notas tuvieron al menos una publicación relacionada en otros medios</span></article>
+      <article class="landing-stat"><div class="symbol" aria-hidden="true">↗</div><strong id="portada-repercusion">—</strong><span>porcentaje de notas con al menos una publicación relacionada</span></article>
     </div>
     <div class="landing-bottom">
       <div class="landing-points">
         <div class="landing-point"><i aria-hidden="true">01</i><div><b>Repercusión en medios</b>Qué notas aparecen y dónde se publican.</div></div>
         <div class="landing-point"><i aria-hidden="true">02</i><div><b>Redes sociales</b>Publicaciones, interacción y seguidores disponibles.</div></div>
-        <div class="landing-point"><i aria-hidden="true">03</i><div><b>Audiencia y búsquedas</b>Analytics y Search Console, por separado.</div></div>
+        <div class="landing-point"><i aria-hidden="true">03</i><div><b>Visitas y buscadores</b>Actividad del sitio y presencia en resultados de búsqueda, con sus fuentes aclaradas.</div></div>
       </div>
       <div class="landing-actions">
         <button class="landing-enter" id="entrar-tablero" type="button">Ingresar al tablero completo <span aria-hidden="true">→</span></button>
@@ -220,7 +221,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <button role="tab" id="tab-medios" data-page="medios" aria-selected="false">Medios</button>
     <button role="tab" id="tab-notas" data-page="notas" aria-selected="false">Notas</button>
     <button role="tab" id="tab-redes" data-page="redes" aria-selected="false">Redes</button>
-    <button role="tab" id="tab-google" data-page="google" aria-selected="false">Google</button>
+    <button role="tab" id="tab-google" data-page="google" aria-selected="false">Visitas y buscadores</button>
     <button role="tab" id="tab-guia" data-page="guia" aria-selected="false">Cómo leerlo</button>
   </nav>
 
@@ -341,8 +342,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
   <section class="page" id="google" hidden>
     <div class="card guia">
-      <h2>Audiencia y búsquedas en Google</h2>
-      <p class="note">Datos consultados directamente desde Google Analytics 4 y Search Console. No se mezclan con las métricas de repercusión en medios o redes. Google permite consultar hasta 90 días por vez; si elegís un período más largo en el tablero, acá se toma la ventana más reciente de 90 días.</p>
+      <h2>Visitas al sitio y presencia en buscadores</h2>
+      <p class="note">Los datos se muestran por separado: la actividad dentro del sitio proviene de Google Analytics 4; la información sobre resultados de búsqueda proviene actualmente de Google Search Console. “Visitas desde buscadores” cuenta los clics en resultados que llevan al sitio; “apariciones en buscadores” cuenta cuántas veces se mostró una página en los resultados. Estas cifras no son lo mismo que las visitas totales del sitio. Se pueden consultar hasta 90 días por vez; para períodos más largos se toma la ventana más reciente de 90 días.</p>
       <div class="tools">
         <label for="g-desde" class="lbl">Desde</label><input id="g-desde" type="date">
         <label for="g-hasta" class="lbl">Hasta</label><input id="g-hasta" type="date">
@@ -350,20 +351,24 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       </div>
       <p class="note" id="g-estado" role="status">Consultando configuración…</p>
     </div>
+    <p class="grp">Actividad dentro del sitio · fuente: Google Analytics 4</p>
     <div class="kpis">
-      <div class="kpi lead"><div class="big" id="g-usuarios">—</div><div class="lbl">usuarios</div></div>
-      <div class="kpi"><div class="big" id="g-sesiones">—</div><div class="lbl">sesiones</div></div>
-      <div class="kpi"><div class="big" id="g-vistas">—</div><div class="lbl">páginas vistas</div></div>
-      <div class="kpi"><div class="big" id="g-clics">—</div><div class="lbl">clics desde Google</div></div>
-      <div class="kpi"><div class="big" id="g-impresiones">—</div><div class="lbl">impresiones en búsquedas</div></div>
+      <div class="kpi lead"><div class="big" id="g-usuarios">—</div><div class="lbl">usuarios del sitio</div></div>
+      <div class="kpi"><div class="big" id="g-sesiones">—</div><div class="lbl">sesiones en el sitio</div></div>
+      <div class="kpi"><div class="big" id="g-vistas">—</div><div class="lbl">páginas vistas en el sitio</div></div>
+    </div>
+    <p class="grp">Presencia en buscadores · fuente actual: Google Search Console</p>
+    <div class="kpis">
+      <div class="kpi"><div class="big" id="g-clics">—</div><div class="lbl">visitas desde buscadores</div></div>
+      <div class="kpi"><div class="big" id="g-impresiones">—</div><div class="lbl">apariciones en buscadores</div></div>
     </div>
     <div class="card"><h2>Principales páginas de JusNoticias</h2><div class="tbox"><table id="g-tabla-paginas"><thead><tr><th>Contenido</th><th>Vistas</th><th>Sesiones</th><th>Usuarios</th></tr></thead><tbody></tbody></table></div></div>
     <div class="grid2">
       <div class="card"><h2>Canales de tráfico</h2><div class="tbox"><table id="g-tabla-canales"><thead><tr><th>Canal</th><th>Sesiones</th><th>Vistas</th></tr></thead><tbody></tbody></table></div></div>
       <div class="card"><h2>Dispositivos</h2><div class="tbox"><table id="g-tabla-dispositivos"><thead><tr><th>Dispositivo</th><th>Sesiones</th><th>Vistas</th></tr></thead><tbody></tbody></table></div></div>
     </div>
-    <div class="card"><h2>Consultas que llevan a JusNoticias desde Google</h2><div class="tbox"><table id="g-tabla-consultas"><thead><tr><th>Consulta</th><th>Clics</th><th>Impresiones</th><th>CTR</th><th>Posición</th></tr></thead><tbody></tbody></table></div></div>
-    <div class="card"><h2>Páginas en resultados de Google</h2><div class="tbox"><table id="g-tabla-search-paginas"><thead><tr><th>Página</th><th>Clics</th><th>Impresiones</th><th>CTR</th><th>Posición</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Búsquedas que llevan a JusNoticias</h2><div class="tbox"><table id="g-tabla-consultas"><thead><tr><th>Búsqueda</th><th>Visitas desde buscadores</th><th>Apariciones en buscadores</th><th>Porcentaje de clics</th><th>Posición media</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Páginas que aparecen en buscadores</h2><div class="tbox"><table id="g-tabla-search-paginas"><thead><tr><th>Página</th><th>Visitas desde buscadores</th><th>Apariciones en buscadores</th><th>Porcentaje de clics</th><th>Posición media</th></tr></thead><tbody></tbody></table></div></div>
   </section>
 
   <section class="page" id="guia" hidden>
@@ -373,8 +378,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <p><b>¿Qué mide?</b> Cuánto de lo que publica JusNoticias llega a los medios y a las redes.</p>
         <p><b>1. Elegí el período</b> arriba (desde y hasta). Todo se recalcula con esas fechas.</p>
         <p><b>2. Mirá el Resumen.</b> La oración de arriba dice lo principal. Debajo de cada número y gráfico hay una explicación de qué cuenta y de dónde sale.</p>
-        <p><b>3. Para un dato puntual,</b> usá las pestañas <b>Medios</b>, <b>Notas</b> y <b>Redes</b>. La pestaña <b>Google</b> consulta por separado las visitas de Analytics y el rendimiento en búsquedas de Search Console; requiere credenciales configuradas en el servidor.</p>
-        <p><b>4. El relevamiento automático está programado para ejecutarse cada dos horas, en el minuto 59 (hora argentina).</b> La actualización visible depende de que la ejecución termine correctamente y se publique. La pestaña Google consulta a Google cuando se abre o cuando pulsás «Consultar»; los datos más recientes pueden tardar en completarse.</p>
+        <p><b>3. Para un dato puntual,</b> usá las pestañas <b>Medios</b>, <b>Notas</b> y <b>Redes</b>. La pestaña <b>Visitas y buscadores</b> presenta por separado la actividad dentro del sitio y la presencia en resultados de búsqueda; requiere credenciales configuradas en el servidor.</p>
+        <p><b>4. El relevamiento automático está programado para ejecutarse cada dos horas, en el minuto 59 (hora argentina).</b> La actualización visible depende de que la ejecución termine correctamente y se publique. La pestaña Visitas y buscadores consulta la fuente de datos disponible cuando se abre o cuando pulsás «Consultar»; los datos más recientes pueden tardar en completarse.</p>
       </div>
       <div class="card guia">
         <h2>Cómo funciona, explicado simple</h2>
@@ -437,6 +442,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const cad = new Map(); rs.forEach(r => (r.cita_otro_medio || '').split(', ').filter(Boolean).forEach(m => cad.set(m, (cad.get(m) || 0) + 1)));
     return {
       notas: ns.length,
+      notasConRepercusion: ns.filter(n => con.has(Number(n.id))).length,
       pct: ns.length ? Math.round(ns.filter(n => con.has(Number(n.id))).length / ns.length * 100) : 0,
       publicaciones: rs.length,
       medios: g.size,
@@ -638,9 +644,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   };
 
   const updateLanding = c => {
-    $('portada-repercusion').textContent = c.pct + '%';
+    const yd = st.desde.slice(0, 4), yh = st.hasta.slice(0, 4);
+    const per = st.desde === st.hasta ? mesLargo(st.desde) + ' de ' + yd : mesLargo(st.desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(st.hasta) + ' de ' + yh;
+    $('portada-periodo').textContent = 'Indicadores del período: ' + cap(per);
     $('portada-notas').textContent = fmt(c.notas);
-    $('portada-medios').textContent = fmt(c.medios);
+    $('portada-notas-repercusion').textContent = fmt(c.notasConRepercusion);
+    $('portada-repercusion').textContent = c.pct + '%';
   };
   const drawHeader = (c) => {
     const yd = st.desde.slice(0, 4), yh = st.hasta.slice(0, 4);
