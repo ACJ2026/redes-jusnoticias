@@ -150,5 +150,13 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn("GOOGLE_SERVICE_ACCOUNT_JSON=", public)
 
 
+    def test_fecha_de_relevamiento_solo_cambia_en_ejecuciones_de_relevamiento(self):
+        workflow = (ROOT / ".github/workflows/actualizar.yml").read_text(encoding="utf-8")
+        self.assertIn("name: Registrar fecha del relevamiento", workflow)
+        self.assertIn("if: github.event_name == 'schedule'", workflow)
+        guardar = workflow.split("      - name: Guardar", 1)[1]
+        self.assertNotIn('date -u +"%Y-%m-%dT%H:%M:%SZ" > data/actualizado.txt', guardar)
+
+
 if __name__ == "__main__":
     unittest.main()
