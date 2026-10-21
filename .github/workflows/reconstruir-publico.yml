@@ -1,0 +1,66 @@
+name: Reconstruir tablero público
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'templates/tablero.html'
+      - 'scripts/armar_publico.py'
+      - 'tests/test_tablero_publico.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reconstruir-publico-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  reconstruir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Generar ambos HTML públicos
+        run: |
+          python3 scripts/armar_publico.py data/notas2.json data/rep2.json data/redes2.json data/canales.json data/medios.json publico/tablero_publico.html
+          cp publico/tablero_publico.html publico/index.html
+      - name: Validar JavaScript y pruebas de regresión
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          for source, target in [("publico/index.html", "/tmp/tablero-publico.js")]:
+              html = Path(source).read_text(encoding="utf-8")
+              scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\\s\\S]*?)</script>', html)
+              if len(scripts) != 1:
+                  raise SystemExit(f"{source}: se esperaba un script y se encontraron {len(scripts)}")
+              Path(target).write_text(scripts[0], encoding="utf-8")
+          PY
+          node --check /tmp/tablero-publico.js
+          python3 -m unittest discover -s tests -v
+      - name: Guardar HTML regenerado
+        run: |
+          git config user.name "jusnoticias-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add publico/index.html publico/tablero_publico.html
+          if git diff --cached --quiet; then
+            echo "El HTML público ya estaba sincronizado."
+            exit 0
+          fi
+          git commit -m "fix: reconstruir HTML público desde plantilla vigente"
+          git pull --rebase
+          python3 scripts/armar_publico.py data/notas2.json data/rep2.json data/redes2.json data/canales.json data/medios.json publico/tablero_publico.html
+          cp publico/tablero_publico.html publico/index.html
+          python3 -m unittest discover -s tests -v
+          git add publico/index.html publico/tablero_publico.html
+          if ! git diff --cached --quiet; then git commit --amend --no-edit; fi
+          git push
