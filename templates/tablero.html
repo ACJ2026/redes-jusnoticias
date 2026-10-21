@@ -744,8 +744,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
             : red === 'Instagram' && result.errorEstadisticas
               ? 'No disponible: ' + result.errorEstadisticas
               : red === 'Instagram' ? 'Sin dato completo' : '—',
-          totalCuenta: red === 'Instagram' && result.publicacionesTotales !== null && result.publicacionesTotales !== undefined
-            ? ' · ' + fmt(result.publicacionesTotales) + ' publicaciones totales en la cuenta'
+          totalCuenta: (red === 'Instagram' || red === 'YouTube') && result.publicacionesTotales !== null && result.publicacionesTotales !== undefined
+            ? ' · ' + fmt(result.publicacionesTotales) + (red === 'YouTube' ? ' videos totales en el canal' : ' publicaciones totales en la cuenta')
             : ''
         };
       });
