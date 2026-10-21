@@ -75,6 +75,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("X: x", function)
         self.assertIn("const connected = ['Facebook', 'Instagram', 'YouTube', 'X']", template)
         self.assertIn("result.limiteAlcanzado", template)
+        self.assertIn("Consultando Facebook, Instagram, YouTube y X", template)
         self.assertIn("TikTok", template)
         self.assertIn("WhatsApp", template)
 
