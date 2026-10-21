@@ -285,6 +285,16 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("Cache-Control", route)
 
 
+    def test_instagram_incluye_alcance_y_metadatos_de_publicaciones(self):
+        route = (ROOT / "functions/api/redes.js").read_text(encoding="utf-8")
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("fields=username,followers_count,media_count", route)
+        self.assertIn("insights?metric=reach&period=day", route)
+        self.assertIn("media_type,permalink,like_count,comments_count", route)
+        self.assertIn("alcanceDiario", route)
+        self.assertIn("Alcance diario de Instagram", template)
+        self.assertIn("result.alcanceDiario", template)
+
     def test_redes_muestra_advertencias_de_paginas_facebook_parciales(self):
         route = (ROOT / "functions/api/redes.js").read_text(encoding="utf-8")
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
