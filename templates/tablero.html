@@ -318,6 +318,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <h3>Publicaciones recientes de Instagram</h3>
       <p class="note">Listado en vivo de publicaciones propias devueltas por Meta para la ventana consultada. Se muestran hasta 50 de las más recientes; el enlace abre la publicación original.</p>
       <div class="tbox"><table id="t-instagram-vivo"><thead><tr><th>Fecha</th><th>Tipo</th><th>Texto de la publicación</th><th>Me gusta</th><th>Comentarios</th><th>Enlace</th></tr></thead><tbody><tr><td colspan="6">Consultá las fuentes disponibles para cargar las publicaciones.</td></tr></tbody></table></div>
+      <h3>Videos recientes de YouTube</h3>
+      <p class="note">Listado en vivo de videos propios devueltos por YouTube Data API. Se muestran hasta 50 de los más recientes, con vistas, me gusta, comentarios y enlace al video original.</p>
+      <div class="tbox"><table id="t-youtube-vivo"><thead><tr><th>Fecha</th><th>Video</th><th>Vistas</th><th>Me gusta</th><th>Comentarios</th><th>Enlace</th></tr></thead><tbody><tr><td colspan="6">Consultá las fuentes disponibles para cargar los videos.</td></tr></tbody></table></div>
     </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
@@ -777,6 +780,42 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
             const linkCell = document.createElement('td');
             if (post.enlace && /^https:\/\/www\.instagram\.com\//i.test(post.enlace)) {
               const a = document.createElement('a'); a.href = post.enlace; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Abrir publicación';
+              linkCell.append(a);
+            } else linkCell.textContent = 'Enlace no disponible';
+            tr.append(linkCell);
+            return tr;
+          }));
+        }
+      }
+      const youtubeBody = document.querySelector('#t-youtube-vivo tbody');
+      const youtubeResult = data.redes && data.redes.YouTube;
+      const youtubeError = data.errores && data.errores.YouTube;
+      if (youtubeError || !youtubeResult) {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td'); td.colSpan = 6;
+        td.textContent = 'Videos de YouTube no disponibles: ' + (youtubeError || 'la API no devolvió datos.');
+        tr.append(td); youtubeBody.replaceChildren(tr);
+      } else {
+        const recentVideos = (Array.isArray(youtubeResult.filas) ? youtubeResult.filas : [])
+          .slice().sort((a, b) => String(b.fecha || '').localeCompare(String(a.fecha || ''))).slice(0, 50);
+        if (!recentVideos.length) {
+          const tr = document.createElement('tr');
+          const td = document.createElement('td'); td.colSpan = 6;
+          td.textContent = 'No hay videos devueltos en la ventana consultada.';
+          tr.append(td); youtubeBody.replaceChildren(tr);
+        } else {
+          youtubeBody.replaceChildren(...recentVideos.map(video => {
+            const tr = document.createElement('tr');
+            [video.fecha || '—', video.texto || '(sin título)',
+              video.vistas == null ? '—' : fmt(video.vistas),
+              video.me_gusta == null ? '—' : fmt(video.me_gusta),
+              video.comentarios == null ? '—' : fmt(video.comentarios)].forEach(value => {
+              const td = document.createElement('td'); td.textContent = value; tr.append(td);
+            });
+            const linkCell = document.createElement('td');
+            if (video.enlace && /^https:\/\/www\.youtube\.com\/watch\?v=/i.test(video.enlace)) {
+              const a = document.createElement('a'); a.href = video.enlace; a.target = '_blank';
+              a.rel = 'noopener noreferrer'; a.textContent = 'Abrir video';
               linkCell.append(a);
             } else linkCell.textContent = 'Enlace no disponible';
             tr.append(linkCell);
