@@ -280,13 +280,14 @@ dash.calc('rangos', {
     return out;
   }
 });
+const esConfirmada = r => r.confianza !== 'Baja' && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
 dash.calc('rep_ok', {
   title: 'Publicaciones confirmadas',
   description: 'Publicaciones en medios sin las coincidencias solo por título (confianza baja), con el mes de la nota.',
   inputs: ['notas', 'repercusion'],
   fn: (notas, repercusion) => {
     const mes = new Map(notas.map(n => [Number(n.id), n.mes]));
-    return repercusion.filter(r => r.confianza !== 'Baja').map(r => ({ ...r, mes: mes.get(Number(r.nota_id)) }));
+    return repercusion.filter(esConfirmada).map(r => ({ ...r, mes: mes.get(Number(r.nota_id)) }));
   }
 });
 dash.calc('por_nota', {
@@ -295,7 +296,7 @@ dash.calc('por_nota', {
   inputs: ['notas', 'repercusion'],
   fn: (notas, repercusion) => notas.map(n => {
     const rs = repercusion.filter(r => Number(r.nota_id) === Number(n.id));
-    const ok = rs.filter(r => r.confianza !== 'Baja');
+    const ok = rs.filter(esConfirmada);
     return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: ok.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: ok.map(r => r.medio).join(', '), posibles: rs.length - ok.length };
   })
 });
@@ -560,14 +561,14 @@ dash.calc('seguidores', {
     const n = pn.data.find(x => Number(x.id) === id); if (!n) return;
     st.sel = id;
     document.querySelectorAll('#t-notas tbody tr').forEach(tr => tr.classList.toggle('sel', Number(tr.dataset.key) === id));
-    const rs = rp.data.filter(r => Number(r.nota_id) === id).sort((a, b) => (a.confianza === 'Baja') - (b.confianza === 'Baja') || String(a.medio).localeCompare(String(b.medio)));
+    const rs = rp.data.filter(r => Number(r.nota_id) === id).sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || String(a.medio).localeCompare(String(b.medio)));
     $('det-titulo').textContent = n.titulo;
     $('det-sub').textContent = fecha(n.fecha) + ' · ' + fmt(n.n_medios) + ' publicaciones encontradas' + (n.posibles ? ' y ' + fmt(n.posibles) + (n.posibles === 1 ? ' posible' : ' posibles') : '') + '. Abrí cada enlace para ver qué publicó y qué fuente menciona.';
     const tb = document.querySelector('#t-det tbody'); tb.textContent = '';
     rs.forEach(r => {
       const tr = document.createElement('tr'); tr.dataset.key = r.key;
       const c = (x, cls) => { const td = document.createElement('td'); if (cls) td.className = cls; if (x instanceof Node) td.append(x); else td.textContent = x; tr.append(td); };
-      c(r.medio); c(r.confianza === 'Baja' ? 'A revisar' : 'Encontrada', r.confianza === 'Baja' ? 'muted' : ''); const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona JusNoticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'muted'); c(r.origen); c(r.metodo || '', 'muted');
+      const confirmada = esConfirmada(r); c(r.medio); c(confirmada ? 'Encontrada' : 'A revisar', confirmada ? '' : 'muted'); const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona JusNoticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'muted'); c(r.origen); c(r.metodo || '', 'muted');
       if (r.url && /^https?:\/\//.test(r.url)) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Abrir ↗'; c(a); } else c('Sin enlace', 'muted');
       tb.append(tr);
     });
