@@ -30,6 +30,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIsNotNone(embedded)
         payload = embedded.group(1)
         data["actualizado"] = json.loads(payload)["actualizado"]
+        data["datos_actualizados"] = (ROOT / "data/actualizado.txt").read_text(encoding="utf-8").strip() or None
         self.assertEqual(json.loads(payload), data)
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertEqual(template.count("/*DATOS*/"), 1)
@@ -77,6 +78,8 @@ class TableroPublicoTests(unittest.TestCase):
         for nombre in nombres:
             self.assertEqual(payload[nombre], muestras[nombre])
         self.assertRegex(payload["actualizado"], r"^\d{2}/\d{2}/\d{4} \d{2}:\d{2}$")
+        self.assertEqual(payload["datos_actualizados"], (ROOT / "data/actualizado.txt").read_text(encoding="utf-8").strip() or None)
+        self.assertRegex(payload["datos_actualizados"], r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 
     def test_portada_visual_precede_al_tablero_oculto(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
@@ -84,6 +87,8 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn('id="portada"', public)
         self.assertIn('id="entrar-tablero"', public)
         self.assertIn('id="dashboard-app" hidden', public)
+        self.assertIn("Datos relevados:", public)
+        self.assertIn("Tablero generado:", public)
         self.assertLess(public.index('id="portada"'), public.index('id="dashboard-app" hidden'))
 
     def test_canal_general_no_se_cuenta_como_cuenta_propia_de_jusnoticias(self):
