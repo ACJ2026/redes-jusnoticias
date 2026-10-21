@@ -31,7 +31,7 @@ La cuenta de servicio debe tener acceso de lectura a la propiedad de GA4 y a Sea
 
 La función `functions/api/google-metrics.js` conserva la ruta y el formato de respuesta de Vercel: `/api/google-metrics?desde=AAAA-MM-DD&hasta=AAAA-MM-DD`. La plantilla del tablero ya consulta esa ruta relativa, por lo que no requiere cambios de URL.
 
-**Importante para redes sociales:** `api/redes.js` es la ruta heredada de Vercel; `functions/api/redes.js` es la ruta de Cloudflare Pages y la interfaz ya consulta `/api/redes`. La función requiere IDs y secretos verificados y pruebas reales. X, TikTok y WhatsApp no están conectados a esta consulta; necesitan evaluación separada de APIs, permisos y disponibilidad de métricas.
+**Importante para redes sociales:** `api/redes.js` es la ruta heredada de Vercel; `functions/api/redes.js` es la ruta de Cloudflare Pages y la interfaz ya consulta `/api/redes`. La función requiere IDs y secretos verificados y pruebas reales. X ya está conectado a la consulta y requiere `X_BEARER_TOKEN` y, opcionalmente, `X_USER_HANDLE`. TikTok y WhatsApp no están conectados; necesitan evaluación separada de APIs, permisos y disponibilidad de métricas.
 
 ## Validación de producción en Cloudflare Pages
 
