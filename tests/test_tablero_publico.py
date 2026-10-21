@@ -176,5 +176,18 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("Cache-Control", route)
 
 
+    def test_publicacion_sin_enlace_no_se_cuenta_como_confirmada(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        rep = read_json("data/rep2.json")
+        sin_enlace = [
+            r for r in rep
+            if r.get("confianza") != "Baja" and not re.match(r"^https?://", r.get("url") or "")
+        ]
+        self.assertGreater(len(sin_enlace), 0)
+        self.assertIn("const esConfirmada = r =>", template)
+        self.assertIn("D.repercusion.filter(esConfirmada)", template)
+        self.assertIn("const ok = rs.filter(esConfirmada)", template)
+
+
 if __name__ == "__main__":
     unittest.main()
