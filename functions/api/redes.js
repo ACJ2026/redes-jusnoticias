@@ -128,7 +128,7 @@ async function instagram(desde, env) {
     const within = posts.filter(post => (post.timestamp || "").slice(0, 10) >= desde);
     within.forEach(post => filas.push({
       red: "Instagram", cuenta: account.username || "@jus_chubut", fecha: (post.timestamp || "").slice(0, 10),
-      texto: corto(post.caption), nota_id: null, me_gusta: post.like_count ?? null,
+      texto: String(post.caption || "").replace(/\s+/g, " ").trim().slice(0, 300), nota_id: null, me_gusta: post.like_count ?? null,
       comentarios: post.comments_count ?? null, compartidos: null, vistas: null, propia: "Sí",
       enlace: post.permalink || null, tipoContenido: post.media_type || null, key: "ig-" + post.id
     }));
