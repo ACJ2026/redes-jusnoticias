@@ -8,7 +8,7 @@ La pestaña **Redes** usa los registros versionados en `data/redes2.json` y las 
 
 `functions/api/redes.js` ya adapta la consulta social al runtime de Cloudflare Pages y usa variables `env.*`; `api/redes.js` sigue como ruta heredada de Vercel. La nueva ruta exige IDs explícitos de Facebook, Instagram y el canal correcto de YouTube, y devuelve errores por plataforma cuando faltan permisos o credenciales. **Todavía no está conectada a la interfaz del tablero ni validada contra cuentas reales**; no anunciar métricas sociales en vivo hasta configurar secretos, verificar IDs y probar respuestas.
 
-Variables que usa la ruta heredada:
+Variables que requiere la ruta social de Pages (y que la ruta heredada también utiliza):
 
 - `META_TOKEN`: token de Meta con los permisos mínimos necesarios.
 - `FB_PAGE_ID`: identificador de la página oficial de Facebook JusNoticias, obligatorio y sin valor por defecto.
