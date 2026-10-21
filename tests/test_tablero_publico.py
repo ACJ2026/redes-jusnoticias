@@ -296,6 +296,9 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("alcanceDiario", route)
         self.assertIn("Alcance diario de Instagram", template)
         self.assertIn("result.alcanceDiario", template)
+        self.assertIn('id="t-instagram-vivo"', template)
+        self.assertIn("Abrir publicación", template)
+        self.assertIn("post.enlace", template)
 
     def test_redes_muestra_advertencias_de_paginas_facebook_parciales(self):
         route = (ROOT / "functions/api/redes.js").read_text(encoding="utf-8")
