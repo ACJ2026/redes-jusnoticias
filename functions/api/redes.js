@@ -96,10 +96,32 @@ async function instagram(desde, env) {
   const id = env.IG_USER_ID;
   if (!id) throw new Error("Falta configurar IG_USER_ID para la cuenta oficial @jus_chubut.");
   if (!token) throw new Error("Falta configurar META_TOKEN.");
-  const account = await get(`${GRAPH}/${id}?fields=username,followers_count`, token);
+  const account = await get(`${GRAPH}/${id}?fields=username,followers_count,media_count`, token);
   const filas = [];
   let limiteAlcanzado = false;
-  let url = `${GRAPH}/${id}/media?fields=timestamp,caption,like_count,comments_count&limit=100`;
+  let alcanceDiario = null;
+  let errorEstadisticas = null;
+
+  // La API entrega días con end_time al comienzo del día siguiente.
+  // Tomamos solo el último período cuyo end_time ya ocurrió para evitar el día parcial.
+  try {
+    const insights = await get(`${GRAPH}/${id}/insights?metric=reach&period=day`, token);
+    const now = Date.now();
+    const points = (insights.data || []).flatMap(metric => metric.values || [])
+      .filter(point => point.end_time && Date.parse(point.end_time) <= now && Number.isFinite(Number(point.value)))
+      .sort((a, b) => Date.parse(b.end_time) - Date.parse(a.end_time));
+    if (points.length) {
+      const point = points[0];
+      const end = new Date(point.end_time);
+      end.setUTCDate(end.getUTCDate() - 1);
+      alcanceDiario = { fecha: end.toISOString().slice(0, 10), valor: Number(point.value) };
+    }
+  } catch (error) {
+    // El alcance es complementario: si Insights falla, no perdemos las publicaciones.
+    errorEstadisticas = error instanceof Error ? error.message : "No se pudieron consultar las estadísticas de Instagram.";
+  }
+
+  let url = `${GRAPH}/${id}/media?fields=id,timestamp,caption,media_type,permalink,like_count,comments_count&limit=100`;
   for (let i = 0; url && i < 10; i++) {
     const result = await get(url, token);
     const posts = result.data || [];
@@ -107,14 +129,22 @@ async function instagram(desde, env) {
     within.forEach(post => filas.push({
       red: "Instagram", cuenta: account.username || "@jus_chubut", fecha: (post.timestamp || "").slice(0, 10),
       texto: corto(post.caption), nota_id: null, me_gusta: post.like_count ?? null,
-      comentarios: post.comments_count ?? null, compartidos: null, vistas: null, propia: "Sí", key: "ig-" + post.id
+      comentarios: post.comments_count ?? null, compartidos: null, vistas: null, propia: "Sí",
+      enlace: post.permalink || null, tipoContenido: post.media_type || null, key: "ig-" + post.id
     }));
     if (within.length < posts.length) break;
     const next = result.paging && result.paging.next;
     if (i === 9 && next) { limiteAlcanzado = true; break; }
     url = next;
   }
-  return { filas, seguidores: account.followers_count ?? null, limiteAlcanzado };
+  return {
+    filas,
+    seguidores: account.followers_count ?? null,
+    publicacionesTotales: account.media_count ?? null,
+    alcanceDiario,
+    errorEstadisticas,
+    limiteAlcanzado
+  };
 }
 
 async function x(desde, env) {
