@@ -282,6 +282,19 @@ cobertura['Tiempo Sur'] = 'Sin índice de notas: revisado por buscador, sin coin
 
 
 # ---------- 10. Google Noticias: encuentra medios fuera de la lista y los que no tienen índice ----------
+REG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'fuentes_descubiertas.json')
+def cargar_registro():
+    try:
+        with open(REG_PATH, encoding='utf8') as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+    except FileNotFoundError:
+        return []
+    except Exception as e:
+        print(f'AVISO: registro de medios no legible ({type(e).__name__}); se inicia vacío')
+        return []
+REGISTRO = cargar_registro()
+
 def gnews(n):
     clave_t = [w for w in norm(n['titulo']).split() if len(w) >= 5 and w not in STOP][:6]
     body = CUERPO.get(n['id'], '')
