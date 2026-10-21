@@ -4,8 +4,8 @@ Tablero de repercusión y comunicación judicial de la Agencia de Comunicación 
 
 ## Vista previa
 
-- **Vista previa de la rama de trabajo:** https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/
-- **URL de producción:** pendiente de confirmar. No considerar la vista previa como publicación institucional definitiva.
+- **Producción (Cloudflare Pages):** https://redes-jusnoticias.pages.dev/
+- La vista previa de la rama de trabajo no es la URL de producción: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/
 
 ## Cómo se genera
 
