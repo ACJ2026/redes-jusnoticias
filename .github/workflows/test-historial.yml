@@ -28,7 +28,7 @@ jobs:
           import re
           from pathlib import Path
           html = Path("publico/index.html").read_text(encoding="utf-8")
-          scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\\s\\S]*?)</script>', html)
+          scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\s\S]*?)</script>', html)
           if len(scripts) != 1:
               raise SystemExit(f"Se esperaba un script de tablero y se encontraron {len(scripts)}")
           Path("/tmp/tablero-publico.js").write_text(scripts[0], encoding="utf-8")
