@@ -113,7 +113,7 @@ class TableroPublicoTests(unittest.TestCase):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const mediosUnicos = [...new Set(ok.map(r => r.medio))];", template)
         self.assertIn("n_medios: mediosUnicos.length", template)
-        self.assertIn("publicación relacionada con enlace verificable", template)
+        self.assertIn("publicación relacionada con enlace registrado", template)
 
     def test_portada_visual_precede_al_tablero_oculto(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
