@@ -14,6 +14,11 @@ def read_json(path):
 
 
 class TableroPublicoTests(unittest.TestCase):
+    def test_relevamiento_automatico_solo_escribe_desde_main(self):
+        workflow = (ROOT / ".github/workflows/actualizar.yml").read_text(encoding="utf-8")
+        self.assertRegex(workflow, r"(?ms)^  push:\n    # El relevamiento escribe datos y genera el HTML público; solo debe ejecutarse desde main\.\n    branches:\n      - main\n    paths:")
+        self.assertIn('group: actualizar-${{ github.ref }}', workflow)
+
     def test_plantilla_y_archivos_publicos_estan_sincronizados(self):
         data = {
             "notas": read_json("data/notas2.json"),
