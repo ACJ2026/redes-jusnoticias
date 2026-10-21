@@ -6,7 +6,7 @@ Publicar el tablero desde la carpeta `publico/` sin hacer público el repositori
 
 ## Crear el proyecto Pages
 
-**Estado que debe resolverse antes de la puesta en producción:** al 20/10/2026, GitHub informa que `ACJ2026/redes-jusnoticias` tiene `private: false` (público), aunque el plan de migración lo describía como privado. Confirmar la política institucional y quién puede cambiarla; no asumir que el repositorio es privado ni publicar secretos.
+**Visibilidad del repositorio:** la consulta de metadatos de GitHub del 21/10/2026 informa `private: true`. Confirmar esta configuración directamente en GitHub antes de cambiar la visibilidad; nunca publicar secretos ni datos que deban mantenerse privados.
 
 Configurar un proyecto Cloudflare Pages conectado al repositorio `ACJ2026/redes-jusnoticias` una vez confirmada la política de visibilidad:
 
@@ -31,14 +31,14 @@ La cuenta de servicio debe tener acceso de lectura a la propiedad de GA4 y a Sea
 
 La función `functions/api/google-metrics.js` conserva la ruta y el formato de respuesta de Vercel: `/api/google-metrics?desde=AAAA-MM-DD&hasta=AAAA-MM-DD`. La plantilla del tablero ya consulta esa ruta relativa, por lo que no requiere cambios de URL.
 
-**Importante para redes sociales:** `api/redes.js` es la ruta heredada de Vercel; `functions/api/redes.js` ya contiene la adaptación para Cloudflare Pages. Sin embargo, la plantilla actual todavía no consulta `/api/redes`, y las redes visibles provienen del JSON generado por GitHub Actions. La función de Pages aún requiere IDs y secretos verificados y pruebas reales antes de conectarla a la interfaz. X, TikTok y WhatsApp requieren evaluación separada de APIs y permisos.
+**Importante para redes sociales:** `api/redes.js` es la ruta heredada de Vercel; `functions/api/redes.js` es la ruta de Cloudflare Pages y la interfaz ya consulta `/api/redes`. La función requiere IDs y secretos verificados y pruebas reales. X, TikTok y WhatsApp no están conectados a esta consulta; necesitan evaluación separada de APIs, permisos y disponibilidad de métricas.
 
 ## Validación de producción en Cloudflare Pages
 
 1. Desplegar una rama de prueba o un Preview Deployment de Pages.
 2. Consultar `/api/google-metrics?desde=2026-10-01&hasta=2026-10-19` en el dominio de prueba.
 3. Confirmar que responde con `estado: "ok"`, datos de Analytics y Search Console; no basta con recibir HTTP 200.
-4. Abrir el tablero y revisar las pestañas Resumen, Medios, Notas, Redes y Google; probar los filtros de fecha y los enlaces.
+4. Abrir el tablero y revisar las pestañas Resumen, Medios, Notas, Redes y Google; probar los filtros de fecha y los enlaces. En Redes, consultar `/api/redes` y comprobar el estado individual de Facebook, Instagram y YouTube.
 5. Confirmar que un commit posterior de GitHub Actions actualiza el despliegue público y que no se pierden registros del historial.
 6. No usar los checks de Vercel como criterio de publicación de Cloudflare Pages. La validación de Google y redes sigue dependiendo de credenciales reales y debe hacerse contra las rutas de Pages.
 
