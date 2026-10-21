@@ -187,3 +187,15 @@ Próxima acción:
 - La tabla conserva y muestra la fuente y el medio originales que entrega GA4. Si el tráfico no puede atribuirse, no se asigna a una plataforma por suposición. La API puede tener demora; no equivale a medición en tiempo real segundo a segundo.
 - Se incorporó en la plantilla una tabla “Fuentes concretas de las visitas” y traducciones al español para canales y dispositivos. Las tablas de Search Console explican el porcentaje de clics (ejemplo: 50 clics de 1.000 apariciones = 5 %) y que la posición promedio es el lugar medio del resultado, donde 1 es el primer puesto.
 - Pendiente: ejecutar pruebas estáticas y de regresión; comprobar el endpoint con credenciales reales; confirmar el resultado en el entorno de Cloudflare Pages. No se considera validada la conexión hasta completar esas pruebas.
+
+
+### 2026-10-21 — Prueba de acceso a la API REST pública de WordPress
+
+- Se comprobó manualmente que la API REST pública de `https://jusnoticias.juschubut.gov.ar` responde sin iniciar sesión ni modificar WordPress.
+- El endpoint de publicaciones con `per_page=100` y campos `id,date,modified,link,title,categories,featured_media` devolvió numerosas entradas en la página 1. La consulta con `page=2` también devolvió registros, incluidos ejemplos publicados entre mayo y agosto de 2026; queda confirmada la paginación básica.
+- Campos observados: ID de WordPress, fecha de publicación, fecha de modificación, enlace, título, categorías e ID de imagen destacada. El ID de WordPress es la clave estable recomendada para deduplicar y actualizar notas.
+- Observaciones para el integrador: existen entradas con título vacío o compuesto solo por espacios, algunas de categoría `415`; no deben incorporarse como noticias normales sin validación, pero tampoco provocar el borrado de historial. También hay notas con `modified` posterior a `date`; una modificación no debe tratarse como publicación nueva.
+- Alcance de la verificación: se confirmó acceso público y consulta de páginas sucesivas. No se comprobó todavía el total de páginas mediante encabezados, ni se ejecutó una integración de extremo a extremo con el recolector, el historial y el HTML público.
+- Próximos pasos: revisar cómo el recolector obtiene hoy las notas; integrar WordPress si corresponde como fuente de notas usando paginación completa e ID estable; conservar el historial de repercusiones ante errores o ausencias temporales; agregar pruebas y validar GitHub Actions y Cloudflare Pages antes de declarar la integración operativa.
+- Dependencias externas: para esta prueba de lectura pública no se necesita usuario, contraseña, token ni plugin de WordPress. Las métricas de Google Analytics 4/Search Console son una integración distinta y siguen dependiendo de la configuración/credenciales correspondientes en Cloudflare Pages.
+- No se modificó WordPress ni se cambiaron datos históricos. Esta anotación se prepara en una rama separada; no implica despliegue ni integración a `main`.
