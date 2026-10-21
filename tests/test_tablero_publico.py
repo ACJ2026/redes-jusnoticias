@@ -279,6 +279,8 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("env.IG_USER_ID", route)
         self.assertIn("env.YT_KEY", route)
         self.assertIn("env.YT_CANAL_ID", route)
+        self.assertIn("env.YT_CANAL_HANDLE", route)
+        self.assertIn("forHandle=", route)
         self.assertNotIn("process.env", route)
         self.assertIn("Falta configurar FB_PAGE_ID", route)
         self.assertIn("Falta configurar IG_USER_ID", route)
