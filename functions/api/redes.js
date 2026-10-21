@@ -215,14 +215,24 @@ async function youtube(desde, env) {
       const stats = video.statistics || {};
       const number = field => stats[field] !== undefined ? Number(stats[field]) : null;
       filas.push({
-        red: "YouTube", cuenta: "JusNoticias Prensa", fecha: (video.snippet.publishedAt || "").slice(0, 10),
+        red: "YouTube", cuenta: channel.snippet && channel.snippet.title || "JusNoticias Prensa",
+        fecha: (video.snippet.publishedAt || "").slice(0, 10),
         texto: corto(video.snippet.title), nota_id: null, me_gusta: number("likeCount"),
         comentarios: number("commentCount"), compartidos: null, vistas: number("viewCount"),
-        propia: "Sí", key: "yt-" + video.id
+        propia: "Sí", enlace: "https://www.youtube.com/watch?v=" + encodeURIComponent(video.id),
+        key: "yt-" + video.id
       });
     });
   }
-  return { filas, seguidores: Number(channel.statistics && channel.statistics.subscriberCount) || null, limiteAlcanzado };
+  return {
+    filas,
+    cuenta: channel.snippet && channel.snippet.title || "JusNoticias Prensa",
+    seguidores: channel.statistics && channel.statistics.subscriberCount !== undefined
+      ? Number(channel.statistics.subscriberCount) : null,
+    publicacionesTotales: channel.statistics && channel.statistics.videoCount !== undefined
+      ? Number(channel.statistics.videoCount) : null,
+    limiteAlcanzado
+  };
 }
 
 function validDate(value) {
