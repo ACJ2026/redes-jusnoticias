@@ -24,5 +24,15 @@ jobs:
           node --check api/redes.js
           node --input-type=module --check < functions/api/google-metrics.js
           node --input-type=module --check < functions/api/redes.js
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          html = Path("publico/index.html").read_text(encoding="utf-8")
+          scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\\s\\S]*?)</script>', html)
+          if len(scripts) != 1:
+              raise SystemExit(f"Se esperaba un script de tablero y se encontraron {len(scripts)}")
+          Path("/tmp/tablero-publico.js").write_text(scripts[0], encoding="utf-8")
+          PY
+          node --check /tmp/tablero-publico.js
       - name: Ejecutar pruebas de regresión
         run: python3 -m unittest discover -s tests -v
