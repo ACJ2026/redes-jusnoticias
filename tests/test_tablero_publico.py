@@ -30,6 +30,15 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("git commit --amend --no-edit", guardar)
         self.assertLess(guardar.index("git pull --rebase"), guardar.index("python3 scripts/armar_publico.py"))
 
+    def test_workflow_reconstruye_el_publico_cuando_cambia_la_plantilla(self):
+        workflow_path = ROOT / ".github/workflows/reconstruir-publico.yml"
+        self.assertTrue(workflow_path.exists(), "Debe existir un workflow dedicado a regenerar el HTML público")
+        workflow = workflow_path.read_text(encoding="utf-8")
+        self.assertIn("'templates/tablero.html'", workflow)
+        self.assertIn("'scripts/armar_publico.py'", workflow)
+        self.assertIn("python3 scripts/armar_publico.py", workflow)
+        self.assertIn("python3 -m unittest discover -s tests -v", workflow)
+
     def test_plantilla_y_archivos_publicos_estan_sincronizados(self):
         data = {
             "notas": read_json("data/notas2.json"),
