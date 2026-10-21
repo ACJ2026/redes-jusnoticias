@@ -25,31 +25,70 @@ async function get(url, token) {
 const corto = value => (value || "").replace(/\s+/g, " ").trim().slice(0, 26);
 
 async function facebook(desde, env) {
-  const id = env.FB_PAGE_ID;
+  // Compatibilidad: FB_PAGE_IDS acepta una lista separada por comas.
+  // También se admiten FB_PAGE_ID y FB_PAGE_ID_2 como variables separadas.
+  const configuredIds = env.FB_PAGE_IDS || [env.FB_PAGE_ID, env.FB_PAGE_ID_2].filter(Boolean).join(",");
+  const ids = [...new Set(String(configuredIds).split(",").map(value => value.trim()).filter(Boolean))];
   const metaToken = env.META_TOKEN;
-  if (!id) throw new Error("Falta configurar FB_PAGE_ID con el identificador verificado de la página JusNoticias.");
-  if (!metaToken) throw new Error("Falta configurar META_TOKEN.");
-  const tokenPayload = await get(`${GRAPH}/${id}?fields=access_token`, metaToken);
-  const pageToken = tokenPayload.access_token;
-  if (!pageToken) throw new Error("Meta no devolvió un token de página.");
-  const page = await get(`${GRAPH}/${id}?fields=name,followers_count,fan_count`, pageToken);
-  const filas = [];
-  let limiteAlcanzado = false;
-  let url = `${GRAPH}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${encodeURIComponent(desde)}&limit=100`;
-  for (let i = 0; url && i < 10; i++) {
-    const result = await get(url, pageToken);
-    (result.data || []).forEach(post => filas.push({
-      red: "Facebook", cuenta: page.name || "JusNoticias", fecha: (post.created_time || "").slice(0, 10),
-      texto: corto(post.message), nota_id: null,
-      me_gusta: post.reactions ? post.reactions.summary.total_count : null,
-      comentarios: post.comments ? post.comments.summary.total_count : null,
-      compartidos: post.shares ? post.shares.count : 0, vistas: null, propia: "Sí", key: "fb-" + post.id
-    }));
-    const next = result.paging && result.paging.next;
-    if (i === 9 && next) limiteAlcanzado = true;
-    url = next;
+  if (!ids.length) {
+    throw new Error("Faltan los IDs de las páginas institucionales. Configurar FB_PAGE_IDS (IDs separados por coma) o FB_PAGE_ID y FB_PAGE_ID_2.");
   }
-  return { filas, seguidores: page.followers_count ?? page.fan_count ?? null, limiteAlcanzado };
+  if (!metaToken) throw new Error("Falta configurar META_TOKEN.");
+
+  const filas = [];
+  const erroresPaginas = [];
+  const cuentas = [];
+  const seguidoresPorPagina = [];
+  let limiteAlcanzado = false;
+
+  for (const id of ids) {
+    try {
+      const tokenPayload = await get(`${GRAPH}/${encodeURIComponent(id)}?fields=access_token`, metaToken);
+      const pageToken = tokenPayload.access_token;
+      if (!pageToken) throw new Error("Meta no devolvió un token de página.");
+      const page = await get(`${GRAPH}/${encodeURIComponent(id)}?fields=name,followers_count,fan_count`, pageToken);
+      const pageName = page.name || ("Página Facebook " + id);
+      cuentas.push({ id, nombre: pageName });
+      const followers = page.followers_count ?? page.fan_count;
+      if (Number.isFinite(Number(followers)) && followers !== null && followers !== undefined) {
+        seguidoresPorPagina.push(Number(followers));
+      }
+
+      let url = `${GRAPH}/${encodeURIComponent(id)}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${encodeURIComponent(desde)}&limit=100`;
+      for (let i = 0; url && i < 10; i++) {
+        const result = await get(url, pageToken);
+        (result.data || []).forEach(post => filas.push({
+          red: "Facebook", cuenta: pageName, fecha: (post.created_time || "").slice(0, 10),
+          texto: corto(post.message), nota_id: null,
+          me_gusta: post.reactions ? post.reactions.summary.total_count : null,
+          comentarios: post.comments ? post.comments.summary.total_count : null,
+          compartidos: post.shares ? post.shares.count : 0, vistas: null, propia: "Sí",
+          key: "fb-" + id + "-" + post.id
+        }));
+        const next = result.paging && result.paging.next;
+        if (i === 9 && next) limiteAlcanzado = true;
+        url = next;
+      }
+    } catch (error) {
+      erroresPaginas.push({
+        id,
+        error: error instanceof Error ? error.message : "Error de consulta no identificado."
+      });
+    }
+  }
+
+  if (!cuentas.length) {
+    const detalle = erroresPaginas.map(item => item.id + ": " + item.error).join("; ");
+    throw new Error("No se pudo consultar ninguna página de Facebook. " + detalle);
+  }
+
+  return {
+    filas,
+    seguidores: seguidoresPorPagina.length ? seguidoresPorPagina.reduce((total, value) => total + value, 0) : null,
+    paginas: cuentas,
+    erroresPaginas,
+    limiteAlcanzado
+  };
 }
 
 async function instagram(desde, env) {
