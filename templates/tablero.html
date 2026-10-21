@@ -1,4 +1,4 @@
-<title>Repercusión JusNoticias</title>
+<title>JusNoticias | Tablero de repercusión y comunicación judicial</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -82,8 +82,121 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .guia p{margin:0;line-height:1.55;max-width:66ch}
 .guia b{font-weight:600}
 .foot{border-top:1px solid var(--line);padding-top:12px}
+
+.territorio-card{border-top:3px solid var(--accent)}
+.territorio-tools{margin:10px 0}
+#b-territorio .bar-row{grid-template-columns:minmax(8rem, 12rem) minmax(3rem,1fr) 3.5rem}
+@media(max-width:520px){#b-territorio .bar-row{grid-template-columns:minmax(6rem,8rem) minmax(2rem,1fr) 3rem}}
+/* Portada visual: una infografía ejecutiva antes del tablero de consulta */
+.landing{min-height:100vh;padding:clamp(22px,5vw,64px) max(16px,env(safe-area-inset-left,0px)) 40px max(16px,env(safe-area-inset-right,0px));background:radial-gradient(ellipse at 85% 10%,rgba(91,157,198,.22),transparent 38%),linear-gradient(145deg,#102b43 0%,#174f73 58%,#1f6c82 100%);color:#f7fbff}
+.landing-inner{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.landing-kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#c7e5f4;font-weight:600;margin:0}
+.landing h1{font-family:var(--f-display);font-size:clamp(2.3rem,6vw,5rem);line-height:.99;max-width:850px;letter-spacing:-.025em}
+.landing-intro{font-size:clamp(1rem,2vw,1.25rem);line-height:1.55;color:#e0eef6;max-width:720px;margin:0}
+.landing-visual{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px}
+.landing-stat{position:relative;overflow:hidden;min-height:150px;padding:22px;border:1px solid rgba(255,255,255,.24);border-radius:18px;background:rgba(255,255,255,.09);backdrop-filter:blur(5px);display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.landing-stat:first-child{background:#f3f7fa;color:#153b55;border-color:#f3f7fa}
+.landing-stat .symbol{font-size:1.4rem;line-height:1}
+.landing-stat strong{font-family:var(--f-display);font-size:clamp(2rem,4vw,3.5rem);line-height:1;font-weight:500;font-variant-numeric:tabular-nums}
+.landing-stat span{font-size:.92rem;line-height:1.4;max-width:28ch}
+.landing-stat:first-child span{color:#4d6575}
+.landing-bottom{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;border-top:1px solid rgba(255,255,255,.3);padding-top:22px}
+.landing-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.landing-point{display:flex;gap:10px;align-items:flex-start;color:#e0eef6;font-size:.9rem;line-height:1.4}
+.landing-point b{display:block;color:#fff;margin-bottom:3px}
+.landing-point i{font-style:normal;display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:9px;background:rgba(255,255,255,.14);color:#fff;font-weight:600}
+.landing-actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.landing-enter{border:0;border-radius:999px;padding:15px 23px;background:#fff;color:#123b55;font:600 1rem var(--f-body);cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.18)}
+.landing-enter:hover{background:#dff2fa}
+.landing-small{font-size:.78rem;color:#c7e5f4;max-width:260px;line-height:1.4}
+#dashboard-app{max-width:100%}
+[hidden]{display:none!important}
+@media(max-width:760px){.landing-visual{grid-template-columns:1fr 1fr}.landing-stat:first-child{grid-column:1/-1;min-height:135px}.landing-bottom{grid-template-columns:1fr}.landing-points{grid-template-columns:1fr}.landing-actions{align-items:stretch}.landing-enter{width:100%}}
+@media(prefers-reduced-motion:no-preference){.landing-stat{animation:rise-in .55s both}.landing-stat:nth-child(2){animation-delay:.08s}.landing-stat:nth-child(3){animation-delay:.16s}@keyframes rise-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}}
+
+/* Ajustes de lectura y uso táctil en celular */
+@media(max-width:600px){
+  .landing{min-height:100svh;padding:clamp(24px,7vw,38px) 18px 28px}
+  .landing-inner{gap:23px}
+  .landing-kicker{font-size:.72rem;line-height:1.5;letter-spacing:.09em}
+  .landing h1{font-size:clamp(2.8rem,13vw,4.25rem);line-height:.94}
+  .landing-intro{font-size:1.08rem;line-height:1.55}
+  .landing-visual{grid-template-columns:1fr;gap:12px}
+  .landing-stat,.landing-stat:first-child{grid-column:auto;min-height:0;padding:19px 20px;gap:10px;border-radius:15px}
+  .landing-stat strong{font-size:clamp(2.6rem,12vw,3.5rem)}
+  .landing-stat span{font-size:1rem;max-width:none}
+  .landing-stat .symbol{font-size:1.25rem}
+  .landing-bottom{gap:22px;padding-top:20px}
+  .landing-points{gap:16px}
+  .landing-point{font-size:1rem;line-height:1.5;gap:12px}
+  .landing-point i{flex-basis:34px;height:34px;font-size:.88rem}
+  .landing-point b{font-size:1.02rem}
+  .landing-enter{min-height:56px;padding:16px 20px;font-size:1.05rem;white-space:normal;line-height:1.35}
+  .landing-small{font-size:.86rem;max-width:none;line-height:1.5}
+}
+@media(max-width:380px){
+  .landing{padding-left:14px;padding-right:14px}
+  .landing-inner{gap:20px}
+  .landing h1{font-size:2.65rem}
+  .landing-stat strong{font-size:2.55rem}
+}
+
+/* El tablero completo también prioriza lectura y controles cómodos en pantalla chica */
+@media(max-width:600px){
+  :root{--fs-cap:.9rem;--fs-body:1.05rem;--fs-h:1.15rem;--fs-title:2rem;--fs-big:2.65rem}
+  .wrap{padding:18px 14px 36px;gap:18px}
+  .mast{gap:8px;padding-bottom:16px}
+  .take{font-size:1.15rem;line-height:1.55}
+  .note{font-size:.9rem;line-height:1.5}
+  .bar{align-items:stretch;gap:12px}
+  .tools{gap:10px;width:100%}
+  .tools label,.tools select,.tools button,.tools input,.bar select,.bar button{font-size:1rem;min-height:44px}
+  .tabs{gap:4px;scrollbar-width:thin}
+  .tabs button{padding:13px 14px;min-height:46px;font-size:1rem}
+  .tabs .sep{font-size:.82rem}
+  .kpis{grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{gap:8px;padding:12px 2px 6px}
+  .kpi.lead{grid-column:1/-1}
+  .big{font-size:2.4rem}
+  .kpi .lbl{font-size:.96rem;line-height:1.45}
+  .panel{padding:14px 12px;border-radius:12px}
+  .panel h2,.section-title{font-size:1.2rem;line-height:1.4}
+  .tbox{max-width:100%;overflow:auto;-webkit-overflow-scrolling:touch}
+  table{font-size:.9rem;min-width:540px}
+  th,td{padding:10px 9px}
+  .btn,button{touch-action:manipulation}
+  .btn{min-height:44px;padding:10px 13px}
+  .territorio-tools{display:flex;flex-wrap:wrap;gap:8px}
+  #b-territorio .bar-row{grid-template-columns:minmax(6rem,8rem) minmax(2rem,1fr) 3rem;gap:8px}
+}
 </style>
 
+<section class="landing" id="portada" aria-labelledby="portada-titulo">
+  <div class="landing-inner">
+    <p class="landing-kicker">Poder Judicial del Chubut · Agencia de Comunicación Judicial</p>
+    <h1 id="portada-titulo">JusNoticias</h1>
+    <p class="landing-intro landing-subtitle">Tablero de repercusión y comunicación judicial</p>
+    <p class="landing-intro">La presencia de nuestras noticias en medios y redes, en una mirada. Ingresá al tablero para explorar publicaciones, períodos y métricas de audiencia y búsqueda.</p>
+    <div class="landing-visual" aria-label="Indicadores principales">
+      <article class="landing-stat"><div class="symbol" aria-hidden="true">↗</div><strong id="portada-repercusion">—</strong><span>de las notas tuvieron al menos una publicación relacionada en otros medios</span></article>
+      <article class="landing-stat"><div class="symbol" aria-hidden="true">▤</div><strong id="portada-notas">—</strong><span>notas publicadas en JusNoticias durante el período visible</span></article>
+      <article class="landing-stat"><div class="symbol" aria-hidden="true">◎</div><strong id="portada-medios">—</strong><span>medios diferentes donde encontramos publicaciones relacionadas</span></article>
+    </div>
+    <div class="landing-bottom">
+      <div class="landing-points">
+        <div class="landing-point"><i aria-hidden="true">01</i><div><b>Repercusión en medios</b>Qué notas aparecen y dónde se publican.</div></div>
+        <div class="landing-point"><i aria-hidden="true">02</i><div><b>Redes sociales</b>Publicaciones, interacción y seguidores disponibles.</div></div>
+        <div class="landing-point"><i aria-hidden="true">03</i><div><b>Audiencia y búsquedas</b>Analytics y Search Console, por separado.</div></div>
+      </div>
+      <div class="landing-actions">
+        <button class="landing-enter" id="entrar-tablero" type="button">Ingresar al tablero completo <span aria-hidden="true">→</span></button>
+        <span class="landing-small">Las cifras describen registros disponibles; una coincidencia temática no demuestra por sí sola que otro medio haya usado nuestra información.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="dashboard-app" hidden>
 <div class="wrap">
   <header class="mast">
     <p class="kicker">Agencia de Comunicación Judicial · Poder Judicial del Chubut</p>
@@ -125,10 +238,23 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="kpi"><div class="big" data-k="vistas"></div><div class="lbl">vistas en X y YouTube</div><p class="note">Suma las vistas informadas por esas dos redes. Las otras no muestran ese dato.</p></div>
       <div class="kpi"><div class="big" data-k="seguidores"></div><div class="lbl">seguidores de nuestras cuentas</div><p class="note">Suma los seguidores que muestran las cuentas incluidas hoy. No significa que todos hayan visto nuestras publicaciones.</p></div>
     </div>
+    <div class="card territorio-card" id="c-territorio">
+      <h2>Alcance territorial por localidad</h2>
+      <p class="note">Publicaciones encontradas en otros medios vinculadas con notas del período elegido. La localidad indica la sede conocida del medio, no dónde vive cada lector. La fecha corresponde a la nota de JusNoticias relacionada.</p>
+      <div class="tools territorio-tools">
+        <label for="f-territorio-tipo" class="lbl">Tipo de medio</label>
+        <select id="f-territorio-tipo">
+          <option value="">Todos los tipos</option><option value="Radio">Radios</option><option value="TV">Televisión</option><option value="Prensa gráfica">Prensa gráfica</option><option value="Portal digital">Portales digitales</option>
+        </select>
+      </div>
+      <p class="note" id="territorio-resumen" aria-live="polite"></p>
+      <div class="bars" id="b-territorio"></div>
+      <p class="note">Las localidades no verificadas se muestran aparte; la distribución territorial es orientativa y cuenta publicaciones detectadas, no audiencia ni alcance real.</p>
+    </div>
     <div class="grid2">
       <div class="card" id="c-mes">
         <h2>Mes a mes</h2>
-        <p class="note">Compara cuántas notas publicamos cada mes y cuántas aparecieron en otros medios. Los meses fuera de las fechas elegidas se ven más claros.</p>
+        <p class="note">Compara las notas publicadas y las encontradas en otros medios, mostrando únicamente los meses del período elegido.</p>
         <div class="legend"><span><i style="background:var(--muted-bar)"></i>Publicadas</span><span><i style="background:var(--accent)"></i>Levantadas</span></div>
         <div class="chart" id="ch-mes"><div class="tip" id="tip-mes" hidden></div></div>
       </div>
@@ -191,14 +317,14 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="redes" hidden>
     <div class="card">
       <h2>Publicaciones nuestras por mes</h2>
-      <p class="note">Muestra cuántas veces publicamos en cada red y cómo cambia de un mes a otro. Facebook propio se empezó a contar en septiembre.</p>
+      <p class="note">Muestra las publicaciones registradas en los datos cargados y cómo se distribuyen por mes. Esta vista todavía no consulta las APIs de redes en vivo; Facebook propio se empezó a contar en septiembre.</p>
       <div class="legend" id="lg-redes"></div>
       <div class="chart" id="ch-redes"><div class="tip" id="tip-redes" hidden></div></div>
     </div>
     <div class="grid2">
       <div class="card"><h2>Qué respuesta tienen nuestras publicaciones</h2><p class="note">Muestra el promedio: sumamos los “me gusta” o las vistas de nuestras publicaciones y dividimos por la cantidad de publicaciones. “Publicación destacada” es la que tuvo más interacción. Si falta un dato, esa red no lo informa.</p>
         <div class="tbox"><table id="t-red"><thead><tr><th>Red</th><th>Publicaciones</th><th>Me gusta por publicación</th><th>Vistas por publicación</th><th>Publicación destacada</th></tr></thead><tbody></tbody></table></div></div>
-      <div class="card"><h2>Cuántas personas siguen nuestras cuentas</h2><p class="note">Muestra cuántos seguidores tiene cada cuenta y si sigue activa. Es el dato de hoy: cambiar el mes no cambia esta cifra.</p>
+      <div class="card"><h2>Cuántas personas siguen nuestras cuentas</h2><p class="note">Muestra la última cifra de seguidores registrada para cada cuenta y si figura activa. No es un histórico mensual ni necesariamente un dato en vivo; cambiar el mes no cambia esta cifra.</p>
         <div class="tbox"><table id="t-canales"><thead><tr><th>Red</th><th>Cuenta</th><th>Seguidores</th><th>Estado</th></tr></thead><tbody></tbody></table></div></div>
     </div>
     <div class="card">
@@ -216,7 +342,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="google" hidden>
     <div class="card guia">
       <h2>Audiencia y búsquedas en Google</h2>
-      <p class="note">Datos consultados directamente desde Google Analytics 4 y Search Console. No se mezclan con las métricas de repercusión en medios o redes.</p>
+      <p class="note">Datos consultados directamente desde Google Analytics 4 y Search Console. No se mezclan con las métricas de repercusión en medios o redes. Google permite consultar hasta 90 días por vez; si elegís un período más largo en el tablero, acá se toma la ventana más reciente de 90 días.</p>
       <div class="tools">
         <label for="g-desde" class="lbl">Desde</label><input id="g-desde" type="date">
         <label for="g-hasta" class="lbl">Hasta</label><input id="g-hasta" type="date">
@@ -248,7 +374,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <p><b>1. Elegí el período</b> arriba (desde y hasta). Todo se recalcula con esas fechas.</p>
         <p><b>2. Mirá el Resumen.</b> La oración de arriba dice lo principal. Debajo de cada número y gráfico hay una explicación de qué cuenta y de dónde sale.</p>
         <p><b>3. Para un dato puntual,</b> usá las pestañas <b>Medios</b>, <b>Notas</b> y <b>Redes</b>. La pestaña <b>Google</b> consulta por separado las visitas de Analytics y el rendimiento en búsquedas de Search Console; requiere credenciales configuradas en el servidor.</p>
-        <p><b>4. Se actualiza solo</b> todas las mañanas. Arriba dice "datos al…".</p>
+        <p><b>4. El relevamiento automático está programado para ejecutarse cada dos horas, en el minuto 59 (hora argentina).</b> La actualización visible depende de que la ejecución termine correctamente y se publique. La pestaña Google consulta a Google cuando se abre o cuando pulsás «Consultar»; los datos más recientes pueden tardar en completarse.</p>
       </div>
       <div class="card guia">
         <h2>Cómo funciona, explicado simple</h2>
@@ -261,11 +387,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       </div>
     </div>
     <div class="card"><h2>Medios relevados</h2><p class="note">Qué se pudo revisar de cada medio de la lista</p>
-      <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Cobertura del relevamiento</th><th>Notas encontradas (todas)</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Cobertura del relevamiento</th><th>Publicaciones en el período</th></tr></thead><tbody></tbody></table></div></div>
   </section>
 
   <p class="note foot" id="pie"></p>
 </div>
+</div>
+
 
 <script type="application/json" id="datos">/*DATOS*/</script>
 <script>
@@ -287,14 +415,16 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   // Base: notas y publicaciones confirmadas
   const notas = D.notas;
   const mesDe = new Map(notas.map(n => [Number(n.id), n.mes]));
-  const repOk = D.repercusion.filter(r => r.confianza !== 'Baja').map(r => ({ ...r, mes: mesDe.get(Number(r.nota_id)) }));
+  const esConfirmada = r => r.confianza !== 'Baja' && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
+  const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id));
-    const ok = rs.filter(r => r.confianza !== 'Baja');
-    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: ok.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: ok.map(r => r.medio).join(', '), posibles: rs.length - ok.length };
+    const ok = rs.filter(esConfirmada);
+    const mediosUnicos = [...new Set(ok.map(r => r.medio))];
+    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: mediosUnicos.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: mediosUnicos.join(', '), posibles: rs.length - ok.length };
   });
   const meses = [...new Set(notas.map(n => n.mes))].sort();
-  const st = { desde: meses[0], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
+  const st = { desde: meses[meses.length - 1], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
   const en = m => m >= st.desde && m <= st.hasta;
 
   const calc = () => {
@@ -361,7 +491,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const bw = (W - m.l - m.r) / ms.length, pad = bw * 0.22;
     ticks.forEach(v => { svg.append(el('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--grid)' })); const t = el('text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end' }); t.textContent = fmt(v); svg.append(t); });
     ms.forEach((mes, i) => {
-      const x0 = m.l + i * bw, g = el('g', { opacity: en(mes) ? 1 : 0.3 }); svg.append(g);
+      const x0 = m.l + i * bw, g = el('g', {}); svg.append(g);
       if (stacked) {
         let acc = 0; const w = Math.min(32, bw - 2 * pad), xx = x0 + (bw - w) / 2;
         series.forEach(s => { const v = val(mes, s); if (!v) return; g.append(el('rect', { x: xx, width: w, y: y(acc + v), height: y(acc) - y(acc + v), fill: s.color })); acc += v; });
@@ -384,16 +514,87 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
   const drawResumen = (c) => {
     document.querySelectorAll('#resumen [data-k]').forEach(e => { const k = e.dataset.k; e.textContent = k === 'pct' ? c.pct + '%' : fmt(c[k]); });
-    const pm = new Map(); notas.forEach(n => { const x = pm.get(n.mes) || { p: 0, l: 0 }; x.p++; pm.set(n.mes, x); });
-    const conAll = new Set(repOk.map(r => Number(r.nota_id))); notas.forEach(n => { if (conAll.has(Number(n.id))) pm.get(n.mes).l++; });
-    chart('ch-mes', 'tip-mes', meses, [{ k: 'p', color: 'var(--muted-bar)' }, { k: 'l', color: 'var(--accent)' }], (m, s) => pm.get(m)[s.k], false,
-      m => { const r = pm.get(m); return [['var(--muted-bar)', 'Publicadas: ' + fmt(r.p)], ['var(--accent)', 'Levantadas: ' + fmt(r.l) + ' (' + Math.round(r.l / r.p * 100) + '%)']]; });
+    const mesesElegidos = meses.filter(en), ns = notas.filter(n => en(n.mes)), rs = repOk.filter(r => en(r.mes));
+    const pm = new Map(); ns.forEach(n => { const x = pm.get(n.mes) || { p: 0, l: 0 }; x.p++; pm.set(n.mes, x); });
+    const conPeriodo = new Set(rs.map(r => Number(r.nota_id))); ns.forEach(n => { if (conPeriodo.has(Number(n.id))) pm.get(n.mes).l++; });
+    chart('ch-mes', 'tip-mes', mesesElegidos, [{ k: 'p', color: 'var(--muted-bar)' }, { k: 'l', color: 'var(--accent)' }], (m, s) => pm.get(m)[s.k], false,
+      m => { const r = pm.get(m); return [['var(--muted-bar)', 'Publicadas: ' + fmt(r.p)], ['var(--accent)', 'Encontradas en otros medios: ' + fmt(r.l) + ' (' + Math.round(r.p ? r.l / r.p * 100 : 0) + '%)']]; });
     bars('b-tipo', c.tipo.filter(r => r.notas).map(r => row(r.tipo + ' (' + fmt(r.levantadas) + ' de ' + fmt(r.notas) + ')', [[r.pct, 'var(--accent)']], r.pct, 100, r.pct + '%')));
     const t5 = c.porMedio.slice(0, 5), mx = t5.length ? t5[0].notas : 1;
     bars('b-top5m', t5.map(r => row(r.medio, [[r.notas, 'var(--accent)']], r.notas, mx)));
     const n5 = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 5), mn = n5.length ? n5[0].n_medios : 1;
     bars('b-top5n', n5.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
+    drawTerritorio();
   };
+  // Localidades conocidas de algunos medios; no se presume una sede cuando no está identificada.
+  const localidadMedio = {
+    'FM Tropical':'Rawson','FM Bahía Engaño':'Rawson',
+    'Chubut Hoy':'Chubut (localidad por verificar)',
+    'Radio de Camioneros':'Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)',
+    'ABC Diario':'Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)',
+    'La Tecla Patagonia':'Cobertura patagónica (localidad por verificar)',
+    'El Extremo Sur':'Comodoro Rivadavia',
+    'NoticiasdelBolson':'El Bolsón',
+    'A24.com':'Cobertura nacional',
+    'Revista Quórum':'Cobertura nacional',
+    'El Periscopio':'Cobertura provincial (Misiones)',
+    'La Posta Comodorense':'Comodoro Rivadavia','El Comodorense':'Comodoro Rivadavia','Comodoro 24':'Comodoro Rivadavia','El Patagónico':'Comodoro Rivadavia',
+    'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','Crónica':'Comodoro Rivadavia',
+    'Noticias PMY':'Puerto Madryn','Madryn Ahora':'Puerto Madryn','Canal 12':'Puerto Madryn','LU17':'Puerto Madryn','El Diario Web':'Puerto Madryn','Digital Chubut':'Puerto Madryn',
+    'FM del Lago Esquel':'Esquel','Diario La Portada':'Esquel','Red43':'Esquel','EQS Notas':'Esquel',
+    'Radio Chubut':'Trelew','El Chubut':'Trelew','Diario Jornada':'Trelew','Radio 3 Cadena Patagonia':'Trelew','Vivo Trelew':'Trelew',
+    'Cholila Online':'Cholila','La Opinión Austral':'Río Gallegos','Tiempo Sur':'Río Gallegos','Diario Nuevo Día':'Río Gallegos',
+    'Diario Río Negro':'General Roca','La Voz del Interior':'Córdoba','CHACODIAPORDIA.COM':'Resistencia','El Tribuno':'Salta',
+    'Diario Huarpe':'San Juan','Elonce.com':'Paraná','APFDigital':'Paraná','Somos Jujuy':'San Salvador de Jujuy',
+    'Canal Doce Misiones':'Posadas','Info del Estero':'Santiago del Estero','El Monterizo':'San Miguel de Tucumán',
+    'LM Neuquén':'Neuquén','Lmneuquen.com':'Neuquén','Diario San Rafael':'San Rafael',
+    'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','EQS Notas':'Esquel','Digital Chubut':'Puerto Madryn',
+    'Argentar Noticias':'Comodoro Rivadavia',
+    'Diario Judicial':'Ciudad Autónoma de Buenos Aires',
+    'El 10 TV':'Salta',
+    'El Valle Online':'Valle Inferior del Río Chubut',
+    'El Mediador - Santa Cruz':'Santa Cruz (localidad por verificar)',
+    'Metadata Noticias':'Chubut (localidad por verificar)',
+    'Examedia':'Entre Ríos (localidad por verificar)',
+    'Flipr.news':'Cobertura nacional',
+    'Portal Medios Públicos':'Cobertura nacional'
+  };
+  const tipoMedio = medio => {
+    // Si el nombre identifica explícitamente una edición web/digital, no inferir prensa gráfica o TV por otra palabra del nombre.
+    if (/\bweb\b|\.com$/i.test(medio)) return 'Portal digital';
+    if (/^(Chubut Hoy|ABC Diario|La Tecla Patagonia|El Extremo Sur|NoticiasdelBolson)$/i.test(medio)) return 'Portal digital';
+    if (/radio|\bfm\b|\blu17\b/i.test(medio)) return 'Radio';
+    if (/canal|\btv\b/i.test(medio)) return 'TV';
+    if (/^crónica$/i.test(medio) || /diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
+    return 'Portal digital';
+  };
+  const regionMedio = localidad => {
+    if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)','Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)','Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)'].includes(localidad)) return 'Chubut';
+    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (localidad === 'Cobertura patagónica (localidad por verificar)') return 'Cobertura regional';
+    if (localidad.startsWith('Entre Ríos')) return 'Resto del país';
+    if (localidad === 'Cobertura provincial (Misiones)') return 'Resto del país';
+    if (localidad === 'Localidad por verificar' || localidad.includes('(localidad por verificar)')) return localidad.startsWith('Chubut') ? 'Chubut' : localidad.startsWith('Santa Cruz') ? 'Patagonia fuera de Chubut' : 'Localidad por verificar';
+    return 'Resto del país';
+  };
+  const drawTerritorio = () => {
+    const tipo = $('f-territorio-tipo').value;
+    const rs = repOk.filter(r => en(r.mes) && (!tipo || tipoMedio(r.medio) === tipo));
+    const localidades = new Map(), regiones = new Map();
+    rs.forEach(r => {
+      const localidad = localidadMedio[r.medio] || 'Localidad por verificar', region = regionMedio(localidad);
+      const item = localidades.get(localidad) || { localidad, publicaciones: 0, medios: new Set() };
+      item.publicaciones++; item.medios.add(r.medio); localidades.set(localidad, item);
+      regiones.set(region, (regiones.get(region) || 0) + 1);
+    });
+    const orden = [...localidades.values()].sort((a,b) => b.publicaciones-a.publicaciones || a.localidad.localeCompare(b.localidad,'es'));
+    const max = orden.length ? orden[0].publicaciones : 1;
+    bars('b-territorio', orden.map(x => row(x.localidad + ' · ' + x.medios.size + (x.medios.size === 1 ? ' medio' : ' medios'), [[x.publicaciones,'var(--accent)']], x.publicaciones, max)));
+    const verif = regiones.get('Localidad por verificar') || 0, conocidas = rs.length - verif;
+    const resumen = [...regiones.entries()].sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+': '+fmt(v)).join(' · ');
+    $('territorio-resumen').textContent = fmt(rs.length)+' publicaciones · '+fmt(localidades.size)+' localidades o grupos · '+fmt(conocidas)+' con localidad identificada · '+fmt(verif)+' por verificar. '+(resumen || 'Sin datos para este período.');
+  };
+
   const drawMedios = (c) => {
     const t = c.porMedio.slice(0, 15), mx = t.length ? t[0].notas : 1;
     bars('b-medios', t.map(r => row(r.medio, [[r.copia, 'var(--copia)'], [r.otra, 'var(--accent)'], [r.sin_dato, 'var(--muted-bar)']], r.notas, mx)));
@@ -418,26 +619,36 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     c = c || calc();
     const series = REDES.map((red, i) => ({ red, color: RCOL[i] }));
     $('lg-redes').replaceChildren(...series.map(s => { const sp = document.createElement('span'); const i = document.createElement('i'); i.style.background = s.color; sp.append(i, document.createTextNode(s.red)); return sp; }));
-    const cnt = new Map(); D.redes.filter(r => r.propia === 'Sí').forEach(r => { const k = r.fecha.slice(0, 7) + '|' + r.red; cnt.set(k, (cnt.get(k) || 0) + 1); });
-    const ms = [...new Set(D.redes.filter(r => r.propia === 'Sí').map(r => r.fecha.slice(0, 7)))].sort();
+    const cnt = new Map(); D.redes.filter(r => r.propia === 'Sí' && en(r.fecha.slice(0, 7))).forEach(r => { const k = r.fecha.slice(0, 7) + '|' + r.red; cnt.set(k, (cnt.get(k) || 0) + 1); });
+    const ms = meses.filter(en);
     const val = (m, s) => cnt.get(m + '|' + s.red) || 0;
     chart('ch-redes', 'tip-redes', ms, series, val, true, m => series.filter(s => val(m, s)).map(s => [s.color, s.red + ': ' + fmt(val(m, s))]));
     tbl('#t-red', c.porRed, [[r => r.red], [r => fmt(r.posteos), 'num'], [r => r.mg === null ? '' : String(r.mg).replace('.', ','), 'num'], [r => fmt(r.vi), 'num'], [r => r.mejor]]);
-    tbl('#t-canales', D.canales, [[r => r.red], [r => r.cuenta], [r => fmt(r.seguidores), 'num'], [r => ({ t: r.estado, c: /Inactiva|No existe/.test(r.estado) ? 'zero' : '' })]]);
+    tbl('#t-canales', D.canales, [[r => r.red], [r => r.cuenta], [r => fmt(r.seguidores), 'num'], [r => ({ t: r.estado, c: /Inactiva|No existe|Pendiente|no computar|referencia institucional/i.test(r.estado) ? 'zero' : '' })]]);
     const fr = $('fred').value, fp = $('fprop').value;
     const score = r => (Number(r.vistas) || 0) + 10 * ((Number(r.me_gusta) || 0) + (Number(r.comentarios) || 0) + (Number(r.compartidos) || 0));
     const rows = D.redes.filter(r => en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
     tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
   };
-  const drawGuia = () => tbl('#t-medios', D.medios.slice().sort((a, b) => b.notas - a.notas), [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió/.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num']]);
+  const drawGuia = () => {
+    const conteo = new Map();
+    repOk.filter(r => en(r.mes)).forEach(r => conteo.set(r.medio, (conteo.get(r.medio) || 0) + 1));
+    const filas = D.medios.map(m => ({ ...m, notas: conteo.get(m.medio) || 0 })).sort((a, b) => b.notas - a.notas);
+    tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió/.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num']]);
+  };
 
+  const updateLanding = c => {
+    $('portada-repercusion').textContent = c.pct + '%';
+    $('portada-notas').textContent = fmt(c.notas);
+    $('portada-medios').textContent = fmt(c.medios);
+  };
   const drawHeader = (c) => {
     const yd = st.desde.slice(0, 4), yh = st.hasta.slice(0, 4);
     const per = st.desde === st.hasta ? mesLargo(st.desde) + ' de ' + yd : mesLargo(st.desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(st.hasta) + ' de ' + yh;
-    const ultima = notas.map(n => n.fecha).sort().pop();
-    $('periodo').textContent = cap(per) + ' · datos al ' + ultima.split('-').reverse().join('/');
+    const ultima = notas.filter(n => en(n.mes)).map(n => n.fecha).sort().pop();
+    $('periodo').textContent = cap(per) + (ultima ? ' · última nota del período: ' + ultima.split('-').reverse().join('/') : ' · sin notas en el período seleccionado');
     const tp = c.tipo.filter(x => x.notas).sort((a, b) => b.pct - a.pct), hi = tp[0], lo = tp[tp.length - 1];
-    let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% fue levantado por al menos un medio: ' + fmt(c.publicaciones) + ' publicaciones en ' + fmt(c.medios) + ' medios.';
+    let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% tuvo al menos una publicación relacionada con enlace verificable: ' + fmt(c.publicaciones) + ' publicaciones en ' + fmt(c.medios) + ' medios.';
     if (hi && lo && hi !== lo) t += ' Lo que más viaja es ' + hi.tipo.toLowerCase() + ' (' + hi.pct + '%); lo que menos, ' + lo.tipo.toLowerCase() + ' (' + lo.pct + '%).';
     if (c.porMedio.length) t += ' ' + c.porMedio[0].medio + ' es el medio que más replica.';
     if (c.pct_copia >= 50) t += ' En el ' + c.pct_copia + '% de los casos con texto disponible, el medio copió nuestra nota casi sin cambios.';
@@ -485,7 +696,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       if (requestId !== googleRequest) return;
       if (!response.ok || data.estado !== 'ok') {
         status.textContent = data.estado === 'pendiente_configuracion'
-          ? 'Pendiente de configuración en Vercel: faltan credenciales o identificadores de Google. Ver docs/GOOGLE_METRICS.md en el repositorio.'
+          ? 'Pendiente de configuración en Cloudflare Pages: faltan credenciales o identificadores de Google. Ver docs/GOOGLE_METRICS.md en el repositorio.'
           : 'No se pudieron consultar las métricas: ' + (data.error || ('HTTP ' + response.status));
         ['g-usuarios','g-sesiones','g-vistas','g-clics','g-impresiones'].forEach(id => $(id).textContent = '—');
         return;
@@ -520,6 +731,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     }
   };
   $('g-actualizar').addEventListener('click', drawGoogle);
+  $('f-territorio-tipo').addEventListener('change', drawTerritorio);
 
   const draw = () => {
     const c = calc();
@@ -530,10 +742,21 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   // Controles
   const opts = meses.map(m => [m, cap(mesLargo(m)) + ' ' + m.slice(0, 4)]);
   ['fdesde', 'fhasta'].forEach(id => $(id).replaceChildren(...opts.map(([v, t]) => new Option(t, v))));
-  const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; draw(); };
+  const syncGoogleDates = () => {
+    const [dy, dm] = st.desde.split('-').map(Number), [hy, hm] = st.hasta.split('-').map(Number);
+    const start = new Date(dy, dm - 1, 1), monthEnd = new Date(hy, hm, 0), today = new Date();
+    const end = monthEnd > today ? today : monthEnd;
+    const maxStart = new Date(end.getFullYear(), end.getMonth(), end.getDate());
+    maxStart.setDate(maxStart.getDate() - 89);
+    const effectiveStart = start < maxStart ? maxStart : start;
+    const isoLocal = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    $('g-desde').value = isoLocal(effectiveStart); $('g-hasta').value = isoLocal(end);
+  };
+  const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; syncGoogleDates(); draw(); };
   $('fdesde').addEventListener('change', e => setRango(e.target.value, st.hasta));
   $('fhasta').addEventListener('change', e => setRango(st.desde, e.target.value));
   $('ftodo').addEventListener('click', () => setRango(meses[0], meses[meses.length - 1]));
+  syncGoogleDates();
   const show = (page) => {
     if (!$(page) || !$(page).classList.contains('page')) return;
     st.page = page;
@@ -548,7 +771,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const n = porNota.find(x => x.id === id); if (!n) return;
     st.sel = id;
     document.querySelectorAll('#t-notas tbody tr').forEach(tr => tr.classList.toggle('sel', Number(tr.dataset.id) === id));
-    const rs = D.repercusion.filter(r => Number(r.nota_id) === id).sort((a, b) => (a.confianza === 'Baja') - (b.confianza === 'Baja') || a.medio.localeCompare(b.medio));
+    const rs = D.repercusion.filter(r => Number(r.nota_id) === id).sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || a.medio.localeCompare(b.medio));
     $('det-titulo').textContent = n.titulo;
     $('det-sub').textContent = ddmm(n.fecha) + ' · ' + fmt(n.n_medios) + ' publicaciones encontradas' + (n.posibles ? ' y ' + fmt(n.posibles) + (n.posibles === 1 ? ' posible' : ' posibles') : '') + '. Abrí cada enlace para ver qué publicó y qué fuente menciona.';
     const tb = document.querySelector('#t-det tbody');
@@ -556,7 +779,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const tr = document.createElement('tr');
       const c = (txt, cls) => { const td = document.createElement('td'); if (cls) td.className = cls; if (txt instanceof Node) td.append(txt); else td.textContent = txt; tr.append(td); };
       c(r.medio);
-      const p = document.createElement('span'); p.className = 'pill' + (r.confianza === 'Baja' ? '' : ' ok'); p.textContent = r.confianza === 'Baja' ? 'A revisar' : 'Encontrada'; c(p);
+      const confirmada = esConfirmada(r); const p = document.createElement('span'); p.className = 'pill' + (confirmada ? ' ok' : ''); p.textContent = confirmada ? 'Encontrada' : 'A revisar'; c(p);
       const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona JusNoticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'dim');
       c(r.origen === 'Sin dato' ? '—' : r.origen.replace(' (≥50%)', ''));
       c(r.metodo || '', 'dim');
@@ -573,8 +796,19 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   document.querySelectorAll('#t-notas th button').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; st.dir = st.sort === k ? -st.dir : (['n_medios', 'copias', 'posibles', 'fecha'].includes(k) ? -1 : 1); st.sort = k; drawNotas(); }));
   let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(draw, 150); });
 
-  $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. Actualizado: ' + D.actualizado + '.';
+  $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. Datos relevados: ' + (D.datos_actualizados ? new Date(D.datos_actualizados).toLocaleString('es-AR') : 'fecha no disponible') + '. Tablero generado: ' + D.actualizado + '.';
   const h = location.hash.slice(1);
-  if (h && h !== 'resumen' && $(h) && $(h).classList.contains('page')) show(h); else draw();
+  updateLanding(calc());
+  $('entrar-tablero').addEventListener('click', () => {
+    $('portada').hidden = true;
+    $('dashboard-app').hidden = false;
+    show('resumen');
+    history.replaceState(null, '', location.pathname + location.search + '#resumen');
+  });
+  if (h && $(h) && $(h).classList.contains('page')) {
+    $('portada').hidden = true;
+    $('dashboard-app').hidden = false;
+    show(h);
+  } else draw();
 })();
 </script>
