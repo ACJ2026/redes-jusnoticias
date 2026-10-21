@@ -350,7 +350,7 @@ def gmatch(it, n):
     # significativos con el título oficial de JusNoticias.
     # Los términos temáticos amplios no bastan para atribuir una publicación a una nota.
     # Por ejemplo, compartir solo "mujeres rurales" no acredita relación con la campaña de JusNoticias.
-    GENERICOS_TITULO = {'mujer', 'rural', 'rurale', 'campan', 'homenaj', 'celebr', 'conmemor', 'dia', 'mundial', 'internac', 'nacion'}
+    GENERICOS_TITULO = {'mujer', 'rural', 'rurale', 'campan', 'homena', 'celebr', 'conmem', 'mundia', 'intern', 'nacion', 'provin'}
     coincidencias_titulo = len(st & STEM(n.get('titulo', '')))
     coincidencias_especificas = len((st & STEM(n.get('titulo', ''))) - GENERICOS_TITULO)
     if (not best or best['id'] != n['id'] or sc(n['id']) < minimo
