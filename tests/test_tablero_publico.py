@@ -67,6 +67,17 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn("clics desde Google", template)
         self.assertNotIn("impresiones en búsquedas", template)
 
+    def test_api_x_muestra_error_si_no_hay_token_y_no_finge_integracion_completa(self):
+        function = (ROOT / "functions/api/redes.js").read_text(encoding="utf-8")
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("async function x(desde, env)", function)
+        self.assertIn("X_BEARER_TOKEN", function)
+        self.assertIn("X: x", function)
+        self.assertIn("const connected = ['Facebook', 'Instagram', 'YouTube', 'X']", template)
+        self.assertIn("result.limiteAlcanzado", template)
+        self.assertIn("TikTok", template)
+        self.assertIn("WhatsApp", template)
+
     def test_redes_sin_integracion_no_se_presentan_como_cero_actividad(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         canales = read_json("data/canales.json")
