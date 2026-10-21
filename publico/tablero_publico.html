@@ -625,15 +625,21 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const mostrarReferenciasMedios = (titulo, intro, registros) => {
     const panel = $('medios-detalle'), lista = $('medios-detalle-lista');
     $('medios-detalle-titulo').textContent = titulo;
-    $('medios-detalle-intro').textContent = intro;
     const ns = new Map(notas.map(n => [Number(n.id), n]));
+    // Deduplicamos el mismo enlace para la misma nota oficial, pero preservamos la relación si un enlace se asocia a más de una nota.
     const vistos = new Set();
-    const items = registros.filter(r => r.url && (r.url.startsWith('https://') || r.url.startsWith('http://')) && !vistos.has(r.url) && vistos.add(r.url))
-      .sort((a, b) => String(ns.get(Number(b.nota_id))?.fecha || '').localeCompare(String(ns.get(Number(a.nota_id))?.fecha || '')));
+    const items = registros.filter(r => {
+      if (!r.url || !(r.url.startsWith('https://') || r.url.startsWith('http://'))) return false;
+      const clave = JSON.stringify([r.url, Number(r.nota_id)]);
+      if (vistos.has(clave)) return false;
+      vistos.add(clave); return true;
+    }).sort((a, b) => String(ns.get(Number(b.nota_id))?.fecha || '').localeCompare(String(ns.get(Number(a.nota_id))?.fecha || '')));
+    const direccionesUnicas = new Set(items.map(r => r.url)).size;
+    $('medios-detalle-intro').textContent = intro + ' Se muestran ' + fmt(items.length) + ' vínculos entre notas oficiales y publicaciones, correspondientes a ' + fmt(direccionesUnicas) + ' direcciones web únicas.';
     lista.replaceChildren();
     if (!items.length) {
       const p = document.createElement('p'); p.className = 'note';
-      p.textContent = 'No hay direcciones web registradas para esta selección dentro del período elegido.';
+      p.textContent = 'No hay direcciones web registradas para esta selección dentro del período elegido. Por eso no se presenta un enlace como si fuera una fuente comprobada.';
       lista.append(p);
     } else {
       items.forEach(r => {
