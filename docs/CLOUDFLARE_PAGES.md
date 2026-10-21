@@ -19,7 +19,7 @@ Mantener `functions/` en la raíz del repositorio; Cloudflare Pages la utiliza p
 
 ## Configurar Google como secretos
 
-En la configuración del proyecto Pages, agregar las mismas variables que usa la función de Vercel. Para producción, guardarlas como secretos cuando el panel lo permita:
+En la configuración del proyecto Pages, configurar las variables que consume la función de Cloudflare Pages. Para producción, guardarlas como secretos cuando el panel lo permita:
 
 - `GOOGLE_SERVICE_ACCOUNT_JSON`: JSON completo de la cuenta de servicio, con `client_email` y `private_key`.
 - `GA4_PROPERTY_ID`: ID numérico de la propiedad de Google Analytics 4.
@@ -29,7 +29,7 @@ Estas variables corresponden solo a Google. La ruta social de Pages (`functions/
 
 La cuenta de servicio debe tener acceso de lectura a la propiedad de GA4 y a Search Console. No copiar credenciales al HTML, al repositorio ni a documentación.
 
-La función `functions/api/google-metrics.js` conserva la ruta y el formato de respuesta de Vercel: `/api/google-metrics?desde=AAAA-MM-DD&hasta=AAAA-MM-DD`. La plantilla del tablero ya consulta esa ruta relativa, por lo que no requiere cambios de URL.
+La función `functions/api/google-metrics.js` expone la ruta `/api/google-metrics?desde=AAAA-MM-DD&hasta=AAAA-MM-DD`. La plantilla consulta esa ruta relativa. La plantilla del tablero ya consulta esa ruta relativa, por lo que no requiere cambios de URL.
 
 **Importante para redes sociales:** `api/redes.js` es la ruta heredada de Vercel; `functions/api/redes.js` es la ruta de Cloudflare Pages y la interfaz ya consulta `/api/redes`. La función requiere IDs y secretos verificados y pruebas reales. X ya está conectado a la consulta y requiere `X_BEARER_TOKEN` y, opcionalmente, `X_USER_HANDLE`. TikTok y WhatsApp no están conectados; necesitan evaluación separada de APIs, permisos y disponibilidad de métricas.
 
@@ -45,5 +45,5 @@ La función `functions/api/google-metrics.js` conserva la ruta y el formato de r
 ## Límites de esta migración
 
 - Este cambio agrega la función compatible con Cloudflare Pages; no crea el proyecto Pages ni configura secretos en la cuenta de Cloudflare.
-- La función no puede validarse contra Google hasta que los secretos estén configurados y la cuenta de servicio tenga permisos correctos.
-- No cambiar ni desactivar el proyecto Vercel hasta completar la validación de extremo a extremo.
+- La validación con datos reales de Google sigue pendiente hasta comprobar que los secretos estén configurados en el proyecto de producción y que la cuenta de servicio tenga permisos correctos. La herramienta disponible en esta revisión no permitió consultar el dominio `pages.dev` directamente, por lo que no se afirma que la función ya devuelva datos reales.
+- `api/redes.js` es una ruta heredada para Vercel; no confundir su existencia con la validación del despliegue de Cloudflare Pages. No desactivar servicios heredados hasta confirmar qué tráfico y dominios siguen utilizándolos.
