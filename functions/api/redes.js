@@ -34,6 +34,7 @@ async function facebook(desde, env) {
   if (!pageToken) throw new Error("Meta no devolvió un token de página.");
   const page = await get(`${GRAPH}/${id}?fields=name,followers_count,fan_count`, pageToken);
   const filas = [];
+  let limiteAlcanzado = false;
   let url = `${GRAPH}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${encodeURIComponent(desde)}&limit=100`;
   for (let i = 0; url && i < 10; i++) {
     const result = await get(url, pageToken);
@@ -44,9 +45,11 @@ async function facebook(desde, env) {
       comentarios: post.comments ? post.comments.summary.total_count : null,
       compartidos: post.shares ? post.shares.count : 0, vistas: null, propia: "Sí", key: "fb-" + post.id
     }));
-    url = result.paging && result.paging.next;
+    const next = result.paging && result.paging.next;
+    if (i === 9 && next) limiteAlcanzado = true;
+    url = next;
   }
-  return { filas, seguidores: page.followers_count ?? page.fan_count ?? null };
+  return { filas, seguidores: page.followers_count ?? page.fan_count ?? null, limiteAlcanzado };
 }
 
 async function instagram(desde, env) {
@@ -56,6 +59,7 @@ async function instagram(desde, env) {
   if (!token) throw new Error("Falta configurar META_TOKEN.");
   const account = await get(`${GRAPH}/${id}?fields=username,followers_count`, token);
   const filas = [];
+  let limiteAlcanzado = false;
   let url = `${GRAPH}/${id}/media?fields=timestamp,caption,like_count,comments_count&limit=100`;
   for (let i = 0; url && i < 10; i++) {
     const result = await get(url, token);
@@ -67,9 +71,11 @@ async function instagram(desde, env) {
       comentarios: post.comments_count ?? null, compartidos: null, vistas: null, propia: "Sí", key: "ig-" + post.id
     }));
     if (within.length < posts.length) break;
-    url = result.paging && result.paging.next;
+    const next = result.paging && result.paging.next;
+    if (i === 9 && next) { limiteAlcanzado = true; break; }
+    url = next;
   }
-  return { filas, seguidores: account.followers_count ?? null };
+  return { filas, seguidores: account.followers_count ?? null, limiteAlcanzado };
 }
 
 async function x(desde, env) {
@@ -118,12 +124,14 @@ async function youtube(desde, env) {
   const uploads = channel.contentDetails.relatedPlaylists.uploads;
   const ids = [];
   let pageToken = "";
+  let limiteAlcanzado = false;
   for (let i = 0; i < 10; i++) {
     const url = `${api}/playlistItems?part=contentDetails&playlistId=${encodeURIComponent(uploads)}&maxResults=50&key=${encodeURIComponent(key)}${pageToken ? "&pageToken=" + encodeURIComponent(pageToken) : ""}`;
     const result = await get(url);
     const items = (result.items || []).map(item => item.contentDetails);
     items.filter(item => (item.videoPublishedAt || "").slice(0, 10) >= desde).forEach(item => ids.push(item.videoId));
     if (!result.nextPageToken || items.every(item => (item.videoPublishedAt || "").slice(0, 10) < desde)) break;
+    if (i === 9) { limiteAlcanzado = true; break; }
     pageToken = result.nextPageToken;
   }
   const filas = [];
@@ -141,7 +149,7 @@ async function youtube(desde, env) {
       });
     });
   }
-  return { filas, seguidores: Number(channel.statistics && channel.statistics.subscriberCount) || null };
+  return { filas, seguidores: Number(channel.statistics && channel.statistics.subscriberCount) || null, limiteAlcanzado };
 }
 
 function validDate(value) {
