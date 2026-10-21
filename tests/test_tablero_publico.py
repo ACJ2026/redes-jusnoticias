@@ -111,7 +111,7 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_medios_por_nota_cuenta_medios_unicos(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn("const mediosUnicos = [...new Set(ok.map(r => r.medio))];", template)
+        self.assertIn("const mediosUnicos = [...new Set(ok.map(r => canonMedio(r.medio)))];", template)
         self.assertIn("n_medios: mediosUnicos.length", template)
         self.assertIn("publicación relacionada con enlace registrado", template)
 
