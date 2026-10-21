@@ -6,8 +6,10 @@ on:
     paths:
       - '.github/workflows/actualizar.yml'
       - 'scripts/actualizar.py'
+      - 'scripts/armar_publico.py'
+      - 'templates/**'
   schedule:
-    # Cada dos horas, minuto 59 (horario argentino UTC-3; cron de GitHub en UTC)
+    # Cron UTC: horas pares, minuto 59; en Argentina (UTC-3) corresponde a horas impares, minuto 59.
     - cron: "59 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
   workflow_dispatch:
     inputs:
@@ -35,7 +37,7 @@ jobs:
           python-version: "3.12"
 
       - name: Revisar medios y Google Noticias
-        if: github.event_name == 'schedule' || inputs.modo != 'publico'
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.modo != 'publico') || (github.event_name == 'push' && contains(github.event.head_commit.modified, 'scripts/actualizar.py'))
         run: |
           mkdir -p out
           python3 -u scripts/actualizar.py out data/rep2.json | tee run.log
@@ -53,15 +55,40 @@ jobs:
           if [ "$notas_ahora" -lt $((notas_antes * 95 / 100)) ]; then echo "Desaparecieron más del 5% de las notas; no se guarda sin revisión"; exit 1; fi
           cp out/notas2.json out/rep2.json out/medios.json data/
 
+      - name: Registrar fecha del relevamiento
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.modo != 'publico') || (github.event_name == 'push' && contains(github.event.head_commit.modified, 'scripts/actualizar.py'))
+        run: date -u +"%Y-%m-%dT%H:%M:%SZ" > data/actualizado.txt
+
       - name: Armar versión pública
         run: |
           python3 scripts/armar_publico.py data/notas2.json data/rep2.json data/redes2.json data/canales.json data/medios.json publico/tablero_publico.html
           # Vercel publica solo la carpeta publico/ y abre index.html
           cp publico/tablero_publico.html publico/index.html
 
+      - name: Verificar sintaxis y ejecutar regresiones antes de guardar
+        run: |
+          node --check api/redes.js
+          node --input-type=module --check < functions/api/google-metrics.js
+          node --input-type=module --check < functions/api/redes.js
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          for source, target in [
+              ("publico/index.html", "/tmp/tablero-publico.js"),
+              ("tablero_interno/index.html", "/tmp/tablero-interno.js"),
+          ]:
+              html = Path(source).read_text(encoding="utf-8")
+              scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\s\S]*?)</script>', html)
+              if len(scripts) != 1:
+                  raise SystemExit(f"{source}: se esperaba un script y se encontraron {len(scripts)}")
+              Path(target).write_text(scripts[0], encoding="utf-8")
+          PY
+          node --check /tmp/tablero-publico.js
+          node --check /tmp/tablero-interno.js
+          python3 -m unittest discover -s tests -v
+
       - name: Guardar
         run: |
-          date -u +"%Y-%m-%dT%H:%M:%SZ" > data/actualizado.txt
           git config user.name "jusnoticias-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data publico

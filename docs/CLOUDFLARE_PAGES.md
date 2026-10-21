@@ -6,14 +6,16 @@ Publicar el tablero desde la carpeta `publico/` sin hacer público el repositori
 
 ## Crear el proyecto Pages
 
-Configurar un proyecto Cloudflare Pages conectado al repositorio privado `ACJ2026/redes-jusnoticias`:
+**Estado que debe resolverse antes de la puesta en producción:** al 20/10/2026, GitHub informa que `ACJ2026/redes-jusnoticias` tiene `private: false` (público), aunque el plan de migración lo describía como privado. Confirmar la política institucional y quién puede cambiarla; no asumir que el repositorio es privado ni publicar secretos.
+
+Configurar un proyecto Cloudflare Pages conectado al repositorio `ACJ2026/redes-jusnoticias` una vez confirmada la política de visibilidad:
 
 - **Production branch:** `main`
 - **Root directory:** dejar vacío (raíz del repositorio)
 - **Build command:** `exit 0`
 - **Build output directory:** `publico`
 
-No cambiar la visibilidad del repositorio. Mantener `functions/` en la raíz del repositorio; Cloudflare Pages la utiliza para resolver las rutas de Pages Functions aunque los archivos estáticos se publiquen desde `publico/`.
+Mantener `functions/` en la raíz del repositorio; Cloudflare Pages la utiliza para resolver las rutas de Pages Functions aunque los archivos estáticos se publiquen desde `publico/`. No cambiar la visibilidad de forma automática: requiere una decisión institucional explícita.
 
 ## Configurar Google como secretos
 
@@ -23,9 +25,13 @@ En la configuración del proyecto Pages, agregar las mismas variables que usa la
 - `GA4_PROPERTY_ID`: ID numérico de la propiedad de Google Analytics 4.
 - `GSC_SITE_URL`: propiedad exacta de Search Console (por ejemplo, URL-prefix o propiedad de dominio, según cómo esté verificada).
 
+Estas variables corresponden solo a Google. La ruta social de Pages (`functions/api/redes.js`) y la ruta heredada de Vercel usan `META_TOKEN`, `FB_PAGE_ID`, `IG_USER_ID`, `YT_KEY` y, para el canal correcto, `YT_CANAL_ID`; no son intercambiables con las variables de Google.
+
 La cuenta de servicio debe tener acceso de lectura a la propiedad de GA4 y a Search Console. No copiar credenciales al HTML, al repositorio ni a documentación.
 
 La función `functions/api/google-metrics.js` conserva la ruta y el formato de respuesta de Vercel: `/api/google-metrics?desde=AAAA-MM-DD&hasta=AAAA-MM-DD`. La plantilla del tablero ya consulta esa ruta relativa, por lo que no requiere cambios de URL.
+
+**Importante para redes sociales:** `api/redes.js` es la ruta heredada de Vercel; `functions/api/redes.js` ya contiene la adaptación para Cloudflare Pages. Sin embargo, la plantilla actual todavía no consulta `/api/redes`, y las redes visibles provienen del JSON generado por GitHub Actions. La función de Pages aún requiere IDs y secretos verificados y pruebas reales antes de conectarla a la interfaz. X, TikTok y WhatsApp requieren evaluación separada de APIs y permisos.
 
 ## Validación antes de sustituir Vercel
 

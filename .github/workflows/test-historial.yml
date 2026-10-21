@@ -2,13 +2,11 @@ name: Pruebas de regresión del historial
 
 on:
   pull_request:
-    paths:
-      - "scripts/**"
-      - "tests/**"
-      - ".github/workflows/test-historial.yml"
   push:
     branches:
       - "fix/conservar-historial-publicaciones"
+      - "feature/indicadores-faciles-de-entender"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -21,5 +19,30 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Verificar sintaxis de JavaScript
+        run: |
+          node --check api/redes.js
+          node --input-type=module --check < functions/api/google-metrics.js
+          node --input-type=module --check < functions/api/redes.js
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          html = Path("publico/index.html").read_text(encoding="utf-8")
+          scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\s\S]*?)</script>', html)
+          if len(scripts) != 1:
+              raise SystemExit(f"Se esperaba un script de tablero y se encontraron {len(scripts)}")
+          Path("/tmp/tablero-publico.js").write_text(scripts[0], encoding="utf-8")
+          PY
+          node --check /tmp/tablero-publico.js
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          html = Path("tablero_interno/index.html").read_text(encoding="utf-8")
+          scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\s\S]*?)</script>', html)
+          if len(scripts) != 1:
+              raise SystemExit(f"Se esperaba un script interno y se encontraron {len(scripts)}")
+          Path("/tmp/tablero-interno.js").write_text(scripts[0], encoding="utf-8")
+          PY
+          node --check /tmp/tablero-interno.js
       - name: Ejecutar pruebas de regresión
         run: python3 -m unittest discover -s tests -v

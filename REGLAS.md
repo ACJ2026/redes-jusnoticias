@@ -11,7 +11,7 @@ Lo usan varias conversaciones de Claude (la de Chrome y la de Claude Code). Ante
 | `scripts/armar_publico.py` | Arma la versión pública (`publico/tablero_publico.html`) con los datos. |
 | `data/` | Los datos que muestran los tableros. |
 | `tablero_interno/index.html` | Copia de la página del tablero interno de Claude (se edita en el tablero con ArtifactData y se copia acá). |
-| `.github/workflows/actualizar.yml` | GitHub corre la actualización a las 7:59 y 13:59 (hora argentina). |
+| `.github/workflows/actualizar.yml` | GitHub programa el relevamiento cada dos horas, en el minuto 59 de hora argentina (cron UTC en horas pares). La programación no garantiza que cada corrida termine correctamente. |
 
 Tableros que leen estos datos:
 - Interno (Claude): https://claude.ai/artifact/Xdyyf8Y5c1jXh5qLWkR2JW
@@ -46,3 +46,6 @@ Tableros que leen estos datos:
 - 19/10/2026 — Se crea el repo (temporal en ignacervo-cell; se muda a ACJ2026). Se suben el programa con Google Noticias, el armador público y los datos del tablero al 19/10 17:15. Se agrega a `actualizar.py` la regla 1 (no perder filas de buscador).
 - 19/10/2026 — Se copia la página del tablero interno a `tablero_interno/index.html`. La tarea de Claude "Sincronizar tablero JusNoticias" (8:25, 10:25 … 20:25) copia los datos del repo a los dos tableros y suma la búsqueda web; la vieja "Actualizar tablero JusNoticias" quedó apagada.
 - 20/10/2026 — Para Vercel: `vercel.json` hace que se publique solo la carpeta `publico/` (nunca `data/` ni `scripts/`), y GitHub copia el tablero público a `publico/index.html` en cada actualización.
+
+
+- 21/10/2026 — PR #5 `feature/indicadores-faciles-de-entender`: portada visual JusNoticias trasladada a la plantilla generadora; la fecha del último relevamiento solo cambia cuando corre el relevamiento real; el tablero distingue esa fecha de la generación del HTML. Las repercusiones sin URL válida pasan a “posibles” y se excluyen de los totales confirmados; se corrigió un enlace de Radio 3 asociado a la nota 14509 y se retiró un enlace ajeno de la fila 14674 sin borrar el registro. Se preparó `functions/api/redes.js` para Cloudflare Pages, con IDs obligatorios y errores explícitos, sin conectarla aún a la interfaz ni afirmar que las métricas sean en vivo. Validación: 20 pruebas automatizadas OK, chequeo de sintaxis JS y despliegue Cloudflare Pages exitoso; PR #5 sigue abierto y no se fusionó ni se tocó `main`. Vista previa: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/
