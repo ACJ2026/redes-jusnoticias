@@ -1,1 +1,44 @@
-[{"red":"Facebook","cuenta":"JusNoticias (prensastjchubut)","seguidores":3700,"estado":"Activa"},{"red":"Facebook","cuenta":"JusNoticias STJ","seguidores":10000,"estado":"Inactiva: último posteo 22/04/2026"},{"red":"Instagram","cuenta":"jus_chubut","seguidores":2604,"estado":"Activa"},{"red":"X","cuenta":"@Jus_Noticias","seguidores":2421,"estado":"Activa"},{"red":"YouTube","cuenta":"Poder Judicial del Chubut","seguidores":1200,"estado":"Activa"},{"red":"WhatsApp","cuenta":"Canal JUSCHUBUT Noticias","seguidores":318,"estado":"Activa"}]
+[
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias (prensastjchubut)",
+    "seguidores": 3700,
+    "estado": "Activa"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias STJ",
+    "seguidores": 10000,
+    "estado": "Inactiva: último posteo 22/04/2026"
+  },
+  {
+    "red": "Instagram",
+    "cuenta": "jus_chubut",
+    "seguidores": 2604,
+    "estado": "Activa"
+  },
+  {
+    "red": "X",
+    "cuenta": "@Jus_Noticias",
+    "seguidores": 2421,
+    "estado": "Activa"
+  },
+  {
+    "red": "YouTube",
+    "cuenta": "Poder Judicial del Chubut (cuenta institucional distinta)",
+    "seguidores": null,
+    "estado": "Referencia institucional distinta; no computar como JusNoticias"
+  },
+  {
+    "red": "WhatsApp",
+    "cuenta": "Canal JUSCHUBUT Noticias",
+    "seguidores": 318,
+    "estado": "Activa"
+  },
+  {
+    "red": "YouTube",
+    "cuenta": "JusNoticias Prensa",
+    "seguidores": null,
+    "estado": "Pendiente de verificar ID y seguidores"
+  }
+]
