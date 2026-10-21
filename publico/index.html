@@ -640,7 +640,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         const n = ns.get(Number(r.nota_id));
         const item = document.createElement('div'); item.className = 'medios-ref';
         const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-        a.textContent = /news\\.google\\.com\\/rss\\/articles/i.test(r.url) ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación en ' + (r.medio || 'el medio de origen') + ' ↗';
+        a.textContent = String(r.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación en ' + (r.medio || 'el medio de origen') + ' ↗';
         const meta = document.createElement('small');
         meta.textContent = 'Nota de JusNoticias relacionada: ' + (n?.titulo || 'Título no disponible') + ' · Fecha de la nota oficial: ' + (n?.fecha || 'No disponible') + ' · Comparación: ' + (r.origen || 'No clasificada') + ' · Confianza del registro: ' + (r.confianza || 'No indicada');
         item.append(a, meta); lista.append(item);
@@ -789,7 +789,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const filas = [...catalogo.values()].map(m => ({ ...m, notas: conteo.get(m.medio) || 0, referencia: refs.get(m.medio) || null }))
       .filter(m => m.notas > 0 && m.referencia?.url)
       .sort((a, b) => b.notas - a.notas || a.medio.localeCompare(b.medio));
-    tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió|temporalmente no disponible/i.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num'], [r => { const a = document.createElement('a'); a.href = r.referencia.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = /news\\.google\\.com\\/rss\\/articles/i.test(r.referencia.url) ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación ↗'; a.title = 'Referencia relacionada: ' + r.referencia.titulo + ' (' + r.referencia.fecha + ')'; return a; }]]);
+    tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió|temporalmente no disponible/i.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num'], [r => { const a = document.createElement('a'); a.href = r.referencia.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = String(r.referencia.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación ↗'; a.title = 'Referencia relacionada: ' + r.referencia.titulo + ' (' + r.referencia.fecha + ')'; return a; }]]);
     if (!filas.length) { const tb = document.querySelector('#t-medios tbody'); const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 4; td.textContent = 'No hay medios con enlace de referencia registrado en este período.'; tr.append(td); tb.append(tr); }
   };
 
@@ -944,7 +944,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona Juschubut Noticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'dim');
       c(r.origen === 'Sin dato' ? '—' : r.origen.replace(' (≥50%)', ''));
       c(r.metodo || '', 'dim');
-      if (r.url && /^https?:\/\//.test(r.url)) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = /news\\.google\\.com\\/rss\\/articles/i.test(r.url) ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación externa ↗'; c(a); } else c('Sin enlace', 'dim');
+      if (r.url && /^https?:\/\//.test(r.url)) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = String(r.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación externa ↗'; c(a); } else c('Sin enlace', 'dim');
       return tr;
     }));
     if (!rs.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 6; td.className = 'dim'; td.textContent = 'Ningún medio encontrado para esta nota.'; tr.append(td); tb.append(tr); }
