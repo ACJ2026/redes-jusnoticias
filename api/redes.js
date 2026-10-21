@@ -4,8 +4,8 @@
 //   YT_KEY       = clave de la API de YouTube (opcional)
 //   YT_CANAL_ID  = ID confirmado del canal JusNoticias Prensa (no usar el canal general por defecto)
 const G = 'https://graph.facebook.com/v26.0';
-const FB_PAGE = process.env.FB_PAGE_ID || '116101835114568';   // página JusNoticias
-const IG_USER = process.env.IG_USER_ID || '17841410514175238'; // Instagram jus_chubut
+const FB_PAGE = process.env.FB_PAGE_ID;
+const IG_USER = process.env.IG_USER_ID;
 const YT_CANAL = process.env.YT_CANAL_ID;
 
 async function get(url, token) {
@@ -22,6 +22,7 @@ const corto = (s) => (s || '').replace(/\s+/g, ' ').trim().slice(0, 26);
 
 async function facebook(desde) {
   const id = FB_PAGE;
+  if (!id) throw new Error('Falta configurar FB_PAGE_ID con el identificador verificado de la página JusNoticias.');
   // La "nueva experiencia de páginas" exige un token de la página: se obtiene en el momento.
   const metaToken = process.env.META_TOKEN;
   if (!metaToken) throw new Error('Falta configurar META_TOKEN.');
@@ -45,6 +46,7 @@ async function facebook(desde) {
 
 async function instagram(desde) {
   const t = process.env.META_TOKEN, id = IG_USER;
+  if (!id) throw new Error('Falta configurar IG_USER_ID para la cuenta oficial @jus_chubut.');
   if (!t) throw new Error('Falta configurar META_TOKEN.');
   const cuenta = await get(`${G}/${id}?fields=username,followers_count`, t);
   const filas = [];
