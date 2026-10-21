@@ -6,6 +6,7 @@ Genera notas2.json, rep2.json y medios.json en la carpeta de salida.
 """
 import json, re, sys, os, gzip, html, unicodedata, time, datetime as dt
 import urllib.request, urllib.parse
+from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from fuentes import exigir_lista_json
 
@@ -307,14 +308,19 @@ def gnews(n):
         if q.startswith('"'): fuerte += r
     out = []
     for it in re.findall(r'<item>(.*?)</item>', t, re.S):
-        ti = re.search(r'<title>(.*?)</title>', it, re.S); src = re.search(r'<source[^>]*>(.*?)</source>', it, re.S)
+        ti = re.search(r'<title>(.*?)</title>', it, re.S); src = re.search(r'<source([^>]*)>(.*?)</source>', it, re.S)
         pd = re.search(r'<pubDate>(.*?)</pubDate>', it); lk = re.search(r'<link>(.*?)</link>', it, re.S)
         if not (ti and src and pd): continue
+        src_url = re.search(r'url="([^"]+)"', src.group(1), re.I)
         try: d = dt.datetime.strptime(pd.group(1)[5:16], '%d %b %Y').date().isoformat()
         except Exception: continue
         tt = html.unescape(ti.group(1)).rsplit(' - ', 1)[0]
-        if norm(tt).replace(' ', '') == norm(src.group(1)).replace(' ', ''): continue
-        out.append({'fuerte': it in fuerte, 't': tt, 'd': d, 'u': html.unescape(lk.group(1)) if lk else '', 'src': html.unescape(src.group(1)).strip()})
+        src_name = html.unescape(src.group(2)).strip()
+        if norm(tt).replace(' ', '') == norm(src_name).replace(' ', ''): continue
+        host = urlparse(html.unescape(src_url.group(1))).hostname if src_url else ''
+        host = (host or '').lower()
+        if host.startswith('www.'): host = host[4:]
+        out.append({'fuerte': it in fuerte, 't': tt, 'd': d, 'u': html.unescape(lk.group(1)) if lk else '', 'src': src_name, 'dominio': host})
     return n, out
 STEM = lambda s: {w[:6] for w in norm(s).split() if len(w) >= 5 and w not in STOP}
 JSTEM, CUERPO = {}, {}
