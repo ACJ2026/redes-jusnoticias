@@ -67,7 +67,9 @@ async function youtube(desde) {
   const k = process.env.YT_KEY, Y = 'https://www.googleapis.com/youtube/v3';
   if (!k) throw new Error('Falta configurar YT_KEY.');
   if (!YT_CANAL) throw new Error('Falta configurar YT_CANAL_ID con el ID verificado de JusNoticias Prensa.');
-  const ch = (await get(`${Y}/channels?part=statistics,contentDetails&id=${YT_CANAL}&key=${k}`)).items[0];
+  const canales = (await get(`${Y}/channels?part=statistics,contentDetails&id=${YT_CANAL}&key=${k}`)).items || [];
+  if (!canales.length) throw new Error('No se encontró el canal indicado por YT_CANAL_ID. Verificar el ID de JusNoticias Prensa.');
+  const ch = canales[0];
   const up = ch.contentDetails.relatedPlaylists.uploads, ids = [];
   let tok = '';
   for (let i = 0; i < 10; i++) {
@@ -101,8 +103,9 @@ module.exports = async (req, res) => {
   const dias = (Date.now() - new Date(desde + 'T00:00:00Z').getTime()) / 86400000;
   if (dias < 0 || dias > 90) return res.status(400).json({ error: "'desde' debe estar entre hoy y los últimos 90 días." });
   const out = { actualizado: new Date().toISOString(), desde, redes: {}, errores: {} };
-  const tareas = { Facebook: facebook, Instagram: instagram };
-  if (process.env.YT_KEY) tareas.YouTube = youtube;
+  // Ejecutar siempre las tres plataformas: una credencial ausente debe figurar
+  // como error explícito y nunca desaparecer como si la integración no existiera.
+  const tareas = { Facebook: facebook, Instagram: instagram, YouTube: youtube };
   await Promise.all(Object.entries(tareas).map(async ([red, fn]) => {
     try { out.redes[red] = await fn(desde); } catch (e) { out.errores[red] = e.message; }
   }));
