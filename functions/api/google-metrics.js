@@ -126,10 +126,11 @@ export async function onRequest(context) {
   try {
     const token = await googleAccessToken(service);
     const base = "https://analyticsdata.googleapis.com/v1beta/properties/" + encodeURIComponent(env.GA4_PROPERTY_ID) + ":runReport";
-    const runGA = (dimensions, metrics, limit = 10000) => googlePost(base, token, {
+    const runGA = (dimensions, metrics, limit = 10000, orderBys = []) => googlePost(base, token, {
       dateRanges: [{ startDate: range.start, endDate: range.end }],
       ...(dimensions.length ? { dimensions: dimensions.map(name => ({ name })) } : {}),
       metrics: metrics.map(name => ({ name })),
+      ...(orderBys.length ? { orderBys } : {}),
       limit
     });
 
@@ -139,7 +140,7 @@ export async function onRequest(context) {
       runGA(["sessionDefaultChannelGroup"], ["totalUsers", "sessions", "screenPageViews"], 50),
       runGA(["deviceCategory"], ["totalUsers", "sessions", "screenPageViews"], 20),
       runGA(["pageTitle", "pagePath"], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 100),
-      runGA(["sessionSource", "sessionMedium"], ["sessions", "screenPageViews", "totalUsers"], 100),
+      runGA(["sessionSource", "sessionMedium"], ["sessions", "screenPageViews", "totalUsers"], 100, [{ metric: { metricName: "sessions" }, desc: true }]),
       googlePost(gscBase, token, { startDate: range.start, endDate: range.end, rowLimit: 1, dataState: "final" }),
       googlePost(gscBase, token, { startDate: range.start, endDate: range.end, dimensions: ["query"], rowLimit: 25, dataState: "final" }),
       googlePost(gscBase, token, { startDate: range.start, endDate: range.end, dimensions: ["page"], rowLimit: 25, dataState: "final" })
@@ -160,7 +161,7 @@ export async function onRequest(context) {
     })).sort((a, b) => b.screenPageViews - a.screenPageViews).slice(0, 25);
 
     const classifySource = (source, medium) => {
-      const s = String(source || "").toLowerCase().replace(/^www\\./, "");
+      const s = String(source || "").toLowerCase().replace(/^www\./, "");
       const m = String(medium || "").toLowerCase();
       const has = (items) => items.some(item => s === item || s.endsWith("." + item) || s.includes(item));
       if (["(not set)", "(unknown)", ""].includes(s) || ["(not set)", "(unknown)", ""].includes(m)) return "Sin identificar";
