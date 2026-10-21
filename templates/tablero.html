@@ -236,38 +236,25 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <p class="grp">En redes</p>
     <div class="kpis">
-      <div class="kpi"><div class="big" data-k="posteos"></div><div class="lbl">publicaciones en nuestras redes</div><p class="note">Cantidad de publicaciones hechas desde las cuentas oficiales incluidas en el tablero.</p></div>
-      <div class="kpi"><div class="big" data-k="vistas"></div><div class="lbl">vistas en X y YouTube</div><p class="note">Suma las vistas informadas por esas dos redes. Las otras no muestran ese dato.</p></div>
-      <div class="kpi"><div class="big" data-k="seguidores"></div><div class="lbl">seguidores de nuestras cuentas</div><p class="note">Suma los seguidores que muestran las cuentas incluidas hoy. No significa que todos hayan visto nuestras publicaciones.</p></div>
+      <div class="kpi"><div class="big" data-k="posteos"></div><div class="lbl">publicaciones registradas en redes</div><p class="note">Dato parcial: todavía no están integradas y verificadas todas las redes ni todas sus herramientas de consulta. No representa el total real de actividad.</p></div>
+      <div class="kpi"><div class="big" data-k="vistas"></div><div class="lbl">vistas registradas en X y YouTube</div><p class="note">Dato parcial de dos redes. Hasta integrar y verificar las fuentes de todas las plataformas, no permite medir el total de visualizaciones.</p></div>
+      <div class="kpi"><div class="big" data-k="seguidores"></div><div class="lbl">seguidores registrados en algunas cuentas</div><p class="note">Cifra parcial, sujeta a la integración y verificación de todas las cuentas. No indica cuántas personas vieron las publicaciones.</p></div>
     </div>
     <div class="card territorio-card" id="c-territorio">
-      <h2>Alcance territorial por localidad</h2>
-      <p class="note">Publicaciones encontradas en otros medios vinculadas con notas del período elegido. La localidad indica la sede conocida del medio, no dónde vive cada lector. La fecha corresponde a la nota de Juschubut Noticias relacionada.</p>
-      <div class="tools territorio-tools">
-        <label for="f-territorio-tipo" class="lbl">Tipo de medio</label>
-        <select id="f-territorio-tipo">
-          <option value="">Todos los tipos</option><option value="Radio">Radios</option><option value="TV">Televisión</option><option value="Prensa gráfica">Prensa gráfica</option><option value="Portal digital">Portales digitales</option>
-        </select>
-      </div>
-      <p class="note" id="territorio-resumen" aria-live="polite"></p>
-      <div class="bars" id="b-territorio"></div>
-      <p class="note">Las localidades no verificadas se muestran aparte; la distribución territorial es orientativa y cuenta publicaciones detectadas, no audiencia ni alcance real.</p>
+      <h2>Distribución por localidad: pendiente de verificación</h2>
+      <p class="note">No mostramos todavía cifras territoriales porque falta verificar la localidad de cada medio y enlazar cada registro con la publicación original comprobable. Se reincorporará cuando la información sea fehaciente.</p>
+      <p class="note" id="territorio-resumen" aria-live="polite" hidden></p>
+      <div class="bars" id="b-territorio" hidden></div>
     </div>
     <div class="grid2">
-      <div class="card" id="c-mes">
-        <h2>Mes a mes</h2>
-        <p class="note">Compara las notas publicadas y las encontradas en otros medios, mostrando únicamente los meses del período elegido.</p>
-        <div class="legend"><span><i style="background:var(--muted-bar)"></i>Publicadas</span><span><i style="background:var(--accent)"></i>Levantadas</span></div>
-        <div class="chart" id="ch-mes"><div class="tip" id="tip-mes" hidden></div></div>
-      </div>
-      <div class="card" id="c-tipo">
-        <h2>Qué temas aparecen más</h2>
-        <p class="note">Porcentaje de notas de cada tema que apareció en otros medios. Por ejemplo, 6 de 7 equivale al 86%. Esto no prueba por sí solo que hayan usado nuestra información.</p>
+      <div class="card" id="c-tipo" style="grid-column:1/-1">
+        <h2>Qué temas de nuestras notas aparecen en otros medios</h2>
+        <p class="note">El porcentaje se calcula sobre las notas publicadas de cada tema, no sobre el total de publicaciones encontradas. Por ejemplo, 6 de 7 significa que 6 de las 7 notas de ese tema tuvieron al menos una publicación relacionada (86%). No significa que haya 16 publicaciones en total. Para conocer el volumen total, mirá “Publicaciones encontradas en otros medios” arriba. La relación temática no prueba que hayan usado nuestra información.</p>
         <div class="bars" id="b-tipo"></div>
       </div>
     </div>
     <div class="grid2">
-      <div class="card"><h2>Los 5 medios con más publicaciones</h2><p class="note">Cuenta cuántas notas distintas de Juschubut Noticias encontramos en cada medio. No cuenta varias veces una misma nota.</p><div class="bars" id="b-top5m"></div></div>
+      <div class="card"><h2>Los 5 medios donde encontramos más notas relacionadas</h2><p class="note">Cada número indica cuántas notas diferentes de JusNoticias encontramos vinculadas con ese medio durante el período elegido. Si el medio publicó cinco notas distintas, cuenta cinco; si una misma nota aparece varias veces en ese medio, se cuenta una sola vez.</p><div class="bars" id="b-top5m"></div></div>
       <div class="card"><h2>Las 5 notas que aparecieron en más medios</h2><p class="note">Cuenta cuántos medios diferentes encontramos para cada nota. No significa necesariamente que todos hayan usado nuestra información.</p><div class="bars" id="b-top5n"></div></div>
     </div>
     <button class="btn more" type="button" id="ir-completo">Ver el tablero completo →</button>
@@ -521,11 +508,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
   const drawResumen = (c) => {
     document.querySelectorAll('#resumen [data-k]').forEach(e => { const k = e.dataset.k; e.textContent = k === 'pct' ? c.pct + '%' : fmt(c[k]); });
-    const mesesElegidos = meses.filter(en), ns = notas.filter(n => en(n.mes)), rs = repOk.filter(r => en(r.mes));
-    const pm = new Map(); ns.forEach(n => { const x = pm.get(n.mes) || { p: 0, l: 0 }; x.p++; pm.set(n.mes, x); });
-    const conPeriodo = new Set(rs.map(r => Number(r.nota_id))); ns.forEach(n => { if (conPeriodo.has(Number(n.id))) pm.get(n.mes).l++; });
-    chart('ch-mes', 'tip-mes', mesesElegidos, [{ k: 'p', color: 'var(--muted-bar)' }, { k: 'l', color: 'var(--accent)' }], (m, s) => pm.get(m)[s.k], false,
-      m => { const r = pm.get(m); return [['var(--muted-bar)', 'Publicadas: ' + fmt(r.p)], ['var(--accent)', 'Encontradas en otros medios: ' + fmt(r.l) + ' (' + Math.round(r.p ? r.l / r.p * 100 : 0) + '%)']]; });
+    const ns = notas.filter(n => en(n.mes));
     bars('b-tipo', c.tipo.filter(r => r.notas).map(r => row(r.tipo + ' (' + fmt(r.levantadas) + ' de ' + fmt(r.notas) + ')', [[r.pct, 'var(--accent)']], r.pct, 100, r.pct + '%')));
     const t5 = c.porMedio.slice(0, 5), mx = t5.length ? t5[0].notas : 1;
     bars('b-top5m', t5.map(r => row(r.medio, [[r.notas, 'var(--accent)']], r.notas, mx)));
@@ -661,9 +644,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     $('periodo').textContent = cap(per) + (ultima ? ' · última nota del período: ' + ultima.split('-').reverse().join('/') : ' · sin notas en el período seleccionado');
     const tp = c.tipo.filter(x => x.notas).sort((a, b) => b.pct - a.pct), hi = tp[0], lo = tp[tp.length - 1];
     let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% tuvo al menos una publicación relacionada con enlace verificable: ' + fmt(c.publicaciones) + ' publicaciones en ' + fmt(c.medios) + ' medios.';
-    if (hi && lo && hi !== lo) t += ' Lo que más viaja es ' + hi.tipo.toLowerCase() + ' (' + hi.pct + '%); lo que menos, ' + lo.tipo.toLowerCase() + ' (' + lo.pct + '%).';
-    if (c.porMedio.length) t += ' ' + c.porMedio[0].medio + ' es el medio que más replica.';
-    if (c.pct_copia >= 50) t += ' En el ' + c.pct_copia + '% de los casos con texto disponible, el medio copió nuestra nota casi sin cambios.';
+    if (hi && lo && hi !== lo) t += ' En el tema con mayor proporción, ' + hi.levantadas + ' de ' + hi.notas + ' notas tuvieron al menos una publicación relacionada (' + hi.pct + '%); en el de menor proporción, ' + lo.levantadas + ' de ' + lo.notas + ' (' + lo.pct + '%). Estos porcentajes cuentan notas, no publicaciones.';
+    if (c.porMedio.length) t += ' ' + c.porMedio[0].medio + ' es el medio donde encontramos más notas relacionadas.';
+    if (c.pct_copia >= 50) t += ' En el ' + c.pct_copia + '% de los casos comparables se detectó alta coincidencia textual (50% o más); eso no demuestra por sí solo copia ni uso de nuestra fuente.';
     $('take').textContent = c.notas ? t : 'No hay notas en este período.';
     $('ftodo').disabled = st.desde === meses[0] && st.hasta === meses[meses.length - 1];
     $('fdesde').value = st.desde; $('fhasta').value = st.hasta;
