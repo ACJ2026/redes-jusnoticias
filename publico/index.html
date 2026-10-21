@@ -242,9 +242,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <p class="grp">En redes</p>
     <div class="kpis">
-      <div class="kpi"><div class="big" data-k="posteos"></div><div class="lbl">publicaciones registradas en redes</div><p class="note">Dato parcial: todavía no están integradas y verificadas todas las redes ni todas sus herramientas de consulta. No representa el total real de actividad.</p></div>
-      <div class="kpi"><div class="big" data-k="vistas"></div><div class="lbl">vistas registradas en X y YouTube</div><p class="note">Dato parcial de dos redes. Hasta integrar y verificar las fuentes de todas las plataformas, no permite medir el total de visualizaciones.</p></div>
-      <div class="kpi"><div class="big" data-k="seguidores"></div><div class="lbl">seguidores registrados en algunas cuentas</div><p class="note">Cifra parcial, sujeta a la integración y verificación de todas las cuentas. No indica cuántas personas vieron las publicaciones.</p></div>
+      <div class="kpi"><div class="big">Pendiente</div><div class="lbl">total general de publicaciones propias</div><p class="note">No se publica un total consolidado hasta integrar y validar las fuentes de todas las redes. Consultá el estado individual de las APIs en la pestaña Redes.</p></div>
+      <div class="kpi"><div class="big">Pendiente</div><div class="lbl">total general de visualizaciones</div><p class="note">No se consolida un total de vistas hasta verificar las métricas y la cobertura de todas las plataformas. Las vistas por fuente deben revisarse individualmente.</p></div>
+      <div class="kpi"><div class="big">Pendiente</div><div class="lbl">total general de seguidores</div><p class="note">No se publica una suma hasta verificar la titularidad, la cuenta correcta y los datos de todas las plataformas.</p></div>
     </div>
     <div class="card territorio-card" id="c-territorio">
       <h2>Distribución por localidad: pendiente de verificación</h2>
@@ -323,13 +323,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th></tr></thead><tbody><tr><td colspan="5">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
     </div>
     <div class="card">
-      <h2>Publicaciones nuestras por mes</h2>
-      <p class="note">Muestra las publicaciones registradas en los datos cargados y cómo se distribuyen por mes. Esta vista todavía no consulta las APIs de redes en vivo; Facebook propio se empezó a contar en septiembre.</p>
+      <h2>Historial parcial de publicaciones propias por mes</h2>
+      <p class="note">Distribución de los registros históricos cargados. No es un monitoreo completo ni se suma a las métricas en vivo; Facebook propio se empezó a contar en septiembre. Las plataformas pendientes no se representan como cero actividad.</p>
       <div class="legend" id="lg-redes"></div>
       <div class="chart" id="ch-redes"><div class="tip" id="tip-redes" hidden></div></div>
     </div>
     <div class="grid2">
-      <div class="card"><h2>Qué respuesta tienen nuestras publicaciones</h2><p class="note">Muestra el promedio: sumamos los “me gusta” o las vistas de nuestras publicaciones y dividimos por la cantidad de publicaciones. “Publicación destacada” es la que tuvo más interacción. Si falta un dato, esa red no lo informa.</p>
+      <div class="card"><h2>Qué respuesta tienen nuestras publicaciones</h2><p class="note">Promedios calculados solo con los registros históricos disponibles para cada red; no son una comparación completa entre plataformas. “Publicación destacada” es la de mayor interacción entre las que tienen datos registrados. Si falta una métrica, se muestra como no disponible.</p>
         <div class="tbox"><table id="t-red"><thead><tr><th>Red</th><th>Publicaciones</th><th>Me gusta por publicación</th><th>Vistas por publicación</th><th>Publicación destacada</th></tr></thead><tbody></tbody></table></div></div>
       <div class="card"><h2>Cuántas personas siguen nuestras cuentas</h2><p class="note">Muestra la última cifra de seguidores registrada para cada cuenta y si figura activa. No es un histórico mensual ni necesariamente un dato en vivo; cambiar el mes no cambia esta cifra.</p>
         <div class="tbox"><table id="t-canales"><thead><tr><th>Red</th><th>Cuenta</th><th>Seguidores</th><th>Estado</th></tr></thead><tbody></tbody></table></div></div>
