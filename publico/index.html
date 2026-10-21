@@ -551,6 +551,57 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const n5 = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 5), mn = n5.length ? n5[0].n_medios : 1;
     bars('b-top5n', n5.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
 };
+  // Localidades conocidas de algunos medios; no se presume una sede cuando no está identificada.
+  const localidadMedio = {
+    'FM Tropical':'Rawson','FM Bahía Engaño':'Rawson',
+    'Chubut Hoy':'Chubut (localidad por verificar)',
+    'Radio de Camioneros':'Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)',
+    'ABC Diario':'Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)',
+    'La Tecla Patagonia':'Cobertura patagónica (localidad por verificar)',
+    'El Extremo Sur':'Comodoro Rivadavia',
+    'NoticiasdelBolson':'El Bolsón',
+    'A24.com':'Cobertura nacional',
+    'Revista Quórum':'Cobertura nacional',
+    'El Periscopio':'Cobertura provincial (Misiones)',
+    'La Posta Comodorense':'Comodoro Rivadavia','El Comodorense':'Comodoro Rivadavia','Comodoro 24':'Comodoro Rivadavia','El Patagónico':'Comodoro Rivadavia',
+    'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','Crónica':'Comodoro Rivadavia',
+    'Noticias PMY':'Puerto Madryn','Madryn Ahora':'Puerto Madryn','Canal 12':'Puerto Madryn','LU17':'Puerto Madryn','El Diario Web':'Puerto Madryn','Digital Chubut':'Puerto Madryn',
+    'FM del Lago Esquel':'Esquel','Diario La Portada':'Esquel','Red43':'Esquel','EQS Notas':'Esquel',
+    'Radio Chubut':'Trelew','El Chubut':'Trelew','Diario Jornada':'Trelew','Radio 3 Cadena Patagonia':'Trelew','Vivo Trelew':'Trelew',
+    'Cholila Online':'Cholila','La Opinión Austral':'Río Gallegos','Tiempo Sur':'Río Gallegos','Diario Nuevo Día':'Río Gallegos',
+    'Diario Río Negro':'General Roca','La Voz del Interior':'Córdoba','CHACODIAPORDIA.COM':'Resistencia','El Tribuno':'Salta',
+    'Diario Huarpe':'San Juan','Elonce.com':'Paraná','APFDigital':'Paraná','Somos Jujuy':'San Salvador de Jujuy',
+    'Canal Doce Misiones':'Posadas','Info del Estero':'Santiago del Estero','El Monterizo':'San Miguel de Tucumán',
+    'LM Neuquén':'Neuquén','Lmneuquen.com':'Neuquén','Diario San Rafael':'San Rafael',
+    'Del Mar Digital':'Comodoro Rivadavia','ADN Sur':'Comodoro Rivadavia','EQS Notas':'Esquel','Digital Chubut':'Puerto Madryn',
+    'Argentar Noticias':'Comodoro Rivadavia',
+    'Diario Judicial':'Ciudad Autónoma de Buenos Aires',
+    'El 10 TV':'Salta',
+    'El Valle Online':'Valle Inferior del Río Chubut',
+    'El Mediador - Santa Cruz':'Santa Cruz (localidad por verificar)',
+    'Metadata Noticias':'Chubut (localidad por verificar)',
+    'Examedia':'Entre Ríos (localidad por verificar)',
+    'Flipr.news':'Cobertura nacional',
+    'Portal Medios Públicos':'Cobertura nacional'
+  };
+  const tipoMedio = medio => {
+    // Si el nombre identifica explícitamente una edición web/digital, no inferir prensa gráfica o TV por otra palabra del nombre.
+    if (/\bweb\b|\.com$/i.test(medio)) return 'Portal digital';
+    if (/^(Chubut Hoy|ABC Diario|La Tecla Patagonia|El Extremo Sur|NoticiasdelBolson)$/i.test(medio)) return 'Portal digital';
+    if (/radio|\bfm\b|\blu17\b/i.test(medio)) return 'Radio';
+    if (/canal|\btv\b/i.test(medio)) return 'TV';
+    if (/^crónica$/i.test(medio) || /diario|revista|\bla opinión\b/i.test(medio)) return 'Prensa gráfica';
+    return 'Portal digital';
+  };
+  const regionMedio = localidad => {
+    if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)','Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)','Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)'].includes(localidad)) return 'Chubut';
+    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (localidad === 'Cobertura patagónica (localidad por verificar)') return 'Cobertura regional';
+    if (localidad.startsWith('Entre Ríos')) return 'Resto del país';
+    if (localidad === 'Cobertura provincial (Misiones)') return 'Resto del país';
+    if (localidad === 'Localidad por verificar' || localidad.includes('(localidad por verificar)')) return localidad.startsWith('Chubut') ? 'Chubut' : localidad.startsWith('Santa Cruz') ? 'Patagonia fuera de Chubut' : 'Localidad por verificar';
+    return 'Resto del país';
+  };
   const mostrarReferenciasMedios = (titulo, intro, registros) => {
     const panel = $('medios-detalle'), lista = $('medios-detalle-lista');
     $('medios-detalle-titulo').textContent = titulo;
