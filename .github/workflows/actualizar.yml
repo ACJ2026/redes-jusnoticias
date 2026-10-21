@@ -65,6 +65,28 @@ jobs:
           # Vercel publica solo la carpeta publico/ y abre index.html
           cp publico/tablero_publico.html publico/index.html
 
+      - name: Verificar sintaxis y ejecutar regresiones antes de guardar
+        run: |
+          node --check api/redes.js
+          node --input-type=module --check < functions/api/google-metrics.js
+          node --input-type=module --check < functions/api/redes.js
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          for source, target in [
+              ("publico/index.html", "/tmp/tablero-publico.js"),
+              ("tablero_interno/index.html", "/tmp/tablero-interno.js"),
+          ]:
+              html = Path(source).read_text(encoding="utf-8")
+              scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\\s\\S]*?)</script>', html)
+              if len(scripts) != 1:
+                  raise SystemExit(f"{source}: se esperaba un script y se encontraron {len(scripts)}")
+              Path(target).write_text(scripts[0], encoding="utf-8")
+          PY
+          node --check /tmp/tablero-publico.js
+          node --check /tmp/tablero-interno.js
+          python3 -m unittest discover -s tests -v
+
       - name: Guardar
         run: |
           git config user.name "jusnoticias-bot"
