@@ -142,3 +142,12 @@ Próxima acción:
 - Se endureció la asignación automática de resultados de Google Noticias: además de las validaciones existentes, exige al menos dos coincidencias de título que no sean términos temáticos amplios. Compartir únicamente expresiones genéricas como «mujeres rurales» ya no basta para asociar una noticia a una nota de JusNoticias.
 - No se modificaron ni eliminaron filas del historial de repercusiones. Los cambios de código están en la rama `fix/relevancia-territorio`; quedan sujetos a revisión y despliegue.
 - Se validó la sintaxis JavaScript de las tres plantillas/salidas HTML modificadas y se confirmó que ya no quedan referencias a la tarjeta territorial retirada.
+
+
+## 21/10/2026 — Corrección de coincidencias históricas sobre mujeres rurales
+
+- Se revisó la nota 14851, «El Poder Judicial presenta su campaña audiovisual sobre mujeres rurales».
+- Se marcaron como **Baja / relación no verificada** 17 registros procedentes de Google Noticias que coincidían por temática, incluidos Caracol Radio y Radio Sintonía. Se conservaron los enlaces y las filas para auditoría; al tener confianza baja, quedan excluidos de las cifras de publicaciones confirmadas.
+- Se incorporó una regla permanente en `scripts/actualizar.py` para que esas asociaciones históricas no vuelvan a contarse como confirmadas tras consolidar el historial.
+- Se sincronizaron `data/rep2.json`, `publico/index.html` y `publico/tablero_publico.html`, y se agregó una prueba de regresión.
+- Validación realizada: 17/17 registros identificados en el HTML público y el JSON fuente figuran con confianza Baja; ambos HTML están sincronizados y el JavaScript público pasa validación de sintaxis. La URL pública no pudo verificarse desde esta sesión; queda pendiente confirmar que Cloudflare haya desplegado la actualización.
