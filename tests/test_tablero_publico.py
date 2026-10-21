@@ -198,5 +198,12 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertEqual(unrelated["origen"], "Sin dato")
 
 
+    def test_tablero_interno_no_cuenta_registros_sin_enlace(self):
+        internal = (ROOT / "tablero_interno/index.html").read_text(encoding="utf-8")
+        self.assertIn("const esConfirmada = r =>", internal)
+        self.assertIn("repercusion.filter(esConfirmada)", internal)
+        self.assertIn("const ok = rs.filter(esConfirmada)", internal)
+
+
 if __name__ == "__main__":
     unittest.main()
