@@ -48,3 +48,14 @@ Después de cambiar variables, volver a desplegar la función para que el entorn
 - [ ] Comparar totales con la interfaz de Google para el mismo período, contemplando diferencias de zona horaria/definición.
 - [ ] Verificar que no se expongan secretos en la respuesta del endpoint ni en la consola del navegador.
 - [ ] Verificar por separado el despliegue del recolector y de la versión pública generada por GitHub Actions.
+
+
+## Fuentes concretas de tráfico en Analytics
+
+La respuesta de `/api/google-metrics` incluye `analytics.fuentes`, obtenida de las dimensiones `sessionSource` y `sessionMedium` de GA4. Cada fila conserva la fuente y el medio originales, y añade sesiones, páginas vistas, usuarios y una clasificación aproximada para facilitar la lectura.
+
+- Las fuentes mostradas son las que Analytics registró realmente en el rango consultado; no son una lista fija de plataformas.
+- Los nombres de origen conocidos pueden clasificarse como buscador, red social o asistente de IA. La fuente y el medio originales siguen visibles para poder comprobar la clasificación.
+- Las visitas sin referencia identificable se mantienen como “Acceso directo” o “Sin identificar” según los valores que entrega GA4.
+- La API consulta los datos cuando se solicita, pero GA4 puede demorar en procesarlos. No describir estos datos como tiempo real segundo a segundo.
+- Search Console aporta consultas y páginas que aparecen en la Búsqueda de Google; no representa todos los buscadores. El porcentaje de clics es clics dividido por impresiones. La posición es un promedio y el puesto 1 es el más alto.
