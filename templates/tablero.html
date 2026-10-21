@@ -724,6 +724,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         const fechas = filas.map(r => r.fecha).filter(Boolean).sort();
         const incidencias = [];
         if (result.limiteAlcanzado) incidencias.push('se alcanzó el límite de páginas; datos parciales');
+        if (red === 'Instagram' && result.errorEstadisticas) incidencias.push('no se pudo obtener el alcance diario');
         const erroresPaginas = Array.isArray(result.erroresPaginas) ? result.erroresPaginas : [];
         if (erroresPaginas.length) incidencias.push('error parcial en ' + erroresPaginas.length + ' página(s)');
         return {
