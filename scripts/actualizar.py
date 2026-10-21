@@ -335,7 +335,9 @@ with ThreadPoolExecutor(4) as ex:
             m = gmatch(it, n)
             if not m: continue
             medio = conocidos.get(clave(it['src']), limpio(it['src']))
-            if clave(it['src']) not in conocidos and not GEO.search(norm(it['t'])): continue
+            # El título puede omitir la ciudad aunque trate el mismo fallo local.
+            # La nota de JusNoticias y la ventana temporal ya se validaron en gmatch().
+            if clave(it['src']) not in conocidos and not GEO.search(norm(it['t'] + ' ' + n['titulo'])): continue
             if NO.search(medio): continue
             if (n['id'], medio) in ya:
                 for r0 in rows:
@@ -346,6 +348,33 @@ with ThreadPoolExecutor(4) as ex:
             addrow(medio, m, 'Google Noticias (frase de la nota)' if m.get('fuerte') else 'Google Noticias (solo título)')
             cobertura.setdefault(medio, 'Encontrado por Google Noticias (solo título)')
 print('Google Noticias', con_g)
+
+# ---------- Fuentes verificadas manualmente: cobertura del fallo de Puerto Madryn ----------
+# URLs aportadas y comprobadas para la nota 14884. Google Noticias puede omitir medios
+# nacionales cuyos titulares no mencionan Chubut/Madryn. Evitar duplicados por nota y medio.
+FUENTES_VERIFICADAS = [
+    ('0223', 'https://www.0223.com.ar/nota/2026-10-19-19-12-0-escracho-a-una-mujer-por-chorra-la-acusacion-era-falsa-y-debera-pagarle-2-4-millones'),
+    ('Elonce', 'https://www.elonce.com/amp/acuso-de-ladrona-a-una-vecina-y-debera-pagar-2-4-millones.htm'),
+    ('La Voz del Interior', 'https://www.lavoz.com.ar/ciudadanos/dijo-chorra-vecina-facebook-justicia-debera-indemnizarla-pagara_0_ei9s7vvfd2.html'),
+    ('Clarín', 'https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html'),
+]
+NOTA_PUERTO_MADRYN = 14884
+ids_notas = {n['id'] for n in notas}
+for medio, url in FUENTES_VERIFICADAS:
+    if NOTA_PUERTO_MADRYN in ids_notas and (NOTA_PUERTO_MADRYN, medio) not in ya:
+        ya.add((NOTA_PUERTO_MADRYN, medio))
+        rows.append({
+            'nota_id': NOTA_PUERTO_MADRYN,
+            'medio': medio,
+            'origen': 'Sin dato',
+            'cita_fuente_oficial': '',
+            'cita_otro_medio': '',
+            'confianza': 'Media',
+            'metodo': 'Verificación manual de URL aportada',
+            'url': url,
+        })
+        cobertura[medio] = 'Cobertura verificada manualmente'
+
 
 # ---------- Conservación del historial: una revisión nueva no borra hallazgos anteriores ----------
 from historial import conservar_historial
