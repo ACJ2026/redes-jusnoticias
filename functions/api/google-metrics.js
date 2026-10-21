@@ -1,5 +1,4 @@
 // Cloudflare Pages Function: conserva el contrato de /api/google-metrics de Vercel.
-// Rebuild de producción para aplicar las variables de entorno actualizadas.
 // Configurar GOOGLE_SERVICE_ACCOUNT_JSON, GA4_PROPERTY_ID y GSC_SITE_URL como secrets/variables.
 // No colocar credenciales en el HTML ni en el repositorio.
 
@@ -7,7 +6,7 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), {
   status,
   headers: {
     "Content-Type": "application/json; charset=utf-8",
-    "Cache-Control": "no-store"
+    "Cache-Control": status >= 400 ? "no-store" : "public, max-age=0, s-maxage=900, stale-while-revalidate=300"
   }
 });
 
@@ -26,14 +25,22 @@ const decodeBase64 = (value) => {
 };
 
 function dateRange(url) {
-  const iso = (v) => /^\d{4}-\d{2}-\d{2}$/.test(v || "");
+  const isDate = (value) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return false;
+    const parsed = new Date(value + "T00:00:00Z");
+    return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+  };
   const endParam = url.searchParams.get("hasta");
   const startParam = url.searchParams.get("desde");
-  const end = iso(endParam) ? endParam : new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  if (endParam && !isDate(endParam)) throw new Error("La fecha 'hasta' debe ser una fecha válida con formato AAAA-MM-DD.");
+  if (startParam && !isDate(startParam)) throw new Error("La fecha 'desde' debe ser una fecha válida con formato AAAA-MM-DD.");
+  const end = endParam || new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   const startDefault = new Date(Date.parse(end + "T00:00:00Z") - 27 * 86400000).toISOString().slice(0, 10);
-  const start = iso(startParam) ? startParam : startDefault;
+  const start = startParam || startDefault;
   const span = (Date.parse(end + "T00:00:00Z") - Date.parse(start + "T00:00:00Z")) / 86400000;
-  if (start > end || span > 89) throw new Error("Rango inválido: use desde/hasta y un máximo de 90 días.");
+  if (!Number.isFinite(span) || start > end || span > 89) {
+    throw new Error("Rango inválido: use desde/hasta y un máximo de 90 días.");
+  }
   return { start, end };
 }
 
@@ -48,10 +55,7 @@ async function googleAccessToken(service) {
     exp: now + 3600
   }));
   const unsigned = head + "." + claim;
-  // Cloudflare secrets pueden conservar los saltos como texto literal \n.
-  // Normalizarlos evita fallos al importar la clave PKCS#8.
-  const normalizedPrivateKey = String(service.private_key).replace(/\\n/g, "\n").replace(/\\r/g, "");
-  const pem = normalizedPrivateKey.replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\s/g, "");
+  const pem = service.private_key.replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\s/g, "");
   const key = await crypto.subtle.importKey(
     "pkcs8",
     decodeBase64(pem),
@@ -90,7 +94,7 @@ async function googlePost(url, token, body) {
   return data;
 }
 
-async function onRequestInner(context) {
+export async function onRequest(context) {
   const { request, env } = context;
   if (request.method !== "GET") {
     return new Response(JSON.stringify({ error: "Método no permitido." }), {
@@ -129,9 +133,7 @@ async function onRequestInner(context) {
       limit
     });
 
-    // Usar la propiedad URL-prefix verificada en Search Console; no depender de un valor sc-domain obsoleto en Cloudflare.
-    const gscSiteUrl = "https://jusnoticias.juschubut.gov.ar/";
-    const gscBase = "https://searchconsole.googleapis.com/webmasters/v3/sites/" + encodeURIComponent(gscSiteUrl) + "/searchAnalytics/query";
+    const gscBase = "https://searchconsole.googleapis.com/webmasters/v3/sites/" + encodeURIComponent(env.GSC_SITE_URL) + "/searchAnalytics/query";
     const [summary, channels, devices, pages, gscSummary, gsc, gscPages] = await Promise.all([
       runGA([], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 1),
       runGA(["sessionDefaultChannelGroup"], ["totalUsers", "sessions", "screenPageViews"], 50),
@@ -177,23 +179,6 @@ async function onRequestInner(context) {
       }
     });
   } catch (error) {
-    return json({ estado: "error_google", error: error.message, rango: range }, 502);
-  }
-}
-
-
-// Última barrera de diagnóstico: convierte excepciones inesperadas en JSON en vez de un 1101.
-export async function onRequest(context) {
-  try {
-    return await onRequestInner(context);
-  } catch (error) {
-    console.error("google-metrics: excepción no controlada", error?.stack || error?.message || error);
-    return new Response(JSON.stringify({
-      estado: "error_interno",
-      error: String(error?.message || error || "Error interno desconocido")
-    }), {
-      status: 500,
-      headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
-    });
+    return json({ estado: "error_google", error: error.message, rango }, 502);
   }
 }
