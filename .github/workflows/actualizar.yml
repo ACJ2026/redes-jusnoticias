@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/actualizar.yml'
       - 'scripts/actualizar.py'
+      - 'data/fuentes_descubiertas.json'
       - 'scripts/armar_publico.py'
       - 'templates/**'
   schedule:
@@ -67,6 +68,7 @@ jobs:
 
       - name: Verificar sintaxis y ejecutar regresiones antes de guardar
         run: |
+          python3 -m py_compile scripts/actualizar.py scripts/historial.py
           node --check api/redes.js
           node --input-type=module --check < functions/api/google-metrics.js
           node --input-type=module --check < functions/api/redes.js

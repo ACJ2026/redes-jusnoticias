@@ -6,6 +6,7 @@ Genera notas2.json, rep2.json y medios.json en la carpeta de salida.
 """
 import json, re, sys, os, gzip, html, unicodedata, time, datetime as dt
 import urllib.request, urllib.parse
+from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from fuentes import exigir_lista_json
 
@@ -282,26 +283,55 @@ cobertura['Tiempo Sur'] = 'Sin índice de notas: revisado por buscador, sin coin
 
 
 # ---------- 10. Google Noticias: encuentra medios fuera de la lista y los que no tienen índice ----------
+REG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'fuentes_descubiertas.json')
+def cargar_registro():
+    try:
+        with open(REG_PATH, encoding='utf8') as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+    except FileNotFoundError:
+        return []
+    except Exception as e:
+        print(f'AVISO: registro de medios no legible ({type(e).__name__}); se inicia vacío')
+        return []
+REGISTRO = cargar_registro()
+
 def gnews(n):
     clave_t = [w for w in norm(n['titulo']).split() if len(w) >= 5 and w not in STOP][:6]
     body = CUERPO.get(n['id'], '')
     oraciones = [o.strip() for o in re.split(r'(?<=[.;:])\s+', body) if len(o.split()) >= 12][:3]
     frases = ['"' + ' '.join(o.split()[2:11]) + '"' for o in oraciones[:2]]
     t, fuerte = '', ''
-    for q in [n['titulo'][:120], ' '.join(clave_t)] + frases:
+    consultas = [n['titulo'][:120], ' '.join(clave_t)] + frases
+    # Seguimiento adicional limitado a cinco dominios descubiertos, para notas de los últimos 15 días.
+    if n['fecha'] >= addd(dt.date.today().isoformat(), -15):
+        dominios = []
+        for registro in reversed(REGISTRO):
+            dominio = registro.get('dominio', '')
+            if dominio and dominio not in dominios:
+                dominios.append(dominio)
+            if len(dominios) >= 5: break
+        frase = frases[0].strip('"') if frases else ' '.join(clave_t[:4])
+        consultas.extend('site:' + dominio + ' "' + frase + '"' for dominio in dominios)
+    for q in consultas:
         r = get('https://news.google.com/rss/search?q=' + urllib.parse.quote(q) + '&hl=es-419&gl=AR&ceid=AR:es-419', timeout=20) or ''
         t += r
         if q.startswith('"'): fuerte += r
     out = []
     for it in re.findall(r'<item>(.*?)</item>', t, re.S):
-        ti = re.search(r'<title>(.*?)</title>', it, re.S); src = re.search(r'<source[^>]*>(.*?)</source>', it, re.S)
+        ti = re.search(r'<title>(.*?)</title>', it, re.S); src = re.search(r'<source([^>]*)>(.*?)</source>', it, re.S)
         pd = re.search(r'<pubDate>(.*?)</pubDate>', it); lk = re.search(r'<link>(.*?)</link>', it, re.S)
         if not (ti and src and pd): continue
+        src_url = re.search(r'url="([^"]+)"', src.group(1), re.I)
         try: d = dt.datetime.strptime(pd.group(1)[5:16], '%d %b %Y').date().isoformat()
         except Exception: continue
         tt = html.unescape(ti.group(1)).rsplit(' - ', 1)[0]
-        if norm(tt).replace(' ', '') == norm(src.group(1)).replace(' ', ''): continue
-        out.append({'fuerte': it in fuerte, 't': tt, 'd': d, 'u': html.unescape(lk.group(1)) if lk else '', 'src': html.unescape(src.group(1)).strip()})
+        src_name = html.unescape(src.group(2)).strip()
+        if norm(tt).replace(' ', '') == norm(src_name).replace(' ', ''): continue
+        host = urlparse(html.unescape(src_url.group(1))).hostname if src_url else ''
+        host = (host or '').lower()
+        if host.startswith('www.'): host = host[4:]
+        out.append({'fuerte': it in fuerte, 't': tt, 'd': d, 'u': html.unescape(lk.group(1)) if lk else '', 'src': src_name, 'dominio': host})
     return n, out
 STEM = lambda s: {w[:6] for w in norm(s).split() if len(w) >= 5 and w not in STOP}
 JSTEM, CUERPO = {}, {}
@@ -337,7 +367,7 @@ with ThreadPoolExecutor(4) as ex:
             medio = conocidos.get(clave(it['src']), limpio(it['src']))
             # El título puede omitir la ciudad aunque trate el mismo fallo local.
             # La nota de JusNoticias y la ventana temporal ya se validaron en gmatch().
-            if clave(it['src']) not in conocidos and not GEO.search(norm(it['t'] + ' ' + n['titulo'])): continue
+            # La similitud textual y la ventana temporal se validaron en gmatch(); no exigir geografía.
             if NO.search(medio): continue
             if (n['id'], medio) in ya:
                 for r0 in rows:
@@ -346,8 +376,24 @@ with ThreadPoolExecutor(4) as ex:
                 continue
             ya.add((n['id'], medio)); con_g += 1
             addrow(medio, m, 'Google Noticias (frase de la nota)' if m.get('fuerte') else 'Google Noticias (solo título)')
-            cobertura.setdefault(medio, 'Encontrado por Google Noticias (solo título)')
+            cobertura.setdefault(medio, 'Encontrado por Google Noticias; fuente descubierta automáticamente')
+            dominio = it.get('dominio', '')
+            if dominio and not NO.search(dominio):
+                encontrado = next((r for r in REGISTRO if r.get('dominio') == dominio), None)
+                hoy = dt.date.today().isoformat()
+                if encontrado:
+                    encontrado['nombre'] = medio
+                    encontrado['ultima_deteccion'] = hoy
+                    encontrado['detecciones'] = int(encontrado.get('detecciones', 0)) + 1
+                    if it.get('u'): encontrado['ultima_url'] = it['u']
+                else:
+                    REGISTRO.append({'nombre': medio, 'dominio': dominio, 'primera_deteccion': hoy, 'ultima_deteccion': hoy, 'detecciones': 1, 'ultima_url': it.get('u', ''), 'estado': 'seguimiento_google_news'})
 print('Google Noticias', con_g)
+
+# Guardar el registro para que la siguiente ejecución siga monitorizando los dominios nuevos.
+REGISTRO.sort(key=lambda r: (r.get('ultima_deteccion', ''), r.get('dominio', '')))
+with open(REG_PATH, 'w', encoding='utf8') as rf:
+    json.dump(REGISTRO, rf, ensure_ascii=False, indent=2)
 
 # ---------- Fuentes verificadas manualmente: cobertura del fallo de Puerto Madryn ----------
 # URLs aportadas y comprobadas para la nota 14884. Google Noticias puede omitir medios
