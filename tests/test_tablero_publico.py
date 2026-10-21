@@ -119,6 +119,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("const mediosUnicos = [...new Set(ok.map(r => canonMedio(r.medio)))];", template)
         self.assertIn("n_medios: mediosUnicos.length", template)
         self.assertIn("publicación relacionada con enlace registrado", template)
+        self.assertIn("Abrir referencia en Google Noticias", template)
 
     def test_portada_visual_precede_al_tablero_oculto(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
