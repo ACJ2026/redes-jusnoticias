@@ -270,7 +270,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <div class="grid2">
       <div class="card">
         <h2>Medios donde encontramos más notas relacionadas</h2>
-        <p class="note" id="medios-count">Cada cifra indica cuántas notas diferentes de JusNoticias encontramos vinculadas con cada medio. Seleccioná una barra para abrir los enlaces de las publicaciones verificadas.</p>
+        <p class="note" id="medios-count">Cada cifra indica cuántas notas diferentes de JusNoticias encontramos vinculadas con cada medio. Seleccioná una barra para consultar los enlaces registrados de esas publicaciones; el tablero no garantiza que todos sigan activos.</p>
         <div class="legend"><span><i style="background:var(--copia)"></i>Copia textual (50% o más del texto)</span><span><i style="background:var(--accent)"></i>Reescritura parcial o redacción propia</span><span><i style="background:var(--muted-bar)"></i>Texto no disponible para comparar</span></div>
         <div class="bars all-media" id="b-medios"></div>
       </div>
@@ -614,9 +614,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         const n = ns.get(Number(r.nota_id));
         const item = document.createElement('div'); item.className = 'medios-ref';
         const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-        a.textContent = n ? n.titulo : 'Abrir publicación original';
+        a.textContent = 'Abrir publicación en ' + (r.medio || 'el medio de origen');
         const meta = document.createElement('small');
-        meta.textContent = (r.medio || 'Medio sin identificar') + ' · ' + (n?.fecha || 'Fecha de nota no disponible') + ' · ' + (r.origen || 'Texto sin clasificar') + ' · Confianza: ' + (r.confianza || 'No indicada');
+        meta.textContent = 'Nota de JusNoticias relacionada: ' + (n?.titulo || 'Título no disponible') + ' · Fecha de la nota oficial: ' + (n?.fecha || 'No disponible') + ' · Comparación: ' + (r.origen || 'No clasificada') + ' · Confianza del registro: ' + (r.confianza || 'No indicada');
         item.append(a, meta); lista.append(item);
       });
     }
@@ -636,13 +636,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     bars('b-medios', t.map(r => row(r.medio, [[r.copia, 'var(--copia)'], [r.otra, 'var(--accent)'], [r.sin_dato, 'var(--muted-bar)']], r.notas, mx)));
     [...$('b-medios').querySelectorAll('.bar-row')].forEach((e, i) => {
       const r = t[i];
-      hacerSeleccionable(e, 'Ver publicaciones de ' + r.medio, () => mostrarReferenciasMedios('Publicaciones de ' + r.medio, 'Se muestran los enlaces registrados y confirmados para este medio en el período seleccionado. Cada enlace abre la publicación original en otra pestaña.', repOk.filter(x => en(x.mes) && x.medio === r.medio)));
+      hacerSeleccionable(e, 'Ver publicaciones de ' + r.medio, () => mostrarReferenciasMedios('Publicaciones de ' + r.medio, 'Se muestran las direcciones web registradas para este medio y las notas de JusNoticias relacionadas. Los enlaces se abren en otra pestaña; su vigencia debe comprobarse en el sitio de origen.', repOk.filter(x => en(x.mes) && x.medio === r.medio)));
     });
     const n = c.notasP.slice().filter(r => r.n_medios > 0).sort((a, b) => b.n_medios - a.n_medios || a.titulo.localeCompare(b.titulo)).slice(0, 12), mn = n.length ? n[0].n_medios : 1;
     bars('b-top', n.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
     [...$('b-top').querySelectorAll('.bar-row')].forEach((e, i) => {
       const r = n[i];
-      hacerSeleccionable(e, 'Ver publicaciones relacionadas con ' + r.titulo, () => mostrarReferenciasMedios('Publicaciones relacionadas con esta nota', 'Enlaces originales encontrados para esta nota de JusNoticias. La relación temática no demuestra por sí sola que se haya utilizado nuestra información.', repOk.filter(x => en(x.mes) && Number(x.nota_id) === Number(r.id))));
+      hacerSeleccionable(e, 'Ver publicaciones relacionadas con ' + r.titulo, () => mostrarReferenciasMedios('Publicaciones relacionadas con esta nota', 'Direcciones web registradas para esta nota de JusNoticias. La relación temática no demuestra por sí sola que se haya utilizado nuestra información; la vigencia de cada enlace debe comprobarse en el sitio de origen.', repOk.filter(x => en(x.mes) && Number(x.nota_id) === Number(r.id))));
     });
     const mo = Math.max(1, ...c.origen.map(r => r.n));
     bars('b-origen', c.origen.map(r => row(r.origen === 'Sin dato' ? 'Texto no disponible para comparar' : r.origen, [[r.n, r.origen.startsWith('Copia') ? 'var(--copia)' : r.origen === 'Sin dato' ? 'var(--muted-bar)' : 'var(--accent)']], r.n, mo)));
