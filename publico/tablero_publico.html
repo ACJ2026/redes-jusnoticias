@@ -317,7 +317,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="redes" hidden>
     <div class="card" id="redes-vivo">
       <h2>Estado del monitoreo en vivo</h2>
-      <p class="note">Consulta las APIs que ya tiene preparadas el tablero: Facebook, Instagram y YouTube. Esta consulta es independiente del historial guardado. X, TikTok y WhatsApp todavía no están integrados aquí, por lo que no se suman a un total general ni se presentan como cero actividad.</p>
+      <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube y X. Esta consulta es independiente del historial guardado. X requiere credenciales y acceso autorizado a su API; TikTok y WhatsApp siguen pendientes de integración, por lo que no se suman a un total general ni se presentan como cero actividad.</p>
       <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
       <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
       <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th></tr></thead><tbody><tr><td colspan="5">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
@@ -722,7 +722,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     boton.disabled = true;
     estado.textContent = 'Consultando Facebook, Instagram y YouTube. Las demás redes figuran pendientes de integración.';
     const unsupported = [
-      { red: 'X', estado: 'API no integrada en este tablero', publicaciones: '—', seguidores: '—', ultima: '—' },
       { red: 'TikTok', estado: 'Cuenta y API pendientes de verificar', publicaciones: '—', seguidores: '—', ultima: '—' },
       { red: 'WhatsApp', estado: 'Fuente oficial de métricas pendiente de definir', publicaciones: '—', seguidores: '—', ultima: '—' }
     ];
@@ -730,7 +729,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const response = await fetch('/api/redes', { headers: { Accept: 'application/json' }, cache: 'no-store' });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
-      const connected = ['Facebook', 'Instagram', 'YouTube'].map(red => {
+      const connected = ['Facebook', 'Instagram', 'YouTube', 'X'].map(red => {
         const result = data.redes && data.redes[red];
         const error = data.errores && data.errores[red];
         if (error || !result) return { red, estado: 'No disponible: ' + (error || 'la API no devolvió datos'), publicaciones: '—', seguidores: '—', ultima: '—' };
@@ -738,7 +737,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         const fechas = filas.map(r => r.fecha).filter(Boolean).sort();
         return {
           red,
-          estado: 'API respondió',
+          estado: result.limiteAlcanzado ? 'API respondió, pero se alcanzó el límite de páginas; datos parciales' : 'API respondió',
           publicaciones: fmt(filas.length),
           seguidores: result.seguidores === null || result.seguidores === undefined ? 'No informado' : fmt(result.seguidores),
           ultima: fechas.length ? fechas[fechas.length - 1] : 'Sin publicaciones en la ventana'
@@ -754,7 +753,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const hasta = data.actualizado ? new Date(data.actualizado).toLocaleDateString('es-AR') : 'fecha no informada';
       estado.textContent = 'Consulta ejecutada el ' + (data.actualizado ? new Date(data.actualizado).toLocaleString('es-AR') : 'fecha no informada') + '. Ventana desde ' + (data.desde || 'fecha no informada') + ' hasta ' + hasta + '. Solo las APIs que respondieron aportan cifras; no es un total de todas las redes.';
     } catch (error) {
-      tb.replaceChildren(...[...['Facebook', 'Instagram', 'YouTube'].map(red => ({ red, estado: 'No se pudo consultar la API: ' + error.message, publicaciones: '—', seguidores: '—', ultima: '—' })), ...unsupported].map(r => {
+      tb.replaceChildren(...[...['Facebook', 'Instagram', 'YouTube', 'X'].map(red => ({ red, estado: 'No se pudo consultar la API: ' + error.message, publicaciones: '—', seguidores: '—', ultima: '—' })), ...unsupported].map(r => {
         const tr = document.createElement('tr');
         [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima].forEach(value => {
           const td = document.createElement('td'); td.textContent = value; tr.append(td);
