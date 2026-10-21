@@ -2,7 +2,7 @@
 
 **Para qué sirve:** reunir en un solo lugar señales verificables sobre la difusión de las notas de JusNoticias: publicaciones propias, publicaciones relacionadas en otros medios, actividad de redes y visitas/búsquedas de Google.
 
-**Importante:** el tablero mide lo que logra detectar con sus fuentes y métodos. No equivale a toda la repercusión real, ni demuestra por sí solo que otro medio haya copiado una nota o usado a JusNoticias como fuente.
+**Importante:** el tablero mide lo que logra detectar con sus fuentes y métodos. No equivale a toda la repercusión real, ni demuestra por sí solo que otro medio haya copiado una nota o usado a JusNoticias como fuente. Para contar una publicación como confirmada, el registro debe tener confianza media/alta y un enlace válido; los registros sin enlace se muestran como posibles y no suman a los totales confirmados.
 
 ## 1. Cómo leer el tablero
 
