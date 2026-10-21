@@ -1,6 +1,6 @@
 # Checklist general de trabajo — Tablero JusNoticias
 
-**Actualizado:** 20/10/2026.  
+**Actualizado:** 21/10/2026.  
 **Estados:** `[x]` hecho con evidencia; `[~]` preparado pero aún sin prueba integral; `[ ]` pendiente.
 
 ## 1. Repositorio y publicación
@@ -8,13 +8,14 @@
 - [x] PR #5 abierto contra `feat/cloudflare-pages-google-metrics`: https://github.com/ACJ2026/redes-jusnoticias/pull/5
 - [x] Mantener secretos fuera del HTML y del repositorio.
 - [x] Revisión sintáctica: JavaScript de la página generada parsea correctamente y el JSON integrado es válido (279 notas, 1.193 publicaciones relacionadas, 285 posteos y 64 medios).
-- [x] Suite de regresión del historial y sincronización plantilla/HTML público pasan en GitHub Actions para el commit `d577cc8`: 16 pruebas OK. Ejecuciones: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39512030838 y https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39512025361
-- [x] Pruebas del tablero público: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias y sin claves en el HTML. La suite corre en el mismo workflow de regresión y pasó para el commit actual.
+- [x] Suite de regresión del historial, generador, sincronización HTML y fechas pasan en GitHub Actions para el commit `f612cc8`: 17 pruebas OK. Ejecución: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/39520629380
+- [x] Pruebas del tablero público: plantilla y HTML generado sincronizados, JSON fuente coherente, portada presente, canal equivocado excluido de métricas propias, errores de YouTube explícitos y sin claves en el HTML. La suite corre en el mismo workflow de regresión y pasó para `f612cc8`.
 - [x] Validación de fechas de Google probada con casos válidos, fecha imposible, formato inválido, rango invertido y ventana máxima de 90 días.
+- [x] Fecha del relevamiento separada de la fecha de generación: regenerar solo el HTML no cambia `data/actualizado.txt`; prueba automatizada incluida.
 - [ ] Completar pruebas de interacción del período, pestañas, filtros y estados vacíos en navegador.
 - [~] Se ampliaron portada, tarjetas de indicadores, tipografía, pestañas, filtros y áreas táctiles en celular; las tablas permiten desplazamiento horizontal para evitar texto diminuto. Pendiente validar visualmente en un teléfono real tras el despliegue.
 - [ ] Probar la web en escritorio y móvil después de desplegar.
-- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `d577cc8`; URL de vista previa: https://30af36cd.redes-jusnoticias.pages.dev/ y URL estable de rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. Falta inspección visual/interacción real en escritorio y móvil.
+- [x] Cloudflare Pages confirmó despliegue exitoso para el commit `f612cc8`; URL de vista previa: https://db3fff79.redes-jusnoticias.pages.dev/ y URL estable de rama: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/. Falta inspección visual/interacción real en escritorio y móvil.
 - [~] Vercel reportó límite diario de despliegues en los commits más recientes; esa vía es independiente del preview de Cloudflare y no debe confundirse con él.
 - [ ] Confirmar URL oficial de producción. La URL de Pages usada en pruebas fue https://redes-jusnoticias.pages.dev/.
 - [!] Hallazgo importante: GitHub informa que `ACJ2026/redes-jusnoticias` está **público**, mientras que el repositorio anterior `ignacervo-cell/jusnoticias-tablero` está privado y el plan previo trataba el destino como privado. No se cambió la visibilidad; confirmar la política institucional antes de fusionar.
@@ -26,7 +27,8 @@
 - [~] Gráficos mensuales, gráficos de redes, totales por medio y fecha destacada preparados para respetar el período seleccionado.
 - [x] Rango de Google sincronizado con el período principal y limitado automáticamente a los últimos 90 días si la selección supera el máximo permitido; la interfaz explica la limitación. Falta probarlo visualmente en navegador.
 - [ ] Probar mes único, varios meses, rango sin datos y cambios entre pestañas.
-- [ ] Confirmar que la fecha destacada sea la última nota **dentro del período**, y diferenciarla de la fecha/hora en que se generaron los datos.
+- [~] El pie diferencia “Datos relevados” (último relevamiento confirmado: 20/10/2026 11:35 hora argentina) de “Tablero generado”; falta comprobar visualmente que se entienda y verificar la fecha destacada para cada período.
+- [ ] Confirmar que la fecha destacada sea la última nota **dentro del período**.
 - [ ] Identificar seguidores y demás cifras actuales como actuales, no como históricos del período.
 - [ ] Revisar totales, porcentajes, duplicados y estados vacíos.
 
