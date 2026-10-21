@@ -415,7 +415,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   // Base: notas y publicaciones confirmadas
   const notas = D.notas;
   const mesDe = new Map(notas.map(n => [Number(n.id), n.mes]));
-  const esConfirmada = r => r.confianza !== 'Baja' && /^https?:\\/\\//.test(r.url || '');
+  const esConfirmada = r => r.confianza !== 'Baja' && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
   const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id));
