@@ -422,17 +422,19 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const RCOL = ['var(--accent)', 'var(--c4)', 'var(--c3)', 'var(--copia)'];
   const TIPOS = ['Fallo o caso', 'Institucional', 'Agenda y servicios'];
   const ORIG = ['Copia textual (≥50%)', 'Reescritura parcial', 'Redacción propia', 'Sin dato'];
+  // Unifica una variante de nombre que apuntaba al mismo enlace de El Atlantico.
+  const canonMedio = medio => ({ 'elatlantico.do': 'El Atlantico' }[String(medio || '')] || String(medio || ''));
 
   // Base: notas y publicaciones confirmadas
   const notas = D.notas;
   const mesDe = new Map(notas.map(n => [Number(n.id), n.mes]));
   const esConfirmada = r => r.confianza !== 'Baja' && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
-  const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, mes: mesDe.get(Number(r.nota_id)) }));
+  const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id));
     const ok = rs.filter(esConfirmada);
-    const mediosUnicos = [...new Set(ok.map(r => r.medio))];
-    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: mediosUnicos.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: mediosUnicos.join(', '), posibles: rs.length - ok.length };
+    const mediosUnicos = [...new Set(ok.map(r => canonMedio(r.medio)))];
+    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: mediosUnicos.length, copias: new Set(ok.filter(r => r.origen.startsWith('Copia')).map(r => r.url)).size, medios: mediosUnicos.join(', '), posibles: rs.length - ok.length };
   });
   const meses = [...new Set(notas.map(n => n.mes))].sort();
   const st = { desde: meses[meses.length - 1], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
@@ -440,8 +442,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
   const calc = () => {
     const ns = notas.filter(n => en(n.mes)), rs = repOk.filter(r => en(r.mes));
+    // El total de publicaciones cuenta URLs únicas; una URL repetida no infla el volumen ni los gráficos de clasificación.
+    const rsUnicas = [...new Map(rs.map(r => [r.url, r])).values()];
     const con = new Set(rs.map(r => Number(r.nota_id)));
-    const conTexto = rs.filter(r => r.origen !== 'Sin dato');
+    const conTexto = rsUnicas.filter(r => r.origen !== 'Sin dato');
     const ps = D.redes.filter(r => r.propia === 'Sí' && en(r.fecha.slice(0, 7)));
     // Una nota oficial cuenta una sola vez por medio, aunque en el futuro aparezcan varios registros para la misma pareja.
     const porMedioNota = new Map();
@@ -460,12 +464,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       else x.otra++;
       g.set(r.medio, x);
     });
-    const cad = new Map(); rs.forEach(r => (r.cita_otro_medio || '').split(', ').filter(Boolean).forEach(m => cad.set(m, (cad.get(m) || 0) + 1)));
+    const cad = new Map(); rsUnicas.forEach(r => (r.cita_otro_medio || '').split(', ').filter(Boolean).forEach(m => cad.set(m, (cad.get(m) || 0) + 1)));
     return {
       notas: ns.length,
       notasConRepercusion: ns.filter(n => con.has(Number(n.id))).length,
       pct: ns.length ? Math.round(ns.filter(n => con.has(Number(n.id))).length / ns.length * 100) : 0,
-      publicaciones: rs.length,
+      publicaciones: rsUnicas.length,
       medios: g.size,
       pct_copia: conTexto.length ? Math.round(conTexto.filter(r => r.origen.startsWith('Copia')).length / conTexto.length * 100) : 0,
       posteos: ps.length,
@@ -473,8 +477,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       seguidores: D.canales.filter(c => c.estado === 'Activa').reduce((s, c) => s + (Number(c.seguidores) || 0), 0),
       tipo: TIPOS.map(t => { const x = ns.filter(n => n.tipo === t), l = x.filter(n => con.has(Number(n.id))).length; return { tipo: t, notas: x.length, levantadas: l, pct: x.length ? Math.round(l / x.length * 100) : 0 }; }),
       porMedio: [...g.values()].sort((a, b) => b.notas - a.notas),
-      origen: ORIG.map(o => ({ origen: o, n: rs.filter(r => r.origen === o).length })),
-      cadena: [{ fuente: 'Nombran a Juschubut Noticias o la Agencia de Comunicación Judicial', n: rs.filter(r => r.cita_fuente_oficial === 'Sí').length }].concat([...cad].sort((a, b) => b[1] - a[1]).map(([m, c]) => ({ fuente: 'Nombran a ' + m, n: c }))),
+      origen: ORIG.map(o => ({ origen: o, n: rsUnicas.filter(r => r.origen === o).length })),
+      cadena: [{ fuente: 'Nombran a Juschubut Noticias o la Agencia de Comunicación Judicial', n: rsUnicas.filter(r => r.cita_fuente_oficial === 'Sí').length }].concat([...cad].sort((a, b) => b[1] - a[1]).map(([m, c]) => ({ fuente: 'Nombran a ' + m, n: c }))),
       notasP: porNota.filter(r => en(r.mes)),
       porRed: REDES.map(red => {
         const x = ps.filter(r => r.red === red);
@@ -773,7 +777,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const previo = refs.get(r.medio);
       if (!previo || String(n?.fecha || '') > String(previo.fecha || '')) refs.set(r.medio, { url: r.url, fecha: n?.fecha || '', titulo: n?.titulo || '' });
     });
-    const filas = D.medios.map(m => ({ ...m, notas: conteo.get(m.medio) || 0, referencia: refs.get(m.medio) || null }))
+    const catalogo = new Map();
+    D.medios.forEach(m => {
+      const medio = canonMedio(m.medio), previo = catalogo.get(medio);
+      if (!previo || (/Revisión completa/i.test(m.cobertura) && !/Revisión completa/i.test(previo.cobertura))) catalogo.set(medio, { ...m, medio });
+    });
+    const filas = [...catalogo.values()].map(m => ({ ...m, notas: conteo.get(m.medio) || 0, referencia: refs.get(m.medio) || null }))
       .filter(m => m.notas > 0 && m.referencia?.url)
       .sort((a, b) => b.notas - a.notas || a.medio.localeCompare(b.medio));
     tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió|temporalmente no disponible/i.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num'], [r => { const a = document.createElement('a'); a.href = r.referencia.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Abrir enlace ↗'; a.title = 'Referencia relacionada: ' + r.referencia.titulo + ' (' + r.referencia.fecha + ')'; return a; }]]);
@@ -794,7 +803,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const ultima = notas.filter(n => en(n.mes)).map(n => n.fecha).sort().pop();
     $('periodo').textContent = cap(per) + (ultima ? ' · última nota del período: ' + ultima.split('-').reverse().join('/') : ' · sin notas en el período seleccionado');
     const tp = c.tipo.filter(x => x.notas).sort((a, b) => b.pct - a.pct), hi = tp[0], lo = tp[tp.length - 1];
-    let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% tuvo al menos una publicación relacionada con enlace verificable: ' + fmt(c.publicaciones) + ' publicaciones en ' + fmt(c.medios) + ' medios.';
+    let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% tuvo al menos una publicación relacionada con enlace registrado: ' + fmt(c.publicaciones) + ' publicaciones únicas por URL en ' + fmt(c.medios) + ' medios.';
     if (hi && lo && hi !== lo) t += ' En el tema con mayor proporción, ' + hi.levantadas + ' de ' + hi.notas + ' notas tuvieron al menos una publicación relacionada (' + hi.pct + '%); en el de menor proporción, ' + lo.levantadas + ' de ' + lo.notas + ' (' + lo.pct + '%). Estos porcentajes cuentan notas, no publicaciones.';
     if (c.porMedio.length) t += ' ' + c.porMedio[0].medio + ' es el medio donde encontramos más notas relacionadas.';
     if (c.pct_copia >= 50) t += ' En el ' + c.pct_copia + '% de los casos comparables se detectó alta coincidencia textual (50% o más); eso no demuestra por sí solo copia ni uso de nuestra fuente.';
@@ -926,7 +935,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     tb.replaceChildren(...rs.map(r => {
       const tr = document.createElement('tr');
       const c = (txt, cls) => { const td = document.createElement('td'); if (cls) td.className = cls; if (txt instanceof Node) td.append(txt); else td.textContent = txt; tr.append(td); };
-      c(r.medio);
+      c(canonMedio(r.medio));
       const confirmada = esConfirmada(r); const p = document.createElement('span'); p.className = 'pill' + (confirmada ? ' ok' : ''); p.textContent = confirmada ? 'Encontrada' : 'A revisar'; c(p);
       const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona Juschubut Noticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'dim');
       c(r.origen === 'Sin dato' ? '—' : r.origen.replace(' (≥50%)', ''));
