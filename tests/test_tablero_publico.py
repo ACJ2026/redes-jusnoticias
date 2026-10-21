@@ -189,5 +189,14 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("const ok = rs.filter(esConfirmada)", template)
 
 
+    def test_url_radio3_no_se_asocia_a_una_nota_distinta(self):
+        rep = read_json("data/rep2.json")
+        carta = next(r for r in rep if int(r["nota_id"]) == 14509 and r["medio"] == "Radio 3 Cadena Patagonia")
+        unrelated = next(r for r in rep if int(r["nota_id"]) == 14674 and r["medio"] == "Radio 3 Cadena Patagonia")
+        self.assertEqual(carta["url"], "https://radio3cadenapatagonia.com.ar/el-juez-richeri-y-la-carta-que-le-escribio-a-una-nina-tras-condenar-a-su-abusador/")
+        self.assertEqual(unrelated["url"], "")
+        self.assertEqual(unrelated["origen"], "Sin dato")
+
+
 if __name__ == "__main__":
     unittest.main()
