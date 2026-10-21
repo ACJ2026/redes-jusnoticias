@@ -35,6 +35,8 @@ jobs:
           PY
           node --check /tmp/tablero-publico.js
           python3 - <<'PY'
+          import re
+          from pathlib import Path
           html = Path("tablero_interno/index.html").read_text(encoding="utf-8")
           scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\s\S]*?)</script>', html)
           if len(scripts) != 1:
