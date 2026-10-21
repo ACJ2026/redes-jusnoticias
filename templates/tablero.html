@@ -722,9 +722,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         if (error || !result) return { red, estado: 'No disponible: ' + (error || 'la API no devolvió datos'), publicaciones: '—', seguidores: '—', ultima: '—' };
         const filas = Array.isArray(result.filas) ? result.filas : [];
         const fechas = filas.map(r => r.fecha).filter(Boolean).sort();
+        const incidencias = [];
+        if (result.limiteAlcanzado) incidencias.push('se alcanzó el límite de páginas; datos parciales');
+        const erroresPaginas = Array.isArray(result.erroresPaginas) ? result.erroresPaginas : [];
+        if (erroresPaginas.length) incidencias.push('error parcial en ' + erroresPaginas.length + ' página(s)');
         return {
           red,
-          estado: result.limiteAlcanzado ? 'API respondió, pero se alcanzó el límite de páginas; datos parciales' : 'API respondió',
+          estado: incidencias.length ? 'API respondió con advertencia: ' + incidencias.join('; ') : 'API respondió',
           publicaciones: fmt(filas.length),
           seguidores: result.seguidores === null || result.seguidores === undefined ? 'No informado' : fmt(result.seguidores),
           ultima: fechas.length ? fechas[fechas.length - 1] : 'Sin publicaciones en la ventana'
