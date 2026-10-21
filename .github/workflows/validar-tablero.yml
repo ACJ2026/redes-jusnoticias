@@ -1,0 +1,46 @@
+name: Validar tablero y fuentes de tráfico
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - 'feature/**'
+    paths:
+      - 'templates/tablero.html'
+      - 'functions/api/google-metrics.js'
+      - 'tests/**'
+      - '.github/workflows/validar-tablero.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Comprobar sintaxis de la API de Google
+        run: node --check --input-type=module < functions/api/google-metrics.js
+      - name: Comprobar sintaxis del JavaScript del tablero
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          html = Path("templates/tablero.html").read_text(encoding="utf-8")
+          scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\\s\\S]*?)</script>', html)
+          if len(scripts) != 1:
+              raise SystemExit(f"Se esperaba un script JavaScript y se encontraron {len(scripts)}")
+          Path("/tmp/tablero.js").write_text(scripts[0], encoding="utf-8")
+          PY
+          node --check /tmp/tablero.js
+      - name: Ejecutar pruebas de regresión
+        run: python3 -m unittest discover -s tests -v
