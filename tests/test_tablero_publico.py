@@ -19,6 +19,17 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertRegex(workflow, r"(?ms)^  push:\n    # El relevamiento escribe datos y genera el HTML público; solo debe ejecutarse desde main\.\n    branches:\n      - main\n    paths:")
         self.assertIn('group: actualizar-${{ github.ref }}', workflow)
 
+    def test_workflow_reconstruye_publico_despues_del_rebase_y_no_descarta_conflictos(self):
+        workflow = (ROOT / ".github/workflows/actualizar.yml").read_text(encoding="utf-8")
+        self.assertNotIn("      - 'templates/**'", workflow)
+        self.assertNotIn("      - 'scripts/armar_publico.py'", workflow)
+        guardar = workflow.split("      - name: Guardar", 1)[1]
+        self.assertNotIn("git pull --rebase -X theirs", guardar)
+        self.assertIn("git pull --rebase", guardar)
+        self.assertIn("python3 scripts/armar_publico.py", guardar)
+        self.assertIn("git commit --amend --no-edit", guardar)
+        self.assertLess(guardar.index("git pull --rebase"), guardar.index("python3 scripts/armar_publico.py"))
+
     def test_plantilla_y_archivos_publicos_estan_sincronizados(self):
         data = {
             "notas": read_json("data/notas2.json"),

@@ -7,11 +7,8 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/actualizar.yml'
       - 'scripts/actualizar.py'
       - 'data/fuentes_descubiertas.json'
-      - 'scripts/armar_publico.py'
-      - 'templates/**'
   schedule:
     # Cron UTC: horas pares, minuto 59; en Argentina (UTC-3) corresponde a horas impares, minuto 59.
     - cron: "59 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
@@ -96,8 +93,30 @@ jobs:
         run: |
           git config user.name "jusnoticias-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data publico
-          git diff --cached --quiet && exit 0
+          git add data
+          if git diff --cached --quiet; then
+            # Modo publico: no hubo cambios en datos, pero puede haber cambiado el HTML generado.
+            git add publico
+            git diff --cached --quiet && exit 0
+            git commit -m "público: regeneración del tablero"
+            git pull --rebase
+            python3 scripts/armar_publico.py data/notas2.json data/rep2.json data/redes2.json data/canales.json data/medios.json publico/tablero_publico.html
+            cp publico/tablero_publico.html publico/index.html
+            python3 -m unittest discover -s tests -v
+            git add publico
+            if ! git diff --cached --quiet; then git commit --amend --no-edit; fi
+            git push
+            exit 0
+          fi
           git commit -m "datos: actualización automática $(TZ=America/Argentina/Buenos_Aires date +'%d/%m %H:%M')"
-          for i in 1 2 3; do git pull --rebase -X theirs && git push && exit 0; sleep 5; done
-          exit 1
+          # El commit de datos se rebasa por separado para no resolver conflictos eligiendo HTML viejo.
+          git checkout -- publico/tablero_publico.html publico/index.html
+          git pull --rebase
+          # Reconstruir el HTML después del rebase con la plantilla y los datos vigentes de main.
+          python3 scripts/armar_publico.py data/notas2.json data/rep2.json data/redes2.json data/canales.json data/medios.json publico/tablero_publico.html
+          cp publico/tablero_publico.html publico/index.html
+          node --input-type=module --check < functions/api/redes.js
+          python3 -m unittest discover -s tests -v
+          git add publico
+          if ! git diff --cached --quiet; then git commit --amend --no-edit; fi
+          git push
