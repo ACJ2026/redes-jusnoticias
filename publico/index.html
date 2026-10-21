@@ -722,8 +722,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     boton.disabled = true;
     estado.textContent = 'Consultando Facebook, Instagram, YouTube y X. TikTok y WhatsApp siguen pendientes de integración.';
     const unsupported = [
-      { red: 'TikTok', estado: 'Cuenta y API pendientes de verificar', publicaciones: '—', seguidores: '—', ultima: '—' },
-      { red: 'WhatsApp', estado: 'Fuente oficial de métricas pendiente de definir', publicaciones: '—', seguidores: '—', ultima: '—' }
+      { red: 'TikTok', estado: 'API oficial pendiente de autorización OAuth', publicaciones: '—', seguidores: '—', ultima: '—' },
+      { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—' }
     ];
     try {
       const response = await fetch('/api/redes', { headers: { Accept: 'application/json' }, cache: 'no-store' });

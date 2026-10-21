@@ -29,9 +29,21 @@ No guardar estos valores ni tokens en el repositorio, HTML, issues o documentaci
 - TikTok: [@juschubut](https://www.tiktok.com/@juschubut); integración pendiente.
 - WhatsApp: [Agencia de Comunicación Judicial](https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p); determinar qué estadísticas ofrece el canal antes de diseñar métricas.
 
-## Estado visible de TikTok y WhatsApp
+## TikTok: requisitos para integrar la API oficial
 
-Ambos canales deben aparecer en el inventario del tablero para que el equipo sepa que existen. Sin embargo, no se deben representar como cero publicaciones ni como métricas en vivo: TikTok todavía no tiene integración de datos y WhatsApp requiere determinar qué estadísticas ofrece el canal. Hasta verificarlo, las publicaciones y métricas de esas plataformas deben figurar como pendientes/no disponibles.
+La [Display API oficial de TikTok](https://developers.tiktok.com/docs/en/display-api-overview) permite consultar el perfil y las publicaciones públicas recientes de una cuenta autorizada. Para usarla se necesita una cuenta de desarrollador, aprobación de los productos necesarios, autorización OAuth del titular y los permisos correspondientes, entre ellos `video.list` y `user.info.stats` para las estadísticas del perfil. La documentación de [inicio de la integración](https://developers.tiktok.com/docs/en/display-api-get-started) describe el flujo de autorización.
+
+Antes de agregar TikTok al endpoint de Pages hay que definir el almacenamiento seguro y la renovación de los tokens. No se debe poner un token temporal en el HTML ni presentar un fallo de autorización como cero publicaciones. Hasta terminar esa configuración, la interfaz debe mostrar “Pendiente de integración”.
+
+## WhatsApp Channels: usar las estadísticas de administración
+
+WhatsApp ofrece a los administradores estadísticas del canal en la propia aplicación: crecimiento y alcance de los últimos 30 días, regiones principales, seguidores y bajas, reacciones y resultados de encuestas; también permite ver las visualizaciones de cada actualización. Consultar la [ayuda oficial sobre estadísticas de canales](https://faq.whatsapp.com/809740894165112) y la [información del reporte de canales](https://faq.whatsapp.com/6480469855345352/).
+
+No hay una integración de API de métricas de canales validada en este tablero. Hasta confirmar un endpoint oficial disponible para esta cuenta, la vía fiable es registrar manualmente las métricas que el administrador pueda consultar en WhatsApp y su fecha de captura. No mostrar WhatsApp como cero actividad ni mezclar una captura manual con cifras de API en vivo.
+
+## Regla común de publicación
+
+X, Facebook, Instagram y YouTube aparecen en el panel de consulta por API, pero solo aportan cifras cuando la API responde con credenciales válidas. TikTok queda pendiente de autorización y almacenamiento de tokens; WhatsApp queda pendiente de una fuente de métricas automatizable o de un procedimiento de carga manual documentado. Ningún total general se publica hasta que la cobertura sea verificable.
 
 ## Próximos pasos antes de declarar la integración terminada
 
