@@ -6,6 +6,7 @@ on:
     branches:
       - "fix/conservar-historial-publicaciones"
       - "feature/indicadores-faciles-de-entender"
+      - "feature/indicadores-faciles-de-entender"
   workflow_dispatch:
 
 permissions:
