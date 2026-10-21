@@ -184,11 +184,15 @@ async function x(desde, env) {
 async function youtube(desde, env) {
   const key = env.YT_KEY;
   const channelId = env.YT_CANAL_ID;
+  const handle = String(env.YT_CANAL_HANDLE || "jusnoticiasprensa2865").replace(/^@/, "");
   const api = "https://www.googleapis.com/youtube/v3";
   if (!key) throw new Error("Falta configurar YT_KEY.");
-  if (!channelId) throw new Error("Falta configurar YT_CANAL_ID con el ID verificado de JusNoticias Prensa.");
-  const channels = (await get(`${api}/channels?part=statistics,contentDetails&id=${encodeURIComponent(channelId)}&key=${encodeURIComponent(key)}`)).items || [];
-  if (!channels.length) throw new Error("No se encontró el canal indicado por YT_CANAL_ID. Verificar el ID de JusNoticias Prensa.");
+  // Preferir el ID estable si está configurado; si no, resolver el canal por su @handle oficial.
+  const lookup = channelId
+    ? "id=" + encodeURIComponent(channelId)
+    : "forHandle=" + encodeURIComponent(handle);
+  const channels = (await get(`${api}/channels?part=statistics,contentDetails&` + lookup + "&key=" + encodeURIComponent(key))).items || [];
+  if (!channels.length) throw new Error("No se encontró el canal de YouTube configurado. Verificar YT_CANAL_ID o YT_CANAL_HANDLE.");
   const channel = channels[0];
   const uploads = channel.contentDetails.relatedPlaylists.uploads;
   const ids = [];
