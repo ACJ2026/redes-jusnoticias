@@ -11,7 +11,9 @@ La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json`
 Variables que requiere la ruta social de Pages. La ruta heredada de Vercel usa las variables de Meta y YouTube; la integración de X se implementa en Pages:
 
 - `META_TOKEN`: token de Meta con los permisos mínimos necesarios.
-- `FB_PAGE_ID`: identificador de la página oficial de Facebook JusNoticias, obligatorio y sin valor por defecto.
+- `FB_PAGE_IDS`: recomendado; IDs de las dos páginas institucionales de Facebook separados por coma, sin espacios obligatorios (ejemplo de formato: `ID_PAGINA_1,ID_PAGINA_2`).
+- Alternativa compatible: `FB_PAGE_ID` y `FB_PAGE_ID_2`, una variable para cada página. Si solo se configura `FB_PAGE_ID`, se consulta una sola página.
+- El perfil administrador `STJ Chubut 1` no se cuenta como página institucional ni se agrega a estas variables. La integración consulta las dos páginas institucionales por separado y conserva el nombre de cada página en las filas. Si una falla, informa el error parcial y conserva los resultados de la otra.
 - `IG_USER_ID`: identificador de Instagram, obligatorio y correspondiente a `@jus_chubut`.
 - `YT_KEY`: clave de YouTube Data API.
 - `YT_CANAL_ID`: ID de canal confirmado para `@jusnoticiasprensa2865`.
