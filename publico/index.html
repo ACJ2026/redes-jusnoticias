@@ -436,8 +436,23 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const con = new Set(rs.map(r => Number(r.nota_id)));
     const conTexto = rs.filter(r => r.origen !== 'Sin dato');
     const ps = D.redes.filter(r => r.propia === 'Sí' && en(r.fecha.slice(0, 7)));
+    // Una nota oficial cuenta una sola vez por medio, aunque en el futuro aparezcan varios registros para la misma pareja.
+    const porMedioNota = new Map();
+    rs.forEach(r => {
+      const key = String(r.medio) + '\\u0000' + String(r.nota_id);
+      const previo = porMedioNota.get(key);
+      const prioridad = x => (x.origen === 'Sin dato' ? 0 : 2) + (x.confianza === 'Alta' ? 2 : x.confianza === 'Media' ? 1 : 0);
+      if (!previo || prioridad(r) > prioridad(previo)) porMedioNota.set(key, r);
+    });
     const g = new Map();
-    rs.forEach(r => { const x = g.get(r.medio) || { medio: r.medio, notas: 0, copia: 0, otra: 0, sin_dato: 0 }; x.notas++; if (r.origen.startsWith('Copia')) x.copia++; else if (r.origen === 'Sin dato') x.sin_dato++; else x.otra++; g.set(r.medio, x); });
+    [...porMedioNota.values()].forEach(r => {
+      const x = g.get(r.medio) || { medio: r.medio, notas: 0, copia: 0, otra: 0, sin_dato: 0 };
+      x.notas++;
+      if (r.origen.startsWith('Copia')) x.copia++;
+      else if (r.origen === 'Sin dato') x.sin_dato++;
+      else x.otra++;
+      g.set(r.medio, x);
+    });
     const cad = new Map(); rs.forEach(r => (r.cita_otro_medio || '').split(', ').filter(Boolean).forEach(m => cad.set(m, (cad.get(m) || 0) + 1)));
     return {
       notas: ns.length,
@@ -607,7 +622,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     lista.replaceChildren();
     if (!items.length) {
       const p = document.createElement('p'); p.className = 'note';
-      p.textContent = 'No hay enlaces verificables disponibles para esta selección dentro del período elegido.';
+      p.textContent = 'No hay direcciones web registradas para esta selección dentro del período elegido.';
       lista.append(p);
     } else {
       items.forEach(r => {
@@ -646,8 +661,19 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     });
     const mo = Math.max(1, ...c.origen.map(r => r.n));
     bars('b-origen', c.origen.map(r => row(r.origen === 'Sin dato' ? 'Texto no disponible para comparar' : r.origen, [[r.n, r.origen.startsWith('Copia') ? 'var(--copia)' : r.origen === 'Sin dato' ? 'var(--muted-bar)' : 'var(--accent)']], r.n, mo)));
+    [...$('b-origen').querySelectorAll('.bar-row')].forEach((e, i) => {
+      const r = c.origen[i];
+      hacerSeleccionable(e, 'Ver registros: ' + r.origen, () => mostrarReferenciasMedios('Registros: ' + (r.origen === 'Sin dato' ? 'texto no disponible para comparar' : r.origen), 'Direcciones web registradas para los registros de esta clasificación. La comparación textual no demuestra por sí sola el origen de la información.', repOk.filter(x => en(x.mes) && x.origen === r.origen)));
+    });
     const mc = Math.max(1, ...c.cadena.map(r => r.n));
     bars('b-cadena', c.cadena.map((r, i) => row(r.fuente, [[r.n, i === 0 ? 'var(--accent)' : 'var(--c4)']], r.n, mc)));
+    [...$('b-cadena').querySelectorAll('.bar-row')].forEach((e, i) => {
+      const r = c.cadena[i];
+      const registros = r.fuente === 'Nombran a Juschubut Noticias o la Agencia de Comunicación Judicial'
+        ? repOk.filter(x => en(x.mes) && x.cita_fuente_oficial === 'Sí')
+        : repOk.filter(x => en(x.mes) && (x.cita_otro_medio || '').split(', ').includes(r.fuente.replace(/^Nombran a /, '')));
+      hacerSeleccionable(e, 'Ver registros de fuente mencionada: ' + r.fuente, () => mostrarReferenciasMedios(r.fuente, 'Registros en cuyo texto se detectó esta mención. La mención no demuestra que haya sido la fuente de la información.', registros));
+    });
   };
   const drawNotas = (c) => {
     c = c || calc();
