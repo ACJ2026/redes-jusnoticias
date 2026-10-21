@@ -134,11 +134,12 @@ export async function onRequest(context) {
     });
 
     const gscBase = "https://searchconsole.googleapis.com/webmasters/v3/sites/" + encodeURIComponent(env.GSC_SITE_URL) + "/searchAnalytics/query";
-    const [summary, channels, devices, pages, gscSummary, gsc, gscPages] = await Promise.all([
+    const [summary, channels, devices, pages, sources, gscSummary, gsc, gscPages] = await Promise.all([
       runGA([], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 1),
       runGA(["sessionDefaultChannelGroup"], ["totalUsers", "sessions", "screenPageViews"], 50),
       runGA(["deviceCategory"], ["totalUsers", "sessions", "screenPageViews"], 20),
       runGA(["pageTitle", "pagePath"], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 100),
+      runGA(["sessionSource", "sessionMedium"], ["sessions", "screenPageViews", "totalUsers"], 100),
       googlePost(gscBase, token, { startDate: range.start, endDate: range.end, rowLimit: 1, dataState: "final" }),
       googlePost(gscBase, token, { startDate: range.start, endDate: range.end, dimensions: ["query"], rowLimit: 25, dataState: "final" }),
       googlePost(gscBase, token, { startDate: range.start, endDate: range.end, dimensions: ["page"], rowLimit: 25, dataState: "final" })
@@ -158,6 +159,30 @@ export async function onRequest(context) {
       ...metricObj(row, ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"])
     })).sort((a, b) => b.screenPageViews - a.screenPageViews).slice(0, 25);
 
+    const classifySource = (source, medium) => {
+      const s = String(source || "").toLowerCase().replace(/^www\\./, "");
+      const m = String(medium || "").toLowerCase();
+      const has = (items) => items.some(item => s === item || s.endsWith("." + item) || s.includes(item));
+      if (["(not set)", "(unknown)", ""].includes(s) || ["(not set)", "(unknown)", ""].includes(m)) return "Sin identificar";
+      if (s === "(direct)" || m === "(none)" || m === "direct") return "Acceso directo";
+      if (has(["chatgpt.com", "chat.openai.com", "openai.com", "copilot.microsoft.com", "gemini.google.com", "perplexity.ai", "claude.ai", "poe.com", "you.com", "phind.com", "mistral.ai"])) return "Asistente de IA";
+      if (has(["facebook.com", "instagram.com", "linkedin.com", "tiktok.com", "twitter.com", "x.com", "t.co", "youtube.com", "youtu.be", "pinterest.com", "reddit.com", "threads.net", "whatsapp.com", "telegram.org", "bsky.app"])) return "Red social";
+      if (has(["google", "bing.com", "yahoo.com", "duckduckgo.com", "ecosia.org", "baidu.com", "yandex.", "search.brave.com", "qwant.com"])) return "Buscador";
+      if (m === "organic" || m === "organic_search") return "Búsqueda orgánica (buscador por verificar)";
+      if (m === "referral" || s.includes(".")) return "Otro sitio web";
+      return "Otra fuente";
+    };
+    const sourceRows = (sources.rows || []).map(row => {
+      const fuente = row.dimensionValues[0]?.value || "(not set)";
+      const medio = row.dimensionValues[1]?.value || "(not set)";
+      return {
+        fuente,
+        tipo: classifySource(fuente, medio),
+        medio,
+        ...metricObj(row, ["sessions", "screenPageViews", "totalUsers"])
+      };
+    }).sort((a, b) => b.sessions - a.sessions).slice(0, 100);
+
     return json({
       estado: "ok",
       actualizado: new Date().toISOString(),
@@ -166,7 +191,8 @@ export async function onRequest(context) {
         ...metricObj((summary.rows || [])[0], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"]),
         canales: grouped(channels),
         dispositivos: grouped(devices),
-        paginas: pageRows
+        paginas: pageRows,
+        fuentes: sourceRows
       },
       searchConsole: {
         resumen: (gscSummary.rows || [])[0] || { clicks: 0, impressions: 0, ctr: 0, position: 0 },
