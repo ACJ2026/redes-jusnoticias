@@ -4,15 +4,15 @@
 
 La pestaña **Redes** usa los registros versionados en `data/redes2.json` y las referencias de seguidores en `data/canales.json`. No consulta automáticamente la ruta `/api/redes` al abrir la pestaña. Por lo tanto, las cifras deben describirse como los datos disponibles en la última generación, no como estadísticas en vivo.
 
-## Ruta heredada de Vercel
+## Ruta de Cloudflare Pages y ruta heredada de Vercel
 
-`api/redes.js` consulta Facebook, Instagram y YouTube usando credenciales del servidor. La ruta no está integrada con la plantilla actual y no se ejecuta automáticamente en Cloudflare Pages: Cloudflare necesita una Pages Function en `functions/api/redes.js` con la interfaz adecuada.
+`functions/api/redes.js` ya adapta la consulta social al runtime de Cloudflare Pages y usa variables `env.*`; `api/redes.js` sigue como ruta heredada de Vercel. La nueva ruta exige IDs explícitos de Facebook, Instagram y el canal correcto de YouTube, y devuelve errores por plataforma cuando faltan permisos o credenciales. **Todavía no está conectada a la interfaz del tablero ni validada contra cuentas reales**; no anunciar métricas sociales en vivo hasta configurar secretos, verificar IDs y probar respuestas.
 
 Variables que usa la ruta heredada:
 
 - `META_TOKEN`: token de Meta con los permisos mínimos necesarios.
-- `FB_PAGE_ID`: identificador de la página de Facebook; el valor por defecto del código debe verificarse contra la página oficial.
-- `IG_USER_ID`: identificador de Instagram; debe corresponder a `@jus_chubut`.
+- `FB_PAGE_ID`: identificador de la página oficial de Facebook JusNoticias, obligatorio y sin valor por defecto.
+- `IG_USER_ID`: identificador de Instagram, obligatorio y correspondiente a `@jus_chubut`.
 - `YT_KEY`: clave de YouTube Data API.
 - `YT_CANAL_ID`: ID de canal confirmado para `@jusnoticiasprensa2865`.
 
