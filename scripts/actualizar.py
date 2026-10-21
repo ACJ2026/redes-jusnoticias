@@ -1,3 +1,4 @@
+# Ajuste de publicación JusNoticias: ejecutar relevamiento real al activar esta rama.
 #!/usr/bin/env python3
 """Actualiza los datos del tablero de repercusión de JusNoticias.
 Uso: python3 actualizar.py <carpeta_salida> [rep_anterior.json]
