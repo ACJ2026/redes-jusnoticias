@@ -2,13 +2,13 @@
 
 ## Qué muestra el tablero hoy
 
-La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json` y `data/canales.json`, y ahora consulta `/api/redes` al abrir la pestaña (también permite repetir la consulta manualmente). El panel en vivo muestra por separado el estado, publicaciones y seguidores que respondan las APIs de Facebook, Instagram y YouTube. No sustituye ni mezcla el historial con las métricas en vivo.
+La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json` y `data/canales.json`, y ahora consulta `/api/redes` al abrir la pestaña (también permite repetir la consulta manualmente). El panel en vivo muestra por separado el estado, publicaciones y seguidores que respondan las APIs de Facebook, Instagram, YouTube y X. No sustituye ni mezcla el historial con las métricas en vivo.
 
 ## Ruta de Cloudflare Pages y ruta heredada de Vercel
 
 `functions/api/redes.js` adapta la consulta social al runtime de Cloudflare Pages y usa variables `env.*`; `api/redes.js` sigue como ruta heredada de Vercel. La interfaz ya consulta la ruta de Pages y muestra errores por plataforma cuando faltan permisos o credenciales. **La conexión visual no significa que las cuentas estén autenticadas ni que las cifras ya se hayan validado contra cuentas reales**: eso requiere configurar secretos, verificar IDs y probar respuestas en producción.
 
-Variables que requiere la ruta social de Pages (y que la ruta heredada también utiliza):
+Variables que requiere la ruta social de Pages. La ruta heredada de Vercel usa las variables de Meta y YouTube; la integración de X se implementa en Pages:
 
 - `META_TOKEN`: token de Meta con los permisos mínimos necesarios.
 - `FB_PAGE_ID`: identificador de la página oficial de Facebook JusNoticias, obligatorio y sin valor por defecto.
