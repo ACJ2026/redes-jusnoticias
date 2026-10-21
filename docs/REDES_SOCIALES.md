@@ -27,6 +27,10 @@ No guardar estos valores ni tokens en el repositorio, HTML, issues o documentaci
 - TikTok: [@juschubut](https://www.tiktok.com/@juschubut); integración pendiente.
 - WhatsApp: [Agencia de Comunicación Judicial](https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p); determinar qué estadísticas ofrece el canal antes de diseñar métricas.
 
+## Estado visible de TikTok y WhatsApp
+
+Ambos canales deben aparecer en el inventario del tablero para que el equipo sepa que existen. Sin embargo, no se deben representar como cero publicaciones ni como métricas en vivo: TikTok todavía no tiene integración de datos y WhatsApp requiere determinar qué estadísticas ofrece el canal. Hasta verificarlo, las publicaciones y métricas de esas plataformas deben figurar como pendientes/no disponibles.
+
 ## Próximos pasos antes de declarar la integración terminada
 
 1. Confirmar titularidad, ID y permisos de cada cuenta con acceso autorizado.
