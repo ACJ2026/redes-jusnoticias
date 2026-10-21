@@ -33,14 +33,14 @@ La función `functions/api/google-metrics.js` conserva la ruta y el formato de r
 
 **Importante para redes sociales:** `api/redes.js` es la ruta heredada de Vercel; `functions/api/redes.js` ya contiene la adaptación para Cloudflare Pages. Sin embargo, la plantilla actual todavía no consulta `/api/redes`, y las redes visibles provienen del JSON generado por GitHub Actions. La función de Pages aún requiere IDs y secretos verificados y pruebas reales antes de conectarla a la interfaz. X, TikTok y WhatsApp requieren evaluación separada de APIs y permisos.
 
-## Validación antes de sustituir Vercel
+## Validación de producción en Cloudflare Pages
 
 1. Desplegar una rama de prueba o un Preview Deployment de Pages.
 2. Consultar `/api/google-metrics?desde=2026-10-01&hasta=2026-10-19` en el dominio de prueba.
 3. Confirmar que responde con `estado: "ok"`, datos de Analytics y Search Console; no basta con recibir HTTP 200.
 4. Abrir el tablero y revisar las pestañas Resumen, Medios, Notas, Redes y Google; probar los filtros de fecha y los enlaces.
 5. Confirmar que un commit posterior de GitHub Actions actualiza el despliegue público y que no se pierden registros del historial.
-6. Mantener Vercel como alternativa hasta validar el funcionamiento real con credenciales de producción.
+6. No usar los checks de Vercel como criterio de publicación de Cloudflare Pages. La validación de Google y redes sigue dependiendo de credenciales reales y debe hacerse contra las rutas de Pages.
 
 ## Límites de esta migración
 

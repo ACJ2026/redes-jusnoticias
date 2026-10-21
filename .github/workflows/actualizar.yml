@@ -62,7 +62,7 @@ jobs:
       - name: Armar versión pública
         run: |
           python3 scripts/armar_publico.py data/notas2.json data/rep2.json data/redes2.json data/canales.json data/medios.json publico/tablero_publico.html
-          # Vercel publica solo la carpeta publico/ y abre index.html
+          # Cloudflare Pages publica la carpeta publico/ y sirve index.html
           cp publico/tablero_publico.html publico/index.html
 
       - name: Verificar sintaxis y ejecutar regresiones antes de guardar
