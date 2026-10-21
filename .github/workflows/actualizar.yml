@@ -78,7 +78,7 @@ jobs:
               ("tablero_interno/index.html", "/tmp/tablero-interno.js"),
           ]:
               html = Path(source).read_text(encoding="utf-8")
-              scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\\s\\S]*?)</script>', html)
+              scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\s\S]*?)</script>', html)
               if len(scripts) != 1:
                   raise SystemExit(f"{source}: se esperaba un script y se encontraron {len(scripts)}")
               Path(target).write_text(scripts[0], encoding="utf-8")
