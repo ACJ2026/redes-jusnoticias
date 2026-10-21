@@ -107,7 +107,7 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_portada_visual_precede_al_tablero_oculto(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
-        self.assertIn('<title>JusNoticias | Tablero de repercusión y comunicación judicial</title>', public)
+        self.assertIn('<title>Juschubut Noticias | Tablero de repercusión y comunicación judicial</title>', public)
         self.assertIn('id="portada"', public)
         self.assertIn('id="entrar-tablero"', public)
         self.assertIn('id="dashboard-app" hidden', public)
