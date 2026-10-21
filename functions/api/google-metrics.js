@@ -163,12 +163,17 @@ export async function onRequest(context) {
     const classifySource = (source, medium) => {
       const s = String(source || "").toLowerCase().replace(/^www\./, "");
       const m = String(medium || "").toLowerCase();
-      const has = (items) => items.some(item => s === item || s.endsWith("." + item) || s.includes(item));
+      const hostIs = (domain) => s === domain || s.endsWith("." + domain);
+      const hostMatches = (domains) => domains.some(hostIs);
       if (["(not set)", "(unknown)", ""].includes(s) || ["(not set)", "(unknown)", ""].includes(m)) return "Sin identificar";
       if (s === "(direct)" || m === "(none)" || m === "direct") return "Acceso directo";
-      if (has(["chatgpt.com", "chat.openai.com", "openai.com", "copilot.microsoft.com", "gemini.google.com", "perplexity.ai", "claude.ai", "poe.com", "you.com", "phind.com", "mistral.ai"])) return "Asistente de IA";
-      if (has(["facebook.com", "instagram.com", "linkedin.com", "tiktok.com", "twitter.com", "x.com", "t.co", "youtube.com", "youtu.be", "pinterest.com", "reddit.com", "threads.net", "whatsapp.com", "telegram.org", "bsky.app"])) return "Red social";
-      if (has(["google", "bing.com", "yahoo.com", "duckduckgo.com", "ecosia.org", "baidu.com", "yandex.", "search.brave.com", "qwant.com"])) return "Buscador";
+      if (hostMatches(["chatgpt.com", "chat.openai.com", "openai.com", "copilot.microsoft.com", "gemini.google.com", "perplexity.ai", "claude.ai", "poe.com", "you.com", "phind.com", "mistral.ai"])) return "Asistente de IA";
+      if (hostMatches(["facebook.com", "instagram.com", "linkedin.com", "tiktok.com", "twitter.com", "x.com", "t.co", "youtube.com", "youtu.be", "pinterest.com", "reddit.com", "threads.net", "whatsapp.com", "telegram.org", "bsky.app"])) return "Red social";
+      const searchAliases = ["google", "bing", "yahoo", "duckduckgo", "ecosia", "baidu", "yandex", "brave", "qwant"];
+      const isSearchDomain = searchAliases.includes(s) ||
+        /^google\.[a-z.]+$/.test(s) ||
+        hostMatches(["google.com", "bing.com", "search.yahoo.com", "yahoo.com", "duckduckgo.com", "ecosia.org", "baidu.com", "yandex.com", "yandex.ru", "search.brave.com", "qwant.com"]);
+      if (isSearchDomain && (m === "organic" || m === "organic_search" || m === "" || m === "(not set)")) return "Buscador";
       if (m === "organic" || m === "organic_search") return "Búsqueda orgánica (buscador por verificar)";
       if (m === "referral" || s.includes(".")) return "Otro sitio web";
       return "Otra fuente";
