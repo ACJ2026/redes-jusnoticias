@@ -302,7 +302,18 @@ def gnews(n):
     oraciones = [o.strip() for o in re.split(r'(?<=[.;:])\s+', body) if len(o.split()) >= 12][:3]
     frases = ['"' + ' '.join(o.split()[2:11]) + '"' for o in oraciones[:2]]
     t, fuerte = '', ''
-    for q in [n['titulo'][:120], ' '.join(clave_t)] + frases:
+    consultas = [n['titulo'][:120], ' '.join(clave_t)] + frases
+    # Seguimiento adicional limitado a cinco dominios descubiertos, para notas de los últimos 15 días.
+    if n['fecha'] >= addd(dt.date.today().isoformat(), -15):
+        dominios = []
+        for registro in reversed(REGISTRO):
+            dominio = registro.get('dominio', '')
+            if dominio and dominio not in dominios:
+                dominios.append(dominio)
+            if len(dominios) >= 5: break
+        frase = frases[0].strip('"') if frases else ' '.join(clave_t[:4])
+        consultas.extend('site:' + dominio + ' "' + frase + '"' for dominio in dominios)
+    for q in consultas:
         r = get('https://news.google.com/rss/search?q=' + urllib.parse.quote(q) + '&hl=es-419&gl=AR&ceid=AR:es-419', timeout=20) or ''
         t += r
         if q.startswith('"'): fuerte += r
