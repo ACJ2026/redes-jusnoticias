@@ -420,7 +420,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const porNota = notas.map(n => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id));
     const ok = rs.filter(esConfirmada);
-    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: ok.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: ok.map(r => r.medio).join(', '), posibles: rs.length - ok.length };
+    const mediosUnicos = [...new Set(ok.map(r => r.medio))];
+    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: mediosUnicos.length, copias: ok.filter(r => r.origen.startsWith('Copia')).length, medios: mediosUnicos.join(', '), posibles: rs.length - ok.length };
   });
   const meses = [...new Set(notas.map(n => n.mes))].sort();
   const st = { desde: meses[meses.length - 1], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
@@ -647,7 +648,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const ultima = notas.filter(n => en(n.mes)).map(n => n.fecha).sort().pop();
     $('periodo').textContent = cap(per) + (ultima ? ' · última nota del período: ' + ultima.split('-').reverse().join('/') : ' · sin notas en el período seleccionado');
     const tp = c.tipo.filter(x => x.notas).sort((a, b) => b.pct - a.pct), hi = tp[0], lo = tp[tp.length - 1];
-    let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% fue levantado por al menos un medio: ' + fmt(c.publicaciones) + ' publicaciones en ' + fmt(c.medios) + ' medios.';
+    let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% tuvo al menos una publicación relacionada con enlace verificable: ' + fmt(c.publicaciones) + ' publicaciones en ' + fmt(c.medios) + ' medios.';
     if (hi && lo && hi !== lo) t += ' Lo que más viaja es ' + hi.tipo.toLowerCase() + ' (' + hi.pct + '%); lo que menos, ' + lo.tipo.toLowerCase() + ' (' + lo.pct + '%).';
     if (c.porMedio.length) t += ' ' + c.porMedio[0].medio + ' es el medio que más replica.';
     if (c.pct_copia >= 50) t += ' En el ' + c.pct_copia + '% de los casos con texto disponible, el medio copió nuestra nota casi sin cambios.';
