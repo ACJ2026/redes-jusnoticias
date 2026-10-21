@@ -191,7 +191,7 @@ async function youtube(desde, env) {
   const lookup = channelId
     ? "id=" + encodeURIComponent(channelId)
     : "forHandle=" + encodeURIComponent(handle);
-  const channels = (await get(`${api}/channels?part=statistics,contentDetails&` + lookup + "&key=" + encodeURIComponent(key))).items || [];
+  const channels = (await get(`${api}/channels?part=snippet,statistics,contentDetails&` + lookup + "&key=" + encodeURIComponent(key))).items || [];
   if (!channels.length) throw new Error("No se encontró el canal de YouTube configurado. Verificar YT_CANAL_ID o YT_CANAL_HANDLE.");
   const channel = channels[0];
   const uploads = channel.contentDetails.relatedPlaylists.uploads;
