@@ -707,7 +707,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const estado = $('redes-vivo-estado');
     const tb = document.querySelector('#t-redes-vivo tbody');
     boton.disabled = true;
-    estado.textContent = 'Consultando Facebook, Instagram, YouTube y X. El dominio de TikTok está verificado; su autorización OAuth y Display API siguen pendientes. WhatsApp requiere carga manual.';
+    estado.textContent = 'Consultando las dos páginas de Facebook, Instagram, YouTube y X. El perfil personal STJ requiere autorización específica de Meta; TikTok y WhatsApp siguen pendientes.';
     const unsupported = [
       { red: 'TikTok', estado: 'Dominio verificado en TikTok Developers; falta autorización OAuth y conexión de Display API', publicaciones: '—', seguidores: '—', ultima: '—' },
       { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—' }
@@ -716,7 +716,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const response = await fetch('/api/redes', { headers: { Accept: 'application/json' }, cache: 'no-store' });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
-      const connected = ['Facebook', 'Instagram', 'YouTube', 'X'].map(red => {
+      const connected = ['Facebook', 'Facebook STJ', 'Facebook Personal STJ', 'Instagram', 'YouTube', 'X'].map(red => {
         const result = data.redes && data.redes[red];
         const error = data.errores && data.errores[red];
         if (error || !result) return { red, estado: 'No disponible: ' + (error || 'la API no devolvió datos'), publicaciones: '—', seguidores: '—', ultima: '—' };
@@ -740,7 +740,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const hasta = data.actualizado ? new Date(data.actualizado).toLocaleDateString('es-AR') : 'fecha no informada';
       estado.textContent = 'Consulta ejecutada el ' + (data.actualizado ? new Date(data.actualizado).toLocaleString('es-AR') : 'fecha no informada') + '. Ventana desde ' + (data.desde || 'fecha no informada') + ' hasta ' + hasta + '. Solo las APIs que respondieron aportan cifras; no es un total de todas las redes.';
     } catch (error) {
-      tb.replaceChildren(...[...['Facebook', 'Instagram', 'YouTube', 'X'].map(red => ({ red, estado: 'No se pudo consultar la API: ' + error.message, publicaciones: '—', seguidores: '—', ultima: '—' })), ...unsupported].map(r => {
+      tb.replaceChildren(...[...['Facebook', 'Facebook STJ', 'Facebook Personal STJ', 'Instagram', 'YouTube', 'X'].map(red => ({ red, estado: 'No se pudo consultar la API: ' + error.message, publicaciones: '—', seguidores: '—', ultima: '—' })), ...unsupported].map(r => {
         const tr = document.createElement('tr');
         [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima].forEach(value => {
           const td = document.createElement('td'); td.textContent = value; tr.append(td);
