@@ -233,3 +233,9 @@ Próxima acción:
 - En el listado de Cloudflare, producción seguía en `main`, commit `db5281e`; los cambios de diagnóstico de X permanecen en Preview, rama `diagnostico-x-api-error`.
 - No se fusionó la PR #43 ni se publicó el diagnóstico en producción. No se modificaron datos históricos.
 - Al volver al proyecto, revisar primero el estado de esta bitácora y la PR #43; no repetir verificaciones ya realizadas ni dar por operativas TikTok o X hasta probarlas con respuestas reales.
+
+
+#### Aclaración del estado de TikTok — 22/10/2026
+- Según la precisión aportada por el usuario, el proceso de TikTok ya había llegado a la pantalla/paso de autorización para iniciar sesión con la cuenta oficial; el pendiente inmediato era **loguearse con esa cuenta** para continuar el flujo.
+- Esto reemplaza la descripción demasiado general de “falta completar OAuth” como próximo paso: al retomar, continuar desde el inicio de sesión/autorización de la cuenta, sin volver a empezar la configuración desde cero.
+- No consta todavía confirmación de que se haya completado el login, aprobado el consentimiento, emitido/guardado un token ni de que la Display API haya devuelto datos. Mantener la integración como pendiente hasta comprobar esos resultados.
