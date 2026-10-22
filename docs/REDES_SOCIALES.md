@@ -68,3 +68,9 @@ X, Facebook, Instagram y YouTube aparecen en el panel de consulta por API, pero 
 4. Configurar los secretos en Cloudflare Pages y verificar que Facebook, Instagram, YouTube y X respondan correctamente desde `/api/redes`; comprobar que la paginación cubra el período y que los errores no se conviertan en ceros.
 5. Mostrar «sin dato disponible» cuando una plataforma no entregue una métrica; no reemplazarlo por cero.
 6. Mantener separadas las publicaciones propias, las de cuentas institucionales distintas y las publicaciones de otros medios.
+
+## Cambios de variables en Cloudflare Pages: regla de validación
+
+- Las variables de Production y Preview son entornos separados: una variable configurada en Production no demuestra que esté disponible en Preview.
+- Después de agregar o cambiar una variable/secret, generar un nuevo despliegue de la rama de prueba antes de volver a consultar `/api/redes`; una URL de un despliegue anterior puede seguir ejecutando el entorno creado antes del cambio.
+- Validar únicamente la presencia mediante mensajes de error de la API. Nunca registrar ni mostrar valores de `META_TOKEN`, tokens de página u otros secretos.
