@@ -78,19 +78,48 @@ async function instagram(desde, env) {
   return { filas, seguidores: account.followers_count ?? null, limiteAlcanzado };
 }
 
+// Consulta específica de X: conserva detalles HTTP útiles sin registrar ni exponer credenciales.
+async function getX(url, token) {
+  const response = await fetch(url, {
+    headers: { Authorization: "Bearer " + token }
+  });
+  let payload = {};
+  try {
+    payload = await response.json();
+  } catch {
+    // La API también puede responder con un cuerpo no JSON.
+  }
+  if (!response.ok || payload.errors || payload.error) {
+    const details = [];
+    if (typeof payload.detail === "string") details.push(payload.detail);
+    else if (typeof payload.title === "string") details.push(payload.title);
+    else if (typeof payload.error === "string") details.push(payload.error);
+    else if (payload.error && typeof payload.error.message === "string") details.push(payload.error.message);
+    if (!details.length && Array.isArray(payload.errors)) {
+      payload.errors.slice(0, 3).forEach(item => {
+        if (item && typeof item.message === "string") details.push(item.message);
+        else if (item && typeof item.detail === "string") details.push(item.detail);
+      });
+    }
+    const detail = details.join("; ").replace(/\\s+/g, " ").slice(0, 400);
+    throw new Error("X API HTTP " + response.status + (detail ? ": " + detail : ""));
+  }
+  return payload;
+}
+
 async function x(desde, env) {
   const token = env.X_BEARER_TOKEN;
   const username = String(env.X_USER_HANDLE || "Jus_Noticias").replace(/^@/, "");
   if (!token) throw new Error("Falta configurar X_BEARER_TOKEN con acceso autorizado a la API de X.");
   const api = "https://api.x.com/2";
-  const userPayload = await get(`${api}/users/by/username/${encodeURIComponent(username)}?user.fields=public_metrics`, token);
+  const userPayload = await getX(`${api}/users/by/username/${encodeURIComponent(username)}?user.fields=public_metrics`, token);
   const user = userPayload.data;
   if (!user || !user.id) throw new Error("No se encontró la cuenta de X indicada por X_USER_HANDLE.");
   const filas = [];
   let url = `${api}/users/${encodeURIComponent(user.id)}/tweets?tweet.fields=created_at,public_metrics&max_results=100&start_time=${encodeURIComponent(desde + "T00:00:00Z")}`;
   let limiteAlcanzado = false;
   for (let i = 0; url && i < 10; i++) {
-    const result = await get(url, token);
+    const result = await getX(url, token);
     (result.data || []).forEach(post => {
       if (!post.created_at || post.created_at.slice(0, 10) < desde) return;
       const stats = post.public_metrics || {};
