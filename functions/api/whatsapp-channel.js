@@ -21,7 +21,7 @@ export async function onRequestGet() {
       redirect: "follow",
       signal: AbortSignal.timeout(8000),
       headers: {
-        "Accept": "text/html,application/xhtml+xml",
+        Accept: "text/html,application/xhtml+xml",
         "User-Agent": "Mozilla/5.0 (compatible; JuschubutNoticiasDiagnostics/1.0)",
       },
     });
@@ -42,17 +42,23 @@ export async function onRequestGet() {
     // Inspect only the public page response; never return or log its HTML.
     const html = (await response.text()).slice(0, 2_000_000);
     const hasChannelId = html.includes(CHANNEL_ID);
-    const hasChannelName = /JUSCHUBUT\\s*Noticias/i.test(html);
+    const hasChannelName = /JUSCHUBUT\s+Noticias/i.test(html);
+
+    // A candidate must be adjacent to an explicit follower label and numeric.
+    // It remains unverified until independently validated; never use it as a KPI.
     const followerPatterns = [
-      /([\\d.,]+)\\s*(?:followers|seguidores)/i,
-      /(?:followers|seguidores)[^\\d]{0,40}([\\d.,]+)/i,
+      /([\d][\d.,\s]*)\s*(?:followers|seguidores)\b/i,
+      /\b(?:followers|seguidores)\b[^\d]{0,40}([\d][\d.,\s]*)/i,
     ];
     let followerText = null;
     for (const pattern of followerPatterns) {
       const match = html.match(pattern);
       if (match) {
-        followerText = match[1];
-        break;
+        const candidate = match[1].trim().replace(/\s+/g, " ");
+        if (/^\d[\d., ]*$/.test(candidate)) {
+          followerText = candidate;
+          break;
+        }
       }
     }
 
@@ -69,8 +75,8 @@ export async function onRequestGet() {
       followerCountCandidate: followerText,
       followerCountVerified: false,
       note: followerText
-        ? "Candidato extraído de HTML público; debe validarse antes de usarlo como métrica."
-        : "No se detectó un contador de seguidores reconocible en el HTML recibido. No equivale a cero.",
+        ? "Candidato numérico junto a una etiqueta de seguidores; aún no está verificado y no debe usarse como métrica del tablero."
+        : "No se detectó un contador numérico de seguidores reconocible en el HTML recibido. No equivale a cero.",
     });
   } catch (error) {
     return json({
