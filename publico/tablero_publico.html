@@ -708,6 +708,37 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const tb = document.querySelector('#t-redes-vivo tbody');
     boton.disabled = true;
     estado.textContent = 'Consultando Facebook, Instagram, YouTube y X. El dominio de TikTok está verificado; su autorización OAuth y Display API siguen pendientes. WhatsApp requiere carga manual.';
+    const nombresInsights = {
+      page_media_view: 'Visualizaciones de contenido',
+      page_post_engagements: 'Interacciones con publicaciones',
+      page_views_total: 'Visitas a la página',
+      reach: 'Alcance',
+      views: 'Visualizaciones',
+      accounts_engaged: 'Cuentas con interacción',
+      total_interactions: 'Interacciones'
+    };
+    // Una métrica sin dato se muestra como no disponible; nunca como cero.
+    const valorInsight = (insights, metric) => (nombresInsights[metric] || metric) + ' ' + (insights && typeof insights[metric] === 'number' ? fmt(insights[metric]) : 'no disponible');
+    const resumenInsights = (red, result, data) => {
+      if (red === 'Facebook' && Array.isArray(result.paginas)) {
+        return result.paginas.map(p => {
+          const nombre = p.nombre || ('Página ' + p.id);
+          if (p.error) return nombre + ': no disponible (' + p.error + ')';
+          const partes = ['Seguidores ' + (typeof p.seguidores === 'number' ? fmt(p.seguidores) : 'no informado')]
+            .concat(Object.keys(p.insights || {}).map(m => valorInsight(p.insights, m)));
+          return nombre + ': ' + partes.join(' · ') + ' (últimos 28 días' + (p.insightsHasta ? ', al ' + p.insightsHasta : '') + ')';
+        }).join(' | ');
+      }
+      if (red === 'Instagram' && result.insights) {
+        return Object.keys(result.insights).map(m => valorInsight(result.insights, m)).join(' · ') + ' (' + (result.insightsDesde || data.desde || 'inicio no informado') + ' a ' + (result.insightsHasta || 'fin no informado') + ')';
+      }
+      return '—';
+    };
+    const estadoFuente = result => {
+      const partes = [result.limiteAlcanzado ? 'API respondió, pero se alcanzó el límite de páginas; datos parciales' : 'API respondió'];
+      if (result.parcial) partes.push('respuesta parcial: ' + (result.paginas || []).filter(p => p.error).map(p => 'página ' + p.id + ' no disponible').join('; '));
+      return partes.join('; ');
+    };
     const unsupported = [
       { red: 'TikTok', estado: 'Dominio verificado en TikTok Developers; falta autorización OAuth y conexión de Display API', publicaciones: '—', seguidores: '—', ultima: '—', insights: '—' },
       { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—', insights: '—' }
@@ -724,13 +755,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         const fechas = filas.map(r => r.fecha).filter(Boolean).sort();
         return {
           red,
-          estado: result.limiteAlcanzado ? 'API respondió, pero se alcanzó el límite de páginas; datos parciales' : 'API respondió',
+          estado: estadoFuente(result),
           publicaciones: fmt(filas.length),
           seguidores: result.seguidores === null || result.seguidores === undefined ? 'No informado' : fmt(result.seguidores),
           ultima: fechas.length ? fechas[fechas.length - 1] : 'Sin publicaciones en la ventana',
-          insights: red === 'Instagram' && result.insights
-            ? ['Alcance ' + (result.insights.reach == null ? '—' : fmt(result.insights.reach)), 'Visualizaciones ' + (result.insights.views == null ? '—' : fmt(result.insights.views)), 'Cuentas con interacción ' + (result.insights.accounts_engaged == null ? '—' : fmt(result.insights.accounts_engaged)), 'Interacciones ' + (result.insights.total_interactions == null ? '—' : fmt(result.insights.total_interactions))].join(' · ') + ' (' + (result.insightsDesde || data.desde || 'inicio no informado') + ' a ' + (result.insightsHasta || (data.actualizado ? new Date(data.actualizado).toISOString().slice(0, 10) : 'fin no informado')) + ')'
-            : '—'
+          insights: resumenInsights(red, result, data)
         };
       });
       tb.replaceChildren(...[...connected, ...unsupported].map(r => {
