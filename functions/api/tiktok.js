@@ -51,7 +51,7 @@ export async function getTikTokData(env) {
   const tokens = await loadTokens(env);
   const headers = { Authorization: "Bearer " + tokens.access_token };
   const profileUrl = new URL("https://open.tiktokapis.com/v2/user/info/");
-  profileUrl.searchParams.set("fields", "open_id,avatar_url,display_name,username,follower_count,following_count,likes_count,video_count");
+  profileUrl.searchParams.set("fields", "open_id,avatar_url,display_name,follower_count,following_count,likes_count,video_count");
   const profileResponse = await fetch(profileUrl, { headers });
   const profilePayload = await profileResponse.json();
   if (!profileResponse.ok || profilePayload.error?.code && profilePayload.error.code !== "ok") {
@@ -97,7 +97,7 @@ export async function getTikTokData(env) {
     perfil: {
       open_id: profile.open_id,
       nombre: profile.display_name || null,
-      usuario: profile.username || null,
+      usuario: null,
       avatar: profile.avatar_url || null,
       seguidores: Number.isFinite(profile.follower_count) ? profile.follower_count : null,
       seguidos: Number.isFinite(profile.following_count) ? profile.following_count : null,
