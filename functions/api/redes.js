@@ -24,10 +24,9 @@ async function get(url, token) {
 
 const corto = value => (value || "").replace(/\s+/g, " ").trim().slice(0, 26);
 
-async function facebook(desde, env) {
-  const id = env.FB_PAGE_ID;
+async function facebook(desde, env, id) {
   const metaToken = env.META_TOKEN;
-  if (!id) throw new Error("Falta configurar FB_PAGE_ID con el identificador verificado de la página JusNoticias.");
+  if (!id) throw new Error("Falta configurar FB_PAGE_IDS o FB_PAGE_ID con los identificadores verificados de las páginas.");
   if (!metaToken) throw new Error("Falta configurar META_TOKEN.");
   const tokenPayload = await get(`${GRAPH}/${id}?fields=access_token`, metaToken);
   const pageToken = tokenPayload.access_token;
@@ -165,6 +164,21 @@ async function youtube(desde, env) {
   return { filas, seguidores: Number(channel.statistics && channel.statistics.subscriberCount) || null, limiteAlcanzado };
 }
 
+function configuredFacebookIds(env) {
+  const candidates = [
+    ...String(env.FB_PAGE_IDS || "").split(","),
+    env.FB_PAGE_ID,
+    env.FB_PAGE_ID_2
+  ];
+  return [...new Set(candidates.map(value => String(value || "").trim()).filter(Boolean))].slice(0, 10);
+}
+
+function facebookNetworkName(id, index) {
+  if (id === "116101835114568") return "Facebook";
+  if (id === "761013867341405") return "Facebook STJ";
+  return index === 0 ? "Facebook" : `Facebook ${index + 1}`;
+}
+
 function validDate(value) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return false;
   const parsed = new Date(value + "T00:00:00Z");
@@ -188,7 +202,22 @@ export async function onRequestGet({ request, env }) {
   }
 
   const out = { actualizado: new Date().toISOString(), desde, redes: {}, errores: {} };
-  const tareas = { Facebook: facebook, Instagram: instagram, YouTube: youtube, X: x };
+
+  const pageIds = configuredFacebookIds(env);
+  if (!pageIds.length) {
+    out.errores.Facebook = "Falta configurar FB_PAGE_IDS o FB_PAGE_ID con el identificador verificado de la página JusNoticias.";
+  } else {
+    await Promise.all(pageIds.map(async (id, index) => {
+      const network = facebookNetworkName(id, index);
+      try {
+        out.redes[network] = await facebook(desde, env, id);
+      } catch (error) {
+        out.errores[network] = error instanceof Error ? error.message : "Error de consulta no identificado.";
+      }
+    }));
+  }
+
+  const tareas = { Instagram: instagram, YouTube: youtube, X: x };
   await Promise.all(Object.entries(tareas).map(async ([network, fn]) => {
     try {
       out.redes[network] = await fn(desde, env);
@@ -196,5 +225,11 @@ export async function onRequestGet({ request, env }) {
       out.errores[network] = error instanceof Error ? error.message : "Error de consulta no identificado.";
     }
   }));
+
+  const personalProfileUrl = String(env.FB_PERSONAL_STJ_URL || "").trim();
+  out.errores["Facebook Personal STJ"] = personalProfileUrl
+    ? "El enlace del perfil está configurado, pero una URL no autoriza el acceso a publicaciones personales. Se requiere un flujo de inicio de sesión/autorización de Meta y el permiso user_posts; la disponibilidad depende de los permisos y la aprobación concedidos a la aplicación."
+    : "Falta configurar FB_PERSONAL_STJ_URL. Aun con el enlace, la lectura de publicaciones personales requiere autorización de Meta y el permiso user_posts; no se obtiene automáticamente desde una URL.";
+
   return json(out, 200, Object.keys(out.errores).length > 0);
 }
