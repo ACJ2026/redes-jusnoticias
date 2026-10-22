@@ -37,6 +37,15 @@ El 22/10/2026 se verificó en Graph API Explorer el perfil `@jus_chubut` (ID `17
 
 En la rama de trabajo, la función de Instagram consulta esas cuatro métricas de forma aislada con el rango solicitado por la API y las devuelve bajo `insights`; la interfaz muestra los valores por separado y su rango. Si una métrica falla, se muestra como no disponible, nunca como cero. La prueba manual confirma que la consulta funciona con el token/permisos del Explorador; todavía debe validarse desde el entorno de Cloudflare Pages con el secreto configurado y no equivale a un despliegue de producción.
 
+## Facebook e Instagram Insights: cálculo, errores y prueba limitada a Meta
+
+- **Facebook, `period=days_28`:** cada valor que devuelve Meta ya es el acumulado móvil de los 28 días que terminan en `end_time`. La función toma el valor numérico más reciente de cada métrica (`page_media_view`, `page_post_engagements`, `page_views_total`) y lo informa con `insightsHasta`. No se suman valores de días distintos.
+- **Token por página:** Insights se consulta siempre con el token de cada página (`FB_PAGE_TOKEN` / `FB_PAGE_TOKEN_2`, o el que se obtiene con `META_TOKEN` mediante `/{id}?fields=access_token`). Nunca con el token de usuario.
+- **Errores:** cada métrica que falla queda en `null` y su mensaje se guarda en `insightsErrores`, sin tokens. Un error nunca se convierte en cero; el tablero lo muestra como «no disponible».
+- **Páginas independientes:** si una página falla, se conservan los datos de la otra; la respuesta indica `parcial: true` y el error de esa página. El total de seguidores solo se informa si ambas páginas lo devolvieron. Si fallan las dos, `errores.Facebook` detalla el motivo de cada una.
+- **Instagram:** Graph API admite un rango máximo de 30 días para Insights de cuenta con `since`/`until`. La función usa como máximo los últimos 28 días (la ventana validada) aunque el período pedido sea mayor, e informa `insightsDesde`, `insightsHasta` e `insightsRecortado`. Cada métrica que falla queda en `null` con su mensaje en `insightsErrores`.
+- **Prueba limitada a Meta:** `/api/redes?redes=Facebook,Instagram` consulta solo Meta; no llama a X ni a YouTube, así que no consume créditos de X. Un valor desconocido en `redes` devuelve 400 sin llamadas externas.
+
 ## X: solicitudes, costos y errores de créditos
 
 Una consulta exitosa a X realiza una llamada `GET /2/users/by/username/{username}?user.fields=public_metrics` para el perfil y entre una y diez llamadas `GET /2/users/{id}/tweets` (100 publicaciones por página, acotadas a los últimos 90 días). En total son **2 a 11 solicitudes HTTP por consulta**; si la primera llamada devuelve un error, la paginación no comienza. No se consultan endpoints de búsqueda ni se hacen escrituras.
