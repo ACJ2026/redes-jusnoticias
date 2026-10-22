@@ -209,3 +209,13 @@ Próxima acción:
 - La plantilla fuente tiene el título `Juschubut Noticias`. La verificación directa del dominio público y de los endpoints Pages no pudo completarse desde las herramientas disponibles en esta sesión.
 - Pendientes externos: comprobar el despliegue real en Cloudflare Pages y revisar la respuesta de `/api/google-metrics` y `/api/redes` en producción. Para Google se requieren las variables `GOOGLE_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID` y `GSC_SITE_URL`, más permisos de lectura de la cuenta de servicio. Para redes, revisar los secretos e IDs correspondientes en el entorno Pages.
 - No se alteró WordPress, no se reconstruyeron ni borraron registros históricos y no se declaró validación de extremo a extremo.
+
+
+### 2026-10-22 - Baja del proyecto Pages legado redes-jusnoticias
+
+- Se consultó el procedimiento oficial de Cloudflare: Pages puede bloquear la baja de proyectos con más de 100 deployments; la solución documentada es eliminar deployments individualmente. Referencia: https://developers.cloudflare.com/pages/platform/known-issues/
+- Antes de limpiar, `redes-jusnoticias` tenía 215 deployments: 198 Preview y 17 Production. Se verificó que 115 Preview antiguos, sin alias activos, alcanzaban para bajar el total a 100. Se eliminaron únicamente esos 115; quedaron los 17 Production y 83 Preview, incluida la Production más reciente.
+- La configuración del proyecto legado tenía solo las variables `GA4_PROPERTY_ID`, `GOOGLE_SERVICE_ACCOUNT_JSON` y `GSC_SITE_URL` en Production, todas presentes también por nombre en el proyecto definitivo `jusnoticias`. No tenía variables Preview, bindings KV/D1 ni dominios propios distintos de `redes-jusnoticias.pages.dev`. No se leyeron valores de variables o secretos.
+- Cloudflare aceptó la eliminación permanente del proyecto `redes-jusnoticias` (HTTP 200). La comprobación posterior devolvió proyecto inexistente (HTTP 404).
+- Se verificó `https://jusnoticias.pages.dev/` y `/tablero_publico`: ambos respondieron HTTP 200 con el título del tablero. El proyecto `jusnoticias` y su dominio `jusnoticias.pages.dev` permanecen activos.
+- No se eliminó ni modificó el repositorio GitHub, no se fusionó ningún PR, no se alteró código ni configuración de Production y no se modificó el proyecto `jusnoticias`.
