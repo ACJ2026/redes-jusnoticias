@@ -724,7 +724,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         return result.paginas.map(p => {
           const nombre = p.nombre || ('Página ' + p.id);
           if (p.error) return nombre + ': no disponible (' + p.error + ')';
-          const partes = ['Seguidores ' + (typeof p.seguidores === 'number' ? fmt(p.seguidores) : 'no informado')]
+          const partes = ['Seguidores ' + (typeof p.seguidores === 'number' ? fmt(p.seguidores) : 'no informado')].concat(p.publicacionesError ? ['Publicaciones no disponibles'] : [])
             .concat(Object.keys(p.insights || {}).map(m => valorInsight(p.insights, m)));
           return nombre + ': ' + partes.join(' · ') + ' (últimos 28 días' + (p.insightsHasta ? ', al ' + p.insightsHasta : '') + ')';
         }).join(' | ');
@@ -756,9 +756,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         return {
           red,
           estado: estadoFuente(result),
-          publicaciones: fmt(filas.length),
+          publicaciones: result.publicacionesCompletas === false ? (filas.length ? fmt(filas.length) + ' (parcial)' : 'No disponible') : fmt(filas.length),
           seguidores: result.seguidores === null || result.seguidores === undefined ? 'No informado' : fmt(result.seguidores),
-          ultima: fechas.length ? fechas[fechas.length - 1] : 'Sin publicaciones en la ventana',
+          ultima: fechas.length ? fechas[fechas.length - 1] : (result.publicacionesCompletas === false ? 'No disponible' : 'Sin publicaciones en la ventana'),
           insights: resumenInsights(red, result, data)
         };
       });
