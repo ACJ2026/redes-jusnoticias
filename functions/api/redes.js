@@ -1,3 +1,4 @@
+import { getTikTokData } from "./tiktok.js";
 // Cloudflare Pages Function: métricas sociales propias de JusNoticias.
 // Configurar todas las credenciales como variables del entorno Pages; nunca en el HTML.
 const GRAPH = "https://graph.facebook.com/v26.0";
@@ -175,7 +176,32 @@ export async function onRequestGet({ request, env }) {
   }
 
   const out = { actualizado: new Date().toISOString(), desde, redes: {}, errores: {} };
-  const tareas = { Facebook: facebook, Instagram: instagram, YouTube: youtube, X: x };
+  const tareas = {
+    Facebook: facebook,
+    Instagram: instagram,
+    YouTube: youtube,
+    X: x,
+    TikTok: async (_desde, runtimeEnv) => {
+      const data = await getTikTokData(runtimeEnv);
+      const filas = data.videos
+        .filter(video => !video.fecha || video.fecha >= desde)
+        .map(video => ({
+          red: "TikTok",
+          cuenta: data.perfil.usuario ? "@" + data.perfil.usuario : data.perfil.nombre || "@juschubut",
+          fecha: video.fecha || "",
+          texto: corto(video.title),
+          nota_id: null,
+          me_gusta: video.me_gusta,
+          comentarios: video.comentarios,
+          compartidos: video.compartidos,
+          vistas: video.vistas,
+          propia: "Sí",
+          key: "tt-" + video.id,
+          url: video.url
+        }));
+      return { filas, seguidores: data.perfil.seguidores, perfil: data.perfil, actualizado: data.actualizado };
+    }
+  };
   await Promise.all(Object.entries(tareas).map(async ([network, fn]) => {
     try {
       out.redes[network] = await fn(desde, env);
