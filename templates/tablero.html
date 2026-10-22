@@ -1,3 +1,5 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Juschubut Noticias | Tablero de repercusión y comunicación judicial</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -575,6 +577,20 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     bars('b-top5m', t5.map(r => row(r.medio, [[r.notas, 'var(--accent)']], r.notas, mx)));
     const n5 = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 5), mn = n5.length ? n5[0].n_medios : 1;
     bars('b-top5n', n5.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
+    // Los rankings del resumen abren los enlaces en la pestaña Medios, donde está el panel de referencias.
+    const abrirEnMedios = (titulo, intro, registros) => {
+      show('medios');
+      mostrarReferenciasMedios(titulo, intro, registros);
+      $('medios-detalle').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    [...$('b-top5m').querySelectorAll('.bar-row')].forEach((e, i) => {
+      const r = t5[i];
+      hacerSeleccionable(e, 'Ver publicaciones de ' + r.medio, () => abrirEnMedios('Publicaciones de ' + r.medio, 'Se muestran las direcciones web registradas para este medio y las notas de JusNoticias relacionadas. Los enlaces se abren en otra pestaña; su vigencia debe comprobarse en el sitio de origen.', repOk.filter(x => en(x.mes) && x.medio === r.medio)));
+    });
+    [...$('b-top5n').querySelectorAll('.bar-row')].forEach((e, i) => {
+      const r = n5[i];
+      hacerSeleccionable(e, 'Ver publicaciones relacionadas con ' + r.titulo, () => abrirEnMedios('Publicaciones relacionadas con esta nota', 'Direcciones web registradas para esta nota de JusNoticias. La relación temática no demuestra por sí sola que se haya utilizado nuestra información.', repOk.filter(x => en(x.mes) && Number(x.nota_id) === Number(r.id))));
+    });
 };
   // Localidades conocidas de algunos medios; no se presume una sede cuando no está identificada.
   const localidadMedio = {
