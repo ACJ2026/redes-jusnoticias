@@ -10,8 +10,10 @@ La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json`
 
 Variables que requiere la ruta social de Pages. La ruta heredada de Vercel usa las variables de Meta y YouTube; la integración de X se implementa en Pages:
 
-- `META_TOKEN`: token de Meta con los permisos mínimos necesarios.
-- `FB_PAGE_ID`: identificador de la página oficial de Facebook JusNoticias, obligatorio y sin valor por defecto.
+- `META_TOKEN`: token de usuario de Meta con `pages_show_list`, `pages_read_engagement` y `read_insights`, y acceso a las páginas. No debe ser un token de página si también se usa para obtener los tokens de ambas páginas y consultar Instagram.
+- `FB_PAGE_ID`: identificador de la página de Facebook JusNoticias (`116101835114568`).
+- `FB_PAGE_ID_2`: identificador opcional de la segunda página (`761013867341405`, JusNoticias STJ). La función consulta ambas páginas cuando se configura esta variable.
+- `FB_PAGE_TOKEN` / `FB_PAGE_TOKEN_2`: alternativas opcionales para guardar directamente los tokens de página de la primera y segunda página, respectivamente, si no se usa un token de usuario válido en `META_TOKEN`. Configurarlos únicamente como secrets de Cloudflare Pages.
 - `IG_USER_ID`: identificador de Instagram, obligatorio y correspondiente a `@jus_chubut`.
 - `YT_KEY`: clave de YouTube Data API.
 - `YT_CANAL_ID`: ID de canal confirmado para `@jusnoticiasprensa2865`.
@@ -58,7 +60,7 @@ X, Facebook, Instagram y YouTube aparecen en el panel de consulta por API, pero 
 ## Próximos pasos antes de declarar la integración terminada
 
 1. Confirmar titularidad, ID y permisos de cada cuenta con acceso autorizado.
-2. Configurar y verificar las credenciales de Facebook, Instagram, YouTube y X en Cloudflare Pages; las funciones de Pages ya están conectadas a la interfaz.
+2. Configurar y verificar las credenciales de Facebook, Instagram, YouTube y X en Cloudflare Pages; para Facebook, validar las dos páginas y sus tokens. La función de Pages consulta `FB_PAGE_ID` y, si está definido, `FB_PAGE_ID_2`.
 3. Probar cada API con el período solicitado, paginación, límites y errores.
 4. Configurar los secretos en Cloudflare Pages y verificar que Facebook, Instagram, YouTube y X respondan correctamente desde `/api/redes`; comprobar que la paginación cubra el período y que los errores no se conviertan en ceros.
 5. Mostrar «sin dato disponible» cuando una plataforma no entregue una métrica; no reemplazarlo por cero.
