@@ -242,9 +242,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <p class="grp">En redes</p>
     <div class="kpis">
-      <div class="kpi"><div class="big">Pendiente</div><div class="lbl">total general de publicaciones propias</div><p class="note">No se publica un total consolidado hasta integrar y validar las fuentes de todas las redes. Consultá el estado individual de las APIs en la pestaña Redes.</p></div>
-      <div class="kpi"><div class="big">Pendiente</div><div class="lbl">total general de visualizaciones</div><p class="note">No se consolida un total de vistas hasta verificar las métricas y la cobertura de todas las plataformas. Las vistas por fuente deben revisarse individualmente.</p></div>
-      <div class="kpi"><div class="big">Pendiente</div><div class="lbl">total general de seguidores</div><p class="note">No se publica una suma hasta verificar la titularidad, la cuenta correcta y los datos de todas las plataformas.</p></div>
+      <div class="kpi"><div class="big" data-k="posteos"></div><div class="lbl">publicaciones propias en redes</div><p class="note" data-n="posteos"></p></div>
+      <div class="kpi"><div class="big" data-k="vistas"></div><div class="lbl">visualizaciones registradas</div><p class="note" data-n="vistas"></p></div>
+      <div class="kpi"><div class="big" data-k="seguidores"></div><div class="lbl">seguidores en las cuentas propias</div><p class="note" data-n="seguidores"></p></div>
     </div>
     <div class="grid2">
       <div class="card" id="c-tipo" style="grid-column:1/-1">
@@ -311,7 +311,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="redes" hidden>
     <div class="card" id="redes-vivo">
       <h2>Estado del monitoreo en vivo</h2>
-      <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube, X y TikTok. Esta consulta es independiente del historial guardado. X requiere credenciales y acceso autorizado a su API; TikTok requiere configurar OAuth y autorizar la cuenta institucional. WhatsApp sigue pendiente de integración; no se suman plataformas sin datos ni se presentan como cero actividad.</p>
+      <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube, X y TikTok. Esta consulta es independiente del historial guardado. Facebook se muestra por página: JusNoticias y JusNoticias STJ, cada una con sus propios seguidores, publicaciones e Insights. X requiere credenciales y acceso autorizado a su API; TikTok está conectado con la cuenta institucional @juschubut. WhatsApp sigue pendiente de integración; no se suman plataformas sin datos ni se presentan como cero actividad.</p>
       <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
       <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
       <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th><th>Insights disponibles</th></tr></thead><tbody><tr><td colspan="6">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
@@ -331,7 +331,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card">
       <h2>Publicaciones del período</h2>
-      <p class="note">Lista las publicaciones registradas y permite filtrar por red o cuenta. X, Instagram, Facebook y YouTube tienen registros cargados. TikTok y WhatsApp figuran en el inventario de canales. Las publicaciones de TikTok se incorporarán al monitoreo en vivo cuando se configure y autorice OAuth; el historial propio seguirá dependiendo de los registros guardados. La ausencia de resultados no equivale a cero actividad.</p>
+      <p class="note">Lista las publicaciones registradas y permite filtrar por red o cuenta. X, Instagram, Facebook y YouTube tienen registros cargados. TikTok y WhatsApp figuran en el inventario de canales. Las publicaciones de TikTok se consultan en el monitoreo en vivo; el historial propio sigue dependiendo de los registros guardados. La ausencia de resultados no equivale a cero actividad.</p>
       <div class="tools">
         <label for="fred" class="lbl">Elegí una red</label><select id="fred"><option value="">Todas</option><option>Facebook</option><option>Instagram</option><option>X</option><option>YouTube</option><option>TikTok</option><option>WhatsApp</option></select>
         <label for="fprop" class="lbl">De quién es</label><select id="fprop"><option value="">Todas</option><option value="Sí">Nuestras cuentas</option><option value="No">Otras cuentas</option></select>
@@ -441,6 +441,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const st = { desde: meses[meses.length - 1], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
   const en = m => m >= st.desde && m <= st.hasta;
 
+  const canalesPropios = () => D.canales.filter(c => typeof c.seguidores === 'number' && !/no computar|referencia institucional/i.test(c.estado));
+  const lista = xs => xs.length ? xs.join(', ') : 'ninguna red';
+
   const calc = () => {
     const ns = notas.filter(n => en(n.mes)), rs = repOk.filter(r => en(r.mes));
     // El total de publicaciones cuenta URLs únicas; una URL repetida no infla el volumen ni los gráficos de clasificación.
@@ -475,7 +478,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       pct_copia: conTexto.length ? Math.round(conTexto.filter(r => r.origen.startsWith('Copia')).length / conTexto.length * 100) : 0,
       posteos: ps.length,
       vistas: ps.reduce((s, r) => s + (Number(r.vistas) || 0), 0),
-      seguidores: D.canales.filter(c => c.estado === 'Activa').reduce((s, c) => s + (Number(c.seguidores) || 0), 0),
+      // Solo suman las cuentas propias con dato numérico; las referencias institucionales distintas quedan afuera.
+      seguidores: canalesPropios().reduce((s, c) => s + c.seguidores, 0),
+      redesPosteos: [...new Set(ps.map(r => r.red))].sort(),
+      redesVistas: [...new Set(ps.filter(r => Number(r.vistas) > 0).map(r => r.red))].sort(),
       tipo: TIPOS.map(t => { const x = ns.filter(n => n.tipo === t), l = x.filter(n => con.has(Number(n.id))).length; return { tipo: t, notas: x.length, levantadas: l, pct: x.length ? Math.round(l / x.length * 100) : 0 }; }),
       porMedio: [...g.values()].sort((a, b) => b.notas - a.notas),
       origen: ORIG.map(o => ({ origen: o, n: rsUnicas.filter(r => r.origen === o).length })),
@@ -546,6 +552,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
   const drawResumen = (c) => {
     document.querySelectorAll('#resumen [data-k]').forEach(e => { const k = e.dataset.k; e.textContent = k === 'pct' ? c.pct + '%' : fmt(c[k]); });
+    const sinSeguidores = [...new Set(D.canales.filter(x => x.seguidores == null && !/no computar|referencia institucional/i.test(x.estado)).map(x => x.red + ' (' + x.cuenta + ')'))];
+    const notasRedes = {
+      posteos: 'Publicaciones propias registradas en el período. Incluye: ' + lista(c.redesPosteos) + '. Las redes conectadas en vivo se consultan en la pestaña Redes.',
+      vistas: 'Suma de vistas de las publicaciones propias del período. Solo informan vistas: ' + lista(c.redesVistas) + '; el resto no entrega ese dato por publicación.',
+      seguidores: 'Suma de: ' + canalesPropios().map(x => x.red + ' ' + x.cuenta.replace(/ \(.*\)$/, '') + ' ' + fmt(x.seguidores)).join(' · ') + '.' + (sinSeguidores.length ? ' Sin dato todavía: ' + sinSeguidores.join(', ') + '.' : '')
+    };
+    document.querySelectorAll('#resumen [data-n]').forEach(e => { e.textContent = notasRedes[e.dataset.n]; });
     const ns = notas.filter(n => en(n.mes));
     bars('b-tipo', c.tipo.filter(r => r.notas).map(r => row(r.tipo + ' (' + fmt(r.levantadas) + ' de ' + fmt(r.notas) + ')', [[r.pct, 'var(--accent)']], r.pct, 100, r.pct + '%')));
     const t5 = c.porMedio.slice(0, 5), mx = t5.length ? t5[0].notas : 1;
@@ -719,25 +732,46 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     };
     // Una métrica sin dato se muestra como no disponible; nunca como cero.
     const valorInsight = (insights, metric) => (nombresInsights[metric] || metric) + ' ' + (insights && typeof insights[metric] === 'number' ? fmt(insights[metric]) : 'no disponible');
+    // Insights de una página de Facebook (acumulado móvil de 28 días que devuelve Meta).
+    const insightsPagina = p => {
+      const metricas = Object.keys(p.insights || {}).map(m => valorInsight(p.insights, m));
+      return metricas.length ? metricas.join(' · ') + ' (últimos 28 días' + (p.insightsHasta ? ', al ' + p.insightsHasta : '') + ')' : '—';
+    };
     const resumenInsights = (red, result, data) => {
       if (red === 'Facebook' && Array.isArray(result.paginas)) {
-        return result.paginas.map(p => {
-          const nombre = p.nombre || ('Página ' + p.id);
-          if (p.error) return nombre + ': no disponible (' + p.error + ')';
-          const partes = ['Seguidores ' + (typeof p.seguidores === 'number' ? fmt(p.seguidores) : 'no informado')].concat(p.publicacionesError ? ['Publicaciones no disponibles'] : [])
-            .concat(Object.keys(p.insights || {}).map(m => valorInsight(p.insights, m)));
-          return nombre + ': ' + partes.join(' · ') + ' (últimos 28 días' + (p.insightsHasta ? ', al ' + p.insightsHasta : '') + ')';
-        }).join(' | ');
+        return result.paginas.map(p => (p.nombre || ('Página ' + p.id)) + ': ' + (p.error ? 'no disponible (' + p.error + ')' : insightsPagina(p))).join(' | ');
       }
       if (red === 'Instagram' && result.insights) {
         return Object.keys(result.insights).map(m => valorInsight(result.insights, m)).join(' · ') + ' (' + (result.insightsDesde || data.desde || 'inicio no informado') + ' a ' + (result.insightsHasta || 'fin no informado') + ')';
       }
+      // YouTube, TikTok y X no tienen Insights de cuenta con esta conexión: se suman las métricas que la API da por publicación.
+      const filas = Array.isArray(result.filas) ? result.filas : [];
+      const metricas = [['vistas', 'Vistas'], ['me_gusta', 'Me gusta'], ['comentarios', 'Comentarios'], ['compartidos', 'Compartidos']]
+        .map(([k, nombre]) => { const xs = filas.filter(r => typeof r[k] === 'number'); return xs.length ? nombre + ' ' + fmt(xs.reduce((t, r) => t + r[k], 0)) : null; })
+        .filter(Boolean);
+      if (metricas.length) return metricas.join(' · ') + ' (suma de ' + fmt(filas.length) + (filas.length === 1 ? ' publicación' : ' publicaciones') + ' de la ventana)';
       return '—';
     };
     const estadoFuente = result => {
       const partes = [result.limiteAlcanzado ? 'API respondió, pero se alcanzó el límite de páginas; datos parciales' : 'API respondió'];
       if (result.parcial) partes.push('respuesta parcial: ' + (result.paginas || []).filter(p => p.error).map(p => 'página ' + p.id + ' no disponible').join('; '));
       return partes.join('; ');
+    };
+    // Cada página de Facebook va en su propia fila: no se mezclan seguidores, publicaciones ni Insights.
+    const filaPaginaFacebook = (p, result) => {
+      const nombre = p.nombre || ('Página ' + p.id);
+      const red = 'Facebook · ' + nombre;
+      if (p.error) return { red, estado: 'No disponible: ' + p.error, publicaciones: '—', seguidores: '—', ultima: '—', insights: '—' };
+      const filas = (Array.isArray(result.filas) ? result.filas : []).filter(r => r.cuenta === (p.nombre || p.id));
+      const fechas = filas.map(r => r.fecha).filter(Boolean).sort();
+      return {
+        red,
+        estado: p.publicacionesError ? 'API respondió; las publicaciones no están disponibles: ' + p.publicacionesError : 'API respondió',
+        publicaciones: p.publicacionesError ? 'No disponible' : fmt(filas.length),
+        seguidores: typeof p.seguidores === 'number' ? fmt(p.seguidores) : 'No informado',
+        ultima: p.publicacionesError ? 'No disponible' : (fechas.length ? fechas[fechas.length - 1] : 'Sin publicaciones en la ventana'),
+        insights: insightsPagina(p)
+      };
     };
     const unsupported = [
       { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—', insights: '—' }
@@ -746,20 +780,21 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const response = await fetch('/api/redes', { headers: { Accept: 'application/json' }, cache: 'no-store' });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
-      const connected = ['Facebook', 'Instagram', 'YouTube', 'X', 'TikTok'].map(red => {
+      const connected = ['Facebook', 'Instagram', 'YouTube', 'X', 'TikTok'].flatMap(red => {
         const result = data.redes && data.redes[red];
         const error = data.errores && data.errores[red];
-        if (error || !result) return { red, estado: 'No disponible: ' + (error || 'la API no devolvió datos'), publicaciones: '—', seguidores: '—', ultima: '—' };
+        if (error || !result) return [{ red, estado: 'No disponible: ' + (error || 'la API no devolvió datos'), publicaciones: '—', seguidores: '—', ultima: '—' }];
+        if (red === 'Facebook' && Array.isArray(result.paginas) && result.paginas.length) return result.paginas.map(p => filaPaginaFacebook(p, result));
         const filas = Array.isArray(result.filas) ? result.filas : [];
         const fechas = filas.map(r => r.fecha).filter(Boolean).sort();
-        return {
+        return [{
           red,
           estado: estadoFuente(result),
           publicaciones: result.publicacionesCompletas === false ? (filas.length ? fmt(filas.length) + ' (parcial)' : 'No disponible') : fmt(filas.length),
           seguidores: result.seguidores === null || result.seguidores === undefined ? 'No informado' : fmt(result.seguidores),
           ultima: fechas.length ? fechas[fechas.length - 1] : (result.publicacionesCompletas === false ? 'No disponible' : 'Sin publicaciones en la ventana'),
           insights: resumenInsights(red, result, data)
-        };
+        }];
       });
       tb.replaceChildren(...[...connected, ...unsupported].map(r => {
         const tr = document.createElement('tr');
