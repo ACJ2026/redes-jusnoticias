@@ -311,7 +311,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="redes" hidden>
     <div class="card" id="redes-vivo">
       <h2>Estado del monitoreo en vivo</h2>
-      <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube y X. Esta consulta es independiente del historial guardado. X requiere credenciales y acceso autorizado a su API; TikTok y WhatsApp siguen pendientes de integración, por lo que no se suman a un total general ni se presentan como cero actividad.</p>
+      <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube, X y TikTok. Esta consulta es independiente del historial guardado. X requiere credenciales y acceso autorizado a su API; TikTok requiere configurar OAuth y autorizar la cuenta institucional. WhatsApp sigue pendiente de integración; no se suman plataformas sin datos ni se presentan como cero actividad.</p>
       <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
       <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
       <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th></tr></thead><tbody><tr><td colspan="5">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
@@ -330,7 +330,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card">
       <h2>Publicaciones del período</h2>
-      <p class="note">Lista las publicaciones registradas y permite filtrar por red o cuenta. X, Instagram, Facebook y YouTube tienen registros cargados. TikTok y WhatsApp ya figuran en el inventario de canales, pero sus publicaciones y métricas todavía no están integradas; por eso pueden aparecer sin resultados, que no equivale a cero actividad.</p>
+      <p class="note">Lista las publicaciones registradas y permite filtrar por red o cuenta. X, Instagram, Facebook y YouTube tienen registros cargados. TikTok y WhatsApp figuran en el inventario de canales. Las publicaciones de TikTok se incorporarán al monitoreo en vivo cuando se configure y autorice OAuth; el historial propio seguirá dependiendo de los registros guardados. La ausencia de resultados no equivale a cero actividad.</p>
       <div class="tools">
         <label for="fred" class="lbl">Elegí una red</label><select id="fred"><option value="">Todas</option><option>Facebook</option><option>Instagram</option><option>X</option><option>YouTube</option><option>TikTok</option><option>WhatsApp</option></select>
         <label for="fprop" class="lbl">De quién es</label><select id="fprop"><option value="">Todas</option><option value="Sí">Nuestras cuentas</option><option value="No">Otras cuentas</option></select>
@@ -707,16 +707,15 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const estado = $('redes-vivo-estado');
     const tb = document.querySelector('#t-redes-vivo tbody');
     boton.disabled = true;
-    estado.textContent = 'Consultando Facebook, Instagram, YouTube y X. TikTok y WhatsApp siguen pendientes de integración.';
+    estado.textContent = 'Consultando Facebook, Instagram, YouTube, X y TikTok; WhatsApp sigue pendiente de integración.';
     const unsupported = [
-      { red: 'TikTok', estado: 'API oficial pendiente de autorización OAuth', publicaciones: '—', seguidores: '—', ultima: '—' },
       { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—' }
     ];
     try {
       const response = await fetch('/api/redes', { headers: { Accept: 'application/json' }, cache: 'no-store' });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
-      const connected = ['Facebook', 'Instagram', 'YouTube', 'X'].map(red => {
+      const connected = ['Facebook', 'Instagram', 'YouTube', 'X', 'TikTok'].map(red => {
         const result = data.redes && data.redes[red];
         const error = data.errores && data.errores[red];
         if (error || !result) return { red, estado: 'No disponible: ' + (error || 'la API no devolvió datos'), publicaciones: '—', seguidores: '—', ultima: '—' };
