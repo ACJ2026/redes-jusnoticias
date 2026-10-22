@@ -44,7 +44,7 @@ export async function onRequestGet() {
     const html = (await response.text()).slice(0, 2_000_000);
     const hasChannelId = html.includes(CHANNEL_ID);
     const channelNameMatch = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i);
-    const channelName = channelNameMatch ? channelNameMatch[1].trim() : null;
+    const channelName = channelNameMatch ? channelNameMatch[1].replace(/\s+/g, " ").trim() : null;
     const hasChannelName = channelName === CHANNEL_EXPECTED_NAME;
 
     // A candidate must be adjacent to an explicit follower label and numeric.

@@ -9,7 +9,7 @@ test('identifies the exact WhatsApp channel and keeps its follower count unverif
   const originalFetch = globalThis.fetch;
   context.after(() => { globalThis.fetch = originalFetch; });
   globalThis.fetch = async () => new Response(
-    `<meta property="og:title" content="${expectedName}">` +
+    `<meta property="og:title" content="${expectedName.replace(' del Poder', '  del Poder')}">` +
     `<meta property="og:description" content="Channel &#x2022; 341 followers">` +
     `<span>Channel • 341 followers</span><a>${channelId}</a>`,
     { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } },
