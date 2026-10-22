@@ -1,0 +1,678 @@
+{
+  "descripcion": "Cuentas de redes a monitorear para detectar quién comparte contenido de Juschubut Noticias. Tipos: medio con sitio web, medio solo en redes, otra cuenta (no medio). Las cuentas sin usuario están pendientes de identificar; no se inventan usuarios.",
+  "actualizado": "2026-10-22",
+  "cuentas": [
+    {
+      "red": "Facebook",
+      "cuenta": "ADN Sur",
+      "tipo": "Medio con sitio web",
+      "medio": "ADN Sur",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-05"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "C24",
+      "tipo": "Por clasificar (posible medio solo en redes)",
+      "medio": null,
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-06"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Canal 12 Web",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal 12",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Canal 4 Esquel",
+      "tipo": "Por clasificar (posible medio solo en redes)",
+      "medio": null,
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-13"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Crónica Comodoro Rivadavia",
+      "tipo": "Medio con sitio web",
+      "medio": "Crónica",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-10"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Del Mar Digital.CR",
+      "tipo": "Medio con sitio web",
+      "medio": "Del Mar Digital",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-29"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Diario Jornada",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Jornada",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-06"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "El Comodorense",
+      "tipo": "Medio con sitio web",
+      "medio": "El Comodorense",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "El Patagónico",
+      "tipo": "Medio con sitio web",
+      "medio": "El Patagónico",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "FM Bahía Engaño",
+      "tipo": "Medio con sitio web",
+      "medio": "FM Bahía Engaño",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-06"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "FM Tropical",
+      "tipo": "Medio con sitio web",
+      "medio": "FM Tropical",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-13"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Infobae",
+      "tipo": "Medio con sitio web",
+      "medio": "Infobae",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Informa2CR",
+      "tipo": "Por clasificar (posible medio solo en redes)",
+      "medio": null,
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Radio Patagonia",
+      "tipo": "Por clasificar (posible medio solo en redes)",
+      "medio": null,
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-29"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Red43Noticias",
+      "tipo": "Medio con sitio web",
+      "medio": "Red43",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-04"
+    },
+    {
+      "red": "X",
+      "cuenta": "@gabrieliezzi",
+      "tipo": "Otra cuenta (no medio)",
+      "medio": null,
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Metadata Noticias",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 84
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Noticias PMY",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 58
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Radio 3 Cadena Patagonia",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 57
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Del Mar Digital",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 51
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "ADN Sur",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 48
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "EQS Notas",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 48
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Posta Comodorense",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 44
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Digital Chubut",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 41
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Diario Web",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 41
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "FM Bahía Engaño",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 31
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Canal 12",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 26
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Chubut Hoy",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 21
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Comodoro 24",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 20
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Radio de Camioneros",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 14
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario La Portada",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 11
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Cholila Online",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 10
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "FM Tropical",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 9
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Comodorense",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 9
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Argentar Noticias",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 7
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Opinión Austral",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 6
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Tecla Patagonia",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 6
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "ABC Diario",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 5
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "LU17",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 5
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Red43",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 4
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Chubut",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 4
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Radio Chubut",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 3
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Judicial",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 3
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Crónica",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 2
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Jornada",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 2
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Voz del Interior",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 2
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Valle Online",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 2
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Examedia",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 2
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Patagónico",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Noticias de Bariloche",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Flipr.news",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "CHACODIAPORDIA.COM",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Mediador - Santa Cruz",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El 10 TV",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Tribuno",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Huarpe",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Lmneuquen.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "examedia.com.ar",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "MejorInformado.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Revista Quórum",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Nuevo Día",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Río Negro",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "ANBariloche",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "NoticiasdelBolson",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "A24.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Somos Jujuy",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Canal Doce Misiones",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Ambito",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "APFDigital",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Info del Estero",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Brújula 24",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Editor Mendoza",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Que Pasa Jujuy",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Periscopio",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "0223",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Elonce",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Clarín",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario San Rafael",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "eldiarioweb.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Madryn Ahora",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Elonce.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Monterizo",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "LM Neuquén",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Vivo Trelew",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    }
+  ]
+}
