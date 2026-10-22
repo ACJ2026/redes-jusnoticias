@@ -14,6 +14,11 @@ f = sys.argv[1:7]
 L = lambda p: json.load(open(p, encoding="utf-8"))
 ahora = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
 d = {"notas": L(f[0]), "repercusion": L(f[1]), "redes": L(f[2]), "canales": L(f[3]), "medios": L(f[4]), "actualizado": ahora, "datos_actualizados": datos_actualizados}
+# Cuentas de terceros que compartieron notas (opcional: el tablero funciona sin el archivo).
+try:
+    d["cuentas"] = L(ROOT / "data" / "cuentas_monitoreo.json").get("cuentas", [])
+except OSError:
+    d["cuentas"] = []
 js = json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 open(f[5], "w", encoding="utf-8").write(T.replace("/*DATOS*/", js))
 print("OK publico", len(d["notas"]), "notas", len(d["repercusion"]), "publicaciones", len(d["redes"]), "posteos")

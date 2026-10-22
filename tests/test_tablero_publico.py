@@ -56,6 +56,7 @@ class TableroPublicoTests(unittest.TestCase):
         payload = embedded.group(1)
         data["actualizado"] = json.loads(payload)["actualizado"]
         data["datos_actualizados"] = (ROOT / "data/actualizado.txt").read_text(encoding="utf-8").strip() or None
+        data["cuentas"] = read_json("data/cuentas_monitoreo.json")["cuentas"]
         self.assertEqual(json.loads(payload), data)
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertEqual(template.count("/*DATOS*/"), 1)
@@ -181,6 +182,15 @@ class TableroPublicoTests(unittest.TestCase):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("[...$('b-territorio').querySelectorAll('.bar-row')].forEach", template)
         self.assertIn("rs.filter(r => x.medios.has(r.medio))", template)
+
+    def test_seccion_compartidos_enlaza_cuenta_publicacion_y_nota(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('id="t-compartidos"', template)
+        self.assertIn("celdaEnlace(f.cuenta, f.cuenta_url)", template)
+        self.assertIn("celdaEnlace(f.nota_titulo || '—', f.nota_id ? notaUrl(f.nota_id) : null)", template)
+        funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
+        self.assertIn("business_discovery", funcion)
+        self.assertIn('import cuentasMonitoreo from "../../data/cuentas_monitoreo.json";', funcion)
 
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")

@@ -327,6 +327,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
       <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th><th>Insights disponibles</th></tr></thead><tbody><tr><td colspan="6">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
     </div>
+    <div class="card" id="compartidos">
+      <h2>Quién compartió nuestras notas en redes</h2>
+      <p class="note">Cuentas de otros medios, periodistas, instituciones o vecinos que publicaron notas de Juschubut Noticias en sus redes. Cada fila enlaza a la cuenta, a la publicación y a nuestra nota. Las registradas son las comprobadas a mano; «Buscar ahora» revisa las cuentas de Instagram de la lista y busca en YouTube las notas de los últimos 30 días. Facebook, X y TikTok no permiten esta búsqueda automática con las credenciales actuales.</p>
+      <div class="tools"><button class="btn" id="compartidos-buscar" type="button">Buscar ahora en Instagram y YouTube</button></div>
+      <p class="note" id="compartidos-estado" role="status"></p>
+      <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
+    </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
       <p class="note">Distribución de los registros históricos cargados. No es un monitoreo completo ni se suma a las métricas en vivo; Facebook propio se empezó a contar en septiembre. Las plataformas pendientes no se representan como cero actividad.</p>
@@ -757,6 +764,75 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     [...document.querySelectorAll('#t-notas tbody tr')].forEach((tr, i) => { tr.dataset.id = rows[i].id; tr.classList.toggle('sel', rows[i].id === st.sel); });
     document.querySelectorAll('#t-notas th').forEach(th => { const b = th.querySelector('button'); th.setAttribute('aria-sort', b && b.dataset.k === st.sort ? (st.dir > 0 ? 'ascending' : 'descending') : 'none'); });
   };
+  // ---------- Quién compartió nuestras notas en redes ----------
+  const notaUrl = id => 'https://jusnoticias.juschubut.gov.ar/?p=' + id;
+  // Arma el enlace al perfil a partir de cómo quedó anotada la cuenta; si no es reconocible, no se inventa.
+  const perfilUrl = (red, cuenta) => {
+    const c = String(cuenta || '').trim();
+    if (/^https?:\/\//.test(c)) return c;
+    const u = c.replace(/^[@/]/, '');
+    if (!u || /\s|profile\.php/.test(c)) return null;
+    if (red === 'Facebook' && c.startsWith('/')) return 'https://www.facebook.com/' + u;
+    if (red === 'Instagram' && c.startsWith('@')) return 'https://www.instagram.com/' + u + '/';
+    if (red === 'X' && c.startsWith('@')) return 'https://x.com/' + u;
+    if (red === 'TikTok' && c.startsWith('@')) return 'https://www.tiktok.com/@' + u;
+    if (red === 'YouTube') return 'https://www.youtube.com/' + (c.startsWith('@') ? c : u);
+    return null;
+  };
+  const celdaEnlace = (texto, href) => {
+    const td = document.createElement('td');
+    if (href) { const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = texto + ' ↗'; td.append(a); }
+    else { td.textContent = texto; td.className = 'dim'; }
+    return td;
+  };
+  const filasCompartidosRegistrados = () => {
+    const titulo = new Map(notas.map(n => [Number(n.id), n.titulo]));
+    const porCuenta = new Map((D.cuentas || []).filter(c => c.cuenta).map(c => [c.red + '|' + c.cuenta, c]));
+    const porNombre = new Map((D.cuentas || []).filter(c => c.medio).map(c => [c.red + '|' + c.medio, c]));
+    // 1) Publicaciones de terceros registradas en el historial de redes.
+    // Enlace de la cuenta: el anotado, el usuario si es reconocible, o la cuenta oficial del mismo medio en esa red.
+    const enlaceCuenta = c => c.url || perfilUrl(c.red, c.cuenta) || (c.medio && (D.cuentas || []).filter(x => x.red === c.red && x.medio === c.medio).map(x => x.url || perfilUrl(x.red, x.cuenta)).find(Boolean)) || null;
+    const historial = D.redes.filter(r => r.propia === 'No').map(r => {
+      const c = porCuenta.get(r.red + '|' + r.cuenta) || porNombre.get(r.red + '|' + r.cuenta);
+      return { fecha: r.fecha, red: r.red, cuenta: r.cuenta, cuenta_url: c ? enlaceCuenta(c) : perfilUrl(r.red, r.cuenta),
+        tipo: c ? c.tipo : 'Medio', publicacion_url: r.url || null, nota_id: r.nota_id, nota_titulo: titulo.get(Number(r.nota_id)) || '' };
+    });
+    // 2) Cuentas confirmadas por el relevamiento, con la publicación de ejemplo cuando existe.
+    const confirmadas = (D.cuentas || []).filter(c => /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
+      .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: null, nota_titulo: (c.estado || '').replace(/^Confirmada:\s*/, '') }));
+    return [...historial, ...confirmadas];
+  };
+  const dibujarCompartidos = (filas) => {
+    const tb = document.querySelector('#t-compartidos tbody');
+    const orden = filas.slice().sort((a, b) => String(b.fecha || '').localeCompare(String(a.fecha || '')));
+    tb.replaceChildren(...orden.map(f => {
+      const tr = document.createElement('tr');
+      const fecha = document.createElement('td'); fecha.textContent = f.fecha ? f.fecha.split('-').reverse().slice(0, 2).join('/') : '—';
+      const red = document.createElement('td'); red.textContent = f.red;
+      const tipo = document.createElement('td'); tipo.textContent = f.tipo || '—';
+      tr.append(fecha, red, celdaEnlace(f.cuenta, f.cuenta_url), tipo,
+        celdaEnlace(f.publicacion_url ? 'Ver publicación' : 'Enlace no registrado', f.publicacion_url),
+        celdaEnlace(f.nota_titulo || '—', f.nota_id ? notaUrl(f.nota_id) : null));
+      return tr;
+    }));
+    if (!orden.length) { const tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 6; td.className = 'dim'; td.textContent = 'Sin registros.'; tr.append(td); tb.append(tr); }
+  };
+  const buscarCompartidos = async () => {
+    const estado = $('compartidos-estado');
+    estado.textContent = 'Buscando en Instagram y YouTube…';
+    try {
+      const response = await fetch('/api/compartidos', { headers: { Accept: 'application/json' } });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'HTTP ' + response.status);
+      const nuevas = (data.filas || []).map(f => ({ ...f, tipo: 'Encontrada automáticamente (' + f.coincidencia + ')' }));
+      dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
+      const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' sin respuesta)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
+      estado.textContent = fmt(nuevas.length) + ' publicaciones encontradas desde ' + data.desde + '. ' + detalle + '.';
+    } catch (error) {
+      estado.textContent = 'No se pudo hacer la búsqueda: ' + error.message;
+    }
+  };
+
   const drawRedes = (c) => {
     c = c || calc();
     const series = REDES.map((red, i) => ({ red, color: RCOL[i] }));
@@ -1067,6 +1143,8 @@ const draw = () => {
     draw();
   };
   $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
+  $('compartidos-buscar').addEventListener('click', buscarCompartidos);
+  dibujarCompartidos(filasCompartidosRegistrados());
   document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
   $('ir-completo').addEventListener('click', () => { show('medios'); document.querySelector('.tabs').scrollIntoView(); });
   const detalle = (id) => {
