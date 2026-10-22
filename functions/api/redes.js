@@ -140,19 +140,32 @@ async function facebook(desde, env) {
   for (let index = 0; index < pageIds.length; index++) {
     const id = pageIds[index];
     try {
-      let pageToken = index === 0 ? env.FB_PAGE_TOKEN : env.FB_PAGE_TOKEN_2;
-      // META_TOKEN debe ser un token de usuario: con él se obtiene el token de cada página.
+      // Orden: 1) token de página guardado (FB_PAGE_TOKEN / FB_PAGE_TOKEN_2; obtenido de un
+      // token de usuario de larga duración no vence); 2) token derivado de META_TOKEN.
+      // Si el guardado falla (vencido o revocado), se intenta con META_TOKEN.
       // Insights nunca se consulta con el token de usuario.
-      if (!pageToken && userToken) {
+      const guardado = index === 0 ? env.FB_PAGE_TOKEN : env.FB_PAGE_TOKEN_2;
+      const derivar = async () => {
         try {
           const tokenPayload = await get(`${GRAPH}/${id}?fields=access_token`, userToken);
-          pageToken = tokenPayload.access_token;
+          if (!tokenPayload.access_token) throw new Error("Meta no devolvió un token de página.");
+          return tokenPayload.access_token;
         } catch (error) {
           throw new Error(`No se pudo obtener el token de la página ${id}: ${limpiarMensaje(error)}. Revisá que META_TOKEN sea un token de usuario con pages_show_list y acceso a la página.`);
         }
+      };
+      if (!guardado && !userToken) throw new Error(`Falta token de acceso para la página ${id}. Configurá META_TOKEN como token de usuario o el secreto de token de página correspondiente.`);
+      let resultado;
+      if (guardado) {
+        try {
+          resultado = await facebookPagina(id, guardado, desde);
+        } catch (error) {
+          if (!userToken) throw new Error(`El token guardado de la página ${id} falló: ${limpiarMensaje(error)}`);
+          resultado = await facebookPagina(id, await derivar(), desde);
+        }
+      } else {
+        resultado = await facebookPagina(id, await derivar(), desde);
       }
-      if (!pageToken) throw new Error(`Falta token de acceso para la página ${id}. Configurá META_TOKEN como token de usuario o el secreto de token de página correspondiente.`);
-      const resultado = await facebookPagina(id, pageToken, desde);
       filas.push(...resultado.filas);
       if (resultado.limiteAlcanzado) limiteAlcanzado = true;
       paginas.push(resultado.pagina);
