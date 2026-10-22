@@ -312,17 +312,28 @@ async function youtube(desde, env) {
   const channelId = env.YT_CANAL_ID;
   const api = "https://www.googleapis.com/youtube/v3";
   if (!key) throw new Error("Falta configurar YT_KEY.");
-  if (!channelId) throw new Error("Falta configurar YT_CANAL_ID con el ID verificado de JusNoticias Prensa.");
-  const channels = (await get(`${api}/channels?part=statistics,contentDetails&id=${encodeURIComponent(channelId)}&key=${encodeURIComponent(key)}`)).items || [];
-  if (!channels.length) throw new Error("No se encontró el canal indicado por YT_CANAL_ID. Verificar el ID de JusNoticias Prensa.");
+  if (!channelId) throw new Error("Falta configurar YT_CANAL_ID con el ID del canal de YouTube.");
+  const channels = (await get(`${api}/channels?part=snippet,statistics,contentDetails&id=${encodeURIComponent(channelId)}&key=${encodeURIComponent(key)}`)).items || [];
+  if (!channels.length) throw new Error("No se encontró el canal indicado por YT_CANAL_ID. Verificar el ID del canal.");
   const channel = channels[0];
+  // El nombre de la cuenta sale del canal configurado; no se fija en el código.
+  const nombreCanal = (channel.snippet && channel.snippet.title) || channelId;
   const uploads = channel.contentDetails.relatedPlaylists.uploads;
   const ids = [];
   let pageToken = "";
   let limiteAlcanzado = false;
   for (let i = 0; i < 10; i++) {
     const url = `${api}/playlistItems?part=contentDetails&playlistId=${encodeURIComponent(uploads)}&maxResults=50&key=${encodeURIComponent(key)}${pageToken ? "&pageToken=" + encodeURIComponent(pageToken) : ""}`;
-    const result = await get(url);
+    let result;
+    try {
+      result = await get(url);
+    } catch (error) {
+      // YouTube responde "playlist not found" cuando el canal no tiene videos públicos subidos.
+      if (i === 0 && /playlistId/.test(error instanceof Error ? error.message : "")) {
+        throw new Error(`El canal ${nombreCanal} no tiene videos públicos subidos.`);
+      }
+      throw error;
+    }
     const items = (result.items || []).map(item => item.contentDetails);
     items.filter(item => (item.videoPublishedAt || "").slice(0, 10) >= desde).forEach(item => ids.push(item.videoId));
     if (!result.nextPageToken || items.every(item => (item.videoPublishedAt || "").slice(0, 10) < desde)) break;
@@ -337,14 +348,14 @@ async function youtube(desde, env) {
       const stats = video.statistics || {};
       const number = field => stats[field] !== undefined ? Number(stats[field]) : null;
       filas.push({
-        red: "YouTube", cuenta: "JusNoticias Prensa", fecha: (video.snippet.publishedAt || "").slice(0, 10),
+        red: "YouTube", cuenta: nombreCanal, fecha: (video.snippet.publishedAt || "").slice(0, 10),
         texto: corto(video.snippet.title), nota_id: null, me_gusta: number("likeCount"),
         comentarios: number("commentCount"), compartidos: null, vistas: number("viewCount"),
         propia: "Sí", key: "yt-" + video.id
       });
     });
   }
-  return { filas, seguidores: Number(channel.statistics && channel.statistics.subscriberCount) || null, limiteAlcanzado };
+  return { filas, seguidores: channel.statistics && !channel.statistics.hiddenSubscriberCount && channel.statistics.subscriberCount !== undefined ? Number(channel.statistics.subscriberCount) : null, cuentaNombre: nombreCanal, limiteAlcanzado };
 }
 
 function validDate(value) {
