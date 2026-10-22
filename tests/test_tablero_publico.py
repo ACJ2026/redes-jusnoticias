@@ -135,11 +135,18 @@ class TableroPublicoTests(unittest.TestCase):
         canales = read_json("data/canales.json")
         self.assertIn("<option>TikTok</option>", template)
         self.assertIn("<option>WhatsApp</option>", template)
-        self.assertIn("TikTok requiere configurar OAuth y autorizar la cuenta institucional", template)
+        self.assertIn("TikTok está conectado con la cuenta institucional @juschubut", template)
         self.assertIn("WhatsApp sigue pendiente de integración", template)
         self.assertTrue(any(c["red"] == "TikTok" for c in canales))
         self.assertTrue(any(c["red"] == "WhatsApp" for c in canales))
-        self.assertTrue(any("pendiente" in c["estado"].lower() for c in canales if c["red"] == "TikTok"))
+        self.assertTrue(any(isinstance(c["seguidores"], int) and c["estado"].startswith("Activa") for c in canales if c["red"] == "TikTok"))
+        self.assertTrue(any("pendiente" in c["estado"].lower() for c in canales if c["red"] == "WhatsApp" or c["cuenta"] == "JusNoticias Prensa"))
+
+    def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("const filaPaginaFacebook = (p, result) =>", template)
+        self.assertIn("'Facebook · ' + nombre", template)
+        self.assertIn("result.paginas.map(p => filaPaginaFacebook(p, result))", template)
 
     def test_generador_publico_ejecuta_y_usa_la_plantilla_legible(self):
         nombres = ["notas", "repercusion", "redes", "canales", "medios"]

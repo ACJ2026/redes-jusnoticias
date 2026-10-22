@@ -2,19 +2,19 @@
   {
     "red": "Facebook",
     "cuenta": "JusNoticias (prensastjchubut)",
-    "seguidores": 3700,
+    "seguidores": 3775,
     "estado": "Activa"
   },
   {
     "red": "Facebook",
     "cuenta": "JusNoticias STJ",
-    "seguidores": 10000,
+    "seguidores": 10467,
     "estado": "Inactiva: último posteo 22/04/2026"
   },
   {
     "red": "Instagram",
     "cuenta": "jus_chubut",
-    "seguidores": 2604,
+    "seguidores": 2610,
     "estado": "Activa"
   },
   {
@@ -44,7 +44,7 @@
   {
     "red": "TikTok",
     "cuenta": "@juschubut",
-    "seguidores": null,
-    "estado": "Pendiente de verificar cuenta, seguidores e integración de métricas"
+    "seguidores": 26,
+    "estado": "Activa: conectada por API (seguidores al 22/10/2026)"
   }
 ]
