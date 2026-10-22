@@ -112,14 +112,29 @@ def addrow(medio, m, metodo, origen='Sin dato', off=False, otros=''):
 cobertura = {}
 
 # ---------- 2. Medios WordPress ----------
+# Registro de medios descubiertos por los buscadores (se carga acá porque los que usan
+# WordPress pasan a lectura directa en esta misma sección).
+REG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'fuentes_descubiertas.json')
+def cargar_registro():
+    try:
+        with open(REG_PATH, encoding='utf8') as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+    except FileNotFoundError:
+        return []
+    except Exception as e:
+        print(f'AVISO: registro de medios no legible ({type(e).__name__}); se inicia vacío')
+        return []
+REGISTRO = cargar_registro()
 WP = {'Chubut Hoy': 'www.chubuthoy.com', 'Radio de Camioneros': 'radiodecamioneros.com.ar', 'FM Tropical': 'fmtropicalradio.com', 'Diario La Portada': 'diariolaportada.com.ar', 'FM del Lago Esquel': 'fmdellagoesquel.com.ar', 'Mil Patagonias': 'www.milpatagonias.com', 'FM Bahía Engaño': 'fmbahiaengano.com', 'Digital Chubut': 'digitalchubut.com', 'Noticias PMY': 'noticiaspmy.com', 'Argentar Noticias': 'argentarnoticias.com.ar', 'Radio Chubut': 'radiochubut.com', 'La Posta Comodorense': 'lapostacomodorense.com.ar', 'El Comodorense': 'www.elcomodorense.net', 'Comodoro 24': 'comodoro24.com.ar', 'Del Mar Digital': 'delmardigital.net', 'El Diario Web': 'www.eldiarioweb.com', 'Metadata Noticias': 'www.metadatanoticias.com.ar', 'Canal 12': 'canal12web.com', 'Cholila Online': 'cholilaonline.ar', 'Radio 3 Cadena Patagonia': 'radio3cadenapatagonia.com.ar', 'Atento Chubut': 'atentochubut.com', 'Vibra News': 'vibranews.com.ar'}
 def wp_site(item):
-    name, dom = item
+    name, dom = item[0], item[1]
+    max_pg = item[2] if len(item) > 2 else 400
     items = []
     def page(pg):
         return getj(f'https://{dom}/wp-json/wp/v2/posts?after={addd(DESDE,-1)}T00:00:00&per_page=100&page={pg}&_fields=id,date,link,title')
     pg = 1
-    while pg < 400:
+    while pg < max_pg:
         batch = list(range(pg, pg + 8)); pg += 8
         with ThreadPoolExecutor(8) as ex: res = list(ex.map(page, batch))
         stop = False
@@ -153,13 +168,36 @@ def wp_site(item):
     return name, len(items), out
 # Aislar fallos temporales por fuente: un sitio caído no debe cancelar
 # toda la actualización ni provocar la pérdida de registros históricos.
+# Medios descubiertos con WordPress: se leen directo, sin depender de Google Noticias.
+# La detección se repite cada 30 días por dominio y como máximo 10 por ejecución.
+WP_NO_DESCUBRIR = re.compile(r'jusnoticias|juschubut|gob\.ar|gov\.ar|youtube|facebook|instagram|google', re.I)
+def detectar_wp(registro):
+    j = getj(f"https://{registro['dominio']}/wp-json/wp/v2/posts?per_page=1&_fields=id")
+    return registro, isinstance(j, list)
+hoy_reg = dt.date.today().isoformat()
+dominios_wp = {d.replace('www.', '') for d in WP.values()}
+pendientes_wp = [r for r in REGISTRO if r.get('dominio') and not WP_NO_DESCUBRIR.search(r['dominio'])
+                 and r['dominio'].replace('www.', '') not in dominios_wp
+                 and (not r.get('wp_revisado') or r['wp_revisado'] < addd(hoy_reg, -30))][:10]
+with ThreadPoolExecutor(5) as ex:
+    for registro, es_wp in ex.map(detectar_wp, pendientes_wp):
+        registro['wp'] = es_wp; registro['wp_revisado'] = hoy_reg
+WP_DESCUBIERTOS = {r['nombre']: r['dominio'] for r in REGISTRO
+                   if r.get('wp') and r.get('nombre') and r['nombre'] not in WP
+                   and r['dominio'].replace('www.', '') not in dominios_wp}
+print('WordPress descubiertos en lectura directa:', len(WP_DESCUBIERTOS))
+# Los descubiertos pueden ser sitios grandes: se limita la paginación a 10 lotes (8.000 notas).
+fuentes_wp = [(n, d) for n, d in WP.items()] + [(n, d, 80) for n, d in WP_DESCUBIERTOS.items()]
 with ThreadPoolExecutor(4) as ex:
-    futures = {ex.submit(wp_site, item): item[0] for item in WP.items()}
+    futures = {ex.submit(wp_site, item): item[0] for item in fuentes_wp}
     for fut in as_completed(futures):
         name = futures[fut]
         try:
             name, n, out = fut.result()
-            cobertura[name] = 'Revisión completa (texto comparado)' if n else 'Sin datos: el sitio no devolvió notas'
+            if name in WP_DESCUBIERTOS:
+                cobertura[name] = 'Revisión completa (fuente descubierta, lectura directa)' if n else 'Fuente descubierta: el sitio no devolvió notas'
+            else:
+                cobertura[name] = 'Revisión completa (texto comparado)' if n else 'Sin datos: el sitio no devolvió notas'
             for m, c in out:
                 if c: addrow(name, m, 'Revisión completa', c[0], c[1], c[2])
                 else: addrow(name, m, 'Revisión completa')
@@ -283,18 +321,30 @@ cobertura['Tiempo Sur'] = 'Sin índice de notas: revisado por buscador, sin coin
 
 
 # ---------- 10. Google Noticias: encuentra medios fuera de la lista y los que no tienen índice ----------
-REG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'fuentes_descubiertas.json')
-def cargar_registro():
-    try:
-        with open(REG_PATH, encoding='utf8') as f:
-            data = json.load(f)
-        return data if isinstance(data, list) else []
-    except FileNotFoundError:
-        return []
-    except Exception as e:
-        print(f'AVISO: registro de medios no legible ({type(e).__name__}); se inicia vacío')
-        return []
-REGISTRO = cargar_registro()
+
+# Los que ya se leen por WordPress no necesitan búsqueda por buscador.
+_rot = sorted({r['dominio'] for r in REGISTRO if r.get('dominio') and not r.get('wp')})
+_tramo = 8
+_inicio = (int(time.time() // 7200) * _tramo) % len(_rot) if _rot else 0
+DOMINIOS_ROTACION = (_rot[_inicio:] + _rot[:_inicio])[:_tramo]
+print('Seguimiento por buscador de descubiertos:', ', '.join(DOMINIOS_ROTACION) or 'ninguno')
+
+def bing_items(xml):
+    """Interpreta el RSS de Bing Noticias con el mismo formato que gnews()."""
+    out = []
+    for it in re.findall(r'<item>(.*?)</item>', xml or '', re.S):
+        ti = re.search(r'<title>(.*?)</title>', it, re.S); lk = re.search(r'<link>(.*?)</link>', it, re.S)
+        pd = re.search(r'<pubDate>(.*?)</pubDate>', it); src = re.search(r'<News:Source>(.*?)</News:Source>', it, re.S | re.I)
+        if not (ti and lk and pd): continue
+        enlace = html.unescape(lk.group(1)).strip()
+        real = urllib.parse.parse_qs(urlparse(enlace).query).get('url', [enlace])[0]
+        try: d = dt.datetime.strptime(pd.group(1).strip()[5:16], '%d %b %Y').date().isoformat()
+        except Exception: continue
+        host = (urlparse(real).hostname or '').lower()
+        if host.startswith('www.'): host = host[4:]
+        nombre = html.unescape(src.group(1)).strip() if src else host
+        out.append({'fuerte': False, 't': html.unescape(ti.group(1)).strip(), 'd': d, 'u': real, 'src': nombre, 'dominio': host, 'buscador': 'Bing Noticias'})
+    return out
 
 def gnews(n):
     clave_t = [w for w in norm(n['titulo']).split() if len(w) >= 5 and w not in STOP][:6]
@@ -303,14 +353,10 @@ def gnews(n):
     frases = ['"' + ' '.join(o.split()[2:11]) + '"' for o in oraciones[:2]]
     t, fuerte = '', ''
     consultas = [n['titulo'][:120], ' '.join(clave_t)] + frases
-    # Seguimiento adicional limitado a cinco dominios descubiertos, para notas de los últimos 15 días.
+    # Seguimiento de medios descubiertos, para notas de los últimos 15 días: en cada ejecución
+    # se revisa un tramo distinto del registro, así todos se recorren a lo largo del día.
     if n['fecha'] >= addd(dt.date.today().isoformat(), -15):
-        dominios = []
-        for registro in reversed(REGISTRO):
-            dominio = registro.get('dominio', '')
-            if dominio and dominio not in dominios:
-                dominios.append(dominio)
-            if len(dominios) >= 5: break
+        dominios = DOMINIOS_ROTACION
         frase = frases[0].strip('"') if frases else ' '.join(clave_t[:4])
         consultas.extend('site:' + dominio + ' "' + frase + '"' for dominio in dominios)
     for q in consultas:
@@ -332,6 +378,12 @@ def gnews(n):
         host = (host or '').lower()
         if host.startswith('www.'): host = host[4:]
         out.append({'fuerte': it in fuerte, 't': tt, 'd': d, 'u': html.unescape(lk.group(1)) if lk else '', 'src': src_name, 'dominio': host})
+    # Segunda fuente: Bing Noticias, para medios que Google no indexa. Título y primera frase.
+    for q in [n['titulo'][:120]] + frases[:1]:
+        r = get('https://www.bing.com/news/search?q=' + urllib.parse.quote(q) + '&format=rss&setlang=es&cc=AR', timeout=20) or ''
+        for item in bing_items(r):
+            item['fuerte'] = q.startswith('"')
+            out.append(item)
     return n, out
 STEM = lambda s: {w[:6] for w in norm(s).split() if len(w) >= 5 and w not in STOP}
 JSTEM, CUERPO = {}, {}
@@ -386,7 +438,8 @@ with ThreadPoolExecutor(4) as ex:
                         r0['confianza'] = 'Media'; r0['metodo'] += ' + confirmado por Google Noticias'; con_g += 1
                 continue
             ya.add((n['id'], medio)); con_g += 1
-            addrow(medio, m, 'Google Noticias (frase de la nota)' if m.get('fuerte') else 'Google Noticias (solo título)')
+            buscador = m.get('buscador', 'Google Noticias')
+            addrow(medio, m, buscador + (' (frase de la nota)' if m.get('fuerte') else ' (solo título)'))
             cobertura.setdefault(medio, 'Encontrado por Google Noticias; fuente descubierta automáticamente')
             dominio = it.get('dominio', '')
             if dominio and not NO.search(dominio):

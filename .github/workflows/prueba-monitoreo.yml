@@ -1,0 +1,37 @@
+# TEMPORAL: prueba del monitoreo ampliado en esta rama. No guarda datos. Se borra antes del merge.
+name: Prueba monitoreo ampliado
+on:
+  push:
+    branches:
+      - claude/ampliar-monitoreo
+permissions:
+  contents: read
+jobs:
+  prueba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Relevamiento sin guardar
+        run: |
+          mkdir -p out
+          python3 -u scripts/actualizar.py out data/rep2.json | tee run.log
+          grep -q "^OK notas" run.log
+          python3 scripts/verificar_historial.py data/rep2.json out/rep2.json out/notas2.json
+          python3 - <<'PY'
+          import json, collections
+          antes = json.load(open('data/rep2.json')); ahora = json.load(open('out/rep2.json'))
+          print('Publicaciones antes', len(antes), 'ahora', len(ahora))
+          print('Por método:', collections.Counter(r['metodo'].split(' (')[0] for r in ahora).most_common())
+          viejas = {(r['nota_id'], r['medio']) for r in antes}
+          nuevas = [r for r in ahora if (r['nota_id'], r['medio']) not in viejas]
+          print('Nuevas', len(nuevas))
+          for r in nuevas[:40]: print(' ', r['nota_id'], r['medio'], r['confianza'], r['metodo'], r['url'][:90])
+          reg = json.load(open('data/fuentes_descubiertas.json'))
+          print('WordPress detectados:', [(r['nombre'], r['dominio']) for r in reg if r.get('wp')])
+          print('Revisados sin WordPress:', [r['dominio'] for r in reg if r.get('wp') is False])
+          PY
+          grep -E "WordPress descubiertos|Seguimiento por buscador|Google Noticias|ERROR aislado" run.log || true
