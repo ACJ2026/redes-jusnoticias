@@ -209,3 +209,27 @@ Próxima acción:
 - La plantilla fuente tiene el título `Juschubut Noticias`. La verificación directa del dominio público y de los endpoints Pages no pudo completarse desde las herramientas disponibles en esta sesión.
 - Pendientes externos: comprobar el despliegue real en Cloudflare Pages y revisar la respuesta de `/api/google-metrics` y `/api/redes` en producción. Para Google se requieren las variables `GOOGLE_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID` y `GSC_SITE_URL`, más permisos de lectura de la cuenta de servicio. Para redes, revisar los secretos e IDs correspondientes en el entorno Pages.
 - No se alteró WordPress, no se reconstruyeron ni borraron registros históricos y no se declaró validación de extremo a extremo.
+
+
+### 2026-10-22 — Estado de las integraciones de TikTok y X (Cloudflare Pages)
+
+**TikTok**
+- En producción, el commit `db5281e` (“Clarify TikTok verification status in dashboard”) aclara el estado de verificación de TikTok en el tablero.
+- Se confirmó que el dominio `https://jusnoticias.pages.dev/` está verificado en TikTok Developers.
+- Cuenta objetivo: `@juschubut`.
+- **Pendiente; no declarar integración operativa:** completar autorización OAuth, configurar y comprobar el callback de producción, almacenar tokens de forma segura y probar las consultas de TikTok Display API. Siguen siendo dependencias externas la configuración de credenciales/variables y el flujo de autorización de la cuenta.
+- La verificación del dominio no equivale a autorización OAuth ni demuestra que la API ya entregue publicaciones o métricas.
+
+**X**
+- Cuenta objetivo: `@Jus_Noticias`; aplicación de desarrollador `Jus_Noticia`, ID `33562411`, proyecto predeterminado Pay Per Use.
+- La función de Cloudflare Pages en `functions/api/redes.js` contempla la API v2 de X y requiere `X_BEARER_TOKEN`; `X_USER_HANDLE` es opcional y por defecto usa `Jus_Noticias`.
+- Se abrió la PR [#43 — Improve X API error diagnostics](https://github.com/ACJ2026/redes-jusnoticias/pull/43), rama `diagnostico-x-api-error`, para mostrar detalles de error de X sin exponer credenciales. No está fusionada.
+- Vista previa más reciente comprobada: [https://23bd74db.jusnoticias.pages.dev/api/redes](https://23bd74db.jusnoticias.pages.dev/api/redes), commit `1731faa`. El 22/10/2026 a las 05:52:53 UTC respondió que falta configurar `X_BEARER_TOKEN`. Por ello, esa ejecución no llegó a probar la autenticación ni la respuesta actual de la API de X.
+- En una consulta anterior de producción, el endpoint informó `HTTP 402` para X. La causa exacta no se confirmó. La consola de desarrolladores mostró saldo y créditos gratuitos en cero; no se compró crédito ni se activó recarga automática.
+- **Estado: pendiente/bloqueado por configuración y validación externa.** Aunque se indicó que las variables ya estaban configuradas, la vista previa continúa sin recibir la variable. Queda por comprobar que el secreto exista con el nombre exacto `X_BEARER_TOKEN` y esté disponible en el entorno Preview, y volver a consultar la vista previa. Solo después se podrá distinguir entre un problema de configuración, permisos o facturación/acceso de X.
+- No pegar tokens en el repositorio, la bitácora, comentarios ni el chat. No comprar créditos ni activar recargas sin decisión explícita del usuario.
+
+**Producción y seguridad**
+- En el listado de Cloudflare, producción seguía en `main`, commit `db5281e`; los cambios de diagnóstico de X permanecen en Preview, rama `diagnostico-x-api-error`.
+- No se fusionó la PR #43 ni se publicó el diagnóstico en producción. No se modificaron datos históricos.
+- Al volver al proyecto, revisar primero el estado de esta bitácora y la PR #43; no repetir verificaciones ya realizadas ni dar por operativas TikTok o X hasta probarlas con respuestas reales.
