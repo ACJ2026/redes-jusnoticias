@@ -26,14 +26,14 @@ No guardar estos valores ni tokens en el repositorio, HTML, issues o documentaci
 - Instagram: [@jus_chubut](https://www.instagram.com/jus_chubut/); verificar el ID y permisos de Meta.
 - YouTube: [JusNoticias Prensa](https://www.youtube.com/@jusnoticiasprensa2865); ID y seguidores pendientes de verificar. El canal general del Poder Judicial se conserva como referencia institucional distinta y ya no se cuenta como cuenta propia de JusNoticias.
 - X: [@Jus_Noticias](https://x.com/Jus_Noticias); la función de Pages ya consulta la API v2 con `X_BEARER_TOKEN` y `X_USER_HANDLE` (opcional, por defecto `Jus_Noticias`). Requiere una aplicación de desarrollador y acceso autorizado a la API; hasta configurar el token, la interfaz debe mostrar el error de conexión y no un cero.
-- TikTok: [@juschubut](https://www.tiktok.com/@juschubut); integración pendiente.
+- TikTok: [@juschubut](https://www.tiktok.com/@juschubut); el dominio `https://jusnoticias.pages.dev/` ya está verificado en TikTok Developers. La autorización OAuth, el callback de producción, el almacenamiento seguro de tokens y la consulta de Display API siguen pendientes.
 - WhatsApp: [Agencia de Comunicación Judicial](https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p); determinar qué estadísticas ofrece el canal antes de diseñar métricas.
 
 ## TikTok: requisitos para integrar la API oficial
 
 La [Display API oficial de TikTok](https://developers.tiktok.com/docs/en/display-api-overview) permite consultar el perfil y las publicaciones públicas recientes de una cuenta autorizada. Para usarla se necesita una cuenta de desarrollador, aprobación de los productos necesarios, autorización OAuth del titular y los permisos correspondientes, entre ellos `video.list` y `user.info.stats` para las estadísticas del perfil. La documentación de [inicio de la integración](https://developers.tiktok.com/docs/en/display-api-get-started) describe el flujo de autorización.
 
-Antes de agregar TikTok al endpoint de Pages hay que definir el almacenamiento seguro y la renovación de los tokens. No se debe poner un token temporal en el HTML ni presentar un fallo de autorización como cero publicaciones. Hasta terminar esa configuración, la interfaz debe mostrar “Pendiente de integración”.
+La verificación del dominio está completada para `https://jusnoticias.pages.dev/`, pero no habilita por sí sola el acceso a la API. Antes de consultar TikTok desde Pages hay que completar Login Kit/OAuth, confirmar el Redirect URI de producción, configurar secretos de servidor y definir la renovación segura de tokens. No se debe poner un token en el HTML ni presentar un fallo de autorización como cero publicaciones. Hasta completar esos pasos, la interfaz debe mostrar que el dominio está verificado y la API pendiente.
 
 ## WhatsApp Channels: usar las estadísticas de administración
 
@@ -43,7 +43,7 @@ No hay una integración de API de métricas de canales validada en este tablero.
 
 ## Regla común de publicación
 
-X, Facebook, Instagram y YouTube aparecen en el panel de consulta por API, pero solo aportan cifras cuando la API responde con credenciales válidas. TikTok queda pendiente de autorización y almacenamiento de tokens; WhatsApp queda pendiente de una fuente de métricas automatizable o de un procedimiento de carga manual documentado. Ningún total general se publica hasta que la cobertura sea verificable.
+X, Facebook, Instagram y YouTube aparecen en el panel de consulta por API, pero solo aportan cifras cuando la API responde con credenciales válidas. TikTok tiene el dominio verificado, pero queda pendiente de autorización OAuth, almacenamiento seguro de tokens y validación de Display API; WhatsApp queda pendiente de una fuente de métricas automatizable o de un procedimiento de carga manual documentado. Ningún total general se publica hasta que la cobertura sea verificable.
 
 ## Próximos pasos antes de declarar la integración terminada
 
