@@ -4,9 +4,18 @@ import { test } from "node:test";
 
 const ROOT = new URL("../", import.meta.url);
 
+// Se carga como data: URL; los imports relativos (por ejemplo ./tiktok.js) se resuelven
+// de la misma forma porque un data: URL no tiene ruta base.
+async function asDataUrl(fileUrl) {
+  let source = await readFile(fileUrl, "utf8");
+  for (const [, spec] of source.matchAll(/from\s+"(\.{1,2}\/[^"]+)"/g)) {
+    source = source.replace(`"${spec}"`, JSON.stringify(await asDataUrl(new URL(spec, fileUrl))));
+  }
+  return `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`;
+}
+
 async function importHandler(path) {
-  const source = await readFile(new URL(path, ROOT), "utf8");
-  return import(`data:text/javascript;base64,${Buffer.from(source).toString("base64")}`);
+  return import(await asDataUrl(new URL(path, ROOT)));
 }
 
 const redes = await importHandler("functions/api/redes.js");

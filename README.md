@@ -5,7 +5,7 @@ Tablero de repercusión y comunicación judicial de la Agencia de Comunicación 
 ## Vista previa
 
 - **Producción (Cloudflare Pages):** https://jusnoticias.pages.dev/
-- La vista previa de la rama de trabajo no es la URL de producción: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/
+- Es la única dirección del tablero (público, API y callbacks). `redes-jusnoticias.pages.dev` quedó descartada: no usarla en configuraciones, URIs de retorno ni enlaces. Las vistas previas de cada rama usan `<rama>.jusnoticias.pages.dev`.
 
 ## Cómo se genera
 
@@ -15,14 +15,14 @@ Tablero de repercusión y comunicación judicial de la Agencia de Comunicación 
 - `scripts/armar_publico.py` combina la plantilla y los datos para generar `publico/tablero_publico.html`; el workflow copia ese resultado a `publico/index.html`.
 - `.github/workflows/actualizar.yml` programa el relevamiento cada dos horas, en el minuto 59 (cron de GitHub en UTC; en Argentina (UTC-3) corre al minuto 59 de horas impares: 21:59, 23:59, 01:59, 03:59, 05:59, 07:59, 09:59, 11:59, 13:59, 15:59, 17:59 y 19:59).
 - `functions/api/google-metrics.js` es la Pages Function para Google Analytics 4 y Search Console.
-- `functions/api/redes.js` consulta Facebook, Instagram, YouTube y X en Cloudflare Pages; la pestaña Redes ya consulta `/api/redes` y muestra el estado y los errores de cada fuente. Para obtener cifras necesita los IDs y secretos de Meta y YouTube configurados en Pages. X ya tiene una consulta preparada, pero requiere un token autorizado de X. El dominio `https://jusnoticias.pages.dev/` ya está verificado en TikTok Developers; faltan OAuth, el callback de producción y la conexión de Display API. WhatsApp sigue pendiente y ninguno de estos canales se incluye en un total general sin datos validados.
+- `functions/api/redes.js` consulta en Cloudflare Pages Facebook (dos páginas, con tokens de página e Insights de 28 días), Instagram (28 días), YouTube, X y TikTok; el parámetro `?redes=` limita la consulta a algunas fuentes. TikTok usa Display API con OAuth (rutas `/api/tiktok/auth`, `/api/tiktok/callback` y `/api/tiktok`), guarda el token en el KV `TIKTOK_KV` y el estado de autorización en la base D1 `TIKTOK_AUTH_DB`; ver `docs/TIKTOK_DISPLAY_API.md` antes de configurar Preview. WhatsApp sigue pendiente y ningún canal sin datos validados entra en un total general.
 
 ## Documentación y pruebas
 
 - [Checklist general de trabajo](docs/CHECKLIST_TRABAJO_TABLERO.md)
 - [Manual sencillo del tablero](docs/MANUAL_TABLERO.md)
 - [Configuración de métricas de Google](docs/GOOGLE_METRICS.md)
-- [Estado de la integración de redes sociales](docs/REDES_SOCIALES.md)
+- [Estado de la integración de redes sociales](docs/REDES_SOCIALES.md)\n- [Configuración de TikTok Display API](docs/TIKTOK_DISPLAY_API.md)
 - [Guía de Cloudflare Pages y estado de migración](docs/CLOUDFLARE_PAGES.md)
 
 Para ejecutar las pruebas de regresión del historial:

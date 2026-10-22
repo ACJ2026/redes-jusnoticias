@@ -4,9 +4,18 @@ import { test } from "node:test";
 
 const ROOT = new URL("../", import.meta.url);
 
+// Se carga como data: URL; los imports relativos (por ejemplo ./tiktok.js) se resuelven
+// de la misma forma porque un data: URL no tiene ruta base.
+async function asDataUrl(fileUrl) {
+  let source = await readFile(fileUrl, "utf8");
+  for (const [, spec] of source.matchAll(/from\s+"(\.{1,2}\/[^"]+)"/g)) {
+    source = source.replace(`"${spec}"`, JSON.stringify(await asDataUrl(new URL(spec, fileUrl))));
+  }
+  return `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`;
+}
+
 async function importHandler(path) {
-  const source = await readFile(new URL(path, ROOT), "utf8");
-  return import(`data:text/javascript;base64,${Buffer.from(source).toString("base64")}`);
+  return import(await asDataUrl(new URL(path, ROOT)));
 }
 
 const redes = await importHandler("functions/api/redes.js");
@@ -296,9 +305,19 @@ test("?redes=Facebook,Instagram no consulta X ni YouTube", async () => {
 
 test("?redes con un valor desconocido se rechaza sin llamadas externas", async () => {
   const mock = meta();
-  const response = await call("/api/redes?redes=Facebook,TikTok", mock);
+  const response = await call("/api/redes?redes=Facebook,WhatsApp", mock);
   assert.equal(response.status, 400);
   assert.equal(mock.requests.length, 0);
+});
+
+test("?redes acepta TikTok y no consulta Meta", async () => {
+  const mock = meta();
+  const response = await call("/api/redes?redes=TikTok", mock);
+  const body = await response.json();
+  assert.equal(response.status, 200);
+  assert.deepEqual(body.consultadas, ["TikTok"]);
+  assert.ok(mock.requests.every(r => new URL(r.url).hostname !== "graph.facebook.com"));
+  assert.equal(body.redes.Facebook, undefined);
 });
 
 test("el tablero muestra Insights de Facebook por página y marca los faltantes como no disponibles", async () => {

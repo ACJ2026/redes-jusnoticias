@@ -108,9 +108,9 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("async function x(desde, env)", function)
         self.assertIn("X_BEARER_TOKEN", function)
         self.assertIn("X: x", function)
-        self.assertIn("const connected = ['Facebook', 'Instagram', 'YouTube', 'X']", template)
+        self.assertIn("const connected = ['Facebook', 'Instagram', 'YouTube', 'X', 'TikTok']", template)
         self.assertIn("result.limiteAlcanzado", template)
-        self.assertIn("Consultando Facebook, Instagram, YouTube y X", template)
+        self.assertIn("Consultando Facebook, Instagram, YouTube, X y TikTok", template)
         self.assertIn("La API de X requiere créditos o acceso habilitado.", function)
         self.assertIn("No disponible: ' + (error || 'la API no devolvió datos')", template)
         self.assertIn('id="redes-historial-actualizado"', template)
@@ -130,12 +130,13 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn('class="big">Pendiente</div>', template)
         self.assertIn("No se publica un total consolidado hasta integrar y validar las fuentes", template)
 
-    def test_redes_sin_integracion_no_se_presentan_como_cero_actividad(self):
+    def test_redes_pendientes_no_se_presentan_como_cero_actividad(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         canales = read_json("data/canales.json")
         self.assertIn("<option>TikTok</option>", template)
         self.assertIn("<option>WhatsApp</option>", template)
-        self.assertIn("la autorización OAuth y la conexión de Display API siguen pendientes", template)
+        self.assertIn("TikTok requiere configurar OAuth y autorizar la cuenta institucional", template)
+        self.assertIn("WhatsApp sigue pendiente de integración", template)
         self.assertTrue(any(c["red"] == "TikTok" for c in canales))
         self.assertTrue(any(c["red"] == "WhatsApp" for c in canales))
         self.assertTrue(any("pendiente" in c["estado"].lower() for c in canales if c["red"] == "TikTok"))

@@ -311,7 +311,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="redes" hidden>
     <div class="card" id="redes-vivo">
       <h2>Estado del monitoreo en vivo</h2>
-      <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube y X. Esta consulta es independiente del historial guardado. X requiere credenciales y acceso autorizado a su API. El dominio de TikTok ya está verificado en TikTok Developers; la autorización OAuth y la conexión de Display API siguen pendientes. TikTok y WhatsApp no se suman a un total general ni se presentan como cero actividad.</p>
+      <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube, X y TikTok. Esta consulta es independiente del historial guardado. X requiere credenciales y acceso autorizado a su API; TikTok requiere configurar OAuth y autorizar la cuenta institucional. WhatsApp sigue pendiente de integración; no se suman plataformas sin datos ni se presentan como cero actividad.</p>
       <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
       <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
       <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th><th>Insights disponibles</th></tr></thead><tbody><tr><td colspan="6">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
@@ -331,7 +331,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card">
       <h2>Publicaciones del período</h2>
-      <p class="note">Lista las publicaciones registradas y permite filtrar por red o cuenta. X, Instagram, Facebook y YouTube tienen registros cargados. El dominio de TikTok (@juschubut) ya está verificado en TikTok Developers, pero la cuenta, los seguidores y la integración de publicaciones y métricas aún están pendientes. WhatsApp también figura en el inventario, aunque sus publicaciones y métricas no están integradas. La ausencia de resultados no equivale a cero actividad.</p>
+      <p class="note">Lista las publicaciones registradas y permite filtrar por red o cuenta. X, Instagram, Facebook y YouTube tienen registros cargados. TikTok y WhatsApp figuran en el inventario de canales. Las publicaciones de TikTok se incorporarán al monitoreo en vivo cuando se configure y autorice OAuth; el historial propio seguirá dependiendo de los registros guardados. La ausencia de resultados no equivale a cero actividad.</p>
       <div class="tools">
         <label for="fred" class="lbl">Elegí una red</label><select id="fred"><option value="">Todas</option><option>Facebook</option><option>Instagram</option><option>X</option><option>YouTube</option><option>TikTok</option><option>WhatsApp</option></select>
         <label for="fprop" class="lbl">De quién es</label><select id="fprop"><option value="">Todas</option><option value="Sí">Nuestras cuentas</option><option value="No">Otras cuentas</option></select>
@@ -707,7 +707,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const estado = $('redes-vivo-estado');
     const tb = document.querySelector('#t-redes-vivo tbody');
     boton.disabled = true;
-    estado.textContent = 'Consultando Facebook, Instagram, YouTube y X. El dominio de TikTok está verificado; su autorización OAuth y Display API siguen pendientes. WhatsApp requiere carga manual.';
+    estado.textContent = 'Consultando Facebook, Instagram, YouTube, X y TikTok; WhatsApp sigue pendiente de integración.';
     const nombresInsights = {
       page_media_view: 'Visualizaciones de contenido',
       page_post_engagements: 'Interacciones con publicaciones',
@@ -740,14 +740,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       return partes.join('; ');
     };
     const unsupported = [
-      { red: 'TikTok', estado: 'Dominio verificado en TikTok Developers; falta autorización OAuth y conexión de Display API', publicaciones: '—', seguidores: '—', ultima: '—', insights: '—' },
       { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—', insights: '—' }
     ];
     try {
       const response = await fetch('/api/redes', { headers: { Accept: 'application/json' }, cache: 'no-store' });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
-      const connected = ['Facebook', 'Instagram', 'YouTube', 'X'].map(red => {
+      const connected = ['Facebook', 'Instagram', 'YouTube', 'X', 'TikTok'].map(red => {
         const result = data.redes && data.redes[red];
         const error = data.errores && data.errores[red];
         if (error || !result) return { red, estado: 'No disponible: ' + (error || 'la API no devolvió datos'), publicaciones: '—', seguidores: '—', ultima: '—' };
@@ -772,7 +771,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const hasta = data.actualizado ? new Date(data.actualizado).toLocaleDateString('es-AR') : 'fecha no informada';
       estado.textContent = 'Consulta ejecutada el ' + (data.actualizado ? new Date(data.actualizado).toLocaleString('es-AR') : 'fecha no informada') + '. Ventana desde ' + (data.desde || 'fecha no informada') + ' hasta ' + hasta + '. Solo las APIs que respondieron aportan cifras; no es un total de todas las redes.';
     } catch (error) {
-      tb.replaceChildren(...[...['Facebook', 'Instagram', 'YouTube', 'X'].map(red => ({ red, estado: 'No se pudo consultar la API: ' + error.message, publicaciones: '—', seguidores: '—', ultima: '—' })), ...unsupported].map(r => {
+      tb.replaceChildren(...[...['Facebook', 'Instagram', 'YouTube', 'X', 'TikTok'].map(red => ({ red, estado: 'No se pudo consultar la API: ' + error.message, publicaciones: '—', seguidores: '—', ultima: '—' })), ...unsupported].map(r => {
         const tr = document.createElement('tr');
         [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima].forEach(value => {
           const td = document.createElement('td'); td.textContent = value; tr.append(td);
