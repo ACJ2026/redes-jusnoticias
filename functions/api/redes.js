@@ -101,7 +101,7 @@ async function getX(url, token) {
         else if (item && typeof item.detail === "string") details.push(item.detail);
       });
     }
-    const detail = details.join("; ").replace(/\\s+/g, " ").slice(0, 400);
+    const detail = details.join("; ").replace(/\s+/g, " ").slice(0, 400);
     throw new Error("X API HTTP " + response.status + (detail ? ": " + detail : ""));
   }
   return payload;
