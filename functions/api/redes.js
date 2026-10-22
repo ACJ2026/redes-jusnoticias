@@ -11,13 +11,13 @@ const json = (body, status = 200, errors = false) => new Response(JSON.stringify
 
 // Los mensajes de error se devuelven para diagnóstico. Antes se quitan tokens,
 // parámetros access_token y encabezados Bearer por si un proveedor los repite.
-function limpiarMensaje(error) {
+function limpiarMensaje(error, max = 300) {
   const message = error instanceof Error ? error.message : String(error || "");
   return (message || "Error de consulta no identificado.")
     .replace(/access_token=[^&\s"']+/gi, "access_token=[omitido]")
     .replace(/Bearer\s+[A-Za-z0-9._~+/=-]+/gi, "Bearer [omitido]")
     .replace(/\bEA[A-Za-z0-9]{20,}\b/g, "[token omitido]")
-    .slice(0, 300);
+    .slice(0, max);
 }
 
 async function get(url, token) {
@@ -363,7 +363,8 @@ export async function onRequestGet({ request, env }) {
     try {
       out.redes[network] = await tareas[network](desde, env);
     } catch (error) {
-      out.errores[network] = limpiarMensaje(error);
+      // Límite mayor para que un error combinado conserve el detalle de cada página.
+      out.errores[network] = limpiarMensaje(error, 1500);
     }
   }));
   const parcial = out.redes.Facebook && out.redes.Facebook.parcial;
