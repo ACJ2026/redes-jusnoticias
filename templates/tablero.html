@@ -248,6 +248,15 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="kpi"><div class="big" data-k="vistas"></div><div class="lbl">visualizaciones registradas</div><p class="note" data-n="vistas"></p></div>
       <div class="kpi"><div class="big" data-k="seguidores"></div><div class="lbl">seguidores en las cuentas propias</div><p class="note" data-n="seguidores"></p></div>
     </div>
+    <div class="card territorio-card" id="c-territorio">
+      <h2>Dónde se publicaron nuestras notas</h2>
+      <p class="note">Cuenta las publicaciones encontradas en otros medios según la ciudad donde tiene sede cada medio. No indica dónde viven los lectores. Solo incluye publicaciones de confianza media o alta (sin coincidencias dudosas) y cuenta cada enlace una sola vez. Los medios sin sede confirmada figuran aparte como «por verificar».</p>
+      <p class="note" id="territorio-resumen" aria-live="polite"></p>
+      <h3 class="lbl">Por región</h3>
+      <div class="bars" id="b-territorio-region"></div>
+      <h3 class="lbl">Por ciudad o cobertura</h3>
+      <div class="bars" id="b-territorio"></div>
+    </div>
     <div class="grid2">
       <div class="card" id="c-tipo" style="grid-column:1/-1">
         <h2>Qué temas de nuestras notas aparecen en otros medios</h2>
@@ -561,6 +570,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       seguidores: 'Suma de: ' + canalesPropios().map(x => x.red + ' ' + x.cuenta.replace(/ \(.*\)$/, '') + ' ' + fmt(x.seguidores)).join(' · ') + '.' + (sinSeguidores.length ? ' Sin dato todavía: ' + sinSeguidores.join(', ') + '.' : '')
     };
     document.querySelectorAll('#resumen [data-n]').forEach(e => { e.textContent = notasRedes[e.dataset.n]; });
+    drawTerritorio();
     const ns = notas.filter(n => en(n.mes));
     bars('b-tipo', c.tipo.filter(r => r.notas).map(r => row(r.tipo + ' (' + fmt(r.levantadas) + ' de ' + fmt(r.notas) + ')', [[r.pct, 'var(--accent)']], r.pct, 100, r.pct + '%')));
     const t5 = c.porMedio.slice(0, 5), mx = t5.length ? t5[0].notas : 1;
@@ -613,7 +623,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     'Metadata Noticias':'Chubut (localidad por verificar)',
     'Examedia':'Entre Ríos (localidad por verificar)',
     'Flipr.news':'Cobertura nacional',
-    'Portal Medios Públicos':'Cobertura nacional'
+    'Portal Medios Públicos':'Cobertura nacional',
+    // Mismo medio con otra grafía que ya figura arriba.
+    'Elonce':'Paraná','eldiarioweb.com':'Puerto Madryn','examedia.com.ar':'Entre Ríos (localidad por verificar)',
+    'Clarín':'Ciudad Autónoma de Buenos Aires','Ambito':'Ciudad Autónoma de Buenos Aires',
+    'Noticias de Bariloche':'San Carlos de Bariloche','ANBariloche':'San Carlos de Bariloche',
+    'El Editor Mendoza':'Mendoza','Que Pasa Jujuy':'San Salvador de Jujuy'
   };
   const tipoMedio = medio => {
     // Si el nombre identifica explícitamente una edición web/digital, no inferir prensa gráfica o TV por otra palabra del nombre.
@@ -626,13 +641,37 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   };
   const regionMedio = localidad => {
     if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)','Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)','Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)'].includes(localidad)) return 'Chubut';
-    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','San Carlos de Bariloche','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (localidad === 'Cobertura nacional') return 'Medios nacionales';
     if (localidad === 'Cobertura patagónica (localidad por verificar)') return 'Cobertura regional';
     if (localidad.startsWith('Entre Ríos')) return 'Resto del país';
     if (localidad === 'Cobertura provincial (Misiones)') return 'Resto del país';
     if (localidad === 'Localidad por verificar' || localidad.includes('(localidad por verificar)')) return localidad.startsWith('Chubut') ? 'Chubut' : localidad.startsWith('Santa Cruz') ? 'Patagonia fuera de Chubut' : 'Localidad por verificar';
     return 'Resto del país';
   };
+  const drawTerritorio = () => {
+    // Una publicación = un enlace; si el mismo enlace aparece para varias notas, cuenta una vez.
+    const rs = [...new Map(repOk.filter(r => en(r.mes)).map(r => [r.url, r])).values()];
+    const localidades = new Map(), regiones = new Map();
+    rs.forEach(r => {
+      const localidad = localidadMedio[r.medio] || 'Localidad por verificar', region = regionMedio(localidad);
+      const item = localidades.get(localidad) || { localidad, publicaciones: 0, medios: new Set() };
+      item.publicaciones++; item.medios.add(r.medio); localidades.set(localidad, item);
+      regiones.set(region, (regiones.get(region) || 0) + 1);
+    });
+    const etiquetaMedios = n => n + (n === 1 ? ' medio' : ' medios');
+    const regOrden = [...regiones.entries()].sort((a, b) => b[1] - a[1]);
+    const maxR = regOrden.length ? regOrden[0][1] : 1;
+    bars('b-territorio-region', regOrden.map(([k, v]) => row(k, [[v, 'var(--accent)']], v, maxR, fmt(v) + ' (' + (rs.length ? Math.round(v / rs.length * 100) : 0) + '%)')));
+    const orden = [...localidades.values()].sort((a, b) => b.publicaciones - a.publicaciones || a.localidad.localeCompare(b.localidad, 'es'));
+    const max = orden.length ? orden[0].publicaciones : 1;
+    bars('b-territorio', orden.map(x => row(x.localidad + ' · ' + etiquetaMedios(x.medios.size), [[x.publicaciones, /verificar/.test(x.localidad) ? 'var(--muted, #8a9aa6)' : 'var(--accent)']], x.publicaciones, max)));
+    const verif = orden.filter(x => /verificar/.test(x.localidad)).reduce((t, x) => t + x.publicaciones, 0);
+    $('territorio-resumen').textContent = rs.length
+      ? fmt(rs.length) + ' publicaciones en ' + fmt(new Set(rs.map(r => r.medio)).size) + ' medios. ' + fmt(rs.length - verif) + ' tienen la sede del medio identificada y ' + fmt(verif) + ' corresponden a medios con sede por verificar.'
+      : 'Sin publicaciones confirmadas en este período.';
+  };
+
   const mostrarReferenciasMedios = (titulo, intro, registros) => {
     const panel = $('medios-detalle'), lista = $('medios-detalle-lista');
     $('medios-detalle-titulo').textContent = titulo;
@@ -897,6 +936,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     status.textContent = 'Consultando Analytics y Search Console…';
     const number = v => nf.format(Number(v || 0));
     const pct = v => (Number(v || 0) * 100).toLocaleString('es-AR', { maximumFractionDigits: 2 }) + '%';
+    // Analytics devuelve la ruta (/2026/10/...); Search Console, la dirección completa.
+    const enlacePagina = v => {
+      if (!v) return null;
+      try { const u = new URL(String(v), 'https://jusnoticias.juschubut.gov.ar'); return /^https?:$/.test(u.protocol) ? u.href : null; } catch (e) { return null; }
+    };
     const fill = (id, rows, cols, empty) => {
       const body = document.querySelector('#' + id + ' tbody');
       body.replaceChildren();
@@ -910,7 +954,14 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         cols.forEach(col => {
           const td = document.createElement('td');
           const value = col.value(row);
-          td.textContent = value === null || value === undefined ? '—' : String(value);
+          const texto = value === null || value === undefined ? '—' : String(value);
+          // Solo se enlazan direcciones http(s); cualquier otro valor queda como texto.
+          const href = col.link ? enlacePagina(col.link(row)) : null;
+          if (href) {
+            const a = document.createElement('a');
+            a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = texto + ' ↗';
+            td.append(a);
+          } else td.textContent = texto;
           tr.append(td);
         });
         body.append(tr);
@@ -935,7 +986,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       $('g-impresiones').textContent = number(s.resumen && s.resumen.impressions);
       status.textContent = 'Datos de ' + start + ' a ' + end + '. Consulta realizada: ' + new Date(data.actualizado).toLocaleString('es-AR') + '.';
       fill('g-tabla-paginas', a.paginas, [
-        { value: r => r.titulo || r.ruta }, { value: r => number(r.screenPageViews) },
+        { value: r => r.titulo || r.ruta, link: r => r.ruta }, { value: r => number(r.screenPageViews) },
         { value: r => number(r.sessions) }, { value: r => number(r.totalUsers) }
       ]);
       const canalLabel = value => ({
@@ -970,7 +1021,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         { value: r => pct(r.ctr) }, { value: r => Number(r.posicion || 0).toLocaleString('es-AR', { maximumFractionDigits: 1 }) }
       ]);
       fill('g-tabla-search-paginas', s.paginas, [
-        { value: r => r.pagina }, { value: r => number(r.clics) }, { value: r => number(r.impresiones) },
+        { value: r => r.pagina, link: r => r.pagina }, { value: r => number(r.clics) }, { value: r => number(r.impresiones) },
         { value: r => pct(r.ctr) }, { value: r => Number(r.posicion || 0).toLocaleString('es-AR', { maximumFractionDigits: 1 }) }
       ]);
     } catch (error) {

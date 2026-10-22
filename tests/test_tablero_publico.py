@@ -160,6 +160,23 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("[...$('b-top5n').querySelectorAll('.bar-row')].forEach", template)
         self.assertIn("show('medios');", template)
 
+    def test_resumen_muestra_distribucion_territorial_por_sede_del_medio(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('id="c-territorio"', template)
+        self.assertIn('id="b-territorio-region"', template)
+        self.assertIn("No indica dónde viven los lectores", template)
+        # Usa solo publicaciones confirmadas (repOk excluye confianza baja) y enlaces únicos.
+        self.assertIn("const rs = [...new Map(repOk.filter(r => en(r.mes)).map(r => [r.url, r])).values()];", template)
+        self.assertIn("    drawTerritorio();", template)
+        # Los controles retirados en el PR #32 no vuelven.
+        self.assertNotIn("f-territorio-tipo", template)
+
+    def test_tablas_de_paginas_enlazan_cada_pagina(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("{ value: r => r.titulo || r.ruta, link: r => r.ruta }", template)
+        self.assertIn("{ value: r => r.pagina, link: r => r.pagina }", template)
+        self.assertIn("new URL(String(v), 'https://jusnoticias.juschubut.gov.ar')", template)
+
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const filaPaginaFacebook = (p, result) =>", template)
