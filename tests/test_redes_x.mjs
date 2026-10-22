@@ -67,3 +67,54 @@ test("consulta el perfil y la primera página de publicaciones cuando X responde
   assert.deepEqual(body.redes.X.filas, []);
   assert.equal(body.errores.X, undefined);
 });
+
+test("consulta las dos páginas de Facebook por separado y no expone tokens", async () => {
+  const ids = {
+    "116101835114568": { name: "JusNoticias", followers: 3700, token: "page-token-jus" },
+    "761013867341405": { name: "JusNoticias STJ", followers: 10000, token: "page-token-stj" }
+  };
+  const requests = [];
+
+  const response = await withFetch(async (url, options = {}) => {
+    const parsed = new URL(String(url));
+    requests.push({ url: parsed.toString(), authorization: options.headers?.Authorization });
+    const match = parsed.pathname.match(/\/v26\.0\/(\d+)(?:\/posts)?$/);
+    const id = match?.[1];
+
+    if (!id || !ids[id]) {
+      return new Response(JSON.stringify({ data: [] }), { status: 200 });
+    }
+    if (parsed.searchParams.get("fields") === "access_token") {
+      return new Response(JSON.stringify({ access_token: ids[id].token }), { status: 200 });
+    }
+    if (parsed.searchParams.get("fields") === "name,followers_count,fan_count") {
+      return new Response(JSON.stringify({
+        name: ids[id].name,
+        followers_count: ids[id].followers
+      }), { status: 200 });
+    }
+    if (parsed.pathname.endsWith("/posts")) {
+      assert.equal(options.headers?.Authorization, "Bearer " + ids[id].token);
+      return new Response(JSON.stringify({ data: [] }), { status: 200 });
+    }
+    return new Response(JSON.stringify({ data: [] }), { status: 200 });
+  }, () => redes.onRequestGet({
+    request: new Request("https://example.test/api/redes"),
+    env: {
+      META_TOKEN: "user-meta-token",
+      FB_PAGE_IDS: "116101835114568, 761013867341405",
+      FB_PAGE_ID: "116101835114568",
+      FB_PAGE_ID_2: "761013867341405",
+      FB_PERSONAL_STJ_URL: "https://www.facebook.com/example-profile"
+    }
+  }));
+
+  const body = await response.json();
+  assert.equal(body.redes.Facebook.seguidores, 3700);
+  assert.equal(body.redes["Facebook STJ"].seguidores, 10000);
+  assert.deepEqual(body.redes.Facebook.filas, []);
+  assert.deepEqual(body.redes["Facebook STJ"].filas, []);
+  assert.match(body.errores["Facebook Personal STJ"], /permiso user_posts/);
+  assert.equal(requests.filter(r => r.url.includes("?fields=access_token")).length, 2);
+  assert.doesNotMatch(JSON.stringify(body), /user-meta-token|page-token-jus|page-token-stj/);
+});
