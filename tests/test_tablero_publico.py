@@ -149,6 +149,17 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("' de la ventana)'", template)
         self.assertIn("['vistas', 'Vistas'], ['me_gusta', 'Me gusta']", template)
 
+    def test_resumen_muestra_distribucion_territorial_por_sede_del_medio(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('id="c-territorio"', template)
+        self.assertIn('id="b-territorio-region"', template)
+        self.assertIn("No indica dónde viven los lectores", template)
+        # Usa solo publicaciones confirmadas (repOk excluye confianza baja) y enlaces únicos.
+        self.assertIn("const rs = [...new Map(repOk.filter(r => en(r.mes)).map(r => [r.url, r])).values()];", template)
+        self.assertIn("    drawTerritorio();", template)
+        # Los controles retirados en el PR #32 no vuelven.
+        self.assertNotIn("f-territorio-tipo", template)
+
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const filaPaginaFacebook = (p, result) =>", template)
