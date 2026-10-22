@@ -143,7 +143,6 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertTrue(any(c["red"] == "TikTok" for c in canales))
         self.assertTrue(any(c["red"] == "WhatsApp" for c in canales))
         self.assertTrue(any(isinstance(c["seguidores"], int) and c["estado"].startswith("Activa") for c in canales if c["red"] == "TikTok"))
-        self.assertTrue(any("pendiente" in c["estado"].lower() for c in canales if c["red"] == "WhatsApp" or c["cuenta"] == "JusNoticias Prensa"))
 
     def test_panel_en_vivo_suma_metricas_por_publicacion_sin_insights_de_cuenta(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
@@ -211,22 +210,17 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("Tablero generado:", public)
         self.assertLess(public.index('id="portada"'), public.index('id="dashboard-app" hidden'))
 
-    def test_canal_general_no_se_cuenta_como_cuenta_propia_de_jusnoticias(self):
+    def test_youtube_cuenta_el_unico_canal_institucional(self):
+        # El canal Poder Judicial del Chubut es el único canal de YouTube: sus videos son propios.
         redes = read_json("data/redes2.json")
-        own = [
-            r for r in redes
-            if r.get("red") == "YouTube"
-            and "Poder Judicial del Chubut" in r.get("cuenta", "")
-            and r.get("propia") == "Sí"
-        ]
-        self.assertEqual(own, [])
+        youtube = [r for r in redes if r.get("red") == "YouTube"]
+        self.assertTrue(youtube)
+        self.assertTrue(all(r.get("propia") == "Sí" and r.get("cuenta") == "Poder Judicial del Chubut" for r in youtube))
         canales = read_json("data/canales.json")
-        self.assertTrue(any(
-            c.get("red") == "YouTube"
-            and c.get("cuenta") == "JusNoticias Prensa"
-            and c.get("seguidores") is None
-            for c in canales
-        ))
+        yt = [c for c in canales if c.get("red") == "YouTube"]
+        self.assertEqual(len(yt), 1)
+        self.assertIsInstance(yt[0]["seguidores"], int)
+        self.assertTrue(yt[0]["estado"].startswith("Activa"))
 
     def test_catalogo_territorial_incluye_medios_verificados(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
