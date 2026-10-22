@@ -739,7 +739,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const hasta = data.actualizado ? new Date(data.actualizado).toLocaleDateString('es-AR') : 'fecha no informada';
       estado.textContent = 'Consulta ejecutada el ' + (data.actualizado ? new Date(data.actualizado).toLocaleString('es-AR') : 'fecha no informada') + '. Ventana desde ' + (data.desde || 'fecha no informada') + ' hasta ' + hasta + '. Solo las APIs que respondieron aportan cifras; no es un total de todas las redes.';
     } catch (error) {
-      tb.replaceChildren(...[...['Facebook', 'Instagram', 'YouTube', 'X'].map(red => ({ red, estado: 'No se pudo consultar la API: ' + error.message, publicaciones: '—', seguidores: '—', ultima: '—' })), ...unsupported].map(r => {
+      tb.replaceChildren(...[...['Facebook', 'Instagram', 'YouTube', 'X', 'TikTok'].map(red => ({ red, estado: 'No se pudo consultar la API: ' + error.message, publicaciones: '—', seguidores: '—', ultima: '—' })), ...unsupported].map(r => {
         const tr = document.createElement('tr');
         [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima].forEach(value => {
           const td = document.createElement('td'); td.textContent = value; tr.append(td);
