@@ -171,19 +171,21 @@ def wp_site(item):
 # Medios descubiertos con WordPress: se leen directo, sin depender de Google Noticias.
 # La detección se repite cada 30 días por dominio y como máximo 10 por ejecución.
 WP_NO_DESCUBRIR = re.compile(r'jusnoticias|juschubut|gob\.ar|gov\.ar|youtube|facebook|instagram|google', re.I)
+# Dominios con código de otro país (.do, .pe, .es...) vienen de coincidencias temáticas lejanas.
+EXTRANJERO = re.compile(r'\.(?!ar$)[a-z]{2}$', re.I)
 def detectar_wp(registro):
     j = getj(f"https://{registro['dominio']}/wp-json/wp/v2/posts?per_page=1&_fields=id")
     return registro, isinstance(j, list)
 hoy_reg = dt.date.today().isoformat()
 dominios_wp = {d.replace('www.', '') for d in WP.values()}
-pendientes_wp = [r for r in REGISTRO if r.get('dominio') and not WP_NO_DESCUBRIR.search(r['dominio'])
+pendientes_wp = [r for r in REGISTRO if r.get('dominio') and not WP_NO_DESCUBRIR.search(r['dominio']) and not EXTRANJERO.search(r['dominio'])
                  and r['dominio'].replace('www.', '') not in dominios_wp
                  and (not r.get('wp_revisado') or r['wp_revisado'] < addd(hoy_reg, -30))][:10]
 with ThreadPoolExecutor(5) as ex:
     for registro, es_wp in ex.map(detectar_wp, pendientes_wp):
         registro['wp'] = es_wp; registro['wp_revisado'] = hoy_reg
 WP_DESCUBIERTOS = {r['nombre']: r['dominio'] for r in REGISTRO
-                   if r.get('wp') and r.get('nombre') and r['nombre'] not in WP
+                   if r.get('wp') and r.get('nombre') and r['nombre'] not in WP and not EXTRANJERO.search(r['dominio'])
                    and r['dominio'].replace('www.', '') not in dominios_wp}
 print('WordPress descubiertos en lectura directa:', len(WP_DESCUBIERTOS))
 # Los descubiertos pueden ser sitios grandes: se limita la paginación a 10 lotes (8.000 notas).
@@ -323,7 +325,7 @@ cobertura['Tiempo Sur'] = 'Sin índice de notas: revisado por buscador, sin coin
 # ---------- 10. Google Noticias: encuentra medios fuera de la lista y los que no tienen índice ----------
 
 # Los que ya se leen por WordPress no necesitan búsqueda por buscador.
-_rot = sorted({r['dominio'] for r in REGISTRO if r.get('dominio') and not r.get('wp')})
+_rot = sorted({r['dominio'] for r in REGISTRO if r.get('dominio') and not r.get('wp') and not EXTRANJERO.search(r['dominio'])})
 _tramo = 8
 _inicio = (int(time.time() // 7200) * _tramo) % len(_rot) if _rot else 0
 DOMINIOS_ROTACION = (_rot[_inicio:] + _rot[:_inicio])[:_tramo]
@@ -417,6 +419,7 @@ ALIAS = {'canal12web': 'Canal 12', 'adnsur': 'ADN Sur', 'eqsnotas': 'EQS Notas',
 def clave(s): return re.sub(r'^(diario|radio|fm) ', '', norm(s)).replace(' ', '')
 conocidos = {clave(m): m for m in list(cobertura) + ['Crónica', 'El Chubut', 'Diario Jornada', 'El Patagónico', 'Red43']}
 conocidos.update(ALIAS)
+MEDIO_POR_DOMINIO = {d.replace('www.', ''): n for n, d in list(WP.items()) + list(WP_DESCUBIERTOS.items())}
 NO = re.compile(r'jusnoticias|juschubut|poder judicial|justicia\.ar|ministerio p[uú]blico|youtube|facebook|instagram', re.I)
 ya = {(r['nota_id'], r['medio']) for r in rows}
 desde_g = addd(dt.date.today().isoformat(), -45)
@@ -427,7 +430,7 @@ with ThreadPoolExecutor(4) as ex:
             if NO.search(it['src']) or not (addd(n['fecha'], -1) <= it['d'] <= addd(n['fecha'], 8)): continue
             m = gmatch(it, n)
             if not m: continue
-            medio = conocidos.get(clave(it['src']), limpio(it['src']))
+            medio = MEDIO_POR_DOMINIO.get(it.get('dominio', '')) or conocidos.get(clave(it['src']), limpio(it['src']))
             # El título puede omitir la ciudad aunque trate el mismo fallo local.
             # La nota de JusNoticias y la ventana temporal ya se validaron en gmatch().
             # La similitud textual y la ventana temporal se validaron en gmatch(); no exigir geografía.

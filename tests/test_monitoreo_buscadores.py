@@ -48,6 +48,16 @@ class MonitoreoBuscadoresTest(unittest.TestCase):
         # El registro se carga antes de la sección WordPress que lo usa.
         self.assertLess(FUENTE.index("REGISTRO = cargar_registro()"), FUENTE.index("WP_DESCUBIERTOS = {"))
 
+    def test_dominios_de_otros_paises_no_se_siguen(self):
+        patron = re.compile(re.search(r"EXTRANJERO = re\.compile\(r'(.+?)', re\.I\)", FUENTE).group(1), re.I)
+        for dominio in ("elatlantico.do", "diariosur.es", "caracol.com.co", "elperuano.pe"):
+            self.assertTrue(patron.search(dominio), dominio)
+        for dominio in ("rionegro.com.ar", "eldiarioweb.com", "mdzol.com", "noticiasdebariloche.com.ar"):
+            self.assertFalse(patron.search(dominio), dominio)
+
+    def test_mismo_medio_con_otro_nombre_se_unifica_por_dominio(self):
+        self.assertIn("medio = MEDIO_POR_DOMINIO.get(it.get('dominio', '')) or conocidos.get(", FUENTE)
+
 
 if __name__ == "__main__":
     unittest.main()
