@@ -2,7 +2,7 @@
 
 ## Qué muestra el tablero hoy
 
-La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json` y `data/canales.json`, y ahora consulta `/api/redes` al abrir la pestaña (también permite repetir la consulta manualmente). El panel en vivo muestra por separado el estado, publicaciones y seguidores que respondan las APIs de Facebook, Instagram, YouTube y X. No sustituye ni mezcla el historial con las métricas en vivo.
+La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json` y `data/canales.json`. La consulta de `/api/redes` solo se ejecuta cuando la persona pulsa **Consultar fuentes disponibles**; abrir la pestaña no inicia llamadas a las APIs. El panel en vivo muestra por separado el estado, publicaciones y seguidores que respondan las APIs de Facebook, Instagram, YouTube y X. No sustituye ni mezcla el historial con las métricas en vivo.
 
 ## Ruta de Cloudflare Pages y ruta heredada de Vercel
 
@@ -28,6 +28,16 @@ No guardar estos valores ni tokens en el repositorio, HTML, issues o documentaci
 - X: [@Jus_Noticias](https://x.com/Jus_Noticias); la función de Pages ya consulta la API v2 con `X_BEARER_TOKEN` y `X_USER_HANDLE` (opcional, por defecto `Jus_Noticias`). Requiere una aplicación de desarrollador y acceso autorizado a la API; hasta configurar el token, la interfaz debe mostrar el error de conexión y no un cero.
 - TikTok: [@juschubut](https://www.tiktok.com/@juschubut); el dominio `https://jusnoticias.pages.dev/` ya está verificado en TikTok Developers. La autorización OAuth, el callback de producción, el almacenamiento seguro de tokens y la consulta de Display API siguen pendientes.
 - WhatsApp: [Agencia de Comunicación Judicial](https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p); determinar qué estadísticas ofrece el canal antes de diseñar métricas.
+
+## X: solicitudes, costos y errores de créditos
+
+Una consulta exitosa a X realiza una llamada `GET /2/users/by/username/{username}?user.fields=public_metrics` para el perfil y entre una y diez llamadas `GET /2/users/{id}/tweets` (100 publicaciones por página, acotadas a los últimos 90 días). En total son **2 a 11 solicitudes HTTP por consulta**; si la primera llamada devuelve un error, la paginación no comienza. No se consultan endpoints de búsqueda ni se hacen escrituras.
+
+La [tarifa oficial pay-per-use](https://docs.x.com/x-api/getting-started/pricing) cobra por recursos devueltos: **US$ 0,010 por usuario** y **US$ 0,005 por publicación** a tarifa estándar. La lectura de publicaciones propias puede costar **US$ 0,001 por publicación** si se cumple el requisito de Owned Reads: el ID debe coincidir con el usuario autenticado, que además debe ser propietario de la aplicación. No se puede confirmar esa elegibilidad solo por el nombre de la variable bearer. La documentación indica deduplicación de recursos durante una ventana UTC de 24 horas (garantía blanda). Por ello, para 1.000 publicaciones únicas leídas, el orden de magnitud por ventana de deduplicación es hasta **US$ 5,01** estándar o **US$ 1,01** si aplican Owned Reads; menos publicaciones reducen el costo proporcionalmente.
+
+La producción reportó `HTTP 402` y la consola de X indicó saldo y créditos gratuitos en cero. La documentación de [créditos y precios](https://docs.x.com/x-api/getting-started/pricing#credit-balance) dice que las solicitudes se bloquean con saldo cero o negativo hasta agregar créditos. Sin embargo, la integración existente solo conserva el código HTTP y descarta `title`, `detail` y `type` de la respuesta del proveedor; por eso no se puede atribuir el `402` exclusivamente al saldo ni verificar un submotivo de X. El tablero mostrará que se requieren créditos o acceso habilitado, sin convertir el error en métricas cero. No se habilitan compras ni recargas automáticas.
+
+El historial local de X se conserva separado de la consulta en vivo. La pestaña muestra la fecha de actualización de esos datos históricos y los identifica como parciales; no se presentan como cifras actuales.
 
 ## TikTok: requisitos para integrar la API oficial
 

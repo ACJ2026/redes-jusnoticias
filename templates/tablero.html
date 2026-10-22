@@ -319,6 +319,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
       <p class="note">Distribución de los registros históricos cargados. No es un monitoreo completo ni se suma a las métricas en vivo; Facebook propio se empezó a contar en septiembre. Las plataformas pendientes no se representan como cero actividad.</p>
+      <p class="note" id="redes-historial-actualizado"></p>
       <div class="legend" id="lg-redes"></div>
       <div class="chart" id="ch-redes"><div class="tip" id="tip-redes" hidden></div></div>
     </div>
@@ -698,7 +699,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const rows = D.redes.filter(r => en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
     tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
   };
-  let redesVivoConsultado = false;
   let redesVivoEnCurso = false;
   const consultarRedesVivo = async () => {
     if (redesVivoEnCurso) return;
@@ -749,7 +749,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       }));
       estado.textContent = 'La consulta en vivo no está disponible. Se conserva el historial cargado, pero no debe interpretarse como un monitoreo completo.';
     } finally {
-      redesVivoConsultado = true;
       redesVivoEnCurso = false;
       boton.disabled = false;
     }
@@ -928,7 +927,6 @@ const draw = () => {
     document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.page === page)));
     try { history.replaceState(null, '', '#' + page); } catch (e) {}
     draw();
-    if (page === 'redes' && !redesVivoConsultado) consultarRedesVivo();
   };
   $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
   document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
@@ -963,6 +961,8 @@ const draw = () => {
   let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(draw, 150); });
 
   $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. Datos relevados: ' + (D.datos_actualizados ? new Date(D.datos_actualizados).toLocaleString('es-AR') : 'fecha no disponible') + '. Tablero generado: ' + D.actualizado + '.';
+  const fechaHistorial = D.datos_actualizados ? new Date(D.datos_actualizados) : null;
+  $('redes-historial-actualizado').textContent = 'Última actualización de los datos históricos: ' + (fechaHistorial && Number.isFinite(fechaHistorial.getTime()) ? fechaHistorial.toLocaleString('es-AR') : 'fecha no disponible') + '. No son métricas en vivo.';
   const h = location.hash.slice(1);
   updateLanding(calc());
   $('entrar-tablero').addEventListener('click', () => {
