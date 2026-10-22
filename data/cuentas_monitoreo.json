@@ -1,0 +1,1299 @@
+{
+  "descripcion": "Cuentas de redes a monitorear para detectar quién comparte contenido de Juschubut Noticias. Tipos: medio con sitio web, medio solo en redes, otra cuenta (no medio). Las cuentas sin usuario están pendientes de identificar; no se inventan usuarios.",
+  "actualizado": "2026-10-22",
+  "cuentas": [
+    {
+      "red": "Facebook",
+      "cuenta": "ADN Sur",
+      "tipo": "Medio con sitio web",
+      "medio": "ADN Sur",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-05"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "C24",
+      "tipo": "Medio con sitio web",
+      "medio": "Comodoro 24",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-06",
+      "nota": "Es la página de Comodoro 24 (linkea comodoro24.com.ar)"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Canal 12 Web",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal 12",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Canal 4 Esquel",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal 4 Esquel",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-13",
+      "nota": "Canal de TV; sitio canal4esquel.com.ar"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Crónica Comodoro Rivadavia",
+      "tipo": "Medio con sitio web",
+      "medio": "Crónica",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-10"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Del Mar Digital.CR",
+      "tipo": "Medio con sitio web",
+      "medio": "Del Mar Digital",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-29"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Diario Jornada",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Jornada",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-06"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "El Comodorense",
+      "tipo": "Medio con sitio web",
+      "medio": "El Comodorense",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "El Patagónico",
+      "tipo": "Medio con sitio web",
+      "medio": "El Patagónico",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "FM Bahía Engaño",
+      "tipo": "Medio con sitio web",
+      "medio": "FM Bahía Engaño",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-06"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "FM Tropical",
+      "tipo": "Medio con sitio web",
+      "medio": "FM Tropical",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-10-13"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Infobae",
+      "tipo": "Medio con sitio web",
+      "medio": "Infobae",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Informa2CR",
+      "tipo": "Medio con sitio web",
+      "medio": "Informa2CR",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17",
+      "nota": "Sitio informa2cr.com.ar"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Radio Patagonia",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio Patagonia",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-29",
+      "nota": "Radio Patagonia 100.5 (radiopatagoniachubut.com.ar). Existe otra página «RADIO Patagonia Madryn»: falta confirmar cuál comparte nuestras notas."
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "Red43Noticias",
+      "tipo": "Medio con sitio web",
+      "medio": "Red43",
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-04"
+    },
+    {
+      "red": "X",
+      "cuenta": "@gabrieliezzi",
+      "tipo": "Otra cuenta (periodista)",
+      "medio": null,
+      "estado": "Confirmada: ya compartió notas nuestras",
+      "visto": "2026-09-17",
+      "nota": "Gabriel Iezzi, abogado penalista y columnista judicial (Radio Mitre, A24, Infobae); CABA."
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/metadatanoticias",
+      "tipo": "Medio con sitio web",
+      "medio": "Metadata Noticias",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@metadatanoticias",
+      "tipo": "Medio con sitio web",
+      "medio": "Metadata Noticias",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@metadataweb",
+      "tipo": "Medio con sitio web",
+      "medio": "Metadata Noticias",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/ChubutHoy",
+      "tipo": "Medio con sitio web",
+      "medio": "Chubut Hoy",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@chubuthoy",
+      "tipo": "Medio con sitio web",
+      "medio": "Chubut Hoy",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@chubuthoy1",
+      "tipo": "Medio con sitio web",
+      "medio": "Chubut Hoy",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/Noticias-PMY-787170188152962",
+      "tipo": "Medio con sitio web",
+      "medio": "Noticias PMY",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@NoticiasPmy",
+      "tipo": "Medio con sitio web",
+      "medio": "Noticias PMY",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/fmtropical106.3",
+      "tipo": "Medio con sitio web",
+      "medio": "FM Tropical",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@fmtropical106.3",
+      "tipo": "Medio con sitio web",
+      "medio": "FM Tropical",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@TropicalRawson",
+      "tipo": "Medio con sitio web",
+      "medio": "FM Tropical",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCCE0crhUBmuuz4ZbxBIVqgg",
+      "tipo": "Medio con sitio web",
+      "medio": "FM Tropical",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/Radio-de-Camioneros-Comodoro-Rivadavia-159892451208730",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio de Camioneros",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@radiodecamioneros",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio de Camioneros",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@camionerosradio",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio de Camioneros",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCx0ZTnObZJEuNvOlI-BhDvQ",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio de Camioneros",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/eldiarioonline",
+      "tipo": "Medio con sitio web",
+      "medio": "El Diario Web",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@eldiarioweb",
+      "tipo": "Medio con sitio web",
+      "medio": "El Diario Web",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@ElDiario_web",
+      "tipo": "Medio con sitio web",
+      "medio": "El Diario Web",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/user/diariodemadryn",
+      "tipo": "Medio con sitio web",
+      "medio": "El Diario Web",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/jornadaweb",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Jornada",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@jornadaweb",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Jornada",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@jornadaweb",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Jornada",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/c/DiarioJornadaChubut",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Jornada",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/ADNSUR",
+      "tipo": "Medio con sitio web",
+      "medio": "ADN Sur",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "ADN Sur",
+      "estado": "Dudosa: el sitio linkea @yasabes.arg; también existe @adnsur"
+    },
+    {
+      "red": "X",
+      "cuenta": "@ADNsur",
+      "tipo": "Medio con sitio web",
+      "medio": "ADN Sur",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "ADN Sur",
+      "estado": "Dudosa: @ADNSURTV"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/elpatagonico",
+      "tipo": "Medio con sitio web",
+      "medio": "El Patagónico",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@elpatagonico",
+      "tipo": "Medio con sitio web",
+      "medio": "El Patagónico",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@elpatagonico",
+      "tipo": "Medio con sitio web",
+      "medio": "El Patagónico",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/diarioelchubut",
+      "tipo": "Medio con sitio web",
+      "medio": "El Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@diarioelchubut",
+      "tipo": "Medio con sitio web",
+      "medio": "El Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@elchubut",
+      "tipo": "Medio con sitio web",
+      "medio": "El Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "@DiarioELCHUBUTwebTV",
+      "tipo": "Medio con sitio web",
+      "medio": "El Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@diarioelchubut",
+      "tipo": "Medio con sitio web",
+      "medio": "El Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/lu20radiochubut",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@lu20radio_chubut",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@RadioChubut",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UC6js59w4zjafpwmxIPCilsg",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/Canal12Web",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal 12",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@canal12web",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal 12",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@Canal12web",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal 12",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/user/canal12noticias",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal 12",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/Red43Noticias",
+      "tipo": "Medio con sitio web",
+      "medio": "Red43",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@Red43Esquel",
+      "tipo": "Medio con sitio web",
+      "medio": "Red43",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@RED43info",
+      "tipo": "Medio con sitio web",
+      "medio": "Red43",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g",
+      "tipo": "Medio con sitio web",
+      "medio": "Red43",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/delmardigital.net",
+      "tipo": "Medio con sitio web",
+      "medio": "Del Mar Digital",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@delmardigital.cr",
+      "tipo": "Medio con sitio web",
+      "medio": "Del Mar Digital",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@DelMarDigitalCR",
+      "tipo": "Medio con sitio web",
+      "medio": "Del Mar Digital",
+      "estado": "Confirmada: compartió Adopciones",
+      "ejemplo": "https://x.com/DelMarDigitalCR/status/2112945950952198465"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "@delmardigitalCR",
+      "tipo": "Medio con sitio web",
+      "medio": "Del Mar Digital",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/elcomodorense",
+      "tipo": "Medio con sitio web",
+      "medio": "El Comodorense",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@elcomodorense",
+      "tipo": "Medio con sitio web",
+      "medio": "El Comodorense",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@elcomodorense",
+      "tipo": "Medio con sitio web",
+      "medio": "El Comodorense",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/comodoro24",
+      "tipo": "Medio con sitio web",
+      "medio": "Comodoro 24",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@infoComodoro24",
+      "tipo": "Medio con sitio web",
+      "medio": "Comodoro 24",
+      "estado": "Confirmada: compartió Adopciones",
+      "ejemplo": "https://x.com/infoComodoro24/status/2112955226336489763"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCBc0w72RGAFyvbaKSHO6h_Q",
+      "tipo": "Medio con sitio web",
+      "medio": "Comodoro 24",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Posta Comodorense",
+      "estado": "Dudosa: salió del buscador; el sitio no linkea redes",
+      "nota": "El sitio no linkea ninguna red; solo trae los íconos de la plantilla."
+    },
+    {
+      "red": "Instagram",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Posta Comodorense",
+      "estado": "Dudosa: @laposta_radio",
+      "nota": "El sitio no linkea ninguna red; solo trae los íconos de la plantilla."
+    },
+    {
+      "red": "YouTube",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Posta Comodorense",
+      "estado": "Dudosa: /c/LaPostaComodorenseTV",
+      "nota": "El sitio no linkea ninguna red; solo trae los íconos de la plantilla."
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/diariocronicacomodoro",
+      "tipo": "Medio con sitio web",
+      "medio": "Crónica",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@cronicacrd",
+      "tipo": "Medio con sitio web",
+      "medio": "Crónica",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@cronicacrd",
+      "tipo": "Medio con sitio web",
+      "medio": "Crónica",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "FM Bahía Engaño",
+      "estado": "Dudosa: /fmbahiaengano y /BahiaEnganoFM"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "FM Bahía Engaño",
+      "estado": "Dudosa: @fmbahiaengano y @fmengano104.5"
+    },
+    {
+      "red": "X",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "FM Bahía Engaño",
+      "estado": "Dudosa: @fmbahiaengano y @bahiaengano"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCnmDT7eGbQ_3V_retGGcGYA",
+      "tipo": "Medio con sitio web",
+      "medio": "FM Bahía Engaño",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Digital Chubut",
+      "estado": "Dudosa: el sitio linkea /mollmadryn"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@chubutdigital",
+      "tipo": "Medio con sitio web",
+      "medio": "Digital Chubut",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Digital Chubut",
+      "estado": "Dudosa: @MollMadryn"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": null,
+      "tipo": "Medio solo en redes (por confirmar)",
+      "medio": "Madryn Ahora",
+      "estado": "Dudosa: /ChubutAhora",
+      "nota": "No se encontró sitio web: posible medio solo en redes."
+    },
+    {
+      "red": "Instagram",
+      "cuenta": null,
+      "tipo": "Medio solo en redes (por confirmar)",
+      "medio": "Madryn Ahora",
+      "estado": "Dudosa: @madrynahora",
+      "nota": "No se encontró sitio web: posible medio solo en redes."
+    },
+    {
+      "red": "X",
+      "cuenta": null,
+      "tipo": "Medio solo en redes (por confirmar)",
+      "medio": "Madryn Ahora",
+      "estado": "Dudosa: @MadrynAhora",
+      "nota": "No se encontró sitio web: posible medio solo en redes."
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/eqsnotas",
+      "tipo": "Medio con sitio web",
+      "medio": "EQS Notas",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@eqsnotas",
+      "tipo": "Medio con sitio web",
+      "medio": "EQS Notas",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@eqsnotas",
+      "tipo": "Medio con sitio web",
+      "medio": "EQS Notas",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCkCnbW81pBA_-Qfbl2ivqbw",
+      "tipo": "Medio con sitio web",
+      "medio": "EQS Notas",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/DiarioLaPortada",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario La Portada",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@diario_laportada_esquel",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario La Portada",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@LaPortadaDiario",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario La Portada",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "@laportadadiario2895",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario La Portada",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/FmdelLagoOK",
+      "tipo": "Medio con sitio web",
+      "medio": "FM del Lago Esquel",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@fmdellagoesquel",
+      "tipo": "Medio con sitio web",
+      "medio": "FM del Lago Esquel",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@fmdellagoesquel",
+      "tipo": "Medio con sitio web",
+      "medio": "FM del Lago Esquel",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/radio3cp",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio 3 Cadena Patagonia",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@radio3_cadenapatagonia",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio 3 Cadena Patagonia",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Radio 3 Cadena Patagonia",
+      "estado": "Dudosa: linkea @radio3am780 y @radio3trelew"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCrBSwrbOMnPb56ZzzNNlj0A",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio 3 Cadena Patagonia",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/abcdiarioar",
+      "tipo": "Medio con sitio web",
+      "medio": "ABC Diario",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@abcdiarioar",
+      "tipo": "Medio con sitio web",
+      "medio": "ABC Diario",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@abcdiarioar",
+      "tipo": "Medio con sitio web",
+      "medio": "ABC Diario",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "ABC Diario",
+      "estado": "Dudosa: @abcdiarioar"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/LaTeclaPatagonia",
+      "tipo": "Medio con sitio web",
+      "medio": "La Tecla Patagonia",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@lateclapatagonia",
+      "tipo": "Medio con sitio web",
+      "medio": "La Tecla Patagonia",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@teclapatagonia",
+      "tipo": "Medio con sitio web",
+      "medio": "La Tecla Patagonia",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Tecla Patagonia",
+      "estado": "Dudosa: ícono sin usuario"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/CholilaOnline",
+      "tipo": "Medio con sitio web",
+      "medio": "Cholila Online",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@cholilaonline",
+      "tipo": "Medio con sitio web",
+      "medio": "Cholila Online",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@CholilaOnlive",
+      "tipo": "Medio con sitio web",
+      "medio": "Cholila Online",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "@CholilaOnlive",
+      "tipo": "Medio con sitio web",
+      "medio": "Cholila Online",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@cholilaonlive",
+      "tipo": "Medio con sitio web",
+      "medio": "Cholila Online",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/VivoTrelew",
+      "tipo": "Medio con sitio web",
+      "medio": "Vivo Trelew",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@vivotrelewok",
+      "tipo": "Medio con sitio web",
+      "medio": "Vivo Trelew",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "X",
+      "cuenta": "@VivoTrelew",
+      "tipo": "Medio con sitio web",
+      "medio": "Vivo Trelew",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "@VivoTrelew",
+      "tipo": "Medio con sitio web",
+      "medio": "Vivo Trelew",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@vivotrelew",
+      "tipo": "Medio con sitio web",
+      "medio": "Vivo Trelew",
+      "estado": "Oficial según el pie de página del sitio"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Argentar Noticias",
+      "estado": "Dudosa: el sitio linkea Radio del Sur 97.1: /RadioDelSur97.1",
+      "nota": "El sitio linkea las redes de Radio del Sur 97.1, no propias."
+    },
+    {
+      "red": "Instagram",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Argentar Noticias",
+      "estado": "Dudosa: @radiodelsur971",
+      "nota": "El sitio linkea las redes de Radio del Sur 97.1, no propias."
+    },
+    {
+      "red": "X",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Argentar Noticias",
+      "estado": "Dudosa: @RadioDelSur971",
+      "nota": "El sitio linkea las redes de Radio del Sur 97.1, no propias."
+    },
+    {
+      "red": "YouTube",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Argentar Noticias",
+      "estado": "Dudosa: @radiodelsur971",
+      "nota": "El sitio linkea las redes de Radio del Sur 97.1, no propias."
+    },
+    {
+      "red": "X",
+      "cuenta": "@CamionerosRadio",
+      "tipo": "Medio con sitio web",
+      "medio": "Radio de Camioneros",
+      "estado": "Confirmada: compartió entrevista a Banfi (AMJA)",
+      "ejemplo": "https://x.com/CamionerosRadio/status/2110543828818215226"
+    },
+    {
+      "red": "X",
+      "cuenta": "@planeroahorro",
+      "tipo": "Otra cuenta (no medio)",
+      "medio": null,
+      "estado": "Confirmada: compartió un enlace de jusnoticias (cuenta de ahorristas)",
+      "ejemplo": "https://x.com/planeroahorro/status/2111857308049531269"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/comodoropublica",
+      "tipo": "Medio solo en redes (por confirmar)",
+      "medio": null,
+      "estado": "Probable: publicación del 18/9 sobre la convocatoria de adopción"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/fmsur.sarmiento",
+      "tipo": "Medio (radio, sitio sin verificar)",
+      "medio": null,
+      "estado": "Probable: «Convocatoria pública local Comodoro Rivadavia»"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/jorge.posse1",
+      "tipo": "Otra cuenta (persona)",
+      "medio": null,
+      "estado": "Confirmada: compartió un enlace de jusnoticias"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/asisgabriela",
+      "tipo": "Otra cuenta (referente)",
+      "medio": null,
+      "estado": "Probable: posteo sobre el XXXIII Encuentro AMJA"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/radiovision995",
+      "tipo": "Medio (radio)",
+      "medio": null,
+      "estado": "Dudosa: puede ser contenido propio sobre régimen penal juvenil"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/legislaturach",
+      "tipo": "Institución",
+      "medio": null,
+      "estado": "Tema relacionado (Código No Penal), no réplica de nuestra nota"
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Opinión Austral",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 6
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "LU17",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 5
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Judicial",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 3
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Voz del Interior",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 2
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Valle Online",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 2
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Examedia",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 2
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Noticias de Bariloche",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Flipr.news",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "CHACODIAPORDIA.COM",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Mediador - Santa Cruz",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El 10 TV",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Tribuno",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Huarpe",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Lmneuquen.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "examedia.com.ar",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "MejorInformado.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Revista Quórum",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Nuevo Día",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Río Negro",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "ANBariloche",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "NoticiasdelBolson",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "A24.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Somos Jujuy",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Canal Doce Misiones",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Ambito",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "APFDigital",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Info del Estero",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "La Brújula 24",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Editor Mendoza",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Que Pasa Jujuy",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Periscopio",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "0223",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Elonce",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Clarín",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Diario San Rafael",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "eldiarioweb.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "Elonce.com",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "El Monterizo",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Por identificar",
+      "cuenta": null,
+      "tipo": "Medio con sitio web",
+      "medio": "LM Neuquén",
+      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "publicaciones_confirmadas": 1
+    }
+  ],
+  "relevamiento": "Claude Chrome, 22/10/2026: pie de página de 30 sitios y búsqueda en Facebook y X de 5 notas. Instagram no permite buscar publicaciones por texto; los resultados de Facebook son aproximados."
+}
