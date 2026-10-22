@@ -2,7 +2,7 @@
 
 ## Qué muestra el tablero hoy
 
-La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json` y `data/canales.json`. La consulta de `/api/redes` solo se ejecuta cuando la persona pulsa **Consultar fuentes disponibles**; abrir la pestaña no inicia llamadas a las APIs. El panel en vivo muestra por separado el estado, publicaciones y seguidores que respondan las APIs de Facebook, Instagram, YouTube y X. No sustituye ni mezcla el historial con las métricas en vivo.
+La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json` y `data/canales.json`. La consulta de `/api/redes` se ejecuta automáticamente al abrir la pestaña **Redes** y se repite cada cinco minutos mientras esa sección permanezca abierta y la pestaña del navegador esté visible. También se reanuda al volver a la pestaña del navegador. El botón **Actualizar ahora** permite consultar manualmente. Este refresco ocurre mientras el tablero está abierto; no equivale todavía a una recolección en segundo plano cuando nadie tiene el tablero abierto. El panel en vivo muestra por separado el estado, publicaciones y seguidores que respondan las APIs de Facebook, Instagram, YouTube y X. No sustituye ni mezcla el historial con las métricas en vivo.
 
 ## Ruta de Cloudflare Pages y ruta heredada de Vercel
 
