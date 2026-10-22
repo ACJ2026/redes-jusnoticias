@@ -62,16 +62,26 @@ export async function getTikTokData(env) {
 
   const videoUrl = new URL("https://open.tiktokapis.com/v2/video/list/");
   videoUrl.searchParams.set("fields", "id,title,video_description,create_time,cover_image_url,share_url,view_count,like_count,comment_count,share_count");
-  const videoResponse = await fetch(videoUrl, {
-    method: "POST",
-    headers: { ...headers, "Content-Type": "application/json" },
-    body: JSON.stringify({ max_count: 20 })
-  });
-  const videoPayload = await videoResponse.json();
-  if (!videoResponse.ok || videoPayload.error?.code && videoPayload.error.code !== "ok") {
-    throw new Error("TikTok no pudo devolver los videos. Verificá que video.list esté autorizado.");
+  const rawVideos = [];
+  let cursor = null;
+  let hasMore = true;
+  for (let page = 0; page < 5 && hasMore; page++) {
+    const body = { max_count: 20 };
+    if (cursor !== null) body.cursor = cursor;
+    const videoResponse = await fetch(videoUrl, {
+      method: "POST",
+      headers: { ...headers, "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    const videoPayload = await videoResponse.json();
+    if (!videoResponse.ok || videoPayload.error?.code && videoPayload.error.code !== "ok") {
+      throw new Error("TikTok no pudo devolver los videos. Verificá que video.list esté autorizado.");
+    }
+    rawVideos.push(...(videoPayload.data?.videos || []));
+    cursor = videoPayload.data?.cursor ?? null;
+    hasMore = Boolean(videoPayload.data?.has_more);
   }
-  const videos = (videoPayload.data?.videos || []).map(video => ({
+  const videos = rawVideos.map(video => ({
     id: video.id,
     title: video.title || video.video_description || "",
     fecha: video.create_time ? new Date(video.create_time * 1000).toISOString().slice(0, 10) : null,
