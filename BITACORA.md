@@ -219,3 +219,7 @@ Próxima acción:
 - `tests/test_redes_x.mjs`: se añadió una prueba simulada para comprobar la separación de las dos páginas y que la respuesta no exponga tokens.
 - `docs/REDES_SOCIALES.md`: documenta las variables y la limitación del perfil personal.
 - Validación pendiente: ejecutar CI en la PR y probar `/api/redes` en el Preview de Cloudflare Pages con las variables configuradas. El código no ha sido validado aún con las credenciales reales de Meta. No se cambió ningún secreto ni se inició un despliegue de producción.
+
+- Actualización de validación (2026-10-22): las dos ejecuciones automáticas de GitHub Actions para el commit `fda531b41d37f3132ab66103c71b3fe6044a1179` finalizaron en `success`: sintaxis de funciones, sintaxis del tablero, prueba simulada multi-página y regresión del historial. La primera ejecución detectó dos aserciones antiguas del test de interfaz; se actualizaron para reflejar las nuevas filas y la segunda ejecución pasó.
+- PR de revisión: https://github.com/ACJ2026/redes-jusnoticias/pull/46 (abierta, en borrador, sin merge).
+- La consulta de red al Preview de Cloudflare todavía no pudo verificarse desde esta sesión; falta comprobar la respuesta real de `/api/redes` desde el navegador del usuario con los secretos de Preview. El éxito de CI no equivale a autenticación real de Meta.
