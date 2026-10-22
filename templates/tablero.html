@@ -76,7 +76,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .zero{color:var(--bad);font-weight:600}
 .dim{color:var(--muted)}
 #t-notas tbody tr{cursor:pointer}
-#b-medios .bar-row,#b-top .bar-row,#b-origen .bar-row,#b-cadena .bar-row,#b-top5m .bar-row,#b-top5n .bar-row{cursor:pointer}
+#b-medios .bar-row,#b-top .bar-row,#b-origen .bar-row,#b-cadena .bar-row,#b-top5m .bar-row,#b-top5n .bar-row,#b-territorio .bar-row{cursor:pointer}
 #b-medios .bar-row:focus-visible,#b-top .bar-row:focus-visible,#b-origen .bar-row:focus-visible,#b-cadena .bar-row:focus-visible,#b-top5m .bar-row:focus-visible,#b-top5n .bar-row:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 #medios-detalle-lista{display:flex;flex-direction:column;gap:10px}
 #medios-detalle-lista a{color:var(--accent);overflow-wrap:anywhere}
@@ -577,12 +577,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     bars('b-top5m', t5.map(r => row(r.medio, [[r.notas, 'var(--accent)']], r.notas, mx)));
     const n5 = c.notasP.slice().sort((a, b) => b.n_medios - a.n_medios).slice(0, 5), mn = n5.length ? n5[0].n_medios : 1;
     bars('b-top5n', n5.map(r => row(r.titulo, [[r.n_medios, 'var(--c3)']], r.n_medios, mn)));
-    // Los rankings del resumen abren los enlaces en la pestaña Medios, donde está el panel de referencias.
-    const abrirEnMedios = (titulo, intro, registros) => {
-      show('medios');
-      mostrarReferenciasMedios(titulo, intro, registros);
-      $('medios-detalle').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
     [...$('b-top5m').querySelectorAll('.bar-row')].forEach((e, i) => {
       const r = t5[i];
       hacerSeleccionable(e, 'Ver publicaciones de ' + r.medio, () => abrirEnMedios('Publicaciones de ' + r.medio, 'Se muestran las direcciones web registradas para este medio y las notas de JusNoticias relacionadas. Los enlaces se abren en otra pestaña; su vigencia debe comprobarse en el sitio de origen.', repOk.filter(x => en(x.mes) && x.medio === r.medio)));
@@ -649,6 +643,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     if (localidad === 'Localidad por verificar' || localidad.includes('(localidad por verificar)')) return localidad.startsWith('Chubut') ? 'Chubut' : localidad.startsWith('Santa Cruz') ? 'Patagonia fuera de Chubut' : 'Localidad por verificar';
     return 'Resto del país';
   };
+  // Los gráficos del resumen abren los enlaces en la pestaña Medios, donde está el panel de referencias.
+  const abrirEnMedios = (titulo, intro, registros) => {
+    show('medios');
+    mostrarReferenciasMedios(titulo, intro, registros);
+    $('medios-detalle').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
   const drawTerritorio = () => {
     // Una publicación = un enlace; si el mismo enlace aparece para varias notas, cuenta una vez.
     const rs = [...new Map(repOk.filter(r => en(r.mes)).map(r => [r.url, r])).values()];
@@ -666,6 +666,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const orden = [...localidades.values()].sort((a, b) => b.publicaciones - a.publicaciones || a.localidad.localeCompare(b.localidad, 'es'));
     const max = orden.length ? orden[0].publicaciones : 1;
     bars('b-territorio', orden.map(x => row(x.localidad + ' · ' + etiquetaMedios(x.medios.size), [[x.publicaciones, /verificar/.test(x.localidad) ? 'var(--muted, #8a9aa6)' : 'var(--accent)']], x.publicaciones, max)));
+    // Cada ciudad abre las publicaciones de sus medios, con el nombre y el enlace de cada uno.
+    [...$('b-territorio').querySelectorAll('.bar-row')].forEach((e, i) => {
+      const x = orden[i];
+      hacerSeleccionable(e, 'Ver publicaciones de medios con sede en ' + x.localidad, () => abrirEnMedios('Medios con sede en ' + x.localidad + ': ' + [...x.medios].sort((m1, m2) => m1.localeCompare(m2, 'es')).join(', '), 'Publicaciones de los medios de esta ciudad o cobertura dentro del período elegido. Los enlaces se abren en otra pestaña.', rs.filter(r => x.medios.has(r.medio))));
+    });
     const verif = orden.filter(x => /verificar/.test(x.localidad)).reduce((t, x) => t + x.publicaciones, 0);
     $('territorio-resumen').textContent = rs.length
       ? fmt(rs.length) + ' publicaciones en ' + fmt(new Set(rs.map(r => r.medio)).size) + ' medios. ' + fmt(rs.length - verif) + ' tienen la sede del medio identificada y ' + fmt(verif) + ' corresponden a medios con sede por verificar.'
