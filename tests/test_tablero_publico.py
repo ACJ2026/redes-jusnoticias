@@ -122,13 +122,16 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("TikTok", template)
         self.assertIn("WhatsApp", template)
 
-    def test_resumen_no_consolida_metricas_sociales_incompletas(self):
+    def test_resumen_muestra_metricas_sociales_con_su_cobertura(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertNotIn('data-k="posteos"', template)
-        self.assertNotIn('data-k="vistas"', template)
-        self.assertNotIn('data-k="seguidores"', template)
-        self.assertIn('class="big">Pendiente</div>', template)
-        self.assertIn("No se publica un total consolidado hasta integrar y validar las fuentes", template)
+        for k in ("posteos", "vistas", "seguidores"):
+            self.assertIn(f'data-k="{k}"', template)
+            self.assertIn(f'data-n="{k}"', template)
+        self.assertNotIn('class="big">Pendiente</div>', template)
+        # Cada total aclara de qué redes sale y cuáles no tienen dato.
+        self.assertIn("Solo informan vistas: ", template)
+        self.assertIn("Sin dato todavía: ", template)
+        self.assertIn("!/no computar|referencia institucional/i.test(c.estado)", template)
 
     def test_redes_pendientes_no_se_presentan_como_cero_actividad(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
