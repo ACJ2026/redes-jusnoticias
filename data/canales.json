@@ -25,21 +25,15 @@
   },
   {
     "red": "YouTube",
-    "cuenta": "Poder Judicial del Chubut (cuenta institucional distinta)",
-    "seguidores": null,
-    "estado": "Referencia institucional distinta; no computar como JusNoticias"
+    "cuenta": "Poder Judicial del Chubut (@poderjudicialdelchubut5982)",
+    "seguidores": 1200,
+    "estado": "Activa: único canal de YouTube (1,2 K suscriptores al 22/10/2026)"
   },
   {
     "red": "WhatsApp",
     "cuenta": "Canal JUSCHUBUT Noticias",
     "seguidores": 318,
     "estado": "Activa"
-  },
-  {
-    "red": "YouTube",
-    "cuenta": "JusNoticias Prensa",
-    "seguidores": null,
-    "estado": "Pendiente de verificar ID y seguidores"
   },
   {
     "red": "TikTok",
