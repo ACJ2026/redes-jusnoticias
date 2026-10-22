@@ -45,6 +45,21 @@ def conservar_historial(rows, anteriores, ids_vigentes, cobertura):
     return resultado
 
 
+def conservar_notas(notas, anteriores):
+    """Agrega las notas del historial que la fuente ya no devuelve.
+
+    El sitio puede despublicar notas viejas (por ejemplo, convocatorias vencidas);
+    el tablero mide lo que se publicó, así que se conservan. No muta las entradas.
+    """
+    resultado = [dict(n) for n in notas]
+    vigentes = {n.get("id") for n in resultado}
+    for anterior in anteriores:
+        if anterior.get("id") not in vigentes:
+            resultado.append(dict(anterior))
+            vigentes.add(anterior.get("id"))
+    return resultado
+
+
 def publicaciones_faltantes(anteriores, nuevas, ids_vigentes):
     """Devuelve parejas históricas que faltan para notas vigentes."""
     claves_anteriores = {

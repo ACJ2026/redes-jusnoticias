@@ -434,7 +434,14 @@ for medio, url in FUENTES_VERIFICADAS:
 
 
 # ---------- Conservación del historial: una revisión nueva no borra hallazgos anteriores ----------
-from historial import conservar_historial
+from historial import conservar_historial, conservar_notas
+# Las notas que la API dejó de devolver (p. ej., convocatorias despublicadas) siguen en el
+# historial, y con ellas sus publicaciones. El archivo de notas anterior está junto a PREV.
+NOTAS_PREV = os.path.join(os.path.dirname(PREV), 'notas2.json') if PREV else None
+if NOTAS_PREV and os.path.exists(NOTAS_PREV):
+    antes = len(notas)
+    notas = conservar_notas(notas, json.load(open(NOTAS_PREV, encoding='utf8')))
+    print('notas conservadas del historial', len(notas) - antes)
 ids_actuales = {n['id'] for n in notas}
 if PREV and os.path.exists(PREV):
     anteriores = json.load(open(PREV, encoding='utf8'))
