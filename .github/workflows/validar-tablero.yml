@@ -10,6 +10,10 @@ on:
     paths:
       - 'templates/tablero.html'
       - 'functions/api/google-metrics.js'
+      - 'functions/api/tiktok.js'
+      - 'functions/api/tiktok/**'
+      - 'migrations/0001_tiktok_auth_security.sql'
+      - 'tests/test_tiktok.mjs'
       - 'tests/**'
       - '.github/workflows/validar-tablero.yml'
 
@@ -30,6 +34,13 @@ jobs:
           node-version: '22'
       - name: Comprobar sintaxis de la API de Google
         run: node --check --input-type=module < functions/api/google-metrics.js
+      - name: Comprobar sintaxis de la integración TikTok
+        run: |
+          node --check --input-type=module < functions/api/tiktok.js
+          node --check --input-type=module < functions/api/tiktok/auth.js
+          node --check --input-type=module < functions/api/tiktok/callback.js
+      - name: Ejecutar pruebas de seguridad de TikTok
+        run: node --test tests/test_tiktok.mjs
       - name: Comprobar sintaxis del JavaScript del tablero
         run: |
           python3 - <<'PY'
