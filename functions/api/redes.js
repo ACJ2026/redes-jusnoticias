@@ -9,20 +9,112 @@ const json = (body, status = 200, errors = false) => new Response(JSON.stringify
   }
 });
 
+// Los mensajes de error se devuelven para diagnóstico. Antes se quitan tokens,
+// parámetros access_token y encabezados Bearer por si un proveedor los repite.
+function limpiarMensaje(error) {
+  const message = error instanceof Error ? error.message : String(error || "");
+  return (message || "Error de consulta no identificado.")
+    .replace(/access_token=[^&\s"']+/gi, "access_token=[omitido]")
+    .replace(/Bearer\s+[A-Za-z0-9._~+/=-]+/gi, "Bearer [omitido]")
+    .replace(/\bEA[A-Za-z0-9]{20,}\b/g, "[token omitido]")
+    .slice(0, 300);
+}
+
 async function get(url, token) {
   const safeUrl = new URL(url);
   // Meta token siempre viaja por Authorization, no por la URL.
   safeUrl.searchParams.delete("access_token");
   const headers = token ? { Authorization: "Bearer " + token } : {};
   const response = await fetch(safeUrl.toString(), { headers });
-  const payload = await response.json();
-  if (!response.ok || payload.error) {
-    throw new Error((payload.error && payload.error.message) || ("HTTP " + response.status));
+  let payload;
+  try {
+    payload = await response.json();
+  } catch {
+    throw new Error("HTTP " + response.status);
+  }
+  if (!response.ok || (payload && payload.error)) {
+    throw new Error((payload && payload.error && payload.error.message) || ("HTTP " + response.status));
   }
   return payload;
 }
 
 const corto = value => (value || "").replace(/\s+/g, " ").trim().slice(0, 26);
+const sumarDias = (fecha, dias) => {
+  const date = new Date(fecha + "T00:00:00Z");
+  date.setUTCDate(date.getUTCDate() + dias);
+  return date.toISOString().slice(0, 10);
+};
+
+// Métricas de página consultadas con period=days_28.
+const FB_METRICAS = ["page_media_view", "page_post_engagements", "page_views_total"];
+
+// Con period=days_28 cada valor que devuelve Meta ya es el acumulado móvil de los
+// 28 días que terminan en end_time. Sumar varios valores contaría días repetidos:
+// se toma el valor numérico más reciente.
+function ultimoValorDias28(item) {
+  const values = item && Array.isArray(item.values) ? item.values : [];
+  const validos = values
+    .filter(entry => entry && typeof entry.value === "number")
+    .sort((a, b) => String(a.end_time || "").localeCompare(String(b.end_time || "")));
+  if (!validos.length) return null;
+  const ultimo = validos[validos.length - 1];
+  return { valor: ultimo.value, hasta: ultimo.end_time ? String(ultimo.end_time).slice(0, 10) : null };
+}
+
+async function facebookPagina(id, pageToken, desde) {
+  const page = await get(`${GRAPH}/${id}?fields=name,followers_count,fan_count`, pageToken);
+  const filas = [];
+  let limiteAlcanzado = false;
+  let url = `${GRAPH}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${encodeURIComponent(desde)}&limit=100`;
+  for (let i = 0; url && i < 10; i++) {
+    const result = await get(url, pageToken);
+    (result.data || []).forEach(post => filas.push({
+      red: "Facebook", cuenta: page.name || id, fecha: (post.created_time || "").slice(0, 10),
+      texto: corto(post.message), nota_id: null,
+      me_gusta: post.reactions ? post.reactions.summary.total_count : null,
+      comentarios: post.comments ? post.comments.summary.total_count : null,
+      compartidos: post.shares ? post.shares.count : 0, vistas: null, propia: "Sí", key: "fb-" + post.id
+    }));
+    const next = result.paging && result.paging.next;
+    if (i === 9 && next) limiteAlcanzado = true;
+    url = next;
+  }
+
+  // Cada métrica se consulta de forma aislada para que una métrica retirada o sin permiso
+  // no impida mostrar las demás. Los errores se informan; nunca se sustituyen por cero.
+  const insights = {};
+  const insightsErrores = {};
+  const fechas = [];
+  await Promise.all(FB_METRICAS.map(async metric => {
+    try {
+      const payload = await get(`${GRAPH}/${id}/insights?metric=${metric}&period=days_28`, pageToken);
+      const item = (payload.data || []).find(entry => entry.name === metric);
+      if (!item) throw new Error("Meta no devolvió esta métrica.");
+      const ultimo = ultimoValorDias28(item);
+      if (!ultimo) throw new Error("Meta devolvió la métrica sin valores numéricos.");
+      insights[metric] = ultimo.valor;
+      if (ultimo.hasta) fechas.push(ultimo.hasta);
+    } catch (error) {
+      insights[metric] = null;
+      insightsErrores[metric] = limpiarMensaje(error);
+    }
+  }));
+
+  return {
+    filas,
+    limiteAlcanzado,
+    pagina: {
+      id,
+      nombre: page.name || id,
+      seguidores: page.followers_count ?? page.fan_count ?? null,
+      publicaciones: filas.length,
+      insights,
+      insightsPeriodo: "days_28",
+      insightsHasta: fechas.length ? fechas.sort()[fechas.length - 1] : null,
+      insightsErrores
+    }
+  };
+}
 
 async function facebook(desde, env) {
   const userToken = env.META_TOKEN;
@@ -33,80 +125,51 @@ async function facebook(desde, env) {
   const paginas = [];
   const filas = [];
   let limiteAlcanzado = false;
-  const metricas = ["page_media_view", "page_post_engagements", "page_views_total"];
 
+  // Cada página se procesa por separado: si una falla, se conservan los datos de la otra.
   for (let index = 0; index < pageIds.length; index++) {
     const id = pageIds[index];
-    let pageToken = index === 0 ? env.FB_PAGE_TOKEN : env.FB_PAGE_TOKEN_2;
-
-    // META_TOKEN debe ser un token de usuario para permitir obtener el token de cada página.
-    // Si se configuró un token de página dedicado, se usa como alternativa para esa página.
-    if (!pageToken && userToken) {
-      try {
-        const tokenPayload = await get(`${GRAPH}/${id}?fields=access_token`, userToken);
-        pageToken = tokenPayload.access_token;
-      } catch (error) {
-        throw new Error(`No se pudo obtener el token de la página ${id}: ${error instanceof Error ? error.message : "error de Meta"}. Revisá que META_TOKEN sea un token de usuario con pages_show_list y acceso a la página.`);
+    try {
+      let pageToken = index === 0 ? env.FB_PAGE_TOKEN : env.FB_PAGE_TOKEN_2;
+      // META_TOKEN debe ser un token de usuario: con él se obtiene el token de cada página.
+      // Insights nunca se consulta con el token de usuario.
+      if (!pageToken && userToken) {
+        try {
+          const tokenPayload = await get(`${GRAPH}/${id}?fields=access_token`, userToken);
+          pageToken = tokenPayload.access_token;
+        } catch (error) {
+          throw new Error(`No se pudo obtener el token de la página ${id}: ${limpiarMensaje(error)}. Revisá que META_TOKEN sea un token de usuario con pages_show_list y acceso a la página.`);
+        }
       }
+      if (!pageToken) throw new Error(`Falta token de acceso para la página ${id}. Configurá META_TOKEN como token de usuario o el secreto de token de página correspondiente.`);
+      const resultado = await facebookPagina(id, pageToken, desde);
+      filas.push(...resultado.filas);
+      if (resultado.limiteAlcanzado) limiteAlcanzado = true;
+      paginas.push(resultado.pagina);
+    } catch (error) {
+      paginas.push({ id, nombre: null, error: limpiarMensaje(error) });
     }
-    if (!pageToken) throw new Error(`Falta token de acceso para la página ${id}. Configurá META_TOKEN como token de usuario o el secreto de token de página correspondiente.`);
-
-    const page = await get(`${GRAPH}/${id}?fields=name,followers_count,fan_count`, pageToken);
-    const pageRows = [];
-    let url = `${GRAPH}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${encodeURIComponent(desde)}&limit=100`;
-    for (let i = 0; url && i < 10; i++) {
-      const result = await get(url, pageToken);
-      (result.data || []).forEach(post => {
-        const row = {
-          red: "Facebook", cuenta: page.name || id, fecha: (post.created_time || "").slice(0, 10),
-          texto: corto(post.message), nota_id: null,
-          me_gusta: post.reactions ? post.reactions.summary.total_count : null,
-          comentarios: post.comments ? post.comments.summary.total_count : null,
-          compartidos: post.shares ? post.shares.count : 0, vistas: null, propia: "Sí", key: "fb-" + post.id
-        };
-        pageRows.push(row);
-        filas.push(row);
-      });
-      const next = result.paging && result.paging.next;
-      if (i === 9 && next) limiteAlcanzado = true;
-      url = next;
-    }
-
-    // Cada métrica se consulta de forma aislada para que una métrica retirada o sin permiso
-    // no impida mostrar las demás. No se sustituyen errores por cero.
-    const insights = {};
-    await Promise.all(metricas.map(async metric => {
-      try {
-        const payload = await get(`${GRAPH}/${id}/insights?metric=${metric}&period=days_28`, pageToken);
-        const item = (payload.data || []).find(entry => entry.name === metric);
-        const values = item && Array.isArray(item.values) ? item.values : [];
-        insights[metric] = values.reduce((sum, entry) => {
-          const value = entry && entry.value;
-          return typeof value === "number" ? sum + value : sum;
-        }, 0);
-        if (!values.length) insights[metric] = null;
-      } catch {
-        insights[metric] = null;
-      }
-    }));
-
-    paginas.push({
-      id,
-      nombre: page.name || id,
-      seguidores: page.followers_count ?? page.fan_count ?? null,
-      publicaciones: pageRows.length,
-      insights
-    });
   }
 
-  const followerCounts = paginas.map(page => page.seguidores).filter(value => typeof value === "number");
+  if (paginas.every(page => page.error)) {
+    throw new Error("Ninguna página de Facebook respondió. " + paginas.map(page => `${page.id}: ${page.error}`).join(" | "));
+  }
+
+  // El total de seguidores solo se informa si todas las páginas lo devolvieron.
+  const completas = paginas.every(page => !page.error && typeof page.seguidores === "number");
   return {
     filas,
-    seguidores: followerCounts.length ? followerCounts.reduce((sum, value) => sum + value, 0) : null,
+    seguidores: completas ? paginas.reduce((sum, page) => sum + page.seguidores, 0) : null,
     paginas,
+    parcial: paginas.some(page => page.error),
     limiteAlcanzado
   };
 }
+
+// Graph API v26.0 limita los Insights de cuenta de Instagram con since/until a un rango
+// máximo de 30 días. Se usa la misma ventana de 28 días validada en Graph API Explorer.
+const IG_DIAS_INSIGHTS = 28;
+const IG_METRICAS = ["reach", "views", "accounts_engaged", "total_interactions"];
 
 async function instagram(desde, env) {
   const token = env.META_TOKEN;
@@ -132,26 +195,31 @@ async function instagram(desde, env) {
     url = next;
   }
 
-  // Usar el formato de Insights validado con Graph API v26.0: total_value para el rango completo.
+  // Formato validado con Graph API v26.0: period=day y metric_type=total_value para el rango.
   const hasta = new Date().toISOString().slice(0, 10);
-  const insightNames = ["reach", "views", "accounts_engaged", "total_interactions"];
+  const minimo = sumarDias(hasta, -IG_DIAS_INSIGHTS);
+  const insightsDesde = desde > minimo ? desde : minimo;
   const insights = {};
-  await Promise.all(insightNames.map(async metric => {
+  const insightsErrores = {};
+  await Promise.all(IG_METRICAS.map(async metric => {
     try {
       const query = new URLSearchParams({
         metric,
         period: "day",
         metric_type: "total_value",
-        since: desde,
+        since: insightsDesde,
         until: hasta
       });
       const payload = await get(`${GRAPH}/${id}/insights?${query.toString()}`, token);
       const item = (payload.data || []).find(entry => entry.name === metric);
-      const value = item && item.total_value && item.total_value.value;
-      insights[metric] = typeof value === "number" ? value : null;
-    } catch {
+      if (!item) throw new Error("Meta no devolvió esta métrica.");
+      const value = item.total_value && item.total_value.value;
+      if (typeof value !== "number") throw new Error("Meta devolvió la métrica sin valor total numérico.");
+      insights[metric] = value;
+    } catch (error) {
       // Una métrica no disponible no debe impedir las otras ni convertirse en cero.
       insights[metric] = null;
+      insightsErrores[metric] = limpiarMensaje(error);
     }
   }));
   return {
@@ -159,8 +227,10 @@ async function instagram(desde, env) {
     seguidores: account.followers_count ?? null,
     limiteAlcanzado,
     insights,
-    insightsDesde: desde,
-    insightsHasta: hasta
+    insightsErrores,
+    insightsDesde,
+    insightsHasta: hasta,
+    insightsRecortado: insightsDesde !== desde
   };
 }
 
@@ -273,14 +343,29 @@ export async function onRequestGet({ request, env }) {
     return json({ error: "'desde' debe estar dentro de los últimos 90 días." }, 400);
   }
 
-  const out = { actualizado: new Date().toISOString(), desde, redes: {}, errores: {} };
   const tareas = { Facebook: facebook, Instagram: instagram, YouTube: youtube, X: x };
-  await Promise.all(Object.entries(tareas).map(async ([network, fn]) => {
+  // ?redes=Facebook,Instagram limita la consulta a esas fuentes (por ejemplo, para probar
+  // solo Meta sin consultar X ni YouTube). Sin el parámetro se consultan todas.
+  let nombres = Object.keys(tareas);
+  const pedidas = url.searchParams.get("redes");
+  if (pedidas !== null) {
+    const lista = pedidas.split(",").map(value => value.trim().toLowerCase()).filter(Boolean);
+    const elegidas = nombres.filter(name => lista.includes(name.toLowerCase()));
+    const desconocidas = lista.filter(value => !nombres.some(name => name.toLowerCase() === value));
+    if (!elegidas.length || desconocidas.length) {
+      return json({ error: "'redes' admite solo: " + nombres.join(", ") + "." }, 400);
+    }
+    nombres = elegidas;
+  }
+
+  const out = { actualizado: new Date().toISOString(), desde, consultadas: nombres, redes: {}, errores: {} };
+  await Promise.all(nombres.map(async network => {
     try {
-      out.redes[network] = await fn(desde, env);
+      out.redes[network] = await tareas[network](desde, env);
     } catch (error) {
-      out.errores[network] = error instanceof Error ? error.message : "Error de consulta no identificado.";
+      out.errores[network] = limpiarMensaje(error);
     }
   }));
-  return json(out, 200, Object.keys(out.errores).length > 0);
+  const parcial = out.redes.Facebook && out.redes.Facebook.parcial;
+  return json(out, 200, Object.keys(out.errores).length > 0 || Boolean(parcial));
 }
