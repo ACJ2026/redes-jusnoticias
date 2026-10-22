@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
-from historial import conservar_historial, publicaciones_faltantes
+from historial import conservar_historial, conservar_notas, publicaciones_faltantes
 from fuentes import exigir_lista_json
 
 
@@ -21,6 +21,21 @@ class HistorialTests(unittest.TestCase):
     def test_json_con_tipo_inesperado_falla_cerrado(self):
         with self.assertRaisesRegex(RuntimeError, "JSON inesperado"):
             exigir_lista_json({"error": "timeout"}, "fuente de prueba")
+
+    def test_conserva_notas_que_la_api_ya_no_devuelve(self):
+        actuales = [{"id": 2, "titulo": "Nueva"}]
+        anteriores = [{"id": 1, "titulo": "Despublicada"}, {"id": 2, "titulo": "Vieja"}]
+        salida = conservar_notas(actuales, anteriores)
+        self.assertEqual([n["id"] for n in salida], [2, 1])
+        self.assertEqual(salida[0]["titulo"], "Nueva")
+        self.assertEqual(len(actuales), 1)
+
+    def test_publicaciones_de_nota_conservada_siguen_vigentes(self):
+        notas = conservar_notas([], [{"id": "n1"}])
+        ids = {n["id"] for n in notas}
+        anterior = [{"nota_id": "n1", "medio": "Medio A"}]
+        self.assertEqual(len(conservar_historial([], anterior, ids, {})), 1)
+        self.assertEqual(publicaciones_faltantes(anterior, [], ids), {("n1", "Medio A")})
 
     def test_conserva_publicacion_ausente_si_nota_sigue_vigente(self):
         anterior = [{"nota_id": "n1", "medio": "Medio A", "url": "https://a", "key": "p7"}]
