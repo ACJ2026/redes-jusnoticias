@@ -11,7 +11,10 @@ La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json`
 Variables que requiere la ruta social de Pages. La ruta heredada de Vercel usa las variables de Meta y YouTube; la integración de X se implementa en Pages:
 
 - `META_TOKEN`: token de Meta con los permisos mínimos necesarios.
-- `FB_PAGE_ID`: identificador de la página oficial de Facebook JusNoticias, obligatorio y sin valor por defecto.
+- `FB_PAGE_IDS`: opcional, IDs numéricos de las páginas de Facebook separados por comas; si se define, se combina con los IDs individuales y se eliminan duplicados.
+- `FB_PAGE_ID`: ID de la página Facebook JusNoticias (`prensastjchubut`), identificador conocido `116101835114568`.
+- `FB_PAGE_ID_2`: ID de la segunda página Facebook JusNoticias STJ, identificador conocido `761013867341405`.
+- `FB_PERSONAL_STJ_URL`: enlace del perfil personal «Personal STJ». Solo identifica/enlaza el perfil: no concede acceso a sus publicaciones.
 - `IG_USER_ID`: identificador de Instagram, obligatorio y correspondiente a `@jus_chubut`.
 - `YT_KEY`: clave de YouTube Data API.
 - `YT_CANAL_ID`: ID de canal confirmado para `@jusnoticiasprensa2865`.
@@ -22,7 +25,9 @@ No guardar estos valores ni tokens en el repositorio, HTML, issues o documentaci
 
 ## Cuentas entregadas para el tablero
 
-- Facebook: JusNoticias (cuenta indicada por el código como `prensastjchubut`); verificar el ID y nombre visibles.
+- Facebook: JusNoticias (`prensastjchubut`, ID `116101835114568`), independiente de la segunda página.
+- Facebook STJ: segunda página institucional (ID `761013867341405`), consultada y mostrada por separado.
+- Facebook Personal STJ: el enlace se conserva como referencia, pero el endpoint marca la integración como pendiente. Para leer publicaciones personales se requiere un flujo autorizado de Meta con el permiso `user_posts`; tener la URL no habilita la lectura y la disponibilidad depende de los permisos/aprobaciones de la aplicación.
 - Instagram: [@jus_chubut](https://www.instagram.com/jus_chubut/); verificar el ID y permisos de Meta.
 - YouTube: [JusNoticias Prensa](https://www.youtube.com/@jusnoticiasprensa2865); ID y seguidores pendientes de verificar. El canal general del Poder Judicial se conserva como referencia institucional distinta y ya no se cuenta como cuenta propia de JusNoticias.
 - X: [@Jus_Noticias](https://x.com/Jus_Noticias); la función de Pages ya consulta la API v2 con `X_BEARER_TOKEN` y `X_USER_HANDLE` (opcional, por defecto `Jus_Noticias`). Requiere una aplicación de desarrollador y acceso autorizado a la API; hasta configurar el token, la interfaz debe mostrar el error de conexión y no un cero.
