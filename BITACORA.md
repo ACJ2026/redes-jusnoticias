@@ -209,3 +209,14 @@ Próxima acción:
 - La plantilla fuente tiene el título `Juschubut Noticias`. La verificación directa del dominio público y de los endpoints Pages no pudo completarse desde las herramientas disponibles en esta sesión.
 - Pendientes externos: comprobar el despliegue real en Cloudflare Pages y revisar la respuesta de `/api/google-metrics` y `/api/redes` en producción. Para Google se requieren las variables `GOOGLE_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID` y `GSC_SITE_URL`, más permisos de lectura de la cuenta de servicio. Para redes, revisar los secretos e IDs correspondientes en el entorno Pages.
 - No se alteró WordPress, no se reconstruyeron ni borraron registros históricos y no se declaró validación de extremo a extremo.
+
+
+### 2026-10-22 — Diagnóstico aislado del canal de WhatsApp
+
+- Objetivo: comprobar si una función de Cloudflare Pages puede consultar la página pública del canal sin pedir al usuario acceso a las estadísticas de administración.
+- Rama: `diagnostico-whatsapp-canal`, creada desde `main`; no se modificó `main` ni el endpoint de métricas existente.
+- Archivo añadido: `functions/api/whatsapp-channel.js`. La ruta de prueba es `/api/whatsapp-channel` en el despliegue Preview de esta rama.
+- La función consulta la URL pública conocida, informa estado HTTP, tipo de contenido, presencia del identificador del canal y un posible candidato de contador si aparece en el HTML. No devuelve el HTML completo, no registra datos privados y marca explícitamente el contador como no verificado.
+- La función no incorpora la cifra a las métricas del tablero ni interpreta la ausencia del contador como cero.
+- Estado de validación al registrar: código subido a la rama; todavía falta comprobar el despliegue Preview y ejecutar la ruta. Hasta obtener esa respuesta, la accesibilidad desde Cloudflare y la extracción del contador siguen **sin verificar**.
+- Próximo paso: revisar el Preview generado por Cloudflare Pages y consultar `/api/whatsapp-channel`. Si el HTML no contiene un contador fiable, mantener el dato de 318 seguidores de `data/canales.json` únicamente como último valor registrado, no como cifra actual. No fusionar a `main` sin revisar el resultado.
