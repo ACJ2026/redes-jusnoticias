@@ -31,6 +31,12 @@ No guardar estos valores ni tokens en el repositorio, HTML, issues o documentaci
 - TikTok: [@juschubut](https://www.tiktok.com/@juschubut); el dominio `https://jusnoticias.pages.dev/` ya está verificado en TikTok Developers. La autorización OAuth, el callback de producción, el almacenamiento seguro de tokens y la consulta de Display API siguen pendientes.
 - WhatsApp: [Agencia de Comunicación Judicial](https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p); determinar qué estadísticas ofrece el canal antes de diseñar métricas.
 
+## Instagram Insights: prueba validada con Graph API v26.0
+
+El 22/10/2026 se verificó en Graph API Explorer el perfil `@jus_chubut` (ID `17841410514175238`), que devolvió `followers_count=2610` y `media_count=2938`. También respondió la consulta de Insights con `metric=reach,views,accounts_engaged,total_interactions`, `period=day`, `metric_type=total_value` y un rango explícito de fechas. La respuesta de prueba informó alcance 2344, visualizaciones 44072, cuentas que interactuaron 430 e interacciones totales 665 para el rango consultado por el usuario, del 24/09/2026 al 22/10/2026.
+
+En la rama de trabajo, la función de Instagram consulta esas cuatro métricas de forma aislada con el rango solicitado por la API y las devuelve bajo `insights`; la interfaz muestra los valores por separado y su rango. Si una métrica falla, se muestra como no disponible, nunca como cero. La prueba manual confirma que la consulta funciona con el token/permisos del Explorador; todavía debe validarse desde el entorno de Cloudflare Pages con el secreto configurado y no equivale a un despliegue de producción.
+
 ## X: solicitudes, costos y errores de créditos
 
 Una consulta exitosa a X realiza una llamada `GET /2/users/by/username/{username}?user.fields=public_metrics` para el perfil y entre una y diez llamadas `GET /2/users/{id}/tweets` (100 publicaciones por página, acotadas a los últimos 90 días). En total son **2 a 11 solicitudes HTTP por consulta**; si la primera llamada devuelve un error, la paginación no comienza. No se consultan endpoints de búsqueda ni se hacen escrituras.
