@@ -131,7 +131,37 @@ async function instagram(desde, env) {
     if (i === 9 && next) { limiteAlcanzado = true; break; }
     url = next;
   }
-  return { filas, seguidores: account.followers_count ?? null, limiteAlcanzado };
+
+  // Usar el formato de Insights validado con Graph API v26.0: total_value para el rango completo.
+  const hasta = new Date().toISOString().slice(0, 10);
+  const insightNames = ["reach", "views", "accounts_engaged", "total_interactions"];
+  const insights = {};
+  await Promise.all(insightNames.map(async metric => {
+    try {
+      const query = new URLSearchParams({
+        metric,
+        period: "day",
+        metric_type: "total_value",
+        since: desde,
+        until: hasta
+      });
+      const payload = await get(`${GRAPH}/${id}/insights?${query.toString()}`, token);
+      const item = (payload.data || []).find(entry => entry.name === metric);
+      const value = item && item.total_value && item.total_value.value;
+      insights[metric] = typeof value === "number" ? value : null;
+    } catch {
+      // Una métrica no disponible no debe impedir las otras ni convertirse en cero.
+      insights[metric] = null;
+    }
+  }));
+  return {
+    filas,
+    seguidores: account.followers_count ?? null,
+    limiteAlcanzado,
+    insights,
+    insightsDesde: desde,
+    insightsHasta: hasta
+  };
 }
 
 async function x(desde, env) {
