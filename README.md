@@ -5,7 +5,7 @@ Tablero de repercusión y comunicación judicial de la Agencia de Comunicación 
 ## Vista previa
 
 - **Producción (Cloudflare Pages):** https://jusnoticias.pages.dev/
-- La vista previa de la rama de trabajo no es la URL de producción: https://feature-indicadores-faciles.redes-jusnoticias.pages.dev/
+- Es la única dirección del tablero (público, API y callbacks). `redes-jusnoticias.pages.dev` quedó descartada: no usarla en configuraciones, URIs de retorno ni enlaces. Las vistas previas de cada rama usan `<rama>.jusnoticias.pages.dev`.
 
 ## Cómo se genera
 

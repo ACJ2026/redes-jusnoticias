@@ -37,7 +37,7 @@ Crear una base D1 independiente para Preview, vincularla solo al entorno Preview
 
 La URI registrada debe coincidir exactamente con `TIKTOK_REDIRECT_URI` y con la usada en el intercambio del código.
 
-- Producción: `https://redes-jusnoticias.pages.dev/api/tiktok/callback`
+- Producción: `https://jusnoticias.pages.dev/api/tiktok/callback` (única dirección de producción; `redes-jusnoticias.pages.dev` está descartada)
 - Preview configurado en Cloudflare para esta rama: `https://feature-tiktok-display-oauth.jusnoticias.pages.dev/api/tiktok/callback`
 
 El valor de Preview `TIKTOK_REDIRECT_URI` debe ser exactamente la URL anterior. El código la valida y no deriva una URI alternativa del host de la solicitud. Confirmar también que TikTok Developers tenga registrada esa misma URI; no se puede comprobar desde la configuración de Cloudflare.
