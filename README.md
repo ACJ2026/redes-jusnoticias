@@ -15,14 +15,14 @@ Tablero de repercusión y comunicación judicial de la Agencia de Comunicación 
 - `scripts/armar_publico.py` combina la plantilla y los datos para generar `publico/tablero_publico.html`; el workflow copia ese resultado a `publico/index.html`.
 - `.github/workflows/actualizar.yml` programa el relevamiento cada dos horas, en el minuto 59 (cron de GitHub en UTC; en Argentina (UTC-3) corre al minuto 59 de horas impares: 21:59, 23:59, 01:59, 03:59, 05:59, 07:59, 09:59, 11:59, 13:59, 15:59, 17:59 y 19:59).
 - `functions/api/google-metrics.js` es la Pages Function para Google Analytics 4 y Search Console.
-- `functions/api/redes.js` consulta Facebook, Instagram, YouTube y X en Cloudflare Pages; la pestaña Redes ya consulta `/api/redes` y muestra el estado y los errores de cada fuente. Para obtener cifras necesita los IDs y secretos de Meta y YouTube configurados en Pages. X ya tiene una consulta preparada, pero requiere un token autorizado de X; TikTok y WhatsApp siguen pendientes de integración y no se incluyen en un total general.
+- `functions/api/redes.js` consulta Facebook, Instagram, YouTube y X en Cloudflare Pages, y ahora integra también TikTok mediante Display API y OAuth. TikTok dispone de las rutas `/api/tiktok/auth`, `/api/tiktok/callback` y `/api/tiktok`; requiere Client Key/Secret, una clave administrativa de conexión y un binding KV llamado `TIKTOK_KV`. Ver `docs/TIKTOK_DISPLAY_API.md` antes de configurar Preview. La integración todavía requiere credenciales, autorización de `@juschubut` y aprobación de los permisos en TikTok Developers. WhatsApp sigue pendiente y no se incluye como cero actividad.
 
 ## Documentación y pruebas
 
 - [Checklist general de trabajo](docs/CHECKLIST_TRABAJO_TABLERO.md)
 - [Manual sencillo del tablero](docs/MANUAL_TABLERO.md)
 - [Configuración de métricas de Google](docs/GOOGLE_METRICS.md)
-- [Estado de la integración de redes sociales](docs/REDES_SOCIALES.md)
+- [Estado de la integración de redes sociales](docs/REDES_SOCIALES.md)\n- [Configuración de TikTok Display API](docs/TIKTOK_DISPLAY_API.md)
 - [Guía de Cloudflare Pages y estado de migración](docs/CLOUDFLARE_PAGES.md)
 
 Para ejecutar las pruebas de regresión del historial:
