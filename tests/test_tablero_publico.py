@@ -177,6 +177,11 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("{ value: r => r.pagina, link: r => r.pagina }", template)
         self.assertIn("new URL(String(v), 'https://jusnoticias.juschubut.gov.ar')", template)
 
+    def test_ciudades_de_la_tarjeta_territorial_abren_los_medios(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("[...$('b-territorio').querySelectorAll('.bar-row')].forEach", template)
+        self.assertIn("rs.filter(r => x.medios.has(r.medio))", template)
+
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const filaPaginaFacebook = (p, result) =>", template)
