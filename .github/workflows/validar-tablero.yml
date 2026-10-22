@@ -12,6 +12,7 @@ on:
       - 'templates/tablero.html'
       - 'functions/api/redes.js'
       - 'functions/api/google-metrics.js'
+      - 'functions/api/whatsapp-channel.js'
       - 'tests/**'
       - '.github/workflows/validar-tablero.yml'
 
@@ -36,6 +37,8 @@ jobs:
         run: node --check --input-type=module < functions/api/redes.js
       - name: Probar el manejo de errores de X
         run: node --test tests/test_redes_x.mjs
+      - name: Probar el diagnóstico del canal de WhatsApp
+        run: node --test tests/test_whatsapp_channel.mjs
       - name: Comprobar sintaxis del JavaScript del tablero
         run: |
           python3 - <<'PY'

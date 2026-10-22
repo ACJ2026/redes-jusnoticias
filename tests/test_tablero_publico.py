@@ -140,6 +140,22 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertTrue(any(c["red"] == "WhatsApp" for c in canales))
         self.assertTrue(any("pendiente" in c["estado"].lower() for c in canales if c["red"] == "TikTok"))
 
+    def test_diagnostico_whatsapp_separa_candidato_de_historial(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        canales = read_json("data/canales.json")
+        whatsapp = next(c for c in canales if c["red"] == "WhatsApp")
+        endpoint = (ROOT / "functions/api/whatsapp-channel.js").read_text(encoding="utf-8")
+        self.assertIn('id="whatsapp-canal-diagnostico"', template)
+        self.assertIn("fetch('/api/whatsapp-channel'", template)
+        self.assertIn("data.followerCountVerified === true", template)
+        self.assertIn("No es una cifra oficial.", template)
+        self.assertIn("el diagnóstico no la sobrescribe", template)
+        self.assertIn("Canal identificado: ' + data.channelName", template)
+        self.assertIn("channelName === CHANNEL_EXPECTED_NAME", endpoint)
+        self.assertEqual(whatsapp["seguidores"], 318)
+        self.assertIn("histórico", whatsapp["estado"].lower())
+        self.assertNotIn("341", json.dumps(whatsapp))
+
     def test_generador_publico_ejecuta_y_usa_la_plantilla_legible(self):
         nombres = ["notas", "repercusion", "redes", "canales", "medios"]
         muestras = {

@@ -229,3 +229,14 @@ Próxima acción:
 - El contador continúa marcado como no verificado en todos los casos. No se convierte en métrica del tablero ni se interpreta la falta de resultado como cero.
 - Commit de corrección: `c496af1dae84972b6e4c243d7c01ada10ae74bb8`, en la rama `diagnostico-whatsapp-canal`.
 - Pendiente: comprobar el resultado del nuevo Preview y ejecutar pruebas de sintaxis/endpoint. Esta corrección no modifica `main`, el dato histórico de 318 ni el endpoint de métricas de producción.
+
+
+### 2026-10-22 — Verificación de contexto y estado de WhatsApp en el tablero
+
+- Estado confirmado de la PR #44: abierta, sin merge; la rama local `diagnostico-whatsapp-canal` sigue `origin/diagnostico-whatsapp-canal` en `1bc9aed`. Se trabajó sobre esa rama, sin copiar archivos temporales ni duplicar commits.
+- En la página pública oficial consultada, el `og:title` exacto es `JUSCHUBUT Noticias del Poder Judicial de Chubut`. El inventario lo identifica como `Canal JUSCHUBUT Noticias`; el mismo HTML describe el canal como perteneciente a la Agencia de Comunicación Judicial del Superior Tribunal de Justicia del Chubut y contiene el ID esperado.
+- El valor `341` aparece como `341 followers` en `og:description` y en el texto visible del canal (`Channel • 341 followers`). Esto confirma que el candidato corresponde al contador público de seguidores de la página de WhatsApp, no a otra cifra del HTML. Sigue marcado en el endpoint como no verificado independientemente; no se publica como cifra oficial en el tablero.
+- El tablero incorpora una consulta manual y aislada a `/api/whatsapp-channel`, muestra el nombre exacto solo si coinciden el ID y el título, y distingue el candidato no verificado de una cifra verificada. La consulta no llama a `/api/redes`.
+- `data/canales.json` conserva `318` sin cambios como último registro histórico y ahora lo identifica expresamente como histórico; el diagnóstico no lo sobrescribe.
+- Pruebas añadidas para nombre exacto, candidato no verificado y preservación del historial. Pasaron 2/2 pruebas Node del endpoint, 34/34 pruebas Python, `node --check` de la Function y del JavaScript del tablero, y `git diff --check`.
+- No se fusionó la PR #44 ni se desplegó a producción. La modificación queda en la rama de prueba para revisión.

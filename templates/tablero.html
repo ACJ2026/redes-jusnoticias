@@ -316,6 +316,14 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
       <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th></tr></thead><tbody><tr><td colspan="5">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
     </div>
+    <div class="card" id="whatsapp-canal-diagnostico">
+      <h2>Diagnóstico del canal público de WhatsApp</h2>
+      <p class="note">La comprobación consulta solamente la página pública; no modifica las métricas en vivo ni el historial.</p>
+      <div class="tools"><button class="btn" id="whatsapp-canal-consultar" type="button">Consultar canal público</button></div>
+      <p class="note" id="whatsapp-canal-identidad" role="status">Identidad del canal pendiente de consulta.</p>
+      <p class="note" id="whatsapp-canal-contador">No hay un contador público verificado en esta consulta.</p>
+      <p class="note" id="whatsapp-canal-historico">Último registro histórico: 318 seguidores. No es una cifra actual.</p>
+    </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
       <p class="note">Distribución de los registros históricos cargados. No es un monitoreo completo ni se suma a las métricas en vivo; Facebook propio se empezó a contar en septiembre. Las plataformas pendientes no se representan como cero actividad.</p>
@@ -700,6 +708,42 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
   };
   let redesVivoEnCurso = false;
+  let whatsappCanalEnCurso = false;
+  const consultarCanalWhatsApp = async () => {
+    if (whatsappCanalEnCurso) return;
+    whatsappCanalEnCurso = true;
+    const boton = $('whatsapp-canal-consultar');
+    const identidad = $('whatsapp-canal-identidad');
+    const contador = $('whatsapp-canal-contador');
+    boton.disabled = true;
+    identidad.textContent = 'Consultando la página pública de WhatsApp...';
+    contador.textContent = 'Contador pendiente de verificación.';
+    try {
+      const response = await fetch('/api/whatsapp-channel', { headers: { Accept: 'application/json' }, cache: 'no-store' });
+      const data = await response.json();
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const identidadConfirmada = data.available && data.channelIdentifierFound && data.channelNameFound;
+      identidad.textContent = identidadConfirmada
+        ? 'Canal identificado: ' + data.channelName + '. El nombre coincide exactamente con el esperado y el identificador público está presente.'
+        : 'No se pudo confirmar la identidad exacta del canal en la página pública.';
+      const candidato = typeof data.followerCountCandidate === 'string' && /^[\d.,\s]+$/.test(data.followerCountCandidate)
+        ? data.followerCountCandidate.trim()
+        : null;
+      if (identidadConfirmada && data.followerCountVerified === true && candidato) {
+        contador.textContent = 'Contador verificado en la fuente pública: ' + candidato + ' seguidores. Consulta: ' + (data.checkedAt || 'fecha no informada') + '.';
+      } else if (identidadConfirmada && candidato) {
+        contador.textContent = 'Candidato de la página pública: ' + candidato + ' seguidores; pendiente de verificación independiente. No es una cifra oficial.';
+      } else {
+        contador.textContent = 'No hay un contador de seguidores verificado. La ausencia del dato no equivale a cero.';
+      }
+    } catch (error) {
+      identidad.textContent = 'No se pudo consultar la página pública del canal.';
+      contador.textContent = 'Contador pendiente de verificación; se conserva el registro histórico y no se interpreta la ausencia del dato como cero.';
+    } finally {
+      whatsappCanalEnCurso = false;
+      boton.disabled = false;
+    }
+  };
   const consultarRedesVivo = async () => {
     if (redesVivoEnCurso) return;
     redesVivoEnCurso = true;
@@ -929,6 +973,7 @@ const draw = () => {
     draw();
   };
   $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
+  $('whatsapp-canal-consultar').addEventListener('click', consultarCanalWhatsApp);
   document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
   $('ir-completo').addEventListener('click', () => { show('medios'); document.querySelector('.tabs').scrollIntoView(); });
   const detalle = (id) => {
@@ -961,6 +1006,8 @@ const draw = () => {
   let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(draw, 150); });
 
   $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. Datos relevados: ' + (D.datos_actualizados ? new Date(D.datos_actualizados).toLocaleString('es-AR') : 'fecha no disponible') + '. Tablero generado: ' + D.actualizado + '.';
+  const whatsappHistorico = D.canales.find(c => c.red === 'WhatsApp');
+  $('whatsapp-canal-historico').textContent = 'Último registro histórico: ' + (whatsappHistorico && whatsappHistorico.seguidores !== null && whatsappHistorico.seguidores !== undefined ? fmt(whatsappHistorico.seguidores) : 'no disponible') + ' seguidores. No es una cifra actual y el diagnóstico no la sobrescribe.';
   const fechaHistorial = D.datos_actualizados ? new Date(D.datos_actualizados) : null;
   $('redes-historial-actualizado').textContent = 'Última actualización de los datos históricos: ' + (fechaHistorial && Number.isFinite(fechaHistorial.getTime()) ? fechaHistorial.toLocaleString('es-AR') : 'fecha no disponible') + '. No son métricas en vivo.';
   const h = location.hash.slice(1);

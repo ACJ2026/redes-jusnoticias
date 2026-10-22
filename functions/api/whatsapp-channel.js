@@ -1,5 +1,6 @@
 const CHANNEL_URL = "https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p";
 const CHANNEL_ID = "0029VaGP0tX0lwgpiNAnBb1p";
+const CHANNEL_EXPECTED_NAME = "JUSCHUBUT Noticias del Poder Judicial de Chubut";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data, null, 2), {
@@ -42,7 +43,9 @@ export async function onRequestGet() {
     // Inspect only the public page response; never return or log its HTML.
     const html = (await response.text()).slice(0, 2_000_000);
     const hasChannelId = html.includes(CHANNEL_ID);
-    const hasChannelName = /JUSCHUBUT\s+Noticias/i.test(html);
+    const channelNameMatch = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i);
+    const channelName = channelNameMatch ? channelNameMatch[1].trim() : null;
+    const hasChannelName = channelName === CHANNEL_EXPECTED_NAME;
 
     // A candidate must be adjacent to an explicit follower label and numeric.
     // It remains unverified until independently validated; never use it as a KPI.
@@ -72,6 +75,8 @@ export async function onRequestGet() {
       redirected: response.url !== CHANNEL_URL,
       channelIdentifierFound: hasChannelId,
       channelNameFound: hasChannelName,
+      channelName,
+      expectedChannelName: CHANNEL_EXPECTED_NAME,
       followerCountCandidate: followerText,
       followerCountVerified: false,
       note: followerText
