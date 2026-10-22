@@ -744,6 +744,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       if (red === 'Instagram' && result.insights) {
         return Object.keys(result.insights).map(m => valorInsight(result.insights, m)).join(' · ') + ' (' + (result.insightsDesde || data.desde || 'inicio no informado') + ' a ' + (result.insightsHasta || 'fin no informado') + ')';
       }
+      // YouTube, TikTok y X no tienen Insights de cuenta con esta conexión: se suman las métricas que la API da por publicación.
+      const filas = Array.isArray(result.filas) ? result.filas : [];
+      const metricas = [['vistas', 'Vistas'], ['me_gusta', 'Me gusta'], ['comentarios', 'Comentarios'], ['compartidos', 'Compartidos']]
+        .map(([k, nombre]) => { const xs = filas.filter(r => typeof r[k] === 'number'); return xs.length ? nombre + ' ' + fmt(xs.reduce((t, r) => t + r[k], 0)) : null; })
+        .filter(Boolean);
+      if (metricas.length) return metricas.join(' · ') + ' (suma de ' + fmt(filas.length) + (filas.length === 1 ? ' publicación' : ' publicaciones') + ' de la ventana)';
       return '—';
     };
     const estadoFuente = result => {

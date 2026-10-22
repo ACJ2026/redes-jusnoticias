@@ -145,6 +145,11 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertTrue(any(isinstance(c["seguidores"], int) and c["estado"].startswith("Activa") for c in canales if c["red"] == "TikTok"))
         self.assertTrue(any("pendiente" in c["estado"].lower() for c in canales if c["red"] == "WhatsApp" or c["cuenta"] == "JusNoticias Prensa"))
 
+    def test_panel_en_vivo_suma_metricas_por_publicacion_sin_insights_de_cuenta(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("' de la ventana)'", template)
+        self.assertIn("['vistas', 'Vistas'], ['me_gusta', 'Me gusta']", template)
+
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const filaPaginaFacebook = (p, result) =>", template)
