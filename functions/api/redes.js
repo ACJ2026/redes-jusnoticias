@@ -78,53 +78,6 @@ async function instagram(desde, env) {
   return { filas, seguidores: account.followers_count ?? null, limiteAlcanzado };
 }
 
-async function x(desde, env) {
-  const token = env.X_BEARER_TOKEN;
-  const username = String(env.X_USER_HANDLE || "Jus_Noticias").replace(/^@/, "");
-  if (!token) throw new Error("Falta configurar X_BEARER_TOKEN con acceso autorizado a la API de X.");
-  const api = "https://api.x.com/2";
-  const getX = async url => {
-    try {
-      return await get(url, token);
-    } catch (error) {
-      if (error instanceof Error && error.message === "HTTP 402") {
-        throw new Error("La API de X requiere créditos o acceso habilitado.");
-      }
-      if (error instanceof Error && error.message === "HTTP 403") {
-        throw new Error("La aplicación de X no tiene acceso habilitado a este endpoint.");
-      }
-      throw error;
-    }
-  };
-  const userPayload = await getX(`${api}/users/by/username/${encodeURIComponent(username)}?user.fields=public_metrics`);
-  const user = userPayload.data;
-  if (!user || !user.id) throw new Error("No se encontró la cuenta de X indicada por X_USER_HANDLE.");
-  const filas = [];
-  let url = `${api}/users/${encodeURIComponent(user.id)}/tweets?tweet.fields=created_at,public_metrics&max_results=100&start_time=${encodeURIComponent(desde + "T00:00:00Z")}`;
-  let limiteAlcanzado = false;
-  for (let i = 0; url && i < 10; i++) {
-    const result = await getX(url);
-    (result.data || []).forEach(post => {
-      if (!post.created_at || post.created_at.slice(0, 10) < desde) return;
-      const stats = post.public_metrics || {};
-      filas.push({
-        red: "X", cuenta: "@" + (user.username || username), fecha: post.created_at.slice(0, 10),
-        texto: corto(post.text), nota_id: null, me_gusta: stats.like_count ?? null,
-        comentarios: stats.reply_count ?? null,
-        compartidos: (Number(stats.retweet_count) || 0) + (Number(stats.quote_count) || 0),
-        vistas: stats.impression_count ?? null, propia: "Sí", key: "x-" + post.id
-      });
-    });
-    const next = result.meta && result.meta.next_token;
-    if (!next) break;
-    if (i === 9) { limiteAlcanzado = true; break; }
-    const nextUrl = new URL(url);
-    nextUrl.searchParams.set("pagination_token", next);
-    url = nextUrl.toString();
-  }
-  return { filas, seguidores: user.public_metrics && user.public_metrics.followers_count !== undefined ? user.public_metrics.followers_count : null, limiteAlcanzado };
-}
-
 async function youtube(desde, env) {
   const key = env.YT_KEY;
   const channelId = env.YT_CANAL_ID;
@@ -188,7 +141,7 @@ export async function onRequestGet({ request, env }) {
   }
 
   const out = { actualizado: new Date().toISOString(), desde, redes: {}, errores: {} };
-  const tareas = { Facebook: facebook, Instagram: instagram, YouTube: youtube, X: x };
+  const tareas = { Facebook: facebook, Instagram: instagram, YouTube: youtube };
   await Promise.all(Object.entries(tareas).map(async ([network, fn]) => {
     try {
       out.redes[network] = await fn(desde, env);
