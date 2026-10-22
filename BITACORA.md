@@ -209,3 +209,13 @@ Próxima acción:
 - La plantilla fuente tiene el título `Juschubut Noticias`. La verificación directa del dominio público y de los endpoints Pages no pudo completarse desde las herramientas disponibles en esta sesión.
 - Pendientes externos: comprobar el despliegue real en Cloudflare Pages y revisar la respuesta de `/api/google-metrics` y `/api/redes` en producción. Para Google se requieren las variables `GOOGLE_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID` y `GSC_SITE_URL`, más permisos de lectura de la cuenta de servicio. Para redes, revisar los secretos e IDs correspondientes en el entorno Pages.
 - No se alteró WordPress, no se reconstruyeron ni borraron registros históricos y no se declaró validación de extremo a extremo.
+
+
+### 2026-10-22 — X pasa a modo exclusivamente manual para evitar cargos
+
+- Rama de trabajo: `fix/x-manual-sin-api`, creada desde `main`. No se modifica `main` ni se publica producción en esta intervención.
+- Se retiró el recolector de X de `functions/api/redes.js`: el endpoint `/api/redes` ya no ejecuta solicitudes a la API de X, incluso si quedara configurado un token.
+- El panel de consulta en vivo solo consulta Facebook, Instagram y YouTube. X aparece como carga manual, sin mostrar métricas de API ni confundir la ausencia de consulta con cero actividad.
+- Las cifras históricas de X siguen conservadas en `data/redes2.json` y `data/canales.json`; no se actualizan automáticamente ni se borran. Para actualizar, se incorporarán datos comprobables de forma manual.
+- Se sincronizaron la plantilla y los dos HTML públicos para que la prueba de consistencia no falle.
+- Pruebas actualizadas para comprobar que no existe código de consulta a `api.x.com`, no se utiliza `X_BEARER_TOKEN` y no se generan solicitudes de X. Pendiente: ejecutar CI y revisar la PR antes de cualquier integración.
