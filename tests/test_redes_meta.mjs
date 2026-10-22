@@ -168,6 +168,20 @@ test("si fallan ambas páginas Facebook informa un error con el detalle de cada 
   assert.match(body.errores.Facebook, /222: .*Missing Permission/);
 });
 
+test("un error largo de Meta no oculta el detalle de la segunda página", async () => {
+  const largo = "Error validating access token: Session has expired on Thursday, 22-Oct-26 10:00:00 PDT. The current time is Thursday, 22-Oct-26 10:54:14 PDT.";
+  const mock = meta();
+  const original = mock.handler;
+  mock.handler = async (input, options) => {
+    const url = new URL(String(input));
+    if (url.searchParams.get("fields") === "access_token") return metaError(largo, 190);
+    return original(input, options);
+  };
+  const body = await (await call("/api/redes?redes=Facebook", mock)).json();
+  assert.match(body.errores.Facebook, /111: No se pudo obtener el token de la página 111: Error validating access token/);
+  assert.match(body.errores.Facebook, /222: No se pudo obtener el token de la página 222: Error validating access token/);
+});
+
 test("con las dos páginas completas suma seguidores", async () => {
   const mock = meta({ insights: { [PAGE_1]: {}, [PAGE_2]: {} } });
   const body = await (await call("/api/redes?redes=Facebook", mock)).json();
