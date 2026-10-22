@@ -167,6 +167,40 @@ test("si Meta rechaza /posts igual se consultan Insights y no se informan cero p
   assert.equal(fb.paginas[1].insights.page_media_view, 300);
 });
 
+test("usa el token de página guardado y, si falla, lo obtiene con META_TOKEN", async () => {
+  const mock = meta({ insights: { [PAGE_1]: {}, [PAGE_2]: {} } });
+  const original = mock.handler;
+  mock.handler = async (input, options = {}) => {
+    const auth = (options.headers && options.headers.Authorization) || "";
+    if (auth === "Bearer guardado-vencido") return metaError("Error validating access token: Session has expired", 190);
+    if (auth === "Bearer guardado-ok") {
+      const url = new URL(String(input));
+      if (url.searchParams.get("fields") === "access_token") throw new Error("no debe derivar");
+      return original(input, { headers: { Authorization: "Bearer EAApagetoken" + url.pathname.split("/")[2] + "abcdefghijklmnopqrstuv" } });
+    }
+    return original(input, options);
+  };
+  const body = await (await call("/api/redes?redes=Facebook", mock, { ...env, FB_PAGE_TOKEN: "guardado-ok", FB_PAGE_TOKEN_2: "guardado-vencido" })).json();
+  const fb = body.redes.Facebook;
+  assert.equal(fb.parcial, false);
+  assert.equal(fb.paginas.length, 2);
+  const derivadas = mock.requests.filter(r => new URL(r.url).searchParams.get("fields") === "access_token");
+  assert.deepEqual(derivadas.map(r => new URL(r.url).pathname.split("/")[2]), [PAGE_2]);
+});
+
+test("sin META_TOKEN, un token de página guardado vencido se informa como error de esa página", async () => {
+  const mock = meta({ insights: { [PAGE_1]: {} } });
+  const original = mock.handler;
+  mock.handler = async (input, options = {}) => {
+    const auth = (options.headers && options.headers.Authorization) || "";
+    if (auth === "Bearer vencido") return metaError("Error validating access token: Session has expired", 190);
+    return original(input, options);
+  };
+  const { META_TOKEN, ...sinUsuario } = env;
+  const body = await (await call("/api/redes?redes=Facebook", mock, { ...sinUsuario, FB_PAGE_ID_2: "", FB_PAGE_TOKEN: "vencido" })).json();
+  assert.match(body.errores.Facebook, /El token guardado de la página 111 falló: Error validating access token/);
+});
+
 test("si una página falla se conservan los datos de la otra", async () => {
   const mock = meta({
     failToken: [PAGE_2],
