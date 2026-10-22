@@ -42,6 +42,17 @@ function isConfigured(env) {
   );
 }
 
+function missingConfiguration(env) {
+  const missing = [];
+  if (!env.TIKTOK_CLIENT_KEY) missing.push("TIKTOK_CLIENT_KEY");
+  if (!env.TIKTOK_CLIENT_SECRET) missing.push("TIKTOK_CLIENT_SECRET");
+  if (!env.TIKTOK_CONNECT_KEY) missing.push("TIKTOK_CONNECT_KEY");
+  if (!env.TIKTOK_KV) missing.push("TIKTOK_KV");
+  if (!env.TIKTOK_AUTH_DB) missing.push("TIKTOK_AUTH_DB");
+  if (!validRedirectUri(env.TIKTOK_REDIRECT_URI)) missing.push("TIKTOK_REDIRECT_URI");
+  return missing;
+}
+
 async function hash(value) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
   return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, "0")).join("");
@@ -99,7 +110,7 @@ async function recordFailedAttempt(db, ipHash, now) {
 
 export async function onRequestGet({ env }) {
   if (!isConfigured(env)) {
-    return reply("TikTok no está configurado de forma segura en este entorno.", 503);
+    return reply(`Configuración ausente: ${missingConfiguration(env).join(", ")}`, 503);
   }
   return reply(`<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Conectar TikTok</title><body style="font:16px system-ui;max-width:560px;margin:4rem auto;padding:1rem"><h1>Conectar la cuenta institucional de TikTok</h1><p>Ingresá la clave administrativa de conexión configurada en Cloudflare. Esta clave no es la Client Secret de TikTok.</p><form method="post" action="/api/tiktok/auth"><label for="connect_key">Clave de conexión</label><p><input id="connect_key" name="connect_key" type="password" autocomplete="current-password" required style="width:100%;padding:.7rem"></p><button type="submit" style="padding:.7rem 1rem">Continuar a TikTok</button></form></body></html>`, 200, "text/html; charset=utf-8");
 }
