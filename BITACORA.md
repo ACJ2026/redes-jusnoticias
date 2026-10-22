@@ -209,3 +209,13 @@ Próxima acción:
 - La plantilla fuente tiene el título `Juschubut Noticias`. La verificación directa del dominio público y de los endpoints Pages no pudo completarse desde las herramientas disponibles en esta sesión.
 - Pendientes externos: comprobar el despliegue real en Cloudflare Pages y revisar la respuesta de `/api/google-metrics` y `/api/redes` en producción. Para Google se requieren las variables `GOOGLE_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID` y `GSC_SITE_URL`, más permisos de lectura de la cuenta de servicio. Para redes, revisar los secretos e IDs correspondientes en el entorno Pages.
 - No se alteró WordPress, no se reconstruyeron ni borraron registros históricos y no se declaró validación de extremo a extremo.
+
+### 2026-10-22 — Integración de dos páginas de Facebook y delimitación del perfil personal
+
+- Rama de trabajo: `feature/facebook-multi-pages`, creada desde `main`; no se modificó `main` ni se fusionó ninguna PR.
+- `functions/api/redes.js`: ahora acepta `FB_PAGE_IDS` separado por comas y/o `FB_PAGE_ID` + `FB_PAGE_ID_2`; deduplica los IDs y consulta cada página por separado. Los IDs conocidos se publican como fuentes distintas: JusNoticias y Facebook STJ. Los errores se informan por página sin convertirlos en ceros.
+- `templates/tablero.html`, `publico/index.html` y `publico/tablero_publico.html`: el panel de consulta en vivo presenta ambas páginas por separado y distingue «Facebook Personal STJ».
+- El perfil personal no se consulta con solo una URL. Si existe `FB_PERSONAL_STJ_URL`, la API explica que falta un flujo autorizado de Meta con `user_posts`; de no existir, informa la variable pendiente. No se afirma que la integración del perfil personal esté operativa.
+- `tests/test_redes_x.mjs`: se añadió una prueba simulada para comprobar la separación de las dos páginas y que la respuesta no exponga tokens.
+- `docs/REDES_SOCIALES.md`: documenta las variables y la limitación del perfil personal.
+- Validación pendiente: ejecutar CI en la PR y probar `/api/redes` en el Preview de Cloudflare Pages con las variables configuradas. El código no ha sido validado aún con las credenciales reales de Meta. No se cambió ningún secreto ni se inició un despliegue de producción.
