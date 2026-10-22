@@ -140,6 +140,33 @@ test("métrica con error o ausente queda en null con su mensaje, sin tokens y si
   assert.equal(response.headers.get("Cache-Control"), "s-maxage=600");
 });
 
+test("si Meta rechaza /posts igual se consultan Insights y no se informan cero publicaciones", async () => {
+  const mock = meta({ insights: {
+    [PAGE_1]: { page_media_view: [{ value: 900, end_time: "2026-10-21T07:00:00+0000" }] },
+    [PAGE_2]: { page_media_view: [{ value: 300, end_time: "2026-10-21T07:00:00+0000" }] }
+  } });
+  const original = mock.handler;
+  mock.handler = async (input, options) => {
+    if (new URL(String(input)).pathname.endsWith("/posts")) {
+      return metaError("(#10) This endpoint requires the 'pages_read_user_content' permission or the 'Page Public Content Access' feature.", 10);
+    }
+    return original(input, options);
+  };
+  const body = await (await call("/api/redes?redes=Facebook", mock)).json();
+  const fb = body.redes.Facebook;
+  assert.equal(body.errores.Facebook, undefined);
+  assert.equal(fb.parcial, false);
+  assert.equal(fb.publicacionesCompletas, false);
+  assert.deepEqual(fb.filas, []);
+  assert.equal(fb.seguidores, 1500);
+  for (const page of fb.paginas) {
+    assert.equal(page.publicaciones, null);
+    assert.match(page.publicacionesError, /pages_read_user_content/);
+  }
+  assert.equal(fb.paginas[0].insights.page_media_view, 900);
+  assert.equal(fb.paginas[1].insights.page_media_view, 300);
+});
+
 test("si una página falla se conservan los datos de la otra", async () => {
   const mock = meta({
     failToken: [PAGE_2],
@@ -249,5 +276,6 @@ test("el tablero muestra Insights de Facebook por página y marca los faltantes 
     assert.match(html, /page_media_view: 'Visualizaciones de contenido'/, path);
     assert.match(html, /insights: resumenInsights\(red, result, data\)/, path);
     assert.match(html, /result\.parcial/, path);
+    assert.match(html, /result\.publicacionesCompletas === false/, path);
   }
 });
