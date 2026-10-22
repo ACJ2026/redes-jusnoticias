@@ -377,7 +377,7 @@ test("falla renovación temporal de forma genérica y conserva tokens para reint
     open_id: "test-open-id",
     scope: "user.info.basic,video.list",
     access_expires_at: Date.now() + 1_000,
-    refresh_expires_at: Date.now() + 60_000,
+    refresh_expires_at: Date.now() + 60 * 60 * 1000,
     updated_at: "before-refresh"
   };
   await env.TIKTOK_KV.put(TOKEN_KEY, JSON.stringify(originalTokens));
@@ -404,7 +404,7 @@ test("elimina una autorización cuando TikTok rechaza definitivamente el refresh
     open_id: "test-open-id",
     scope: "user.info.basic,video.list",
     access_expires_at: Date.now() + 1_000,
-    refresh_expires_at: Date.now() + 60_000,
+    refresh_expires_at: Date.now() + 60 * 60 * 1000,
     updated_at: "before-refresh"
   }));
   await withFetch(async () => providerResponse({ error: "invalid_grant" }, 400), async () => {
@@ -423,7 +423,7 @@ test("renueva y persiste el refresh token rotado sin incluir credenciales en el 
     open_id: "test-open-id",
     scope: "user.info.basic,video.list",
     access_expires_at: Date.now() + 1_000,
-    refresh_expires_at: Date.now() + 60_000,
+    refresh_expires_at: Date.now() + 60 * 60 * 1000,
     updated_at: "before-refresh"
   }));
   await withFetch(async input => {
