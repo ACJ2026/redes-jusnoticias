@@ -314,11 +314,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube, X y TikTok. Esta consulta es independiente del historial guardado. X requiere credenciales y acceso autorizado a su API; TikTok requiere configurar OAuth y autorizar la cuenta institucional. WhatsApp sigue pendiente de integración; no se suman plataformas sin datos ni se presentan como cero actividad.</p>
       <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
       <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
-      <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th></tr></thead><tbody><tr><td colspan="5">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
+      <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th><th>Insights disponibles</th></tr></thead><tbody><tr><td colspan="6">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
     </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
       <p class="note">Distribución de los registros históricos cargados. No es un monitoreo completo ni se suma a las métricas en vivo; Facebook propio se empezó a contar en septiembre. Las plataformas pendientes no se representan como cero actividad.</p>
+      <p class="note" id="redes-historial-actualizado"></p>
       <div class="legend" id="lg-redes"></div>
       <div class="chart" id="ch-redes"><div class="tip" id="tip-redes" hidden></div></div>
     </div>
@@ -698,7 +699,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const rows = D.redes.filter(r => en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
     tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
   };
-  let redesVivoConsultado = false;
   let redesVivoEnCurso = false;
   const consultarRedesVivo = async () => {
     if (redesVivoEnCurso) return;
@@ -708,8 +708,39 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const tb = document.querySelector('#t-redes-vivo tbody');
     boton.disabled = true;
     estado.textContent = 'Consultando Facebook, Instagram, YouTube, X y TikTok; WhatsApp sigue pendiente de integración.';
+    const nombresInsights = {
+      page_media_view: 'Visualizaciones de contenido',
+      page_post_engagements: 'Interacciones con publicaciones',
+      page_views_total: 'Visitas a la página',
+      reach: 'Alcance',
+      views: 'Visualizaciones',
+      accounts_engaged: 'Cuentas con interacción',
+      total_interactions: 'Interacciones'
+    };
+    // Una métrica sin dato se muestra como no disponible; nunca como cero.
+    const valorInsight = (insights, metric) => (nombresInsights[metric] || metric) + ' ' + (insights && typeof insights[metric] === 'number' ? fmt(insights[metric]) : 'no disponible');
+    const resumenInsights = (red, result, data) => {
+      if (red === 'Facebook' && Array.isArray(result.paginas)) {
+        return result.paginas.map(p => {
+          const nombre = p.nombre || ('Página ' + p.id);
+          if (p.error) return nombre + ': no disponible (' + p.error + ')';
+          const partes = ['Seguidores ' + (typeof p.seguidores === 'number' ? fmt(p.seguidores) : 'no informado')].concat(p.publicacionesError ? ['Publicaciones no disponibles'] : [])
+            .concat(Object.keys(p.insights || {}).map(m => valorInsight(p.insights, m)));
+          return nombre + ': ' + partes.join(' · ') + ' (últimos 28 días' + (p.insightsHasta ? ', al ' + p.insightsHasta : '') + ')';
+        }).join(' | ');
+      }
+      if (red === 'Instagram' && result.insights) {
+        return Object.keys(result.insights).map(m => valorInsight(result.insights, m)).join(' · ') + ' (' + (result.insightsDesde || data.desde || 'inicio no informado') + ' a ' + (result.insightsHasta || 'fin no informado') + ')';
+      }
+      return '—';
+    };
+    const estadoFuente = result => {
+      const partes = [result.limiteAlcanzado ? 'API respondió, pero se alcanzó el límite de páginas; datos parciales' : 'API respondió'];
+      if (result.parcial) partes.push('respuesta parcial: ' + (result.paginas || []).filter(p => p.error).map(p => 'página ' + p.id + ' no disponible').join('; '));
+      return partes.join('; ');
+    };
     const unsupported = [
-      { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—' }
+      { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—', insights: '—' }
     ];
     try {
       const response = await fetch('/api/redes', { headers: { Accept: 'application/json' }, cache: 'no-store' });
@@ -723,15 +754,16 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         const fechas = filas.map(r => r.fecha).filter(Boolean).sort();
         return {
           red,
-          estado: result.limiteAlcanzado ? 'API respondió, pero se alcanzó el límite de páginas; datos parciales' : 'API respondió',
-          publicaciones: fmt(filas.length),
+          estado: estadoFuente(result),
+          publicaciones: result.publicacionesCompletas === false ? (filas.length ? fmt(filas.length) + ' (parcial)' : 'No disponible') : fmt(filas.length),
           seguidores: result.seguidores === null || result.seguidores === undefined ? 'No informado' : fmt(result.seguidores),
-          ultima: fechas.length ? fechas[fechas.length - 1] : 'Sin publicaciones en la ventana'
+          ultima: fechas.length ? fechas[fechas.length - 1] : (result.publicacionesCompletas === false ? 'No disponible' : 'Sin publicaciones en la ventana'),
+          insights: resumenInsights(red, result, data)
         };
       });
       tb.replaceChildren(...[...connected, ...unsupported].map(r => {
         const tr = document.createElement('tr');
-        [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima].forEach(value => {
+        [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima, r.insights || '—'].forEach(value => {
           const td = document.createElement('td'); td.textContent = value; tr.append(td);
         });
         return tr;
@@ -748,7 +780,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       }));
       estado.textContent = 'La consulta en vivo no está disponible. Se conserva el historial cargado, pero no debe interpretarse como un monitoreo completo.';
     } finally {
-      redesVivoConsultado = true;
       redesVivoEnCurso = false;
       boton.disabled = false;
     }
@@ -927,7 +958,6 @@ const draw = () => {
     document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.page === page)));
     try { history.replaceState(null, '', '#' + page); } catch (e) {}
     draw();
-    if (page === 'redes' && !redesVivoConsultado) consultarRedesVivo();
   };
   $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
   document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
@@ -962,6 +992,8 @@ const draw = () => {
   let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(draw, 150); });
 
   $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. Datos relevados: ' + (D.datos_actualizados ? new Date(D.datos_actualizados).toLocaleString('es-AR') : 'fecha no disponible') + '. Tablero generado: ' + D.actualizado + '.';
+  const fechaHistorial = D.datos_actualizados ? new Date(D.datos_actualizados) : null;
+  $('redes-historial-actualizado').textContent = 'Última actualización de los datos históricos: ' + (fechaHistorial && Number.isFinite(fechaHistorial.getTime()) ? fechaHistorial.toLocaleString('es-AR') : 'fecha no disponible') + '. No son métricas en vivo.';
   const h = location.hash.slice(1);
   updateLanding(calc());
   $('entrar-tablero').addEventListener('click', () => {
