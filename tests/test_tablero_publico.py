@@ -160,6 +160,12 @@ class TableroPublicoTests(unittest.TestCase):
         # Los controles retirados en el PR #32 no vuelven.
         self.assertNotIn("f-territorio-tipo", template)
 
+    def test_tablas_de_paginas_enlazan_cada_pagina(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("{ value: r => r.titulo || r.ruta, link: r => r.ruta }", template)
+        self.assertIn("{ value: r => r.pagina, link: r => r.pagina }", template)
+        self.assertIn("new URL(String(v), 'https://jusnoticias.juschubut.gov.ar')", template)
+
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const filaPaginaFacebook = (p, result) =>", template)

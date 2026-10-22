@@ -920,6 +920,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     status.textContent = 'Consultando Analytics y Search Console…';
     const number = v => nf.format(Number(v || 0));
     const pct = v => (Number(v || 0) * 100).toLocaleString('es-AR', { maximumFractionDigits: 2 }) + '%';
+    // Analytics devuelve la ruta (/2026/10/...); Search Console, la dirección completa.
+    const enlacePagina = v => {
+      if (!v) return null;
+      try { const u = new URL(String(v), 'https://jusnoticias.juschubut.gov.ar'); return /^https?:$/.test(u.protocol) ? u.href : null; } catch (e) { return null; }
+    };
     const fill = (id, rows, cols, empty) => {
       const body = document.querySelector('#' + id + ' tbody');
       body.replaceChildren();
@@ -933,7 +938,14 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         cols.forEach(col => {
           const td = document.createElement('td');
           const value = col.value(row);
-          td.textContent = value === null || value === undefined ? '—' : String(value);
+          const texto = value === null || value === undefined ? '—' : String(value);
+          // Solo se enlazan direcciones http(s); cualquier otro valor queda como texto.
+          const href = col.link ? enlacePagina(col.link(row)) : null;
+          if (href) {
+            const a = document.createElement('a');
+            a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = texto + ' ↗';
+            td.append(a);
+          } else td.textContent = texto;
           tr.append(td);
         });
         body.append(tr);
@@ -958,7 +970,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       $('g-impresiones').textContent = number(s.resumen && s.resumen.impressions);
       status.textContent = 'Datos de ' + start + ' a ' + end + '. Consulta realizada: ' + new Date(data.actualizado).toLocaleString('es-AR') + '.';
       fill('g-tabla-paginas', a.paginas, [
-        { value: r => r.titulo || r.ruta }, { value: r => number(r.screenPageViews) },
+        { value: r => r.titulo || r.ruta, link: r => r.ruta }, { value: r => number(r.screenPageViews) },
         { value: r => number(r.sessions) }, { value: r => number(r.totalUsers) }
       ]);
       const canalLabel = value => ({
@@ -993,7 +1005,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         { value: r => pct(r.ctr) }, { value: r => Number(r.posicion || 0).toLocaleString('es-AR', { maximumFractionDigits: 1 }) }
       ]);
       fill('g-tabla-search-paginas', s.paginas, [
-        { value: r => r.pagina }, { value: r => number(r.clics) }, { value: r => number(r.impresiones) },
+        { value: r => r.pagina, link: r => r.pagina }, { value: r => number(r.clics) }, { value: r => number(r.impresiones) },
         { value: r => pct(r.ctr) }, { value: r => Number(r.posicion || 0).toLocaleString('es-AR', { maximumFractionDigits: 1 }) }
       ]);
     } catch (error) {
