@@ -63,8 +63,12 @@ function ultimoValorDias28(item) {
 
 async function facebookPagina(id, pageToken, desde) {
   const page = await get(`${GRAPH}/${id}?fields=name,followers_count,fan_count`, pageToken);
-  const filas = [];
+  // Las publicaciones se consultan aparte: si Meta las rechaza (por ejemplo, porque /posts
+  // requiere pages_read_user_content), se informa el error y se siguen consultando Insights.
+  let filas = [];
   let limiteAlcanzado = false;
+  let publicacionesError = null;
+  try {
   let url = `${GRAPH}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${encodeURIComponent(desde)}&limit=100`;
   for (let i = 0; url && i < 10; i++) {
     const result = await get(url, pageToken);
@@ -78,6 +82,11 @@ async function facebookPagina(id, pageToken, desde) {
     const next = result.paging && result.paging.next;
     if (i === 9 && next) limiteAlcanzado = true;
     url = next;
+  }
+  } catch (error) {
+    filas = [];
+    limiteAlcanzado = false;
+    publicacionesError = limpiarMensaje(error);
   }
 
   // Cada métrica se consulta de forma aislada para que una métrica retirada o sin permiso
@@ -107,7 +116,8 @@ async function facebookPagina(id, pageToken, desde) {
       id,
       nombre: page.name || id,
       seguidores: page.followers_count ?? page.fan_count ?? null,
-      publicaciones: filas.length,
+      publicaciones: publicacionesError ? null : filas.length,
+      publicacionesError,
       insights,
       insightsPeriodo: "days_28",
       insightsHasta: fechas.length ? fechas.sort()[fechas.length - 1] : null,
@@ -162,6 +172,8 @@ async function facebook(desde, env) {
     seguidores: completas ? paginas.reduce((sum, page) => sum + page.seguidores, 0) : null,
     paginas,
     parcial: paginas.some(page => page.error),
+    // false si alguna página no devolvió publicaciones: el tablero no debe mostrarlo como cero.
+    publicacionesCompletas: paginas.every(page => !page.error && !page.publicacionesError),
     limiteAlcanzado
   };
 }
