@@ -149,6 +149,17 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("' de la ventana)'", template)
         self.assertIn("['vistas', 'Vistas'], ['me_gusta', 'Me gusta']", template)
 
+    def test_pagina_se_adapta_al_ancho_del_celular(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        # Sin esta etiqueta el celular dibuja la página a ancho de escritorio y se ve diminuta.
+        self.assertTrue(template.startswith('<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1'))
+
+    def test_rankings_del_resumen_abren_sus_enlaces(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("[...$('b-top5m').querySelectorAll('.bar-row')].forEach", template)
+        self.assertIn("[...$('b-top5n').querySelectorAll('.bar-row')].forEach", template)
+        self.assertIn("show('medios');", template)
+
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const filaPaginaFacebook = (p, result) =>", template)
