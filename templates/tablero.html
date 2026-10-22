@@ -311,10 +311,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="redes" hidden>
     <div class="card" id="redes-vivo">
       <h2>Estado del monitoreo en vivo</h2>
-      <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube y X. Esta consulta es independiente del historial guardado. X requiere credenciales y acceso autorizado a su API. El dominio de TikTok ya está verificado en TikTok Developers; la autorización OAuth y la conexión de Display API siguen pendientes. TikTok y WhatsApp no se suman a un total general ni se presentan como cero actividad.</p>
-      <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
-      <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
-      <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th></tr></thead><tbody><tr><td colspan="5">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
+      <p class="note">El tablero consulta las APIs disponibles para Facebook, Instagram, YouTube y X automáticamente cada 5 minutos mientras esta pestaña está abierta. También consulta al entrar en esta sección o volver a la pestaña del navegador. La actualización depende de la disponibilidad, permisos y límites de cada API. Esta vista en vivo es independiente del historial guardado. TikTok y WhatsApp seguirán marcados como pendientes hasta completar sus conexiones oficiales.</p>
+      <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Actualizar ahora</button></div>
+      <p class="note" id="redes-vivo-estado" role="status">Esperando la primera consulta automática…</p>
+      <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th></tr></thead><tbody><tr><td colspan="5">Se consultarán las fuentes automáticamente al abrir esta sección.</td></tr></tbody></table></div>
     </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
@@ -927,8 +927,16 @@ const draw = () => {
     document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.page === page)));
     try { history.replaceState(null, '', '#' + page); } catch (e) {}
     draw();
+    if (page === 'redes') consultarRedesVivo();
   };
   $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
+  // Refrescar las métricas mientras la sección Redes permanece abierta.
+  window.setInterval(() => {
+    if (st.page === 'redes' && !document.hidden) consultarRedesVivo();
+  }, 5 * 60 * 1000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && st.page === 'redes') consultarRedesVivo();
+  });
   document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
   $('ir-completo').addEventListener('click', () => { show('medios'); document.querySelector('.tabs').scrollIntoView(); });
   const detalle = (id) => {
