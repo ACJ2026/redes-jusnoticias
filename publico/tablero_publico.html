@@ -314,7 +314,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube y X. Esta consulta es independiente del historial guardado. X requiere credenciales y acceso autorizado a su API. El dominio de TikTok ya está verificado en TikTok Developers; la autorización OAuth y la conexión de Display API siguen pendientes. TikTok y WhatsApp no se suman a un total general ni se presentan como cero actividad.</p>
       <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
       <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
-      <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th></tr></thead><tbody><tr><td colspan="5">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
+      <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th><th>Insights disponibles</th></tr></thead><tbody><tr><td colspan="6">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
     </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
@@ -709,8 +709,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     boton.disabled = true;
     estado.textContent = 'Consultando Facebook, Instagram, YouTube y X. El dominio de TikTok está verificado; su autorización OAuth y Display API siguen pendientes. WhatsApp requiere carga manual.';
     const unsupported = [
-      { red: 'TikTok', estado: 'Dominio verificado en TikTok Developers; falta autorización OAuth y conexión de Display API', publicaciones: '—', seguidores: '—', ultima: '—' },
-      { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—' }
+      { red: 'TikTok', estado: 'Dominio verificado en TikTok Developers; falta autorización OAuth y conexión de Display API', publicaciones: '—', seguidores: '—', ultima: '—', insights: '—' },
+      { red: 'WhatsApp', estado: 'Estadísticas en la app de administración; carga manual pendiente', publicaciones: '—', seguidores: '—', ultima: '—', insights: '—' }
     ];
     try {
       const response = await fetch('/api/redes', { headers: { Accept: 'application/json' }, cache: 'no-store' });
@@ -727,12 +727,15 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
           estado: result.limiteAlcanzado ? 'API respondió, pero se alcanzó el límite de páginas; datos parciales' : 'API respondió',
           publicaciones: fmt(filas.length),
           seguidores: result.seguidores === null || result.seguidores === undefined ? 'No informado' : fmt(result.seguidores),
-          ultima: fechas.length ? fechas[fechas.length - 1] : 'Sin publicaciones en la ventana'
+          ultima: fechas.length ? fechas[fechas.length - 1] : 'Sin publicaciones en la ventana',
+          insights: red === 'Instagram' && result.insights
+            ? ['Alcance ' + (result.insights.reach == null ? '—' : fmt(result.insights.reach)), 'Visualizaciones ' + (result.insights.views == null ? '—' : fmt(result.insights.views)), 'Cuentas con interacción ' + (result.insights.accounts_engaged == null ? '—' : fmt(result.insights.accounts_engaged)), 'Interacciones ' + (result.insights.total_interactions == null ? '—' : fmt(result.insights.total_interactions))].join(' · ') + ' (' + (result.insightsDesde || data.desde || 'inicio no informado') + ' a ' + (result.insightsHasta || (data.actualizado ? new Date(data.actualizado).toISOString().slice(0, 10) : 'fin no informado')) + ')'
+            : '—'
         };
       });
       tb.replaceChildren(...[...connected, ...unsupported].map(r => {
         const tr = document.createElement('tr');
-        [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima].forEach(value => {
+        [r.red, r.estado, r.publicaciones, r.seguidores, r.ultima, r.insights || '—'].forEach(value => {
           const td = document.createElement('td'); td.textContent = value; tr.append(td);
         });
         return tr;
