@@ -192,6 +192,19 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("business_discovery", funcion)
         self.assertIn('import cuentasMonitoreo from "../../data/cuentas_monitoreo.json";', funcion)
 
+    def test_generador_de_infografias_usa_los_datos_del_tablero(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('id="info-abrir"', template)
+        self.assertIn('id="info-lienzo"', template)
+        self.assertIn("const INFO_FORMATOS = { ig: [1080, 1350], story: [1080, 1920], x: [1600, 900] };", template)
+        # Mismos cálculos que el resumen: calc() y datosTerritorio().
+        self.assertIn("const c = calc(), t = datosTerritorio();", template)
+        # Pregunta antes de generar: tema, período o nota, datos, formato y título.
+        for paso in ("1. ¿Sobre qué querés la infografía?", "2. ¿De qué período?", "2. ¿Qué nota?", "3. ¿Qué datos incluir?", "4. ¿En qué formato?", "5. Título (opcional)"):
+            self.assertIn(paso, template)
+        self.assertIn('id="info-generar"', template)
+        self.assertIn("no demuestra por sí sola que se haya usado nuestra información", template)
+
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const filaPaginaFacebook = (p, result) =>", template)
