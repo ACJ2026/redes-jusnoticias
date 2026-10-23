@@ -886,7 +886,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const historial = D.redes.filter(r => r.propia === 'No' && redesIncluidas.has(r.red)).map(r => {
       const c = porCuenta.get(r.red + '|' + r.cuenta) || porNombre.get(r.red + '|' + r.cuenta);
       return { fecha: r.fecha, red: r.red, cuenta: r.cuenta, cuenta_url: c ? enlaceCuenta(c) : perfilUrl(r.red, r.cuenta),
-        tipo: c ? c.tipo : 'Medio', publicacion_url: r.url || null, nota_id: r.nota_id, nota_titulo: titulo.get(Number(r.nota_id)) || '' };
+        tipo: c ? c.tipo : 'Medio', publicacion_url: r.url || null, url_sitio: r.url_sitio || null, nota_id: r.nota_id, nota_titulo: titulo.get(Number(r.nota_id)) || '' };
     });
     // Cuentas confirmadas, también limitadas a las redes incluidas.
     const confirmadas = (D.cuentas || []).filter(c => redesIncluidas.has(c.red) && /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
