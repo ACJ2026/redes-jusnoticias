@@ -584,5 +584,25 @@
     "estado": "seguimiento_google_news",
     "wp": false,
     "wp_revisado": "2026-10-23"
+  },
+  {
+    "nombre": "FM de la Cordillera",
+    "dominio": "fmdelacordillera.com.ar",
+    "primera_deteccion": "2026-10-23",
+    "ultima_deteccion": "2026-10-23",
+    "detecciones": 1,
+    "ultima_url": "",
+    "estado": "seguimiento_google_news",
+    "origen": "Agregado a mano: apareció en una búsqueda de Google comparada por el usuario (nota 14873)"
+  },
+  {
+    "nombre": "Madryn Urbana",
+    "dominio": "madrynurbana.com",
+    "primera_deteccion": "2026-10-23",
+    "ultima_deteccion": "2026-10-23",
+    "detecciones": 1,
+    "ultima_url": "",
+    "estado": "seguimiento_google_news",
+    "origen": "Agregado a mano: apareció en una búsqueda de Google comparada por el usuario (nota 14873)"
   }
 ]

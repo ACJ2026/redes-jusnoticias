@@ -1,0 +1,40 @@
+# TEMPORAL: prueba de la confirmación por texto en esta rama. No guarda datos. Se borra antes del merge.
+name: Prueba segunda oportunidad por texto
+on:
+  push:
+    branches:
+      - claude/segunda-oportunidad-texto
+permissions:
+  contents: read
+jobs:
+  prueba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Relevamiento sin guardar
+        run: |
+          mkdir -p out
+          python3 -u scripts/actualizar.py out data/rep2.json | tee run.log
+          grep -q "^OK notas" run.log
+          python3 scripts/verificar_historial.py data/rep2.json out/rep2.json out/notas2.json
+          grep -E "^(ADN Sur|EQS Notas) " run.log || true
+          python3 - <<'PY'
+          import json
+          antes = json.load(open('data/rep2.json')); ahora = json.load(open('out/rep2.json'))
+          print('Publicaciones antes', len(antes), 'ahora', len(ahora))
+          conf = lambda rs: sum(1 for r in rs if r.get('confianza') != 'Baja')
+          print('Confirmadas antes', conf(antes), 'ahora', conf(ahora))
+          urls_antes = {r.get('url') for r in antes}
+          nuevas = [r for r in ahora if 'confirmado por texto' in (r.get('metodo') or '')]
+          print('Encontradas por texto:', len(nuevas), '| nuevas respecto de antes:', sum(1 for r in nuevas if r.get('url') not in urls_antes))
+          from collections import Counter
+          print('Por confianza:', Counter(r['confianza'] for r in nuevas), 'por medio:', Counter(r['medio'] for r in nuevas).most_common(15))
+          for r in nuevas: print('  ', r['nota_id'], r['medio'], r['confianza'], r.get('origen'), r['url'][:110])
+          print('Nota 14873:', sorted({r['medio'] for r in ahora if r['nota_id'] == 14873 and r.get('confianza') != 'Baja'}))
+          print('Nota 14913:', [(r['medio'], r['confianza'], r['url'][:90]) for r in ahora if r['nota_id'] == 14913])
+          PY
+          grep -iE "cordillera|madryn urbana|WordPress descubiertos|Seguimiento por buscador" run.log || true
