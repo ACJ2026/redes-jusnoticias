@@ -23,7 +23,7 @@ jobs:
           python3 -u scripts/actualizar.py out data/rep2.json | tee run.log
           grep -q "^OK notas" run.log
           python3 scripts/verificar_historial.py data/rep2.json out/rep2.json out/notas2.json
-          grep -E "^(ADN Sur|EQS Notas) |Textos leídos" run.log || true
+          grep -E "^(ADN Sur|EQS Notas) |Textos leídos|Por datos|Revisiones manuales" run.log || true
           python3 - <<'PY'
           import json
           from collections import Counter

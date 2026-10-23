@@ -131,11 +131,18 @@ DIAS_TEXTO = 10
 LIMITE_TEXTO = addd(dt.date.today().isoformat(), -DIAS_TEXTO)
 UMBRAL_DATOS = 0.25
 REVISADOS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'textos_revisados.json')
+_corte = addd(dt.date.today().isoformat(), -(DIAS_TEXTO + 5))
 try:
     with open(REVISADOS_PATH, encoding='utf8') as _f:
-        REVISADOS = {u: d for u, d in json.load(_f).items() if d >= addd(dt.date.today().isoformat(), -(DIAS_TEXTO + 5))}
+        _guardado = json.load(_f)
 except Exception:
-    REVISADOS = {}
+    _guardado = {}
+if 'revisados' not in _guardado: _guardado = {'revisados': _guardado, 'candidatos': {}}
+REVISADOS = {u: d for u, d in _guardado.get('revisados', {}).items() if d >= _corte}
+# Candidatos por datos de corridas anteriores: sirven para detectar notas «genéricas».
+CANDIDATOS_DATOS = {u: c for u, c in _guardado.get('candidatos', {}).items() if c.get('fecha', '') >= _corte}
+DATOS_PEND = []
+MAX_POR_NOTA = 4
 _df = {}
 for _j in JN:
     for _w in _j['tb']: _df[_w] = _df.get(_w, 0) + 1
@@ -159,7 +166,7 @@ def motivo_texto(t, j, sim=None, sc=None):
     raras = sorted(tk & j['tb'], key=lambda w: -IDF.get(w, 0))[:6]
     return f"frases en común {round(sim * 100)}%; datos coincidentes {round(sc * 100)}% ({', '.join(raras)})"
 
-def revisar_texto(items, textos):
+def revisar_texto(items, textos, medio=''):
     """Compara el texto completo con las notas de la ventana: frases iguales o datos que coinciden."""
     out = []
     for it in items:
@@ -179,8 +186,22 @@ def revisar_texto(items, textos):
         if sim >= 0.2:
             out.append((dict(it, nid=j['id'], metodo='Revisión completa (confirmado por texto)', motivo=motivo_texto(t, j, sim, sc)), classify(t, j['id'])))
         elif sc >= UMBRAL_DATOS:
-            out.append((dict(it, nid=j['id'], metodo='Revisión de texto (coinciden los datos)', motivo=motivo_texto(t, j, sim, sc)), classify(t, j['id'])))
+            DATOS_PEND.append((medio, dict(it, nid=j['id'], metodo='Revisión de texto (coinciden los datos)', motivo=motivo_texto(t, j, sim, sc)), classify(t, j['id'])))
     return out
+
+def agregar_por_datos():
+    """Suma los candidatos por datos, salvo los de notas que coinciden con demasiados artículos:
+    una nota de tema general (p. ej., Octubre Rosa) comparte palabras con cualquier nota del tema."""
+    for medio, m, c in DATOS_PEND:
+        CANDIDATOS_DATOS[m['u']] = {'nota': m['nid'], 'fecha': dt.date.today().isoformat()}
+    por_nota = {}
+    for c in CANDIDATOS_DATOS.values(): por_nota[c['nota']] = por_nota.get(c['nota'], 0) + 1
+    sumados = 0
+    for medio, m, c in DATOS_PEND:
+        if por_nota.get(m['nid'], 0) > MAX_POR_NOTA: continue
+        addrow(medio, m, m['metodo'], c[0], c[1], c[2]); sumados += 1
+    genericas = sorted(n for n, k in por_nota.items() if k > MAX_POR_NOTA)
+    print('Por datos: candidatos', len(DATOS_PEND), '| sumados', sumados, '| notas genéricas omitidas', genericas)
 
 DATE_RE = [r'article:published_time" content="([^"]+)', r'"datePublished": ?"([^"]+)', r'datetime="([^"]+)']
 def page_date(u):
@@ -262,7 +283,7 @@ def wp_site(item):
         t = texts.get(m['pid'])
         out.append((m, classify(t, m['nid']) if t else None))
     out += confirmar_por_texto(cerca_ms, {m['u']: texts.get(m['pid']) for m in cerca_ms})
-    out += revisar_texto(recientes, {m['u']: texts.get(m['pid']) for m in recientes})
+    out += revisar_texto(recientes, {m['u']: texts.get(m['pid']) for m in recientes}, name)
     return name, len(items), out
 # Aislar fallos temporales por fuente: un sitio caído no debe cancelar
 # toda la actualización ni provocar la pérdida de registros históricos.
@@ -332,12 +353,14 @@ for name, host in [('ADN Sur', 'https://www.adnsur.com.ar'), ('EQS Notas', 'http
     with ThreadPoolExecutor(8) as ex:
         textos = dict(zip([m['u'] for m in cerca_ms], ex.map(texto_pagina, [m['u'] for m in cerca_ms])))
     extra = confirmar_por_texto(cerca_ms, textos)
-    recientes = pendientes_texto(items, ms + cerca_ms)[:200]
+    recientes = sorted(pendientes_texto(items, ms + cerca_ms), key=lambda it: it['d'], reverse=True)[:200]
     with ThreadPoolExecutor(8) as ex:
         textos = dict(zip([m['u'] for m in recientes], ex.map(texto_pagina, [m['u'] for m in recientes])))
-    extra += revisar_texto(recientes, textos)
+    extra += revisar_texto(recientes, textos, name)
     for m, c in extra: addrow(name, m, m['metodo'], c[0], c[1], c[2])
     cobertura[name] = 'Revisión completa (títulos; texto en casos dudosos)'; print(name, len(items), 'por texto:', len(extra))
+
+agregar_por_datos()
 
 # ---------- 4. La Opinión Austral (sitemap txt, sin fechas) ----------
 idx = get('https://laopinionaustral.com.ar/sitemaps/sitemaps-index.xml') or ''
@@ -575,7 +598,7 @@ REGISTRO.sort(key=lambda r: (r.get('ultima_deteccion', ''), r.get('dominio', '')
 with open(REG_PATH, 'w', encoding='utf8') as rf:
     json.dump(REGISTRO, rf, ensure_ascii=False, indent=2)
 with open(REVISADOS_PATH, 'w', encoding='utf8') as rf:
-    json.dump(dict(sorted(REVISADOS.items())), rf, ensure_ascii=False, indent=0)
+    json.dump({'revisados': dict(sorted(REVISADOS.items())), 'candidatos': dict(sorted(CANDIDATOS_DATOS.items()))}, rf, ensure_ascii=False, indent=0)
 print('Textos leídos en esta corrida:', len(DIAG_TEXTO), '| lista de revisados:', len(REVISADOS))
 if os.environ.get('DIAG_TEXTO'):
     with open(os.environ['DIAG_TEXTO'], 'w', encoding='utf8') as rf:
