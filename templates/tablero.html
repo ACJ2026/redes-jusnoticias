@@ -369,7 +369,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <select id="fsin"><option value="">Todas</option><option value="sin">Solo sin repercusión</option><option value="con">Solo con repercusión</option></select>
       </div>
       <p class="note" id="cuenta-notas"></p>
-      <p class="note">“Medios distintos” cuenta cuántos medios diferentes tienen una publicación relacionada con enlace registrado. “Publicaciones con alta coincidencia” cuenta registros cuyo texto coincide en un 50% o más con la nota oficial. “A revisar” son coincidencias que todavía no están confirmadas y no entran en el total principal. Abrí una fila para consultar los enlaces guardados; su vigencia debe comprobarse en el sitio de origen.</p>
+      <p class="note">“Medios distintos” cuenta cuántos medios diferentes tienen una publicación relacionada con enlace registrado. “Publicaciones con alta coincidencia” cuenta registros cuyo texto coincide en un 50% o más con la nota oficial. “A revisar” son coincidencias que todavía no están confirmadas y no entran en el total principal. Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio; para confirmarlas hay que verificar la publicación original. Abrí una fila para consultar los enlaces guardados; su vigencia debe comprobarse en el sitio de origen.</p>
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
@@ -527,7 +527,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   // Cualquier registro cuyo método incluya una búsqueda basada solo en título queda para revisión manual,
   // incluso si también hubo una búsqueda por frase: la URL permite revisarlo, pero no lo confirma por sí sola.
   const soloCoincidenciaTitulo = r => /solo t[ií]tulos?/i.test(r.metodo || '');
-  const esConfirmada = r => r.confianza !== 'Baja' && !soloCoincidenciaTitulo(r) && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
+  // Google Noticias sirve como pista de búsqueda, no como enlace directo a la publicación del medio.
+  const esReferenciaGoogle = r => /news\.google\.com/i.test(String(r.url || ''));
+  const esConfirmada = r => r.confianza !== 'Baja' && !soloCoincidenciaTitulo(r) && !esReferenciaGoogle(r) && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
   const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id));

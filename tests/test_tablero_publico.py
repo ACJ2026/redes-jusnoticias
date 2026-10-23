@@ -72,6 +72,34 @@ class TableroPublicoTests(unittest.TestCase):
             (ROOT / "publico/tablero_publico.html").read_text(encoding="utf-8"),
         )
 
+    def test_referencias_de_google_news_no_cuentan_como_publicaciones_confirmadas(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("const esReferenciaGoogle = r => /news\\.google\\.com/i.test(String(r.url || ''));", template)
+        self.assertIn("&& !esReferenciaGoogle(r) &&", template)
+        self.assertIn("Abrir referencia en Google Noticias", template)
+
+    def test_tablero_aclara_que_google_news_no_es_un_enlace_directo(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio", template)
+
+    def test_enlaces_directos_verificados_quedan_asociados_a_sus_registros(self):
+        registros = {r["key"]: r for r in read_json("data/rep2.json")}
+        esperados = {
+            "p1266": "https://www.elchubut.com.ar/trelew/2026-9-11-10-37-0-convocan-en-trelew-a-familias-monoparentales-para-adoptar-a-una-adolescente",
+            "p1278": "https://www.elchubut.com.ar/policiales/2026-9-21-20-32-0-comodoro-condena-contra-peugeot-y-concesionaria-por-vuelco-de-auto-provocado-por-falla-de-fabrica",
+            "p1285": "https://diariojornada.com.ar/423711/policiales/declaran_culpable_a_agustin_vera_por_el_crimen_de_matias_nieves",
+            "p1289": "https://diariojornada.com.ar/424771/policiales/la_justicia_garantizo_la_cobertura_integral_para_un_nino_con_autismo",
+        }
+        for key, url in esperados.items():
+            with self.subTest(key=key):
+                self.assertEqual(registros[key]["url"], url)
+                self.assertTrue(registros[key]["url"].startswith("https://"))
+
+    def test_enlace_directo_el_patagonico_peugeot(self):
+        registros = {r["key"]: r for r in read_json("data/rep2.json")}
+        self.assertEqual(registros["p1300"]["url"], "https://www.elpatagonico.com/comodoro-condena-contra-peugeot-y-una-concesionaria-n6324799")
+        self.assertEqual(registros["p1300"]["cita_fuente_oficial"], "Sí")
+
     def test_portada_muestra_periodo_y_orden_correcto_de_indicadores(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn('id="portada-periodo"', template)
