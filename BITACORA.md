@@ -354,3 +354,13 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Revisar en unas semanas la calidad de los «por revisar» por datos para decidir si alguno pasa a contar.
 - Seguir si ADN Sur 14873 aparece cuando se complete la lectura de su sitemap.
 - Pendientes previos sin cambios: botón de Instagram/YouTube con credenciales reales de Meta, datos de Google Analytics/Search Console, 28 localidades por verificar, decisión sobre X (exportar CSV de X Analytics sin pagar).
+
+
+### 2026-10-23 (cierre) — Primera corrida con lectura de texto completo y arreglo de pruebas (PR #83)
+
+- La corrida posterior a #76 falló en las regresiones y no guardó: dos pruebas agregadas hoy (`test_enlaces_directos_verificados_quedan_asociados_a_sus_registros` y `test_enlace_directo_el_patagonico_peugeot`) buscaban filas por su clave `pN`, que se renumera en cada relevamiento; al sumarse publicaciones, las claves se corrieron. **PR [#83](https://github.com/ACJ2026/redes-jusnoticias/pull/83)**: las pruebas buscan por nota y medio (y por URL en El Patagónico). Regla: **no identificar filas de `rep2.json` por su clave `pN`**.
+- También se cerró sin mergear el #80 (reversión de #78) porque #81 de GPT resolvió los disparadores del workflow.
+- Corrida manual de las 14:26 (17 min): guardó correctamente. 284 notas, 1.464 publicaciones, 844 confirmadas; 37 confirmadas por texto y 9 «por revisar» por coincidencia de datos (cada una con su `motivo`). `data/textos_revisados.json` con 8.627 artículos leídos; `data/estado_medios.json` creado.
+- Primera auditoría de medios: en alerta Atento Chubut, El Diario Web, El Extremo Sur, LU17, Metadata Noticias y Rio Negro (fallaron en esta corrida y no tienen revisión correcta registrada aún; revisar si persiste).
+- Nota 14913 (Panigadi, 23/10): Canal 12 (confirmada), El Chubut (media) y Cholila Online (por revisar). Nota 14873: Comodoro 24 entra «por revisar» por datos (39 %).
+- Tableros de Claude sincronizados (interno: repercusión v25, medios v24; público v26).
