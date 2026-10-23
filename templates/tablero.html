@@ -975,15 +975,21 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       if (r.nota_id) return { url: notaUrl(r.nota_id), texto: 'Ver nota original en JusNoticias ↗', origen: 'nota original de JusNoticias' };
       return null;
     };
-    tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => {
-      const enlace = enlacePosteo(r);
-      if (!enlace) return r.texto || 'Enlace no disponible';
-      const a = document.createElement('a');
-      a.href = enlace.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-      a.textContent = r.texto || enlace.texto;
-      a.title = enlace.texto + ' · Fuente: ' + enlace.origen;
-      return a;
-    }], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
+    tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto || 'Enlace no disponible'], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
+    // La publicación y cada cifra de interacción abren la fuente consultable.
+    [...document.querySelectorAll('#t-redes tbody tr')].forEach((tr, i) => {
+      const r = rows[i], enlace = enlacePosteo(r);
+      if (!enlace) return;
+      for (const indice of [3, 4, 5, 6, 7]) {
+        const td = tr.children[indice];
+        if (!td || !td.textContent.trim()) continue;
+        const a = document.createElement('a');
+        a.href = enlace.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.textContent = td.textContent;
+        a.title = (indice === 3 ? 'Abrir publicación o nota de referencia' : 'Consultar fuente de esta cifra') + ' · Fuente: ' + enlace.origen;
+        td.replaceChildren(a);
+      }
+    });
   };
   let redesVivoEnCurso = false;
   const consultarRedesVivo = async () => {
