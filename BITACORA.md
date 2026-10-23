@@ -209,3 +209,70 @@ Próxima acción:
 - La plantilla fuente tiene el título `Juschubut Noticias`. La verificación directa del dominio público y de los endpoints Pages no pudo completarse desde las herramientas disponibles en esta sesión.
 - Pendientes externos: comprobar el despliegue real en Cloudflare Pages y revisar la respuesta de `/api/google-metrics` y `/api/redes` en producción. Para Google se requieren las variables `GOOGLE_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID` y `GSC_SITE_URL`, más permisos de lectura de la cuenta de servicio. Para redes, revisar los secretos e IDs correspondientes en el entorno Pages.
 - No se alteró WordPress, no se reconstruyeron ni borraron registros históricos y no se declaró validación de extremo a extremo.
+
+
+### 2026-10-22/23 — Ampliación del tablero y del monitoreo (PR #51 a #64)
+
+Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64). Sitio: https://jusnoticias.pages.dev
+
+| PR | Fecha (hora argentina) | Qué se hizo |
+|---|---|---|
+| [#51](https://github.com/ACJ2026/redes-jusnoticias/pull/51) | 22/10 19:07 | Facebook separado por página; canales actualizados. |
+| [#52](https://github.com/ACJ2026/redes-jusnoticias/pull/52) | 22/10 19:18 | YouTube: el canal **Poder Judicial del Chubut** es el único canal propio (se quitó "JusNoticias Prensa"). Textos de "Cómo leerlo" actualizados. |
+| [#53](https://github.com/ACJ2026/redes-jusnoticias/pull/53) | 22/10 19:57 | Visitas y buscadores: cada página de las tablas de Analytics/Search Console tiene su enlace. |
+| [#54](https://github.com/ACJ2026/redes-jusnoticias/pull/54) | 22/10 20:07 | Tarjeta "Dónde se publicaron nuestras notas" (territorio por sede del medio). |
+| [#56](https://github.com/ACJ2026/redes-jusnoticias/pull/56) | 22/10 20:08 | Versión celular a tamaño real (meta viewport) y rankings del resumen con enlaces. |
+| [#57](https://github.com/ACJ2026/redes-jusnoticias/pull/57) | 22/10 20:12 | Territorio: cada ciudad abre sus medios, cada uno con su enlace. |
+| [#55](https://github.com/ACJ2026/redes-jusnoticias/pull/55) | 22/10 20:15 | `data/cuentas_monitoreo.json`: 89 cuentas oficiales de medios en redes, 21 dudosas y compartidos confirmados a mano desde Chrome (solo lectura, sin publicar nada). |
+| [#59](https://github.com/ACJ2026/redes-jusnoticias/pull/59) | 22/10 20:24 | Monitoreo ampliado: Bing Noticias además de Google Noticias, medios WordPress descubiertos automáticamente, rotación de dominios descubiertos, filtro de medios extranjeros (`EXTRANJERO`) y unificación de nombres por dominio (`MEDIO_POR_DOMINIO`). |
+| [#58](https://github.com/ACJ2026/redes-jusnoticias/pull/58) | 22/10 20:25 | Sección "Quién compartió nuestras notas en redes" + `functions/api/compartidos.js` (Instagram business_discovery y búsqueda en YouTube). |
+| [#60](https://github.com/ACJ2026/redes-jusnoticias/pull/60) | 22/10 23:03 | Generador de infografías: cuestionario previo (período o nota, datos, formato Instagram/historia/X, título), vista previa idéntica a la exportación, descarga PNG y texto alternativo. La descarga no funciona dentro del artifact de Claude: usar jusnoticias.pages.dev. |
+| [#61](https://github.com/ACJ2026/redes-jusnoticias/pull/61) | 23/10 07:57 | Botones de acción destacados (consultar, buscar, generar, descargar). |
+| [#62](https://github.com/ACJ2026/redes-jusnoticias/pull/62) | 23/10 08:25 | Una sola fecha visible: "Datos actualizados al … (hora argentina)". |
+| [#63](https://github.com/ACJ2026/redes-jusnoticias/pull/63) | 23/10 08:53 | (rama `mejora/resumen-fecha-unica`) Fecha unificada al pie del tablero. |
+| [#64](https://github.com/ACJ2026/redes-jusnoticias/pull/64) | 23/10 09:13 | Título de la nota destacado antes del enlace externo. Cambió el texto de la fecha a "Última actualización del relevamiento:" sin actualizar dos pruebas: `validar` y `reconstruir` quedaron en rojo en `main` (commit `3d98fe5`). Se corrige en la entrada siguiente. |
+
+**Reglas acordadas con el usuario en estas sesiones**
+- Todo medio, cuenta, publicación o nota que se muestre lleva su enlace.
+- Desde el 23/10, Claude mergea automáticamente sus propios PR cuando pasan `validar`, `pruebas-historial` y Cloudflare Pages y no hay conflictos, y avisa en una línea. Excepción: cambios en la lógica de datos (por ejemplo el PR #65) se presentan para revisión antes de fusionar.
+- Nunca borrar filas del historial; siempre combinar.
+- No mostrar ni escribir valores de tokens o claves; el usuario carga las credenciales.
+- No hacer compras (créditos de la API de X: decisión del usuario).
+
+**Sincronización programada:** tarea `trig_01LregLCh1KHPhZLRa9MKhBo` (cada 2 h, 08:25–20:25 hora argentina). Corridas del 22/10 20:35 (1.236 filas) y 23/10 08:35 (1.281 filas): sin notas nuevas; se actualizaron el tablero interno (https://claude.ai/artifact/Xdyyf8Y5c1jXh5qLWkR2JW) y el público (https://claude.ai/artifact/M9EJxQHCUWKkcg2Y2ZC784).
+
+**Pendientes de verificación en producción**
+- Botón "Buscar ahora en Instagram y YouTube": nunca se probó con credenciales reales de Meta.
+- Analytics/Search Console: el usuario cargó las credenciales y se redesplegó; falta confirmar que devuelve datos.
+
+
+### 2026-10-23 — Pruebas alineadas con el texto de fecha del #64
+
+- Se ajustaron dos aserciones de `tests/test_tablero_publico.py` al texto vigente ("Última actualización del relevamiento:" y "las métricas de redes y Google se consultan por separado"). No cambia la plantilla ni los datos.
+- Mismo ajuste incluido en el PR #65 (commit `d4d06d8`); al mergear ambos no hay conflicto.
+
+
+### 2026-10-23 — Identidad de publicaciones por URL e inventario único de medios (PR #65, en revisión)
+
+- PR: https://github.com/ACJ2026/redes-jusnoticias/pull/65 — rama `claude/identidad-publicaciones`. Vista previa: https://claude-identidad-publicacion.jusnoticias.pages.dev
+- Pedido del usuario (con criterio sugerido por GPT): trabajar en rama nueva, normalizar URLs, no perder historial ni regenerar `rep2`/`medios` de forma destructiva, probar y **presentar el diff para revisión antes de fusionar o desplegar**. No se mergea automáticamente.
+
+**Antes**
+- Identidad por par (nota, medio): un segundo artículo del mismo medio sobre la misma nota se descartaba en silencio.
+- A veces quedaba el enlace de Google Noticias en vez del enlace al medio.
+- El verificador de historial solo controlaba pares.
+- `medios.json` → "notas" contaba filas.
+- Datos de cada medio repartidos entre `fuentes_descubiertas.json`, `cuentas_monitoreo.json` y la tabla `localidadMedio` de la plantilla.
+
+**Ahora**
+- `scripts/historial.py`: `normalizar_url` (http/https, www, barra final, fragmento, utm/fbclid/gclid, AMP), `deduplicar_publicaciones` (una fila por URL directa; enlaces de buscador como `url_alternativas`), `marcar_secundarias` (un artículo confirmado por medio y nota; el resto queda Baja con la marca "otro artículo del mismo medio (por revisar)"). `conservar_historial` y `publicaciones_faltantes` también trabajan por URL.
+- `medios.json` → "notas" cuenta notas distintas.
+- Nuevo `scripts/armar_inventario.py` → `data/medios_inventario.json`: 94 medios (42 lectura directa, 28 solo buscadores, 22 solo historial, 2 temporalmente no disponibles; 3 grupos de alias unificados; 28 con localidad por verificar; 10 sin dominio). Campos manuales protegidos con `_manual`. Se regenera en `actualizar.yml` después de cada relevamiento.
+- El tablero toma la localidad del inventario (`D.localidades`), con `localidadMedio` como respaldo.
+
+**Verificación**
+- Pruebas: unittest (62) y node (32) OK; CI del PR en verde (`validar`, `pruebas-historial`, Cloudflare Pages).
+- Con los datos actuales, los números visibles del tablero son idénticos entre `main` y la rama (comparación con Playwright, octubre y todo el período).
+- Relevamiento real de prueba (workflow temporal, sin guardar datos): filas 1.281 → 1.408; confirmadas 781 → 809. Los 29 pares que pasan a confirmados no son pares nuevos: tenían solo una fila Baja y ahora aparece el artículo correcto en Alta (ej.: Radio 3, código procesal no penal, nota 14725; Mario Vivas honoris causa, nota 14624). 14 artículos quedan "por revisar". Verificador de historial OK.
+
+**Próximas ideas (sin empezar, requieren OK del usuario):** alertas de Google por RSS, prueba de GDELT, canales de YouTube de radios y TV, revisión manual mensual por muestreo, logo en infografías, ficha de nota en A4/PDF.
