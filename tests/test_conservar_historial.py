@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
-from historial import conservar_historial, conservar_notas, publicaciones_faltantes, normalizar_url, deduplicar_publicaciones, marcar_secundarias, clave_publicacion
+from historial import conservar_historial, conservar_notas, publicaciones_faltantes, normalizar_url, deduplicar_publicaciones, marcar_secundarias, clave_publicacion, aplicar_revision_manual
 from fuentes import exigir_lista_json
 
 
@@ -148,3 +148,48 @@ class HistorialTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RevisionManualTests(unittest.TestCase):
+    def fila(self, **k):
+        base = {"nota_id": 1, "medio": "ADN Sur", "origen": "Redacción propia", "cita_fuente_oficial": "No",
+                "cita_otro_medio": "", "confianza": "Baja", "metodo": "Revisión de texto (coinciden los datos)",
+                "url": "https://www.adnsur.com.ar/policiales/nota-1"}
+        base.update(k)
+        return base
+
+    def test_confirmar_sube_la_confianza_aunque_cambie_la_forma_del_enlace(self):
+        filas = [self.fila()]
+        rev = [{"nota_id": 1, "url": "http://adnsur.com.ar/policiales/nota-1/?utm_source=x", "decision": "confirmar", "origen": "Reescritura parcial"}]
+        aplicar_revision_manual(filas, rev)
+        self.assertEqual(filas[0]["confianza"], "Alta")
+        self.assertEqual(filas[0]["origen"], "Reescritura parcial")
+        self.assertIn("confirmado en revisión manual", filas[0]["metodo"])
+
+    def test_descartar_no_borra_la_fila(self):
+        filas = [self.fila(confianza="Media")]
+        aplicar_revision_manual(filas, [{"nota_id": 1, "url": filas[0]["url"], "decision": "descartar"}])
+        self.assertEqual(len(filas), 1)
+        self.assertEqual(filas[0]["confianza"], "Baja")
+
+    def test_confirmar_un_enlace_nuevo_crea_la_fila(self):
+        filas = []
+        aplicar_revision_manual(filas, [{"nota_id": 1, "medio": "FM Tropical", "url": "https://fmtropical.com/x", "decision": "confirmar", "origen": "Redacción propia"}])
+        self.assertEqual(len(filas), 1)
+        self.assertEqual(filas[0]["confianza"], "Alta")
+        self.assertEqual(filas[0]["metodo"], "Revisión manual")
+
+    def test_otra_nota_o_sin_medio_no_hace_nada(self):
+        filas = [self.fila()]
+        aplicar_revision_manual(filas, [{"nota_id": 2, "url": filas[0]["url"], "decision": "confirmar"},
+                                        {"nota_id": 1, "url": "https://otro.com/y", "decision": "confirmar"}])
+        self.assertEqual(len(filas), 1)
+        self.assertEqual(filas[0]["confianza"], "Baja")
+
+    def test_aplicar_dos_veces_da_lo_mismo(self):
+        filas = [self.fila()]
+        rev = [{"nota_id": 1, "url": filas[0]["url"], "decision": "confirmar", "origen": "Redacción propia"}]
+        aplicar_revision_manual(filas, rev)
+        primera = dict(filas[0])
+        aplicar_revision_manual(filas, rev)
+        self.assertEqual(filas[0], primera)

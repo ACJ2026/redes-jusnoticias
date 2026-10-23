@@ -451,6 +451,11 @@ def gnews(n):
     body = CUERPO.get(n['id'], '')
     oraciones = [o.strip() for o in re.split(r'(?<=[.;:])\s+', body) if len(o.split()) >= 12][:3]
     frases = ['"' + ' '.join(o.split()[2:11]) + '"' for o in oraciones[:2]]
+    # Tercera huella: una cita textual (los medios suelen conservar las citas del fallo) o la tercera oración.
+    citas = [c for c in re.findall(r'[“"«]([^”"»]{60,400})[”"»]', body) if len(c.split()) >= 10]
+    tercera = citas[0] if citas else (oraciones[2] if len(oraciones) > 2 else '')
+    if tercera:
+        frases.append('"' + ' '.join(tercera.split()[:10]) + '"')
     t, fuerte = '', ''
     consultas = [n['titulo'][:120], ' '.join(clave_t)] + frases
     # Seguimiento de medios descubiertos, para notas de los últimos 15 días: en cada ejecución
@@ -594,7 +599,7 @@ for medio, url in FUENTES_VERIFICADAS:
 
 
 # ---------- Conservación del historial: una revisión nueva no borra hallazgos anteriores ----------
-from historial import conservar_historial, conservar_notas, deduplicar_publicaciones, marcar_secundarias, clave_publicacion
+from historial import conservar_historial, conservar_notas, deduplicar_publicaciones, marcar_secundarias, clave_publicacion, aplicar_revision_manual
 # Las notas que la API dejó de devolver (p. ej., convocatorias despublicadas) siguen en el
 # historial, y con ellas sus publicaciones. El archivo de notas anterior está junto a PREV.
 NOTAS_PREV = os.path.join(os.path.dirname(PREV), 'notas2.json') if PREV else None
@@ -650,6 +655,12 @@ confirmadas_previas = set()
 if PREV and os.path.exists(PREV):
     confirmadas_previas = {clave_publicacion(r) for r in json.load(open(PREV, encoding='utf8')) if r.get('confianza') != 'Baja'}
 rep = marcar_secundarias(rep, confirmadas_previas)
+# Decisiones del equipo sobre «por revisar»: mandan sobre la detección automática.
+REVISION_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'revision_manual.json')
+if os.path.exists(REVISION_PATH):
+    revisiones = json.load(open(REVISION_PATH, encoding='utf8'))
+    rep = aplicar_revision_manual(rep, [r for r in revisiones if r.get('nota_id') in ids])
+    print('Revisiones manuales aplicadas:', len(revisiones))
 for i, r in enumerate(rep): r['key'] = f'p{i}'
 # «notas» cuenta notas distintas por medio (un medio con dos artículos de una nota suma una).
 notas_por_medio = {}
