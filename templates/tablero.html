@@ -906,7 +906,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const cuenta = (D.cuentas || []).find(c => c.red === f.red && c.cuenta === f.cuenta);
     const medio = cuenta && cuenta.medio ? cuenta.medio : f.cuenta;
     const claveMedio = normalizarMedioCompartido(medio);
-    const directa = (D.repercusion || []).filter(p => Number(p.nota_id) === Number(notaId) && p.url && /^https?:\/\//i.test(p.url) && normalizarMedioCompartido(p.medio) === claveMedio);
+    if (f.url_sitio && /^https?:\/\//i.test(f.url_sitio)) return { url: f.url_sitio, tipo: 'directa' };
+    const directa = (D.repercusion || []).filter(p => Number(p.nota_id) === Number(notaId) && p.url && /^https?:\/\//i.test(p.url) && !/news\.google\.com/i.test(p.url) && normalizarMedioCompartido(p.medio) === claveMedio);
     if (directa.length) return { url: directa[0].url, tipo: 'directa' };
     const titulo = String(f.nota_titulo || notas.find(n => Number(n.id) === Number(notaId))?.titulo || '').trim();
     if (!medio || !titulo) return null;
