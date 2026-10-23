@@ -32,6 +32,37 @@
       }
     },
     {
+      "nombre": "Canal 12",
+      "alias": [],
+      "dominio": "canal12web.com",
+      "url": "https://canal12web.com",
+      "tipo": "TV",
+      "localidad": "Puerto Madryn",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 114,
+      "notas": 91,
+      "ejemplo": "https://canal12web.com/juez-jalil-la-exposicion-en-redes-sociales-que-dana-el-honor-de-una-persona-no-es-gratuita/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Facebook": [
+          "Canal 12 Web",
+          "/Canal12Web"
+        ],
+        "Instagram": [
+          "@canal12web"
+        ],
+        "X": [
+          "@Canal12web"
+        ],
+        "YouTube": [
+          "/user/canal12noticias"
+        ]
+      }
+    },
+    {
       "nombre": "Metadata Noticias",
       "alias": [],
       "dominio": "metadatanoticias.com.ar",
@@ -59,37 +90,6 @@
       }
     },
     {
-      "nombre": "Canal 12",
-      "alias": [],
-      "dominio": "canal12web.com",
-      "url": "https://canal12web.com",
-      "tipo": "TV",
-      "localidad": "Puerto Madryn",
-      "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 113,
-      "notas": 91,
-      "ejemplo": "https://canal12web.com/juez-jalil-la-exposicion-en-redes-sociales-que-dana-el-honor-de-una-persona-no-es-gratuita/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {
-        "Facebook": [
-          "Canal 12 Web",
-          "/Canal12Web"
-        ],
-        "Instagram": [
-          "@canal12web"
-        ],
-        "X": [
-          "@Canal12web"
-        ],
-        "YouTube": [
-          "/user/canal12noticias"
-        ]
-      }
-    },
-    {
       "nombre": "Del Mar Digital",
       "alias": [],
       "dominio": "delmardigital.net",
@@ -99,8 +99,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 98,
-      "notas": 92,
+      "publicaciones": 99,
+      "notas": 93,
       "ejemplo": "https://delmardigital.net/buscan-referentes-afectivos-para-una-adolescente-de-17-anos-como-postularse/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
@@ -148,6 +148,39 @@
       }
     },
     {
+      "nombre": "Cholila Online",
+      "alias": [],
+      "dominio": "cholilaonline.ar",
+      "url": "https://cholilaonline.ar",
+      "tipo": "Portal digital",
+      "localidad": "Cholila",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 71,
+      "notas": 61,
+      "ejemplo": "https://cholilaonline.ar/2026/10/la-justicia-freno-el-homeschooling-a-una-nina.html",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/CholilaOnline"
+        ],
+        "Instagram": [
+          "@cholilaonline"
+        ],
+        "X": [
+          "@CholilaOnlive"
+        ],
+        "YouTube": [
+          "@CholilaOnlive"
+        ],
+        "TikTok": [
+          "@cholilaonlive"
+        ]
+      }
+    },
+    {
       "nombre": "Noticias PMY",
       "alias": [],
       "dominio": "noticiaspmy.com",
@@ -168,39 +201,6 @@
         ],
         "X": [
           "@NoticiasPmy"
-        ]
-      }
-    },
-    {
-      "nombre": "Cholila Online",
-      "alias": [],
-      "dominio": "cholilaonline.ar",
-      "url": "https://cholilaonline.ar",
-      "tipo": "Portal digital",
-      "localidad": "Cholila",
-      "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 70,
-      "notas": 60,
-      "ejemplo": "https://cholilaonline.ar/2026/10/la-justicia-freno-el-homeschooling-a-una-nina.html",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/CholilaOnline"
-        ],
-        "Instagram": [
-          "@cholilaonline"
-        ],
-        "X": [
-          "@CholilaOnlive"
-        ],
-        "YouTube": [
-          "@CholilaOnlive"
-        ],
-        "TikTok": [
-          "@cholilaonlive"
         ]
       }
     },
@@ -365,9 +365,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 44,
-      "notas": 41,
-      "ejemplo": "https://comodoro24.com.ar/mas-de-60-mujeres-participaron-de-una-jornada-de-prevencion-del-cancer-de-mama-en-comodoro/",
+      "publicaciones": 46,
+      "notas": 42,
+      "ejemplo": "https://comodoro24.com.ar/buscan-una-familia-o-referentes-para-adoptar-a-un-adolescente-de-15-anos-en-comodoro/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-22",
       "redes": {
@@ -393,8 +393,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 36,
-      "notas": 33,
+      "publicaciones": 37,
+      "notas": 34,
       "ejemplo": "https://argentarnoticias.com.ar/buscan-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
@@ -451,11 +451,11 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 32,
-      "notas": 30,
+      "publicaciones": 33,
+      "notas": 31,
       "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-10-23",
       "redes": {
         "Facebook": [
           "/lu20radiochubut"
@@ -569,11 +569,11 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 20,
-      "notas": 20,
-      "ejemplo": "https://www.elchubut.com.ar/puerto-madryn/2026-10-16-11-23-0-interes-superior-del-nino-fallo-ordena-la-escolarizacion-presencial-de-una-nina-de-cinco-anos",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "publicaciones": 21,
+      "notas": 21,
+      "ejemplo": "https://www.elchubut.com.ar/trelew/2026-9-11-10-37-0-convocan-en-trelew-a-familias-monoparentales-para-adoptar-a-una-adolescente",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-10-23",
       "redes": {
         "Facebook": [
           "/diarioelchubut"
@@ -631,8 +631,8 @@
       "tipo": "Radio",
       "localidad": "Puerto Madryn",
       "metodo": "Sitemap / índice propio",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (solo títulos, fecha estimada)",
+      "estado": "Sin datos en la última consulta",
+      "cobertura": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
       "publicaciones": 15,
       "notas": 15,
       "ejemplo": "",
@@ -714,7 +714,7 @@
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
       "publicaciones": 11,
       "notas": 11,
-      "ejemplo": "https://www.diariojornada.com.ar/425339/policiales/la_querian_educar_en_su_casa_pero_la_justicia_se_opuso",
+      "ejemplo": "https://diariojornada.com.ar/423711/policiales/declaran_culpable_a_agustin_vera_por_el_crimen_de_matias_nieves",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -793,7 +793,7 @@
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
       "publicaciones": 8,
       "notas": 8,
-      "ejemplo": "https://www.elpatagonico.com/condenan-una-comerciante-difamar-una-vecina-redes-sociales-n6335303",
+      "ejemplo": "https://www.elpatagonico.com/comodoro-condena-contra-peugeot-y-una-concesionaria-n6324799",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -842,6 +842,53 @@
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {}
+    },
+    {
+      "nombre": "Revista Quórum",
+      "alias": [],
+      "dominio": "revistaquorum.com.ar",
+      "url": "https://revistaquorum.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Cobertura nacional",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 7,
+      "notas": 7,
+      "ejemplo": "https://revistaquorum.com.ar/2026/09/17/la-carta-de-un-juez-a-una-nina-victima-de-abuso-tu-tio-no-va-a-ir-a-la-carcel-y-no-es-porque-no-te-haya-creido/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "ABC Diario",
+      "alias": [],
+      "dominio": "abcdiario.com.ar",
+      "url": "https://abcdiario.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Facebook": [
+          "/abcdiarioar"
+        ],
+        "Instagram": [
+          "@abcdiarioar"
+        ],
+        "X": [
+          "@abcdiarioar"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: @abcdiarioar"
+        ]
+      }
     },
     {
       "nombre": "Diario San Rafael",
@@ -908,53 +955,6 @@
       }
     },
     {
-      "nombre": "Revista Quórum",
-      "alias": [],
-      "dominio": "revistaquorum.com.ar",
-      "url": "https://revistaquorum.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Cobertura nacional",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 6,
-      "notas": 6,
-      "ejemplo": "https://revistaquorum.com.ar/2026/09/17/la-carta-de-un-juez-a-una-nina-victima-de-abuso-tu-tio-no-va-a-ir-a-la-carcel-y-no-es-porque-no-te-haya-creido/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {}
-    },
-    {
-      "nombre": "ABC Diario",
-      "alias": [],
-      "dominio": "abcdiario.com.ar",
-      "url": "https://abcdiario.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (solo títulos)",
-      "publicaciones": 5,
-      "notas": 5,
-      "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-22",
-      "redes": {
-        "Facebook": [
-          "/abcdiarioar"
-        ],
-        "Instagram": [
-          "@abcdiarioar"
-        ],
-        "X": [
-          "@abcdiarioar"
-        ],
-        "YouTube": [
-          "Dudosa: Dudosa: @abcdiarioar"
-        ]
-      }
-    },
-    {
       "nombre": "FM de la Cordillera",
       "alias": [],
       "dominio": "fmdelacordillera.com.ar",
@@ -1008,6 +1008,23 @@
       "redes": {}
     },
     {
+      "nombre": "GENESIS24.NET",
+      "alias": [],
+      "dominio": "genesis24.net",
+      "url": "https://genesis24.net",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 4,
+      "notas": 4,
+      "ejemplo": "https://genesis24.net/2026/09/14/casacion-ordeno-reparar-a-una-victima-de-abuso-sexual-cometido-en-el-ejercito/",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
       "nombre": "Canal Doce Misiones",
       "alias": [],
       "dominio": "canal12misiones.com",
@@ -1032,30 +1049,13 @@
       "tipo": "Portal digital",
       "localidad": "Comodoro Rivadavia",
       "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (solo títulos)",
+      "estado": "Sin datos en la última consulta",
+      "cobertura": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
       "publicaciones": 3,
       "notas": 3,
       "ejemplo": "",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
-    },
-    {
-      "nombre": "GENESIS24.NET",
-      "alias": [],
-      "dominio": "genesis24.net",
-      "url": "https://genesis24.net",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 3,
-      "notas": 3,
-      "ejemplo": "https://genesis24.net/2026/09/14/casacion-ordeno-reparar-a-una-victima-de-abuso-sexual-cometido-en-el-ejercito/",
-      "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-23",
       "redes": {}
     },
     {
@@ -1238,8 +1238,8 @@
       "tipo": "Portal digital",
       "localidad": "Ciudad Autónoma de Buenos Aires",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Cobertura verificada manualmente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
