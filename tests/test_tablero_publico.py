@@ -72,6 +72,12 @@ class TableroPublicoTests(unittest.TestCase):
             (ROOT / "publico/tablero_publico.html").read_text(encoding="utf-8"),
         )
 
+    def test_referencias_de_google_news_no_cuentan_como_publicaciones_confirmadas(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("const esReferenciaGoogle = r => /news\\.google\\.com/i.test(String(r.url || ''));", template)
+        self.assertIn("&& !esReferenciaGoogle(r) &&", template)
+        self.assertIn("Abrir referencia en Google Noticias", template)
+
     def test_portada_muestra_periodo_y_orden_correcto_de_indicadores(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn('id="portada-periodo"', template)
