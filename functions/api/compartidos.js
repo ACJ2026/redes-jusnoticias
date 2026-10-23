@@ -1,7 +1,7 @@
 // Cloudflare Pages Function: busca publicaciones de OTRAS cuentas que compartan notas de Juschubut Noticias.
 // Instagram: lee las publicaciones recientes de las cuentas de la lista (business_discovery de Meta).
 // YouTube: busca por título los videos de otros canales publicados después de cada nota.
-// Facebook, X y TikTok no permiten esta búsqueda con las credenciales actuales.
+// Facebook y TikTok quedan como búsquedas asistidas mientras no haya permisos oficiales para consultar publicaciones de terceros.
 import cuentasMonitoreo from "../../data/cuentas_monitoreo.json";
 import notasOficiales from "../../data/notas2.json";
 
