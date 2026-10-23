@@ -855,6 +855,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   };
   // ---------- Quién compartió nuestras notas en redes ----------
   const notaUrl = id => 'https://jusnoticias.juschubut.gov.ar/?p=' + id;
+  const idNotaPorTitulo = new Map(notas.map(n => [String(n.titulo || '').trim().toLocaleLowerCase(), Number(n.id)]));
+  const resolverNotaId = f => Number(f.nota_id) || idNotaPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null;
   // Arma el enlace al perfil a partir de cómo quedó anotada la cuenta; si no es reconocible, no se inventa.
   const perfilUrl = (red, cuenta) => {
     const c = String(cuenta || '').trim();
@@ -877,8 +879,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const filasCompartidosRegistrados = () => {
     const redesIncluidas = new Set(['Facebook', 'Instagram', 'YouTube', 'TikTok']);
     const titulo = new Map(notas.map(n => [Number(n.id), n.titulo]));
-    const idPorTitulo = new Map(notas.map(n => [String(n.titulo || '').trim().toLocaleLowerCase(), Number(n.id)]));
-    const resolverNotaId = f => Number(f.nota_id) || idPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null;
     const porCuenta = new Map((D.cuentas || []).filter(c => c.cuenta && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.cuenta, c]));
     const porNombre = new Map((D.cuentas || []).filter(c => c.medio && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.medio, c]));
     // Historial de publicaciones de terceros en las redes incluidas.
@@ -890,7 +890,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     });
     // Cuentas confirmadas, también limitadas a las redes incluidas.
     const confirmadas = (D.cuentas || []).filter(c => redesIncluidas.has(c.red) && /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
-      .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: Number(c.nota_id) || idPorTitulo.get(String(c.nota_titulo || c.nota_compartida || '').trim().toLocaleLowerCase()) || null, nota_titulo: c.nota_titulo || c.nota_compartida || '' }));
+      .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: resolverNotaId(c), nota_titulo: c.nota_titulo || c.nota_compartida || '' }));
     return [...historial, ...confirmadas];
   };
   const enlaceBusquedaCompartido = f => {
