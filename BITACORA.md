@@ -294,3 +294,13 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Se conserva el botón «Buscar ahora»: llama a `/api/compartidos`, ejecuta las búsquedas automáticas de Instagram y YouTube, informa errores por fuente y prepara búsquedas asistidas para Facebook y TikTok. No se amplían los permisos de API ni se simula una importación automática.
 - Auditoría del historial leído en esta rama: `data/redes2.json` contiene 285 registros; 18 son de otras cuentas y ninguno de esos 18 tiene URL directa guardada. Por eso el código no puede reconstruir los enlaces antiguos a publicaciones concretas sin volver a localizarlas y verificarlas. No se inventaron URLs ni se reescribió el historial.
 - Pruebas actualizadas para exigir esta separación entre enlace directo y búsqueda asistida. Falta confirmar el resultado de CI y probar «Buscar ahora» en Preview con credenciales reales; esta intervención no despliega a producción.
+
+
+### 2026-10-23 — Enlaces a las notas publicadas por los medios (continuación del PR #69)
+
+- La tabla de «Quién compartió nuestras notas en redes» ahora separa tres destinos: el post social directo, la nota publicada en el sitio del medio y la nota original de JusNoticias.
+- Se añadieron a `data/redes2.json` campos `url_sitio` para ocho registros con enlaces de artículos del mismo medio verificados: Canal 12 Web, Canal 4 Esquel, Del Mar Digital (dos notas), El Comodorense, Diario Jornada, Comodoro 24 y FM Bahía Engaño. Estos enlaces corresponden a artículos en sus sitios web; no se etiquetan como posteos de Facebook.
+- Si no hay enlace directo guardado al sitio del medio, la tabla ofrece una búsqueda web marcada como pendiente de verificar. Se excluyen enlaces de Google News RSS como si fueran la nota directa del medio.
+- Se corrigió el alcance de la función que resuelve el ID de la nota para que la tabla pueda dibujarse sin una referencia fuera de ámbito.
+- El historial todavía no contiene URL directas de los posteos sociales para los 17 registros históricos de Facebook ni para el registro de X (X queda excluido del panel por decisión del usuario). Los posteos directos de Facebook no se han podido confirmar con la búsqueda web; la tabla ofrece búsquedas asistidas en lugar de inventar enlaces. El artículo del sitio web del medio se conserva como una fuente distinta.
+- Se actualizan las pruebas para la nueva columna, las URL de sitio y las búsquedas pendientes. Pendiente: confirmar CI después de los últimos commits y probar el botón «Buscar ahora» en Preview con credenciales reales. No se desplegó a producción.
