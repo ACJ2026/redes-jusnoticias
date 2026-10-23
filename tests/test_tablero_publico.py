@@ -111,22 +111,25 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio", template)
 
     def test_enlaces_directos_verificados_quedan_asociados_a_sus_registros(self):
-        registros = {r["key"]: r for r in read_json("data/rep2.json")}
+        # Se busca por nota y medio: la clave «pN» se renumera en cada relevamiento.
+        registros = read_json("data/rep2.json")
         esperados = {
-            "p1266": "https://www.elchubut.com.ar/trelew/2026-9-11-10-37-0-convocan-en-trelew-a-familias-monoparentales-para-adoptar-a-una-adolescente",
-            "p1278": "https://www.elchubut.com.ar/policiales/2026-9-21-20-32-0-comodoro-condena-contra-peugeot-y-concesionaria-por-vuelco-de-auto-provocado-por-falla-de-fabrica",
-            "p1285": "https://diariojornada.com.ar/423711/policiales/declaran_culpable_a_agustin_vera_por_el_crimen_de_matias_nieves",
-            "p1289": "https://diariojornada.com.ar/424771/policiales/la_justicia_garantizo_la_cobertura_integral_para_un_nino_con_autismo",
+            (14471, "El Chubut"): "https://www.elchubut.com.ar/trelew/2026-9-11-10-37-0-convocan-en-trelew-a-familias-monoparentales-para-adoptar-a-una-adolescente",
+            (14545, "El Chubut"): "https://www.elchubut.com.ar/policiales/2026-9-21-20-32-0-comodoro-condena-contra-peugeot-y-concesionaria-por-vuelco-de-auto-provocado-por-falla-de-fabrica",
+            (14520, "Diario Jornada"): "https://diariojornada.com.ar/423711/policiales/declaran_culpable_a_agustin_vera_por_el_crimen_de_matias_nieves",
+            (14717, "Diario Jornada"): "https://diariojornada.com.ar/424771/policiales/la_justicia_garantizo_la_cobertura_integral_para_un_nino_con_autismo",
         }
-        for key, url in esperados.items():
-            with self.subTest(key=key):
-                self.assertEqual(registros[key]["url"], url)
-                self.assertTrue(registros[key]["url"].startswith("https://"))
+        for (nota, medio), url in esperados.items():
+            with self.subTest(nota=nota, medio=medio):
+                urls = [r.get("url") for r in registros if r.get("nota_id") == nota and r.get("medio") == medio]
+                self.assertIn(url, urls)
+                self.assertTrue(url.startswith("https://"))
 
     def test_enlace_directo_el_patagonico_peugeot(self):
-        registros = {r["key"]: r for r in read_json("data/rep2.json")}
-        self.assertEqual(registros["p1300"]["url"], "https://www.elpatagonico.com/comodoro-condena-contra-peugeot-y-una-concesionaria-n6324799")
-        self.assertEqual(registros["p1300"]["cita_fuente_oficial"], "Sí")
+        registros = read_json("data/rep2.json")
+        fila = next(r for r in registros if r.get("url") == "https://www.elpatagonico.com/comodoro-condena-contra-peugeot-y-una-concesionaria-n6324799")
+        self.assertEqual((fila["nota_id"], fila["medio"]), (14545, "El Patagónico"))
+        self.assertEqual(fila["cita_fuente_oficial"], "Sí")
 
     def test_portada_muestra_periodo_y_orden_correcto_de_indicadores(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
