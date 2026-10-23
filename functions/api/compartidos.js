@@ -45,19 +45,31 @@ const sumarDias = (fecha, dias) => {
 const STOP = new Set("para sobre desde entre donde porque cuando hasta durante contra juzgado juzgados justicia judicial poder chubut provincia fallo causa ordena ordenan penal trelew rawson madryn comodoro esquel puerto rivadavia tribunal superior ciudad nuevo nueva jusnoticias".split(" "));
 const raices = texto => new Set(String(texto || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
   .replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter(w => w.length >= 5 && !STOP.has(w)).map(w => w.slice(0, 6)));
+const normalizarTexto = texto => String(texto || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+  .replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
 
 // Asigna un texto a la nota oficial más parecida publicada entre 1 día antes y 8 días después.
 // Exige al menos 3 raíces compartidas con el título, o un enlace explícito a jusnoticias.
 function notaRelacionada(texto, fecha, notas) {
   const enlace = /jusnoticias\.juschubut\.gov\.ar\/\?p=(\d+)|jusnoticias\.juschubut\.gov\.ar/i.exec(texto || "");
   const propias = raices(texto);
+  const textoNormalizado = normalizarTexto(texto);
   let mejor = null;
   for (const n of notas) {
     if (!(sumarDias(n.fecha, -1) <= fecha && fecha <= sumarDias(n.fecha, 8))) continue;
-    const comunes = [...raices(n.titulo)].filter(r => propias.has(r)).length;
-    if (!mejor || comunes > mejor.comunes) mejor = { nota: n, comunes };
+    const tituloNormalizado = normalizarTexto(n.titulo);
+    // Si el título completo aparece en el título o descripción del video/post, es una señal fuerte.
+    if (tituloNormalizado.length >= 18 && textoNormalizado.includes(tituloNormalizado)) {
+      return { nota: n, comunes: raices(n.titulo).size, motivo: "título de la nota identificado" };
+    }
+    const raicesTitulo = raices(n.titulo);
+    const comunes = [...raicesTitulo].filter(r => propias.has(r)).length;
+    if (!mejor || comunes > mejor.comunes) mejor = { nota: n, comunes, totalRaices: raicesTitulo.size };
   }
-  if (mejor && mejor.comunes >= 3) return { ...mejor, motivo: mejor.comunes + " palabras del título en común" };
+  // Títulos cortos suelen tener menos de tres palabras distintivas; usar un umbral adaptativo
+  // evita descartar coincidencias claras solo por tener dos raíces útiles.
+  const minimo = mejor ? Math.min(3, Math.max(2, mejor.totalRaices)) : 3;
+  if (mejor && mejor.comunes >= minimo) return { ...mejor, motivo: mejor.comunes + " palabras del título en común" };
   if (enlace && mejor && mejor.comunes >= 1) return { ...mejor, motivo: "enlaza a jusnoticias" };
   return null;
 }
@@ -98,6 +110,7 @@ async function instagram(env, notas, desde) {
 
 async function youtube(env, notas, desde) {
   if (!env.YT_KEY) throw new Error("Falta YT_KEY.");
+  if (!env.YT_CANAL_ID) throw new Error("Falta YT_CANAL_ID para excluir los videos del canal institucional.");
   // Cada búsqueda consume cuota de YouTube: se limita a las 10 notas más recientes del período.
   const recientes = notas.filter(n => n.fecha >= desde).sort((a, b) => b.fecha.localeCompare(a.fecha)).slice(0, 10);
   const filas = [], errores = {};
@@ -110,6 +123,7 @@ async function youtube(env, notas, desde) {
         const s = item.snippet || {};
         if (env.YT_CANAL_ID && s.channelId === env.YT_CANAL_ID) return; // canal propio
         const fecha = String(s.publishedAt || "").slice(0, 10);
+        if (!fecha || fecha < desde || fecha > sumarDias(n.fecha, 8)) return;
         const rel = notaRelacionada((s.title || "") + " " + (s.description || ""), fecha, [n]);
         if (rel) filas.push(fila("YouTube", s.channelTitle || s.channelId, "https://www.youtube.com/channel/" + s.channelId,
           "https://www.youtube.com/watch?v=" + item.id.videoId, fecha, s.title, rel));
@@ -140,9 +154,8 @@ export async function onRequestGet({ env }) {
   resultado.filas = resultado.filas.filter(f => !vistos.has(f.publicacion_url) && vistos.add(f.publicacion_url))
     .sort((a, b) => b.fecha.localeCompare(a.fecha));
   resultado.no_disponibles = {
-    Facebook: "Meta no permite leer páginas de terceros sin el permiso «Page Public Content Access».",
-    X: "La búsqueda de publicaciones de otras cuentas requiere el plan pago de la API de X.",
-    TikTok: "TikTok solo da esta búsqueda a investigadores académicos."
+    Facebook: "No está habilitado el permiso de Meta necesario para buscar publicaciones públicas de otras páginas.",
+    TikTok: "La API conectada permite consultar la cuenta autorizada, no buscar publicaciones de terceros de forma general; la búsqueda pública ampliada requiere acceso de investigación aprobado."
   };
   return json(resultado);
 }
