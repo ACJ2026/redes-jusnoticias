@@ -116,7 +116,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("No disponible: ' + (error || 'la API no devolvió datos')", template)
         self.assertNotIn('id="redes-historial-actualizado"', template)
         self.assertNotIn("Última actualización de los datos históricos:", template)
-        self.assertIn("No son métricas en vivo.", template)
+        self.assertIn("no se suma a las métricas en vivo", template)
         self.assertIn("Última actualización del relevamiento de notas y medios:", template)
         self.assertIn("Analytics/Search Console", template)
         self.assertIn('<footer class="wrap" aria-label="Actualización y fuentes">', template)
