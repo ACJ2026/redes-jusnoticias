@@ -398,7 +398,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar ahora</button></div>
       <p class="note" id="compartidos-estado" role="status"></p>
       <details class="note" id="compartidos-busqueda-manual" hidden><summary>Búsqueda asistida en Facebook y TikTok</summary><p>Estos enlaces abren búsquedas en cada plataforma; no importan resultados automáticamente. Verificá el posteo y su relación con la nota antes de registrarlo.</p><div></div></details>
-      <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación compartida</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
+      <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación compartida</th><th>Nota en sitio del medio</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
     </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
@@ -900,6 +900,29 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     if (f.red === 'TikTok') return 'https://www.tiktok.com/search?q=' + encodeURIComponent(titulo);
     return null;
   };
+  const normalizarMedioCompartido = s => String(s || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const enlaceNotaSitioMedio = f => {
+    const notaId = resolverNotaId(f);
+    const cuenta = (D.cuentas || []).find(c => c.red === f.red && c.cuenta === f.cuenta);
+    const medio = cuenta && cuenta.medio ? cuenta.medio : f.cuenta;
+    const claveMedio = normalizarMedioCompartido(medio);
+    const directa = (D.repercusion || []).filter(p => Number(p.nota_id) === Number(notaId) && p.url && /^https?:\/\//i.test(p.url) && normalizarMedioCompartido(p.medio) === claveMedio);
+    if (directa.length) return { url: directa[0].url, tipo: 'directa' };
+    const titulo = String(f.nota_titulo || notas.find(n => Number(n.id) === Number(notaId))?.titulo || '').trim();
+    if (!medio || !titulo) return null;
+    return { url: 'https://www.google.com/search?q=' + encodeURIComponent('"' + medio + '" "' + titulo + '"'), tipo: 'busqueda' };
+  };
+  const celdaNotaSitioMedio = f => {
+    const enlace = enlaceNotaSitioMedio(f);
+    if (!enlace) {
+      const td = document.createElement('td');
+      td.textContent = 'Nota del medio pendiente de localizar';
+      td.className = 'dim';
+      return td;
+    }
+    if (enlace.tipo === 'directa') return celdaEnlace('Ver nota en sitio del medio', enlace.url);
+    return celdaEnlace('Buscar nota del medio (pendiente de verificar)', enlace.url);
+  };
   const celdaPublicacionCompartida = f => {
     if (f.publicacion_url && /^https?:\/\//i.test(f.publicacion_url)) return celdaEnlace('Ver publicación directa', f.publicacion_url);
     const busqueda = enlaceBusquedaCompartido(f);
@@ -919,12 +942,14 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const red = document.createElement('td'); red.textContent = f.red;
       const tipo = document.createElement('td'); tipo.textContent = f.tipo || '—';
       const notaId = resolverNotaId(f);
+      const tituloOficial = notaId ? (f.nota_titulo || notas.find(n => Number(n.id) === Number(notaId))?.titulo || 'Ver nota de JusNoticias') : 'Nota original pendiente de identificar';
       tr.append(fecha, red, celdaEnlace(f.cuenta, f.cuenta_url), tipo,
         celdaPublicacionCompartida(f),
-        celdaEnlace(notaId ? (f.nota_titulo || titulo.get(notaId) || 'Ver nota de JusNoticias') : 'Nota original pendiente de identificar', notaId ? notaUrl(notaId) : null));
+        celdaNotaSitioMedio(f),
+        celdaEnlace(tituloOficial, notaId ? notaUrl(notaId) : null));
       return tr;
     }));
-    if (!orden.length) { const tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 6; td.className = 'dim'; td.textContent = 'Sin registros.'; tr.append(td); tb.append(tr); }
+    if (!orden.length) { const tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 7; td.className = 'dim'; td.textContent = 'Sin registros.'; tr.append(td); tb.append(tr); }
   };
   const dibujarBusquedasManuales = (desde) => {
     const panel = $('compartidos-busqueda-manual');
