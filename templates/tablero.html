@@ -394,10 +394,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card" id="compartidos">
       <h2>Quién compartió nuestras notas en redes</h2>
-      <p class="note">Cuentas de otros medios, periodistas, instituciones o vecinos que publicaron notas de Juschubut Noticias en sus redes. Cada fila enlaza a la cuenta, a la publicación y a nuestra nota. Las registradas son las comprobadas a mano; «Buscar ahora» revisa las cuentas de Instagram de la lista y busca en YouTube las notas de los últimos 30 días. Facebook, X y TikTok no permiten esta búsqueda automática con las credenciales actuales.</p>
+      <p class="note">Registra cuentas que compartieron notas de Juschubut Noticias. «Cuenta» abre el perfil; «Publicación compartida» debe abrir el posteo concreto; «Nuestra nota» abre la nota original. Algunas referencias se relevaron manualmente y todavía no tienen el enlace directo al posteo. «Buscar ahora» busca automáticamente en Instagram y YouTube durante los últimos 30 días; no consulta Facebook, X ni TikTok con las credenciales actuales. Por eso pueden aparecer filas de Facebook cargadas manualmente, aunque no se busquen al pulsar el botón.</p>
       <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar ahora en Instagram y YouTube</button></div>
       <p class="note" id="compartidos-estado" role="status"></p>
-      <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
+      <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación compartida</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
     </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
@@ -887,7 +887,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     });
     // 2) Cuentas confirmadas por el relevamiento, con la publicación de ejemplo cuando existe.
     const confirmadas = (D.cuentas || []).filter(c => /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
-      .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: null, nota_titulo: (c.estado || '').replace(/^Confirmada:\s*/, '') }));
+      .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: c.nota_id || null, nota_titulo: c.nota_titulo || c.nota_compartida || '' }));
     return [...historial, ...confirmadas];
   };
   const dibujarCompartidos = (filas) => {
@@ -899,8 +899,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const red = document.createElement('td'); red.textContent = f.red;
       const tipo = document.createElement('td'); tipo.textContent = f.tipo || '—';
       tr.append(fecha, red, celdaEnlace(f.cuenta, f.cuenta_url), tipo,
-        celdaEnlace(f.publicacion_url ? 'Ver publicación' : 'Enlace no registrado', f.publicacion_url),
-        celdaEnlace(f.nota_titulo || '—', f.nota_id ? notaUrl(f.nota_id) : null));
+        celdaEnlace(f.publicacion_url ? 'Ver publicación' : 'Enlace a la publicación no disponible', f.publicacion_url),
+        celdaEnlace(f.nota_titulo || (f.nota_id ? 'Ver nota de JusNoticias' : 'Nota de JusNoticias no identificada'), f.nota_id ? notaUrl(f.nota_id) : null));
       return tr;
     }));
     if (!orden.length) { const tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 6; td.className = 'dim'; td.textContent = 'Sin registros.'; tr.append(td); tb.append(tr); }
