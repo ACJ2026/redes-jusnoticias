@@ -1160,6 +1160,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const previo = refs.get(r.medio);
       if (!previo || String(n?.fecha || '') > String(previo.fecha || '')) refs.set(r.medio, { url: r.url, fecha: n?.fecha || '', titulo: n?.titulo || '' });
     });
+    // Estado del relevamiento con la última revisión correcta y aviso si un medio de lectura directa viene fallando.
+    const estadoRelevamiento = r => {
+      const ok = r.ultima_revision_ok ? new Date(r.ultima_revision_ok) : null;
+      const cuando = ok && Number.isFinite(ok.getTime()) ? ok.toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '';
+      const aviso = r.fallos_seguidos > 0 ? ' ⚠ Falló en las últimas ' + r.fallos_seguidos + ' revisiones.' : '';
+      return r.cobertura + (cuando ? ' · Última revisión correcta: ' + cuando + ' (hora argentina).' : '') + aviso;
+    };
     const catalogo = new Map();
     D.medios.forEach(m => {
       const medio = canonMedio(m.medio), previo = catalogo.get(medio);
@@ -1168,7 +1175,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const filas = [...catalogo.values()].map(m => ({ ...m, notas: conteo.get(m.medio) || 0, referencia: refs.get(m.medio) || null }))
       .filter(m => m.notas > 0 && m.referencia?.url)
       .sort((a, b) => b.notas - a.notas || a.medio.localeCompare(b.medio));
-    tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: r.cobertura, c: /Pendiente|Sin datos|no respondió|temporalmente no disponible/i.test(r.cobertura) ? 'dim' : '' })], [r => fmt(r.notas), 'num'], [r => { const a = document.createElement('a'); a.href = r.referencia.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = String(r.referencia.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación ↗'; a.title = 'Referencia relacionada: ' + r.referencia.titulo + ' (' + r.referencia.fecha + ')'; return a; }]]);
+    tbl('#t-medios', filas, [[r => r.medio], [r => ({ t: estadoRelevamiento(r), c: /Pendiente|Sin datos|no respondió|temporalmente no disponible/i.test(r.cobertura) || r.fallos_seguidos > 0 ? 'dim' : '' })], [r => fmt(r.notas), 'num'], [r => { const a = document.createElement('a'); a.href = r.referencia.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = String(r.referencia.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación ↗'; a.title = 'Referencia relacionada: ' + r.referencia.titulo + ' (' + r.referencia.fecha + ')'; return a; }]]);
     if (!filas.length) { const tb = document.querySelector('#t-medios tbody'); const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 4; td.textContent = 'No hay medios con enlace de referencia registrado en este período.'; tr.append(td); tb.append(tr); }
   };
 

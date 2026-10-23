@@ -225,6 +225,9 @@ def addrow(medio, m, metodo, origen='Sin dato', off=False, otros=''):
     if m.get('motivo'): fila['motivo'] = m['motivo']
     rows.append(fila)
 cobertura = {}
+# Un índice que no respondió no es lo mismo que una revisión sin resultados.
+SIN_RESPUESTA = 'Sin datos: el índice del sitio no respondió; se conserva el historial previo'
+def estado_indice(hubo_datos, ok): return ok if hubo_datos else SIN_RESPUESTA
 
 # ---------- 2. Medios WordPress ----------
 # Registro de medios descubiertos por los buscadores (se carga acá porque los que usan
@@ -358,7 +361,7 @@ for name, host in [('ADN Sur', 'https://www.adnsur.com.ar'), ('EQS Notas', 'http
         textos = dict(zip([m['u'] for m in recientes], ex.map(texto_pagina, [m['u'] for m in recientes])))
     extra += revisar_texto(recientes, textos, name)
     for m, c in extra: addrow(name, m, m['metodo'], c[0], c[1], c[2])
-    cobertura[name] = 'Revisión completa (títulos; texto en casos dudosos)'; print(name, len(items), 'por texto:', len(extra))
+    cobertura[name] = estado_indice(items, 'Revisión completa (títulos; texto en casos dudosos)'); print(name, len(items), 'por texto:', len(extra))
 
 agregar_por_datos()
 
@@ -371,7 +374,7 @@ for u in txts:
 recent = [l for l in lines if l.startswith('http') and re.search(r'-(\d{6})\.html$', l) and int(re.search(r'-(\d{6})\.html$', l).group(1)) >= 628000]
 items = [{'t': l.rstrip('/').split('/')[-1].replace('.html', '').replace('-', ' '), 'u': l} for l in recent if re.search(r'chubut|trelew|rawson|madryn|comodoro|esquel|gaiman|sarmiento|puelo|trevelin', l)]
 for m in verify(match(items, nodate_thr=0.6)): addrow('La Opinión Austral', m, 'Revisión completa (solo títulos)')
-cobertura['La Opinión Austral'] = 'Revisión completa (solo títulos)'
+cobertura['La Opinión Austral'] = estado_indice(lines, 'Revisión completa (solo títulos)')
 
 # ---------- 5. LU17 (índice por número, fecha estimada) ----------
 lu = {}
@@ -385,7 +388,7 @@ for u in ['https://lu17.com/sitemap.xml', 'https://lu17.com/news_sitemap.xml']:
 base = dt.date(2026, 4, 6)
 items = [{'t': s, 'd': (base + dt.timedelta(days=(i - 123222) / 156.4)).isoformat(), 'u': f'https://lu17.com/contenido/{i}/'} for i, s in lu.items() if i >= 111000]
 for m in match(items, win=12, before=-4, thr=0.67): addrow('LU17', m, 'Revisión completa (solo títulos)')
-cobertura['LU17'] = 'Revisión completa (solo títulos, fecha estimada)'
+cobertura['LU17'] = estado_indice(lu, 'Revisión completa (solo títulos, fecha estimada)')
 
 # ---------- 6. La Tecla Patagonia ----------
 y = get('https://www.lateclapatagonia.com.ar/sitemap-2026.xml') or ''
@@ -396,7 +399,7 @@ for u in sms:
         if 'sitemap' in loc: continue
         items.append({'t': re.sub(r'^\d+-', '', loc.rstrip('/').split('/')[-1]).replace('-', ' '), 'u': loc})
 for m in verify(match(items, nodate_thr=0.6)): addrow('La Tecla Patagonia', m, 'Revisión completa (solo títulos)')
-cobertura['La Tecla Patagonia'] = 'Revisión completa (solo títulos)'
+cobertura['La Tecla Patagonia'] = estado_indice(items, 'Revisión completa (solo títulos)')
 
 # ---------- 7. ABC Diario (sitemaps gz, se verifica la fecha) ----------
 idx = get('https://www.abcdiario.com.ar/files/sitemap/sitemap.xml') or ''
@@ -416,7 +419,7 @@ with ThreadPoolExecutor(6) as ex:
     for m, d in ex.map(abc_date, cands):
         jd = next(n['fecha'] for n in notas if n['id'] == m['nid'])
         if d and jd <= d <= addd(jd, 9): addrow('ABC Diario', m, 'Revisión completa (solo títulos)')
-cobertura['ABC Diario'] = 'Revisión completa (solo títulos)'
+cobertura['ABC Diario'] = estado_indice(urls, 'Revisión completa (solo títulos)')
 
 # ---------- 8. El Extremo Sur y La Vanguardia (por número de nota) ----------
 def enum(name, url_fmt, lo, hi, date_re, title_clean, enc=None):
@@ -429,7 +432,7 @@ def enum(name, url_fmt, lo, hi, date_re, title_clean, enc=None):
         return {'t': title_clean(html.unescape(ti.group(1))), 'd': d.group(1).replace('/', '-')[:10], 'u': url_fmt.format(i)}
     with ThreadPoolExecutor(24) as ex: items = [x for x in ex.map(one, range(lo, hi)) if x]
     for m in match(items, thr=0.67): addrow(name, m, 'Revisión completa (solo títulos)')
-    cobertura[name] = 'Revisión completa (solo títulos)'; return items
+    cobertura[name] = estado_indice(items, 'Revisión completa (solo títulos)'); return items
 def last_id(url_fmt, start, date_re, enc=None):
     i = start
     while True:
@@ -698,7 +701,20 @@ for i, r in enumerate(rep): r['key'] = f'p{i}'
 # «notas» cuenta notas distintas por medio (un medio con dos artículos de una nota suma una).
 notas_por_medio = {}
 for r in rep: notas_por_medio.setdefault(r['medio'], set()).add(r['nota_id'])
-medios = [{'medio': m, 'cobertura': c, 'notas': len(notas_por_medio.get(m, ()))} for m, c in cobertura.items()]
+# Auditoría por medio: última revisión correcta y fallos seguidos (data/estado_medios.json).
+from historial import actualizar_estado_medios
+ESTADO_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'estado_medios.json')
+try:
+    estado_medios = json.load(open(ESTADO_PATH, encoding='utf8'))
+except Exception:
+    estado_medios = {}
+estado_medios = actualizar_estado_medios(estado_medios, cobertura, dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'))
+json.dump(estado_medios, open(ESTADO_PATH, 'w', encoding='utf8'), ensure_ascii=False, indent=1, sort_keys=True)
+alertas = sorted(m for m, e in estado_medios.items() if e.get('alerta'))
+print('Medios de lectura directa sin revisión correcta hace más de 24 h:', ', '.join(alertas) or 'ninguno')
+medios = [{'medio': m, 'cobertura': c, 'notas': len(notas_por_medio.get(m, ())),
+           'ultima_revision_ok': estado_medios.get(m, {}).get('ultima_revision_ok', ''),
+           'fallos_seguidos': estado_medios.get(m, {}).get('fallos_seguidos', 0)} for m, c in cobertura.items()]
 json.dump(notas, open(os.path.join(OUT, 'notas2.json'), 'w'), ensure_ascii=False)
 json.dump(rep, open(os.path.join(OUT, 'rep2.json'), 'w'), ensure_ascii=False)
 json.dump(medios, open(os.path.join(OUT, 'medios.json'), 'w'), ensure_ascii=False)

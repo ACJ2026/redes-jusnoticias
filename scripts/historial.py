@@ -244,3 +244,39 @@ def publicaciones_faltantes(anteriores, nuevas, ids_vigentes):
         return out
     anteriores_vigentes = [r for r in anteriores if r.get("nota_id") in ids_vigentes]
     return claves(anteriores_vigentes) - claves(nuevas)
+
+
+# ---------- Auditoría de medios ----------
+# Distingue una revisión directa correcta de una consulta fallida; los medios que solo se
+# buscan por Google/Bing no se marcan como fallidos por no tener índice propio.
+FALLO_DIRECTO = re.compile(r"temporalmente no disponible|no respondió|no devolvió", re.I)
+REVISION_DIRECTA = re.compile(r"^(Revisión completa|Cobertura verificada)", re.I)
+HORAS_ALERTA = 24
+
+
+def actualizar_estado_medios(estado, cobertura, ahora):
+    """Actualiza {medio: {ultima_revision_ok, ultimo_fallo, fallos_seguidos, ultimo_estado, alerta}}."""
+    from datetime import datetime
+    nuevo = {m: dict(e) for m, e in (estado or {}).items()}
+    for medio, texto in cobertura.items():
+        e = nuevo.setdefault(medio, {"ultima_revision_ok": "", "ultimo_fallo": "", "fallos_seguidos": 0})
+        e["ultimo_estado"] = texto
+        if FALLO_DIRECTO.search(texto or ""):
+            e["ultimo_fallo"] = ahora
+            e["fallos_seguidos"] = int(e.get("fallos_seguidos", 0)) + 1
+            e["lectura_directa"] = True
+        elif REVISION_DIRECTA.search(texto or ""):
+            e["ultima_revision_ok"] = ahora
+            e["fallos_seguidos"] = 0
+            e["lectura_directa"] = True
+        else:
+            e.setdefault("lectura_directa", False)
+        ok = e.get("ultima_revision_ok") or ""
+        horas = None
+        if ok:
+            try:
+                horas = (datetime.fromisoformat(ahora.replace("Z", "+00:00")) - datetime.fromisoformat(ok.replace("Z", "+00:00"))).total_seconds() / 3600
+            except ValueError:
+                horas = None
+        e["alerta"] = bool(e.get("lectura_directa") and e.get("fallos_seguidos", 0) > 0 and (horas is None or horas > HORAS_ALERTA))
+    return nuevo

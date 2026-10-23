@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
-from historial import conservar_historial, conservar_notas, publicaciones_faltantes, normalizar_url, deduplicar_publicaciones, marcar_secundarias, clave_publicacion, aplicar_revision_manual
+from historial import conservar_historial, conservar_notas, publicaciones_faltantes, normalizar_url, deduplicar_publicaciones, marcar_secundarias, clave_publicacion, aplicar_revision_manual, actualizar_estado_medios
 from fuentes import exigir_lista_json
 
 
@@ -199,3 +199,26 @@ class RevisionManualTests(unittest.TestCase):
         aplicar_revision_manual(filas, [{"nota_id": 1, "url": filas[0]["url"], "decision": "confirmar", "origen": "Reescritura parcial",
                                          "revisado_por": "Ignacio", "fecha": "2026-10-23", "motivo": "cita los mismos datos del fallo"}])
         self.assertEqual(filas[0]["revision_manual"], {"decision": "confirmar", "por": "Ignacio", "fecha": "2026-10-23", "motivo": "cita los mismos datos del fallo"})
+
+
+class EstadoMediosTests(unittest.TestCase):
+    def test_revision_correcta_reinicia_fallos(self):
+        e = actualizar_estado_medios({"ADN Sur": {"ultima_revision_ok": "", "ultimo_fallo": "x", "fallos_seguidos": 3}},
+                                     {"ADN Sur": "Revisión completa (solo títulos)"}, "2026-10-23T18:00:00Z")
+        self.assertEqual(e["ADN Sur"]["fallos_seguidos"], 0)
+        self.assertEqual(e["ADN Sur"]["ultima_revision_ok"], "2026-10-23T18:00:00Z")
+        self.assertFalse(e["ADN Sur"]["alerta"])
+
+    def test_indice_que_no_responde_cuenta_como_fallo_y_alerta_despues_de_24_horas(self):
+        previo = {"LU17": {"ultima_revision_ok": "2026-10-22T10:00:00Z", "ultimo_fallo": "", "fallos_seguidos": 0}}
+        e = actualizar_estado_medios(previo, {"LU17": "Sin datos: el índice del sitio no respondió; se conserva el historial previo"}, "2026-10-23T12:00:00Z")
+        self.assertEqual(e["LU17"]["fallos_seguidos"], 1)
+        self.assertEqual(e["LU17"]["ultima_revision_ok"], "2026-10-22T10:00:00Z")
+        self.assertTrue(e["LU17"]["alerta"])
+        e2 = actualizar_estado_medios(previo, {"LU17": "Fuente temporalmente no disponible; se conserva el historial previo"}, "2026-10-22T14:00:00Z")
+        self.assertFalse(e2["LU17"]["alerta"])
+
+    def test_medio_solo_por_buscador_no_se_marca_como_fallido(self):
+        e = actualizar_estado_medios({}, {"Infobae": "Encontrado por Google Noticias; fuente descubierta automáticamente"}, "2026-10-23T12:00:00Z")
+        self.assertEqual(e["Infobae"]["fallos_seguidos"], 0)
+        self.assertFalse(e["Infobae"]["alerta"])

@@ -181,3 +181,11 @@ class LecturaTextoCompletoTest(unittest.TestCase):
         e["agregar_por_datos"]()
         self.assertEqual([f[1] for f in e["FILAS"]], [2])
         self.assertEqual(len(e["CANDIDATOS_DATOS"]), 7)
+
+
+class IndicesQueNoRespondenTest(unittest.TestCase):
+    def test_las_fuentes_por_indice_no_se_declaran_completas_si_no_respondieron(self):
+        for fuente in ("'La Opinión Austral'] = estado_indice(lines", "'LU17'] = estado_indice(lu", "'La Tecla Patagonia'] = estado_indice(items",
+                       "'ABC Diario'] = estado_indice(urls", "cobertura[name] = estado_indice(items, 'Revisión completa (títulos",
+                       "cobertura[name] = estado_indice(items, 'Revisión completa (solo títulos)'); return items"):
+            self.assertIn(fuente, FUENTE)
