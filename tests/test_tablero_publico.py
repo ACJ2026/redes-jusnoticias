@@ -213,10 +213,14 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("business_discovery", funcion)
         self.assertIn('import cuentasMonitoreo from "../../data/cuentas_monitoreo.json";', funcion)
         self.assertIn("const enlacePosteo = r =>", template)
-        self.assertIn("Abrir publicación del medio ↗", template)
-        self.assertIn("Ver nota original en JusNoticias ↗", template)
-        self.assertIn("Consultar fuente de esta cifra", template)
-        self.assertIn("D.repercusion.filter(p => Number(p.nota_id) === Number(r.nota_id)", template)
+        self.assertIn("Ver publicación directa", template)
+        self.assertIn("Buscar publicación (pendiente de verificar)", template)
+        self.assertIn("const redesIncluidas = new Set(['Facebook', 'Instagram', 'YouTube', 'TikTok']);", template)
+        self.assertIn("celdaPublicacionCompartida(f)", template)
+        self.assertIn("Solo la URL directa identifica la publicación concreta.", template)
+        self.assertIn("Abre una búsqueda; todavía no es el enlace directo al post.", template)
+        self.assertNotIn("D.repercusion.filter(p => Number(p.nota_id) === Number(r.nota_id)", template)
+        self.assertNotIn("Ver nota original en JusNoticias ↗", template)
 
     def test_generador_de_infografias_usa_los_datos_del_tablero(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
