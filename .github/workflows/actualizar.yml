@@ -55,6 +55,8 @@ jobs:
           if [ "$filas" -lt $((antes * 8 / 10)) ]; then echo "Muy pocas publicaciones, no se guarda"; exit 1; fi
           if [ "$notas_ahora" -lt $((notas_antes * 95 / 100)) ]; then echo "Desaparecieron más del 5% de las notas; no se guarda sin revisión"; exit 1; fi
           cp out/notas2.json out/rep2.json out/medios.json data/
+          # Inventario único de medios (no modifica rep2 ni medios); si falla, no frena el relevamiento.
+          python3 scripts/armar_inventario.py || echo "AVISO: no se pudo actualizar data/medios_inventario.json"
 
       - name: Registrar fecha del relevamiento
         if: github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.modo != 'publico')

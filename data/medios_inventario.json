@@ -1,0 +1,1988 @@
+{
+  "descripcion": "Inventario único de medios. Se regenera con scripts/armar_inventario.py; para corregir a mano localidad, tipo, estado u observaciones, editá el campo y marcalo en \"_manual\" (por ejemplo \"_manual\": {\"localidad\": true}) para que no se pise.",
+  "medios": [
+    {
+      "nombre": "Radio 3 Cadena Patagonia",
+      "alias": [],
+      "dominio": "radio3cadenapatagonia.com.ar",
+      "url": "https://radio3cadenapatagonia.com.ar",
+      "tipo": "Radio",
+      "localidad": "Trelew",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 125,
+      "notas": 125,
+      "ejemplo": "https://radio3cadenapatagonia.com.ar/rawson-un-policia-ira-a-juicio-por-jurados-por-una-acusacion-de-abuso-sexual/",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Facebook": [
+          "/radio3cp"
+        ],
+        "Instagram": [
+          "@radio3_cadenapatagonia"
+        ],
+        "X": [
+          "Dudosa: Dudosa: linkea @radio3am780 y @radio3trelew"
+        ],
+        "YouTube": [
+          "/channel/UCrBSwrbOMnPb56ZzzNNlj0A"
+        ]
+      }
+    },
+    {
+      "nombre": "Metadata Noticias",
+      "alias": [],
+      "dominio": "metadatanoticias.com.ar",
+      "url": "https://metadatanoticias.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Chubut (localidad por verificar)",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "publicaciones": 114,
+      "notas": 114,
+      "ejemplo": "https://www.metadatanoticias.com.ar/2026/10/16/un-fallo-ordeno-la-escolarizacion-presencial-de-una-nina-en-madryn-luego-de-que-sus-padres-buscaban-educarla-bajo-el-sistema-homeschooling/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/metadatanoticias"
+        ],
+        "Instagram": [
+          "@metadatanoticias"
+        ],
+        "X": [
+          "@metadataweb"
+        ]
+      }
+    },
+    {
+      "nombre": "Del Mar Digital",
+      "alias": [],
+      "dominio": "delmardigital.net",
+      "url": "https://delmardigital.net",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 91,
+      "notas": 91,
+      "ejemplo": "https://delmardigital.net/buscan-referentes-afectivos-para-una-adolescente-de-17-anos-como-postularse/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Del Mar Digital.CR",
+          "/delmardigital.net"
+        ],
+        "Instagram": [
+          "@delmardigital.cr"
+        ],
+        "X": [
+          "@DelMarDigitalCR"
+        ],
+        "YouTube": [
+          "@delmardigitalCR"
+        ]
+      }
+    },
+    {
+      "nombre": "Canal 12",
+      "alias": [],
+      "dominio": "canal12web.com",
+      "url": "https://canal12web.com",
+      "tipo": "TV",
+      "localidad": "Puerto Madryn",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 89,
+      "notas": 89,
+      "ejemplo": "https://canal12web.com/buscan-una-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Facebook": [
+          "Canal 12 Web",
+          "/Canal12Web"
+        ],
+        "Instagram": [
+          "@canal12web"
+        ],
+        "X": [
+          "@Canal12web"
+        ],
+        "YouTube": [
+          "/user/canal12noticias"
+        ]
+      }
+    },
+    {
+      "nombre": "La Posta Comodorense",
+      "alias": [],
+      "dominio": "lapostacomodorense.com.ar",
+      "url": "https://lapostacomodorense.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 70,
+      "notas": 70,
+      "ejemplo": "https://lapostacomodorense.com.ar/2026/10/19/condenan-a-una-comerciante-por-difamar-a-una-vecina-en-facebook-y-debera-indemnizarla/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Dudosa: Dudosa: salió del buscador; el sitio no linkea redes"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: @laposta_radio"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: /c/LaPostaComodorenseTV"
+        ]
+      }
+    },
+    {
+      "nombre": "Noticias PMY",
+      "alias": [],
+      "dominio": "noticiaspmy.com",
+      "url": "https://noticiaspmy.com",
+      "tipo": "Portal digital",
+      "localidad": "Puerto Madryn",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 67,
+      "notas": 67,
+      "ejemplo": "https://noticiaspmy.com/condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/Noticias-PMY-787170188152962"
+        ],
+        "X": [
+          "@NoticiasPmy"
+        ]
+      }
+    },
+    {
+      "nombre": "Cholila Online",
+      "alias": [],
+      "dominio": "cholilaonline.ar",
+      "url": "https://cholilaonline.ar",
+      "tipo": "Portal digital",
+      "localidad": "Cholila",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 59,
+      "notas": 59,
+      "ejemplo": "https://cholilaonline.ar/2026/10/prevencion-de-cancer-de-mama-en-comodoro.html",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/CholilaOnline"
+        ],
+        "Instagram": [
+          "@cholilaonline"
+        ],
+        "X": [
+          "@CholilaOnlive"
+        ],
+        "YouTube": [
+          "@CholilaOnlive"
+        ],
+        "TikTok": [
+          "@cholilaonlive"
+        ]
+      }
+    },
+    {
+      "nombre": "FM Bahía Engaño",
+      "alias": [],
+      "dominio": "fmbahiaengano.com",
+      "url": "https://fmbahiaengano.com",
+      "tipo": "Radio",
+      "localidad": "Rawson",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 52,
+      "notas": 52,
+      "ejemplo": "https://fmbahiaengano.com/puerto-madryn-condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "FM Bahía Engaño",
+          "Dudosa: Dudosa: /fmbahiaengano y /BahiaEnganoFM"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: @fmbahiaengano y @fmengano104.5"
+        ],
+        "X": [
+          "Dudosa: Dudosa: @fmbahiaengano y @bahiaengano"
+        ],
+        "YouTube": [
+          "/channel/UCnmDT7eGbQ_3V_retGGcGYA"
+        ]
+      }
+    },
+    {
+      "nombre": "ADN Sur",
+      "alias": [],
+      "dominio": "adnsur.com.ar",
+      "url": "https://adnsur.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 48,
+      "notas": 48,
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Facebook": [
+          "ADN Sur",
+          "/ADNSUR"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: el sitio linkea @yasabes.arg; también existe @adnsur"
+        ],
+        "X": [
+          "@ADNsur"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: @ADNSURTV"
+        ]
+      }
+    },
+    {
+      "nombre": "Digital Chubut",
+      "alias": [],
+      "dominio": "digitalchubut.com",
+      "url": "https://digitalchubut.com",
+      "tipo": "Portal digital",
+      "localidad": "Puerto Madryn",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 48,
+      "notas": 48,
+      "ejemplo": "https://digitalchubut.com/puerto-madryn-condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Dudosa: Dudosa: el sitio linkea /mollmadryn"
+        ],
+        "Instagram": [
+          "@chubutdigital"
+        ],
+        "X": [
+          "Dudosa: Dudosa: @MollMadryn"
+        ]
+      }
+    },
+    {
+      "nombre": "El Diario Web",
+      "alias": [
+        "eldiarioweb.com"
+      ],
+      "dominio": "eldiarioweb.com",
+      "url": "https://eldiarioweb.com",
+      "tipo": "Portal digital",
+      "localidad": "Puerto Madryn",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 48,
+      "notas": 48,
+      "ejemplo": "https://www.eldiarioweb.com/2026/10/puerto-madryn-condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/eldiarioonline"
+        ],
+        "Instagram": [
+          "@eldiarioweb"
+        ],
+        "X": [
+          "@ElDiario_web"
+        ],
+        "YouTube": [
+          "/user/diariodemadryn"
+        ]
+      }
+    },
+    {
+      "nombre": "EQS Notas",
+      "alias": [],
+      "dominio": "eqsnotas.com",
+      "url": "https://eqsnotas.com",
+      "tipo": "Portal digital",
+      "localidad": "Esquel",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 48,
+      "notas": 48,
+      "ejemplo": "https://www.eqsnotas.com/judiciales/intentaron-robar--dispararon-contra-un-policia-y-el-jurado-popular-los-declaro-culpables_a69a0c57fd58fb9ae9fd2e582",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Facebook": [
+          "/eqsnotas"
+        ],
+        "Instagram": [
+          "@eqsnotas"
+        ],
+        "X": [
+          "@eqsnotas"
+        ],
+        "YouTube": [
+          "/channel/UCkCnbW81pBA_-Qfbl2ivqbw"
+        ]
+      }
+    },
+    {
+      "nombre": "Comodoro 24",
+      "alias": [],
+      "dominio": "comodoro24.com.ar",
+      "url": "https://comodoro24.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 41,
+      "notas": 41,
+      "ejemplo": "https://comodoro24.com.ar/mas-de-60-mujeres-participaron-de-una-jornada-de-prevencion-del-cancer-de-mama-en-comodoro/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-22",
+      "redes": {
+        "Facebook": [
+          "C24",
+          "/comodoro24"
+        ],
+        "X": [
+          "@infoComodoro24"
+        ],
+        "YouTube": [
+          "/channel/UCBc0w72RGAFyvbaKSHO6h_Q"
+        ]
+      }
+    },
+    {
+      "nombre": "Argentar Noticias",
+      "alias": [],
+      "dominio": "argentarnoticias.com.ar",
+      "url": "https://argentarnoticias.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 33,
+      "notas": 33,
+      "ejemplo": "https://argentarnoticias.com.ar/buscan-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Dudosa: Dudosa: el sitio linkea Radio del Sur 97.1: /RadioDelSur97.1"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: @radiodelsur971"
+        ],
+        "X": [
+          "Dudosa: Dudosa: @RadioDelSur971"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: @radiodelsur971"
+        ]
+      }
+    },
+    {
+      "nombre": "El Comodorense",
+      "alias": [],
+      "dominio": "elcomodorense.net",
+      "url": "https://elcomodorense.net",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 29,
+      "notas": 29,
+      "ejemplo": "https://www.elcomodorense.net/convocan-a-guarda-con-fines-adoptivos-para-un-nino-de-9-anos-en-comodoro/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "El Comodorense",
+          "/elcomodorense"
+        ],
+        "Instagram": [
+          "@elcomodorense"
+        ],
+        "X": [
+          "@elcomodorense"
+        ]
+      }
+    },
+    {
+      "nombre": "Radio Chubut",
+      "alias": [],
+      "dominio": "radiochubut.com",
+      "url": "https://radiochubut.com",
+      "tipo": "Radio",
+      "localidad": "Trelew",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 29,
+      "notas": 29,
+      "ejemplo": "https://radiochubut.com/rawson-prevencion-cancer-mama/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/lu20radiochubut"
+        ],
+        "Instagram": [
+          "@lu20radio_chubut"
+        ],
+        "X": [
+          "@RadioChubut"
+        ],
+        "YouTube": [
+          "/channel/UC6js59w4zjafpwmxIPCilsg"
+        ]
+      }
+    },
+    {
+      "nombre": "Chubut Hoy",
+      "alias": [],
+      "dominio": "chubuthoy.com",
+      "url": "https://chubuthoy.com",
+      "tipo": "Portal digital",
+      "localidad": "Chubut (localidad por verificar)",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 24,
+      "notas": 24,
+      "ejemplo": "https://www.chubuthoy.com/2026/09/29/empresa-de-transporte-debera-pagar-millonaria-indemnizacion-a-una-pasajera/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/ChubutHoy"
+        ],
+        "Instagram": [
+          "@chubuthoy"
+        ],
+        "X": [
+          "@chubuthoy1"
+        ]
+      }
+    },
+    {
+      "nombre": "Diario La Portada",
+      "alias": [],
+      "dominio": "diariolaportada.com.ar",
+      "url": "https://diariolaportada.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Esquel",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 22,
+      "notas": 22,
+      "ejemplo": "https://diariolaportada.com.ar/2026/10/22/ingram-se-reunio-con-el-ministro-de-desarrollo-agrario-de-buenos-aires/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/DiarioLaPortada"
+        ],
+        "Instagram": [
+          "@diario_laportada_esquel"
+        ],
+        "X": [
+          "@LaPortadaDiario"
+        ],
+        "YouTube": [
+          "@laportadadiario2895"
+        ]
+      }
+    },
+    {
+      "nombre": "Radio de Camioneros",
+      "alias": [],
+      "dominio": "radiodecamioneros.com.ar",
+      "url": "https://radiodecamioneros.com.ar",
+      "tipo": "Radio",
+      "localidad": "Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 21,
+      "notas": 21,
+      "ejemplo": "https://radiodecamioneros.com.ar/el-municipio-concreto-una-nueva-jornada-de-prevencion-de-cancer-de-mama/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/Radio-de-Camioneros-Comodoro-Rivadavia-159892451208730"
+        ],
+        "Instagram": [
+          "@radiodecamioneros"
+        ],
+        "X": [
+          "@camionerosradio",
+          "@CamionerosRadio"
+        ],
+        "YouTube": [
+          "/channel/UCx0ZTnObZJEuNvOlI-BhDvQ"
+        ]
+      }
+    },
+    {
+      "nombre": "El Chubut",
+      "alias": [],
+      "dominio": "elchubut.com.ar",
+      "url": "https://elchubut.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Trelew",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 20,
+      "notas": 20,
+      "ejemplo": "https://www.elchubut.com.ar/puerto-madryn/2026-10-16-11-23-0-interes-superior-del-nino-fallo-ordena-la-escolarizacion-presencial-de-una-nina-de-cinco-anos",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/diarioelchubut"
+        ],
+        "Instagram": [
+          "@diarioelchubut"
+        ],
+        "X": [
+          "@elchubut"
+        ],
+        "YouTube": [
+          "@DiarioELCHUBUTwebTV"
+        ],
+        "TikTok": [
+          "@diarioelchubut"
+        ]
+      }
+    },
+    {
+      "nombre": "LU17",
+      "alias": [],
+      "dominio": "lu17.com",
+      "url": "https://lu17.com",
+      "tipo": "Radio",
+      "localidad": "Puerto Madryn",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos, fecha estimada)",
+      "publicaciones": 15,
+      "notas": 15,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "FM Tropical",
+      "alias": [],
+      "dominio": "fmtropicalradio.com",
+      "url": "https://fmtropicalradio.com",
+      "tipo": "Radio",
+      "localidad": "Rawson",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 14,
+      "notas": 14,
+      "ejemplo": "https://fmtropicalradio.com/2026/09/jueza-le-otorgo-la-tutela-de-un-adolescente-a-sus-abuelos-maternos/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "FM Tropical",
+          "/fmtropical106.3"
+        ],
+        "Instagram": [
+          "@fmtropical106.3"
+        ],
+        "X": [
+          "@TropicalRawson"
+        ],
+        "YouTube": [
+          "/channel/UCCE0crhUBmuuz4ZbxBIVqgg"
+        ]
+      }
+    },
+    {
+      "nombre": "Crónica",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Prensa gráfica",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 12,
+      "notas": 12,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Crónica Comodoro Rivadavia",
+          "/diariocronicacomodoro"
+        ],
+        "Instagram": [
+          "@cronicacrd"
+        ],
+        "X": [
+          "@cronicacrd"
+        ]
+      }
+    },
+    {
+      "nombre": "CHACODIAPORDIA.COM",
+      "alias": [],
+      "dominio": "chacodiapordia.com",
+      "url": "https://chacodiapordia.com",
+      "tipo": "Portal digital",
+      "localidad": "Resistencia",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 11,
+      "notas": 11,
+      "ejemplo": "https://chacodiapordia.com/octubre-mes-rosa-ameb-invia-a-una-charla-de-prevencion-y-concientizacion-sobre-cancer-de-mama/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-22",
+      "redes": {}
+    },
+    {
+      "nombre": "Diario Jornada",
+      "alias": [],
+      "dominio": "diariojornada.com.ar",
+      "url": "https://diariojornada.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Trelew",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 11,
+      "notas": 11,
+      "ejemplo": "https://www.diariojornada.com.ar/425339/policiales/la_querian_educar_en_su_casa_pero_la_justicia_se_opuso",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Diario Jornada",
+          "/jornadaweb"
+        ],
+        "Instagram": [
+          "@jornadaweb"
+        ],
+        "X": [
+          "@jornadaweb"
+        ],
+        "YouTube": [
+          "/c/DiarioJornadaChubut"
+        ]
+      }
+    },
+    {
+      "nombre": "El Valle Online",
+      "alias": [],
+      "dominio": "elvalleonline.com.ar",
+      "url": "https://elvalleonline.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Valle Inferior del Río Chubut",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 10,
+      "notas": 10,
+      "ejemplo": "https://www.elvalleonline.com.ar/un-nino-de-rawson-fue-escuchado-por-la-justicia-y-podra-seguir-viviendo-con-sus-abuelos/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Red43",
+      "alias": [],
+      "dominio": "red43.com.ar",
+      "url": "https://red43.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Esquel",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 9,
+      "notas": 9,
+      "ejemplo": "https://www.red43.com.ar/nota/2026-10-19-15-25-42-chubut-la-condenaron-por-escrachar-a-una-vecina-por-facebook-y-debera-pagar-2-4-millones",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Red43Noticias",
+          "/Red43Noticias"
+        ],
+        "Instagram": [
+          "@Red43Esquel"
+        ],
+        "X": [
+          "@RED43info"
+        ],
+        "YouTube": [
+          "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
+        ]
+      }
+    },
+    {
+      "nombre": "El Patagónico",
+      "alias": [],
+      "dominio": "elpatagonico.com",
+      "url": "https://elpatagonico.com",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 8,
+      "notas": 8,
+      "ejemplo": "https://www.elpatagonico.com/condenan-una-comerciante-difamar-una-vecina-redes-sociales-n6335303",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "El Patagónico",
+          "/elpatagonico"
+        ],
+        "Instagram": [
+          "@elpatagonico"
+        ],
+        "X": [
+          "@elpatagonico"
+        ]
+      }
+    },
+    {
+      "nombre": "Mil Patagonias",
+      "alias": [],
+      "dominio": "milpatagonias.com",
+      "url": "https://milpatagonias.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 8,
+      "notas": 8,
+      "ejemplo": "https://www.milpatagonias.com/el-municipio-de-comodoro-concreto-una-nueva-jornada-de-prevencion-de-cancer-de-mama/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Diario San Rafael",
+      "alias": [],
+      "dominio": "diariosanrafael.com.ar",
+      "url": "https://diariosanrafael.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "San Rafael",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "La Nota San Juan",
+      "alias": [],
+      "dominio": "lanotasj.com.ar",
+      "url": "https://lanotasj.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://lanotasj.com.ar/el-gobierno-creo-una-comision-para-reformar-el-codigo-procesal-civil-y-comercial-e-instaurar-la-oralidad-en-los-juicios/",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "La Opinión Austral",
+      "alias": [],
+      "dominio": "laopinionaustral.com.ar",
+      "url": "https://laopinionaustral.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Río Gallegos",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://laopinionaustral.com.ar/comodoro-rivadavia/caso-ivan-torres-ya-excavaron-ocho-tumbas-en-el-cementerio-oeste-660437.html",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "La Tecla Patagonia",
+      "alias": [],
+      "dominio": "lateclapatagonia.com.ar",
+      "url": "https://lateclapatagonia.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Cobertura patagónica (localidad por verificar)",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://www.lateclapatagonia.com.ar/100796-el-stj-se-expidio-sobre-el-conflicto-del-girsu-entre-los-municipios-de-esquel-y-trevelin",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/LaTeclaPatagonia"
+        ],
+        "Instagram": [
+          "@lateclapatagonia"
+        ],
+        "X": [
+          "@teclapatagonia"
+        ],
+        "TikTok": [
+          "Dudosa: Dudosa: ícono sin usuario"
+        ]
+      }
+    },
+    {
+      "nombre": "Revista Quórum",
+      "alias": [],
+      "dominio": "revistaquorum.com.ar",
+      "url": "https://revistaquorum.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Cobertura nacional",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://revistaquorum.com.ar/2026/09/17/la-carta-de-un-juez-a-una-nina-victima-de-abuso-tu-tio-no-va-a-ir-a-la-carcel-y-no-es-porque-no-te-haya-creido/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "ABC Diario",
+      "alias": [],
+      "dominio": "abcdiario.com.ar",
+      "url": "https://abcdiario.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 5,
+      "notas": 5,
+      "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-22",
+      "redes": {
+        "Facebook": [
+          "/abcdiarioar"
+        ],
+        "Instagram": [
+          "@abcdiarioar"
+        ],
+        "X": [
+          "@abcdiarioar"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: @abcdiarioar"
+        ]
+      }
+    },
+    {
+      "nombre": "Diario Judicial",
+      "alias": [],
+      "dominio": "diariojudicial.com",
+      "url": "https://diariojudicial.com",
+      "tipo": "Prensa gráfica",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 4,
+      "notas": 4,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Examedia",
+      "alias": [
+        "examedia.com.ar"
+      ],
+      "dominio": "examedia.com.ar",
+      "url": "https://examedia.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Entre Ríos (localidad por verificar)",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 4,
+      "notas": 4,
+      "ejemplo": "https://examedia.com.ar/portada/post/88064432",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Canal Doce Misiones",
+      "alias": [],
+      "dominio": "canal12misiones.com",
+      "url": "https://canal12misiones.com",
+      "tipo": "TV",
+      "localidad": "Posadas",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 3,
+      "notas": 3,
+      "ejemplo": "https://www.canal12misiones.com/justicia/misiones-regimen-penal-juvenil",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-22",
+      "redes": {}
+    },
+    {
+      "nombre": "El Extremo Sur",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 3,
+      "notas": 3,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "GENESIS24.NET",
+      "alias": [],
+      "dominio": "genesis24.net",
+      "url": "https://genesis24.net",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 3,
+      "notas": 3,
+      "ejemplo": "https://genesis24.net/2026/09/14/casacion-ordeno-reparar-a-una-victima-de-abuso-sexual-cometido-en-el-ejercito/",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "La Voz del Interior",
+      "alias": [],
+      "dominio": "lavoz.com.ar",
+      "url": "https://lavoz.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Córdoba",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Cobertura verificada manualmente",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://www.lavoz.com.ar/ciudadanos/dijo-chorra-vecina-facebook-justicia-debera-indemnizarla-pagara_0_ei9s7vvfd2.html",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "LM Neuquén",
+      "alias": [
+        "Lmneuquen.com"
+      ],
+      "dominio": "lmneuquen.com",
+      "url": "https://lmneuquen.com",
+      "tipo": "Portal digital",
+      "localidad": "Neuquén",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://www.lmneuquen.com/patagonia/escracho-una-vecina-facebook-chorra-y-ahora-debe-pagarle-mas-10-veces-lo-que-dijo-que-le-robo-n1257847",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "0223",
+      "alias": [],
+      "dominio": "0223.com.ar",
+      "url": "https://0223.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Cobertura verificada manualmente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.0223.com.ar/nota/2026-10-19-19-12-0-escracho-a-una-mujer-por-chorra-la-acusacion-era-falsa-y-debera-pagarle-2-4-millones",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "A24.com",
+      "alias": [],
+      "dominio": "a24.com",
+      "url": "https://a24.com",
+      "tipo": "Portal digital",
+      "localidad": "Cobertura nacional",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Acento",
+      "alias": [],
+      "dominio": "acento.com.do",
+      "url": "https://acento.com.do",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Ambito",
+      "alias": [],
+      "dominio": "ambito.com",
+      "url": "https://ambito.com",
+      "tipo": "Portal digital",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "ANBariloche",
+      "alias": [],
+      "dominio": "anbariloche.com.ar",
+      "url": "https://anbariloche.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "San Carlos de Bariloche",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "APFDigital",
+      "alias": [],
+      "dominio": "apfdigital.com.ar",
+      "url": "https://apfdigital.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Paraná",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Atento Chubut",
+      "alias": [],
+      "dominio": "atentochubut.com",
+      "url": "https://atentochubut.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Caracol Radio",
+      "alias": [],
+      "dominio": "caracol.com.co",
+      "url": "https://caracol.com.co",
+      "tipo": "Radio",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Clarín",
+      "alias": [],
+      "dominio": "clarin.com",
+      "url": "https://clarin.com",
+      "tipo": "Portal digital",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Cobertura verificada manualmente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Diario Huarpe",
+      "alias": [],
+      "dominio": "diariohuarpe.com",
+      "url": "https://diariohuarpe.com",
+      "tipo": "Prensa gráfica",
+      "localidad": "San Juan",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Diario Nuevo Día",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Prensa gráfica",
+      "localidad": "Río Gallegos",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Diario Río Negro",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Prensa gráfica",
+      "localidad": "General Roca",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Diario Sur",
+      "alias": [],
+      "dominio": "diariosur.es",
+      "url": "https://diariosur.es",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "El 10 TV",
+      "alias": [],
+      "dominio": "el10tv.com",
+      "url": "https://el10tv.com",
+      "tipo": "TV",
+      "localidad": "Salta",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "El Atlantico",
+      "alias": [],
+      "dominio": "elatlantico.do",
+      "url": "https://elatlantico.do",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "El Diario Nuevo Día",
+      "alias": [],
+      "dominio": "eldiarionuevodia.com.ar",
+      "url": "https://eldiarionuevodia.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.eldiarionuevodia.com.ar/regionales/un-juez-le-escribio-una-carta-a-una-nina-de-10-anos-tras-condenar-a-su-tio-por-abuso-sexual/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "El Editor Mendoza",
+      "alias": [],
+      "dominio": "eleditormendoza.com.ar",
+      "url": "https://eleditormendoza.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Mendoza",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "El Mediador - Santa Cruz",
+      "alias": [],
+      "dominio": "elmediadortv.com.ar",
+      "url": "https://elmediadortv.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Santa Cruz (localidad por verificar)",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "El Monterizo",
+      "alias": [],
+      "dominio": "elmonterizo.com",
+      "url": "https://elmonterizo.com",
+      "tipo": "Portal digital",
+      "localidad": "San Miguel de Tucumán",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://elmonterizo.com/lo-acuso-de-chorra-en-facebook-y-prometio-arruinarla-lo-que-resolvio-la-justicia",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "El Periscopio",
+      "alias": [],
+      "dominio": "elperiscopio.cl",
+      "url": "https://elperiscopio.cl",
+      "tipo": "Portal digital",
+      "localidad": "Cobertura provincial (Misiones)",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-22",
+      "redes": {}
+    },
+    {
+      "nombre": "El Peruano",
+      "alias": [],
+      "dominio": "elperuano.pe",
+      "url": "https://elperuano.pe",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "El Tribuno",
+      "alias": [],
+      "dominio": "eltribuno.com",
+      "url": "https://eltribuno.com",
+      "tipo": "Portal digital",
+      "localidad": "Salta",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "elatlantico.do",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "ElDoce.tv",
+      "alias": [],
+      "dominio": "eldoce.tv",
+      "url": "https://eldoce.tv",
+      "tipo": "TV",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Elonce",
+      "alias": [],
+      "dominio": "elonce.com",
+      "url": "https://elonce.com",
+      "tipo": "Portal digital",
+      "localidad": "Paraná",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Cobertura verificada manualmente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.elonce.com/amp/acuso-de-ladrona-a-una-vecina-y-debera-pagar-2-4-millones.htm",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Elonce.com",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Paraná",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Federación de Periodistas del Perú",
+      "alias": [],
+      "dominio": "fpp.org.pe",
+      "url": "https://fpp.org.pe",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Flipr.news",
+      "alias": [],
+      "dominio": "flipr.com.ar",
+      "url": "https://flipr.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Cobertura nacional",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "FM del Lago Esquel",
+      "alias": [],
+      "dominio": "fmdellagoesquel.com.ar",
+      "url": "https://fmdellagoesquel.com.ar",
+      "tipo": "Radio",
+      "localidad": "Esquel",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://fmdellagoesquel.com.ar/el-dr-daniel-baez-califico-de-vergonzosa-la-restitucion-de-la-jueza-mariel-suarez/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/FmdelLagoOK"
+        ],
+        "Instagram": [
+          "@fmdellagoesquel"
+        ],
+        "X": [
+          "@fmdellagoesquel"
+        ]
+      }
+    },
+    {
+      "nombre": "Info del Estero",
+      "alias": [],
+      "dominio": "infodelestero.com",
+      "url": "https://infodelestero.com",
+      "tipo": "Portal digital",
+      "localidad": "Santiago del Estero",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Infobae",
+      "alias": [],
+      "dominio": "infobae.com",
+      "url": "https://infobae.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {
+        "Facebook": [
+          "Infobae"
+        ]
+      }
+    },
+    {
+      "nombre": "Instituto Colombiano Agropecuario - ICA",
+      "alias": [],
+      "dominio": "ica.gov.co",
+      "url": "https://ica.gov.co",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "La Brújula 24",
+      "alias": [],
+      "dominio": "labrujula24.com",
+      "url": "https://labrujula24.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Madryn Ahora",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Puerto Madryn",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Dudosa: Dudosa: /ChubutAhora"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: @madrynahora"
+        ],
+        "X": [
+          "Dudosa: Dudosa: @MadrynAhora"
+        ]
+      }
+    },
+    {
+      "nombre": "mdz online",
+      "alias": [],
+      "dominio": "mdzol.com",
+      "url": "https://mdzol.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.mdzol.com/politica/2026/9/16/que-penas-podran-recibir-los-jovenes-el-nuevo-regimen-penal-juvenil-1981295.html",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "MejorInformado.com",
+      "alias": [],
+      "dominio": "mejorinformado.com",
+      "url": "https://mejorinformado.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Noticias de Bariloche",
+      "alias": [],
+      "dominio": "noticiasdebariloche.com.ar",
+      "url": "https://noticiasdebariloche.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "San Carlos de Bariloche",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "NoticiasdelBolson",
+      "alias": [],
+      "dominio": "noticiasdelbolson.com.ar",
+      "url": "https://noticiasdelbolson.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "El Bolsón",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "pagina12.com.ar",
+      "alias": [],
+      "dominio": "pagina12.com.ar",
+      "url": "https://pagina12.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.pagina12.com.ar/2026/09/09/respaldo-al-fallo-que-freno-el-nuevo-regimen-penal-juvenil-en-la-provincia/",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Periódico EL JAYA",
+      "alias": [],
+      "dominio": "eljaya.com",
+      "url": "https://eljaya.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Portal de Cádiz",
+      "alias": [],
+      "dominio": "portaldecadiz.com",
+      "url": "https://portaldecadiz.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Portal Medios Públicos",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Cobertura nacional",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Presidencia de la República Dominicana",
+      "alias": [],
+      "dominio": "presidencia.gob.do",
+      "url": "https://presidencia.gob.do",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Que Pasa Jujuy",
+      "alias": [],
+      "dominio": "quepasajujuy.com.ar",
+      "url": "https://quepasajujuy.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "San Salvador de Jujuy",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Radio Sintonía",
+      "alias": [],
+      "dominio": "radiosintonia.com",
+      "url": "https://radiosintonia.com",
+      "tipo": "Radio",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://radiosintonia.com/las-mujeres-rurales-de-fuerteventura-2026-son-las-protagonistas-de-la-rosa-de-fuerteventura/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Rio Negro",
+      "alias": [],
+      "dominio": "rionegro.com.ar",
+      "url": "https://rionegro.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.rionegro.com.ar/justicia/un-juez-de-chubut-aplico-lenguaje-claro-en-un-fallo-por-abuso-y-anexo-una-carta-para-la-victima-4725770/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Somos Jujuy",
+      "alias": [],
+      "dominio": "somosjujuy.com.ar",
+      "url": "https://somosjujuy.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "San Salvador de Jujuy",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "TVPerú",
+      "alias": [],
+      "dominio": "tvperu.gob.pe",
+      "url": "https://tvperu.gob.pe",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Vivo Trelew",
+      "alias": [],
+      "dominio": "vivotrelew.com",
+      "url": "https://vivotrelew.com",
+      "tipo": "Portal digital",
+      "localidad": "Trelew",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://vivotrelew.com/puerto-madryn-la-justicia-rechazo-el-homeschooling-y-ordeno-escolarizar-a-una-nena/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/VivoTrelew"
+        ],
+        "Instagram": [
+          "@vivotrelewok"
+        ],
+        "X": [
+          "@VivoTrelew"
+        ],
+        "YouTube": [
+          "@VivoTrelew"
+        ],
+        "TikTok": [
+          "@vivotrelew"
+        ]
+      }
+    },
+    {
+      "nombre": "La Vanguardia Noticias",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 0,
+      "notas": 0,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Tiempo Sur",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Río Gallegos",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice de notas: revisado por buscador, sin coincidencias",
+      "publicaciones": 0,
+      "notas": 0,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "Vibra News",
+      "alias": [],
+      "dominio": "vibranews.com.ar",
+      "url": "https://vibranews.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 0,
+      "notas": 0,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    }
+  ]
+}

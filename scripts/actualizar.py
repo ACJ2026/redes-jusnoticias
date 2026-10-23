@@ -490,7 +490,7 @@ for medio, url in FUENTES_VERIFICADAS:
 
 
 # ---------- Conservación del historial: una revisión nueva no borra hallazgos anteriores ----------
-from historial import conservar_historial, conservar_notas
+from historial import conservar_historial, conservar_notas, deduplicar_publicaciones
 # Las notas que la API dejó de devolver (p. ej., convocatorias despublicadas) siguen en el
 # historial, y con ellas sus publicaciones. El archivo de notas anterior está junto a PREV.
 NOTAS_PREV = os.path.join(os.path.dirname(PREV), 'notas2.json') if PREV else None
@@ -503,7 +503,7 @@ if PREV and os.path.exists(PREV):
     anteriores = json.load(open(PREV, encoding='utf8'))
     rows = conservar_historial(rows, anteriores, ids_actuales, cobertura)
 # ---------- Salida ----------
-ids = {n['id'] for n in notas}; seen = set(); rep = []
+ids = {n['id'] for n in notas}; rep = []
 FP = re.compile(r'pity alvarez|dinosaur|papa leon|maradona|reforma laboral fue promulgada')
 # Corrección de una asociación histórica detectada por regresión: este enlace de
 # Radio 3 corresponde a una noticia policial, no a la nota institucional 14674.
@@ -536,13 +536,17 @@ for r in rows:
             and (r.get('url') or '').startswith('https://news.google.com/rss/articles/')):
         r['confianza'] = 'Baja'
         r['metodo'] = 'Google Noticias (coincidencia temática; relación no verificada)'
-    k = (r['nota_id'], r['medio'])
-    if k in seen or r['nota_id'] not in ids or FP.search(norm(r.get('url', ''))): continue
-    seen.add(k); rep.append(r)
+    if r['nota_id'] not in ids or FP.search(norm(r.get('url', ''))): continue
+    rep.append(r)
+# Una fila por publicación (nota, medio y URL canónica): si un medio publicó dos
+# artículos sobre la misma nota se conservan ambos; los enlaces de buscador quedan
+# como URL alternativa del enlace directo del mismo medio.
+rep = deduplicar_publicaciones(rep)
 for i, r in enumerate(rep): r['key'] = f'p{i}'
-from collections import Counter
-cnt = Counter(r['medio'] for r in rep)
-medios = [{'medio': m, 'cobertura': c, 'notas': cnt.get(m, 0)} for m, c in cobertura.items()]
+# «notas» cuenta notas distintas por medio (un medio con dos artículos de una nota suma una).
+notas_por_medio = {}
+for r in rep: notas_por_medio.setdefault(r['medio'], set()).add(r['nota_id'])
+medios = [{'medio': m, 'cobertura': c, 'notas': len(notas_por_medio.get(m, ()))} for m, c in cobertura.items()]
 json.dump(notas, open(os.path.join(OUT, 'notas2.json'), 'w'), ensure_ascii=False)
 json.dump(rep, open(os.path.join(OUT, 'rep2.json'), 'w'), ensure_ascii=False)
 json.dump(medios, open(os.path.join(OUT, 'medios.json'), 'w'), ensure_ascii=False)

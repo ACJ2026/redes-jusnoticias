@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
-from historial import conservar_historial, conservar_notas, publicaciones_faltantes
+from historial import conservar_historial, conservar_notas, publicaciones_faltantes, normalizar_url, deduplicar_publicaciones
 from fuentes import exigir_lista_json
 
 
@@ -55,6 +55,55 @@ class HistorialTests(unittest.TestCase):
         self.assertEqual(len(salida), 1)
         self.assertEqual(salida[0]["url"], "https://a")
         self.assertEqual(salida[0]["metodo"], "Google Noticias + Buscador web")
+
+    def test_normaliza_variantes_de_la_misma_url(self):
+        base = normalizar_url("https://medio.com.ar/nota-uno")
+        for variante in ("http://www.medio.com.ar/nota-uno/", "https://MEDIO.com.ar/nota-uno?utm_source=fb&fbclid=x",
+                         "https://medio.com.ar/nota-uno#comentarios", "https://medio.com.ar/nota-uno/amp/", "https://medio.com.ar/amp/nota-uno"):
+            self.assertEqual(normalizar_url(variante), base, variante)
+        # Parámetros que identifican el artículo se conservan.
+        self.assertNotEqual(normalizar_url("https://m.com/nota?id=1"), normalizar_url("https://m.com/nota?id=2"))
+        self.assertEqual(normalizar_url("https://news.google.com/rss/articles/ABC?oc=5"), "https://news.google.com/rss/articles/ABC")
+
+    def test_dos_articulos_del_mismo_medio_sobre_una_nota_se_conservan(self):
+        filas = [{"nota_id": 1, "medio": "A", "url": "https://a.com/x"}, {"nota_id": 1, "medio": "A", "url": "https://a.com/y"},
+                 {"nota_id": 1, "medio": "A", "url": "http://www.a.com/x/?utm_medium=social"}]
+        salida = deduplicar_publicaciones(filas)
+        self.assertEqual([f["url"] for f in salida], ["https://a.com/x", "https://a.com/y"])
+
+    def test_enlace_de_buscador_queda_como_alternativa_del_enlace_directo(self):
+        filas = [{"nota_id": 1, "medio": "A", "url": "https://news.google.com/rss/articles/Z", "metodo": "Google Noticias (solo título)"},
+                 {"nota_id": 1, "medio": "A", "url": "https://a.com/x", "metodo": "Revisión completa"}]
+        salida = deduplicar_publicaciones(filas)
+        self.assertEqual(len(salida), 1)
+        self.assertEqual(salida[0]["url"], "https://a.com/x")
+        self.assertEqual(salida[0]["url_alternativas"], ["https://news.google.com/rss/articles/Z"])
+        self.assertIn("Google Noticias", salida[0]["metodo"])
+
+    def test_solo_buscador_queda_una_fila_por_medio(self):
+        filas = [{"nota_id": 1, "medio": "A", "url": "https://news.google.com/rss/articles/Z1"},
+                 {"nota_id": 1, "medio": "A", "url": "https://news.google.com/rss/articles/Z2"}]
+        salida = deduplicar_publicaciones(filas)
+        self.assertEqual(len(salida), 1)
+        self.assertEqual(salida[0]["url_alternativas"], ["https://news.google.com/rss/articles/Z2"])
+
+    def test_historial_con_otro_enlace_del_mismo_medio_se_conserva(self):
+        actual = [{"nota_id": "n1", "medio": "A", "url": "https://a.com/nueva"}]
+        anterior = [{"nota_id": "n1", "medio": "A", "url": "https://a.com/vieja", "key": "p1"}]
+        salida = conservar_historial(actual, anterior, {"n1"}, {})
+        self.assertEqual(sorted(f["url"] for f in salida), ["https://a.com/nueva", "https://a.com/vieja"])
+
+    def test_historial_es_idempotente(self):
+        filas = [{"nota_id": "n1", "medio": "A", "url": "https://a.com/x", "metodo": "Revisión completa"},
+                 {"nota_id": "n2", "medio": "B", "url": "https://news.google.com/rss/articles/Q", "metodo": "Google Noticias"}]
+        salida = conservar_historial(filas, filas, {"n1", "n2"}, {})
+        self.assertEqual(len(salida), 2)
+        self.assertNotIn("url_alternativas", salida[0])
+
+    def test_verificador_detecta_enlace_directo_perdido(self):
+        anteriores = [{"nota_id": 1, "medio": "A", "url": "https://a.com/x"}, {"nota_id": 1, "medio": "A", "url": "https://a.com/y"}]
+        nuevas = [{"nota_id": 1, "medio": "A", "url": "https://a.com/x/"}]
+        self.assertEqual(publicaciones_faltantes(anteriores, nuevas, {1}), {(1, "A", "https://a.com/y")})
 
     def test_verificador_detecta_faltantes_de_notas_vigentes(self):
         anteriores = [{"nota_id": "n1", "medio": "A"}, {"nota_id": "n2", "medio": "B"}]

@@ -1,0 +1,40 @@
+# TEMPORAL: prueba de identidad por URL e inventario en esta rama. No guarda datos. Se borra antes del merge.
+name: Prueba identidad de publicaciones
+on:
+  push:
+    branches:
+      - claude/identidad-publicaciones
+permissions:
+  contents: read
+jobs:
+  prueba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Relevamiento sin guardar
+        run: |
+          mkdir -p out
+          python3 -u scripts/actualizar.py out data/rep2.json | tee run.log
+          grep -q "^OK notas" run.log
+          python3 scripts/verificar_historial.py data/rep2.json out/rep2.json out/notas2.json
+          python3 - <<'PY'
+          import json, collections, sys
+          sys.path.insert(0, 'scripts')
+          from historial import clave_publicacion
+          antes = json.load(open('data/rep2.json')); ahora = json.load(open('out/rep2.json'))
+          print('Publicaciones antes', len(antes), 'ahora', len(ahora))
+          pares = collections.Counter((r['nota_id'], r['medio']) for r in ahora)
+          multi = [(k, v) for k, v in pares.items() if v > 1]
+          print('Notas con más de un artículo del mismo medio:', len(multi))
+          for (nid, medio), v in multi[:30]:
+              print(' ', nid, medio, v, [r['url'][:90] for r in ahora if r['nota_id'] == nid and r['medio'] == medio])
+          print('Filas con URL alternativas:', sum(1 for r in ahora if r.get('url_alternativas')))
+          ma = {m['medio']: m['notas'] for m in json.load(open('data/medios.json'))}
+          mn = {m['medio']: m['notas'] for m in json.load(open('out/medios.json'))}
+          print('Medios con distinto conteo de notas:', [(k, ma.get(k), mn.get(k)) for k in mn if ma.get(k) != mn.get(k)][:20])
+          PY
+          python3 scripts/armar_inventario.py

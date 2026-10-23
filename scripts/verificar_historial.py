@@ -19,8 +19,8 @@ def main(argv):
     faltantes = publicaciones_faltantes(anteriores, nuevas, ids_vigentes)
     if faltantes:
         print(f"ERROR: faltan {len(faltantes)} publicaciones históricas de notas vigentes.")
-        for nota_id, medio in sorted(faltantes, key=lambda x: (str(x[0]), str(x[1]))):
-            print(f"  nota_id={nota_id} | medio={medio}")
+        for clave in sorted(faltantes, key=lambda x: tuple(str(v) for v in x)):
+            print("  nota_id={} | medio={}".format(clave[0], clave[1]) + (" | url=" + clave[2] if len(clave) > 2 else ""))
         return 1
     print("Control de historial OK: no desaparecen publicaciones de notas vigentes.")
     return 0
