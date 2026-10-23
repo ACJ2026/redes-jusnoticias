@@ -97,6 +97,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .foot{border-top:1px solid var(--line);padding-top:12px}
 
 .territorio-card{border-top:3px solid var(--accent)}
+.actualizado{align-self:flex-start;margin:4px 0 0;padding:4px 12px;border-radius:999px;background:var(--grid);color:var(--ink);font-size:var(--fs-cap);font-weight:600;border-left:4px solid var(--accent)}
+.landing-actualizado{display:inline-block;margin:0;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-size:.9rem;font-weight:600}
 .info-paso{border:1px solid var(--line);border-radius:8px;padding:10px 14px;display:flex;flex-direction:column;gap:8px;margin:0}
 .info-paso legend{font-weight:600;padding:0 4px}
 .info-paso label,.info-bloques label{display:flex;gap:8px;align-items:center}
@@ -195,6 +197,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <p class="landing-intro landing-subtitle">Tablero de repercusión y comunicación judicial</p>
     <p class="landing-intro">Una mirada a las notas publicadas por Juschubut Noticias y su presencia en otros medios y redes.</p>
     <p class="landing-period" id="portada-periodo">Indicadores del período: —</p>
+    <p class="landing-actualizado" id="portada-actualizado"></p>
     <div class="landing-visual" aria-label="Indicadores principales del período">
       <article class="landing-stat"><div class="symbol" aria-hidden="true">▤</div><strong id="portada-notas">—</strong><span>notas publicadas en Juschubut Noticias durante este período</span></article>
       <article class="landing-stat"><div class="symbol" aria-hidden="true">◎</div><strong id="portada-notas-repercusion">—</strong><span>de esas notas tuvieron al menos una publicación relacionada en otros medios</span></article>
@@ -220,6 +223,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <p class="kicker">Agencia de Comunicación Judicial · Poder Judicial del Chubut</p>
     <h1>Repercusión de Juschubut Noticias en medios y redes</h1>
     <p class="note" id="periodo"></p>
+    <p class="actualizado" id="actualizado-badge"></p>
     <p class="take" id="take"></p>
   </header>
 
@@ -1491,7 +1495,17 @@ const draw = () => {
   document.querySelectorAll('#t-notas th button').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; st.dir = st.sort === k ? -st.dir : (['n_medios', 'copias', 'posibles', 'fecha'].includes(k) ? -1 : 1); st.sort = k; drawNotas(); }));
   let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(draw, 150); });
 
-  $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. Datos relevados: ' + (D.datos_actualizados ? new Date(D.datos_actualizados).toLocaleString('es-AR') : 'fecha no disponible') + '. Tablero generado: ' + D.actualizado + '.';
+  // Una sola fecha para el usuario: cuándo se relevaron los datos, en hora argentina y sin segundos.
+  const fechaRelevamiento = (() => {
+    const f = D.datos_actualizados ? new Date(D.datos_actualizados) : null;
+    if (!f || !Number.isFinite(f.getTime())) return null;
+    const o = { timeZone: 'America/Argentina/Buenos_Aires' };
+    return f.toLocaleDateString('es-AR', o) + ' a las ' + f.toLocaleTimeString('es-AR', { ...o, hour: '2-digit', minute: '2-digit', hour12: false });
+  })();
+  const textoActualizado = fechaRelevamiento ? 'Datos actualizados al ' + fechaRelevamiento + ' (hora argentina)' : 'Fecha de actualización no disponible';
+  $('actualizado-badge').textContent = textoActualizado;
+  $('portada-actualizado').textContent = textoActualizado;
+  $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. ' + textoActualizado + '. Se actualiza automáticamente cada dos horas.';
   const fechaHistorial = D.datos_actualizados ? new Date(D.datos_actualizados) : null;
   $('redes-historial-actualizado').textContent = 'Última actualización de los datos históricos: ' + (fechaHistorial && Number.isFinite(fechaHistorial.getTime()) ? fechaHistorial.toLocaleString('es-AR') : 'fecha no disponible') + '. No son métricas en vivo.';
   const h = location.hash.slice(1);

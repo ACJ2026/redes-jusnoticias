@@ -268,8 +268,11 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn('id="portada"', public)
         self.assertIn('id="entrar-tablero"', public)
         self.assertIn('id="dashboard-app" hidden', public)
-        self.assertIn("Datos relevados:", public)
-        self.assertIn("Tablero generado:", public)
+        # Una sola fecha clara y destacada (sin «Tablero generado» ni segundos).
+        self.assertIn("'Datos actualizados al ' + fechaRelevamiento + ' (hora argentina)'", public)
+        self.assertIn('id="actualizado-badge"', public)
+        self.assertIn('id="portada-actualizado"', public)
+        self.assertNotIn("Tablero generado:", public)
         self.assertLess(public.index('id="portada"'), public.index('id="dashboard-app" hidden'))
 
     def test_youtube_cuenta_el_unico_canal_institucional(self):
