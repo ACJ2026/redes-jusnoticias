@@ -394,9 +394,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card" id="compartidos">
       <h2>Quién compartió nuestras notas en redes</h2>
-      <p class="note">Esta sección reúne publicaciones de otras cuentas que comparten notas de Juschubut Noticias. Cada registro puede enlazar el perfil, la publicación concreta y nuestra nota original. «Buscar ahora» revisa las publicaciones recientes de las cuentas de Instagram incluidas en el listado y busca en YouTube videos relacionados con hasta 10 de nuestras notas más recientes de los últimos 30 días. La tabla también conserva hallazgos registrados manualmente. Facebook y TikTok no se consultan automáticamente: las credenciales y APIs disponibles no permiten buscar publicaciones públicas de terceros de forma general.</p>
+      <p class="note">Esta sección reúne publicaciones de otras cuentas que comparten notas de Juschubut Noticias. «Buscar ahora» revisa publicaciones recientes de las cuentas de Instagram del listado y busca en YouTube videos relacionados con hasta 10 notas recientes de los últimos 30 días. También prepara búsquedas para revisar manualmente Facebook y TikTok. La tabla conserva los hallazgos registrados manualmente y los resultados automáticos; cada coincidencia debe verificarse antes de darla por confirmada.</p>
       <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar ahora</button></div>
       <p class="note" id="compartidos-estado" role="status"></p>
+      <details class="note" id="compartidos-busqueda-manual" hidden><summary>Búsqueda asistida en Facebook y TikTok</summary><p>Estos enlaces abren búsquedas en cada plataforma; no importan resultados automáticamente. Verificá el posteo y su relación con la nota antes de registrarlo.</p><div></div></details>
       <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación compartida</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
     </div>
     <div class="card">
@@ -905,6 +906,28 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     }));
     if (!orden.length) { const tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 6; td.className = 'dim'; td.textContent = 'Sin registros.'; tr.append(td); tb.append(tr); }
   };
+  const dibujarBusquedasManuales = (desde) => {
+    const panel = $('compartidos-busqueda-manual');
+    const lista = panel.querySelector('div');
+    const recientes = notas.filter(n => n.fecha >= desde).sort((a, b) => b.fecha.localeCompare(a.fecha)).slice(0, 10);
+    lista.replaceChildren(...recientes.map(n => {
+      const fila = document.createElement('div');
+      fila.style.margin = '0.5rem 0';
+      const titulo = document.createElement('strong');
+      titulo.textContent = n.fecha + ' · ' + n.titulo + ' ';
+      const facebook = document.createElement('a');
+      facebook.href = 'https://www.facebook.com/search/posts/?q=' + encodeURIComponent(n.titulo);
+      facebook.target = '_blank'; facebook.rel = 'noopener noreferrer'; facebook.textContent = 'Buscar en Facebook';
+      const separador = document.createTextNode(' · ');
+      const tiktok = document.createElement('a');
+      tiktok.href = 'https://www.tiktok.com/search?q=' + encodeURIComponent(n.titulo);
+      tiktok.target = '_blank'; tiktok.rel = 'noopener noreferrer'; tiktok.textContent = 'Buscar en TikTok';
+      fila.append(titulo, facebook, separador, tiktok);
+      return fila;
+    }));
+    panel.hidden = recientes.length === 0;
+  };
+
   const buscarCompartidos = async () => {
     const estado = $('compartidos-estado');
     estado.textContent = 'Buscando en Instagram (cuentas del listado) y YouTube (hasta 10 notas recientes)…';
@@ -914,6 +937,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       if (!response.ok) throw new Error(data.error || 'HTTP ' + response.status);
       const nuevas = (data.filas || []).map(f => ({ ...f, tipo: 'Encontrada automáticamente (' + f.coincidencia + ')' }));
       dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
+      dibujarBusquedasManuales(data.desde);
       const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
       const pendientes = Object.entries(data.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');\n      estado.textContent = fmt(nuevas.length) + ' publicaciones encontradas desde ' + data.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
     } catch (error) {
