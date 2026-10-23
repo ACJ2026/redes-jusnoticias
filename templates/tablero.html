@@ -197,7 +197,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <p class="landing-intro landing-subtitle">Tablero de repercusión y comunicación judicial</p>
     <p class="landing-intro">Una mirada a las notas publicadas por Juschubut Noticias y su presencia en otros medios y redes.</p>
     <p class="landing-period" id="portada-periodo">Indicadores del período: —</p>
-    <p class="landing-actualizado" id="portada-actualizado"></p>
     <div class="landing-visual" aria-label="Indicadores principales del período">
       <article class="landing-stat"><div class="symbol" aria-hidden="true">▤</div><strong id="portada-notas">—</strong><span>notas publicadas en Juschubut Noticias durante este período</span></article>
       <article class="landing-stat"><div class="symbol" aria-hidden="true">◎</div><strong id="portada-notas-repercusion">—</strong><span>de esas notas tuvieron al menos una publicación relacionada en otros medios</span></article>
@@ -223,7 +222,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <p class="kicker">Agencia de Comunicación Judicial · Poder Judicial del Chubut</p>
     <h1>Repercusión de Juschubut Noticias en medios y redes</h1>
     <p class="note" id="periodo"></p>
-    <p class="actualizado" id="actualizado-badge"></p>
     <p class="take" id="take"></p>
   </header>
 
@@ -394,7 +392,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
       <p class="note">Distribución de los registros históricos cargados. No es un monitoreo completo ni se suma a las métricas en vivo; Facebook propio se empezó a contar en septiembre. Las plataformas pendientes no se representan como cero actividad.</p>
-      <p class="note" id="redes-historial-actualizado"></p>
       <div class="legend" id="lg-redes"></div>
       <div class="chart" id="ch-redes"><div class="tip" id="tip-redes" hidden></div></div>
     </div>
@@ -472,10 +469,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Estado del relevamiento</th><th>Publicaciones relacionadas</th><th>Enlace de referencia</th></tr></thead><tbody></tbody></table></div></div>
   </section>
 
-  <p class="note foot" id="pie"></p>
 </div>
 </div>
 
+<footer class="wrap" aria-label="Actualización y fuentes">
+  <p class="note foot" id="pie"></p>
+</footer>
 
 <script type="application/json" id="datos">/*DATOS*/</script>
 <script>
@@ -1225,7 +1224,7 @@ const draw = () => {
     const yd = desde.slice(0, 4), yh = hasta.slice(0, 4);
     return desde === hasta ? mesLargo(desde) + ' de ' + yd : mesLargo(desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(hasta) + ' de ' + yh;
   };
-  const corteDatos = () => D.datos_actualizados ? new Date(D.datos_actualizados).toLocaleDateString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }) : D.actualizado;
+  const corteDatos = () => { const f = D.datos_actualizados ? new Date(D.datos_actualizados) : null; const o = { timeZone: 'America/Argentina/Buenos_Aires' }; return f && Number.isFinite(f.getTime()) ? f.toLocaleDateString('es-AR', o) + ' ' + f.toLocaleTimeString('es-AR', { ...o, hour: '2-digit', minute: '2-digit', hour12: false }) + ' (hora argentina)' : 'fecha no disponible'; };
   const regionesDe = rs => {
     const reg = new Map(), loc = new Map();
     rs.forEach(r => {
@@ -1495,19 +1494,15 @@ const draw = () => {
   document.querySelectorAll('#t-notas th button').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; st.dir = st.sort === k ? -st.dir : (['n_medios', 'copias', 'posibles', 'fecha'].includes(k) ? -1 : 1); st.sort = k; drawNotas(); }));
   let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(draw, 150); });
 
-  // Una sola fecha para el usuario: cuándo se relevaron los datos, en hora argentina y sin segundos.
+  // Un único sello temporal visible, al pie de la portada y del tablero completo.
   const fechaRelevamiento = (() => {
     const f = D.datos_actualizados ? new Date(D.datos_actualizados) : null;
     if (!f || !Number.isFinite(f.getTime())) return null;
     const o = { timeZone: 'America/Argentina/Buenos_Aires' };
     return f.toLocaleDateString('es-AR', o) + ' a las ' + f.toLocaleTimeString('es-AR', { ...o, hour: '2-digit', minute: '2-digit', hour12: false });
   })();
-  const textoActualizado = fechaRelevamiento ? 'Datos actualizados al ' + fechaRelevamiento + ' (hora argentina)' : 'Fecha de actualización no disponible';
-  $('actualizado-badge').textContent = textoActualizado;
-  $('portada-actualizado').textContent = textoActualizado;
-  $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. ' + textoActualizado + '. Se actualiza automáticamente cada dos horas.';
-  const fechaHistorial = D.datos_actualizados ? new Date(D.datos_actualizados) : null;
-  $('redes-historial-actualizado').textContent = 'Última actualización de los datos históricos: ' + (fechaHistorial && Number.isFinite(fechaHistorial.getTime()) ? fechaHistorial.toLocaleString('es-AR') : 'fecha no disponible') + '. No son métricas en vivo.';
+  const sello = fechaRelevamiento ? fechaRelevamiento + ' (hora argentina)' : 'fecha y hora no disponibles';
+  $('pie').textContent = 'Última actualización del relevamiento de notas y medios: ' + sello + '. Esta fecha corresponde a los datos guardados que se publicaron; no significa que las métricas en vivo de redes o las consultas de Google se hayan actualizado en ese momento. Las redes se consultan al pedir el monitoreo en vivo y Analytics/Search Console al consultar esta sección; pueden tener demoras propias. Fuentes: Juschubut Noticias, sitios de medios y cuentas oficiales. El relevamiento automático está programado cada dos horas.';
   const h = location.hash.slice(1);
   updateLanding(calc());
   $('entrar-tablero').addEventListener('click', () => {
