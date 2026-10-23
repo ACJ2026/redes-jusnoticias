@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
-from historial import conservar_historial, conservar_notas, publicaciones_faltantes, normalizar_url, deduplicar_publicaciones
+from historial import conservar_historial, conservar_notas, publicaciones_faltantes, normalizar_url, deduplicar_publicaciones, marcar_secundarias, clave_publicacion
 from fuentes import exigir_lista_json
 
 
@@ -104,6 +104,19 @@ class HistorialTests(unittest.TestCase):
         anteriores = [{"nota_id": 1, "medio": "A", "url": "https://a.com/x"}, {"nota_id": 1, "medio": "A", "url": "https://a.com/y"}]
         nuevas = [{"nota_id": 1, "medio": "A", "url": "https://a.com/x/"}]
         self.assertEqual(publicaciones_faltantes(anteriores, nuevas, {1}), {(1, "A", "https://a.com/y")})
+
+    def test_segundo_articulo_del_mismo_medio_queda_por_revisar(self):
+        filas = [{"nota_id": 1, "medio": "A", "url": "https://a.com/x", "confianza": "Alta", "metodo": "Revisión completa"},
+                 {"nota_id": 1, "medio": "A", "url": "https://a.com/y", "confianza": "Alta", "metodo": "Revisión completa"}]
+        marcar_secundarias(filas)
+        self.assertEqual([f["confianza"] for f in filas], ["Alta", "Baja"])
+        self.assertIn("por revisar", filas[1]["metodo"])
+
+    def test_se_mantiene_confirmado_el_articulo_ya_confirmado_en_el_historial(self):
+        filas = [{"nota_id": 1, "medio": "A", "url": "https://a.com/nuevo", "confianza": "Alta"},
+                 {"nota_id": 1, "medio": "A", "url": "https://a.com/historico", "confianza": "Alta"}]
+        marcar_secundarias(filas, {clave_publicacion({"nota_id": 1, "medio": "A", "url": "https://a.com/historico/"})})
+        self.assertEqual([f["confianza"] for f in filas], ["Baja", "Alta"])
 
     def test_verificador_detecta_faltantes_de_notas_vigentes(self):
         anteriores = [{"nota_id": "n1", "medio": "A"}, {"nota_id": "n2", "medio": "B"}]

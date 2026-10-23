@@ -490,7 +490,7 @@ for medio, url in FUENTES_VERIFICADAS:
 
 
 # ---------- Conservación del historial: una revisión nueva no borra hallazgos anteriores ----------
-from historial import conservar_historial, conservar_notas, deduplicar_publicaciones
+from historial import conservar_historial, conservar_notas, deduplicar_publicaciones, marcar_secundarias, clave_publicacion
 # Las notas que la API dejó de devolver (p. ej., convocatorias despublicadas) siguen en el
 # historial, y con ellas sus publicaciones. El archivo de notas anterior está junto a PREV.
 NOTAS_PREV = os.path.join(os.path.dirname(PREV), 'notas2.json') if PREV else None
@@ -538,10 +538,14 @@ for r in rows:
         r['metodo'] = 'Google Noticias (coincidencia temática; relación no verificada)'
     if r['nota_id'] not in ids or FP.search(norm(r.get('url', ''))): continue
     rep.append(r)
-# Una fila por publicación (nota, medio y URL canónica): si un medio publicó dos
-# artículos sobre la misma nota se conservan ambos; los enlaces de buscador quedan
-# como URL alternativa del enlace directo del mismo medio.
+# Una fila por publicación (nota, medio y URL canónica): si un medio tiene dos artículos
+# asociados a la misma nota se conservan ambos, pero solo uno queda confirmado (ver
+# marcar_secundarias); los enlaces de buscador quedan como URL alternativa.
 rep = deduplicar_publicaciones(rep)
+confirmadas_previas = set()
+if PREV and os.path.exists(PREV):
+    confirmadas_previas = {clave_publicacion(r) for r in json.load(open(PREV, encoding='utf8')) if r.get('confianza') != 'Baja'}
+rep = marcar_secundarias(rep, confirmadas_previas)
 for i, r in enumerate(rep): r['key'] = f'p{i}'
 # «notas» cuenta notas distintas por medio (un medio con dos artículos de una nota suma una).
 notas_por_medio = {}

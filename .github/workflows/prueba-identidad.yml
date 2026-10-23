@@ -32,6 +32,9 @@ jobs:
           print('Notas con más de un artículo del mismo medio:', len(multi))
           for (nid, medio), v in multi[:30]:
               print(' ', nid, medio, v, [r['url'][:90] for r in ahora if r['nota_id'] == nid and r['medio'] == medio])
+          conf = lambda rs: sum(1 for r in rs if r.get('confianza') != 'Baja')
+          print('Confirmadas antes', conf(antes), 'ahora', conf(ahora))
+          print('Marcadas por revisar (otro artículo del mismo medio):', sum(1 for r in ahora if 'mismo medio (por revisar)' in (r.get('metodo') or '')))
           print('Filas con URL alternativas:', sum(1 for r in ahora if r.get('url_alternativas')))
           ma = {m['medio']: m['notas'] for m in json.load(open('data/medios.json'))}
           mn = {m['medio']: m['notas'] for m in json.load(open('out/medios.json'))}

@@ -120,6 +120,37 @@ def deduplicar_publicaciones(filas, actuales=None):
     return salida
 
 
+MARCA_SECUNDARIA = "otro artículo del mismo medio (por revisar)"
+
+
+def marcar_secundarias(filas, confirmadas_previas=()):
+    """Un medio cuenta una publicación confirmada por nota; los demás artículos quedan por revisar.
+
+    La prueba con datos reales mostró que, cuando un medio tiene varios artículos asociados a
+    una misma nota, muchos son coincidencias más débiles (otra etapa del caso u otro tema).
+    Se conservan todos como evidencia, pero solo uno queda confirmado: el que ya estaba
+    confirmado en el historial o, si no hay, el primero encontrado. Los demás pasan a
+    confianza «Baja» con una marca, salvo que ya hubieran sido confirmados antes.
+    `confirmadas_previas`: claves de publicación confirmadas en el historial.
+    """
+    confirmadas_previas = set(confirmadas_previas)
+    por_par = {}
+    for fila in filas:
+        if es_enlace_directo(fila.get("url", "")) and fila.get("confianza") != "Baja":
+            por_par.setdefault((fila.get("nota_id"), fila.get("medio")), []).append(fila)
+    for grupo in por_par.values():
+        if len(grupo) < 2:
+            continue
+        principal = next((f for f in grupo if clave_publicacion(f) in confirmadas_previas), grupo[0])
+        for fila in grupo:
+            if fila is principal or clave_publicacion(fila) in confirmadas_previas:
+                continue
+            fila["confianza"] = "Baja"
+            if MARCA_SECUNDARIA not in (fila.get("metodo") or ""):
+                fila["metodo"] = ((fila.get("metodo") or "") + " · " + MARCA_SECUNDARIA).strip(" ·")
+    return filas
+
+
 def conservar_historial(rows, anteriores, ids_vigentes, cobertura):
     """Fusiona filas nuevas con el historial para notas que siguen vigentes.
 
