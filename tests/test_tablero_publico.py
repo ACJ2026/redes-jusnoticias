@@ -221,6 +221,10 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("Abre una búsqueda; todavía no es el enlace directo al post.", template)
         self.assertNotIn("D.repercusion.filter(p => Number(p.nota_id) === Number(r.nota_id)", template)
         self.assertNotIn("Ver nota original en JusNoticias ↗", template)
+        self.assertNotIn("Consultar fuente de esta cifra", template)
+        self.assertIn("Buscar ahora</button>", template)
+        self.assertIn("addEventListener('click', buscarCompartidos)", template)
+        self.assertIn("Facebook y TikTok se ofrece una búsqueda asistida marcada como pendiente de verificar.", template)
 
     def test_generador_de_infografias_usa_los_datos_del_tablero(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
