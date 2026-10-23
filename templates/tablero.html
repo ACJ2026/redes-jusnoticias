@@ -710,6 +710,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     'Noticias de Bariloche':'San Carlos de Bariloche','ANBariloche':'San Carlos de Bariloche',
     'El Editor Mendoza':'Mendoza','Que Pasa Jujuy':'San Salvador de Jujuy'
   };
+  // Sede del medio: primero el inventario único (data/medios_inventario.json), después la lista histórica.
+  const localidadDe = medio => (D.localidades || {})[medio] || localidadMedio[medio];
   const tipoMedio = medio => {
     // Si el nombre identifica explícitamente una edición web/digital, no inferir prensa gráfica o TV por otra palabra del nombre.
     if (/\bweb\b|\.com$/i.test(medio)) return 'Portal digital';
@@ -741,7 +743,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const rs = [...new Map(repOk.filter(r => en(r.mes)).map(r => [r.url, r])).values()];
     const localidades = new Map(), regiones = new Map();
     rs.forEach(r => {
-      const localidad = localidadMedio[r.medio] || 'Localidad por verificar', region = regionMedio(localidad);
+      const localidad = localidadDe(r.medio) || 'Localidad por verificar', region = regionMedio(localidad);
       const item = localidades.get(localidad) || { localidad, publicaciones: 0, medios: new Set() };
       item.publicaciones++; item.medios.add(r.medio); localidades.set(localidad, item);
       regiones.set(region, (regiones.get(region) || 0) + 1);
@@ -1253,7 +1255,7 @@ const draw = () => {
   const regionesDe = rs => {
     const reg = new Map(), loc = new Map();
     rs.forEach(r => {
-      const l = localidadMedio[r.medio] || 'Localidad por verificar', g = regionMedio(l);
+      const l = localidadDe(r.medio) || 'Localidad por verificar', g = regionMedio(l);
       reg.set(g, (reg.get(g) || 0) + 1);
       const it = loc.get(l) || { localidad: l, publicaciones: 0 }; it.publicaciones++; loc.set(l, it);
     });
@@ -1269,7 +1271,7 @@ const draw = () => {
       const id = Number($('info-nota').value), nota = notas.find(n => Number(n.id) === id);
       if (!nota) return null;
       const rs = [...new Map(repOk.filter(r => Number(r.nota_id) === id).map(r => [r.medio, r])).values()];
-      return { tipo: 'nota', nota, rs, medios: rs.map(r => ({ medio: r.medio, sede: localidadMedio[r.medio] || 'sede por verificar' })).sort((a, b) => a.medio.localeCompare(b.medio, 'es')), ...regionesDe(rs), corte: corteDatos(),
+      return { tipo: 'nota', nota, rs, medios: rs.map(r => ({ medio: r.medio, sede: localidadDe(r.medio) || 'sede por verificar' })).sort((a, b) => a.medio.localeCompare(b.medio, 'es')), ...regionesDe(rs), corte: corteDatos(),
         titulo: $('info-titulo').value.trim() || nota.titulo, periodo: nota.fecha.split('-').reverse().join('/') };
     }
     const desde = $('info-desde').value, hasta = $('info-hasta').value < desde ? desde : $('info-hasta').value;

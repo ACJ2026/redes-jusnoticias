@@ -57,6 +57,8 @@ class TableroPublicoTests(unittest.TestCase):
         data["actualizado"] = json.loads(payload)["actualizado"]
         data["datos_actualizados"] = (ROOT / "data/actualizado.txt").read_text(encoding="utf-8").strip() or None
         data["cuentas"] = read_json("data/cuentas_monitoreo.json")["cuentas"]
+        data["localidades"] = {n: m["localidad"] for m in read_json("data/medios_inventario.json")["medios"]
+                               if m.get("localidad") and m["localidad"] != "Por verificar" for n in [m["nombre"]] + m.get("alias", [])}
         self.assertEqual(json.loads(payload), data)
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertEqual(template.count("/*DATOS*/"), 1)
@@ -223,6 +225,19 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn(".btn.accion{background:var(--accent)", template)
         for boton in ("info-abrir", "info-generar", "info-descargar", "redes-vivo-consultar", "compartidos-buscar", "g-actualizar"):
             self.assertIn(f'class="btn accion" id="{boton}"', template)
+
+    def test_inventario_unico_de_medios(self):
+        inventario = read_json("data/medios_inventario.json")["medios"]
+        medios = {m["medio"] for m in read_json("data/medios.json")}
+        nombres = {m["nombre"] for m in inventario} | {a for m in inventario for a in m.get("alias", [])}
+        # Todo medio del resumen está en el inventario (como nombre principal o alias).
+        self.assertTrue(medios <= nombres, medios - nombres)
+        for m in inventario:
+            for campo in ("nombre", "dominio", "tipo", "localidad", "metodo", "estado", "publicaciones", "notas", "redes"):
+                self.assertIn(campo, m)
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("const localidadDe = medio => (D.localidades || {})[medio] || localidadMedio[medio];", template)
+        self.assertNotIn("localidadMedio[r.medio]", template)
 
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")

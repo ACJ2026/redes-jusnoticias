@@ -19,6 +19,15 @@ try:
     d["cuentas"] = L(ROOT / "data" / "cuentas_monitoreo.json").get("cuentas", [])
 except OSError:
     d["cuentas"] = []
+# Sede de cada medio (y de sus alias) según el inventario único; solo las confirmadas.
+try:
+    d["localidades"] = {}
+    for m in L(ROOT / "data" / "medios_inventario.json").get("medios", []):
+        if m.get("localidad") and m["localidad"] != "Por verificar":
+            for nombre in [m["nombre"]] + list(m.get("alias") or []):
+                d["localidades"][nombre] = m["localidad"]
+except OSError:
+    d["localidades"] = {}
 js = json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 open(f[5], "w", encoding="utf-8").write(T.replace("/*DATOS*/", js))
 print("OK publico", len(d["notas"]), "notas", len(d["repercusion"]), "publicaciones", len(d["redes"]), "posteos")
