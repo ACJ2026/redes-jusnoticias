@@ -939,7 +939,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
       dibujarBusquedasManuales(data.desde);
       const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
-      const pendientes = Object.entries(data.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');\n      estado.textContent = fmt(nuevas.length) + ' publicaciones encontradas desde ' + data.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
+      const pendientes = Object.entries(data.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');
+      estado.textContent = fmt(nuevas.length) + ' publicaciones encontradas desde ' + data.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
     } catch (error) {
       const desdeManual = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
       dibujarBusquedasManuales(desdeManual);
