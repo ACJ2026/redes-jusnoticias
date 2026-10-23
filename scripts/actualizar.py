@@ -90,6 +90,41 @@ def classify(text, nid):
     orig = 'Copia textual (≥50%)' if sim >= 50 else 'Reescritura parcial' if sim >= 20 else 'Redacción propia'
     return orig, off, otros
 
+# Segunda oportunidad: títulos reescritos o muy cortos quedan bajo el umbral de match()
+# aunque el artículo sea sobre la nota. Esos casos "cerca" se confirman leyendo el texto.
+def cerca(items, ya, win=8, before=-1, minimo=2, umbral=0.34, tope=40):
+    vistos = {m['u'] for m in ya}
+    res = []
+    for it in items:
+        if it['u'] in vistos or not it.get('d'): continue
+        tt = toks(it['t'])
+        if len(tt) < 2: continue
+        best = None
+        for j in JN:
+            if it['d'] < addd(j['date'], before) or it['d'] > addd(j['date'], win): continue
+            inter = len(tt & j['tk']); sc = inter / len(tt)
+            if inter >= minimo and sc >= umbral and (not best or sc > best[0]): best = (sc, j)
+        if best: res.append(dict(it, nid=best[1]['id'], sc=best[0]))
+    res.sort(key=lambda m: -m['sc'])
+    return res[:tope]
+
+def confirmar_por_texto(cands, textos):
+    """Solo acepta evidencia fuerte: el texto copia o reescribe la nota, o nombra a JusNoticias.
+    Un tema parecido con redacción propia no alcanza (daba coincidencias falsas en la prueba)."""
+    out = []
+    for m in cands:
+        t = textos.get(m['u'])
+        if not t: continue
+        c = classify(t, m['nid'])
+        if c[0] != 'Redacción propia' or c[1]:
+            out.append((dict(m, metodo='Revisión completa (confirmado por texto)'), c))
+    return out
+
+def texto_pagina(u):
+    h = get(u, timeout=15) or ''
+    h = re.sub(r'(?is)<(script|style|nav|header|footer)[^>]*>.*?</\1>', ' ', h)
+    return strip(h)
+
 DATE_RE = [r'article:published_time" content="([^"]+)', r'"datePublished": ?"([^"]+)', r'datetime="([^"]+)']
 def page_date(u):
     t = get(u, timeout=15) or ''
@@ -154,7 +189,8 @@ def wp_site(item):
                 break
         if stop: break
     ms = match(items)
-    ids = list({m['pid'] for m in ms})
+    cerca_ms = cerca(items, ms)
+    ids = list({m['pid'] for m in ms + cerca_ms})
     texts = {}
     for i in range(0, len(ids), 50):
         j = getj(f'https://{dom}/wp-json/wp/v2/posts?include={",".join(map(str, ids[i:i+50]))}&per_page=50&_fields=id,content')
@@ -165,6 +201,7 @@ def wp_site(item):
     for m in ms:
         t = texts.get(m['pid'])
         out.append((m, classify(t, m['nid']) if t else None))
+    out += confirmar_por_texto(cerca_ms, {m['u']: texts.get(m['pid']) for m in cerca_ms})
     return name, len(items), out
 # Aislar fallos temporales por fuente: un sitio caído no debe cancelar
 # toda la actualización ni provocar la pérdida de registros históricos.
@@ -201,7 +238,7 @@ with ThreadPoolExecutor(4) as ex:
             else:
                 cobertura[name] = 'Revisión completa (texto comparado)' if n else 'Sin datos: el sitio no devolvió notas'
             for m, c in out:
-                if c: addrow(name, m, 'Revisión completa', c[0], c[1], c[2])
+                if c: addrow(name, m, m.get('metodo', 'Revisión completa'), c[0], c[1], c[2])
                 else: addrow(name, m, 'Revisión completa')
             print(name, n, len(out))
         except Exception as e:
@@ -228,8 +265,14 @@ for name, host in [('ADN Sur', 'https://www.adnsur.com.ar'), ('EQS Notas', 'http
         t = get(f'{host}/sitemap-{m}.xml') or ''
         for u, lm in re.findall(r'<loc>([^<]+)</loc>\s*<lastmod>([^<]+)', t):
             items.append({'t': re.sub(r'[-_]+', ' ', re.sub(r'_[a-z0-9]+$', '', u.rstrip('/').split('/')[-1])), 'd': lm[:10], 'u': u})
-    for m in match(items, thr=0.6): addrow(name, m, 'Revisión completa (solo títulos)')
-    cobertura[name] = 'Revisión completa (solo títulos)'; print(name, len(items))
+    ms = match(items, thr=0.6)
+    for m in ms: addrow(name, m, 'Revisión completa (solo títulos)')
+    cerca_ms = cerca(items, ms)
+    with ThreadPoolExecutor(8) as ex:
+        textos = dict(zip([m['u'] for m in cerca_ms], ex.map(texto_pagina, [m['u'] for m in cerca_ms])))
+    extra = confirmar_por_texto(cerca_ms, textos)
+    for m, c in extra: addrow(name, m, m['metodo'], c[0], c[1], c[2])
+    cobertura[name] = 'Revisión completa (títulos; texto en casos dudosos)'; print(name, len(items), 'por texto:', len(extra))
 
 # ---------- 4. La Opinión Austral (sitemap txt, sin fechas) ----------
 idx = get('https://laopinionaustral.com.ar/sitemaps/sitemaps-index.xml') or ''
