@@ -235,6 +235,22 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   </nav>
 
   <section class="page" id="resumen">
+    <div class="tools"><button class="btn" id="info-abrir" type="button" aria-expanded="false" aria-controls="infografia">Generar infografía del período</button></div>
+    <div class="card" id="infografia" hidden>
+      <h2>Generador de infografía</h2>
+      <p class="note">Arma una imagen con los datos del período elegido arriba. Revisá la vista previa: la imagen se descarga exactamente como se ve. No se publica en ningún lado.</p>
+      <div class="tools">
+        <label for="info-formato" class="lbl">Formato</label>
+        <select id="info-formato"><option value="ig">Publicación de Instagram (1080×1350)</option><option value="story">Historia (1080×1920)</option><option value="x">X o Facebook (1600×900)</option></select>
+        <label for="info-titulo" class="lbl">Título</label><input type="search" id="info-titulo" maxlength="60">
+        <label class="lbl"><input type="checkbox" id="info-notas" checked> Notas que más circularon</label>
+      </div>
+      <canvas id="info-lienzo" style="width:100%;max-width:540px;height:auto;border:1px solid var(--line);border-radius:8px;align-self:flex-start"></canvas>
+      <div class="tools"><button class="btn" id="info-descargar" type="button">Descargar PNG</button><button class="btn" id="info-copiar" type="button">Copiar texto alternativo</button></div>
+      <p class="note" id="info-estado" role="status"></p>
+      <label for="info-alt" class="lbl">Texto alternativo para pegar al publicar</label>
+      <textarea id="info-alt" rows="4" readonly style="font:inherit;font-size:var(--fs-cap);padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)"></textarea>
+    </div>
     <p class="grp">En medios</p>
     <div class="kpis">
       <div class="kpi lead"><div class="big" data-k="pct"></div><div class="lbl">notas con al menos una publicación relacionada</div><p class="note">Porcentaje de nuestras notas que aparecen en otros medios. No confirma, por sí solo, que hayan usado nuestra información.</p></div>
@@ -656,7 +672,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     mostrarReferenciasMedios(titulo, intro, registros);
     $('medios-detalle').scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
-  const drawTerritorio = () => {
+  // Distribución por sede del medio en el período: la usan la tarjeta territorial y el generador de infografías.
+  const datosTerritorio = () => {
     // Una publicación = un enlace; si el mismo enlace aparece para varias notas, cuenta una vez.
     const rs = [...new Map(repOk.filter(r => en(r.mes)).map(r => [r.url, r])).values()];
     const localidades = new Map(), regiones = new Map();
@@ -666,11 +683,15 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       item.publicaciones++; item.medios.add(r.medio); localidades.set(localidad, item);
       regiones.set(region, (regiones.get(region) || 0) + 1);
     });
-    const etiquetaMedios = n => n + (n === 1 ? ' medio' : ' medios');
     const regOrden = [...regiones.entries()].sort((a, b) => b[1] - a[1]);
+    const orden = [...localidades.values()].sort((a, b) => b.publicaciones - a.publicaciones || a.localidad.localeCompare(b.localidad, 'es'));
+    return { rs, regOrden, orden };
+  };
+  const drawTerritorio = () => {
+    const { rs, regOrden, orden } = datosTerritorio();
+    const etiquetaMedios = n => n + (n === 1 ? ' medio' : ' medios');
     const maxR = regOrden.length ? regOrden[0][1] : 1;
     bars('b-territorio-region', regOrden.map(([k, v]) => row(k, [[v, 'var(--accent)']], v, maxR, fmt(v) + ' (' + (rs.length ? Math.round(v / rs.length * 100) : 0) + '%)')));
-    const orden = [...localidades.values()].sort((a, b) => b.publicaciones - a.publicaciones || a.localidad.localeCompare(b.localidad, 'es'));
     const max = orden.length ? orden[0].publicaciones : 1;
     bars('b-territorio', orden.map(x => row(x.localidad + ' · ' + etiquetaMedios(x.medios.size), [[x.publicaciones, /verificar/.test(x.localidad) ? 'var(--muted, #8a9aa6)' : 'var(--accent)']], x.publicaciones, max)));
     // Cada ciudad abre las publicaciones de sus medios, con el nombre y el enlace de cada uno.
@@ -1129,7 +1150,7 @@ const draw = () => {
     const isoLocal = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
     $('g-desde').value = isoLocal(effectiveStart); $('g-hasta').value = isoLocal(end);
   };
-  const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; syncGoogleDates(); draw(); };
+  const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; syncGoogleDates(); draw(); actualizarInfografia(); };
   $('fdesde').addEventListener('change', e => setRango(e.target.value, st.hasta));
   $('fhasta').addEventListener('change', e => setRango(st.desde, e.target.value));
   $('ftodo').addEventListener('click', () => setRango(meses[0], meses[meses.length - 1]));
@@ -1146,6 +1167,169 @@ const draw = () => {
   $('compartidos-buscar').addEventListener('click', buscarCompartidos);
   dibujarCompartidos(filasCompartidosRegistrados());
   document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
+  // ---------- Generador de infografías ----------
+  // Dibuja en un canvas con los mismos cálculos del tablero; la vista previa es la imagen que se descarga.
+  const INFO_FORMATOS = { ig: [1080, 1350], story: [1080, 1920], x: [1600, 900] };
+  const INFO_COL = { navy: '#102b43', azul: '#174f73', teal: '#1f6c82', acc: '#1f5b87', claro: '#f3f7fa', ink: '#18212b', muted: '#5a6673', line: '#dde2e8', gris: '#b9c3cc', track: '#e7edf2', celeste: '#c7e5f4', suave: '#e0eef6' };
+  const SERIF = '"Newsreader", Georgia, serif', SANS = '"IBM Plex Sans", "Segoe UI", sans-serif';
+  const periodoTexto = () => {
+    const yd = st.desde.slice(0, 4), yh = st.hasta.slice(0, 4);
+    return st.desde === st.hasta ? mesLargo(st.desde) + ' de ' + yd : mesLargo(st.desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(st.hasta) + ' de ' + yh;
+  };
+  const tituloInfo = () => ($('info-titulo').value.trim() || (st.desde === st.hasta ? cap(mesLargo(st.desde)) : cap(periodoTexto())) + ' en números');
+  const datosInfografia = () => {
+    const c = calc(), t = datosTerritorio();
+    const total = t.rs.length || 1;
+    const regiones = t.regOrden.map(([k, v]) => ({ nombre: k === 'Chubut' ? 'Medios de Chubut' : k === 'Localidad por verificar' ? 'Sede por verificar' : k, valor: v, pct: Math.round(v / total * 100) }));
+    const ciudades = t.orden.filter(x => !/verificar|Cobertura/.test(x.localidad)).slice(0, 4);
+    const notasTop = c.notasP.filter(r => r.n_medios > 0).sort((a, b) => b.n_medios - a.n_medios || a.titulo.localeCompare(b.titulo)).slice(0, 3);
+    const corte = D.datos_actualizados ? new Date(D.datos_actualizados).toLocaleDateString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }) : D.actualizado;
+    return { c, regiones, ciudades, notasTop, corte };
+  };
+  const lineas = (ctx, texto, ancho) => {
+    const out = []; let linea = '';
+    String(texto).split(/\s+/).forEach(p => { const prueba = linea ? linea + ' ' + p : p; if (ctx.measureText(prueba).width > ancho && linea) { out.push(linea); linea = p; } else linea = prueba; });
+    if (linea) out.push(linea);
+    return out;
+  };
+  const texto = (ctx, t, x, y, fuente, color, ancho, alto) => {
+    ctx.font = fuente; ctx.fillStyle = color;
+    const ls = ancho ? lineas(ctx, t, ancho) : [t];
+    ls.forEach((l, i) => ctx.fillText(l, x, y + i * (alto || 0)));
+    return ls.length;
+  };
+  const caja = (ctx, x, y, w, h, r, color, borde) => {
+    ctx.beginPath(); ctx.roundRect(x, y, w, h, r); ctx.fillStyle = color; ctx.fill();
+    if (borde) { ctx.strokeStyle = borde; ctx.lineWidth = 1.5; ctx.stroke(); }
+  };
+  // Achica la fuente hasta que el texto entre en el ancho disponible.
+  const ajustar = (ctx, t, peso, familia, tam, ancho) => { let s = tam; do { ctx.font = peso + ' ' + s + 'px ' + familia; s -= 2; } while (ctx.measureText(t).width > ancho && s > 20); return s + 2; };
+  const barras = (ctx, filas, x, y, w, maximo, sufijo) => {
+    filas.forEach((f, i) => {
+      const yy = y + i * 64;
+      texto(ctx, f.nombre, x, yy, '400 22px ' + SANS, INFO_COL.ink);
+      caja(ctx, x, yy + 14, w - 90, 12, 6, INFO_COL.track);
+      const ancho = Math.max(12, (w - 90) * f.valorBarra / (maximo || 1));
+      caja(ctx, x, yy + 14, ancho, 12, 6, /verificar/i.test(f.nombre) ? INFO_COL.gris : INFO_COL.acc);
+      ctx.font = '600 22px ' + SANS; ctx.fillStyle = INFO_COL.ink; ctx.textAlign = 'right'; ctx.fillText(f.etiqueta, x + w, yy + 26); ctx.textAlign = 'left';
+    });
+    return y + filas.length * 64;
+  };
+  const dibujarInfografia = (lienzo, formato) => {
+    const [W, H] = INFO_FORMATOS[formato], k = 2, d = datosInfografia(), c = d.c;
+    lienzo.width = W * k; lienzo.height = H * k;
+    const ctx = lienzo.getContext('2d'); ctx.scale(k, k); ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = INFO_COL.claro; ctx.fillRect(0, 0, W, H);
+    const apaisado = formato === 'x', M = 72;
+    const anchoEnc = apaisado ? 620 : W, titulo = tituloInfo(), anchoTit = anchoEnc - 2 * M;
+    const tt = ajustar(ctx, titulo, '500', SERIF, apaisado ? 72 : 84, apaisado ? anchoTit * 1.9 : anchoTit);
+    ctx.font = '500 ' + tt + 'px ' + SERIF;
+    const lt = lineas(ctx, titulo, anchoTit);
+    const altoEnc = apaisado ? H : 84 + tt + 4 + (lt.length - 1) * tt + (formato === 'story' ? 280 : 225);
+    const g = ctx.createLinearGradient(0, 0, anchoEnc, altoEnc); g.addColorStop(0, INFO_COL.navy); g.addColorStop(.6, INFO_COL.azul); g.addColorStop(1, INFO_COL.teal);
+    ctx.fillStyle = g; ctx.fillRect(0, 0, anchoEnc, altoEnc);
+    // Encabezado
+    ctx.font = '600 22px ' + SANS; ctx.fillStyle = INFO_COL.celeste;
+    const kicker = 'JUSCHUBUT NOTICIAS · REPERCUSIÓN EN MEDIOS';
+    ctx.letterSpacing = '3px'; ctx.fillText(apaisado ? 'JUSCHUBUT NOTICIAS' : kicker, M, 84); ctx.letterSpacing = '0px';
+    ctx.font = '500 ' + tt + 'px ' + SERIF; ctx.fillStyle = '#fff';
+    lt.forEach((l, i) => ctx.fillText(l, M, 84 + tt + 4 + i * tt));
+    let y = 84 + tt + 4 + (lt.length - 1) * tt;
+    // Cifra principal
+    const pct = c.pct + '%';
+    if (apaisado) {
+      texto(ctx, pct, M, y + 200, '500 190px ' + SERIF, '#fff');
+      const n = texto(ctx, 'de nuestras notas tuvo al menos una publicación relacionada en otros medios', M, y + 270, '400 28px ' + SANS, INFO_COL.suave, anchoTit, 38);
+      texto(ctx, fmt(c.notasConRepercusion) + ' de ' + fmt(c.notas) + ' notas', M, y + 270 + n * 38 + 6, '600 30px ' + SANS, '#fff');
+    } else {
+      ctx.font = '500 160px ' + SERIF; const wp = ctx.measureText(pct).width;
+      texto(ctx, pct, M, y + 175, '500 160px ' + SERIF, '#fff');
+      const xx = M + wp + 28, an = W - M - xx;
+      const n = texto(ctx, 'de nuestras notas tuvo al menos una publicación relacionada en otros medios:', xx, y + 95, '400 28px ' + SANS, INFO_COL.suave, an, 38);
+      texto(ctx, fmt(c.notasConRepercusion) + ' de ' + fmt(c.notas) + '.', xx, y + 95 + n * 38, '600 28px ' + SANS, '#fff');
+    }
+    // Indicadores
+    const x0 = apaisado ? anchoEnc + 56 : M, ancho = apaisado ? W - x0 - 56 : W - 2 * M;
+    let yy = apaisado ? 60 : altoEnc + (formato === 'story' ? 90 : 40);
+    const tiles = [[c.notas, 'notas publicadas en Juschubut Noticias'], [c.publicaciones, 'publicaciones encontradas en otros medios'], [c.medios, 'medios distintos']];
+    const tw = (ancho - 40) / 3, th = apaisado ? 182 : 170;
+    tiles.forEach(([v, l], i) => {
+      const tx = x0 + i * (tw + 20);
+      caja(ctx, tx, yy, tw, th, 14, '#fff', INFO_COL.line);
+      ctx.fillStyle = INFO_COL.acc; ctx.fillRect(tx + 1, yy, tw - 2, 5);
+      texto(ctx, fmt(v), tx + 22, yy + 72, '500 60px ' + SERIF, INFO_COL.acc);
+      texto(ctx, l, tx + 22, yy + 106, '400 20px ' + SANS, INFO_COL.muted, tw - 40, 26);
+    });
+    yy += th + (formato === 'story' ? 120 : 46);
+    // Dónde salieron y por ciudad
+    const colW = (ancho - 44) / 2;
+    const encab = (t, x, y0) => { ctx.letterSpacing = '2px'; texto(ctx, t.toUpperCase(), x, y0, '600 21px ' + SANS, INFO_COL.muted); ctx.letterSpacing = '0px'; };
+    encab('Dónde salieron', x0, yy); encab('Por ciudad del medio', x0 + colW + 44, yy);
+    const regs = d.regiones.slice(0, 4).map(r => ({ nombre: r.nombre, valorBarra: r.pct, etiqueta: r.pct + '%' }));
+    const maxC = d.ciudades.length ? d.ciudades[0].publicaciones : 1;
+    const ciu = d.ciudades.map(x => ({ nombre: x.localidad, valorBarra: x.publicaciones, etiqueta: fmt(x.publicaciones) }));
+    const fin1 = barras(ctx, regs, x0, yy + 48, colW, 100);
+    const fin2 = barras(ctx, ciu, x0 + colW + 44, yy + 48, colW, maxC);
+    yy = Math.max(fin1, fin2) + (formato === 'story' ? 110 : 24);
+    // Notas que más circularon
+    const pieAlto = 110, cuantas = $('info-notas').checked ? (formato === 'story' ? 3 : apaisado ? 1 : 2) : 0;
+    if (cuantas && d.notasTop.length) {
+      encab('Las notas que más circularon', x0, yy); yy += 22;
+      d.notasTop.slice(0, cuantas).forEach(n => {
+        ctx.font = '400 22px ' + SANS; const ls = lineas(ctx, n.titulo, ancho - 150).slice(0, 2);
+        const h = Math.max(96, 34 + ls.length * 30);
+        if (yy + h > H - pieAlto) return;
+        caja(ctx, x0, yy, ancho, h, 14, '#fff', INFO_COL.line);
+        ctx.textAlign = 'center'; texto(ctx, fmt(n.n_medios), x0 + 62, yy + h / 2 + 10, '500 50px ' + SERIF, INFO_COL.acc);
+        texto(ctx, n.n_medios === 1 ? 'medio' : 'medios', x0 + 62, yy + h / 2 + 34, '500 17px ' + SANS, INFO_COL.muted); ctx.textAlign = 'left';
+        const y0 = yy + h / 2 - (ls.length - 1) * 15 + 8;
+        ls.forEach((l, i) => texto(ctx, l + (i === 1 && lineas(ctx, n.titulo, ancho - 150).length > 2 ? '…' : ''), x0 + 128, y0 + i * 30, '400 22px ' + SANS, INFO_COL.ink));
+        yy += h + (formato === 'story' ? 22 : 12);
+      });
+    }
+    // Fuente y aclaración
+    const py = H - 96;
+    ctx.fillStyle = INFO_COL.line; ctx.fillRect(x0, py - 14, ancho, 1.5);
+    texto(ctx, 'Fuente: Agencia de Comunicación Judicial, relevamiento de jusnoticias.juschubut.gov.ar y sitios de medios. Datos al ' + d.corte + '. Una publicación relacionada trata el mismo tema; no demuestra por sí sola que se haya usado nuestra información.', x0, py + 12, '400 17px ' + SANS, INFO_COL.muted, ancho, 24);
+    return d;
+  };
+  const textoAlternativo = d => {
+    const c = d.c, ch = d.regiones.find(r => r.nombre === 'Medios de Chubut');
+    let t = 'Infografía «' + tituloInfo() + '» de Juschubut Noticias (' + periodoTexto() + '). El ' + c.pct + '% de las notas (' + fmt(c.notasConRepercusion) + ' de ' + fmt(c.notas) + ') tuvo al menos una publicación relacionada en otros medios. Se encontraron ' + fmt(c.publicaciones) + ' publicaciones en ' + fmt(c.medios) + ' medios';
+    if (ch) t += '; el ' + ch.pct + '% en medios de Chubut';
+    if (d.ciudades.length) t += ', sobre todo de ' + d.ciudades.slice(0, 2).map(x => x.localidad + ' (' + fmt(x.publicaciones) + ')').join(' y ');
+    t += '.';
+    if ($('info-notas').checked && d.notasTop.length) t += ' La nota que más circuló: «' + d.notasTop[0].titulo + '» (' + fmt(d.notasTop[0].n_medios) + ' medios).';
+    return t + ' Datos al ' + d.corte + '.';
+  };
+  const actualizarInfografia = async () => {
+    if ($('infografia').hidden) return;
+    const estado = $('info-estado');
+    if (!calc().notas) { estado.textContent = 'No hay notas en el período elegido: elegí otro período para generar la infografía.'; return; }
+    $('info-titulo').placeholder = tituloInfo();
+    try { await Promise.all(['500 60px "Newsreader"', '400 20px "IBM Plex Sans"', '600 20px "IBM Plex Sans"'].map(f => document.fonts.load(f))); } catch (e) {}
+    const d = dibujarInfografia($('info-lienzo'), $('info-formato').value);
+    $('info-alt').value = textoAlternativo(d);
+    estado.textContent = 'Vista previa del período: ' + periodoTexto() + '. Datos al ' + d.corte + '.';
+  };
+  $('info-abrir').addEventListener('click', () => {
+    const panel = $('infografia'); panel.hidden = !panel.hidden;
+    $('info-abrir').setAttribute('aria-expanded', String(!panel.hidden));
+    actualizarInfografia();
+  });
+  ['info-formato', 'info-notas'].forEach(id => $(id).addEventListener('change', actualizarInfografia));
+  $('info-titulo').addEventListener('input', actualizarInfografia);
+  $('info-descargar').addEventListener('click', () => {
+    $('info-lienzo').toBlob(blob => {
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+      a.download = 'infografia-juschubut-' + st.desde + (st.hasta !== st.desde ? '_' + st.hasta : '') + '-' + $('info-formato').value + '.png';
+      document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }, 'image/png');
+  });
+  $('info-copiar').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('info-alt').value); $('info-estado').textContent = 'Texto alternativo copiado.'; }
+    catch (e) { $('info-alt').select(); $('info-estado').textContent = 'Seleccioná el texto y copialo con Ctrl+C.'; }
+  });
   $('ir-completo').addEventListener('click', () => { show('medios'); document.querySelector('.tabs').scrollIntoView(); });
   const detalle = (id) => {
     const n = porNota.find(x => x.id === id); if (!n) return;
