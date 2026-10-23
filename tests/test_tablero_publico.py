@@ -200,6 +200,7 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_seccion_compartidos_enlaza_cuenta_publicacion_y_nota(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
         self.assertIn('id="t-compartidos"', template)
         self.assertIn("celdaEnlace(f.cuenta, f.cuenta_url)", template)
         self.assertIn("celdaEnlace(f.nota_titulo || (f.nota_id ? 'Ver nota de JusNoticias' : 'Nota de JusNoticias no identificada'), f.nota_id ? notaUrl(f.nota_id) : null)", template)
@@ -209,7 +210,6 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("tiktok.com/search?q=", template)
         self.assertIn("Falta YT_CANAL_ID para excluir los videos del canal institucional.", funcion)
         self.assertIn("título de la nota identificado", funcion)
-        funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
         self.assertIn("business_discovery", funcion)
         self.assertIn('import cuentasMonitoreo from "../../data/cuentas_monitoreo.json";', funcion)
 
