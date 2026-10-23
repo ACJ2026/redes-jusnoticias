@@ -38,6 +38,34 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("'scripts/armar_publico.py'", workflow)
         self.assertIn("python3 scripts/armar_publico.py", workflow)
         self.assertIn("python3 -m unittest discover -s tests -v", workflow)
+        # Los cambios de datos regeneran el HTML, pero no lanzan otro relevamiento.
+        for path in (
+            "data/notas2.json",
+            "data/rep2.json",
+            "data/redes2.json",
+            "data/canales.json",
+            "data/medios.json",
+            "data/medios_inventario.json",
+            "data/cuentas_monitoreo.json",
+            "data/actualizado.txt",
+        ):
+            self.assertIn(f"'{path}'", workflow)
+
+    def test_relevamiento_no_se_dispara_por_sus_propios_datos_generados(self):
+        workflow = (ROOT / ".github/workflows/actualizar.yml").read_text(encoding="utf-8")
+        rutas = workflow.split("    paths:", 1)[1].split("  schedule:", 1)[0]
+        self.assertIn("'scripts/actualizar.py'", rutas)
+        self.assertIn("'data/fuentes_descubiertas.json'", rutas)
+        for path in (
+            "'scripts/armar_publico.py'",
+            "'templates/tablero.html'",
+            "'data/notas2.json'",
+            "'data/rep2.json'",
+            "'data/medios.json'",
+            "'data/medios_inventario.json'",
+            "'data/actualizado.txt'",
+        ):
+            self.assertNotIn(path, rutas)
 
     def test_plantilla_y_archivos_publicos_estan_sincronizados(self):
         data = {
