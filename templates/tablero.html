@@ -84,8 +84,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 #b-medios .bar-row:focus-visible,#b-top .bar-row:focus-visible,#b-origen .bar-row:focus-visible,#b-cadena .bar-row:focus-visible,#b-top5m .bar-row:focus-visible,#b-top5n .bar-row:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 #medios-detalle-lista{display:flex;flex-direction:column;gap:10px}
 #medios-detalle-lista a{color:var(--accent);overflow-wrap:anywhere}
-.medios-ref{padding:8px 0;border-bottom:1px solid var(--line)}
-.medios-ref small{display:block;color:var(--muted);margin-top:3px}
+.medios-ref{padding:10px 0;border-bottom:1px solid var(--line)}
+.medios-ref-titulo{display:block;font-weight:700;line-height:1.4;margin:0 0 5px;font-size:1rem}
+.medios-ref a{display:inline-block;font-weight:650;margin:2px 0}
+.medios-ref small{display:block;color:var(--muted);margin-top:5px;line-height:1.45}
 #t-notas tbody tr:hover td{background:var(--grid)}
 #t-notas tbody tr.sel td{background:var(--grid);font-weight:600}
 #t-det a{color:var(--accent);font-weight:500}
@@ -787,11 +789,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       items.forEach(r => {
         const n = ns.get(Number(r.nota_id));
         const item = document.createElement('div'); item.className = 'medios-ref';
+        const titulo = document.createElement('strong'); titulo.className = 'medios-ref-titulo';
+        titulo.textContent = n?.titulo || 'Nota de JusNoticias relacionada (título no disponible)';
         const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
         a.textContent = String(r.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación en ' + (r.medio || 'el medio de origen') + ' ↗';
         const meta = document.createElement('small');
-        meta.textContent = 'Nota de JusNoticias relacionada: ' + (n?.titulo || 'Título no disponible') + ' · Fecha de la nota oficial: ' + (n?.fecha || 'No disponible') + ' · Comparación: ' + (r.origen || 'No clasificada') + ' · Confianza del registro: ' + (r.confianza || 'No indicada');
-        item.append(a, meta); lista.append(item);
+        meta.textContent = 'Fecha de la nota oficial: ' + (n?.fecha || 'No disponible') + ' · Comparación: ' + (r.origen || 'No clasificada') + ' · Confianza del registro: ' + (r.confianza || 'No indicada');
+        item.append(titulo, a, meta); lista.append(item);
       });
     }
     panel.hidden = false;
