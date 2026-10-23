@@ -66,16 +66,15 @@ if __name__ == "__main__":
 def cargar_segunda_oportunidad(nota_texto, nota_titulo, fecha="2026-10-16"):
     # Reúne las funciones auxiliares que usan cerca() y confirmar_por_texto().
     arbol = ast.parse(FUENTE).body
-    nombres = {"strip", "norm", "toks", "shing", "addd", "cerca", "confirmar_por_texto"}
+    nombres = {"strip", "norm", "toks", "shing", "addd", "cerca", "confirmar_por_texto", "classify"}
     nodos = [n for n in arbol if isinstance(n, ast.FunctionDef) and n.name in nombres]
-    nodos += [n for n in arbol if isinstance(n, ast.Assign) and any(getattr(t, "id", "") == "STOP" for t in n.targets)]
+    nodos += [n for n in arbol if isinstance(n, ast.Assign) and any(getattr(t, "id", "") in ("STOP", "MED") for t in n.targets)]
     import unicodedata
     espacio = {"re": re, "html": html, "dt": dt, "unicodedata": unicodedata}
     exec(compile(ast.Module(body=nodos, type_ignores=[]), "actualizar.py", "exec"), espacio)
     j = {"id": 1, "date": fecha, "tk": espacio["toks"](nota_titulo + " " + nota_texto[:1500]), "sh": espacio["shing"](nota_texto)}
     espacio["JN"] = [j]
     espacio["JNBY"] = {1: j}
-    espacio["classify"] = lambda texto, nid: ("Reescritura parcial", False, "")
     return espacio
 
 
@@ -93,7 +92,7 @@ class SegundaOportunidadTest(unittest.TestCase):
                 "d": "2026-10-19", "u": "https://www.adnsur.com.ar/nota"}
         candidatos = e["cerca"]([item], [])
         self.assertEqual(len(candidatos), 1)
-        texto = "Madryn. " + NOTA + " Los padres pueden recurrir."
+        texto = "Madryn. " + NOTA + " Los padres pueden recurrir."  # copia la nota
         confirmados = e["confirmar_por_texto"](candidatos, {item["u"]: texto})
         self.assertEqual(len(confirmados), 1)
         self.assertEqual(confirmados[0][0]["metodo"], "Revisión completa (confirmado por texto)")
@@ -103,8 +102,18 @@ class SegundaOportunidadTest(unittest.TestCase):
         item = {"t": "Debate sobre la escolarización presencial y el homeschooling en el país",
                 "d": "2026-10-18", "u": "https://otro.com.ar/opinion"}
         candidatos = e["cerca"]([item], [])
-        texto = "Una columna de opinión sobre el proyecto de ley nacional de libertad educativa y el homeschooling en Argentina."
+        texto = ("Una columna de opinión sobre el proyecto de ley nacional de libertad educativa y el homeschooling "
+                 "en Argentina. La Cámara de Apelaciones de Puerto Madryn confirmó la sentencia que ordena a los padres. "
+                 "El debate sigue abierto en todo el país con muchas otras voces y argumentos sobre el tema educativo. "
+                 + " ".join(f"Párrafo {i} con opiniones distintas de especialistas, docentes y familias sobre la escuela." for i in range(12)))
         self.assertEqual(e["confirmar_por_texto"](candidatos, {item["u"]: texto}), [])
+
+    def test_si_nombra_a_jusnoticias_se_acepta_aunque_redacte_distinto(self):
+        e = cargar_segunda_oportunidad(NOTA, TITULO)
+        item = {"t": "Escolarización presencial: lo que dijo la Cámara", "d": "2026-10-17", "u": "https://y.com.ar/n"}
+        candidatos = e["cerca"]([item], [])
+        texto = "Según informó Jusnoticias, la Cámara resolvió el caso de la escolarización de una niña de cinco años."
+        self.assertEqual(len(e["confirmar_por_texto"](candidatos, {item["u"]: texto})), 1)
 
     def test_fuera_de_la_ventana_de_fechas_no_es_candidato(self):
         e = cargar_segunda_oportunidad(NOTA, TITULO)

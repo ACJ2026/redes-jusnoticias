@@ -109,15 +109,15 @@ def cerca(items, ya, win=8, before=-1, minimo=2, umbral=0.34, tope=40):
     return res[:tope]
 
 def confirmar_por_texto(cands, textos):
-    """Acepta un candidato si comparte frases con la nota (3+ tramos de 6 palabras) o la cita."""
+    """Solo acepta evidencia fuerte: el texto copia o reescribe la nota, o nombra a JusNoticias.
+    Un tema parecido con redacción propia no alcanza (daba coincidencias falsas en la prueba)."""
     out = []
     for m in cands:
         t = textos.get(m['u'])
         if not t: continue
-        comunes = len(shing(t) & JNBY[m['nid']]['sh'])
-        cita = bool(re.search(r'jusnoticias|agencia de comunicaci[oó]n judicial', t, re.I))
-        if comunes >= 3 or (cita and len(toks(t[:3000]) & JNBY[m['nid']]['tk']) >= 8):
-            out.append((dict(m, metodo='Revisión completa (confirmado por texto)'), classify(t, m['nid'])))
+        c = classify(t, m['nid'])
+        if c[0] != 'Redacción propia' or c[1]:
+            out.append((dict(m, metodo='Revisión completa (confirmado por texto)'), c))
     return out
 
 def texto_pagina(u):
