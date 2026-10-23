@@ -394,8 +394,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card" id="compartidos">
       <h2>Quién compartió nuestras notas en redes</h2>
-      <p class="note">Esta sección reúne publicaciones de otras cuentas que comparten notas de Juschubut Noticias. Incluye registros comprobados manualmente y resultados de la búsqueda automática. «Cuenta» abre el perfil; «Publicación compartida» abre el posteo concreto cuando se guardó su enlace; «Nuestra nota» abre la nota original. El botón busca publicaciones recientes en Instagram y YouTube de los últimos 30 días; los registros manuales también pueden aparecer aunque no formen parte de esa búsqueda.</p>
-      <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar publicaciones recientes en Instagram y YouTube</button></div>
+      <p class="note">Esta sección reúne publicaciones de otras cuentas que comparten notas de Juschubut Noticias. Cada registro puede enlazar el perfil, la publicación concreta y nuestra nota original. «Buscar ahora» revisa las publicaciones recientes de las cuentas de Instagram incluidas en el listado y busca en YouTube videos relacionados con hasta 10 de nuestras notas más recientes de los últimos 30 días. La tabla también conserva hallazgos registrados manualmente. Facebook y TikTok no se consultan automáticamente: las credenciales y APIs disponibles no permiten buscar publicaciones públicas de terceros de forma general.</p>
+      <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar ahora</button></div>
       <p class="note" id="compartidos-estado" role="status"></p>
       <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación compartida</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
     </div>
@@ -907,14 +907,14 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   };
   const buscarCompartidos = async () => {
     const estado = $('compartidos-estado');
-    estado.textContent = 'Buscando en Instagram y YouTube…';
+    estado.textContent = 'Buscando en Instagram (cuentas del listado) y YouTube (hasta 10 notas recientes)…';
     try {
       const response = await fetch('/api/compartidos', { headers: { Accept: 'application/json' } });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'HTTP ' + response.status);
       const nuevas = (data.filas || []).map(f => ({ ...f, tipo: 'Encontrada automáticamente (' + f.coincidencia + ')' }));
       dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
-      const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' sin respuesta)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
+      const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
       estado.textContent = fmt(nuevas.length) + ' publicaciones encontradas desde ' + data.desde + '. ' + detalle + '.';
     } catch (error) {
       estado.textContent = 'No se pudo hacer la búsqueda: ' + error.message;
