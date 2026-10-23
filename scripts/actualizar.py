@@ -117,7 +117,7 @@ def confirmar_por_texto(cands, textos):
         if not t: continue
         c = classify(t, m['nid'])
         if c[0] != 'Redacción propia' or c[1]:
-            out.append((dict(m, metodo='Revisión completa (confirmado por texto)'), c))
+            out.append((dict(m, metodo='Revisión completa (confirmado por texto)', motivo=motivo_texto(t, JNBY[m['nid']])), c))
     return out
 
 def texto_pagina(u):
@@ -151,6 +151,14 @@ def puntaje_datos(tokens, j):
     total = sum(IDF.get(w, 0) for w in j['tb'])
     return sum(IDF.get(w, 0) for w in tokens & j['tb']) / total if total else 0
 
+def motivo_texto(t, j, sim=None, sc=None):
+    """Por qué se asoció el artículo a la nota: frases en común y datos poco comunes compartidos."""
+    tk = toks(t)
+    sim = len(shing(t) & j['sh']) / len(shing(t)) if sim is None and shing(t) else (sim or 0)
+    sc = puntaje_datos(tk, j) if sc is None else sc
+    raras = sorted(tk & j['tb'], key=lambda w: -IDF.get(w, 0))[:6]
+    return f"frases en común {round(sim * 100)}%; datos coincidentes {round(sc * 100)}% ({', '.join(raras)})"
+
 def revisar_texto(items, textos):
     """Compara el texto completo con las notas de la ventana: frases iguales o datos que coinciden."""
     out = []
@@ -169,9 +177,9 @@ def revisar_texto(items, textos):
         sim, sc, j = mejor
         DIAG_TEXTO.append((round(sc, 3), round(sim, 3), j['id'], it['u']))
         if sim >= 0.2:
-            out.append((dict(it, nid=j['id'], metodo='Revisión completa (confirmado por texto)'), classify(t, j['id'])))
+            out.append((dict(it, nid=j['id'], metodo='Revisión completa (confirmado por texto)', motivo=motivo_texto(t, j, sim, sc)), classify(t, j['id'])))
         elif sc >= UMBRAL_DATOS:
-            out.append((dict(it, nid=j['id'], metodo='Revisión de texto (coinciden los datos)'), classify(t, j['id'])))
+            out.append((dict(it, nid=j['id'], metodo='Revisión de texto (coinciden los datos)', motivo=motivo_texto(t, j, sim, sc)), classify(t, j['id'])))
     return out
 
 DATE_RE = [r'article:published_time" content="([^"]+)', r'"datePublished": ?"([^"]+)', r'datetime="([^"]+)']
@@ -192,7 +200,9 @@ def verify(cands, win=8):
 rows = []
 def addrow(medio, m, metodo, origen='Sin dato', off=False, otros=''):
     conf = 'Media' if origen == 'Sin dato' else ('Alta' if (origen != 'Redacción propia' or off) else 'Baja')
-    rows.append({'nota_id': m['nid'], 'medio': medio, 'origen': origen, 'cita_fuente_oficial': ('Sí' if off else 'No') if origen != 'Sin dato' else '', 'cita_otro_medio': otros, 'confianza': conf, 'metodo': metodo, 'url': m.get('u', '')})
+    fila = {'nota_id': m['nid'], 'medio': medio, 'origen': origen, 'cita_fuente_oficial': ('Sí' if off else 'No') if origen != 'Sin dato' else '', 'cita_otro_medio': otros, 'confianza': conf, 'metodo': metodo, 'url': m.get('u', '')}
+    if m.get('motivo'): fila['motivo'] = m['motivo']
+    rows.append(fila)
 cobertura = {}
 
 # ---------- 2. Medios WordPress ----------

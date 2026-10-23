@@ -193,3 +193,9 @@ class RevisionManualTests(unittest.TestCase):
         primera = dict(filas[0])
         aplicar_revision_manual(filas, rev)
         self.assertEqual(filas[0], primera)
+
+    def test_queda_registrado_quien_decidio_y_por_que(self):
+        filas = [self.fila()]
+        aplicar_revision_manual(filas, [{"nota_id": 1, "url": filas[0]["url"], "decision": "confirmar", "origen": "Reescritura parcial",
+                                         "revisado_por": "Ignacio", "fecha": "2026-10-23", "motivo": "cita los mismos datos del fallo"}])
+        self.assertEqual(filas[0]["revision_manual"], {"decision": "confirmar", "por": "Ignacio", "fecha": "2026-10-23", "motivo": "cita los mismos datos del fallo"})

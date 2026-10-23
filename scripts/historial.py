@@ -170,24 +170,27 @@ def aplicar_revision_manual(filas, revisiones):
             continue
         decision = rev.get("decision")
         fila = indice.get((nota, normalizar_url(url)))
+        registro = {"decision": decision, "por": rev.get("revisado_por", ""), "fecha": rev.get("fecha", ""), "motivo": rev.get("motivo", "")}
         if decision == "confirmar":
             origen = rev.get("origen") if rev.get("origen") in ORIGENES_VALIDOS else "Sin dato"
             if fila is None:
                 if not rev.get("medio"):
                     continue
                 fila = {"nota_id": nota, "medio": rev["medio"], "origen": origen, "cita_fuente_oficial": rev.get("cita_fuente_oficial", ""),
-                        "cita_otro_medio": "", "confianza": "Alta", "metodo": "Revisión manual", "url": url}
+                        "cita_otro_medio": "", "confianza": "Alta", "metodo": "Revisión manual", "url": url, "revision_manual": registro}
                 filas.append(fila)
                 indice[(nota, normalizar_url(url))] = fila
                 continue
             fila["confianza"] = "Alta"
             fila["origen"] = origen
+            fila["revision_manual"] = registro
             if rev.get("cita_fuente_oficial"):
                 fila["cita_fuente_oficial"] = rev["cita_fuente_oficial"]
             if "revisión manual" not in (fila.get("metodo") or ""):
                 fila["metodo"] = ((fila.get("metodo") or "") + " + confirmado en revisión manual").lstrip(" +")
         elif decision == "descartar" and fila is not None:
             fila["confianza"] = "Baja"
+            fila["revision_manual"] = registro
             if "revisión manual" not in (fila.get("metodo") or ""):
                 fila["metodo"] = ((fila.get("metodo") or "") + " + descartado en revisión manual").lstrip(" +")
     return filas
