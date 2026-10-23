@@ -68,9 +68,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 111,
-      "notas": 89,
-      "ejemplo": "https://canal12web.com/buscan-una-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
+      "publicaciones": 112,
+      "notas": 90,
+      "ejemplo": "https://canal12web.com/panigadi-los-padres-pueden-elegir-la-educacion-de-sus-hijos-pero-en-el-marco-de-instituciones-habilitadas-por-el-estado/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
       "redes": {
@@ -148,6 +148,39 @@
       }
     },
     {
+      "nombre": "Cholila Online",
+      "alias": [],
+      "dominio": "cholilaonline.ar",
+      "url": "https://cholilaonline.ar",
+      "tipo": "Portal digital",
+      "localidad": "Cholila",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 70,
+      "notas": 60,
+      "ejemplo": "https://cholilaonline.ar/2026/10/la-justicia-freno-el-homeschooling-a-una-nina.html",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/CholilaOnline"
+        ],
+        "Instagram": [
+          "@cholilaonline"
+        ],
+        "X": [
+          "@CholilaOnlive"
+        ],
+        "YouTube": [
+          "@CholilaOnlive"
+        ],
+        "TikTok": [
+          "@cholilaonlive"
+        ]
+      }
+    },
+    {
       "nombre": "Noticias PMY",
       "alias": [],
       "dominio": "noticiaspmy.com",
@@ -168,39 +201,6 @@
         ],
         "X": [
           "@NoticiasPmy"
-        ]
-      }
-    },
-    {
-      "nombre": "Cholila Online",
-      "alias": [],
-      "dominio": "cholilaonline.ar",
-      "url": "https://cholilaonline.ar",
-      "tipo": "Portal digital",
-      "localidad": "Cholila",
-      "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 69,
-      "notas": 59,
-      "ejemplo": "https://cholilaonline.ar/2026/10/prevencion-de-cancer-de-mama-en-comodoro.html",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/CholilaOnline"
-        ],
-        "Instagram": [
-          "@cholilaonline"
-        ],
-        "X": [
-          "@CholilaOnlive"
-        ],
-        "YouTube": [
-          "@CholilaOnlive"
-        ],
-        "TikTok": [
-          "@cholilaonlive"
         ]
       }
     },
@@ -451,9 +451,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 31,
-      "notas": 29,
-      "ejemplo": "https://radiochubut.com/rawson-prevencion-cancer-mama/",
+      "publicaciones": 32,
+      "notas": 30,
+      "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -1025,25 +1025,6 @@
       "redes": {}
     },
     {
-      "nombre": "Diario Nuevo Día",
-      "alias": [
-        "El Diario Nuevo Día"
-      ],
-      "dominio": "eldiarionuevodia.com.ar",
-      "url": "https://eldiarionuevodia.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Río Gallegos",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 2,
-      "notas": 2,
-      "ejemplo": "",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {}
-    },
-    {
       "nombre": "La Voz del Interior",
       "alias": [],
       "dominio": "lavoz.com.ar",
@@ -1189,8 +1170,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
@@ -1247,6 +1228,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Diario Nuevo Día",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Prensa gráfica",
+      "localidad": "Río Gallegos",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
       "redes": {}
     },
     {
@@ -1315,6 +1313,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "El Diario Nuevo Día",
+      "alias": [],
+      "dominio": "eldiarionuevodia.com.ar",
+      "url": "https://eldiarionuevodia.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.eldiarionuevodia.com.ar/regionales/un-juez-le-escribio-una-carta-a-una-nina-de-10-anos-tras-condenar-a-su-tio-por-abuso-sexual/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
       "redes": {}
     },
     {
@@ -1444,8 +1459,8 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
@@ -1512,8 +1527,8 @@
       "tipo": "Portal digital",
       "localidad": "Cobertura nacional",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -1655,8 +1670,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.mdzol.com/politica/2026/9/16/que-penas-podran-recibir-los-jovenes-el-nuevo-regimen-penal-juvenil-1981295.html",
