@@ -151,6 +151,51 @@ def marcar_secundarias(filas, confirmadas_previas=()):
     return filas
 
 
+# ---------- Revisión manual ----------
+# data/revision_manual.json: lo que el equipo confirma o descarta a mano desde «por revisar».
+# Nunca borra filas: «descartar» solo baja la confianza para que no cuente.
+ORIGENES_VALIDOS = ("Copia textual (≥50%)", "Reescritura parcial", "Redacción propia", "Sin dato")
+
+
+def aplicar_revision_manual(filas, revisiones):
+    """Aplica las decisiones manuales por URL; si una confirmación no tiene fila, la crea."""
+    indice = {}
+    for f in filas:
+        for u in [f.get("url", "")] + list(f.get("url_alternativas") or []):
+            if u:
+                indice.setdefault((f.get("nota_id"), normalizar_url(u)), f)
+    for rev in revisiones or []:
+        nota, url = rev.get("nota_id"), rev.get("url", "")
+        if not nota or not url:
+            continue
+        decision = rev.get("decision")
+        fila = indice.get((nota, normalizar_url(url)))
+        registro = {"decision": decision, "por": rev.get("revisado_por", ""), "fecha": rev.get("fecha", ""), "motivo": rev.get("motivo", "")}
+        if decision == "confirmar":
+            origen = rev.get("origen") if rev.get("origen") in ORIGENES_VALIDOS else "Sin dato"
+            if fila is None:
+                if not rev.get("medio"):
+                    continue
+                fila = {"nota_id": nota, "medio": rev["medio"], "origen": origen, "cita_fuente_oficial": rev.get("cita_fuente_oficial", ""),
+                        "cita_otro_medio": "", "confianza": "Alta", "metodo": "Revisión manual", "url": url, "revision_manual": registro}
+                filas.append(fila)
+                indice[(nota, normalizar_url(url))] = fila
+                continue
+            fila["confianza"] = "Alta"
+            fila["origen"] = origen
+            fila["revision_manual"] = registro
+            if rev.get("cita_fuente_oficial"):
+                fila["cita_fuente_oficial"] = rev["cita_fuente_oficial"]
+            if "revisión manual" not in (fila.get("metodo") or ""):
+                fila["metodo"] = ((fila.get("metodo") or "") + " + confirmado en revisión manual").lstrip(" +")
+        elif decision == "descartar" and fila is not None:
+            fila["confianza"] = "Baja"
+            fila["revision_manual"] = registro
+            if "revisión manual" not in (fila.get("metodo") or ""):
+                fila["metodo"] = ((fila.get("metodo") or "") + " + descartado en revisión manual").lstrip(" +")
+    return filas
+
+
 def conservar_historial(rows, anteriores, ids_vigentes, cobertura):
     """Fusiona filas nuevas con el historial para notas que siguen vigentes.
 

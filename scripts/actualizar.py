@@ -4,7 +4,7 @@
 Uso: python3 actualizar.py <carpeta_salida> [rep_anterior.json]
 Genera notas2.json, rep2.json y medios.json en la carpeta de salida.
 """
-import json, re, sys, os, gzip, html, unicodedata, time, datetime as dt
+import json, re, sys, os, gzip, html, unicodedata, time, math, datetime as dt
 import urllib.request, urllib.parse
 from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -63,7 +63,7 @@ for x in jn_raw:
     d = x['date'][:10]
     tipo = 'Agenda y servicios' if (SERV.search(t) and not re.search(r'conden|culpable|fallo', t, re.I)) else ('Fallo o caso' if FALLO.search(t) else 'Institucional')
     notas.append({'id': x['id'], 'fecha': d, 'titulo': t, 'tipo': tipo, 'mes': d[:7]})
-    JN.append({'id': x['id'], 'date': d, 'tk': toks(t + ' ' + body[:1500]), 'sh': shing(body)})
+    JN.append({'id': x['id'], 'date': d, 'tk': toks(t + ' ' + body[:1500]), 'sh': shing(body), 'tb': toks(t + ' ' + body)})
 print('notas', len(notas))
 
 def match(items, win=8, thr=0.57, before=-1, nodate_thr=0.7, need_chubut=False):
@@ -117,13 +117,91 @@ def confirmar_por_texto(cands, textos):
         if not t: continue
         c = classify(t, m['nid'])
         if c[0] != 'Redacción propia' or c[1]:
-            out.append((dict(m, metodo='Revisión completa (confirmado por texto)'), c))
+            out.append((dict(m, metodo='Revisión completa (confirmado por texto)', motivo=motivo_texto(t, JNBY[m['nid']])), c))
     return out
 
 def texto_pagina(u):
     h = get(u, timeout=15) or ''
     h = re.sub(r'(?is)<(script|style|nav|header|footer)[^>]*>.*?</\1>', ' ', h)
     return strip(h)
+
+# Lectura del texto de todo lo publicado en los últimos días (no solo títulos parecidos).
+# Cada artículo se lee una sola vez: la lista de enlaces revisados se guarda entre corridas.
+DIAS_TEXTO = 10
+LIMITE_TEXTO = addd(dt.date.today().isoformat(), -DIAS_TEXTO)
+UMBRAL_DATOS = 0.25
+REVISADOS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'textos_revisados.json')
+_corte = addd(dt.date.today().isoformat(), -(DIAS_TEXTO + 5))
+try:
+    with open(REVISADOS_PATH, encoding='utf8') as _f:
+        _guardado = json.load(_f)
+except Exception:
+    _guardado = {}
+if 'revisados' not in _guardado: _guardado = {'revisados': _guardado, 'candidatos': {}}
+REVISADOS = {u: d for u, d in _guardado.get('revisados', {}).items() if d >= _corte}
+# Candidatos por datos de corridas anteriores: sirven para detectar notas «genéricas».
+CANDIDATOS_DATOS = {u: c for u, c in _guardado.get('candidatos', {}).items() if c.get('fecha', '') >= _corte}
+DATOS_PEND = []
+MAX_POR_NOTA = 4
+_df = {}
+for _j in JN:
+    for _w in _j['tb']: _df[_w] = _df.get(_w, 0) + 1
+IDF = {w: math.log(len(JN) / n) for w, n in _df.items()}
+DIAG_TEXTO = []
+
+def pendientes_texto(items, ya):
+    """Artículos recientes que no coincidieron por título y todavía no se leyeron."""
+    vistos = {m['u'] for m in ya}
+    return [it for it in items if it.get('d', '') >= LIMITE_TEXTO and it['u'] not in vistos and it['u'] not in REVISADOS]
+
+def puntaje_datos(tokens, j):
+    total = sum(IDF.get(w, 0) for w in j['tb'])
+    return sum(IDF.get(w, 0) for w in tokens & j['tb']) / total if total else 0
+
+def motivo_texto(t, j, sim=None, sc=None):
+    """Por qué se asoció el artículo a la nota: frases en común y datos poco comunes compartidos."""
+    tk = toks(t)
+    sim = len(shing(t) & j['sh']) / len(shing(t)) if sim is None and shing(t) else (sim or 0)
+    sc = puntaje_datos(tk, j) if sc is None else sc
+    raras = sorted(tk & j['tb'], key=lambda w: -IDF.get(w, 0))[:6]
+    return f"frases en común {round(sim * 100)}%; datos coincidentes {round(sc * 100)}% ({', '.join(raras)})"
+
+def revisar_texto(items, textos, medio=''):
+    """Compara el texto completo con las notas de la ventana: frases iguales o datos que coinciden."""
+    out = []
+    for it in items:
+        t = textos.get(it['u'])
+        if not t: continue
+        REVISADOS[it['u']] = dt.date.today().isoformat()
+        sh, tk = shing(t), toks(t)
+        mejor = None
+        for j in JN:
+            if it['d'] < addd(j['date'], -1) or it['d'] > addd(j['date'], 8): continue
+            sim = len(sh & j['sh']) / len(sh) if sh else 0
+            sc = puntaje_datos(tk, j)
+            if not mejor or (sim, sc) > (mejor[0], mejor[1]): mejor = (sim, sc, j)
+        if not mejor: continue
+        sim, sc, j = mejor
+        DIAG_TEXTO.append((round(sc, 3), round(sim, 3), j['id'], it['u']))
+        if sim >= 0.2:
+            out.append((dict(it, nid=j['id'], metodo='Revisión completa (confirmado por texto)', motivo=motivo_texto(t, j, sim, sc)), classify(t, j['id'])))
+        elif sc >= UMBRAL_DATOS:
+            DATOS_PEND.append((medio, dict(it, nid=j['id'], metodo='Revisión de texto (coinciden los datos)', motivo=motivo_texto(t, j, sim, sc)), classify(t, j['id'])))
+    return out
+
+def agregar_por_datos():
+    """Suma los candidatos por datos, salvo los de notas que coinciden con demasiados artículos:
+    una nota de tema general (p. ej., Octubre Rosa) comparte palabras con cualquier nota del tema."""
+    for medio, m, c in DATOS_PEND:
+        CANDIDATOS_DATOS[m['u']] = {'nota': m['nid'], 'fecha': dt.date.today().isoformat()}
+    por_nota = {}
+    for c in CANDIDATOS_DATOS.values(): por_nota[c['nota']] = por_nota.get(c['nota'], 0) + 1
+    sumados = 0
+    for medio, m, c in DATOS_PEND:
+        if por_nota.get(m['nid'], 0) > MAX_POR_NOTA: continue
+        addrow(medio, m, m['metodo'], c[0], c[1], c[2]); sumados += 1
+    genericas = sorted(n for n, k in por_nota.items() if k > MAX_POR_NOTA)
+    print('Por datos: candidatos', len(DATOS_PEND), '| sumados', sumados, '| notas genéricas omitidas', genericas)
 
 DATE_RE = [r'article:published_time" content="([^"]+)', r'"datePublished": ?"([^"]+)', r'datetime="([^"]+)']
 def page_date(u):
@@ -143,7 +221,9 @@ def verify(cands, win=8):
 rows = []
 def addrow(medio, m, metodo, origen='Sin dato', off=False, otros=''):
     conf = 'Media' if origen == 'Sin dato' else ('Alta' if (origen != 'Redacción propia' or off) else 'Baja')
-    rows.append({'nota_id': m['nid'], 'medio': medio, 'origen': origen, 'cita_fuente_oficial': ('Sí' if off else 'No') if origen != 'Sin dato' else '', 'cita_otro_medio': otros, 'confianza': conf, 'metodo': metodo, 'url': m.get('u', '')})
+    fila = {'nota_id': m['nid'], 'medio': medio, 'origen': origen, 'cita_fuente_oficial': ('Sí' if off else 'No') if origen != 'Sin dato' else '', 'cita_otro_medio': otros, 'confianza': conf, 'metodo': metodo, 'url': m.get('u', '')}
+    if m.get('motivo'): fila['motivo'] = m['motivo']
+    rows.append(fila)
 cobertura = {}
 
 # ---------- 2. Medios WordPress ----------
@@ -190,7 +270,8 @@ def wp_site(item):
         if stop: break
     ms = match(items)
     cerca_ms = cerca(items, ms)
-    ids = list({m['pid'] for m in ms + cerca_ms})
+    recientes = pendientes_texto(items, ms + cerca_ms)
+    ids = list({m['pid'] for m in ms + cerca_ms + recientes})
     texts = {}
     for i in range(0, len(ids), 50):
         j = getj(f'https://{dom}/wp-json/wp/v2/posts?include={",".join(map(str, ids[i:i+50]))}&per_page=50&_fields=id,content')
@@ -202,6 +283,7 @@ def wp_site(item):
         t = texts.get(m['pid'])
         out.append((m, classify(t, m['nid']) if t else None))
     out += confirmar_por_texto(cerca_ms, {m['u']: texts.get(m['pid']) for m in cerca_ms})
+    out += revisar_texto(recientes, {m['u']: texts.get(m['pid']) for m in recientes}, name)
     return name, len(items), out
 # Aislar fallos temporales por fuente: un sitio caído no debe cancelar
 # toda la actualización ni provocar la pérdida de registros históricos.
@@ -271,8 +353,14 @@ for name, host in [('ADN Sur', 'https://www.adnsur.com.ar'), ('EQS Notas', 'http
     with ThreadPoolExecutor(8) as ex:
         textos = dict(zip([m['u'] for m in cerca_ms], ex.map(texto_pagina, [m['u'] for m in cerca_ms])))
     extra = confirmar_por_texto(cerca_ms, textos)
+    recientes = sorted(pendientes_texto(items, ms + cerca_ms), key=lambda it: it['d'], reverse=True)[:200]
+    with ThreadPoolExecutor(8) as ex:
+        textos = dict(zip([m['u'] for m in recientes], ex.map(texto_pagina, [m['u'] for m in recientes])))
+    extra += revisar_texto(recientes, textos, name)
     for m, c in extra: addrow(name, m, m['metodo'], c[0], c[1], c[2])
     cobertura[name] = 'Revisión completa (títulos; texto en casos dudosos)'; print(name, len(items), 'por texto:', len(extra))
+
+agregar_por_datos()
 
 # ---------- 4. La Opinión Austral (sitemap txt, sin fechas) ----------
 idx = get('https://laopinionaustral.com.ar/sitemaps/sitemaps-index.xml') or ''
@@ -396,6 +484,11 @@ def gnews(n):
     body = CUERPO.get(n['id'], '')
     oraciones = [o.strip() for o in re.split(r'(?<=[.;:])\s+', body) if len(o.split()) >= 12][:3]
     frases = ['"' + ' '.join(o.split()[2:11]) + '"' for o in oraciones[:2]]
+    # Tercera huella: una cita textual (los medios suelen conservar las citas del fallo) o la tercera oración.
+    citas = [c for c in re.findall(r'[“"«]([^”"»]{60,400})[”"»]', body) if len(c.split()) >= 10]
+    tercera = citas[0] if citas else (oraciones[2] if len(oraciones) > 2 else '')
+    if tercera:
+        frases.append('"' + ' '.join(tercera.split()[:10]) + '"')
     t, fuerte = '', ''
     consultas = [n['titulo'][:120], ' '.join(clave_t)] + frases
     # Seguimiento de medios descubiertos, para notas de los últimos 15 días: en cada ejecución
@@ -504,6 +597,12 @@ print('Google Noticias', con_g)
 REGISTRO.sort(key=lambda r: (r.get('ultima_deteccion', ''), r.get('dominio', '')))
 with open(REG_PATH, 'w', encoding='utf8') as rf:
     json.dump(REGISTRO, rf, ensure_ascii=False, indent=2)
+with open(REVISADOS_PATH, 'w', encoding='utf8') as rf:
+    json.dump({'revisados': dict(sorted(REVISADOS.items())), 'candidatos': dict(sorted(CANDIDATOS_DATOS.items()))}, rf, ensure_ascii=False, indent=0)
+print('Textos leídos en esta corrida:', len(DIAG_TEXTO), '| lista de revisados:', len(REVISADOS))
+if os.environ.get('DIAG_TEXTO'):
+    with open(os.environ['DIAG_TEXTO'], 'w', encoding='utf8') as rf:
+        json.dump(sorted(DIAG_TEXTO, reverse=True), rf, ensure_ascii=False)
 
 # ---------- Fuentes verificadas manualmente: cobertura del fallo de Puerto Madryn ----------
 # URLs aportadas y comprobadas para la nota 14884. Google Noticias puede omitir medios
@@ -533,7 +632,7 @@ for medio, url in FUENTES_VERIFICADAS:
 
 
 # ---------- Conservación del historial: una revisión nueva no borra hallazgos anteriores ----------
-from historial import conservar_historial, conservar_notas, deduplicar_publicaciones, marcar_secundarias, clave_publicacion
+from historial import conservar_historial, conservar_notas, deduplicar_publicaciones, marcar_secundarias, clave_publicacion, aplicar_revision_manual
 # Las notas que la API dejó de devolver (p. ej., convocatorias despublicadas) siguen en el
 # historial, y con ellas sus publicaciones. El archivo de notas anterior está junto a PREV.
 NOTAS_PREV = os.path.join(os.path.dirname(PREV), 'notas2.json') if PREV else None
@@ -589,6 +688,12 @@ confirmadas_previas = set()
 if PREV and os.path.exists(PREV):
     confirmadas_previas = {clave_publicacion(r) for r in json.load(open(PREV, encoding='utf8')) if r.get('confianza') != 'Baja'}
 rep = marcar_secundarias(rep, confirmadas_previas)
+# Decisiones del equipo sobre «por revisar»: mandan sobre la detección automática.
+REVISION_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'revision_manual.json')
+if os.path.exists(REVISION_PATH):
+    revisiones = json.load(open(REVISION_PATH, encoding='utf8'))
+    rep = aplicar_revision_manual(rep, [r for r in revisiones if r.get('nota_id') in ids])
+    print('Revisiones manuales aplicadas:', len(revisiones))
 for i, r in enumerate(rep): r['key'] = f'p{i}'
 # «notas» cuenta notas distintas por medio (un medio con dos artículos de una nota suma una).
 notas_por_medio = {}

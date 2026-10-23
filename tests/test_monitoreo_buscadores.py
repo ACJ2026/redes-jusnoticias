@@ -66,13 +66,30 @@ if __name__ == "__main__":
 def cargar_segunda_oportunidad(nota_texto, nota_titulo, fecha="2026-10-16"):
     # Reúne las funciones auxiliares que usan cerca() y confirmar_por_texto().
     arbol = ast.parse(FUENTE).body
-    nombres = {"strip", "norm", "toks", "shing", "addd", "cerca", "confirmar_por_texto", "classify"}
+    nombres = {"strip", "norm", "toks", "shing", "addd", "cerca", "confirmar_por_texto", "classify",
+               "motivo_texto", "puntaje_datos", "revisar_texto", "pendientes_texto", "agregar_por_datos"}
     nodos = [n for n in arbol if isinstance(n, ast.FunctionDef) and n.name in nombres]
     nodos += [n for n in arbol if isinstance(n, ast.Assign) and any(getattr(t, "id", "") in ("STOP", "MED") for t in n.targets)]
     import unicodedata
     espacio = {"re": re, "html": html, "dt": dt, "unicodedata": unicodedata}
     exec(compile(ast.Module(body=nodos, type_ignores=[]), "actualizar.py", "exec"), espacio)
-    j = {"id": 1, "date": fecha, "tk": espacio["toks"](nota_titulo + " " + nota_texto[:1500]), "sh": espacio["shing"](nota_texto)}
+    j = {"id": 1, "date": fecha, "tk": espacio["toks"](nota_titulo + " " + nota_texto[:1500]), "sh": espacio["shing"](nota_texto),
+         "tb": espacio["toks"](nota_titulo + " " + nota_texto)}
+    otra = {"id": 2, "date": fecha, "tk": set(), "sh": set(), "tb": espacio["toks"]("Juzgado de Esquel condena por estafa a un comerciante del centro")}
+    import math
+    df = {}
+    for nota in (j, otra):
+        for w in nota["tb"]: df[w] = df.get(w, 0) + 1
+    espacio["IDF"] = {w: math.log(2 / n) + 0.1 for w, n in df.items()}
+    espacio["REVISADOS"] = {}
+    espacio["DIAG_TEXTO"] = []
+    espacio["UMBRAL_DATOS"] = 0.25
+    espacio["LIMITE_TEXTO"] = "2026-10-10"
+    espacio["DATOS_PEND"] = []
+    espacio["CANDIDATOS_DATOS"] = {}
+    espacio["MAX_POR_NOTA"] = 4
+    espacio["FILAS"] = []
+    espacio["addrow"] = lambda medio, m, metodo, *resto: espacio["FILAS"].append((medio, m["nid"], metodo, m["u"]))
     espacio["JN"] = [j]
     espacio["JNBY"] = {1: j}
     return espacio
@@ -124,3 +141,43 @@ class SegundaOportunidadTest(unittest.TestCase):
         e = cargar_segunda_oportunidad(NOTA, TITULO)
         item = {"t": "Escolarización presencial de una niña ordenada por la Cámara", "d": "2026-10-17", "u": "https://x.com.ar/n"}
         self.assertEqual(e["cerca"]([item], [{"u": "https://x.com.ar/n"}]), [])
+
+
+class LecturaTextoCompletoTest(unittest.TestCase):
+    def test_reescritura_con_datos_propios_queda_por_revisar_con_motivo(self):
+        e = cargar_segunda_oportunidad(NOTA, TITULO)
+        item = {"t": "Madryn: no podrán educarla en casa", "d": "2026-10-19", "u": "https://www.adnsur.com.ar/x"}
+        texto = ("La Cámara de Apelaciones de Puerto Madryn ratificó que una niña de cinco años debe asistir a una escuela "
+                 "reconocida por el Estado. Sus padres pretendían reemplazar la escolarización presencial por plataformas privadas "
+                 "no supervisadas. El tribunal recordó que la educación es un servicio público esencial.")
+        out = e["revisar_texto"]([item], {item["u"]: texto}, "ADN Sur")
+        candidatos = [m for _, m, _ in e["DATOS_PEND"]] + [m for m, _ in out]
+        self.assertEqual(len(candidatos), 1)
+        self.assertIn("datos coincidentes", candidatos[0]["motivo"])
+        self.assertIn(item["u"], e["REVISADOS"])
+        e["agregar_por_datos"]()
+        self.assertEqual(len(e["FILAS"]) + len(out), 1)
+
+    def test_otro_tema_no_se_asocia_pero_queda_como_leido(self):
+        e = cargar_segunda_oportunidad(NOTA, TITULO)
+        item = {"t": "Corte de luz en el barrio Centro", "d": "2026-10-19", "u": "https://www.adnsur.com.ar/luz"}
+        texto = "La cooperativa informó un corte programado de energía eléctrica en varias calles del barrio por tareas de mantenimiento."
+        self.assertEqual(e["revisar_texto"]([item], {item["u"]: texto}), [])
+        self.assertEqual(e["DATOS_PEND"], [])
+        self.assertIn(item["u"], e["REVISADOS"])
+
+    def test_lo_ya_leido_o_viejo_no_se_vuelve_a_leer(self):
+        e = cargar_segunda_oportunidad(NOTA, TITULO)
+        e["REVISADOS"]["https://a.com/1"] = "2026-10-20"
+        items = [{"t": "x", "d": "2026-10-20", "u": "https://a.com/1"}, {"t": "y", "d": "2026-09-01", "u": "https://a.com/2"},
+                 {"t": "z", "d": "2026-10-21", "u": "https://a.com/3"}]
+        self.assertEqual([i["u"] for i in e["pendientes_texto"](items, [])], ["https://a.com/3"])
+
+    def test_nota_que_coincide_con_demasiados_articulos_se_omite(self):
+        e = cargar_segunda_oportunidad(NOTA, TITULO)
+        for i in range(6):
+            e["DATOS_PEND"].append(("Medio", {"nid": 1, "u": f"https://m.com/{i}", "metodo": "Revisión de texto (coinciden los datos)"}, ("Redacción propia", False, "")))
+        e["DATOS_PEND"].append(("Medio", {"nid": 2, "u": "https://m.com/otra", "metodo": "Revisión de texto (coinciden los datos)"}, ("Redacción propia", False, "")))
+        e["agregar_por_datos"]()
+        self.assertEqual([f[1] for f in e["FILAS"]], [2])
+        self.assertEqual(len(e["CANDIDATOS_DATOS"]), 7)
