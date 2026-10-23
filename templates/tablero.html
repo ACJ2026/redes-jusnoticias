@@ -394,10 +394,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card" id="compartidos">
       <h2>Quién compartió nuestras notas en redes</h2>
-      <p class="note">Cuentas de otros medios, periodistas, instituciones o vecinos que publicaron notas de Juschubut Noticias en sus redes. Cada fila enlaza a la cuenta, a la publicación y a nuestra nota. Las registradas son las comprobadas a mano; «Buscar ahora» revisa las cuentas de Instagram de la lista y busca en YouTube las notas de los últimos 30 días. Facebook, X y TikTok no permiten esta búsqueda automática con las credenciales actuales.</p>
-      <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar ahora en Instagram y YouTube</button></div>
+      <p class="note">Esta sección reúne publicaciones de otras cuentas que comparten notas de Juschubut Noticias. «Buscar ahora» revisa publicaciones recientes de las cuentas de Instagram del listado y busca en YouTube videos relacionados con hasta 10 notas recientes de los últimos 30 días. También prepara búsquedas para revisar manualmente Facebook y TikTok. La tabla separa el post social, la nota del medio en su sitio y nuestra nota original. Si falta una URL directa, ofrece una búsqueda marcada como pendiente de verificar.</p>
+      <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar ahora</button></div>
       <p class="note" id="compartidos-estado" role="status"></p>
-      <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
+      <details class="note" id="compartidos-busqueda-manual" hidden><summary>Búsqueda asistida en Facebook y TikTok</summary><p>Estos enlaces abren búsquedas en cada plataforma; no importan resultados automáticamente. Verificá el posteo y su relación con la nota antes de registrarlo.</p><div></div></details>
+      <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación compartida</th><th>Nota en sitio del medio</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
     </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
@@ -413,7 +414,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card">
       <h2>Publicaciones del período</h2>
-      <p class="note">Lista las publicaciones registradas y permite filtrar por red o cuenta. X, Instagram, Facebook y YouTube tienen registros cargados. TikTok y WhatsApp figuran en el inventario de canales. Las publicaciones de TikTok se consultan en el monitoreo en vivo; el historial propio sigue dependiendo de los registros guardados. La ausencia de resultados no equivale a cero actividad.</p>
+      <p class="note">Lista las publicaciones registradas y permite filtrar por red o cuenta. X, Instagram, Facebook y YouTube tienen registros cargados. TikTok y WhatsApp figuran en el inventario de canales. Las publicaciones de TikTok se consultan en el monitoreo en vivo; el historial propio sigue dependiendo de los registros guardados. La columna Posteo abre el enlace directo guardado cuando existe. Si falta, no se reemplaza por la nota original ni por la página general del medio: para Facebook y TikTok se ofrece una búsqueda asistida marcada como pendiente de verificar. Las cifras son registros históricos, no necesariamente métricas en vivo. La ausencia de resultados no equivale a cero actividad.</p>
       <div class="tools">
         <label for="fred" class="lbl">Elegí una red</label><select id="fred"><option value="">Todas</option><option>Facebook</option><option>Instagram</option><option>X</option><option>YouTube</option><option>TikTok</option><option>WhatsApp</option></select>
         <label for="fprop" class="lbl">De quién es</label><select id="fprop"><option value="">Todas</option><option value="Sí">Nuestras cuentas</option><option value="No">Otras cuentas</option></select>
@@ -854,6 +855,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   };
   // ---------- Quién compartió nuestras notas en redes ----------
   const notaUrl = id => 'https://jusnoticias.juschubut.gov.ar/?p=' + id;
+  const idNotaPorTitulo = new Map(notas.map(n => [String(n.titulo || '').trim().toLocaleLowerCase(), Number(n.id)]));
+  const resolverNotaId = f => Number(f.nota_id) || idNotaPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null;
   // Arma el enlace al perfil a partir de cómo quedó anotada la cuenta; si no es reconocible, no se inventa.
   const perfilUrl = (red, cuenta) => {
     const c = String(cuenta || '').trim();
@@ -874,21 +877,62 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     return td;
   };
   const filasCompartidosRegistrados = () => {
+    const redesIncluidas = new Set(['Facebook', 'Instagram', 'YouTube', 'TikTok']);
     const titulo = new Map(notas.map(n => [Number(n.id), n.titulo]));
-    const porCuenta = new Map((D.cuentas || []).filter(c => c.cuenta).map(c => [c.red + '|' + c.cuenta, c]));
-    const porNombre = new Map((D.cuentas || []).filter(c => c.medio).map(c => [c.red + '|' + c.medio, c]));
-    // 1) Publicaciones de terceros registradas en el historial de redes.
-    // Enlace de la cuenta: el anotado, el usuario si es reconocible, o la cuenta oficial del mismo medio en esa red.
+    const porCuenta = new Map((D.cuentas || []).filter(c => c.cuenta && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.cuenta, c]));
+    const porNombre = new Map((D.cuentas || []).filter(c => c.medio && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.medio, c]));
+    // Historial de publicaciones de terceros en las redes incluidas.
     const enlaceCuenta = c => c.url || perfilUrl(c.red, c.cuenta) || (c.medio && (D.cuentas || []).filter(x => x.red === c.red && x.medio === c.medio).map(x => x.url || perfilUrl(x.red, x.cuenta)).find(Boolean)) || null;
-    const historial = D.redes.filter(r => r.propia === 'No').map(r => {
+    const historial = D.redes.filter(r => r.propia === 'No' && redesIncluidas.has(r.red)).map(r => {
       const c = porCuenta.get(r.red + '|' + r.cuenta) || porNombre.get(r.red + '|' + r.cuenta);
       return { fecha: r.fecha, red: r.red, cuenta: r.cuenta, cuenta_url: c ? enlaceCuenta(c) : perfilUrl(r.red, r.cuenta),
-        tipo: c ? c.tipo : 'Medio', publicacion_url: r.url || null, nota_id: r.nota_id, nota_titulo: titulo.get(Number(r.nota_id)) || '' };
+        tipo: c ? c.tipo : 'Medio', publicacion_url: r.url || null, url_sitio: r.url_sitio || null, nota_id: r.nota_id, nota_titulo: titulo.get(Number(r.nota_id)) || '' };
     });
-    // 2) Cuentas confirmadas por el relevamiento, con la publicación de ejemplo cuando existe.
-    const confirmadas = (D.cuentas || []).filter(c => /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
-      .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: null, nota_titulo: (c.estado || '').replace(/^Confirmada:\s*/, '') }));
+    // Cuentas confirmadas, también limitadas a las redes incluidas.
+    const confirmadas = (D.cuentas || []).filter(c => redesIncluidas.has(c.red) && /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
+      .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: resolverNotaId(c), nota_titulo: c.nota_titulo || c.nota_compartida || '' }));
     return [...historial, ...confirmadas];
+  };
+  const enlaceBusquedaCompartido = f => {
+    const titulo = String(f.nota_titulo || '').trim();
+    if (!titulo) return null;
+    if (f.red === 'Facebook') return 'https://www.facebook.com/search/posts/?q=' + encodeURIComponent((f.cuenta || '') + ' ' + titulo);
+    if (f.red === 'TikTok') return 'https://www.tiktok.com/search?q=' + encodeURIComponent(titulo);
+    return null;
+  };
+  const normalizarMedioCompartido = s => String(s || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const enlaceNotaSitioMedio = f => {
+    const notaId = resolverNotaId(f);
+    const cuenta = (D.cuentas || []).find(c => c.red === f.red && c.cuenta === f.cuenta);
+    const medio = cuenta && cuenta.medio ? cuenta.medio : f.cuenta;
+    const claveMedio = normalizarMedioCompartido(medio);
+    if (f.url_sitio && /^https?:\/\//i.test(f.url_sitio)) return { url: f.url_sitio, tipo: 'directa' };
+    const directa = (D.repercusion || []).filter(p => Number(p.nota_id) === Number(notaId) && p.url && /^https?:\/\//i.test(p.url) && !/news\.google\.com/i.test(p.url) && normalizarMedioCompartido(p.medio) === claveMedio);
+    if (directa.length) return { url: directa[0].url, tipo: 'directa' };
+    const titulo = String(f.nota_titulo || notas.find(n => Number(n.id) === Number(notaId))?.titulo || '').trim();
+    if (!medio || !titulo) return null;
+    return { url: 'https://www.google.com/search?q=' + encodeURIComponent('"' + medio + '" "' + titulo + '"'), tipo: 'busqueda' };
+  };
+  const celdaNotaSitioMedio = f => {
+    const enlace = enlaceNotaSitioMedio(f);
+    if (!enlace) {
+      const td = document.createElement('td');
+      td.textContent = 'Nota del medio pendiente de localizar';
+      td.className = 'dim';
+      return td;
+    }
+    if (enlace.tipo === 'directa') return celdaEnlace('Ver nota en sitio del medio', enlace.url);
+    return celdaEnlace('Buscar nota del medio (pendiente de verificar)', enlace.url);
+  };
+  const celdaPublicacionCompartida = f => {
+    if (f.publicacion_url && /^https?:\/\//i.test(f.publicacion_url)) return celdaEnlace('Ver publicación directa', f.publicacion_url);
+    const busqueda = enlaceBusquedaCompartido(f);
+    if (busqueda) return celdaEnlace('Buscar publicación (pendiente de verificar)', busqueda);
+    const td = document.createElement('td');
+    td.textContent = 'Enlace directo pendiente de verificar';
+    td.className = 'dim';
+    td.title = 'No se guardó una URL directa de esta publicación.';
+    return td;
   };
   const dibujarCompartidos = (filas) => {
     const tb = document.querySelector('#t-compartidos tbody');
@@ -898,26 +942,55 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const fecha = document.createElement('td'); fecha.textContent = f.fecha ? f.fecha.split('-').reverse().slice(0, 2).join('/') : '—';
       const red = document.createElement('td'); red.textContent = f.red;
       const tipo = document.createElement('td'); tipo.textContent = f.tipo || '—';
+      const notaId = resolverNotaId(f);
+      const tituloOficial = notaId ? (f.nota_titulo || notas.find(n => Number(n.id) === Number(notaId))?.titulo || 'Ver nota de JusNoticias') : 'Nota original pendiente de identificar';
       tr.append(fecha, red, celdaEnlace(f.cuenta, f.cuenta_url), tipo,
-        celdaEnlace(f.publicacion_url ? 'Ver publicación' : 'Enlace no registrado', f.publicacion_url),
-        celdaEnlace(f.nota_titulo || '—', f.nota_id ? notaUrl(f.nota_id) : null));
+        celdaPublicacionCompartida(f),
+        celdaNotaSitioMedio(f),
+        celdaEnlace(tituloOficial, notaId ? notaUrl(notaId) : null));
       return tr;
     }));
-    if (!orden.length) { const tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 6; td.className = 'dim'; td.textContent = 'Sin registros.'; tr.append(td); tb.append(tr); }
+    if (!orden.length) { const tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 7; td.className = 'dim'; td.textContent = 'Sin registros.'; tr.append(td); tb.append(tr); }
   };
+  const dibujarBusquedasManuales = (desde) => {
+    const panel = $('compartidos-busqueda-manual');
+    const lista = panel.querySelector('div');
+    const recientes = notas.filter(n => n.fecha >= desde).sort((a, b) => b.fecha.localeCompare(a.fecha)).slice(0, 10);
+    lista.replaceChildren(...recientes.map(n => {
+      const fila = document.createElement('div');
+      fila.style.margin = '0.5rem 0';
+      const titulo = document.createElement('strong');
+      titulo.textContent = n.fecha + ' · ' + n.titulo + ' ';
+      const facebook = document.createElement('a');
+      facebook.href = 'https://www.facebook.com/search/posts/?q=' + encodeURIComponent(n.titulo);
+      facebook.target = '_blank'; facebook.rel = 'noopener noreferrer'; facebook.textContent = 'Buscar en Facebook';
+      const separador = document.createTextNode(' · ');
+      const tiktok = document.createElement('a');
+      tiktok.href = 'https://www.tiktok.com/search?q=' + encodeURIComponent(n.titulo);
+      tiktok.target = '_blank'; tiktok.rel = 'noopener noreferrer'; tiktok.textContent = 'Buscar en TikTok';
+      fila.append(titulo, facebook, separador, tiktok);
+      return fila;
+    }));
+    panel.hidden = recientes.length === 0;
+  };
+
   const buscarCompartidos = async () => {
     const estado = $('compartidos-estado');
-    estado.textContent = 'Buscando en Instagram y YouTube…';
+    estado.textContent = 'Buscando en Instagram (cuentas del listado) y YouTube (hasta 10 notas recientes)…';
     try {
       const response = await fetch('/api/compartidos', { headers: { Accept: 'application/json' } });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'HTTP ' + response.status);
       const nuevas = (data.filas || []).map(f => ({ ...f, tipo: 'Encontrada automáticamente (' + f.coincidencia + ')' }));
       dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
-      const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' sin respuesta)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
-      estado.textContent = fmt(nuevas.length) + ' publicaciones encontradas desde ' + data.desde + '. ' + detalle + '.';
+      dibujarBusquedasManuales(data.desde);
+      const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
+      const pendientes = Object.entries(data.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');
+      estado.textContent = fmt(nuevas.length) + ' publicaciones encontradas desde ' + data.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
     } catch (error) {
-      estado.textContent = 'No se pudo hacer la búsqueda: ' + error.message;
+      const desdeManual = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+      dibujarBusquedasManuales(desdeManual);
+      estado.textContent = 'No se pudo completar la búsqueda automática: ' + error.message + '. Se prepararon búsquedas manuales para Facebook y TikTok.';
     }
   };
 
@@ -934,7 +1007,36 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const fr = $('fred').value, fp = $('fprop').value;
     const score = r => (Number(r.vistas) || 0) + 10 * ((Number(r.me_gusta) || 0) + (Number(r.comentarios) || 0) + (Number(r.compartidos) || 0));
     const rows = D.redes.filter(r => en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
-    tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
+    // Solo la URL directa identifica la publicación concreta. La nota original y
+    // la página del medio son referencias distintas y no deben hacerse pasar por el post.
+    const enlacePosteo = r => {
+      if (r.url && /^https?:\/\//i.test(r.url)) return { url: r.url, tipo: 'directa' };
+      const titulo = notas.find(n => Number(n.id) === Number(r.nota_id))?.titulo || r.texto || '';
+      if (r.propia === 'No' && r.red === 'Facebook' && titulo) {
+        return { url: 'https://www.facebook.com/search/posts/?q=' + encodeURIComponent((r.cuenta || '') + ' ' + titulo), tipo: 'busqueda' };
+      }
+      if (r.propia === 'No' && r.red === 'TikTok' && titulo) {
+        return { url: 'https://www.tiktok.com/search?q=' + encodeURIComponent(titulo), tipo: 'busqueda' };
+      }
+      return null;
+    };
+    tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto || 'Enlace directo no registrado'], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
+    // No enlazar métricas ni la nota oficial como si fueran la publicación del medio.
+    [...document.querySelectorAll('#t-redes tbody tr')].forEach((tr, i) => {
+      const r = rows[i], enlace = enlacePosteo(r), td = tr.children[3];
+      if (!td) return;
+      if (!enlace) {
+        td.classList.add('dim');
+        td.title = 'Falta registrar la URL directa de la publicación del medio.';
+        return;
+      }
+      const a = document.createElement('a');
+      a.href = enlace.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.textContent = enlace.tipo === 'directa' ? (r.texto || 'Ver publicación directa') : 'Buscar publicación (pendiente de verificar)';
+      a.title = enlace.tipo === 'directa' ? 'Abrir la publicación concreta' : 'Abre una búsqueda; todavía no es el enlace directo al post.';
+      if (enlace.tipo === 'directa') td.replaceChildren(a);
+      else td.replaceChildren(document.createTextNode((r.texto || 'Publicación sin enlace directo') + ' · '), a);
+    });
   };
   let redesVivoEnCurso = false;
   const consultarRedesVivo = async () => {
