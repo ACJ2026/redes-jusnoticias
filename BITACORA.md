@@ -315,3 +315,42 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Se agregaron pruebas para exigir que los cambios de datos regeneren el tablero y que los datos generados no disparen un nuevo relevamiento.
 - No se modificaron cifras históricas ni se fabricaron publicaciones. Si el barrido no encuentra cambios, las cantidades pueden seguir iguales; la fecha solo debe avanzar cuando el relevamiento haya terminado correctamente.
 - Estado: PR #78 y el seguimiento PR #81 están integrados en `main`. En PR #81, las pruebas de regresión del historial y el workflow `Validar tablero y fuentes de tráfico` terminaron en `success` (run `39993799502` y `39993799358`). La revisión de código confirmó que los datos generados ya no disparan otro relevamiento y que los cambios de datos activan la reconstrucción pública. Sigue pendiente comprobar una ejecución completa del relevamiento posterior al cambio y confirmar que la web pública refleja el resultado; no se declara validación de extremo a extremo ni despliegue confirmado.
+
+- Estado: PR #78 está integrado. Este seguimiento queda sujeto a CI y revisión antes de integrarse. Aún falta comprobar una ejecución completa posterior al cambio y confirmar que la web pública refleja el resultado; no se declara validación de extremo a extremo ni despliegue confirmado.
+
+### 2026-10-23 (tarde) — Cobertura del recolector: no perder medios que difundieron nuestras notas
+
+**Origen.** El usuario comparó una búsqueda de Google sobre la nota 14873 (homeschooling, Puerto Madryn) con lo que tenía el tablero. Faltaban ADN Sur y Comodoro 24 (que se leen directo), FM de la Cordillera y Madryn Urbana (no registrados), un segundo artículo de Vivo Trelew y publicaciones en redes de otros medios (Jornada en Instagram, FM Tropical en Facebook, El Caletense en Instagram, entrevista de LU20 en YouTube). Causa de fondo: el recolector comparaba **solo títulos** y descartaba sin leer los artículos con título reescrito. No era una caída: era un límite de diseño presente desde el inicio. Lección registrada: probar cada cambio del recolector contra una búsqueda real antes de presentarlo.
+
+**PR [#70](https://github.com/ACJ2026/redes-jusnoticias/pull/70)** (mergeado tras revisión del usuario)
+- Segunda oportunidad por texto: los títulos «cerca» del umbral se leen y se aceptan solo con evidencia fuerte (copia, reescritura o mención de JusNoticias). La primera versión (3+ frases en común) sumaba 108 coincidencias dudosas y se endureció.
+- Se agregaron FM de la Cordillera y Madryn Urbana a `data/fuentes_descubiertas.json`; son WordPress y pasan a lectura directa.
+- Primera aplicación real (corrida manual 13:15): 1.453 publicaciones, 840 confirmadas, 35 encontradas por texto. La corrida posterior al merge chocó con una corrida programada y no guardó (comportamiento seguro, sin pérdida); se relanzó a mano.
+
+**PR [#76](https://github.com/ACJ2026/redes-jusnoticias/pull/76)** (mergeado tras revisión del usuario)
+- Lectura del texto de todo lo publicado en los últimos 10 días por los sitios WordPress y por ADN Sur/EQS (hasta 200 por corrida, primero lo más nuevo). Cada artículo se lee una sola vez: `data/textos_revisados.json` (revisados + candidatos por datos).
+- Dos criterios: frases iguales (20 %+ → confirmado) y datos poco comunes coincidentes ponderados por rareza (25 %+ → «por revisar», no suma).
+- Filtro de notas genéricas: más de 4 candidatos por datos para una nota en la ventana → se omiten (en el diagnóstico, «Octubre Rosa» generaba ~40 falsos).
+- Cada candidato guarda `motivo` (frases en común, puntaje y palabras coincidentes).
+- Tercera frase de búsqueda en Google Noticias: una cita textual de la nota o su tercera oración.
+- Revisión manual: `data/revision_manual.json` confirma o descarta por enlace, nunca borra filas y registra en la fila `revision_manual` (decisión, quién, fecha, motivo).
+- Prueba real: 8.599 artículos leídos; confirmadas 812 → 838; apareció el artículo de Comodoro 24 sobre la nota 14873. La primera corrida tarda ~40 min; las siguientes, lo habitual.
+- Límite conocido: el artículo de ADN Sur sobre la nota 14873 todavía no se detectó (su título comparte una sola palabra larga con la nota).
+
+**PR [#77](https://github.com/ACJ2026/redes-jusnoticias/pull/77)** (mergeado tras revisión del usuario)
+- Las fuentes por índice (ADN Sur, EQS, La Opinión Austral, LU17, La Tecla, ABC Diario, El Extremo Sur, La Vanguardia) ya no se declaran «Revisión completa» si su índice no respondió: figuran como «Sin datos: el índice del sitio no respondió».
+- `data/estado_medios.json`: última revisión correcta, último fallo, fallos seguidos y alerta (lectura directa sin revisión correcta en más de 24 h). El tablero lo muestra en Guía → Inventario de medios.
+
+**Decisiones del usuario**
+- Seguir el criterio de GPT: ampliar la detección pero contar solo lo verificable; umbral bajo solo para «por revisar»; nada se aprueba automáticamente como reescritura.
+- Los resultados de Google Noticias encontrados por frase de la nota **siguen contando** como confianza media por ahora (aunque a veces solo haya enlace de Google).
+- Los 7 PR viejos de Codex (#36, #37, #43–#47) los resuelve GPT/Codex directamente; la auditoría y la regla de trabajo quedaron en la entrada anterior.
+- «Amolkair» (sugerencia de la IA de Google) no corresponde a ninguna nota: se descartó.
+
+**No se puede automatizar (se informó al usuario):** cobertura del 100 %; placas (imágenes) en redes de otros medios; publicaciones de Facebook de terceros con las credenciales actuales; formulario de carga manual en el sitio estático (requeriría desarrollo aparte).
+
+**Pendientes**
+- Verificar las corridas posteriores a #76 y #77 y que `data/textos_revisados.json` y `data/estado_medios.json` se guarden.
+- Revisar en unas semanas la calidad de los «por revisar» por datos para decidir si alguno pasa a contar.
+- Seguir si ADN Sur 14873 aparece cuando se complete la lectura de su sitemap.
+- Pendientes previos sin cambios: botón de Instagram/YouTube con credenciales reales de Meta, datos de Google Analytics/Search Console, 28 localidades por verificar, decisión sobre X (exportar CSV de X Analytics sin pagar).
