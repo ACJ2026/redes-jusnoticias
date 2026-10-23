@@ -18,7 +18,7 @@ Elegí las fechas para analizar un período. Los indicadores y gráficos histór
 ## 2. De dónde salen los datos y cada cuánto se actualizan
 
 ### Relevamiento de notas y medios
-El proceso automático está programado para ejecutarse **cada dos horas, en el minuto 59 (hora argentina)**, mediante GitHub Actions. La programación no garantiza que cada ejecución termine sin errores: para confirmar la actualización efectiva hay que revisar que GitHub Actions finalice correctamente y que los archivos se publiquen. La fecha destacada dentro del tablero corresponde a la última nota incluida en el período seleccionado. En el pie se separan dos fechas: **Datos relevados** (última ejecución de relevamiento confirmada) y **Tablero generado** (momento en que se construyó la página). Regenerar el diseño no debe cambiar la fecha del relevamiento.
+El proceso automático está programado para ejecutarse **cada dos horas, en el minuto 59 (hora argentina)**, mediante GitHub Actions. La programación no garantiza que cada ejecución termine sin errores: el sello visible al pie muestra la fecha y hora del último relevamiento de notas y medios cuyos datos se publicaron correctamente. La fecha se presenta una sola vez y en hora argentina. La fecha de la última nota del período, cuando aparece en el resumen, es la fecha de publicación de esa nota y no debe confundirse con la actualización de los datos. Regenerar el diseño no debe cambiar la fecha del relevamiento.
 
 El programa lee las notas de JusNoticias y consulta medios de una lista configurada. Busca títulos parecidos y, además, realiza búsquedas en Google Noticias por título y fragmentos textuales. Los resultados dependen de qué páginas estén accesibles y hayan sido detectadas por Google; no son un archivo completo de todo lo publicado en Internet. El filtro del tablero usa el mes de publicación de la nota de JusNoticias relacionada; no siempre se dispone de la fecha exacta en que el otro medio publicó su artículo.
 
@@ -42,7 +42,7 @@ GA4 mide actividad dentro del sitio web de JusNoticias mediante su sistema de an
 - **Dispositivos:** categorías de dispositivo desde las que se navegó.
 - **Páginas principales:** páginas con más vistas/sesiones/usuarios en el período.
 
-Los datos de Analytics no siempre están completos en el mismo instante: Google indica que el procesamiento puede tardar, en algunos casos, entre 24 y 48 horas. Por eso, los últimos días pueden variar.
+Los datos de Analytics no siempre están completos en el mismo instante: Google indica que el procesamiento puede tardar, en algunos casos, entre 24 y 48 horas. Por eso, los últimos días pueden variar. El sello general al pie **no certifica la actualización de Analytics ni de Search Console**: estas fuentes se consultan por separado al abrir la sección o pulsar «Consultar».
 
 ### Google Search Console (GSC)
 Search Console mide cómo aparece el sitio en los resultados de búsqueda de Google y qué pasa cuando las personas hacen clic en esos resultados. No mide todas las visitas del sitio: mide el rendimiento en la Búsqueda de Google.
@@ -79,7 +79,7 @@ No sumes clics e impresiones con usuarios, sesiones o páginas vistas: son medid
 
 ## 5. Qué se puede hacer si un dato parece incorrecto
 
-1. Revisar las fechas elegidas y el texto “actualizado”.
+1. Revisar las fechas elegidas y el sello de actualización al pie; ese sello corresponde al relevamiento de notas y medios, no a todas las consultas en vivo.
 2. Abrir el detalle de la nota o publicación y comprobar el enlace a la fuente.
 3. Distinguir si la fila es una coincidencia confirmada o una posibilidad pendiente de revisar.
 4. En Google, pulsar **Consultar** para volver a pedir el período seleccionado.
