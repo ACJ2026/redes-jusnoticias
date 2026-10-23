@@ -6,12 +6,12 @@
 
 ## 1. Cómo leer el tablero
 
-- **Resumen:** panorama general del período elegido, incluidos los gráficos mensuales y la infografía de alcance territorial.
+- **Resumen:** principales indicadores del período y alcance territorial. Los temas y rankings quedan agrupados en **Explorar temas y rankings** para que el panorama inicial sea más directo.
 - **Medios:** dónde se encontraron publicaciones relacionadas y qué se pudo comprobar en cada caso.
 - **Notas:** detalle de las notas de JusNoticias que forman la base de la revisión.
 - **Redes:** publicaciones de las cuentas incluidas y datos públicos disponibles de interacción.
-- **Google:** datos del sitio web y de las búsquedas en Google. Son dos fuentes distintas, explicadas abajo.
-- **Cómo leerlo:** explicación breve dentro del propio tablero.
+- **Visitas y buscadores:** datos del sitio web y de la presencia en resultados de Google. Son dos fuentes distintas, explicadas abajo.
+- **Guía y metodología:** explicación breve; la metodología detallada y el inventario de medios están en bloques desplegables.
 
 Elegí las fechas para analizar un período. Los indicadores y gráficos históricos muestran solo ese rango. La infografía territorial cuenta publicaciones detectadas por localidad de sede del medio y permite filtrar por tipo; no mide dónde viven los lectores. Los medios sin localidad verificada se agrupan aparte. Los seguidores son una cifra de referencia actual y no cambian al cambiar el período.
 
