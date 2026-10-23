@@ -874,19 +874,19 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     return td;
   };
   const filasCompartidosRegistrados = () => {
+    const redesIncluidas = new Set(['Facebook', 'Instagram', 'YouTube']);
     const titulo = new Map(notas.map(n => [Number(n.id), n.titulo]));
-    const porCuenta = new Map((D.cuentas || []).filter(c => c.cuenta).map(c => [c.red + '|' + c.cuenta, c]));
-    const porNombre = new Map((D.cuentas || []).filter(c => c.medio).map(c => [c.red + '|' + c.medio, c]));
-    // 1) Publicaciones de terceros registradas en el historial de redes.
-    // Enlace de la cuenta: el anotado, el usuario si es reconocible, o la cuenta oficial del mismo medio en esa red.
+    const porCuenta = new Map((D.cuentas || []).filter(c => c.cuenta && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.cuenta, c]));
+    const porNombre = new Map((D.cuentas || []).filter(c => c.medio && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.medio, c]));
+    // Historial de publicaciones de terceros en las redes incluidas.
     const enlaceCuenta = c => c.url || perfilUrl(c.red, c.cuenta) || (c.medio && (D.cuentas || []).filter(x => x.red === c.red && x.medio === c.medio).map(x => x.url || perfilUrl(x.red, x.cuenta)).find(Boolean)) || null;
-    const historial = D.redes.filter(r => r.propia === 'No').map(r => {
+    const historial = D.redes.filter(r => r.propia === 'No' && redesIncluidas.has(r.red)).map(r => {
       const c = porCuenta.get(r.red + '|' + r.cuenta) || porNombre.get(r.red + '|' + r.cuenta);
       return { fecha: r.fecha, red: r.red, cuenta: r.cuenta, cuenta_url: c ? enlaceCuenta(c) : perfilUrl(r.red, r.cuenta),
         tipo: c ? c.tipo : 'Medio', publicacion_url: r.url || null, nota_id: r.nota_id, nota_titulo: titulo.get(Number(r.nota_id)) || '' };
     });
-    // 2) Cuentas confirmadas por el relevamiento, con la publicación de ejemplo cuando existe.
-    const confirmadas = (D.cuentas || []).filter(c => /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
+    // Cuentas confirmadas, también limitadas a las redes incluidas.
+    const confirmadas = (D.cuentas || []).filter(c => redesIncluidas.has(c.red) && /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
       .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: c.nota_id || null, nota_titulo: c.nota_titulo || c.nota_compartida || '' }));
     return [...historial, ...confirmadas];
   };
