@@ -252,7 +252,7 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Mismo ajuste incluido en el PR #65 (commit `d4d06d8`); al mergear ambos no hay conflicto.
 
 
-### 2026-10-23 — Identidad de publicaciones por URL e inventario único de medios (PR #65, en revisión)
+### 2026-10-23 — Identidad de publicaciones por URL e inventario único de medios (PR #65)
 
 - PR: https://github.com/ACJ2026/redes-jusnoticias/pull/65 — rama `claude/identidad-publicaciones`. Vista previa: https://claude-identidad-publicacion.jusnoticias.pages.dev
 - Pedido del usuario (con criterio sugerido por GPT): trabajar en rama nueva, normalizar URLs, no perder historial ni regenerar `rep2`/`medios` de forma destructiva, probar y **presentar el diff para revisión antes de fusionar o desplegar**. No se mergea automáticamente.
@@ -276,3 +276,11 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Relevamiento real de prueba (workflow temporal, sin guardar datos): filas 1.281 → 1.408; confirmadas 781 → 809. Los 29 pares que pasan a confirmados no son pares nuevos: tenían solo una fila Baja y ahora aparece el artículo correcto en Alta (ej.: Radio 3, código procesal no penal, nota 14725; Mario Vivas honoris causa, nota 14624). 14 artículos quedan "por revisar". Verificador de historial OK.
 
 **Próximas ideas (sin empezar, requieren OK del usuario):** alertas de Google por RSS, prueba de GDELT, canales de YouTube de radios y TV, revisión manual mensual por muestreo, logo en infografías, ficha de nota en A4/PDF.
+
+
+### 2026-10-23 — Cierre del PR #65 y auditoría de PR abiertos
+
+- El usuario revisó y autorizó el PR #65; se integró a `main` (squash `e9e0ec9`) con `validar`, `pruebas-historial` y Cloudflare Pages en verde y sin conflictos. Desde el próximo relevamiento rigen la identidad por URL, las publicaciones "por revisar" y el inventario `data/medios_inventario.json`.
+- Aclaración sobre alias: El Diario Web, Examedia y LM Neuquén son tres medios distintos; cada uno aparecía también con el nombre que asigna Google Noticias (el dominio). Se agrupan porque comparten dominio; las filas de `rep2.json` conservan su nombre original.
+- Auditoría (solo lectura) de los PR abiertos de Codex #47, #45, #46, #37, #36, #43 y #44 contra `main`: seis tienen conflictos (solo #36 entra limpio). Recomendación entregada: cerrar con explicación #46 y #43 (rescatando IDs de páginas e información de X/TikTok), extraer de #37 los listados en vivo de Instagram y YouTube (ojo: su handle por defecto es el canal retirado `@jusnoticiasprensa2865`), actualizar #47 sin X (consulta cada 5 min), #36 con datos vigentes y #44 tras confirmar que la página pública del canal muestra seguidores, y esperar #45 hasta comprobar si X Analytics permite exportar CSV sin pagar.
+- El usuario decidió que GPT/Codex se encarga de esos siete PR. Regla sugerida para ambos asistentes: leer esta bitácora, revisar `main`, ramas y PR abiertos, no trabajar sobre `main`, comparar con lo integrado y ejecutar `python3 -m unittest discover -s tests` antes de proponer un merge; no mergear con pruebas en rojo.
