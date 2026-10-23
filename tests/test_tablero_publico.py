@@ -78,6 +78,10 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("&& !esReferenciaGoogle(r) &&", template)
         self.assertIn("Abrir referencia en Google Noticias", template)
 
+    def test_tablero_aclara_que_google_news_no_es_un_enlace_directo(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio", template)
+
     def test_portada_muestra_periodo_y_orden_correcto_de_indicadores(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn('id="portada-periodo"', template)
