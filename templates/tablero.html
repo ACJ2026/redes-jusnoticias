@@ -95,10 +95,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .guia p{margin:0;line-height:1.55;max-width:66ch}
 .guia b{font-weight:600}
 .foot{border-top:1px solid var(--line);padding-top:12px}
-
 .territorio-card{border-top:3px solid var(--accent)}
-.actualizado{align-self:flex-start;margin:4px 0 0;padding:4px 12px;border-radius:999px;background:var(--grid);color:var(--ink);font-size:var(--fs-cap);font-weight:600;border-left:4px solid var(--accent)}
-.landing-actualizado{display:inline-block;margin:0;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-size:.9rem;font-weight:600}
+.detail-group{border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;background:var(--panel)}
+.detail-group>summary{cursor:pointer;font-weight:600;line-height:1.45;padding:3px 0}
+.detail-group>summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.detail-content{display:flex;flex-direction:column;gap:16px;margin-top:14px}
 .info-paso{border:1px solid var(--line);border-radius:8px;padding:10px 14px;display:flex;flex-direction:column;gap:8px;margin:0}
 .info-paso legend{font-weight:600;padding:0 4px}
 .info-paso label,.info-bloques label{display:flex;gap:8px;align-items:center}
@@ -197,7 +198,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <p class="landing-intro landing-subtitle">Tablero de repercusión y comunicación judicial</p>
     <p class="landing-intro">Una mirada a las notas publicadas por Juschubut Noticias y su presencia en otros medios y redes.</p>
     <p class="landing-period" id="portada-periodo">Indicadores del período: —</p>
-    <p class="landing-actualizado" id="portada-actualizado"></p>
     <div class="landing-visual" aria-label="Indicadores principales del período">
       <article class="landing-stat"><div class="symbol" aria-hidden="true">▤</div><strong id="portada-notas">—</strong><span>notas publicadas en Juschubut Noticias durante este período</span></article>
       <article class="landing-stat"><div class="symbol" aria-hidden="true">◎</div><strong id="portada-notas-repercusion">—</strong><span>de esas notas tuvieron al menos una publicación relacionada en otros medios</span></article>
@@ -223,7 +223,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <p class="kicker">Agencia de Comunicación Judicial · Poder Judicial del Chubut</p>
     <h1>Repercusión de Juschubut Noticias en medios y redes</h1>
     <p class="note" id="periodo"></p>
-    <p class="actualizado" id="actualizado-badge"></p>
     <p class="take" id="take"></p>
   </header>
 
@@ -243,7 +242,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <button role="tab" id="tab-notas" data-page="notas" aria-selected="false">Notas</button>
     <button role="tab" id="tab-redes" data-page="redes" aria-selected="false">Redes</button>
     <button role="tab" id="tab-google" data-page="google" aria-selected="false">Visitas y buscadores</button>
-    <button role="tab" id="tab-guia" data-page="guia" aria-selected="false">Cómo leerlo</button>
+    <button role="tab" id="tab-guia" data-page="guia" aria-selected="false">Guía y metodología</button>
   </nav>
 
   <section class="page" id="resumen">
@@ -314,6 +313,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <h3 class="lbl">Por ciudad o cobertura</h3>
       <div class="bars" id="b-territorio"></div>
     </div>
+    <details class="detail-group" id="resumen-explorar">
+      <summary>Explorar temas y rankings</summary>
+      <div class="detail-content">
     <div class="grid2">
       <div class="card" id="c-tipo" style="grid-column:1/-1">
         <h2>Qué temas de nuestras notas aparecen en otros medios</h2>
@@ -325,6 +327,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="card"><h2>Los 5 medios donde encontramos más notas relacionadas</h2><p class="note">Cada número indica cuántas notas diferentes de JusNoticias encontramos vinculadas con ese medio durante el período elegido. Si el medio publicó cinco notas distintas, cuenta cinco; si una misma nota aparece varias veces en ese medio, se cuenta una sola vez.</p><div class="bars" id="b-top5m"></div></div>
       <div class="card"><h2>Las 5 notas que aparecieron en más medios</h2><p class="note">Cuenta cuántos medios diferentes encontramos para cada nota. No significa necesariamente que todos hayan usado nuestra información.</p><div class="bars" id="b-top5n"></div></div>
     </div>
+      </div>
+    </details>
     <button class="btn more" type="button" id="ir-completo">Ver el tablero completo →</button>
   </section>
 
@@ -394,7 +398,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
       <p class="note">Distribución de los registros históricos cargados. No es un monitoreo completo ni se suma a las métricas en vivo; Facebook propio se empezó a contar en septiembre. Las plataformas pendientes no se representan como cero actividad.</p>
-      <p class="note" id="redes-historial-actualizado"></p>
       <div class="legend" id="lg-redes"></div>
       <div class="chart" id="ch-redes"><div class="tip" id="tip-redes" hidden></div></div>
     </div>
@@ -458,24 +461,39 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <p><b>3. Para un dato puntual,</b> usá las pestañas <b>Medios</b>, <b>Notas</b> y <b>Redes</b>. La pestaña <b>Visitas y buscadores</b> presenta por separado la actividad dentro del sitio y la presencia en resultados de búsqueda; muestra datos cuando están cargadas las credenciales de Google Analytics y Search Console en el servidor; mientras tanto figura como «Pendiente de configuración».</p>
         <p><b>4. El relevamiento automático está programado para ejecutarse cada dos horas, en el minuto 59 (hora argentina).</b> La actualización visible depende de que la ejecución termine correctamente y se publique. La pestaña Visitas y buscadores consulta la fuente de datos disponible cuando se abre o cuando pulsás «Consultar»; los datos más recientes pueden tardar en completarse.</p>
       </div>
-      <div class="card guia">
-        <h2>Cómo funciona, explicado simple</h2>
-        <p><b>Paso 1.</b> Cada dos horas un programa lee las notas nuevas de jusnoticias.juschubut.gov.ar.</p>
-        <p><b>Paso 2.</b> Revisa las páginas de unos 35 medios de la provincia y la región y busca títulos parecidos a los nuestros, publicados desde el día anterior hasta 8 días después. <b>Además</b>, busca cada nota en <b>Google Noticias</b> por su título y por dos frases textuales: así aparecen medios que no están en la lista y los que copiaron el texto con otro título. Un medio de afuera de la lista solo cuenta si menciona Chubut o una ciudad de la provincia.</p>
-        <p><b>Paso 3.</b> Si el medio deja ver su texto, lo compara con el nuestro: si la mitad o más es igual, es <b>copia textual</b>; si se parece en parte, <b>reescritura</b>; si casi no se parece, <b>redacción propia</b>. También anota si nombra a Juschubut Noticias como fuente.</p>
-        <p><b>Paso 4.</b> Las coincidencias dudosas (solo se parece el título) no entran en los números principales: aparecen aparte como "posibles".</p>
-        <p><b>Redes:</b> se leen las publicaciones de nuestras cuentas: Facebook (las páginas JusNoticias y JusNoticias STJ, cada una por separado), Instagram, X, YouTube (canal Poder Judicial del Chubut) y TikTok (@juschubut). En la pestaña Redes, «Consultar fuentes disponibles» trae los datos en vivo de cada red. X, YouTube y TikTok informan vistas por publicación; Facebook e Instagram dan estadísticas de la cuenta de los últimos 28 días. X hoy no responde en vivo porque su API exige créditos; se usan los registros guardados. WhatsApp se carga a mano. En el Resumen, los seguidores suman solo las cuentas con dato y se aclara cuáles faltan.</p>
-        <p><b>Límites:</b> radio, TV, grupos de WhatsApp y portales que Google no indexa no se miden, así que el número es un <b>piso</b>: la repercusión real es mayor. El tipo de nota lo asigna el programa por palabras del título y puede equivocarse.</p>
-      </div>
+      <details class="detail-group">
+        <summary>Metodología, límites y detalles técnicos</summary>
+        <div class="detail-content">
+          <div class="card guia">
+            <h2>Cómo funciona, explicado simple</h2>
+            <p><b>Paso 1.</b> Cada dos horas un programa lee las notas nuevas de jusnoticias.juschubut.gov.ar.</p>
+            <p><b>Paso 2.</b> Revisa las páginas de unos 35 medios de la provincia y la región y busca títulos parecidos a los nuestros, publicados desde el día anterior hasta 8 días después. <b>Además</b>, busca cada nota en <b>Google Noticias</b> por su título y por dos frases textuales: así aparecen medios que no están en la lista y los que copiaron el texto con otro título. Un medio de afuera de la lista solo cuenta si menciona Chubut o una ciudad de la provincia.</p>
+            <p><b>Paso 3.</b> Si el medio deja ver su texto, lo compara con el nuestro: si la mitad o más es igual, es <b>copia textual</b>; si se parece en parte, <b>reescritura</b>; si casi no se parece, <b>redacción propia</b>. También anota si nombra a Juschubut Noticias como fuente.</p>
+            <p><b>Paso 4.</b> Las coincidencias dudosas (solo se parece el título) no entran en los números principales: aparecen aparte como "posibles".</p>
+            <p><b>Redes:</b> se leen las publicaciones de nuestras cuentas: Facebook (las páginas JusNoticias y JusNoticias STJ, cada una por separado), Instagram, X, YouTube (canal Poder Judicial del Chubut) y TikTok (@juschubut). En la pestaña Redes, «Consultar fuentes disponibles» trae los datos en vivo de cada red. X, YouTube y TikTok informan vistas por publicación; Facebook e Instagram dan estadísticas de la cuenta de los últimos 28 días. X hoy no responde en vivo porque su API exige créditos; se usan los registros guardados. WhatsApp se carga a mano. En el Resumen, los seguidores suman solo las cuentas con dato y se aclara cuáles faltan.</p>
+            <p><b>Límites:</b> radio, TV, grupos de WhatsApp y portales que Google no indexa no se miden, así que el número es un <b>piso</b>: la repercusión real es mayor. El tipo de nota lo asigna el programa por palabras del título y puede equivocarse.</p>
+          </div>
+        </div>
+      </details>
     </div>
-    <div class="card"><h2>Medios con publicaciones y enlace de referencia</h2><p class="note">Se muestran medios con al menos un registro confirmado y una dirección web guardada dentro del período elegido. “Estado del relevamiento” describe la revisión registrada, no garantiza que se hayan monitoreado todas las emisiones de radio o televisión. Los enlaces pueden dejar de estar disponibles y deben comprobarse en el sitio de origen.</p>
-      <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Estado del relevamiento</th><th>Publicaciones relacionadas</th><th>Enlace de referencia</th></tr></thead><tbody></tbody></table></div></div>
+    <details class="detail-group">
+      <summary>Inventario de medios y enlaces de referencia</summary>
+      <div class="detail-content">
+        <div class="card">
+          <h2>Medios con publicaciones y enlace de referencia</h2>
+          <p class="note">Se muestran medios con al menos un registro confirmado y una dirección web guardada dentro del período elegido. “Estado del relevamiento” describe la revisión registrada, no garantiza que se hayan monitoreado todas las emisiones de radio o televisión. Los enlaces pueden dejar de estar disponibles y deben comprobarse en el sitio de origen.</p>
+          <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Estado del relevamiento</th><th>Publicaciones relacionadas</th><th>Enlace de referencia</th></tr></thead><tbody></tbody></table></div>
+        </div>
+      </div>
+    </details>
   </section>
 
-  <p class="note foot" id="pie"></p>
 </div>
 </div>
 
+<footer class="wrap" aria-label="Actualización y fuentes">
+  <p class="note foot" id="pie"></p>
+</footer>
 
 <script type="application/json" id="datos">/*DATOS*/</script>
 <script>
@@ -1227,7 +1245,7 @@ const draw = () => {
     const yd = desde.slice(0, 4), yh = hasta.slice(0, 4);
     return desde === hasta ? mesLargo(desde) + ' de ' + yd : mesLargo(desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(hasta) + ' de ' + yh;
   };
-  const corteDatos = () => D.datos_actualizados ? new Date(D.datos_actualizados).toLocaleDateString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }) : D.actualizado;
+  const corteDatos = () => { const f = D.datos_actualizados ? new Date(D.datos_actualizados) : null; const o = { timeZone: 'America/Argentina/Buenos_Aires' }; return f && Number.isFinite(f.getTime()) ? f.toLocaleDateString('es-AR', o) + ' ' + f.toLocaleTimeString('es-AR', { ...o, hour: '2-digit', minute: '2-digit', hour12: false }) + ' (hora argentina)' : 'fecha no disponible'; };
   const regionesDe = rs => {
     const reg = new Map(), loc = new Map();
     rs.forEach(r => {
@@ -1497,19 +1515,15 @@ const draw = () => {
   document.querySelectorAll('#t-notas th button').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; st.dir = st.sort === k ? -st.dir : (['n_medios', 'copias', 'posibles', 'fecha'].includes(k) ? -1 : 1); st.sort = k; drawNotas(); }));
   let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(draw, 150); });
 
-  // Una sola fecha para el usuario: cuándo se relevaron los datos, en hora argentina y sin segundos.
+  // Un único sello temporal visible, al pie de la portada y del tablero completo.
   const fechaRelevamiento = (() => {
     const f = D.datos_actualizados ? new Date(D.datos_actualizados) : null;
     if (!f || !Number.isFinite(f.getTime())) return null;
     const o = { timeZone: 'America/Argentina/Buenos_Aires' };
     return f.toLocaleDateString('es-AR', o) + ' a las ' + f.toLocaleTimeString('es-AR', { ...o, hour: '2-digit', minute: '2-digit', hour12: false });
   })();
-  const textoActualizado = fechaRelevamiento ? 'Datos actualizados al ' + fechaRelevamiento + ' (hora argentina)' : 'Fecha de actualización no disponible';
-  $('actualizado-badge').textContent = textoActualizado;
-  $('portada-actualizado').textContent = textoActualizado;
-  $('pie').textContent = 'Fuente: elaboración de la Agencia de Comunicación Judicial con datos de jusnoticias.juschubut.gov.ar, sitios de medios y cuentas oficiales. ' + textoActualizado + '. Se actualiza automáticamente cada dos horas.';
-  const fechaHistorial = D.datos_actualizados ? new Date(D.datos_actualizados) : null;
-  $('redes-historial-actualizado').textContent = 'Última actualización de los datos históricos: ' + (fechaHistorial && Number.isFinite(fechaHistorial.getTime()) ? fechaHistorial.toLocaleString('es-AR') : 'fecha no disponible') + '. No son métricas en vivo.';
+  const sello = fechaRelevamiento ? fechaRelevamiento + ' (hora argentina)' : 'fecha y hora no disponibles';
+  $('pie').textContent = 'Última actualización del relevamiento de notas y medios: ' + sello + '. Esta fecha corresponde a los datos guardados que se publicaron; no significa que las métricas en vivo de redes o las consultas de Google se hayan actualizado en ese momento. Las redes se consultan al pedir el monitoreo en vivo y Analytics/Search Console al consultar esta sección; pueden tener demoras propias. Fuentes: Juschubut Noticias, sitios de medios y cuentas oficiales. El relevamiento automático está programado cada dos horas.';
   const h = location.hash.slice(1);
   updateLanding(calc());
   $('entrar-tablero').addEventListener('click', () => {

@@ -35,6 +35,12 @@ jobs:
           conf = lambda rs: sum(1 for r in rs if r.get('confianza') != 'Baja')
           print('Confirmadas antes', conf(antes), 'ahora', conf(ahora))
           print('Marcadas por revisar (otro artículo del mismo medio):', sum(1 for r in ahora if 'mismo medio (por revisar)' in (r.get('metodo') or '')))
+          antes_conf = {(r['nota_id'], r['medio']) for r in antes if r.get('confianza') != 'Baja'}
+          antes_pares = {(r['nota_id'], r['medio']) for r in antes}
+          nuevas_conf = [r for r in ahora if r.get('confianza') != 'Baja' and (r['nota_id'], r['medio']) not in antes_conf]
+          print('Confirmadas en pares que antes no estaban confirmados:', len(nuevas_conf))
+          print('  de pares totalmente nuevos:', sum(1 for r in nuevas_conf if (r['nota_id'], r['medio']) not in antes_pares))
+          for r in nuevas_conf[:40]: print('   ', r['nota_id'], r['medio'], r['confianza'], r['metodo'][:60], r['url'][:80])
           print('Filas con URL alternativas:', sum(1 for r in ahora if r.get('url_alternativas')))
           ma = {m['medio']: m['notas'] for m in json.load(open('data/medios.json'))}
           mn = {m['medio']: m['notas'] for m in json.load(open('out/medios.json'))}
