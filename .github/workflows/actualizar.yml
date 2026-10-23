@@ -7,8 +7,21 @@ on:
     branches:
       - main
     paths:
+      # Código de relevamiento, armado del tablero y plantilla: reconstruir sin esperar al cron.
+      - '.github/workflows/actualizar.yml'
       - 'scripts/actualizar.py'
+      - 'scripts/armar_publico.py'
+      - 'templates/tablero.html'
+      # Datos que alimentan las secciones estadísticas y el sello de actualización.
       - 'data/fuentes_descubiertas.json'
+      - 'data/notas2.json'
+      - 'data/rep2.json'
+      - 'data/redes2.json'
+      - 'data/canales.json'
+      - 'data/medios.json'
+      - 'data/medios_inventario.json'
+      - 'data/cuentas_monitoreo.json'
+      - 'data/actualizado.txt'
   schedule:
     # Cron UTC: horas pares, minuto 59; en Argentina (UTC-3) corresponde a horas impares, minuto 59.
     - cron: "59 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
