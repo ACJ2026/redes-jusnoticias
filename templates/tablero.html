@@ -877,6 +877,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   const filasCompartidosRegistrados = () => {
     const redesIncluidas = new Set(['Facebook', 'Instagram', 'YouTube', 'TikTok']);
     const titulo = new Map(notas.map(n => [Number(n.id), n.titulo]));
+    const idPorTitulo = new Map(notas.map(n => [String(n.titulo || '').trim().toLocaleLowerCase(), Number(n.id)]));
+    const resolverNotaId = f => Number(f.nota_id) || idPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null;
     const porCuenta = new Map((D.cuentas || []).filter(c => c.cuenta && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.cuenta, c]));
     const porNombre = new Map((D.cuentas || []).filter(c => c.medio && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.medio, c]));
     // Historial de publicaciones de terceros en las redes incluidas.
@@ -888,7 +890,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     });
     // Cuentas confirmadas, también limitadas a las redes incluidas.
     const confirmadas = (D.cuentas || []).filter(c => redesIncluidas.has(c.red) && /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
-      .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: c.nota_id || null, nota_titulo: c.nota_titulo || c.nota_compartida || '' }));
+      .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: Number(c.nota_id) || idPorTitulo.get(String(c.nota_titulo || c.nota_compartida || '').trim().toLocaleLowerCase()) || null, nota_titulo: c.nota_titulo || c.nota_compartida || '' }));
     return [...historial, ...confirmadas];
   };
   const enlaceBusquedaCompartido = f => {
@@ -916,9 +918,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const fecha = document.createElement('td'); fecha.textContent = f.fecha ? f.fecha.split('-').reverse().slice(0, 2).join('/') : '—';
       const red = document.createElement('td'); red.textContent = f.red;
       const tipo = document.createElement('td'); tipo.textContent = f.tipo || '—';
+      const notaId = resolverNotaId(f);
       tr.append(fecha, red, celdaEnlace(f.cuenta, f.cuenta_url), tipo,
         celdaPublicacionCompartida(f),
-        celdaEnlace(f.nota_titulo || (f.nota_id ? 'Ver nota de JusNoticias' : 'Nota de JusNoticias no identificada'), f.nota_id ? notaUrl(f.nota_id) : null));
+        celdaEnlace(notaId ? (f.nota_titulo || titulo.get(notaId) || 'Ver nota de JusNoticias') : 'Nota original pendiente de identificar', notaId ? notaUrl(notaId) : null));
       return tr;
     }));
     if (!orden.length) { const tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 6; td.className = 'dim'; td.textContent = 'Sin registros.'; tr.append(td); tb.append(tr); }
