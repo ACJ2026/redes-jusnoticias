@@ -95,6 +95,11 @@ class TableroPublicoTests(unittest.TestCase):
                 self.assertEqual(registros[key]["url"], url)
                 self.assertTrue(registros[key]["url"].startswith("https://"))
 
+    def test_enlace_directo_el_patagonico_peugeot(self):
+        registros = {r["key"]: r for r in read_json("data/rep2.json")}
+        self.assertEqual(registros["p1300"]["url"], "https://www.elpatagonico.com/comodoro-condena-contra-peugeot-y-una-concesionaria-n6324799")
+        self.assertEqual(registros["p1300"]["cita_fuente_oficial"], "Sí")
+
     def test_portada_muestra_periodo_y_orden_correcto_de_indicadores(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn('id="portada-periodo"', template)
