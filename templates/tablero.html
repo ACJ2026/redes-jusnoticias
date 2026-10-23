@@ -875,7 +875,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     return td;
   };
   const filasCompartidosRegistrados = () => {
-    const redesIncluidas = new Set(['Facebook', 'Instagram', 'YouTube']);
+    const redesIncluidas = new Set(['Facebook', 'Instagram', 'YouTube', 'TikTok']);
     const titulo = new Map(notas.map(n => [Number(n.id), n.titulo]));
     const porCuenta = new Map((D.cuentas || []).filter(c => c.cuenta && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.cuenta, c]));
     const porNombre = new Map((D.cuentas || []).filter(c => c.medio && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.medio, c]));
@@ -891,6 +891,23 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: c.nota_id || null, nota_titulo: c.nota_titulo || c.nota_compartida || '' }));
     return [...historial, ...confirmadas];
   };
+  const enlaceBusquedaCompartido = f => {
+    const titulo = String(f.nota_titulo || '').trim();
+    if (!titulo) return null;
+    if (f.red === 'Facebook') return 'https://www.facebook.com/search/posts/?q=' + encodeURIComponent((f.cuenta || '') + ' ' + titulo);
+    if (f.red === 'TikTok') return 'https://www.tiktok.com/search?q=' + encodeURIComponent(titulo);
+    return null;
+  };
+  const celdaPublicacionCompartida = f => {
+    if (f.publicacion_url && /^https?:\/\//i.test(f.publicacion_url)) return celdaEnlace('Ver publicación directa', f.publicacion_url);
+    const busqueda = enlaceBusquedaCompartido(f);
+    if (busqueda) return celdaEnlace('Buscar publicación (pendiente de verificar)', busqueda);
+    const td = document.createElement('td');
+    td.textContent = 'Enlace directo pendiente de verificar';
+    td.className = 'dim';
+    td.title = 'No se guardó una URL directa de esta publicación.';
+    return td;
+  };
   const dibujarCompartidos = (filas) => {
     const tb = document.querySelector('#t-compartidos tbody');
     const orden = filas.slice().sort((a, b) => String(b.fecha || '').localeCompare(String(a.fecha || '')));
@@ -900,7 +917,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const red = document.createElement('td'); red.textContent = f.red;
       const tipo = document.createElement('td'); tipo.textContent = f.tipo || '—';
       tr.append(fecha, red, celdaEnlace(f.cuenta, f.cuenta_url), tipo,
-        celdaEnlace(f.publicacion_url ? 'Ver publicación' : 'Enlace a la publicación no disponible', f.publicacion_url),
+        celdaPublicacionCompartida(f),
         celdaEnlace(f.nota_titulo || (f.nota_id ? 'Ver nota de JusNoticias' : 'Nota de JusNoticias no identificada'), f.nota_id ? notaUrl(f.nota_id) : null));
       return tr;
     }));
@@ -961,34 +978,34 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     const fr = $('fred').value, fp = $('fprop').value;
     const score = r => (Number(r.vistas) || 0) + 10 * ((Number(r.me_gusta) || 0) + (Number(r.comentarios) || 0) + (Number(r.compartidos) || 0));
     const rows = D.redes.filter(r => en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
-    // Cada posteo se vincula a la publicación externa identificada para el mismo medio y nota.
-    // Si no hay URL externa verificable, enlaza la nota original de JusNoticias cuando existe.
-    const normalizarMedio = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+    // Solo la URL directa identifica la publicación concreta. La nota original y
+    // la página del medio son referencias distintas y no deben hacerse pasar por el post.
     const enlacePosteo = r => {
-      if (r.url && /^https?:\/\//i.test(r.url)) return { url: r.url, texto: 'Abrir publicación del medio ↗', origen: 'enlace directo del registro' };
-      const nombre = normalizarMedio(r.cuenta);
-      const candidatos = D.repercusion.filter(p => Number(p.nota_id) === Number(r.nota_id) && p.url && /^https?:\/\//i.test(p.url))
-        .map(p => ({ ...p, nombreNormalizado: normalizarMedio(p.medio) }))
-        .filter(p => p.nombreNormalizado && nombre && (nombre === p.nombreNormalizado || nombre.includes(p.nombreNormalizado) || p.nombreNormalizado.includes(nombre)))
-        .sort((a, b) => b.nombreNormalizado.length - a.nombreNormalizado.length);
-      if (candidatos.length) return { url: candidatos[0].url, texto: 'Abrir publicación del medio ↗', origen: candidatos[0].medio };
-      if (r.nota_id) return { url: notaUrl(r.nota_id), texto: 'Ver nota original en JusNoticias ↗', origen: 'nota original de JusNoticias' };
+      if (r.url && /^https?:\/\//i.test(r.url)) return { url: r.url, tipo: 'directa' };
+      const titulo = notas.find(n => Number(n.id) === Number(r.nota_id))?.titulo || r.texto || '';
+      if (r.propia === 'No' && r.red === 'Facebook' && titulo) {
+        return { url: 'https://www.facebook.com/search/posts/?q=' + encodeURIComponent((r.cuenta || '') + ' ' + titulo), tipo: 'busqueda' };
+      }
+      if (r.propia === 'No' && r.red === 'TikTok' && titulo) {
+        return { url: 'https://www.tiktok.com/search?q=' + encodeURIComponent(titulo), tipo: 'busqueda' };
+      }
       return null;
     };
-    tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto || 'Enlace no disponible'], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
-    // La publicación y cada cifra de interacción abren la fuente consultable.
+    tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto || 'Enlace directo no registrado'], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
+    // No enlazar métricas ni la nota oficial como si fueran la publicación del medio.
     [...document.querySelectorAll('#t-redes tbody tr')].forEach((tr, i) => {
-      const r = rows[i], enlace = enlacePosteo(r);
-      if (!enlace) return;
-      for (const indice of [3, 4, 5, 6, 7]) {
-        const td = tr.children[indice];
-        if (!td || !td.textContent.trim()) continue;
-        const a = document.createElement('a');
-        a.href = enlace.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-        a.textContent = td.textContent;
-        a.title = (indice === 3 ? 'Abrir publicación o nota de referencia' : 'Consultar fuente de esta cifra') + ' · Fuente: ' + enlace.origen;
-        td.replaceChildren(a);
+      const r = rows[i], enlace = enlacePosteo(r), td = tr.children[3];
+      if (!td) return;
+      if (!enlace) {
+        td.classList.add('dim');
+        td.title = 'Falta registrar la URL directa de la publicación del medio.';
+        return;
       }
+      const a = document.createElement('a');
+      a.href = enlace.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.textContent = enlace.tipo === 'directa' ? (r.texto || 'Ver publicación directa') : 'Buscar publicación (pendiente de verificar)';
+      a.title = enlace.tipo === 'directa' ? 'Abrir la publicación concreta' : 'Abre una búsqueda; todavía no es el enlace directo al post.';
+      td.replaceChildren(a);
     });
   };
   let redesVivoEnCurso = false;
