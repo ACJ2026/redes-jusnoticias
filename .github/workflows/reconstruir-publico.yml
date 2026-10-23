@@ -8,6 +8,17 @@ on:
       - 'templates/tablero.html'
       - 'scripts/armar_publico.py'
       - 'tests/test_tablero_publico.py'
+      # Si cambian datos de entrada del tablero, regenerar el HTML sin volver a
+      # ejecutar el recolector. Los HTML generados no están en estas rutas,
+      # así que el commit automático no crea un bucle de ejecuciones.
+      - 'data/notas2.json'
+      - 'data/rep2.json'
+      - 'data/redes2.json'
+      - 'data/canales.json'
+      - 'data/medios.json'
+      - 'data/medios_inventario.json'
+      - 'data/cuentas_monitoreo.json'
+      - 'data/actualizado.txt'
   workflow_dispatch:
 
 permissions:
