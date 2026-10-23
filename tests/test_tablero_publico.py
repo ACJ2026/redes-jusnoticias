@@ -205,6 +205,12 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn('id="info-generar"', template)
         self.assertIn("no demuestra por sí sola que se haya usado nuestra información", template)
 
+    def test_botones_de_accion_se_destacan(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn(".btn.accion{background:var(--accent)", template)
+        for boton in ("info-abrir", "info-generar", "info-descargar", "redes-vivo-consultar", "compartidos-buscar", "g-actualizar"):
+            self.assertIn(f'class="btn accion" id="{boton}"', template)
+
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const filaPaginaFacebook = (p, result) =>", template)

@@ -35,6 +35,10 @@ h1{font-family:var(--f-display);font-weight:500;font-size:var(--fs-title);line-h
 .lbl{color:var(--muted);font-size:var(--fs-cap)}
 select,input[type=search],.btn{font:inherit;font-size:var(--fs-cap);padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);min-height:2.25rem}
 .btn{cursor:pointer}.btn:disabled{opacity:.5;cursor:default}
+/* Botones de acción principales: consultar, buscar, generar y descargar */
+.btn.accion{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:600;padding:8px 16px;box-shadow:0 2px 6px rgba(20,30,45,.18)}
+.btn.accion:hover{filter:brightness(1.1)}
+.btn.accion:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 input[type=search]{flex:1 1 14rem;min-width:0}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);overflow-x:auto}
@@ -239,7 +243,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   </nav>
 
   <section class="page" id="resumen">
-    <div class="tools"><button class="btn" id="info-abrir" type="button" aria-expanded="false" aria-controls="infografia">Generar infografía</button></div>
+    <div class="tools"><button class="btn accion" id="info-abrir" type="button" aria-expanded="false" aria-controls="infografia">Generar infografía</button></div>
     <div class="card" id="infografia" hidden>
       <h2>Generador de infografía</h2>
       <p class="note">Respondé las preguntas y después generá la vista previa. La imagen se descarga exactamente como se ve y no se publica en ningún lado.</p>
@@ -275,11 +279,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <fieldset class="info-paso"><legend>5. Título (opcional)</legend>
         <input type="search" id="info-titulo" maxlength="70" style="width:100%">
       </fieldset>
-      <div class="tools"><button class="btn" id="info-generar" type="button">Generar vista previa</button></div>
+      <div class="tools"><button class="btn accion" id="info-generar" type="button">Generar vista previa</button></div>
       <p class="note" id="info-estado" role="status"></p>
       <div id="info-resultado" hidden style="display:flex;flex-direction:column;gap:10px">
         <canvas id="info-lienzo" style="width:100%;max-width:540px;height:auto;border:1px solid var(--line);border-radius:8px;align-self:flex-start"></canvas>
-        <div class="tools"><button class="btn" id="info-descargar" type="button">Descargar PNG</button><button class="btn" id="info-copiar" type="button">Copiar texto alternativo</button></div>
+        <div class="tools"><button class="btn accion" id="info-descargar" type="button">Descargar PNG</button><button class="btn" id="info-copiar" type="button">Copiar texto alternativo</button></div>
         <label for="info-alt" class="lbl">Texto alternativo para pegar al publicar</label>
         <textarea id="info-alt" rows="4" readonly style="font:inherit;font-size:var(--fs-cap);padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)"></textarea>
       </div>
@@ -372,14 +376,14 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <div class="card" id="redes-vivo">
       <h2>Estado del monitoreo en vivo</h2>
       <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube, X y TikTok. Esta consulta es independiente del historial guardado. Facebook se muestra por página: JusNoticias y JusNoticias STJ, cada una con sus propios seguidores, publicaciones e Insights. X requiere credenciales y acceso autorizado a su API; TikTok está conectado con la cuenta institucional @juschubut. WhatsApp sigue pendiente de integración; no se suman plataformas sin datos ni se presentan como cero actividad.</p>
-      <div class="tools"><button class="btn" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
+      <div class="tools"><button class="btn accion" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
       <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
       <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th><th>Insights disponibles</th></tr></thead><tbody><tr><td colspan="6">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
     </div>
     <div class="card" id="compartidos">
       <h2>Quién compartió nuestras notas en redes</h2>
       <p class="note">Cuentas de otros medios, periodistas, instituciones o vecinos que publicaron notas de Juschubut Noticias en sus redes. Cada fila enlaza a la cuenta, a la publicación y a nuestra nota. Las registradas son las comprobadas a mano; «Buscar ahora» revisa las cuentas de Instagram de la lista y busca en YouTube las notas de los últimos 30 días. Facebook, X y TikTok no permiten esta búsqueda automática con las credenciales actuales.</p>
-      <div class="tools"><button class="btn" id="compartidos-buscar" type="button">Buscar ahora en Instagram y YouTube</button></div>
+      <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar ahora en Instagram y YouTube</button></div>
       <p class="note" id="compartidos-estado" role="status"></p>
       <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
     </div>
@@ -415,7 +419,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="tools">
         <label for="g-desde" class="lbl">Desde</label><input id="g-desde" type="date">
         <label for="g-hasta" class="lbl">Hasta</label><input id="g-hasta" type="date">
-        <button class="btn" id="g-actualizar" type="button">Consultar</button>
+        <button class="btn accion" id="g-actualizar" type="button">Consultar</button>
       </div>
       <p class="note" id="g-estado" role="status">Consultando configuración…</p>
     </div>
