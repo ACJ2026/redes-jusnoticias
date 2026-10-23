@@ -306,6 +306,16 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Se actualizan las pruebas para la nueva columna, las URL de sitio y las búsquedas pendientes. Se regeneraron `publico/index.html` y `publico/tablero_publico.html` desde la plantilla y los datos, y se comprobó que ambas copias coinciden. La ejecución de CI anterior había fallado únicamente en la prueba de sincronización antes de regenerar estos archivos; los workflows no devolvieron aún una ejecución asociada al SHA más reciente. Sigue pendiente probar «Buscar ahora» en Preview con credenciales reales. No se desplegó a producción.
 
 
+### 2026-10-23 — Actualización coordinada de estadísticas y corrección de disparadores (PR #78 y seguimiento)
+
+- Incidencia: las secciones estadísticas podían conservar sus cifras cuando no aparecían nuevas publicaciones; además, el workflow de relevamiento no se disparaba ante todos los cambios relevantes de código/datos.
+- PR #78 se integró a `main`: amplió los disparadores del workflow `.github/workflows/actualizar.yml`. Revisión posterior detectó que incluir archivos generados por el propio relevamiento (`data/rep2.json`, `data/notas2.json`, `data/medios.json`, inventario y sello de fecha) como disparadores de ese mismo workflow podía provocar ejecuciones repetidas.
+- Seguimiento en la rama `fix/dashboard-refresh-loop-and-log`: el workflow de relevamiento queda limitado a cambios del recolector, el inventariador, el propio workflow y la configuración de fuentes. Conserva el cron de cada dos horas y reconstruye el tablero en la misma ejecución que procesa el monitoreo.
+- El workflow independiente `.github/workflows/reconstruir-publico.yml` se amplía para reconstruir el HTML cuando cambian los JSON de entrada, el inventario, las cuentas monitoreadas o `data/actualizado.txt`. Como no escucha cambios en los HTML generados, evita un bucle de reconstrucción.
+- Se agregaron pruebas para exigir que los cambios de datos regeneren el tablero y que los datos generados no disparen un nuevo relevamiento.
+- No se modificaron cifras históricas ni se fabricaron publicaciones. Si el barrido no encuentra cambios, las cantidades pueden seguir iguales; la fecha solo debe avanzar cuando el relevamiento haya terminado correctamente.
+- Estado: PR #78 está integrado. Este seguimiento queda sujeto a CI y revisión antes de integrarse. Aún falta comprobar una ejecución completa posterior al cambio y confirmar que la web pública refleja el resultado; no se declara validación de extremo a extremo ni despliegue confirmado.
+
 ### 2026-10-23 (tarde) — Cobertura del recolector: no perder medios que difundieron nuestras notas
 
 **Origen.** El usuario comparó una búsqueda de Google sobre la nota 14873 (homeschooling, Puerto Madryn) con lo que tenía el tablero. Faltaban ADN Sur y Comodoro 24 (que se leen directo), FM de la Cordillera y Madryn Urbana (no registrados), un segundo artículo de Vivo Trelew y publicaciones en redes de otros medios (Jornada en Instagram, FM Tropical en Facebook, El Caletense en Instagram, entrevista de LU20 en YouTube). Causa de fondo: el recolector comparaba **solo títulos** y descartaba sin leer los artículos con título reescrito. No era una caída: era un límite de diseño presente desde el inicio. Lección registrada: probar cada cambio del recolector contra una búsqueda real antes de presentarlo.
