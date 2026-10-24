@@ -422,7 +422,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <h2 id="det-titulo"></h2>
       <div class="det-resumen" id="det-resumen" aria-live="polite"></div>
       <p class="note" id="det-sub"></p>
-      <div class="tbox"><table id="t-det"><thead><tr><th>Medio</th><th>Estado</th><th>Qué se pudo comprobar</th><th>Cómo la publicó</th><th>Cómo se encontró</th><th>Enlace</th></tr></thead><tbody></tbody></table></div>
+      <div class="tbox"><table id="t-det"><thead><tr><th>Medio</th><th>Estado</th><th>Qué se pudo comprobar</th><th>Cómo la publicó</th><th>Motivo y enlace</th><th>Acción</th></tr></thead><tbody></tbody></table></div>
     </div>
   </section>
 
@@ -555,7 +555,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   <p><b>Notas que salieron en otros medios:</b> de las notas que publicamos en el período, qué parte apareció en al menos un medio.</p>
   <p><b>Publicaciones:</b> cada vez que encontramos una nota nuestra en un medio. Suma las verificadas y las que faltan verificar.</p>
   <p><b>Medios:</b> cuántos medios distintos publicaron algo nuestro. Cada medio cuenta una sola vez.</p>
-  <p><b>Verificada:</b> ya comprobamos que el medio la publicó. <b>A verificar:</b> es una posible publicación que falta comprobar.</p>
+  <p><b>Confirmada:</b> comprobamos que el medio publicó nuestra nota. <b>Pendiente de decisión:</b> el sistema explica qué no pudo comprobar y deja el enlace para resolverlo.</p>
   <p><b>En redes:</b> lo que publicamos en nuestras cuentas, sus vistas y los seguidores. No todas las redes informan vistas.</p>
 </template>
 <template id="ayuda-medios" data-titulo="Cómo leer Medios">
@@ -570,7 +570,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   <p><b>Medios:</b> cuántos medios distintos publicaron la nota. Suma los ya verificados y los que faltan verificar. Si un medio la publicó dos veces, cuenta una sola vez.</p>
   <p><b>Textos muy similares:</b> publicaciones con un texto casi igual al nuestro (la mitad o más).</p>
   <p><b>Verificada:</b> ya comprobamos que el medio publicó la nota.</p>
-  <p><b>A verificar:</b> encontramos una posible publicación, pero falta comprobarla (por ejemplo, solo coincide el título o el enlace viene de Google Noticias).</p>
+  <p><b>Pendiente de decisión:</b> el sistema no pudo confirmar ni descartar la publicación. Mostramos el motivo real y el enlace para que puedas resolverla.</p>
   <p><b>Google Noticias:</b> Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio. Para confirmarlas hay que encontrar la publicación original.</p>
   <p>Tocá una nota para ver en qué medios salió y abrir cada enlace.</p>
 </template>
@@ -589,8 +589,50 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   <p>Visitas y apariciones miden cosas distintas: no se suman. Los datos se consultan al abrir la pestaña o al tocar «Consultar».</p>
 </template>
 <script>
-(function () {
+(async function () {
   const D = JSON.parse(document.getElementById('datos').textContent);
+  let revisionApiDisponible = false;
+  let errorRevisionApi = '';
+  let claveRevision = '';
+  const normalizarUrlRevision = value => {
+    try {
+      const u = new URL(value);
+      u.hostname = u.hostname.toLowerCase().replace(/^www\\./, '');
+      u.hash = '';
+      [...u.searchParams.keys()].forEach(k => { if (/^(utm_.*|fbclid|gclid|dclid|mc_cid|mc_eid|igshid|ref|ref_src|amp|output|s)$/i.test(k)) u.searchParams.delete(k); });
+      u.pathname = u.pathname.replace(/\\/+$/, '') || '/';
+      u.searchParams.sort();
+      return u.toString();
+    } catch { return ''; }
+  };
+  try {
+    const response = await fetch('/api/revisiones', { headers: { Accept: 'application/json' }, cache: 'no-store' });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || 'No se pudo cargar el historial de revisiones.');
+    revisionApiDisponible = true;
+    (payload.revisiones || []).forEach(rev => {
+      const sourceUrl = rev.source_url || rev.url;
+      let fila = D.repercusion.find(r => Number(r.nota_id) === Number(rev.nota_id) &&
+        (normalizarUrlRevision(r.url) === normalizarUrlRevision(sourceUrl) || normalizarUrlRevision(r.url) === normalizarUrlRevision(rev.url)));
+      if (!fila && rev.decision === 'confirmar' && rev.medio) {
+        fila = { nota_id: Number(rev.nota_id), medio: rev.medio, origen: rev.origen || 'Sin dato', cita_fuente_oficial: '', cita_otro_medio: '', confianza: 'Alta', metodo: 'Confirmada manualmente', url: rev.url };
+        D.repercusion.push(fila);
+      }
+      if (fila) {
+        if (rev.decision === 'confirmar') {
+          fila.url = rev.url;
+          fila.medio = rev.medio || fila.medio;
+          fila.origen = rev.origen || fila.origen || 'Sin dato';
+        }
+        fila.revision_manual = { decision: rev.decision, fecha: rev.fecha, motivo: rev.motivo || '', revisado_por: rev.revisado_por || '' };
+        fila.confianza = rev.decision === 'confirmar' ? 'Alta' : 'Baja';
+        fila.metodo = rev.decision === 'confirmar' ? 'Confirmada manualmente' : 'Descartada tras revisión manual';
+        fila.motivo = rev.motivo || (rev.decision === 'confirmar' ? 'Publicación confirmada por el usuario.' : 'Coincidencia descartada por el usuario.');
+      }
+    });
+  } catch (error) {
+    errorRevisionApi = error && error.message ? error.message : 'No se pudo conectar con el servicio de revisiones.';
+  }
   const $ = id => document.getElementById(id);
   const nf = new Intl.NumberFormat('es-AR');
   const fmt = v => (v === null || v === undefined || v === '') ? '' : nf.format(Number(v));
@@ -1739,11 +1781,46 @@ const draw = () => {
     catch (e) { $('info-alt').select(); $('info-estado').textContent = 'Seleccioná el texto y copialo con Ctrl+C.'; }
   });
   $('ir-completo').addEventListener('click', () => { show('medios'); document.querySelector('.tabs').scrollIntoView(); });
+  const resolverPublicacion = async (fila, decision) => {
+    if (!revisionApiDisponible) { alert('La revisión manual no está disponible: ' + errorRevisionApi); return; }
+    if (!claveRevision) {
+      claveRevision = window.prompt('Ingresá la clave de revisión autorizada por el administrador del tablero:') || '';
+      if (!claveRevision) return;
+      try { sessionStorage.setItem('jusnoticias_revision_key', claveRevision); } catch {}
+    }
+    let urlPublicacion = fila.url;
+    if (decision === 'confirmar' && /news\\.google\\.com|(^|\\.)bing\\.com/i.test(new URL(fila.url).hostname)) {
+      urlPublicacion = window.prompt('Pegá el enlace directo de la publicación del medio (no el de Google/Bing):', '') || '';
+      if (!urlPublicacion) return;
+    }
+    const motivo = decision === 'descartar'
+      ? (window.prompt('Motivo del descarte (opcional):', 'La publicación no corresponde a esta nota.') || '')
+      : 'Publicación confirmada por revisión manual.';
+    const botones = document.querySelectorAll('#t-det button');
+    botones.forEach(b => { b.disabled = true; });
+    try {
+      const response = await fetch('/api/revisiones', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + claveRevision },
+        body: JSON.stringify({ nota_id: Number(fila.nota_id), url: urlPublicacion, source_url: fila.url, decision, medio: canonMedio(fila.medio), origen: fila.origen || 'Sin dato', motivo })
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        if (response.status === 401) { claveRevision = ''; try { sessionStorage.removeItem('jusnoticias_revision_key'); } catch {} }
+        throw new Error(result.error || 'No se pudo guardar la decisión.');
+      }
+      window.location.reload();
+    } catch (error) {
+      alert(error.message || 'No se pudo guardar la decisión.');
+      botones.forEach(b => { b.disabled = false; });
+    }
+  };
+  try { claveRevision = sessionStorage.getItem('jusnoticias_revision_key') || ''; } catch {}
   const detalle = (id) => {
     const n = porNota.find(x => x.id === id); if (!n) return;
     st.sel = id;
     document.querySelectorAll('#t-notas tbody tr').forEach(tr => tr.classList.toggle('sel', Number(tr.dataset.id) === id));
-    const rs = D.repercusion.filter(r => Number(r.nota_id) === id).sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || a.medio.localeCompare(b.medio));
+    const rs = D.repercusion.filter(r => Number(r.nota_id) === id && r.confianza !== 'Baja').sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || a.medio.localeCompare(b.medio));
     $('det-titulo').textContent = n.titulo;
     // Primero, destacado, cuántos medios publicaron la nota; después el total registrado y cuántos quedan a revisar.
     const span = (cls, txt) => { const e = document.createElement('span'); e.className = cls; e.textContent = txt; return e; };
@@ -1761,11 +1838,32 @@ const draw = () => {
       const confirmada = esConfirmada(r); const p = document.createElement('span'); p.className = 'pill' + (confirmada ? ' ok' : ''); p.textContent = confirmada ? 'Verificada' : 'A verificar'; c(p);
       const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona Juschubut Noticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'dim');
       c(r.origen === 'Sin dato' ? '—' : r.origen.replace(' (≥50%)', ''));
-      c(r.metodo || '', 'dim');
-      if (r.url && /^https?:\/\//.test(r.url)) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = String(r.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación externa ↗'; c(a); } else c('Sin enlace', 'dim');
-      return tr;
+      const motivo = r.motivo || (r.metodo || '').replace(/^A verificar:\\s*/i, '') || 'La evidencia disponible no alcanzó para decidir.';
+      c(motivo, 'dim');
+      const enlace = r.url && /^https?:\\/\\//.test(r.url) ? document.createElement('a') : null;
+      if (enlace) { enlace.href = r.url; enlace.target = '_blank'; enlace.rel = 'noopener noreferrer'; enlace.textContent = String(r.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia de búsqueda ↗' : 'Abrir publicación original ↗'; }
+      c(enlace || 'No hay enlace disponible', 'dim');
+      const accion = document.createElement('td');
+      if (!confirmada) {
+        if (revisionApiDisponible && r.url && /^https?:\\/\\//.test(r.url)) {
+          const confirmar = document.createElement('button');
+          confirmar.type = 'button'; confirmar.className = 'btn accion'; confirmar.textContent = 'Confirmar publicación';
+          confirmar.addEventListener('click', () => resolverPublicacion(r, 'confirmar'));
+          const descartar = document.createElement('button');
+          descartar.type = 'button'; descartar.className = 'btn accion ayuda-sec'; descartar.textContent = 'Descartar coincidencia';
+          descartar.addEventListener('click', () => resolverPublicacion(r, 'descartar'));
+          accion.append(confirmar, document.createTextNode(' '), descartar);
+        } else {
+          const aviso = document.createElement('span'); aviso.className = 'dim';
+          aviso.textContent = 'Revisión manual no disponible: ' + errorRevisionApi;
+          accion.append(aviso);
+        }
+      } else {
+        const estado = document.createElement('span'); estado.className = 'pill ok'; estado.textContent = 'Registrada'; accion.append(estado);
+      }
+      tr.append(accion);
     }));
-    if (!rs.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 6; td.className = 'dim'; td.textContent = 'Ningún medio encontrado para esta nota.'; tr.append(td); tb.append(tr); }
+    if (!rs.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 7; td.className = 'dim'; td.textContent = 'No hay publicaciones confirmadas ni casos pendientes de decisión para esta nota.'; tr.append(td); tb.append(tr); }
     $('c-detalle').hidden = false;
     $('c-detalle').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
