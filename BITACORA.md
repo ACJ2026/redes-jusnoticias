@@ -404,3 +404,11 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Archivos: `templates/tablero.html`, `docs/MANUAL_TABLERO.md` y `tests/test_tablero_publico.py`. Se agrega prueba automatizada para los textos y reglas de distribución del pie.
 - Datos históricos: no modificados.
 - Validación pendiente: ejecutar la suite completa, generar los dos HTML públicos, comprobar que plantilla y archivos públicos estén sincronizados y revisar visualmente escritorio y celular. No declarar despliegue de producción hasta verificarlo.
+
+
+### 2026-10-24 — Detalle de nota en lenguaje simple (PR #90 y siguiente)
+
+- PR [#90](https://github.com/ACJ2026/redes-jusnoticias/pull/90) (fusionado): en celular el pie ya no se superpone (las listas tienen scroll propio y el detalle crece entero) y el detalle de la nota destaca el número de medios.
+- El usuario pidió sacar términos técnicos («registradas», «confirmadas», «total de publicaciones»): el detalle ahora muestra solo **«11 medios publicaron esta nota»** en grande y debajo **«Hay 8 más a verificar. Todavía no se cuentan.»** (o «No hay nada pendiente de verificar.»).
+- **Regla general: simplificar. Mostrar el dato principal en palabras comunes y no agregar datos sobre datos** (totales intermedios, conteos técnicos, aclaraciones metodológicas en el texto principal). Lo técnico va, si hace falta, en la ayuda desplegable.
+- Sin cambios en datos ni detección.
