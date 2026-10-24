@@ -316,7 +316,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="card territorio-card" id="c-territorio">
       <h2>Dónde se publicaron nuestras notas</h2>
-      <p class="note">Cuenta las publicaciones encontradas en otros medios según la ciudad donde tiene sede cada medio. No indica dónde viven los lectores. Solo incluye publicaciones de confianza media o alta (sin coincidencias dudosas) y cuenta cada enlace una sola vez. Los medios sin sede confirmada figuran aparte como «por verificar».</p>
+      <p class="note">Cuenta las publicaciones verificadas según la ciudad donde tiene sede cada medio. No indica dónde viven los lectores. Solo incluye publicaciones de confianza media o alta (sin coincidencias dudosas) y cuenta cada enlace una sola vez. Los medios sin sede confirmada figuran aparte como «por verificar».</p>
       <p class="note" id="territorio-resumen" aria-live="polite"></p>
       <h3 class="lbl">Por región</h3>
       <div class="bars" id="b-territorio-region"></div>
@@ -329,7 +329,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <div class="grid2">
       <div class="card" id="c-tipo" style="grid-column:1/-1">
         <h2>Qué temas de nuestras notas aparecen en otros medios</h2>
-        <p class="note">El porcentaje se calcula sobre las notas publicadas de cada tema, no sobre el total de publicaciones encontradas. Por ejemplo, 6 de 7 significa que 6 de las 7 notas de ese tema tuvieron al menos una publicación relacionada (86%). No significa que haya 16 publicaciones en total. Para conocer el volumen total, mirá “Publicaciones encontradas en otros medios” arriba. La relación temática no prueba que hayan usado nuestra información.</p>
+        <p class="note">El porcentaje se calcula sobre las notas publicadas de cada tema, no sobre el total de publicaciones encontradas. Por ejemplo, 6 de 7 significa que 6 de las 7 notas de ese tema tuvieron al menos una publicación relacionada (86%). No significa que haya 16 publicaciones en total. Para conocer el volumen total, mirá “Publicaciones detectadas en otros medios” arriba. La relación temática no prueba que hayan usado nuestra información.</p>
         <div class="bars" id="b-tipo"></div>
       </div>
     </div>
@@ -379,7 +379,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
-          <th><button data-k="n_medios">Medios distintos</button></th><th><button data-k="copias">Publicaciones con alta coincidencia</button></th><th>Medios verificados</th><th><button data-k="posibles">Coincidencias por revisar</button></th>
+          <th><button data-k="n_medios">Medios distintos</button></th><th><button data-k="copias">Textos muy similares</button></th><th>Medios verificados</th><th><button data-k="posibles">Coincidencias por revisar</button></th>
         </tr></thead><tbody></tbody></table>
       </div>
     </div>
@@ -1017,7 +1017,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       dibujarBusquedasManuales(data.desde);
       const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
       const pendientes = Object.entries(data.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');
-      estado.textContent = fmt(nuevas.length) + ' publicaciones encontradas desde ' + data.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
+      estado.textContent = fmt(nuevas.length) + ' publicaciones detectadas desde ' + data.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
     } catch (error) {
       const desdeManual = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
       dibujarBusquedasManuales(desdeManual);
@@ -1465,7 +1465,7 @@ const draw = () => {
     const barrasBloque = (titulo, filas, maximo) => ({ alto: 48 + filas.length * BARRA_ALTO, dibujar: (ctx, x, y) => { encabezadoBloque(ctx, titulo, x, y); barras(ctx, filas, x, y + 48, ancho, maximo); } });
     elegidos.forEach(b => {
       if (b === 'indicadores' && d.tipo === 'periodo') {
-        const c = d.c, tiles = [[c.notas, 'notas publicadas en Juschubut Noticias'], [c.publicaciones, 'publicaciones encontradas en otros medios'], [c.medios, 'medios distintos']];
+        const c = d.c, tiles = [[c.notas, 'notas publicadas en Juschubut Noticias'], [c.publicaciones, 'publicaciones verificadas en otros medios'], [c.medios, 'medios distintos']];
         const th = formato === 'x' ? 182 : 170;
         out.push({ alto: th, dibujar: (ctx, x, y) => {
           const tw = (ancho - 40) / 3;
