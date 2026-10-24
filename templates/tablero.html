@@ -329,7 +329,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <div class="grid2">
       <div class="card" id="c-tipo" style="grid-column:1/-1">
         <h2>Qué temas de nuestras notas aparecen en otros medios</h2>
-        <p class="note">El porcentaje se calcula sobre las notas publicadas de cada tema, no sobre el total de publicaciones encontradas. Por ejemplo, 6 de 7 significa que 6 de las 7 notas de ese tema tuvieron al menos una publicación relacionada (86%). No significa que haya 16 publicaciones en total. Para conocer el volumen total, mirá “Publicaciones detectadas en otros medios” arriba. La relación temática no prueba que hayan usado nuestra información.</p>
+        <p class="note">El porcentaje se calcula sobre las notas publicadas de cada tema, no sobre el total de publicaciones detectadas. Por ejemplo, 6 de 7 significa que 6 de las 7 notas de ese tema tuvieron al menos una publicación relacionada (86%). No significa que haya 16 publicaciones en total. Para conocer el volumen total, mirá “Publicaciones detectadas en otros medios” arriba. La relación temática no prueba que hayan usado nuestra información.</p>
         <div class="bars" id="b-tipo"></div>
       </div>
     </div>
@@ -375,7 +375,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <select id="fsin"><option value="">Todas</option><option value="sin">Solo sin repercusión</option><option value="con">Solo con repercusión</option></select>
       </div>
       <p class="note" id="cuenta-notas"></p>
-      <p class="note">“Medios distintos” cuenta cuántos medios diferentes tienen una publicación relacionada con enlace registrado. “Publicaciones con alta coincidencia” cuenta registros cuyo texto coincide en un 50% o más con la nota oficial. “A verificar” son coincidencias que todavía no están confirmadas. Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio; para confirmarlas hay que verificar la publicación original. Abrí una fila para consultar los enlaces guardados; su vigencia debe comprobarse en el sitio de origen.</p>
+      <p class="note">“Medios distintos” cuenta cuántos medios diferentes tienen una publicación relacionada con enlace registrado. “Textos muy similares” cuenta registros cuyo texto coincide en un 50% o más con la nota oficial. “A verificar” son coincidencias que todavía no están confirmadas. Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio; para confirmarlas hay que verificar la publicación original. Abrí una fila para consultar los enlaces guardados; su vigencia debe comprobarse en el sitio de origen.</p>
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
@@ -1225,7 +1225,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     let t = 'De ' + fmt(c.notas) + ' notas publicadas, el ' + c.pct + '% tuvo al menos una publicación relacionada con enlace registrado: ' + fmt(c.publicaciones) + ' publicaciones únicas por URL en ' + fmt(c.medios) + ' medios.';
     if (hi && lo && hi !== lo) t += ' En el tema con mayor proporción, ' + hi.levantadas + ' de ' + hi.notas + ' notas tuvieron al menos una publicación relacionada (' + hi.pct + '%); en el de menor proporción, ' + lo.levantadas + ' de ' + lo.notas + ' (' + lo.pct + '%). Estos porcentajes cuentan notas, no publicaciones.';
     if (c.porMedio.length) t += ' ' + c.porMedio[0].medio + ' es el medio donde encontramos más notas relacionadas.';
-    if (c.pct_copia >= 50) t += ' En el ' + c.pct_copia + '% de los casos comparables se detectó alta coincidencia textual (50% o más); eso no demuestra por sí solo copia ni uso de nuestra fuente.';
+    if (c.pct_copia >= 50) t += ' En el ' + c.pct_copia + '% de los casos comparables se detectó texto muy similar (coincidencia del 50% o más); eso no demuestra por sí solo copia ni uso de nuestra fuente.';
     $('take').textContent = c.notas ? t : 'No hay notas en este período.';
     $('ftodo').disabled = st.desde === meses[0] && st.hasta === meses[meses.length - 1];
     $('fdesde').value = st.desde; $('fhasta').value = st.hasta;
