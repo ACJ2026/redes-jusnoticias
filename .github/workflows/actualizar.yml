@@ -11,6 +11,7 @@ on:
       # los datos y reconstruye el tablero en una sola ejecución.
       - '.github/workflows/actualizar.yml'
       - 'scripts/actualizar.py'
+      - 'scripts/verificar_publicaciones.py'
       - 'scripts/armar_inventario.py'
       - 'data/fuentes_descubiertas.json'
   schedule:
@@ -47,6 +48,7 @@ jobs:
           mkdir -p out
           python3 -u scripts/actualizar.py out data/rep2.json | tee run.log
           grep -q "^OK notas" run.log
+          python3 scripts/verificar_publicaciones.py out/notas2.json out/rep2.json
           filas=$(python3 -c "import json;print(len(json.load(open('out/rep2.json'))))")
           antes=$(python3 -c "import json;print(len(json.load(open('data/rep2.json'))))")
           notas_antes=$(python3 -c "import json;print(len(json.load(open('data/notas2.json'))))")
@@ -74,7 +76,7 @@ jobs:
 
       - name: Verificar sintaxis y ejecutar regresiones antes de guardar
         run: |
-          python3 -m py_compile scripts/actualizar.py scripts/historial.py
+          python3 -m py_compile scripts/actualizar.py scripts/historial.py scripts/verificar_publicaciones.py
           node --check api/redes.js
           node --input-type=module --check < functions/api/google-metrics.js
           node --input-type=module --check < functions/api/redes.js
