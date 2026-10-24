@@ -310,7 +310,7 @@ class TableroPublicoTests(unittest.TestCase):
     def test_botones_de_accion_se_destacan(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn(".btn.accion{background:var(--accent)", template)
-        for boton in ("info-abrir", "info-generar", "info-descargar", "redes-vivo-consultar", "compartidos-buscar", "g-actualizar"):
+        for boton in ("info-abrir", "info-generar", "info-descargar", "redes-vivo-consultar", "compartidos-buscar", "g-actualizar", "ayuda-abrir", "notas-ayuda-abrir"):
             self.assertIn(f'class="btn accion" id="{boton}"', template)
 
     def test_inventario_unico_de_medios(self):
@@ -372,8 +372,11 @@ class TableroPublicoTests(unittest.TestCase):
     def test_medios_por_nota_cuenta_medios_unicos(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const mediosUnicos = [...new Set(ok.map(r => canonMedio(r.medio)))];", template)
-        self.assertIn("n_medios: mediosUnicos.length", template)
-        self.assertIn("publicación relacionada con enlace registrado", template)
+        # El número principal suma medios verificados y a verificar, cada medio una sola vez.
+        self.assertIn("const mediosTodos = [...new Set(rs.map(r => canonMedio(r.medio)))];", template)
+        self.assertIn("n_medios: mediosTodos.length, n_verificados: mediosUnicos.length", template)
+        self.assertIn("posibles: mediosTodos.length - mediosUnicos.length", template)
+        self.assertIn("salió en otros medios", template)
         self.assertIn("Abrir referencia en Google Noticias", template)
 
     def test_estados_del_tablero_son_claros_y_cuentan_pendientes(self):
