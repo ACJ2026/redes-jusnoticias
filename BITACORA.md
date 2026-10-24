@@ -364,3 +364,12 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Primera auditoría de medios: en alerta Atento Chubut, El Diario Web, El Extremo Sur, LU17, Metadata Noticias y Rio Negro (fallaron en esta corrida y no tienen revisión correcta registrada aún; revisar si persiste).
 - Nota 14913 (Panigadi, 23/10): Canal 12 (confirmada), El Chubut (media) y Cholila Online (por revisar). Nota 14873: Comodoro 24 entra «por revisar» por datos (39 %).
 - Tableros de Claude sincronizados (interno: repercusión v25, medios v24; público v26).
+
+
+### 2026-10-24 — PR #85: lenguaje simple y ayuda por sección del tablero
+
+- Se fusionó el PR [#85](https://github.com/ACJ2026/redes-jusnoticias/pull/85) en `main` mediante squash. Commit de merge: `7a39687128e55e8c2521a42ebc4ae351060a8849`. HEAD de la rama del PR: `cd4f3b4a85565212f3b0c904c4058fe7bbc2c912`.
+- Cambios: `templates/tablero.html` incorpora ayudas breves y opcionales en Resumen, Medios, Notas, Redes, Google y Guía; se aclaran los estados «Verificada» y «A verificar» y se explican límites de interpretación de métricas. Se actualiza `docs/MANUAL_TABLERO.md` y se agrega la prueba `test_ayuda_breve_en_cada_seccion_del_tablero` en `tests/test_tablero_publico.py`.
+- CI del PR: aprobados «Pruebas de regresión del historial» y «Validar tablero y fuentes de tráfico». Vista previa de Cloudflare Pages informada como exitosa para el commit del PR: https://2a0f20c7.jusnoticias.pages.dev/.
+- Alcance de la verificación: se confirmó que el cambio quedó en `main`; no se modificaron datos históricos. La vista previa fue desplegada, pero no se confirmó desde esta sesión un despliegue de producción posterior al merge ni una prueba visual/interactiva en móvil. No declarar esos puntos como verificados.
+- Próximo paso: comprobar el despliegue de producción de Cloudflare Pages y abrir el tablero en móvil para revisar presentación y funcionamiento.
