@@ -53,3 +53,5 @@ Tableros que leen estos datos:
 - 22/10/2026 — `https://jusnoticias.pages.dev/` es la única dirección del tablero para todo (público, API y URI de retorno de TikTok). `redes-jusnoticias.pages.dev` queda descartada.
 
 - 24/10/2026 — PR #85 fusionado en `main`: ayudas breves por sección y lenguaje más simple para los estados del tablero. Archivos: `templates/tablero.html`, `tests/test_tablero_publico.py`, `docs/MANUAL_TABLERO.md`. Merge commit `7a39687128e55e8c2521a42ebc4ae351060a8849`; PR: https://github.com/ACJ2026/redes-jusnoticias/pull/85. Checks de CI del PR aprobados; vista previa de Cloudflare informada como exitosa. Producción tras el merge y revisión visual en móvil siguen pendientes de confirmar. Sin cambios en los datos históricos. Registro detallado en [BITACORA.md](BITACORA.md).
+
+- 24/10/2026 — Corrección pendiente de revisión en rama `fix/tabla-notas-movil-ayuda-boton`: sustituye la explicación larga de la tabla por el botón «Cómo leer esta tabla» y presenta las notas como fichas en celular. Se agregan prueba de regresión y actualización del manual. Datos históricos intactos; CI y producción pendientes. Detalle en [BITACORA.md](BITACORA.md).
