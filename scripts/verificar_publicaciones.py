@@ -184,7 +184,7 @@ def main():
             fila["motivo"] = f"Título: {title_common} términos en común; cuerpo: {common_count} términos compartidos"
             confirmadas += 1
         # Si título y cuerpo son distintos, no dejar una falsa coincidencia en pendientes.
-        elif title_common < 2 and (common_count < 3 or body_official_ratio < 0.03):
+        elif common_count < 3 and body_official_ratio < 0.03:
             fila["confianza"] = "Baja"
             fila["metodo"] = "Descartada automáticamente: es otra noticia"
             fila["motivo"] = f"El título comparte {title_common} términos y el contenido {common_count}; no coincide con la nota oficial"
