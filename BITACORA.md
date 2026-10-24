@@ -439,3 +439,64 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Cada sección (Resumen, Medios, Notas, Redes, Visitas y buscadores) tiene un botón destacado **«Cómo leer esta sección»** que abre su propia explicación corta, en lenguaje simple. Las explicaciones están en `<template id="ayuda-…">` dentro de `templates/tablero.html` y se muestran en el mismo diálogo.
 - Se quitaron los desplegables «Qué muestra esta sección» (repetían lo mismo) y el botón «Cómo leer esta tabla» de Notas. La pestaña Guía queda igual.
 - Se actualizaron el manual y las pruebas (`test_ayuda_breve_en_cada_seccion_del_tablero` exige el botón y la explicación de cada sección y que no exista el botón general).
+
+
+## 2026-10-24 — Resolución de publicaciones pendientes y bitácora de decisiones
+
+**Objetivo acordado con el usuario**
+- No dejar casos en un estado inconcluso sin motivo, enlace y una salida clara.
+- Las coincidencias falsas comprobadas se descartan internamente y no aparecen en el tablero ni en sus contadores.
+- Las publicaciones que requieren decisión deben permitir confirmar o descartar, y el tablero debe reflejar la decisión sin duplicar medios.
+- El dato principal del resumen debe ser la cantidad de medios que publicaron nuestro contenido.
+- Toda intervención y resolución debe quedar en la bitácora.
+
+**Implementación iniciada en la rama `feature/revision-publicaciones-y-bitacora`**
+- `functions/api/revisiones.js`: endpoint de lectura y escritura de decisiones con clave secreta, validación de origen, validación de URL y guardado transaccional en D1.
+- `migrations/0002_revisiones_publicaciones.sql`: tablas para la decisión vigente por publicación y para conservar cada evento histórico en la bitácora.
+- `templates/tablero.html`: carga las decisiones guardadas, muestra el motivo y el enlace, ofrece «Confirmar publicación» y «Descartar coincidencia», solicita el enlace directo si el candidato procede de Google/Bing y prioriza el total de medios.
+- `docs/CLOUDFLARE_PAGES.md`: pasos de configuración del servicio.
+- `tests/test_tablero_publico.py`: comprobaciones estáticas del circuito y de su seguridad.
+- `.github/workflows/validar-tablero.yml`: incorpora la comprobación sintáctica de la nueva API.
+
+**Criterios de seguridad y trazabilidad**
+- No se guardan claves en el repositorio ni en el HTML.
+- El servidor exige el secreto `REVISIONES_CLAVE`; las escrituras fallan de forma cerrada si falta la clave o la base.
+- La decisión vigente se actualiza por nota y URL de origen; cada intervención se agrega por separado a `bitacora_revisiones_publicacion`.
+- Las filas con confianza Baja se excluyen de la interfaz y de los contadores; el método «A verificar» no se trata como confirmación.
+- Al confirmar, se conserva la URL directa del medio y se evita contar dos veces el mismo medio en la misma nota.
+
+**Pendiente antes de considerar terminado**
+- Ejecutar CI de la PR y corregir cualquier fallo.
+- Regenerar los HTML públicos desde la plantilla actualizada.
+- Configurar en Cloudflare Pages la base D1 independiente `REVISIONES_DB`, ejecutar la migración y guardar `REVISIONES_CLAVE` como secreto. No reutilizar `TIKTOK_AUTH_DB`.
+- Probar en el dominio público una confirmación, un descarte, persistencia tras recargar, contadores y bitácora.
+- Registrar aquí los enlaces y resultados reales de CI y del despliegue. Hasta entonces, el código preparado no equivale a un circuito operativo en producción.
+
+
+### Resultado de validación de la PR #97 (24/10/2026)
+
+- PR: https://github.com/ACJ2026/redes-jusnoticias/pull/97
+- Commit revisado: `e47b6982d760b5145f5228d40b105eca0e6ad3e5`.
+- `Validar tablero y fuentes de tráfico`: **success**, run https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40119403749.
+- `Pruebas de regresión del historial`: **success**, run https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40119403773.
+- Cloudflare Pages Preview: **deploy successful**, https://bcaa4f94.jusnoticias.pages.dev/ (build del commit `e47b698`).
+- La Preview confirma que Cloudflare pudo compilar y desplegar el código estático; no demuestra que el endpoint de decisiones pueda escribir en D1.
+- No se pudo comprobar desde las herramientas disponibles la configuración de bindings/secretos de la cuenta Cloudflare. Por eso todavía no se afirma que la API de revisión esté operativa en producción.
+- La PR no se considera terminada hasta decidir la integración y completar la configuración segura de `REVISIONES_DB` + `REVISIONES_CLAVE`, seguida de una prueba real de confirmación y descarte.
+
+
+### Ajuste final de lenguaje y trazabilidad (24/10/2026)
+
+- Se añadió `motivo_error_acceso` a `scripts/verificar_publicaciones.py` para traducir HTTP 401/403, 404, errores 5xx, timeout y fallas de conexión a explicaciones claras, sin exponer solo nombres técnicos de excepciones.
+- Cuando la página abre pero la comparación no alcanza, el motivo visible ahora explica que el texto no coincide lo suficiente; los números técnicos quedan en `evidencia_verificacion`.
+- Se agregaron pruebas de regresión para los mensajes de error y se amplió la prueba del endpoint para asegurar que las referencias de Google/Bing puedan conservarse como origen sin confundirse con el enlace original del medio.
+- El detalle de una nota ya no muestra ni cuenta registros descartados o candidatos sin enlace. Las publicaciones sin enlace utilizable no se presentan como una tarea sin salida.
+- Estos últimos cambios requieren que terminen nuevamente las validaciones de la PR. La configuración D1/secreto en Cloudflare sigue siendo el único requisito externo identificado para habilitar las acciones persistentes.
+
+
+### Cierre de pruebas de código (24/10/2026)
+
+- En la primera ejecución de las nuevas pruebas falló una aserción por diferencia de mayúsculas en el texto esperado, no por un error del verificador. Se corrigió la aserción para coincidir con el mensaje real.
+- En el commit `97c7b06c50713f55880c8c933182a6030319c2ab` quedaron en **success** las pruebas del verificador, las regresiones del historial, la validación del tablero y el despliegue Preview de Cloudflare Pages.
+- Preview: https://d273a4a6.jusnoticias.pages.dev/
+- Las comprobaciones de código y el build de Preview están en verde. Sigue pendiente probar las escrituras reales de `/api/revisiones` con el binding D1 y el secreto de producción, que no se pueden declarar configurados solo por tener un build exitoso.

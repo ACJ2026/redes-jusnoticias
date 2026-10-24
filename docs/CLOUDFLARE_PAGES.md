@@ -42,6 +42,21 @@ La función `functions/api/google-metrics.js` expone la ruta `/api/google-metric
 5. Confirmar que un commit posterior de GitHub Actions actualiza el despliegue público y que no se pierden registros del historial.
 6. No usar los checks de Vercel como criterio de publicación de Cloudflare Pages. La validación de Google y redes sigue dependiendo de credenciales reales y debe hacerse contra las rutas de Pages.
 
+## Revisión de publicaciones desde el tablero
+
+La pestaña **Notas** permite resolver una publicación pendiente desde el detalle de cada nota. El servicio conserva la decisión vigente y agrega un registro inalterable por intervención a la bitácora. El código no se habilita para escribir si faltan la base o la clave de revisión.
+
+Antes de usar los botones en producción, configurar lo siguiente en el proyecto Cloudflare Pages:
+
+1. Crear una base D1 **separada** para las revisiones (no reutilizar `TIKTOK_AUTH_DB`).
+2. En **Settings → Bindings**, agregar el binding D1 con el nombre exacto `REVISIONES_DB` para Production y, si se probará, también para Preview.
+3. Ejecutar `migrations/0002_revisiones_publicaciones.sql` contra esa base remota. La migración crea una tabla con la última decisión por publicación y otra de bitácora que conserva todas las decisiones.
+4. Crear una clave aleatoria de al menos 32 bytes y guardarla como secreto `REVISIONES_CLAVE` en la configuración de variables y secretos de Pages. No guardar esa clave en GitHub, en este archivo ni en el HTML.
+5. Esperar al despliegue y abrir `/api/revisiones`. Debe responder JSON con `revisiones`; si responde 503, la base o la migración todavía no están listas.
+6. En la primera acción desde el tablero, introducir la clave autorizada. Se conserva solo durante la sesión del navegador. Si se responde «Clave incorrecta», volverá a pedirla.
+
+Los botones no deben considerarse operativos hasta completar esta configuración y probar en el sitio publicado una confirmación, un descarte, la persistencia tras recargar y el recálculo de los contadores. La API rechaza escrituras sin clave, solicitudes de otro origen y confirmaciones con enlaces de Google/Bing en lugar del enlace directo del medio. Al confirmar desde una referencia de búsqueda, el usuario debe pegar la URL directa de la publicación; el enlace de búsqueda queda asociado como referencia de origen.
+
 ## Límites de esta migración
 
 - Este cambio agrega la función compatible con Cloudflare Pages; no crea el proyecto Pages ni configura secretos en la cuenta de Cloudflare.

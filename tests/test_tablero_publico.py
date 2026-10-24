@@ -580,5 +580,23 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("const ok = rs.filter(esConfirmada)", internal)
 
 
+    def test_revision_manual_segura_y_bitacora_persistente(self):
+        api = (ROOT / "functions/api/revisiones.js").read_text(encoding="utf-8")
+        migration = (ROOT / "migrations/0002_revisiones_publicaciones.sql").read_text(encoding="utf-8")
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("REVISIONES_DB", api)
+        self.assertIn("REVISIONES_CLAVE", api)
+        self.assertIn("sameOrigin(request)", api)
+        self.assertIn("normalizarUrl(url, permitirBuscador)", api)
+        self.assertIn("source_url", api)
+        self.assertIn("bitacora_revisiones_publicacion", api)
+        self.assertIn("source_url TEXT NOT NULL", migration)
+        self.assertIn("CREATE TABLE IF NOT EXISTS bitacora_revisiones_publicacion", migration)
+        self.assertIn("Confirmar publicación", template)
+        self.assertIn("Descartar coincidencia", template)
+        self.assertIn("pendientes de decisión", template)
+        self.assertIn("!/^A verificar:/i.test(r.metodo || '')", template)
+        self.assertIn("r.confianza !== 'Baja'", template)
+
 if __name__ == "__main__":
     unittest.main()

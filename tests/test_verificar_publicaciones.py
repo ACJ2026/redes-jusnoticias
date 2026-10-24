@@ -1,5 +1,6 @@
 import sys
 import unittest
+import urllib.error
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +25,13 @@ class VerificarPublicacionesTests(unittest.TestCase):
         title_common, body_ratio, _, body_common = resultado
         self.assertLess(body_common, 5)
         self.assertLess(body_ratio, 0.08)
+
+    def test_motivos_de_acceso_se_explican_en_lenguaje_simple(self):
+        bloqueado = urllib.error.HTTPError("https://medio.example/nota", 403, "Forbidden", {}, None)
+        retirado = urllib.error.HTTPError("https://medio.example/nota", 404, "Not Found", {}, None)
+        self.assertIn("bloqueó el acceso automático", vp.motivo_error_acceso(bloqueado))
+        self.assertIn("publicación fue retirada", vp.motivo_error_acceso(retirado))
+        self.assertIn("No se pudo conectar", vp.motivo_error_acceso(urllib.error.URLError("network down")))
 
     def test_contenido_compartido_da_evidencia_mas_fuerte_que_titulo(self):
         titulo = "JusNoticias presenta el programa de formación judicial patagónica"
