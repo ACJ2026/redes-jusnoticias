@@ -110,6 +110,13 @@ class TableroPublicoTests(unittest.TestCase):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio", template)
 
+    def test_ayuda_explica_como_se_verifica_una_publicacion_pendiente(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("La detección es automática; la comprobación final debe hacerla una persona", template)
+        self.assertIn("comparar su contenido con la nota oficial", template)
+        self.assertIn("localizar la publicación original", template)
+        self.assertIn("no como publicación confirmada", template)
+
     def test_enlaces_directos_verificados_quedan_asociados_a_sus_registros(self):
         # Se busca por nota y medio: la clave «pN» se renumera en cada relevamiento.
         registros = read_json("data/rep2.json")
