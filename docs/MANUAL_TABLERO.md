@@ -59,8 +59,10 @@ No sumes clics e impresiones con usuarios, sesiones o páginas vistas: son medid
 ## 3. Qué significa cada indicador de repercusión
 
 - **Notas de JusNoticias:** notas publicadas en el sitio y consideradas en el período.
-- **Notas relacionadas encontradas en otros medios:** publicaciones que el sistema vinculó con una nota de JusNoticias. La relación temática no demuestra por sí sola copia o atribución.
-- **Copia textual / reescritura / redacción propia:** clasificación automática según la similitud del texto disponible. Debe leerse como una estimación; puede equivocarse, especialmente si el sitio no permite leer el artículo completo.
+- **Publicaciones detectadas:** suma las publicaciones **verificadas** y las **a verificar**. Cada enlace se cuenta una sola vez. Una relación temática no demuestra por sí sola copia o atribución.
+- **Verificada:** cumple los criterios automáticos del tablero y tiene un enlace directo al sitio del medio.
+- **A verificar:** es una posible publicación, pero falta confirmar que sea la publicación original o que la relación esté respaldada.
+- **Texto muy similar / reescritura / redacción propia:** clasificación automática según el texto disponible. Es una estimación y puede equivocarse, especialmente si el sitio no permite leer el artículo completo.
 - **Menciona a JusNoticias como fuente:** señal visible de atribución, cuando el texto revisado nombra expresamente la fuente.
 - **Publicación propia en redes:** posteo encontrado en una cuenta configurada como propia.
 - **Me gusta, comentarios y compartidos:** interacciones que la plataforma expone para esa publicación.
@@ -81,7 +83,7 @@ No sumes clics e impresiones con usuarios, sesiones o páginas vistas: son medid
 
 1. Revisar las fechas elegidas y el sello de actualización al pie; ese sello corresponde al relevamiento de notas y medios, no a todas las consultas en vivo.
 2. Abrir el detalle de la nota o publicación y comprobar el enlace a la fuente.
-3. Distinguir si la fila es una coincidencia confirmada o una posibilidad pendiente de revisar.
+3. Distinguir entre **Verificada** y **A verificar**.
 4. En Google, pulsar **Consultar** para volver a pedir el período seleccionado.
 5. Si faltan datos, comprobar la configuración y permisos de la fuente; no compartir contraseñas, claves privadas ni tokens por chat o dentro del repositorio.
 
