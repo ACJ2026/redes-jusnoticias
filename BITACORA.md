@@ -431,3 +431,11 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - «El medio que más notas publicó» se calcula con todas las publicaciones, contando cada nota una vez por medio.
 - Los rankings de «Los 5 medios», «Cómo la publican» y «Fuentes que mencionan» siguen con lo verificado, porque dependen de haber leído el texto del medio.
 - Efecto en octubre (27 notas): pasa de 63% a 78% de notas; de 64 publicaciones en 29 medios a 186 publicaciones en 68 medios (64 verificadas y 122 a verificar). Buena parte de las «a verificar» son pistas de Google Noticias.
+
+
+### 2026-10-24 — Un botón de ayuda por sección
+
+- El botón general «Cómo leer este tablero» del encabezado solo explicaba Notas. Se quitó.
+- Cada sección (Resumen, Medios, Notas, Redes, Visitas y buscadores) tiene un botón destacado **«Cómo leer esta sección»** que abre su propia explicación corta, en lenguaje simple. Las explicaciones están en `<template id="ayuda-…">` dentro de `templates/tablero.html` y se muestran en el mismo diálogo.
+- Se quitaron los desplegables «Qué muestra esta sección» (repetían lo mismo) y el botón «Cómo leer esta tabla» de Notas. La pestaña Guía queda igual.
+- Se actualizaron el manual y las pruebas (`test_ayuda_breve_en_cada_seccion_del_tablero` exige el botón y la explicación de cada sección y que no exista el botón general).

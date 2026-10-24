@@ -11,7 +11,7 @@
 - **Notas:** detalle de las notas de JusNoticias que forman la base de la revisión.
 - **Redes:** publicaciones de las cuentas incluidas y datos públicos disponibles de interacción.
 - **Visitas y buscadores:** datos del sitio web y de la presencia en resultados de Google. Son dos fuentes distintas, explicadas abajo.
-- **Ayuda por sección:** cada pestaña tiene una explicación breve que se abre solo cuando hace falta. La guía conserva la metodología detallada y el inventario de medios en bloques desplegables.
+- **Ayuda por sección:** cada pestaña (Resumen, Medios, Notas, Redes y Visitas y buscadores) tiene un botón destacado **Cómo leer esta sección** que abre la explicación de esa sección. No hay un botón general. La guía conserva la metodología detallada y el inventario de medios en bloques desplegables.
 
 Elegí las fechas para analizar un período. Los indicadores y gráficos históricos muestran solo ese rango. La infografía territorial cuenta publicaciones detectadas por localidad de sede del medio y permite filtrar por tipo; no mide dónde viven los lectores. Los medios sin localidad verificada se agrupan aparte. Los seguidores son una cifra de referencia actual y no cambian al cambiar el período.
 
@@ -98,7 +98,7 @@ Los enlaces públicos permiten identificar páginas, pero no habilitan por sí s
 
 ## Lectura de la tabla de notas en celular
 
-En pantallas pequeñas, cada nota se muestra como una ficha con el título y sus datos etiquetados, para evitar desplazarse horizontalmente por siete columnas. El botón **Cómo leer esta tabla** abre las definiciones de medios, textos muy similares, medios verificados y coincidencias a verificar, además de la aclaración sobre Google Noticias.
+En pantallas pequeñas, cada nota se muestra como una ficha con el título y sus datos etiquetados, para evitar desplazarse horizontalmente por siete columnas. El botón **Cómo leer esta sección** de Notas abre las definiciones de medios (total de verificados y a verificar), textos muy similares, verificada y a verificar, además de la aclaración sobre Google Noticias.
 
 
 ## Lectura móvil de todas las secciones
