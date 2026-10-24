@@ -104,7 +104,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .det-resumen{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:2px 0 4px}
 .det-resumen .det-medios{font-family:var(--f-display);font-size:var(--fs-big);line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
 .det-resumen .det-medios-lbl{font-weight:600}
-.det-resumen .det-total{font-size:var(--fs-body)}
 .det-resumen .det-revisar{color:var(--muted)}
 .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:var(--fs-cap);border:1px solid var(--line)}
 .pill.ok{border-color:var(--accent);color:var(--accent)}
@@ -1705,15 +1704,13 @@ const draw = () => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === id).sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || a.medio.localeCompare(b.medio));
     $('det-titulo').textContent = n.titulo;
     // Primero, destacado, cuántos medios publicaron la nota; después el total registrado y cuántos quedan a revisar.
-    const confirmadas = rs.filter(esConfirmada).length;
     const span = (cls, txt) => { const e = document.createElement('span'); e.className = cls; e.textContent = txt; return e; };
     $('det-resumen').replaceChildren(
       span('det-medios', fmt(n.n_medios)),
       span('det-medios-lbl', n.n_medios === 1 ? 'medio publicó esta nota' : 'medios publicaron esta nota'),
-      span('det-total', fmt(rs.length) + (rs.length === 1 ? ' publicación registrada en total' : ' publicaciones registradas en total') + ': ' + fmt(confirmadas) + (confirmadas === 1 ? ' confirmada' : ' confirmadas')),
-      span('det-revisar', n.posibles ? fmt(n.posibles) + ' a revisar (no se suman hasta confirmarlas)' : 'Ninguna a revisar')
+      span('det-revisar', n.posibles ? 'Hay ' + fmt(n.posibles) + (n.posibles === 1 ? ' más a verificar. Todavía no se cuenta.' : ' más a verificar. Todavía no se cuentan.') : 'No hay nada pendiente de verificar.')
     );
-    $('det-sub').textContent = 'Nota del ' + ddmm(n.fecha) + '. Abrí cada enlace para consultar la publicación externa registrada y revisar qué fuente menciona.';
+    $('det-sub').textContent = 'Nota del ' + ddmm(n.fecha) + '. Tocá un enlace para ver la publicación del medio.';
     const tb = document.querySelector('#t-det tbody');
     tb.replaceChildren(...rs.map(r => {
       const tr = document.createElement('tr');
