@@ -1,0 +1,24 @@
+name: Probar verificador de publicaciones
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/verificar_publicaciones.py'
+      - 'tests/test_verificar_publicaciones.py'
+      - '.github/workflows/probar-verificador.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compilar y probar el verificador
+        run: |
+          python3 -m py_compile scripts/verificar_publicaciones.py
+          python3 -m unittest discover -s tests -p 'test_verificar_publicaciones.py' -v
