@@ -7,7 +7,7 @@
 ## 1. Cómo leer el tablero
 
 - **Resumen:** principales indicadores del período y alcance territorial. Los temas y rankings quedan agrupados en **Explorar temas y rankings** para que el panorama inicial sea más directo.
-- **Medios:** dónde se encontraron publicaciones relacionadas y qué se pudo comprobar en cada caso.
+- **Medios:** muestra cuántos medios distintos tienen publicaciones confirmadas para cada nota. Las coincidencias pendientes aparecen aparte como “A verificar” y no se suman al total confirmado.
 - **Notas:** detalle de las notas de JusNoticias que forman la base de la revisión.
 - **Redes:** publicaciones de las cuentas incluidas y datos públicos disponibles de interacción.
 - **Visitas y buscadores:** datos del sitio web y de la presencia en resultados de Google. Son dos fuentes distintas, explicadas abajo.
@@ -59,9 +59,10 @@ No sumes clics e impresiones con usuarios, sesiones o páginas vistas: son medid
 ## 3. Qué significa cada indicador de repercusión
 
 - **Notas de JusNoticias:** notas publicadas en el sitio y consideradas en el período.
+- **Medios que publicaron:** número de medios distintos con una publicación confirmada para esa nota. Un mismo medio no se cuenta dos veces y las coincidencias pendientes quedan afuera.
 - **Publicaciones detectadas:** suma las publicaciones **verificadas** y las **a verificar**. Cada enlace se cuenta una sola vez. Una relación temática no demuestra por sí sola copia o atribución.
 - **Verificada:** cumple los criterios automáticos del tablero y tiene un enlace directo al sitio del medio.
-- **A verificar:** es una posible publicación, pero falta confirmar que sea la publicación original o que la relación esté respaldada.
+- **A verificar:** es una posible publicación, pero falta confirmar que sea la publicación original o que la relación esté respaldada. No suma al número principal hasta confirmarse.
 - **Texto muy similar / reescritura / redacción propia:** clasificación automática según el texto disponible. Es una estimación y puede equivocarse, especialmente si el sitio no permite leer el artículo completo.
 - **Menciona a JusNoticias como fuente:** señal visible de atribución, cuando el texto revisado nombra expresamente la fuente.
 - **Publicación propia en redes:** posteo encontrado en una cuenta configurada como propia.
