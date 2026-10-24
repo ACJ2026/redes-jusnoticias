@@ -35,6 +35,11 @@ h1{font-family:var(--f-display);font-weight:500;font-size:var(--fs-title);line-h
 .lbl{color:var(--muted);font-size:var(--fs-cap)}
 select,input[type=search],.btn{font:inherit;font-size:var(--fs-cap);padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);min-height:2.25rem}
 .btn{cursor:pointer}.btn:disabled{opacity:.5;cursor:default}
+#ayuda-dialog{width:min(42rem,calc(100% - 32px));max-height:min(82vh,48rem);overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:20px;box-shadow:var(--shadow)}
+#ayuda-dialog::backdrop{background:rgba(10,20,30,.52)}
+#ayuda-dialog h2{margin:0 0 12px;font-size:1.25rem}
+#ayuda-dialog p{line-height:1.5;margin:0 0 10px}
+.ayuda-cierre{display:flex;justify-content:flex-end;margin-top:16px}
 /* Botones de acción principales: consultar, buscar, generar y descargar */
 .btn.accion{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:600;padding:8px 16px;box-shadow:0 2px 6px rgba(20,30,45,.18)}
 .btn.accion:hover{filter:brightness(1.1)}
@@ -236,6 +241,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <label for="fdesde" class="lbl">Desde</label><select id="fdesde"></select>
       <label for="fhasta" class="lbl">Hasta</label><select id="fhasta"></select>
       <button class="btn" id="ftodo" type="button">Todo el período</button>
+      <button class="btn" id="ayuda-abrir" type="button" aria-haspopup="dialog">Cómo leer este tablero</button>
     </div>
   </div>
 
@@ -299,8 +305,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <div class="kpis">
       <div class="kpi lead"><div class="big" data-k="pct"></div><div class="lbl">notas con al menos una publicación relacionada</div><p class="note">Porcentaje de nuestras notas que aparecen en otros medios. No confirma, por sí solo, que hayan usado nuestra información.</p></div>
       <div class="kpi"><div class="big" data-k="notas"></div><div class="lbl">notas publicadas en Juschubut Noticias</div><p class="note">Cantidad de notas que publicamos dentro de las fechas elegidas.</p></div>
-      <div class="kpi"><div class="big" data-k="publicaciones"></div><div class="lbl">publicaciones encontradas en otros medios</div><p class="note">Cuenta publicaciones relacionadas con nuestras notas. Algunas pueden hablar del mismo tema sin usar nuestra información.</p></div>
-      <div class="kpi"><div class="big" data-k="medios"></div><div class="lbl">medios encontrados</div><p class="note">Cantidad de medios diferentes. Cada medio se cuenta una sola vez.</p></div>
+      <div class="kpi"><div class="big" data-k="publicacionesDetectadas"></div><div class="lbl">publicaciones detectadas en otros medios</div><p class="note" data-n="publicaciones"></p></div>
+      <div class="kpi"><div class="big" data-k="mediosDetectados"></div><div class="lbl">medios detectados</div><p class="note">Medios con al menos una publicación detectada, verificada o pendiente. Cada medio se cuenta una sola vez.</p></div>
     </div>
     <p class="grp">En redes</p>
     <div class="kpis">
@@ -344,7 +350,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <div class="legend"><span><i style="background:var(--copia)"></i>Copia textual (50% o más del texto)</span><span><i style="background:var(--accent)"></i>Reescritura parcial o redacción propia</span><span><i style="background:var(--muted-bar)"></i>Texto no disponible para comparar</span></div>
         <div class="bars all-media" id="b-medios"></div>
       </div>
-      <div class="card"><h2>Notas encontradas en más medios</h2><p class="note">Las 12 notas vinculadas con más medios distintos en el período. Seleccioná una nota para consultar los enlaces originales disponibles. Una coincidencia no prueba por sí sola que el medio haya usado nuestra información.</p><div class="bars" id="b-top"></div></div>
+      <div class="card"><h2>Notas publicadas en más medios</h2><p class="note">Las 12 notas vinculadas con más medios distintos en el período. Seleccioná una nota para consultar los enlaces originales disponibles. Una coincidencia no prueba por sí sola que el medio haya usado nuestra información.</p><div class="bars" id="b-top"></div></div>
     </div>
     <div class="grid2">
       <div class="card"><h2>Cómo la publican</h2><p class="note">Clasificación de los registros confirmados según el texto que pudimos comparar. “Texto no disponible” significa que el enlace fue registrado, pero no se pudo extraer o revisar el texto. Seleccioná una barra de medio o nota para consultar las fuentes.</p><div class="bars" id="b-origen"></div></div>
@@ -360,7 +366,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="page" id="notas" hidden>
     <div class="card">
       <h2>Todas las notas del período</h2>
-      <p class="note">El monitoreo puede encontrar medios que publicaron sobre el mismo tema, pero eso no prueba que hayan tomado la información de Juschubut Noticias. "A revisar" son coincidencias solo por título. Abrí una nota para ver si se menciona la fuente oficial o a otro medio.</p>
+      <p class="note">El monitoreo puede encontrar medios que publicaron sobre el mismo tema, pero eso no prueba que hayan tomado la información de Juschubut Noticias. "A verificar" son coincidencias que solo tienen el título como pista. Abrí una nota para ver si se menciona la fuente oficial o a otro medio.</p>
       <div class="tools">
         <label for="q" class="lbl">Buscar</label><input type="search" id="q" placeholder="Título o medio">
         <label for="ftipo" class="lbl">Tipo</label>
@@ -369,11 +375,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <select id="fsin"><option value="">Todas</option><option value="sin">Solo sin repercusión</option><option value="con">Solo con repercusión</option></select>
       </div>
       <p class="note" id="cuenta-notas"></p>
-      <p class="note">“Medios distintos” cuenta cuántos medios diferentes tienen una publicación relacionada con enlace registrado. “Publicaciones con alta coincidencia” cuenta registros cuyo texto coincide en un 50% o más con la nota oficial. “A revisar” son coincidencias que todavía no están confirmadas y no entran en el total principal. Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio; para confirmarlas hay que verificar la publicación original. Abrí una fila para consultar los enlaces guardados; su vigencia debe comprobarse en el sitio de origen.</p>
+      <p class="note">“Medios distintos” cuenta cuántos medios diferentes tienen una publicación relacionada con enlace registrado. “Publicaciones con alta coincidencia” cuenta registros cuyo texto coincide en un 50% o más con la nota oficial. “A verificar” son coincidencias que todavía no están confirmadas. Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio; para confirmarlas hay que verificar la publicación original. Abrí una fila para consultar los enlaces guardados; su vigencia debe comprobarse en el sitio de origen.</p>
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
-          <th><button data-k="n_medios">Medios distintos</button></th><th><button data-k="copias">Publicaciones con alta coincidencia</button></th><th>Medios encontrados</th><th><button data-k="posibles">Coincidencias por revisar</button></th>
+          <th><button data-k="n_medios">Medios distintos</button></th><th><button data-k="copias">Publicaciones con alta coincidencia</button></th><th>Medios verificados</th><th><button data-k="posibles">Coincidencias por revisar</button></th>
         </tr></thead><tbody></tbody></table>
       </div>
     </div>
@@ -501,6 +507,15 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 </footer>
 
 <script type="application/json" id="datos">/*DATOS*/</script>
+<dialog id="ayuda-dialog" aria-labelledby="ayuda-titulo">
+  <h2 id="ayuda-titulo">Cómo leer este tablero</h2>
+  <p><b>Publicaciones detectadas:</b> suma las publicaciones verificadas y las que todavía están pendientes.</p>
+  <p><b>Verificada:</b> cumple los criterios del tablero y tiene un enlace directo al sitio del medio.</p>
+  <p><b>A verificar:</b> hay una posible publicación, pero falta confirmar que sea la publicación original y que la relación esté respaldada.</p>
+  <p><b>Texto muy similar:</b> el texto coincide en buena medida con una nota de Juschubut Noticias. Eso no demuestra por sí solo quién publicó primero ni de dónde salió la información.</p>
+  <p>Las coincidencias por tema o título y los resultados de Google Noticias sirven como pistas; no cuentan como verificadas hasta cumplir los criterios. Los datos reflejan los registros disponibles para el período elegido.</p>
+  <div class="ayuda-cierre"><button class="btn accion" id="ayuda-cerrar" type="button">Cerrar</button></div>
+</dialog>
 <script>
 (function () {
   const D = JSON.parse(document.getElementById('datos').textContent);
@@ -522,7 +537,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   // Base: notas y publicaciones confirmadas
   const notas = D.notas;
   const mesDe = new Map(notas.map(n => [Number(n.id), n.mes]));
-  // Una URL por sí sola no confirma una relación: las coincidencias solo por título quedan "A revisar".
+  // Una URL por sí sola no confirma una relación: las coincidencias solo por título quedan "A verificar".
   // Si además consta una búsqueda por frase de la nota, no se clasifica como solo título.
   // Cualquier registro cuyo método incluya una búsqueda basada solo en título queda para revisión manual,
   // incluso si también hubo una búsqueda por frase: la URL permite revisarlo, pero no lo confirma por sí sola.
@@ -546,8 +561,17 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
   const calc = () => {
     const ns = notas.filter(n => en(n.mes)), rs = repOk.filter(r => en(r.mes));
-    // El total de publicaciones cuenta URLs únicas; una URL repetida no infla el volumen ni los gráficos de clasificación.
+    // Cada URL cuenta una vez; si tiene al menos un registro verificado, prevalece ese estado.
+    const rsTodas = D.repercusion.map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) })).filter(r => en(r.mes));
+    const todasPorUrl = new Map();
+    rsTodas.forEach(r => {
+      const key = r.url || ['sin-url', r.medio, r.nota_id, r.fecha, r.titulo].join('|');
+      const previo = todasPorUrl.get(key);
+      if (!previo || (!esConfirmada(previo) && esConfirmada(r))) todasPorUrl.set(key, r);
+    });
+    const rsDetectadasUnicas = [...todasPorUrl.values()];
     const rsUnicas = [...new Map(rs.map(r => [r.url, r])).values()];
+    const mediosDetectados = new Set(rsDetectadasUnicas.map(r => r.medio).filter(Boolean)).size;
     const con = new Set(rs.map(r => Number(r.nota_id)));
     const conTexto = rsUnicas.filter(r => r.origen !== 'Sin dato');
     const ps = D.redes.filter(r => r.propia === 'Sí' && en(r.fecha.slice(0, 7)));
@@ -574,6 +598,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       notasConRepercusion: ns.filter(n => con.has(Number(n.id))).length,
       pct: ns.length ? Math.round(ns.filter(n => con.has(Number(n.id))).length / ns.length * 100) : 0,
       publicaciones: rsUnicas.length,
+      publicacionesDetectadas: rsDetectadasUnicas.length,
+      publicacionesVerificadas: rsDetectadasUnicas.filter(esConfirmada).length,
+      publicacionesPorVerificar: rsDetectadasUnicas.filter(r => !esConfirmada(r)).length,
+      mediosDetectados,
       medios: g.size,
       pct_copia: conTexto.length ? Math.round(conTexto.filter(r => r.origen.startsWith('Copia')).length / conTexto.length * 100) : 0,
       posteos: ps.length,
@@ -654,6 +682,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     document.querySelectorAll('#resumen [data-k]').forEach(e => { const k = e.dataset.k; e.textContent = k === 'pct' ? c.pct + '%' : fmt(c[k]); });
     const sinSeguidores = [...new Set(D.canales.filter(x => x.seguidores == null && !/no computar|referencia institucional/i.test(x.estado)).map(x => x.red + ' (' + x.cuenta + ')'))];
     const notasRedes = {
+      publicaciones: fmt(c.publicacionesVerificadas) + ' verificadas · ' + fmt(c.publicacionesPorVerificar) + ' a verificar. Las detectadas pueden incluir coincidencias por título o tema; una coincidencia no demuestra por sí sola que se haya usado nuestra información.',
       posteos: 'Publicaciones propias registradas en el período. Incluye: ' + lista(c.redesPosteos) + '. Las redes conectadas en vivo se consultan en la pestaña Redes.',
       vistas: 'Suma de vistas de las publicaciones propias del período. Solo informan vistas: ' + lista(c.redesVistas) + '; el resto no entrega ese dato por publicación.',
       seguidores: 'Suma de: ' + canalesPropios().map(x => x.red + ' ' + x.cuenta.replace(/ \(.*\)$/, '') + ' ' + fmt(x.seguidores)).join(' · ') + '.' + (sinSeguidores.length ? ' Sin dato todavía: ' + sinSeguidores.join(', ') + '.' : '')
@@ -983,7 +1012,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       const response = await fetch('/api/compartidos', { headers: { Accept: 'application/json' } });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'HTTP ' + response.status);
-      const nuevas = (data.filas || []).map(f => ({ ...f, tipo: 'Encontrada automáticamente (' + f.coincidencia + ')' }));
+      const nuevas = (data.filas || []).map(f => ({ ...f, tipo: 'Detectada automáticamente (' + f.coincidencia + ')' }));
       dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
       dibujarBusquedasManuales(data.desde);
       const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
@@ -1341,6 +1370,10 @@ const draw = () => {
     try { history.replaceState(null, '', '#' + page); } catch (e) {}
     draw();
   };
+  const ayudaDialog = $('ayuda-dialog');
+  $('ayuda-abrir').addEventListener('click', () => { if (typeof ayudaDialog.showModal === 'function') ayudaDialog.showModal(); });
+  $('ayuda-cerrar').addEventListener('click', () => ayudaDialog.close());
+  ayudaDialog.addEventListener('click', ev => { if (ev.target === ayudaDialog) ayudaDialog.close(); });
   $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
   $('compartidos-buscar').addEventListener('click', buscarCompartidos);
   dibujarCompartidos(filasCompartidosRegistrados());
@@ -1615,7 +1648,7 @@ const draw = () => {
       const tr = document.createElement('tr');
       const c = (txt, cls) => { const td = document.createElement('td'); if (cls) td.className = cls; if (txt instanceof Node) td.append(txt); else td.textContent = txt; tr.append(td); };
       c(canonMedio(r.medio));
-      const confirmada = esConfirmada(r); const p = document.createElement('span'); p.className = 'pill' + (confirmada ? ' ok' : ''); p.textContent = confirmada ? 'Encontrada' : 'A revisar'; c(p);
+      const confirmada = esConfirmada(r); const p = document.createElement('span'); p.className = 'pill' + (confirmada ? ' ok' : ''); p.textContent = confirmada ? 'Verificada' : 'A verificar'; c(p);
       const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona Juschubut Noticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'dim');
       c(r.origen === 'Sin dato' ? '—' : r.origen.replace(' (≥50%)', ''));
       c(r.metodo || '', 'dim');
