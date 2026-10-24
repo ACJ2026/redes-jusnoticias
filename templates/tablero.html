@@ -597,10 +597,10 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const normalizarUrlRevision = value => {
     try {
       const u = new URL(value);
-      u.hostname = u.hostname.toLowerCase().replace(/^www\\./, '');
+      u.hostname = u.hostname.toLowerCase().replace(/^www\./, '');
       u.hash = '';
       [...u.searchParams.keys()].forEach(k => { if (/^(utm_.*|fbclid|gclid|dclid|mc_cid|mc_eid|igshid|ref|ref_src|amp|output|s)$/i.test(k)) u.searchParams.delete(k); });
-      u.pathname = u.pathname.replace(/\\/+$/, '') || '/';
+      u.pathname = u.pathname.replace(/\/+$/, '') || '/';
       u.searchParams.sort();
       return u.toString();
     } catch { return ''; }
@@ -658,10 +658,10 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const soloCoincidenciaTitulo = r => /solo t[ií]tulos?/i.test(r.metodo || '');
   // Google Noticias sirve como pista de búsqueda, no como enlace directo a la publicación del medio.
   const esReferenciaGoogle = r => /news\.google\.com/i.test(String(r.url || ''));
-  const esConfirmada = r => r.confianza !== 'Baja' && !soloCoincidenciaTitulo(r) && !esReferenciaGoogle(r) && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
+  const esConfirmada = r => r.confianza !== 'Baja' && !/^A verificar:/i.test(r.metodo || '') && !soloCoincidenciaTitulo(r) && !esReferenciaGoogle(r) && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
   const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
-    const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id));
+    const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id) && r.confianza !== 'Baja');
     const ok = rs.filter(esConfirmada);
     const mediosUnicos = [...new Set(ok.map(r => canonMedio(r.medio)))];
     // Número principal: todos los medios distintos, verificados y a verificar; cada medio cuenta una sola vez.
@@ -678,7 +678,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const calc = () => {
     const ns = notas.filter(n => en(n.mes)), rs = repOk.filter(r => en(r.mes));
     // Cada URL cuenta una vez; si tiene al menos un registro verificado, prevalece ese estado.
-    const rsTodas = D.repercusion.map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) })).filter(r => en(r.mes));
+    const rsTodas = D.repercusion.filter(r => r.confianza !== 'Baja').map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) })).filter(r => en(r.mes));
     const todasPorUrl = new Map();
     rsTodas.forEach(r => {
       const key = r.url || ['sin-url', r.medio, r.nota_id, r.fecha, r.titulo].join('|');
@@ -1789,7 +1789,7 @@ const draw = () => {
       try { sessionStorage.setItem('jusnoticias_revision_key', claveRevision); } catch {}
     }
     let urlPublicacion = fila.url;
-    if (decision === 'confirmar' && /news\\.google\\.com|(^|\\.)bing\\.com/i.test(new URL(fila.url).hostname)) {
+    if (decision === 'confirmar' && /news\.google\.com|(^|\.)bing\.com/i.test(new URL(fila.url).hostname)) {
       urlPublicacion = window.prompt('Pegá el enlace directo de la publicación del medio (no el de Google/Bing):', '') || '';
       if (!urlPublicacion) return;
     }
@@ -1838,14 +1838,14 @@ const draw = () => {
       const confirmada = esConfirmada(r); const p = document.createElement('span'); p.className = 'pill' + (confirmada ? ' ok' : ''); p.textContent = confirmada ? 'Verificada' : 'A verificar'; c(p);
       const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona Juschubut Noticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'dim');
       c(r.origen === 'Sin dato' ? '—' : r.origen.replace(' (≥50%)', ''));
-      const motivo = r.motivo || (r.metodo || '').replace(/^A verificar:\\s*/i, '') || 'La evidencia disponible no alcanzó para decidir.';
+      const motivo = r.motivo || (r.metodo || '').replace(/^A verificar:\s*/i, '') || 'La evidencia disponible no alcanzó para decidir.';
       c(motivo, 'dim');
-      const enlace = r.url && /^https?:\\/\\//.test(r.url) ? document.createElement('a') : null;
+      const enlace = r.url && /^https?:\/\//.test(r.url) ? document.createElement('a') : null;
       if (enlace) { enlace.href = r.url; enlace.target = '_blank'; enlace.rel = 'noopener noreferrer'; enlace.textContent = String(r.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia de búsqueda ↗' : 'Abrir publicación original ↗'; }
       c(enlace || 'No hay enlace disponible', 'dim');
       const accion = document.createElement('td');
       if (!confirmada) {
-        if (revisionApiDisponible && r.url && /^https?:\\/\\//.test(r.url)) {
+        if (revisionApiDisponible && r.url && /^https?:\/\//.test(r.url)) {
           const confirmar = document.createElement('button');
           confirmar.type = 'button'; confirmar.className = 'btn accion'; confirmar.textContent = 'Confirmar publicación';
           confirmar.addEventListener('click', () => resolverPublicacion(r, 'confirmar'));
@@ -1862,6 +1862,7 @@ const draw = () => {
         const estado = document.createElement('span'); estado.className = 'pill ok'; estado.textContent = 'Registrada'; accion.append(estado);
       }
       tr.append(accion);
+      return tr;
     }));
     if (!rs.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 7; td.className = 'dim'; td.textContent = 'No hay publicaciones confirmadas ni casos pendientes de decisión para esta nota.'; tr.append(td); tb.append(tr); }
     $('c-detalle').hidden = false;
