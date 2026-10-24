@@ -100,6 +100,17 @@ class HistorialTests(unittest.TestCase):
         self.assertEqual(len(salida), 2)
         self.assertNotIn("url_alternativas", salida[0])
 
+    def test_actualizador_vuelve_a_conservar_historial_despues_de_filtros(self):
+        ruta = os.path.join(os.path.dirname(__file__), "..", "scripts", "actualizar.py")
+        with open(ruta, encoding="utf-8") as f:
+            codigo = f.read()
+        filtro = codigo.index("if r['nota_id'] not in ids or FP.search")
+        reconciliacion = codigo.index("rep = conservar_historial(rep, anteriores_finales, ids, cobertura)")
+        deduplicacion = codigo.index("rep = deduplicar_publicaciones(rep)", reconciliacion)
+        self.assertLess(filtro, reconciliacion)
+        self.assertLess(reconciliacion, deduplicacion)
+        self.assertIn("not in URLS_DESCARTADAS", codigo)
+
     def test_verificador_detecta_enlace_directo_perdido(self):
         anteriores = [{"nota_id": 1, "medio": "A", "url": "https://a.com/x"}, {"nota_id": 1, "medio": "A", "url": "https://a.com/y"}]
         nuevas = [{"nota_id": 1, "medio": "A", "url": "https://a.com/x/"}]
