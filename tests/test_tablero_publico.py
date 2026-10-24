@@ -587,6 +587,8 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("REVISIONES_DB", api)
         self.assertIn("REVISIONES_CLAVE", api)
         self.assertIn("sameOrigin(request)", api)
+        self.assertIn("normalizarUrl(url, permitirBuscador)", api)
+        self.assertIn("source_url", api)
         self.assertIn("bitacora_revisiones_publicacion", api)
         self.assertIn("source_url TEXT NOT NULL", migration)
         self.assertIn("CREATE TABLE IF NOT EXISTS bitacora_revisiones_publicacion", migration)
