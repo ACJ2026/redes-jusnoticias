@@ -404,3 +404,15 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Archivos: `templates/tablero.html`, `docs/MANUAL_TABLERO.md` y `tests/test_tablero_publico.py`. Se agrega prueba automatizada para los textos y reglas de distribución del pie.
 - Datos históricos: no modificados.
 - Validación pendiente: ejecutar la suite completa, generar los dos HTML públicos, comprobar que plantilla y archivos públicos estén sincronizados y revisar visualmente escritorio y celular. No declarar despliegue de producción hasta verificarlo.
+
+
+## 2026-10-24 — Fichas de notas en celular: total, confirmados y a revisar
+
+- **Fecha y hora:** 24/10/26, 10:54 a. m. (hora argentina).
+- **Motivo:** en móvil las cifras de una nota aparecían sin una lectura clara del total encontrado y de qué estaba confirmado o pendiente.
+- **Cambio:** la ficha muestra primero el título y el total de medios encontrados; debajo separa los medios confirmados (con sus nombres) de las coincidencias a revisar. Se oculta en móvil la cifra de textos muy similares para evitar confundirla con el total. En escritorio se conserva la tabla con todas las columnas; los encabezados se simplifican a «Medios encontrados», «Medios confirmados» y «A revisar».
+- **Archivos:** `templates/tablero.html`, `tests/test_tablero_publico.py` y esta bitácora.
+- **Rama:** `fix/fichas-movil-medios-confirmados-pendientes`. Commits de esta intervención: `e33d31b1c433b404cd8d28f256e13369f86dce40` (plantilla), `fda5103bb5332adff2b94743bf846dfa923285c7` (prueba).
+- **Datos:** no se modificaron archivos históricos; solo se ajustó la presentación y el cálculo del total único de medios por nota usando los registros ya existentes.
+- **Pruebas:** se agregaron aserciones para el total, las etiquetas de estado y el orden de la ficha móvil. La ejecución automática de GitHub Actions está pendiente; falta revisar el resultado y comprobar visualmente móvil y escritorio.
+- **Pendiente:** verificar que la plantilla se regenere en los archivos públicos, revisar la vista real en ambos tamaños y abrir una PR. No afirmar que está publicado hasta confirmar el despliegue.
