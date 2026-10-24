@@ -310,7 +310,7 @@ class TableroPublicoTests(unittest.TestCase):
     def test_botones_de_accion_se_destacan(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn(".btn.accion{background:var(--accent)", template)
-        for boton in ("info-abrir", "info-generar", "info-descargar", "redes-vivo-consultar", "compartidos-buscar", "g-actualizar", "ayuda-abrir", "notas-ayuda-abrir"):
+        for boton in ("info-abrir", "info-generar", "info-descargar", "redes-vivo-consultar", "compartidos-buscar", "g-actualizar"):
             self.assertIn(f'class="btn accion" id="{boton}"', template)
 
     def test_inventario_unico_de_medios(self):
@@ -392,12 +392,18 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_ayuda_breve_en_cada_seccion_del_tablero(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        for seccion in ("resumen", "medios", "notas", "redes", "google", "guia"):
+        # Cada sección tiene su botón destacado con su propia explicación; no hay botón genérico arriba.
+        self.assertNotIn('id="ayuda-abrir"', template)
+        for seccion in ("resumen", "medios", "notas", "redes", "google"):
             with self.subTest(seccion=seccion):
                 inicio = template.index(f'<section class="page" id="{seccion}"')
-                ayuda = template.index('<details class="ayuda-seccion">', inicio)
+                boton = template.index(f'class="btn accion ayuda-sec" type="button" data-ayuda="{seccion}"', inicio)
                 siguiente = template.find('<section class="page" id="', inicio + 1)
-                self.assertTrue(siguiente == -1 or ayuda < siguiente)
+                self.assertTrue(siguiente == -1 or boton < siguiente)
+                self.assertIn(f'<template id="ayuda-{seccion}" data-titulo=', template)
+        self.assertIn("$('ayuda-cuerpo').replaceChildren(t.content.cloneNode(true));", template)
+        inicio = template.index('<section class="page" id="guia"')
+        self.assertLess(template.index('<details class="ayuda-seccion">', inicio), template.index('</section>', inicio))
         self.assertIn("Verificada", template)
         self.assertIn("A verificar", template)
         self.assertIn("@media(max-width:600px)", template)
@@ -405,7 +411,6 @@ class TableroPublicoTests(unittest.TestCase):
     def test_tabla_notas_tiene_ayuda_en_boton_y_diseno_movil(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn('id="notas-ayuda-abrir"', template)
-        self.assertIn("notas-ayuda-abrir').addEventListener('click'", template)
         self.assertIn("#t-notas tbody tr{display:grid", template)
         self.assertIn("td.setAttribute('data-label', labels[i])", template)
         self.assertNotIn("Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio;", template)

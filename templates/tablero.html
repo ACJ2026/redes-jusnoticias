@@ -45,6 +45,7 @@ select,input[type=search],.btn{font:inherit;font-size:var(--fs-cap);padding:6px 
 #ayuda-dialog h2{margin:0 0 12px;font-size:1.25rem}
 #ayuda-dialog p{line-height:1.5;margin:0 0 10px}
 .ayuda-cierre{display:flex;justify-content:flex-end;margin-top:16px}
+.ayuda-boton{display:flex;justify-content:flex-end}
 /* Botones de acción principales: consultar, buscar, generar y descargar */
 .btn.accion{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:600;padding:8px 16px;box-shadow:0 2px 6px rgba(20,30,45,.18)}
 .btn.accion:hover{filter:brightness(1.1)}
@@ -108,9 +109,6 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:var(--fs-cap);border:1px solid var(--line)}
 .pill.ok{border-color:var(--accent);color:var(--accent)}
 .more{align-self:flex-start;font-weight:500}
-.nota-ayuda-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px}
-.nota-ayuda-tools .note{margin:0}
-.nota-ayuda-tools .btn{flex:0 0 auto}
 .guia p{margin:0;line-height:1.55;max-width:66ch}
 .guia b{font-weight:600}
 footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px auto 0;padding-top:0;padding-bottom:max(24px,env(safe-area-inset-bottom,0px))}
@@ -276,7 +274,6 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <label for="fdesde" class="lbl">Desde</label><select id="fdesde"></select>
       <label for="fhasta" class="lbl">Hasta</label><select id="fhasta"></select>
       <button class="btn" id="ftodo" type="button">Todo el período</button>
-      <button class="btn accion" id="ayuda-abrir" type="button" aria-haspopup="dialog">Cómo leer este tablero</button>
     </div>
   </div>
 
@@ -291,7 +288,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   </nav>
 
   <section class="page" id="resumen">
-    <details class="ayuda-seccion"><summary>Qué muestra el resumen</summary><p>Las cifras principales del período elegido. Incluyen lo verificado y lo que falta verificar.</p></details>
+    <div class="ayuda-boton"><button class="btn accion ayuda-sec" type="button" data-ayuda="resumen" aria-haspopup="dialog">Cómo leer esta sección</button></div>
     <div class="tools"><button class="btn accion" id="info-abrir" type="button" aria-expanded="false" aria-controls="infografia">Generar infografía</button></div>
     <div class="card" id="infografia" hidden>
       <h2>Generador de infografía</h2>
@@ -379,7 +376,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   </section>
 
   <section class="page" id="medios" hidden>
-    <details class="ayuda-seccion"><summary>Qué muestra esta sección</summary><p>Qué medios publicaron nuestras notas y los enlaces para verlas. «Verificada»: ya está comprobada. «A verificar»: falta comprobarla.</p></details>
+    <div class="ayuda-boton"><button class="btn accion ayuda-sec" type="button" data-ayuda="medios" aria-haspopup="dialog">Cómo leer esta sección</button></div>
     <div class="grid2">
       <div class="card">
         <h2>Medios donde encontramos más notas relacionadas</h2>
@@ -401,7 +398,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   </section>
 
   <section class="page" id="notas" hidden>
-    <details class="ayuda-seccion"><summary>Qué muestra esta sección</summary><p>Las notas del período y en cuántos medios salió cada una. «Medios» suma los verificados y los que faltan verificar.</p></details>
+    <div class="ayuda-boton"><button class="btn accion ayuda-sec" type="button" data-ayuda="notas" aria-haspopup="dialog" id="notas-ayuda-abrir">Cómo leer esta sección</button></div>
     <div class="card">
       <h2>Todas las notas del período</h2>
       <p class="note">Buscá una nota por título o por medio.</p>
@@ -413,7 +410,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
         <select id="fsin"><option value="">Todas</option><option value="sin">Solo sin repercusión</option><option value="con">Solo con repercusión</option></select>
       </div>
       <p class="note" id="cuenta-notas"></p>
-      <div class="nota-ayuda-tools"><p class="note">Tocá una nota para ver en qué medios salió.</p><button class="btn accion" id="notas-ayuda-abrir" type="button">Cómo leer esta tabla</button></div>
+      <p class="note">Tocá una nota para ver en qué medios salió.</p>
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
@@ -430,7 +427,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   </section>
 
   <section class="page" id="redes" hidden>
-    <details class="ayuda-seccion"><summary>Qué muestra esta sección</summary><p>Datos de nuestras cuentas en redes. «No disponible» no quiere decir cero: la red no informa ese dato.</p></details>
+    <div class="ayuda-boton"><button class="btn accion ayuda-sec" type="button" data-ayuda="redes" aria-haspopup="dialog">Cómo leer esta sección</button></div>
     <div class="card" id="redes-vivo">
       <h2>Estado del monitoreo en vivo</h2>
       <p class="note">Trae los datos de ahora de Facebook (JusNoticias y JusNoticias STJ por separado), Instagram, YouTube, X y TikTok. TikTok está conectado con la cuenta institucional @juschubut. X necesita un acceso pago que hoy no tenemos. WhatsApp sigue pendiente de integración; no se suman plataformas sin datos.</p>
@@ -471,7 +468,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
 
 
   <section class="page" id="google" hidden>
-    <details class="ayuda-seccion"><summary>Qué muestran estos datos</summary><p>Las visitas al sitio (Analytics) y cómo aparece en Google (Search Console). Miden cosas distintas: no se suman.</p></details>
+    <div class="ayuda-boton"><button class="btn accion ayuda-sec" type="button" data-ayuda="google" aria-haspopup="dialog">Cómo leer esta sección</button></div>
     <div class="card guia">
       <h2>Visitas al sitio y presencia en buscadores</h2>
       <p class="note">«Visitas desde buscadores»: veces que alguien entró desde Google. «Apariciones en buscadores»: veces que una página se mostró en los resultados. Se consultan hasta 90 días por vez.</p>
@@ -504,7 +501,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   </section>
 
   <section class="page" id="guia" hidden>
-    <details class="ayuda-seccion"><summary>Cómo usar esta guía</summary><p>Acá están las definiciones y los límites del tablero. Si solo necesitás entender una sección, usá el botón “Qué muestra…” de esa sección; no hace falta leer toda la metodología.</p></details>
+    <details class="ayuda-seccion"><summary>Cómo usar esta guía</summary><p>Acá están las definiciones y los límites del tablero. Si solo necesitás entender una sección, usá el botón «Cómo leer esta sección» de esa sección; no hace falta leer toda la metodología.</p></details>
     <div class="grid2">
       <div class="card guia">
         <h2>Cómo leer este tablero, en 1 minuto</h2>
@@ -550,14 +547,47 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
 
 <script type="application/json" id="datos">/*DATOS*/</script>
 <dialog id="ayuda-dialog" aria-labelledby="ayuda-titulo">
-  <h2 id="ayuda-titulo">Cómo leer este tablero</h2>
-  <p><b>Medios:</b> cuántos medios distintos publicaron la nota. Suma los ya verificados y los que faltan verificar. Si un medio la publicó dos veces, cuenta una sola vez.</p>
-  <p><b>Textos muy similares:</b> registros cuyo texto coincide en un 50% o más con la nota oficial. La similitud no demuestra quién publicó primero ni de dónde salió la información.</p>
-  <p><b>Verificada:</b> ya comprobamos que el medio publicó la nota.</p>
-  <p><b>A verificar:</b> encontramos una posible publicación, pero falta comprobarla (por ejemplo, solo coincide el título o el enlace viene de Google Noticias).</p>
-  <p><b>Google Noticias:</b> Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio. Para confirmar una coincidencia hay que encontrar y revisar la publicación original. Los enlaces guardados pueden dejar de funcionar; su vigencia se comprueba en el sitio de origen.</p>
+  <h2 id="ayuda-titulo">Cómo leer esta sección</h2>
+  <div id="ayuda-cuerpo"></div>
   <div class="ayuda-cierre"><button class="btn accion" id="ayuda-cerrar" type="button">Cerrar</button></div>
 </dialog>
+<template id="ayuda-resumen" data-titulo="Cómo leer el Resumen">
+  <p><b>Notas que salieron en otros medios:</b> de las notas que publicamos en el período, qué parte apareció en al menos un medio.</p>
+  <p><b>Publicaciones:</b> cada vez que encontramos una nota nuestra en un medio. Suma las verificadas y las que faltan verificar.</p>
+  <p><b>Medios:</b> cuántos medios distintos publicaron algo nuestro. Cada medio cuenta una sola vez.</p>
+  <p><b>Verificada:</b> ya comprobamos que el medio la publicó. <b>A verificar:</b> es una posible publicación que falta comprobar.</p>
+  <p><b>En redes:</b> lo que publicamos en nuestras cuentas, sus vistas y los seguidores. No todas las redes informan vistas.</p>
+</template>
+<template id="ayuda-medios" data-titulo="Cómo leer Medios">
+  <p><b>Medios donde encontramos más notas:</b> cuántas notas distintas nuestras publicó cada medio.</p>
+  <p><b>Notas publicadas en más medios:</b> las notas que salieron en más lugares.</p>
+  <p><b>Cómo la publican:</b> «copia textual» es un texto casi igual al nuestro; «reescritura», que cambiaron partes; «redacción propia», que lo escribieron a su manera.</p>
+  <p><b>Fuentes que mencionan:</b> a quién nombra el medio como fuente.</p>
+  <p>Estos rankings usan solo publicaciones verificadas, porque hace falta haber leído el texto del medio.</p>
+  <p>Tocá cualquier barra para ver los enlaces.</p>
+</template>
+<template id="ayuda-notas" data-titulo="Cómo leer Notas">
+  <p><b>Medios:</b> cuántos medios distintos publicaron la nota. Suma los ya verificados y los que faltan verificar. Si un medio la publicó dos veces, cuenta una sola vez.</p>
+  <p><b>Textos muy similares:</b> publicaciones con un texto casi igual al nuestro (la mitad o más).</p>
+  <p><b>Verificada:</b> ya comprobamos que el medio publicó la nota.</p>
+  <p><b>A verificar:</b> encontramos una posible publicación, pero falta comprobarla (por ejemplo, solo coincide el título o el enlace viene de Google Noticias).</p>
+  <p><b>Google Noticias:</b> Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio. Para confirmarlas hay que encontrar la publicación original.</p>
+  <p>Tocá una nota para ver en qué medios salió y abrir cada enlace.</p>
+</template>
+<template id="ayuda-redes" data-titulo="Cómo leer Redes">
+  <p><b>Estado del monitoreo en vivo:</b> «Consultar fuentes disponibles» trae los datos de ahora de cada red.</p>
+  <p><b>Quién compartió nuestras notas:</b> otras cuentas que compartieron nuestras notas. «Buscar ahora» revisa Instagram y YouTube; Facebook y TikTok se buscan a mano.</p>
+  <p><b>Historial y publicaciones del período:</b> lo que publicamos en nuestras cuentas, según lo guardado.</p>
+  <p><b>Vistas:</b> no todas las redes informan cuántas veces se vio cada publicación.</p>
+  <p><b>«No disponible»</b> no quiere decir cero: la red no da ese dato.</p>
+</template>
+<template id="ayuda-google" data-titulo="Cómo leer Visitas y buscadores">
+  <p><b>Visitas:</b> veces que alguien entró al sitio (dato de Google Analytics).</p>
+  <p><b>Apariciones en Google:</b> veces que una página nuestra se mostró en los resultados de búsqueda (dato de Search Console). No son visitas.</p>
+  <p><b>Porcentaje de clics:</b> de las veces que apareció, cuántas entraron.</p>
+  <p><b>Posición promedio:</b> en qué lugar de los resultados apareció; 1 es el primero.</p>
+  <p>Visitas y apariciones miden cosas distintas: no se suman. Los datos se consultan al abrir la pestaña o al tocar «Consultar».</p>
+</template>
 <script>
 (function () {
   const D = JSON.parse(document.getElementById('datos').textContent);
@@ -1438,8 +1468,13 @@ const draw = () => {
     draw();
   };
   const ayudaDialog = $('ayuda-dialog');
-  $('ayuda-abrir').addEventListener('click', () => { if (typeof ayudaDialog.showModal === 'function') ayudaDialog.showModal(); });
-  $('notas-ayuda-abrir').addEventListener('click', () => { if (typeof ayudaDialog.showModal === 'function') ayudaDialog.showModal(); });
+  // Cada sección abre su propia explicación en el mismo diálogo.
+  document.querySelectorAll('.ayuda-sec').forEach(b => b.addEventListener('click', () => {
+    const t = $('ayuda-' + b.dataset.ayuda);
+    $('ayuda-titulo').textContent = t.dataset.titulo;
+    $('ayuda-cuerpo').replaceChildren(t.content.cloneNode(true));
+    if (typeof ayudaDialog.showModal === 'function') ayudaDialog.showModal();
+  }));
   $('ayuda-cerrar').addEventListener('click', () => ayudaDialog.close());
   ayudaDialog.addEventListener('click', ev => { if (ev.target === ayudaDialog) ayudaDialog.close(); });
   $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
