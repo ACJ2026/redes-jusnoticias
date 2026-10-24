@@ -387,6 +387,18 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("p.textContent = confirmada ? 'Verificada' : 'A verificar'", template)
         self.assertNotIn("p.textContent = confirmada ? 'Encontrada' : 'A revisar'", template)
 
+    def test_ayuda_breve_en_cada_seccion_del_tablero(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        for seccion in ("resumen", "medios", "notas", "redes", "google", "guia"):
+            with self.subTest(seccion=seccion):
+                inicio = template.index(f'<section class="page" id="{seccion}"')
+                ayuda = template.index('<details class="ayuda-seccion">', inicio)
+                siguiente = template.find('<section class="page" id="', inicio + 1)
+                self.assertTrue(siguiente == -1 or ayuda < siguiente)
+        self.assertIn("Verificada", template)
+        self.assertIn("A verificar", template)
+        self.assertIn("@media(max-width:600px)", template)
+
     def test_portada_visual_precede_al_tablero_oculto(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
         # El título de la pestaña debe reflejar el nombre público vigente.
