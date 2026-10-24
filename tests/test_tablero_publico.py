@@ -376,6 +376,17 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("publicación relacionada con enlace registrado", template)
         self.assertIn("Abrir referencia en Google Noticias", template)
 
+    def test_estados_del_tablero_son_claros_y_cuentan_pendientes(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('data-k="publicacionesDetectadas"', template)
+        self.assertIn('data-k="mediosDetectados"', template)
+        self.assertIn("publicacionesVerificadas", template)
+        self.assertIn("publicacionesPorVerificar", template)
+        self.assertIn('id="ayuda-dialog"', template)
+        self.assertIn(">Verificada</", template)
+        self.assertIn(">A verificar</", template)
+        self.assertNotIn("p.textContent = confirmada ? 'Encontrada' : 'A revisar'", template)
+
     def test_portada_visual_precede_al_tablero_oculto(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
         # El título de la pestaña debe reflejar el nombre público vigente.
