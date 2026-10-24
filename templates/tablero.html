@@ -571,7 +571,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     });
     const rsDetectadasUnicas = [...todasPorUrl.values()];
     const rsUnicas = [...new Map(rs.map(r => [r.url, r])).values()];
-    const mediosDetectados = new Set(rsDetectadasUnicas.map(r => r.medio).filter(Boolean)).size;
+    const mediosDetectados = new Set(rsTodas.map(r => r.medio).filter(Boolean)).size;
     const con = new Set(rs.map(r => Number(r.nota_id)));
     const conTexto = rsUnicas.filter(r => r.origen !== 'Sin dato');
     const ps = D.redes.filter(r => r.propia === 'Sí' && en(r.fecha.slice(0, 7)));
