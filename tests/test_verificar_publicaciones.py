@@ -31,7 +31,7 @@ class VerificarPublicacionesTests(unittest.TestCase):
         retirado = urllib.error.HTTPError("https://medio.example/nota", 404, "Not Found", {}, None)
         self.assertIn("bloqueó el acceso automático", vp.motivo_error_acceso(bloqueado))
         self.assertIn("publicación fue retirada", vp.motivo_error_acceso(retirado))
-        self.assertIn("no se pudo conectar", vp.motivo_error_acceso(urllib.error.URLError("network down")))
+        self.assertIn("No se pudo conectar", vp.motivo_error_acceso(urllib.error.URLError("network down")))
 
     def test_contenido_compartido_da_evidencia_mas_fuerte_que_titulo(self):
         titulo = "JusNoticias presenta el programa de formación judicial patagónica"
