@@ -511,3 +511,15 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - El relevamiento real posterior a la integración se inició en https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40119763360 y seguía en curso al registrar esta nota. La fecha de `data/actualizado.txt` todavía era anterior al merge, por lo que no se afirma que el nuevo relevamiento haya terminado.
 - Las validaciones automáticas de código están en verde. **La resolución manual persistente aún no puede darse por operativa en producción** hasta verificar el binding D1 `REVISIONES_DB`, ejecutar la migración `0002_revisiones_publicaciones.sql` y configurar el secreto `REVISIONES_CLAVE` en Cloudflare Pages. No se accedió a esos ajustes de cuenta desde las herramientas disponibles.
 - No se deben registrar decisiones de prueba sobre publicaciones reales en la base productiva hasta que esa configuración esté hecha y comprobada.
+
+
+## 2026-10-24 — Fallo de actualización y corrección de conservación histórica
+
+- La ejecución real `40119763360` se detuvo antes de guardar los datos porque `scripts/verificar_historial.py` detectó la desaparición de una publicación de EQS Notas para la nota 14593. La protección evitó que se publicara una actualización incompleta.
+- La causa operativa fue que la reconciliación del historial se hacía antes de aplicar los filtros de salida; una publicación histórica podía perderse en una etapa posterior.
+- La PR #99 agrega una segunda reconciliación después de los filtros de limpieza y antes de deduplicar, preservando las publicaciones de notas vigentes y excluyendo los falsos positivos históricos explícitos. También incorpora una prueba de regresión del orden de esas operaciones.
+- PR #99 integrada en `main` mediante squash: `6cab3341fd7e51a973ccd9cd6955a6143f52a30d`.
+- Pruebas de regresión del historial: **success**, https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40132024030.
+- Validación del tablero y las fuentes: **success**, https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40132023990.
+- La actualización real posterior al arreglo se ejecuta en https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40132056378. No se marcará como exitosa ni se afirmará que se publicaron datos nuevos hasta verificar su conclusión y la fecha en `data/actualizado.txt`.
+- La revisión manual persistente continúa condicionada a la configuración en Cloudflare Pages de `REVISIONES_DB` (D1 independiente), la migración `0002_revisiones_publicaciones.sql` y el secreto `REVISIONES_CLAVE`. No se dispone de acceso administrativo a la cuenta Cloudflare desde las herramientas de esta sesión, por lo que ese paso no se registra como realizado.
