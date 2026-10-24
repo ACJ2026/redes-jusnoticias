@@ -336,10 +336,10 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     </div>
     <p class="grp">En medios</p>
     <div class="kpis">
-      <div class="kpi lead"><div class="big" data-k="pct"></div><div class="lbl">notas con al menos una publicación relacionada</div><p class="note">Parte de nuestras notas que salió en otros medios.</p></div>
+      <div class="kpi"><div class="big" data-k="pct"></div><div class="lbl">notas con al menos una publicación relacionada</div><p class="note">Parte de nuestras notas que salió en otros medios.</p></div>
       <div class="kpi"><div class="big" data-k="notas"></div><div class="lbl">notas publicadas en Juschubut Noticias</div><p class="note">Cantidad de notas que publicamos dentro de las fechas elegidas.</p></div>
-      <div class="kpi"><div class="big" data-k="publicacionesDetectadas"></div><div class="lbl">publicaciones detectadas en otros medios</div><p class="note" data-n="publicaciones"></p></div>
-      <div class="kpi"><div class="big" data-k="mediosDetectados"></div><div class="lbl">medios detectados</div><p class="note">Cada medio cuenta una sola vez.</p></div>
+      <div class="kpi"><div class="big" data-k="publicacionesDetectadas"></div><div class="lbl">publicaciones encontradas</div><p class="note" data-n="publicaciones"></p></div>
+      <div class="kpi lead"><div class="big" data-k="mediosDetectados"></div><div class="lbl">medios que publicaron nuestro contenido</div><p class="note">Cada medio cuenta una sola vez; las coincidencias descartadas no se incluyen.</p></div>
     </div>
     <p class="grp">En redes</p>
     <div class="kpis">
@@ -410,11 +410,11 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
         <select id="fsin"><option value="">Todas</option><option value="sin">Solo sin repercusión</option><option value="con">Solo con repercusión</option></select>
       </div>
       <p class="note" id="cuenta-notas"></p>
-      <p class="note">Tocá una nota para ver en qué medios salió.</p>
+      <p class="note">Tocá una nota para ver las publicaciones confirmadas y los casos pendientes de decisión.</p>
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
-          <th><button data-k="n_medios">Medios</button></th><th><button data-k="copias">Textos muy similares</button></th><th>Medios verificados</th><th><button data-k="posibles">A verificar</button></th>
+          <th><button data-k="n_medios">Medios</button></th><th><button data-k="copias">Textos muy similares</button></th><th>Medios verificados</th><th><button data-k="posibles">Pendientes</button></th>
         </tr></thead><tbody></tbody></table>
       </div>
     </div>
@@ -821,7 +821,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     document.querySelectorAll('#resumen [data-k]').forEach(e => { const k = e.dataset.k; e.textContent = k === 'pct' ? c.pct + '%' : fmt(c[k]); });
     const sinSeguidores = [...new Set(D.canales.filter(x => x.seguidores == null && !/no computar|referencia institucional/i.test(x.estado)).map(x => x.red + ' (' + x.cuenta + ')'))];
     const notasRedes = {
-      publicaciones: fmt(c.publicacionesVerificadas) + ' verificadas y ' + fmt(c.publicacionesPorVerificar) + ' a verificar.',
+      publicaciones: fmt(c.publicacionesVerificadas) + ' confirmadas y ' + fmt(c.publicacionesPorVerificar) + ' pendientes de decisión.',
       posteos: 'En ' + lista(c.redesPosteos) + '.',
       vistas: 'Solo informan vistas: ' + lista(c.redesVistas) + '.',
       seguidores: 'Suma de: ' + canalesPropios().map(x => x.red + ' ' + x.cuenta.replace(/ \(.*\)$/, '') + ' ' + fmt(x.seguidores)).join(' · ') + '.' + (sinSeguidores.length ? ' Sin dato todavía: ' + sinSeguidores.join(', ') + '.' : '')
@@ -1827,7 +1827,7 @@ const draw = () => {
     $('det-resumen').replaceChildren(
       span('det-medios', fmt(n.n_medios)),
       span('det-medios-lbl', n.n_medios === 1 ? 'medio publicó esta nota' : 'medios publicaron esta nota'),
-      span('det-revisar', n.posibles ? fmt(n.n_verificados) + (n.n_verificados === 1 ? ' verificado y ' : ' verificados y ') + fmt(n.posibles) + ' a verificar.' : (n.n_medios ? 'Todos verificados.' : ''))
+      span('det-revisar', n.posibles ? fmt(n.n_verificados) + (n.n_verificados === 1 ? ' confirmado y ' : ' confirmados y ') + fmt(n.posibles) + ' pendientes de decisión.' : (n.n_medios ? 'Todos verificados.' : ''))
     );
     $('det-sub').textContent = 'Nota del ' + ddmm(n.fecha) + '. Tocá un enlace para ver la publicación del medio.';
     const tb = document.querySelector('#t-det tbody');
