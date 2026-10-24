@@ -492,3 +492,11 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Se agregaron pruebas de regresión para los mensajes de error y se amplió la prueba del endpoint para asegurar que las referencias de Google/Bing puedan conservarse como origen sin confundirse con el enlace original del medio.
 - El detalle de una nota ya no muestra ni cuenta registros descartados o candidatos sin enlace. Las publicaciones sin enlace utilizable no se presentan como una tarea sin salida.
 - Estos últimos cambios requieren que terminen nuevamente las validaciones de la PR. La configuración D1/secreto en Cloudflare sigue siendo el único requisito externo identificado para habilitar las acciones persistentes.
+
+
+### Cierre de pruebas de código (24/10/2026)
+
+- En la primera ejecución de las nuevas pruebas falló una aserción por diferencia de mayúsculas en el texto esperado, no por un error del verificador. Se corrigió la aserción para coincidir con el mensaje real.
+- En el commit `97c7b06c50713f55880c8c933182a6030319c2ab` quedaron en **success** las pruebas del verificador, las regresiones del historial, la validación del tablero y el despliegue Preview de Cloudflare Pages.
+- Preview: https://d273a4a6.jusnoticias.pages.dev/
+- Las comprobaciones de código y el build de Preview están en verde. Sigue pendiente probar las escrituras reales de `/api/revisiones` con el binding D1 y el secreto de producción, que no se pueden declarar configurados solo por tener un build exitoso.
