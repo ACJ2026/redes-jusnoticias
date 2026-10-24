@@ -399,6 +399,14 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("A verificar", template)
         self.assertIn("@media(max-width:600px)", template)
 
+    def test_tabla_notas_tiene_ayuda_en_boton_y_diseno_movil(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('id="notas-ayuda-abrir"', template)
+        self.assertIn("notas-ayuda-abrir').addEventListener('click'", template)
+        self.assertIn("#t-notas tbody tr{display:grid", template)
+        self.assertIn("td.setAttribute('data-label', labels[i])", template)
+        self.assertNotIn("Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio;", template)
+
     def test_portada_visual_precede_al_tablero_oculto(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
         # El título de la pestaña debe reflejar el nombre público vigente.
