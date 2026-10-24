@@ -381,3 +381,10 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - En la rama `fix/tabla-notas-movil-ayuda-boton`, se reemplaza el texto largo por una explicación breve y el botón «Cómo leer esta tabla», que abre un diálogo con definiciones claras. En pantallas pequeñas, la tabla de notas pasa a fichas con etiquetas por dato; el resto de las tablas conserva su comportamiento actual.
 - Se agregan etiquetas de celda desde los encabezados y una prueba de regresión para el botón y la vista móvil. Se actualiza el manual.
 - No se modifican datos históricos. CI del commit `505e60c9d55a71f8568c908135658b2b4330c1d2`: ambos workflows (`Pruebas de regresión del historial` y `Validar tablero y fuentes de tráfico`) terminaron en success. El primer intento había detectado que una prueba existente requería conservar literalmente la aclaración de Google Noticias; se ajustó el texto y el segundo intento pasó. Despliegue de producción y revisión en celular real pendientes de aprobación e integración.
+
+
+### 2026-10-24 — Adaptación móvil de todas las tablas
+
+- Se amplía la rama `fix/tabla-notas-movil-ayuda-boton` para que la adaptación móvil cubra todas las tablas del tablero: detalle de notas, medios, redes y Google, además de la tabla principal de notas. En escritorio se conserva la presentación tabular.
+- Se agregan etiquetas de dato a las celdas, también cuando las filas se generan o actualizan dinámicamente, y una prueba de regresión que exige la regla general.
+- No se modifican archivos de datos históricos. Pendiente: ejecutar y revisar los workflows sobre el nuevo commit, comprobar la vista previa y hacer prueba visual real en celular y escritorio. No declarar producción verificada ni fusionar sin autorización explícita.
