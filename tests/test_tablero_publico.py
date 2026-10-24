@@ -559,7 +559,7 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_textos_simples_y_pie_no_se_superpone(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn('data-k="n_medios">Medios</button>', template)
+        self.assertIn('data-k="n_medios_encontrados">Medios encontrados</button>', template)
         self.assertNotIn("Medios distintos", template)
         self.assertIn("footer.wrap{display:block;position:relative;clear:both;flex:none;", template)
         self.assertIn(".foot{position:relative;isolation:isolate;box-sizing:border-box;width:100%;", template)
