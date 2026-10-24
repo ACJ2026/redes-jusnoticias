@@ -13,7 +13,7 @@ const respuesta = (data, status = 200) => new Response(JSON.stringify(data), {
 
 function normalizarUrl(value, permitirBuscador = false) {
   const url = new URL(value);
-  if (url.protocol !== "https:" || url.username || url.password) throw new Error("URL inválida");
+  if ((url.protocol !== "https:" && url.protocol !== "http:") || url.username || url.password) throw new Error("URL inválida");
   url.hostname = url.hostname.toLowerCase().replace(/^www\./, "");
   url.hash = "";
   for (const key of [...url.searchParams.keys()]) {
