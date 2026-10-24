@@ -19,7 +19,7 @@ from pathlib import Path
 UA = {"User-Agent": "Mozilla/5.0 (compatible; JusNoticiasVerificador/1.0)"}
 BUSCADORES = ("news.google.com", "bing.com", "www.bing.com")
 STOP = set("""para sobre desde entre donde porque cuando hasta durante contra juzgado juzgados justicia judicial poder chubut provincia fallo causa pesos ordena ordenan ordeno penal trelew rawson madryn comodoro esquel puerto rivadavia millones prision tribunal superior ciudad nuevo nueva jusnoticias contenido gobierno provincia""".split())
-MARCAS_CANDIDATA = ("solo título", "solo titulo", "google noticias", "bing noticias", "coincidencia temática", "coincidencia tematica", "fuente no identificada")
+MARCAS_CANDIDATA = ("solo título", "solo titulo", "google noticias", "bing noticias", "coincidencia temática", "coincidencia tematica", "fuente no identificada", "a verificar:")
 
 
 def normalizar(texto):
@@ -118,13 +118,21 @@ def main():
             continue
         if fila.get("confianza") == "Baja":
             continue
+        texto_previo = ""
         if not url_directa(url):
-            # Una ficha de Google/Bing no es la publicación. Se conserva como pendiente.
-            fila["confianza"] = "Baja"
-            fila["metodo"] = "Descartada: el enlace es del buscador, no del medio"
-            fila["motivo"] = "No se encontró una URL original del medio"
-            descartadas += 1
-            continue
+            # Abrir la ficha del buscador permite seguir su redirección hasta el medio.
+            try:
+                url_final, texto_previo = descargar(url)
+                if url_directa(url_final):
+                    url = url_final
+                    fila["url"] = url_final
+                else:
+                    raise ValueError("el buscador no entregó una URL del medio")
+            except Exception:
+                fila["metodo"] = "A verificar: el buscador no entregó un enlace original; se reintentará"
+                fila["motivo"] = "No se pudo llegar a una publicación directa del medio"
+                pendientes += 1
+                continue
         nid = int(fila.get("nota_id", 0))
         titulo_oficial, cuerpo_oficial = nota_oficial(nid, cache)
         if not titulo_oficial or not cuerpo_oficial:
@@ -134,6 +142,8 @@ def main():
             continue
         try:
             final_url, texto = descargar(url)
+            if not texto and texto_previo:
+                texto = texto_previo
             if not url_directa(final_url):
                 raise ValueError("la redirección terminó en un buscador")
         except Exception as exc:
