@@ -661,7 +661,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const esConfirmada = r => r.confianza !== 'Baja' && !/^A verificar:/i.test(r.metodo || '') && !soloCoincidenciaTitulo(r) && !esReferenciaGoogle(r) && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
   const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
-    const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id) && r.confianza !== 'Baja');
+    const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id) && r.confianza !== 'Baja' && Boolean(r.url));
     const ok = rs.filter(esConfirmada);
     const mediosUnicos = [...new Set(ok.map(r => canonMedio(r.medio)))];
     // Número principal: todos los medios distintos, verificados y a verificar; cada medio cuenta una sola vez.
@@ -678,7 +678,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const calc = () => {
     const ns = notas.filter(n => en(n.mes)), rs = repOk.filter(r => en(r.mes));
     // Cada URL cuenta una vez; si tiene al menos un registro verificado, prevalece ese estado.
-    const rsTodas = D.repercusion.filter(r => r.confianza !== 'Baja').map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) })).filter(r => en(r.mes));
+    const rsTodas = D.repercusion.filter(r => r.confianza !== 'Baja' && Boolean(r.url)).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) })).filter(r => en(r.mes));
     const todasPorUrl = new Map();
     rsTodas.forEach(r => {
       const key = r.url || ['sin-url', r.medio, r.nota_id, r.fecha, r.titulo].join('|');
@@ -1820,7 +1820,7 @@ const draw = () => {
     const n = porNota.find(x => x.id === id); if (!n) return;
     st.sel = id;
     document.querySelectorAll('#t-notas tbody tr').forEach(tr => tr.classList.toggle('sel', Number(tr.dataset.id) === id));
-    const rs = D.repercusion.filter(r => Number(r.nota_id) === id && r.confianza !== 'Baja').sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || a.medio.localeCompare(b.medio));
+    const rs = D.repercusion.filter(r => Number(r.nota_id) === id && r.confianza !== 'Baja' && Boolean(r.url)).sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || a.medio.localeCompare(b.medio));
     $('det-titulo').textContent = n.titulo;
     // Primero, destacado, cuántos medios publicaron la nota; después el total registrado y cuántos quedan a revisar.
     const span = (cls, txt) => { const e = document.createElement('span'); e.className = cls; e.textContent = txt; return e; };
