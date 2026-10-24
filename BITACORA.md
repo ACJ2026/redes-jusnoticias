@@ -412,3 +412,14 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - El usuario pidió sacar términos técnicos («registradas», «confirmadas», «total de publicaciones»): el detalle ahora muestra solo **«11 medios publicaron esta nota»** en grande y debajo **«Hay 8 más a verificar. Todavía no se cuentan.»** (o «No hay nada pendiente de verificar.»).
 - **Regla general: simplificar. Mostrar el dato principal en palabras comunes y no agregar datos sobre datos** (totales intermedios, conteos técnicos, aclaraciones metodológicas en el texto principal). Lo técnico va, si hace falta, en la ayuda desplegable.
 - Sin cambios en datos ni detección.
+
+
+### 2026-10-24 — Número principal = todos los medios, y pasada general de lenguaje simple
+
+- **Pedido del usuario:** el número que importa es el total de medios que publicaron la nota, sumando verificados y a verificar. El desglose va en la ayuda («Cómo leer este tablero»), no en el texto principal.
+- **Cambio de conteo (solo en el tablero, no en la detección):** `n_medios` pasa a contar los medios distintos de todas las publicaciones de la nota (verificadas y a verificar); cada medio cuenta una sola vez aunque haya publicado dos veces. Nuevo `n_verificados` = medios verificados. `posibles` pasa a contar **medios** a verificar (antes contaba registros). Ejemplo nota 14913 (Panigadi): 4 medios = Canal 12 y Radio 3 (verificados) + Cholila Online (dos artículos, cuenta una vez) y El Chubut (a verificar).
+- Esto afecta la lista de notas, el detalle, los rankings de notas y la infografía. Los KPI del resumen sobre publicaciones siguen separando verificadas y a verificar.
+- **Contradice el PR #88 de GPT**, que proponía que el número principal fuera solo de medios confirmados. Ese PR no debe fusionarse tal como está.
+- **Lenguaje simple en todo el tablero** (aplicando la regla general de la entrada anterior): se acortaron las explicaciones de Resumen, Medios, Notas, Redes, Visitas y buscadores y la guía rápida; se sacaron las aclaraciones repetidas («no demuestra por sí sola…», «direcciones web registradas», «confianza media o alta»). La metodología técnica queda solo en «Metodología, límites y detalles técnicos».
+- Los botones «Cómo leer este tablero» y «Cómo leer esta tabla» pasan a estar destacados como los de infografía.
+- Pruebas: se actualizaron las que exigían frases viejas y se agregó la verificación del conteo nuevo.
