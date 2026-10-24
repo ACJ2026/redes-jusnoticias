@@ -109,9 +109,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .nota-ayuda-tools .btn{flex:0 0 auto}
 .guia p{margin:0;line-height:1.55;max-width:66ch}
 .guia b{font-weight:600}
-.foot{border-top:1px solid var(--line);padding-top:12px}
-.actualizacion-fecha{display:block;font-weight:600;margin-bottom:4px}
-.actualizacion-aclaracion{display:block;color:var(--muted);font-size:var(--fs-cap);line-height:1.45}
+footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px auto 0;padding-top:0;padding-bottom:max(24px,env(safe-area-inset-bottom,0px))}
+.foot{position:relative;isolation:isolate;box-sizing:border-box;width:100%;margin:0;border-top:1px solid var(--line);padding-top:12px;overflow-wrap:anywhere}
+.actualizacion-fecha{display:block;font-weight:600;margin-bottom:4px;line-height:1.45}
+.actualizacion-aclaracion{display:block;color:var(--muted);font-size:var(--fs-cap);line-height:1.45;overflow-wrap:anywhere}
 .territorio-card{border-top:3px solid var(--accent)}
 .detail-group{border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;background:var(--panel)}
 .detail-group>summary{cursor:pointer;font-weight:600;line-height:1.45;padding:3px 0}
@@ -381,7 +382,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <div class="legend"><span><i style="background:var(--copia)"></i>Copia textual (50% o más del texto)</span><span><i style="background:var(--accent)"></i>Reescritura parcial o redacción propia</span><span><i style="background:var(--muted-bar)"></i>Texto no disponible para comparar</span></div>
         <div class="bars all-media" id="b-medios"></div>
       </div>
-      <div class="card"><h2>Notas publicadas en más medios</h2><p class="note">Las 12 notas vinculadas con más medios distintos en el período. Seleccioná una nota para consultar los enlaces originales disponibles. Una coincidencia no prueba por sí sola que el medio haya usado nuestra información.</p><div class="bars" id="b-top"></div></div>
+      <div class="card"><h2>Notas publicadas en más medios</h2><p class="note">Las 12 notas que aparecieron en más medios. Seleccioná una nota para consultar los enlaces originales disponibles. Una coincidencia no prueba por sí sola que el medio haya usado nuestra información.</p><div class="bars" id="b-top"></div></div>
     </div>
     <div class="grid2">
       <div class="card"><h2>Cómo la publican</h2><p class="note">Clasificación de los registros confirmados según el texto que pudimos comparar. “Texto no disponible” significa que el enlace fue registrado, pero no se pudo extraer o revisar el texto. Seleccioná una barra de medio o nota para consultar las fuentes.</p><div class="bars" id="b-origen"></div></div>
@@ -395,7 +396,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   </section>
 
   <section class="page" id="notas" hidden>
-    <details class="ayuda-seccion"><summary>Qué muestra esta sección</summary><p>Lista las notas de Juschubut Noticias del período. Abrí una fila para ver sus referencias. “Medios distintos” cuenta medios, “Textos muy similares” compara textos y “Coincidencias por revisar” señala casos pendientes: son medidas diferentes.</p></details>
+    <details class="ayuda-seccion"><summary>Qué muestra esta sección</summary><p>Lista las notas de Juschubut Noticias del período. Abrí una fila para ver sus referencias. “Medios” cuenta dónde apareció la nota, “Textos muy similares” compara textos y “Coincidencias por revisar” señala casos pendientes.</p></details>
     <div class="card">
       <h2>Todas las notas del período</h2>
       <p class="note">Buscá una nota y seleccioná su fila para consultar las publicaciones relacionadas y sus enlaces.</p>
@@ -411,7 +412,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
-          <th><button data-k="n_medios">Medios distintos</button></th><th><button data-k="copias">Textos muy similares</button></th><th>Medios verificados</th><th><button data-k="posibles">Coincidencias por revisar</button></th>
+          <th><button data-k="n_medios">Medios</button></th><th><button data-k="copias">Textos muy similares</button></th><th>Medios verificados</th><th><button data-k="posibles">Coincidencias por revisar</button></th>
         </tr></thead><tbody></tbody></table>
       </div>
     </div>
@@ -544,7 +545,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 <script type="application/json" id="datos">/*DATOS*/</script>
 <dialog id="ayuda-dialog" aria-labelledby="ayuda-titulo">
   <h2 id="ayuda-titulo">Cómo leer este tablero</h2>
-  <p><b>Medios distintos:</b> cantidad de medios diferentes con una publicación relacionada y un enlace registrado.</p>
+  <p><b>Medios:</b> cantidad de medios con una publicación relacionada y un enlace registrado.</p>
   <p><b>Textos muy similares:</b> registros cuyo texto coincide en un 50% o más con la nota oficial. La similitud no demuestra quién publicó primero ni de dónde salió la información.</p>
   <p><b>Medios verificados:</b> medios con publicaciones confirmadas según los criterios del tablero.</p>
   <p><b>A verificar:</b> coincidencias que todavía no están confirmadas.</p>
@@ -1519,7 +1520,7 @@ const draw = () => {
     const barrasBloque = (titulo, filas, maximo) => ({ alto: 48 + filas.length * BARRA_ALTO, dibujar: (ctx, x, y) => { encabezadoBloque(ctx, titulo, x, y); barras(ctx, filas, x, y + 48, ancho, maximo); } });
     elegidos.forEach(b => {
       if (b === 'indicadores' && d.tipo === 'periodo') {
-        const c = d.c, tiles = [[c.notas, 'notas publicadas en Juschubut Noticias'], [c.publicaciones, 'publicaciones verificadas en otros medios'], [c.medios, 'medios distintos']];
+        const c = d.c, tiles = [[c.notas, 'notas publicadas en Juschubut Noticias'], [c.publicaciones, 'publicaciones verificadas en otros medios'], [c.medios, 'medios']];
         const th = formato === 'x' ? 182 : 170;
         out.push({ alto: th, dibujar: (ctx, x, y) => {
           const tw = (ancho - 40) / 3;
@@ -1696,7 +1697,7 @@ const draw = () => {
     document.querySelectorAll('#t-notas tbody tr').forEach(tr => tr.classList.toggle('sel', Number(tr.dataset.id) === id));
     const rs = D.repercusion.filter(r => Number(r.nota_id) === id).sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || a.medio.localeCompare(b.medio));
     $('det-titulo').textContent = n.titulo;
-    $('det-sub').textContent = ddmm(n.fecha) + ' · ' + fmt(n.n_medios) + ' medios distintos con publicaciones relacionadas' + (n.posibles ? ' · ' + fmt(n.posibles) + (n.posibles === 1 ? ' coincidencia posible' : ' coincidencias posibles') : '') + '. Abrí cada enlace para consultar la publicación externa registrada y revisar qué fuente menciona.';
+    $('det-sub').textContent = ddmm(n.fecha) + ' · ' + fmt(n.n_medios) + ' medios con publicaciones relacionadas' + (n.posibles ? ' · ' + fmt(n.posibles) + (n.posibles === 1 ? ' coincidencia posible' : ' coincidencias posibles') : '') + '. Abrí cada enlace para consultar la publicación externa registrada y revisar qué fuente menciona.';
     const tb = document.querySelector('#t-det tbody');
     tb.replaceChildren(...rs.map(r => {
       const tr = document.createElement('tr');

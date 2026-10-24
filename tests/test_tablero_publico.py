@@ -557,6 +557,14 @@ class TableroPublicoTests(unittest.TestCase):
         # La tabla de notas ya tiene su diseño de fichas específico.
         self.assertIn("#t-notas tbody tr{display:grid", template)
 
+    def test_textos_simples_y_pie_no_se_superpone(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('data-k="n_medios">Medios</button>', template)
+        self.assertNotIn("Medios distintos", template)
+        self.assertIn("footer.wrap{display:block;position:relative;clear:both;flex:none;", template)
+        self.assertIn(".foot{position:relative;isolation:isolate;box-sizing:border-box;width:100%;", template)
+        self.assertIn("overflow-wrap:anywhere", template)
+
     def test_tablero_interno_no_cuenta_registros_sin_enlace(self):
         internal = (ROOT / "tablero_interno/index.html").read_text(encoding="utf-8")
         self.assertIn("const esConfirmada = r =>", internal)
