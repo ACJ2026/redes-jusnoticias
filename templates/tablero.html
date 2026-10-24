@@ -1520,7 +1520,7 @@ const draw = () => {
     const barrasBloque = (titulo, filas, maximo) => ({ alto: 48 + filas.length * BARRA_ALTO, dibujar: (ctx, x, y) => { encabezadoBloque(ctx, titulo, x, y); barras(ctx, filas, x, y + 48, ancho, maximo); } });
     elegidos.forEach(b => {
       if (b === 'indicadores' && d.tipo === 'periodo') {
-        const c = d.c, tiles = [[c.notas, 'notas publicadas en Juschubut Noticias'], [c.publicaciones, 'publicaciones verificadas en otros medios'], [c.medios, 'medios distintos']];
+        const c = d.c, tiles = [[c.notas, 'notas publicadas en Juschubut Noticias'], [c.publicaciones, 'publicaciones verificadas en otros medios'], [c.medios, 'medios']];
         const th = formato === 'x' ? 182 : 170;
         out.push({ alto: th, dibujar: (ctx, x, y) => {
           const tw = (ancho - 40) / 3;
