@@ -28,8 +28,8 @@ function normalizarUrl(value, permitirBuscador = false) {
   return url.toString();
 }
 
-async function urlKey(notaId, url) {
-  const bytes = new TextEncoder().encode(String(notaId) + "\n" + normalizarUrl(url));
+async function urlKey(notaId, url, permitirBuscador = false) {
+  const bytes = new TextEncoder().encode(String(notaId) + "\n" + normalizarUrl(url, permitirBuscador));
   const hash = await crypto.subtle.digest("SHA-256", bytes);
   return Array.from(new Uint8Array(hash), b => b.toString(16).padStart(2, "0")).join("");
 }
