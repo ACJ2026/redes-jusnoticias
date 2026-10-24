@@ -103,6 +103,24 @@ def evaluar(titulo_oficial, cuerpo_oficial, titulo_medio, cuerpo_medio):
     return titulo_comun, ratio_oficial, ratio_medio, len(ob & mb)
 
 
+
+def motivo_error_acceso(exc):
+    """Convierte fallas técnicas de acceso en una explicación entendible."""
+    if isinstance(exc, urllib.error.HTTPError):
+        if exc.code in (401, 403):
+            return "El medio bloqueó el acceso automático. Abrí el enlace para comprobar la publicación."
+        if exc.code == 404:
+            return "El enlace no existe o la publicación fue retirada."
+        if exc.code >= 500:
+            return "El sitio del medio no respondió correctamente. Podés volver a abrir el enlace."
+        return f"El sitio respondió con un error HTTP {exc.code}; no se pudo comprobar automáticamente."
+    if isinstance(exc, (TimeoutError,)) or isinstance(getattr(exc, "reason", None), TimeoutError):
+        return "El sitio tardó demasiado en responder. Abrí el enlace para comprobar la publicación."
+    if isinstance(exc, urllib.error.URLError):
+        return "No se pudo conectar con el sitio del medio. El enlace queda disponible para revisarlo."
+    return "No se pudo leer la publicación automáticamente. Abrí el enlace para comprobarla."
+
+
 def main():
     if len(sys.argv) != 3:
         raise SystemExit("Uso: verificar_publicaciones.py notas2.json rep2.json")
@@ -146,7 +164,7 @@ def main():
                 raise ValueError("la redirección terminó en un buscador")
         except Exception as exc:
             fila["metodo"] = "A verificar: no se pudo leer la publicación original; se reintentará"
-            fila["motivo"] = "No se pudo abrir el enlace original (" + type(exc).__name__ + ")"
+            fila["motivo"] = motivo_error_acceso(exc)
             pendientes += 1
             continue
         revisadas += 1
@@ -189,7 +207,7 @@ def main():
             descartadas += 1
         else:
             fila["metodo"] = "A verificar: la comparación automática no alcanzó evidencia suficiente; se reintentará"
-            fila["motivo"] = f"Coincidencia insuficiente: título {title_common}, cuerpo {common_count} términos compartidos"
+            fila["motivo"] = "Se pudo abrir la página, pero el texto no coincide lo suficiente con la nota oficial para confirmarla o descartarla automáticamente."
             pendientes += 1
         time.sleep(0.05)
     Path(sys.argv[2]).write_text(json.dumps(filas, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
