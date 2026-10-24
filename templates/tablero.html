@@ -101,6 +101,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 #t-notas tbody tr:hover td{background:var(--grid)}
 #t-notas tbody tr.sel td{background:var(--grid);font-weight:600}
 #t-det a{color:var(--accent);font-weight:500}
+.det-resumen{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:2px 0 4px}
+.det-resumen .det-medios{font-family:var(--f-display);font-size:var(--fs-big);line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.det-resumen .det-medios-lbl{font-weight:600}
+.det-resumen .det-total{font-size:var(--fs-body)}
+.det-resumen .det-revisar{color:var(--muted)}
 .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:var(--fs-cap);border:1px solid var(--line)}
 .pill.ok{border-color:var(--accent);color:var(--accent)}
 .more{align-self:flex-start;font-weight:500}
@@ -192,7 +197,8 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   #dashboard-app .tbox table:not(#t-notas) tbody td:last-child{border-bottom:0}
   #dashboard-app .tbox table:not(#t-notas) tbody td[colspan]{grid-column:1/-1}
   #dashboard-app .tbox table:not(#t-notas) tbody td[colspan]::before{content:none}
-  #dashboard-app .tbox{overflow:visible}
+  #dashboard-app .tbox{overflow:auto}
+  #dashboard-app #c-detalle .tbox{overflow:visible;max-height:none}
   /* En celular, la lista de notas se convierte en fichas legibles en vez de una tabla horizontal. */
   #t-notas{display:block;width:100%;min-width:0}
   #t-notas thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -418,6 +424,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     </div>
     <div class="card" id="c-detalle" hidden>
       <h2 id="det-titulo"></h2>
+      <div class="det-resumen" id="det-resumen" aria-live="polite"></div>
       <p class="note" id="det-sub"></p>
       <div class="tbox"><table id="t-det"><thead><tr><th>Medio</th><th>Estado</th><th>Qué se pudo comprobar</th><th>Cómo la publicó</th><th>Cómo se encontró</th><th>Enlace</th></tr></thead><tbody></tbody></table></div>
     </div>
@@ -1697,7 +1704,16 @@ const draw = () => {
     document.querySelectorAll('#t-notas tbody tr').forEach(tr => tr.classList.toggle('sel', Number(tr.dataset.id) === id));
     const rs = D.repercusion.filter(r => Number(r.nota_id) === id).sort((a, b) => Number(esConfirmada(b)) - Number(esConfirmada(a)) || a.medio.localeCompare(b.medio));
     $('det-titulo').textContent = n.titulo;
-    $('det-sub').textContent = ddmm(n.fecha) + ' · ' + fmt(n.n_medios) + ' medios con publicaciones relacionadas' + (n.posibles ? ' · ' + fmt(n.posibles) + (n.posibles === 1 ? ' coincidencia posible' : ' coincidencias posibles') : '') + '. Abrí cada enlace para consultar la publicación externa registrada y revisar qué fuente menciona.';
+    // Primero, destacado, cuántos medios publicaron la nota; después el total registrado y cuántos quedan a revisar.
+    const confirmadas = rs.filter(esConfirmada).length;
+    const span = (cls, txt) => { const e = document.createElement('span'); e.className = cls; e.textContent = txt; return e; };
+    $('det-resumen').replaceChildren(
+      span('det-medios', fmt(n.n_medios)),
+      span('det-medios-lbl', n.n_medios === 1 ? 'medio publicó esta nota' : 'medios publicaron esta nota'),
+      span('det-total', fmt(rs.length) + (rs.length === 1 ? ' publicación registrada en total' : ' publicaciones registradas en total') + ': ' + fmt(confirmadas) + (confirmadas === 1 ? ' confirmada' : ' confirmadas')),
+      span('det-revisar', n.posibles ? fmt(n.posibles) + ' a revisar (no se suman hasta confirmarlas)' : 'Ninguna a revisar')
+    );
+    $('det-sub').textContent = 'Nota del ' + ddmm(n.fecha) + '. Abrí cada enlace para consultar la publicación externa registrada y revisar qué fuente menciona.';
     const tb = document.querySelector('#t-det tbody');
     tb.replaceChildren(...rs.map(r => {
       const tr = document.createElement('tr');
