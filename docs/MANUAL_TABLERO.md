@@ -98,7 +98,7 @@ Los enlaces públicos permiten identificar páginas, pero no habilitan por sí s
 
 ## Lectura de la tabla de notas en celular
 
-En pantallas pequeñas, cada nota se muestra como una ficha con el título y sus datos etiquetados, para evitar desplazarse horizontalmente por siete columnas. El botón **Cómo leer esta tabla** abre las definiciones de medios, textos muy similares, medios verificados y coincidencias a verificar, además de la aclaración sobre Google Noticias.
+En pantallas pequeñas, cada nota se muestra como una ficha: primero el título y el total de medios encontrados; debajo aparecen los medios confirmados, con sus nombres, y la cantidad de coincidencias a revisar. La cifra de textos muy similares no se muestra en la ficha para evitar confundirla con el total. En escritorio se conservan todas las columnas. El botón **Cómo leer esta tabla** explica las etiquetas y aclara que una coincidencia pendiente todavía no está confirmada.
 
 
 ## Lectura móvil de todas las secciones
