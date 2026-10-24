@@ -423,3 +423,11 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - **Lenguaje simple en todo el tablero** (aplicando la regla general de la entrada anterior): se acortaron las explicaciones de Resumen, Medios, Notas, Redes, Visitas y buscadores y la guía rápida; se sacaron las aclaraciones repetidas («no demuestra por sí sola…», «direcciones web registradas», «confianza media o alta»). La metodología técnica queda solo en «Metodología, límites y detalles técnicos».
 - Los botones «Cómo leer este tablero» y «Cómo leer esta tabla» pasan a estar destacados como los de infografía.
 - Pruebas: se actualizaron las que exigían frases viejas y se agregó la verificación del conteo nuevo.
+
+
+### 2026-10-24 — Resumen con totales (verificadas + a verificar)
+
+- A pedido del usuario, la frase principal del Resumen, el porcentaje de notas que salieron en otros medios y el gráfico por tema usan el total (verificadas y a verificar), igual que el número de medios por nota (#92).
+- «El medio que más notas publicó» se calcula con todas las publicaciones, contando cada nota una vez por medio.
+- Los rankings de «Los 5 medios», «Cómo la publican» y «Fuentes que mencionan» siguen con lo verificado, porque dependen de haber leído el texto del medio.
+- Efecto en octubre (27 notas): pasa de 63% a 78% de notas; de 64 publicaciones en 29 medios a 186 publicaciones en 68 medios (64 verificadas y 122 a verificar). Buena parte de las «a verificar» son pistas de Google Noticias.
