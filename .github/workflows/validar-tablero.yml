@@ -12,6 +12,10 @@ on:
       - 'templates/tablero.html'
       - 'functions/api/redes.js'
       - 'functions/api/google-metrics.js'
+      - 'functions/api/revisiones.js'
+      - 'migrations/0002_revisiones_publicaciones.sql'
+      - 'docs/CLOUDFLARE_PAGES.md'
+      - 'BITACORA.md'
       - 'functions/api/tiktok.js'
       - 'functions/api/tiktok/**'
       - 'migrations/0001_tiktok_auth_security.sql'
@@ -34,6 +38,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Comprobar sintaxis de la API de revisiones
+        run: node --check --input-type=module < functions/api/revisiones.js
       - name: Comprobar sintaxis de la API de Google
         run: node --check --input-type=module < functions/api/google-metrics.js
       - name: Comprobar sintaxis de la API de redes
