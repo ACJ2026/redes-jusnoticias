@@ -644,6 +644,7 @@ if NOTAS_PREV and os.path.exists(NOTAS_PREV):
     notas = conservar_notas(notas, json.load(open(NOTAS_PREV, encoding='utf8')))
     print('notas conservadas del historial', len(notas) - antes)
 ids_actuales = {n['id'] for n in notas}
+anteriores = []
 if PREV and os.path.exists(PREV):
     anteriores = json.load(open(PREV, encoding='utf8'))
     rows = conservar_historial(rows, anteriores, ids_actuales, cobertura)
@@ -683,6 +684,14 @@ for r in rows:
         r['metodo'] = 'Google Noticias (coincidencia temática; relación no verificada)'
     if r['nota_id'] not in ids or FP.search(norm(r.get('url', ''))): continue
     rep.append(r)
+# Última protección: algunos filtros de limpieza se aplican después de fusionar el historial.
+# Reincorporar publicaciones históricas de notas vigentes que no sean falsos positivos explícitos.
+anteriores_finales = [
+    a for a in anteriores
+    if (a.get('nota_id'), a.get('medio'), a.get('url')) not in URLS_DESCARTADAS
+    and not FP.search(norm(a.get('url', '')))
+]
+rep = conservar_historial(rep, anteriores_finales, ids, cobertura)
 # Una fila por publicación (nota, medio y URL canónica): si un medio tiene dos artículos
 # asociados a la misma nota se conservan ambos, pero solo uno queda confirmado (ver
 # marcar_secundarias); los enlaces de buscador quedan como URL alternativa.
