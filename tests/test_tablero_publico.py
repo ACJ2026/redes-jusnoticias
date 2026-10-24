@@ -548,6 +548,15 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertEqual(unrelated["origen"], "Sin dato")
 
 
+    def test_todas_las_tablas_tienen_adaptacion_movil_y_etiquetas(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("#dashboard-app .tbox table:not(#t-notas)", template)
+        self.assertIn("const etiquetarCeldas =", template)
+        self.assertIn("new MutationObserver", template)
+        self.assertIn("data-label", template)
+        # La tabla de notas ya tiene su diseño de fichas específico.
+        self.assertIn("#t-notas tbody tr{display:grid", template)
+
     def test_tablero_interno_no_cuenta_registros_sin_enlace(self):
         internal = (ROOT / "tablero_interno/index.html").read_text(encoding="utf-8")
         self.assertIn("const esConfirmada = r =>", internal)
