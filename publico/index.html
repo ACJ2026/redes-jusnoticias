@@ -1794,7 +1794,7 @@ const draw = () => {
       if (!urlPublicacion) return;
     }
     const motivo = decision === 'descartar'
-      ? (window.prompt('Motivo del descarte (opcional):', 'La publicación no corresponde a esta nota.') || '')
+      ? 'Coincidencia descartada por revisión manual.'
       : 'Publicación confirmada por revisión manual.';
     const botones = document.querySelectorAll('#t-det button');
     botones.forEach(b => { b.disabled = true; });
