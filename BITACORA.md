@@ -395,3 +395,12 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - A pedido del usuario, se integró mediante squash el PR [#86](https://github.com/ACJ2026/redes-jusnoticias/pull/86) en `main`. Commit resultante: `70c7f27b1e0f4b9d0f558ecb150f52f8d2888089`; commit revisado: `56b09399365eac75a89090522d406a720ba244d6`.
 - En el commit revisado, los workflows «Pruebas de regresión del historial» (run #481) y «Validar tablero y fuentes de tráfico» (run #225) figuraban como exitosos. No se modificaron datos históricos.
 - La integración ya está hecha, pero desde esta sesión no se pudo confirmar el despliegue de producción de Cloudflare Pages ni hacer una prueba visual real en el celular y escritorio. No declarar esos dos puntos como verificados hasta comprobarlos.
+
+
+### 2026-10-24 — Corrección de textos y pie de actualización
+
+- Motivo: el usuario señaló que «Medios distintos» no es simple y que el pie con la fecha de actualización se superpone al contenido.
+- Cambios propuestos en rama `fix/textos-simples-pie-tablero`: se reemplaza el texto visible por «Medios» y se simplifica su explicación; el pie se mantiene en el flujo normal, con separación del contenido, ancho controlado y ajuste de palabras largas para pantallas pequeñas.
+- Archivos: `templates/tablero.html`, `docs/MANUAL_TABLERO.md` y `tests/test_tablero_publico.py`. Se agrega prueba automatizada para los textos y reglas de distribución del pie.
+- Datos históricos: no modificados.
+- Validación pendiente: ejecutar la suite completa, generar los dos HTML públicos, comprobar que plantilla y archivos públicos estén sincronizados y revisar visualmente escritorio y celular. No declarar despliegue de producción hasta verificarlo.
