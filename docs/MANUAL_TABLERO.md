@@ -99,3 +99,8 @@ Los enlaces públicos permiten identificar páginas, pero no habilitan por sí s
 ## Lectura de la tabla de notas en celular
 
 En pantallas pequeñas, cada nota se muestra como una ficha con el título y sus datos etiquetados, para evitar desplazarse horizontalmente por siete columnas. El botón **Cómo leer esta tabla** abre las definiciones de medios distintos, textos muy similares, medios verificados y coincidencias a verificar, además de la aclaración sobre Google Noticias.
+
+
+## Lectura móvil de todas las secciones
+
+La adaptación a celular se aplica a todas las tablas del tablero, no solo a la lista de notas. En pantallas pequeñas, las filas de las tablas se presentan como fichas con el nombre de cada dato; en escritorio se conserva la tabla completa. Las tablas que se actualizan dinámicamente también reciben sus etiquetas. Revisar ambas vistas al cambiar el diseño.
