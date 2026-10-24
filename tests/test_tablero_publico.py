@@ -559,16 +559,17 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_textos_simples_y_pie_no_se_superpone(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn('data-k="n_medios_encontrados">Medios encontrados</button>', template)
+        self.assertIn('data-k="n_medios">Medios que publicaron</button>', template)
         self.assertNotIn("Medios distintos", template)
         self.assertIn("footer.wrap{display:block;position:relative;clear:both;flex:none;", template)
         self.assertIn(".foot{position:relative;isolation:isolate;box-sizing:border-box;width:100%;", template)
         self.assertIn("overflow-wrap:anywhere", template)
-        self.assertIn("Medios encontrados", template)
+        self.assertIn("Medios que publicaron", template)
         self.assertIn("Medios confirmados", template)
-        self.assertIn("data-k=\"posibles\">A revisar", template)
-        self.assertIn("n_medios_encontrados: new Set(rs.map(r => canonMedio(r.medio)).filter(Boolean)).size", template)
-        self.assertIn("#t-notas tbody td:nth-child(4){grid-column:1/-1;order:-2;font-weight:600}", template)
+        self.assertIn("data-k=\"posibles\">A verificar", template)
+        self.assertIn("c: r.n_medios ? 'medios-destacados' : 'zero'", template)
+        self.assertIn("#t-notas tbody td:nth-child(4){grid-column:1/-1;order:-2;font-size:1.45rem;font-weight:800;color:var(--accent);line-height:1.2}", template)
+        self.assertIn("No incluye coincidencias pendientes ni cuenta dos veces un mismo medio.", template)
         self.assertIn("#t-notas tbody td:nth-child(5){display:none}", template)
 
     def test_tablero_interno_no_cuenta_registros_sin_enlace(self):
