@@ -427,3 +427,9 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Datos: no se modificaron archivos de data/; el número se calcula a partir de registros existentes y solo cuenta medios confirmados distintos.
 - Pruebas: al registrar la entrada, GitHub Actions seguía en curso para el SHA f8f9ae3e2b83311585dd5662cf72faace46d34b4: «Validar tablero y fuentes de tráfico» #230 (40101924235) y «Pruebas de regresión del historial» #484 (40101924194). Resultado final pendiente. Falta revisar visualmente celular y escritorio.
 - Pendiente: confirmar los checks del último commit, regeneración del HTML público, revisión visual y despliegue. PR #88 continúa abierto y no fusionado.
+
+
+### Verificación posterior — 24/10/2026 11:20 ART
+
+- En el SHA de implementación y documentación `1f896e693a6686d85755fd792dbe233dd86795b4`, ambos workflows terminaron con éxito: «Validar tablero y fuentes de tráfico» run `40101959672` (https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40101959672) y «Pruebas de regresión del historial» run `40101959683` (https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40101959683).
+- Estos resultados confirman las verificaciones automáticas de ese SHA. No sustituyen la revisión visual en un celular/escritorio ni confirman el despliegue en producción; ambas tareas siguen pendientes.
