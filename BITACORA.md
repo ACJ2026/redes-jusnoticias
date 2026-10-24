@@ -373,3 +373,11 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - CI del PR: aprobados «Pruebas de regresión del historial» y «Validar tablero y fuentes de tráfico». Vista previa de Cloudflare Pages informada como exitosa para el commit del PR: https://2a0f20c7.jusnoticias.pages.dev/.
 - Alcance de la verificación: se confirmó que el cambio quedó en `main`; no se modificaron datos históricos. La vista previa fue desplegada, pero no se confirmó desde esta sesión un despliegue de producción posterior al merge ni una prueba visual/interactiva en móvil. No declarar esos puntos como verificados.
 - Próximo paso: comprobar el despliegue de producción de Cloudflare Pages y abrir el tablero en móvil para revisar presentación y funcionamiento.
+
+
+### 2026-10-24 — Corrección de lectura móvil de la tabla de notas
+
+- La revisión de producción mostró que la explicación larga seguía visible y que la tabla conservaba el desplazamiento horizontal en celular. El PR #85 había agregado ayudas desplegables, pero no había reemplazado ese párrafo ni cambiado el diseño móvil de la tabla.
+- En la rama `fix/tabla-notas-movil-ayuda-boton`, se reemplaza el texto largo por una explicación breve y el botón «Cómo leer esta tabla», que abre un diálogo con definiciones claras. En pantallas pequeñas, la tabla de notas pasa a fichas con etiquetas por dato; el resto de las tablas conserva su comportamiento actual.
+- Se agregan etiquetas de celda desde los encabezados y una prueba de regresión para el botón y la vista móvil. Se actualiza el manual.
+- No se modifican datos históricos. Pruebas/CI y despliegue de producción pendientes de ejecutar tras revisión del PR.
