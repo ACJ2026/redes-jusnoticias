@@ -11,7 +11,7 @@ const respuesta = (data, status = 200) => new Response(JSON.stringify(data), {
   }
 });
 
-function normalizarUrl(value) {
+function normalizarUrl(value, permitirBuscador = false) {
   const url = new URL(value);
   if (url.protocol !== "https:" || url.username || url.password) throw new Error("URL inválida");
   url.hostname = url.hostname.toLowerCase().replace(/^www\./, "");
@@ -22,7 +22,7 @@ function normalizarUrl(value) {
   url.pathname = url.pathname.replace(/\/+$/, "") || "/";
   url.searchParams.sort();
   const host = url.hostname;
-  if (host === "news.google.com" || host === "bing.com" || host.endsWith(".bing.com")) {
+  if (!permitirBuscador && (host === "news.google.com" || host === "bing.com" || host.endsWith(".bing.com"))) {
     throw new Error("Se necesita el enlace directo del medio, no el del buscador");
   }
   return url.toString();
@@ -53,7 +53,7 @@ export async function onRequestGet({ env }) {
   if (!env.REVISIONES_DB) return respuesta({ error: "La revisión de publicaciones no está configurada todavía." }, 503);
   try {
     const { results = [] } = await env.REVISIONES_DB.prepare(
-      "SELECT nota_id, url, decision, medio, origen, fecha, motivo, revisado_por FROM revisiones_publicacion ORDER BY fecha DESC"
+      "SELECT nota_id, url, source_url, decision, medio, origen, fecha, motivo, revisado_por FROM revisiones_publicacion ORDER BY fecha DESC"
     ).all();
     return respuesta({ revisiones: results });
   } catch {
@@ -88,28 +88,29 @@ export async function onRequestPost({ request, env }) {
   if (!url || url.length > 2048) return respuesta({ error: "Falta un enlace válido." }, 400);
   if (decision === "confirmar" && !medio) return respuesta({ error: "Falta identificar el medio." }, 400);
 
-  let urlCanonica, key;
+  let urlCanonica, sourceUrl, key;
   try {
-    urlCanonica = normalizarUrl(url);
-    key = await urlKey(notaId, urlCanonica);
+    sourceUrl = normalizarUrl(String(body.source_url || url), true);
+    urlCanonica = decision === "confirmar" ? normalizarUrl(url) : normalizarUrl(url, true);
+    key = await urlKey(notaId, sourceUrl, true);
   } catch (error) { return respuesta({ error: error.message || "El enlace no es válido." }, 400); }
 
   const fecha = new Date().toISOString();
   try {
     await env.REVISIONES_DB.batch([
       env.REVISIONES_DB.prepare(`
-        INSERT INTO revisiones_publicacion (url_key, nota_id, url, decision, medio, origen, fecha, motivo, revisado_por)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO revisiones_publicacion (url_key, nota_id, url, source_url, decision, medio, origen, fecha, motivo, revisado_por)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(url_key) DO UPDATE SET
-          url = excluded.url, decision = excluded.decision, medio = excluded.medio,
+          url = excluded.url, source_url = excluded.source_url, decision = excluded.decision, medio = excluded.medio,
           origen = excluded.origen, fecha = excluded.fecha, motivo = excluded.motivo,
           revisado_por = excluded.revisado_por
-      `).bind(key, notaId, urlCanonica, decision, medio, origen, fecha, motivo, revisadoPor),
+      `).bind(key, notaId, urlCanonica, sourceUrl, decision, medio, origen, fecha, motivo, revisadoPor),
       env.REVISIONES_DB.prepare(`
         INSERT INTO bitacora_revisiones_publicacion
-          (url_key, nota_id, url, decision, medio, origen, fecha, motivo, revisado_por)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `).bind(key, notaId, urlCanonica, decision, medio, origen, fecha, motivo, revisadoPor)
+          (url_key, nota_id, url, source_url, decision, medio, origen, fecha, motivo, revisado_por)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `).bind(key, notaId, urlCanonica, sourceUrl, decision, medio, origen, fecha, motivo, revisadoPor)
     ]);
     return respuesta({ ok: true, decision, nota_id: notaId, url: urlCanonica, fecha });
   } catch {
