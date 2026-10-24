@@ -483,3 +483,12 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - La Preview confirma que Cloudflare pudo compilar y desplegar el código estático; no demuestra que el endpoint de decisiones pueda escribir en D1.
 - No se pudo comprobar desde las herramientas disponibles la configuración de bindings/secretos de la cuenta Cloudflare. Por eso todavía no se afirma que la API de revisión esté operativa en producción.
 - La PR no se considera terminada hasta decidir la integración y completar la configuración segura de `REVISIONES_DB` + `REVISIONES_CLAVE`, seguida de una prueba real de confirmación y descarte.
+
+
+### Ajuste final de lenguaje y trazabilidad (24/10/2026)
+
+- Se añadió `motivo_error_acceso` a `scripts/verificar_publicaciones.py` para traducir HTTP 401/403, 404, errores 5xx, timeout y fallas de conexión a explicaciones claras, sin exponer solo nombres técnicos de excepciones.
+- Cuando la página abre pero la comparación no alcanza, el motivo visible ahora explica que el texto no coincide lo suficiente; los números técnicos quedan en `evidencia_verificacion`.
+- Se agregaron pruebas de regresión para los mensajes de error y se amplió la prueba del endpoint para asegurar que las referencias de Google/Bing puedan conservarse como origen sin confundirse con el enlace original del medio.
+- El detalle de una nota ya no muestra ni cuenta registros descartados o candidatos sin enlace. Las publicaciones sin enlace utilizable no se presentan como una tarea sin salida.
+- Estos últimos cambios requieren que terminen nuevamente las validaciones de la PR. La configuración D1/secreto en Cloudflare sigue siendo el único requisito externo identificado para habilitar las acciones persistentes.
