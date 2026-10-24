@@ -11,7 +11,7 @@
 - **Notas:** detalle de las notas de JusNoticias que forman la base de la revisión.
 - **Redes:** publicaciones de las cuentas incluidas y datos públicos disponibles de interacción.
 - **Visitas y buscadores:** datos del sitio web y de la presencia en resultados de Google. Son dos fuentes distintas, explicadas abajo.
-- **Guía y metodología:** explicación breve; la metodología detallada y el inventario de medios están en bloques desplegables.
+- **Ayuda por sección:** cada pestaña tiene una explicación breve que se abre solo cuando hace falta. La guía conserva la metodología detallada y el inventario de medios en bloques desplegables.
 
 Elegí las fechas para analizar un período. Los indicadores y gráficos históricos muestran solo ese rango. La infografía territorial cuenta publicaciones detectadas por localidad de sede del medio y permite filtrar por tipo; no mide dónde viven los lectores. Los medios sin localidad verificada se agrupan aparte. Los seguidores son una cifra de referencia actual y no cambian al cambiar el período.
 
