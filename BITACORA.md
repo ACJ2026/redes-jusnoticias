@@ -471,3 +471,15 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Configurar en Cloudflare Pages la base D1 independiente `REVISIONES_DB`, ejecutar la migración y guardar `REVISIONES_CLAVE` como secreto. No reutilizar `TIKTOK_AUTH_DB`.
 - Probar en el dominio público una confirmación, un descarte, persistencia tras recargar, contadores y bitácora.
 - Registrar aquí los enlaces y resultados reales de CI y del despliegue. Hasta entonces, el código preparado no equivale a un circuito operativo en producción.
+
+
+### Resultado de validación de la PR #97 (24/10/2026)
+
+- PR: https://github.com/ACJ2026/redes-jusnoticias/pull/97
+- Commit revisado: `e47b6982d760b5145f5228d40b105eca0e6ad3e5`.
+- `Validar tablero y fuentes de tráfico`: **success**, run https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40119403749.
+- `Pruebas de regresión del historial`: **success**, run https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40119403773.
+- Cloudflare Pages Preview: **deploy successful**, https://bcaa4f94.jusnoticias.pages.dev/ (build del commit `e47b698`).
+- La Preview confirma que Cloudflare pudo compilar y desplegar el código estático; no demuestra que el endpoint de decisiones pueda escribir en D1.
+- No se pudo comprobar desde las herramientas disponibles la configuración de bindings/secretos de la cuenta Cloudflare. Por eso todavía no se afirma que la API de revisión esté operativa en producción.
+- La PR no se considera terminada hasta decidir la integración y completar la configuración segura de `REVISIONES_DB` + `REVISIONES_CLAVE`, seguida de una prueba real de confirmación y descarte.
