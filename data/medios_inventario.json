@@ -529,6 +529,39 @@
       }
     },
     {
+      "nombre": "El Chubut",
+      "alias": [],
+      "dominio": "elchubut.com.ar",
+      "url": "https://elchubut.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Trelew",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 22,
+      "notas": 22,
+      "ejemplo": "https://www.elchubut.com.ar/trelew/2026-9-11-10-37-0-convocan-en-trelew-a-familias-monoparentales-para-adoptar-a-una-adolescente",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-10-24",
+      "redes": {
+        "Facebook": [
+          "/diarioelchubut"
+        ],
+        "Instagram": [
+          "@diarioelchubut"
+        ],
+        "X": [
+          "@elchubut"
+        ],
+        "YouTube": [
+          "@DiarioELCHUBUTwebTV"
+        ],
+        "TikTok": [
+          "@diarioelchubut"
+        ]
+      }
+    },
+    {
       "nombre": "Radio de Camioneros",
       "alias": [],
       "dominio": "radiodecamioneros.com.ar",
@@ -556,39 +589,6 @@
         ],
         "YouTube": [
           "/channel/UCx0ZTnObZJEuNvOlI-BhDvQ"
-        ]
-      }
-    },
-    {
-      "nombre": "El Chubut",
-      "alias": [],
-      "dominio": "elchubut.com.ar",
-      "url": "https://elchubut.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Trelew",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 21,
-      "notas": 21,
-      "ejemplo": "https://www.elchubut.com.ar/trelew/2026-9-11-10-37-0-convocan-en-trelew-a-familias-monoparentales-para-adoptar-a-una-adolescente",
-      "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {
-        "Facebook": [
-          "/diarioelchubut"
-        ],
-        "Instagram": [
-          "@diarioelchubut"
-        ],
-        "X": [
-          "@elchubut"
-        ],
-        "YouTube": [
-          "@DiarioELCHUBUTwebTV"
-        ],
-        "TikTok": [
-          "@diarioelchubut"
         ]
       }
     },
@@ -1221,8 +1221,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
