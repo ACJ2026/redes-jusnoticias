@@ -200,8 +200,11 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   #t-notas tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
   #t-notas tbody td{display:block;min-width:0;padding:8px 4px;border-bottom:1px solid var(--grid);text-align:left;overflow-wrap:anywhere}
   #t-notas tbody td::before{content:attr(data-label);display:block;color:var(--muted);font-size:.78rem;font-weight:500;line-height:1.35;margin-bottom:3px}
-  #t-notas tbody td:nth-child(2){grid-column:1/-1;order:-1;font-size:1.04rem;font-weight:600}
-  #t-notas tbody td:nth-child(6){grid-column:1/-1}
+  #t-notas tbody td:nth-child(2){grid-column:1/-1;order:-3;font-size:1.04rem;font-weight:600}
+  #t-notas tbody td:nth-child(4){grid-column:1/-1;order:-2;font-weight:600}
+  #t-notas tbody td:nth-child(5){display:none}
+  #t-notas tbody td:nth-child(6){grid-column:1/-1;order:1}
+  #t-notas tbody td:nth-child(7){grid-column:1/-1;order:2}
   #t-notas tbody td:last-child{border-bottom:0}
   .wrap{padding:18px 14px 36px;gap:18px}
   .mast{gap:8px;padding-bottom:16px}
@@ -412,7 +415,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
-          <th><button data-k="n_medios">Medios</button></th><th><button data-k="copias">Textos muy similares</button></th><th>Medios verificados</th><th><button data-k="posibles">Coincidencias por revisar</button></th>
+          <th><button data-k="n_medios_encontrados">Medios encontrados</button></th><th><button data-k="copias">Textos muy similares</button></th><th>Medios confirmados</th><th><button data-k="posibles">A revisar</button></th>
         </tr></thead><tbody></tbody></table>
       </div>
     </div>
@@ -545,7 +548,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
 <script type="application/json" id="datos">/*DATOS*/</script>
 <dialog id="ayuda-dialog" aria-labelledby="ayuda-titulo">
   <h2 id="ayuda-titulo">Cómo leer este tablero</h2>
-  <p><b>Medios:</b> cantidad de medios con una publicación relacionada y un enlace registrado.</p>
+  <p><b>Medios encontrados:</b> medios confirmados y medios con coincidencias pendientes de revisión. En cada nota se muestran por separado los confirmados y los que faltan revisar.</p>
   <p><b>Textos muy similares:</b> registros cuyo texto coincide en un 50% o más con la nota oficial. La similitud no demuestra quién publicó primero ni de dónde salió la información.</p>
   <p><b>Medios verificados:</b> medios con publicaciones confirmadas según los criterios del tablero.</p>
   <p><b>A verificar:</b> coincidencias que todavía no están confirmadas.</p>
@@ -586,7 +589,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id));
     const ok = rs.filter(esConfirmada);
     const mediosUnicos = [...new Set(ok.map(r => canonMedio(r.medio)))];
-    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: mediosUnicos.length, copias: new Set(ok.filter(r => r.origen.startsWith('Copia')).map(r => r.url)).size, medios: mediosUnicos.join(', '), posibles: rs.length - ok.length };
+    return { id: Number(n.id), fecha: n.fecha, mes: n.mes, titulo: n.titulo, tipo: n.tipo, n_medios: mediosUnicos.length, n_medios_encontrados: new Set(rs.map(r => canonMedio(r.medio)).filter(Boolean)).size, copias: new Set(ok.filter(r => r.origen.startsWith('Copia')).map(r => r.url)).size, medios: mediosUnicos.join(', '), posibles: rs.length - ok.length };
   });
   const meses = [...new Set(notas.map(n => n.mes))].sort();
   const st = { desde: meses[meses.length - 1], hasta: meses[meses.length - 1], page: 'resumen', sort: 'fecha', dir: -1 };
@@ -934,7 +937,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     let rows = c.notasP.filter(r => (!ft || r.tipo === ft) && (!fs || (fs === 'sin' ? r.n_medios === 0 : r.n_medios > 0)) && (!q || (r.titulo + ' ' + r.medios).toLowerCase().includes(q)));
     rows.sort((a, b) => { const x = a[st.sort], y = b[st.sort]; return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y))) * st.dir; });
     $('cuenta-notas').textContent = fmt(rows.length) + ' notas';
-    tbl('#t-notas', rows, [[r => ddmm(r.fecha)], [r => r.titulo], [r => r.tipo], [r => ({ t: fmt(r.n_medios), c: r.n_medios ? '' : 'zero' }), 'num'], [r => fmt(r.copias), 'num'], [r => ({ t: r.medios || 'Ningún medio', c: r.medios ? '' : 'zero' })], [r => r.posibles ? fmt(r.posibles) : '', 'num dim']]);
+    tbl('#t-notas', rows, [[r => ddmm(r.fecha)], [r => r.titulo], [r => r.tipo], [r => ({ t: fmt(r.n_medios_encontrados), c: r.n_medios_encontrados ? '' : 'zero' }), 'num'], [r => fmt(r.copias), 'num'], [r => ({ t: (r.n_medios ? fmt(r.n_medios) + ' · ' : '') + (r.medios || 'Ningún medio confirmado'), c: r.medios ? '' : 'zero' })], [r => r.posibles ? fmt(r.posibles) : '0', 'num dim']]);
     [...document.querySelectorAll('#t-notas tbody tr')].forEach((tr, i) => { tr.dataset.id = rows[i].id; tr.classList.toggle('sel', rows[i].id === st.sel); });
     document.querySelectorAll('#t-notas th').forEach(th => { const b = th.querySelector('button'); th.setAttribute('aria-sort', b && b.dataset.k === st.sort ? (st.dir > 0 ? 'ascending' : 'descending') : 'none'); });
   };
