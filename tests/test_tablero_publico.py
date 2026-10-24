@@ -564,6 +564,12 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("footer.wrap{display:block;position:relative;clear:both;flex:none;", template)
         self.assertIn(".foot{position:relative;isolation:isolate;box-sizing:border-box;width:100%;", template)
         self.assertIn("overflow-wrap:anywhere", template)
+        self.assertIn("Medios encontrados", template)
+        self.assertIn("Medios confirmados", template)
+        self.assertIn("data-k=\"posibles\">A revisar", template)
+        self.assertIn("n_medios_encontrados: new Set(rs.map(r => canonMedio(r.medio)).filter(Boolean)).size", template)
+        self.assertIn("#t-notas tbody td:nth-child(4){grid-column:1/-1;order:-2;font-weight:600}", template)
+        self.assertIn("#t-notas tbody td:nth-child(5){display:none}", template)
 
     def test_tablero_interno_no_cuenta_registros_sin_enlace(self):
         internal = (ROOT / "tablero_interno/index.html").read_text(encoding="utf-8")
