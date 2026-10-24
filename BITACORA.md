@@ -373,3 +373,18 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - CI del PR: aprobados «Pruebas de regresión del historial» y «Validar tablero y fuentes de tráfico». Vista previa de Cloudflare Pages informada como exitosa para el commit del PR: https://2a0f20c7.jusnoticias.pages.dev/.
 - Alcance de la verificación: se confirmó que el cambio quedó en `main`; no se modificaron datos históricos. La vista previa fue desplegada, pero no se confirmó desde esta sesión un despliegue de producción posterior al merge ni una prueba visual/interactiva en móvil. No declarar esos puntos como verificados.
 - Próximo paso: comprobar el despliegue de producción de Cloudflare Pages y abrir el tablero en móvil para revisar presentación y funcionamiento.
+
+
+### 2026-10-24 — Corrección de lectura móvil de la tabla de notas
+
+- La revisión de producción mostró que la explicación larga seguía visible y que la tabla conservaba el desplazamiento horizontal en celular. El PR #85 había agregado ayudas desplegables, pero no había reemplazado ese párrafo ni cambiado el diseño móvil de la tabla.
+- En la rama `fix/tabla-notas-movil-ayuda-boton`, se reemplaza el texto largo por una explicación breve y el botón «Cómo leer esta tabla», que abre un diálogo con definiciones claras. En pantallas pequeñas, la tabla de notas pasa a fichas con etiquetas por dato; el resto de las tablas conserva su comportamiento actual.
+- Se agregan etiquetas de celda desde los encabezados y una prueba de regresión para el botón y la vista móvil. Se actualiza el manual.
+- No se modifican datos históricos. CI del commit `505e60c9d55a71f8568c908135658b2b4330c1d2`: ambos workflows (`Pruebas de regresión del historial` y `Validar tablero y fuentes de tráfico`) terminaron en success. El primer intento había detectado que una prueba existente requería conservar literalmente la aclaración de Google Noticias; se ajustó el texto y el segundo intento pasó. Despliegue de producción y revisión en celular real pendientes de aprobación e integración.
+
+
+### 2026-10-24 — Adaptación móvil de todas las tablas
+
+- Se amplía la rama `fix/tabla-notas-movil-ayuda-boton` para que la adaptación móvil cubra todas las tablas del tablero: detalle de notas, medios, redes y Google, además de la tabla principal de notas. En escritorio se conserva la presentación tabular.
+- Se agregan etiquetas de dato a las celdas, también cuando las filas se generan o actualizan dinámicamente, y una prueba de regresión que exige la regla general.
+- No se modifican archivos de datos históricos. Pendiente: ejecutar y revisar los workflows sobre el nuevo commit, comprobar la vista previa y hacer prueba visual real en celular y escritorio. No declarar producción verificada ni fusionar sin autorización explícita.

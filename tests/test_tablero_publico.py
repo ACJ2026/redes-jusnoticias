@@ -399,6 +399,14 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("A verificar", template)
         self.assertIn("@media(max-width:600px)", template)
 
+    def test_tabla_notas_tiene_ayuda_en_boton_y_diseno_movil(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('id="notas-ayuda-abrir"', template)
+        self.assertIn("notas-ayuda-abrir').addEventListener('click'", template)
+        self.assertIn("#t-notas tbody tr{display:grid", template)
+        self.assertIn("td.setAttribute('data-label', labels[i])", template)
+        self.assertNotIn("Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio;", template)
+
     def test_portada_visual_precede_al_tablero_oculto(self):
         public = (ROOT / "publico/index.html").read_text(encoding="utf-8")
         # El título de la pestaña debe reflejar el nombre público vigente.
@@ -539,6 +547,15 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertEqual(unrelated["url"], "")
         self.assertEqual(unrelated["origen"], "Sin dato")
 
+
+    def test_todas_las_tablas_tienen_adaptacion_movil_y_etiquetas(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("#dashboard-app .tbox table:not(#t-notas)", template)
+        self.assertIn("const etiquetarCeldas =", template)
+        self.assertIn("new MutationObserver", template)
+        self.assertIn("data-label", template)
+        # La tabla de notas ya tiene su diseño de fichas específico.
+        self.assertIn("#t-notas tbody tr{display:grid", template)
 
     def test_tablero_interno_no_cuenta_registros_sin_enlace(self):
         internal = (ROOT / "tablero_interno/index.html").read_text(encoding="utf-8")

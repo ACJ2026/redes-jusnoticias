@@ -94,3 +94,13 @@ Si la pestaña Google muestra **“Pendiente de configuración”**, revisar en 
 ## 7. Integración de estadísticas privadas de Facebook
 
 Los enlaces públicos permiten identificar páginas, pero no habilitan por sí solos a consultar estadísticas privadas. Para añadir datos como alcance e impresiones, una persona con permisos suficientes debe autorizar la integración oficial de Meta y seleccionar las páginas correctas. Antes de incorporarlas al tablero hay que confirmar la titularidad, el acceso y que no se esté contando dos veces la misma página.
+
+
+## Lectura de la tabla de notas en celular
+
+En pantallas pequeñas, cada nota se muestra como una ficha con el título y sus datos etiquetados, para evitar desplazarse horizontalmente por siete columnas. El botón **Cómo leer esta tabla** abre las definiciones de medios distintos, textos muy similares, medios verificados y coincidencias a verificar, además de la aclaración sobre Google Noticias.
+
+
+## Lectura móvil de todas las secciones
+
+La adaptación a celular se aplica a todas las tablas del tablero, no solo a la lista de notas. En pantallas pequeñas, las filas de las tablas se presentan como fichas con el nombre de cada dato; en escritorio se conserva la tabla completa. Las tablas que se actualizan dinámicamente también reciben sus etiquetas. Revisar ambas vistas al cambiar el diseño.

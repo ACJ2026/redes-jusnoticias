@@ -104,6 +104,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:var(--fs-cap);border:1px solid var(--line)}
 .pill.ok{border-color:var(--accent);color:var(--accent)}
 .more{align-self:flex-start;font-weight:500}
+.nota-ayuda-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px}
+.nota-ayuda-tools .note{margin:0}
+.nota-ayuda-tools .btn{flex:0 0 auto}
 .guia p{margin:0;line-height:1.55;max-width:66ch}
 .guia b{font-weight:600}
 .foot{border-top:1px solid var(--line);padding-top:12px}
@@ -178,6 +181,27 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 /* El tablero completo también prioriza lectura y controles cómodos en pantalla chica */
 @media(max-width:600px){
   :root{--fs-cap:.9rem;--fs-body:1.05rem;--fs-h:1.15rem;--fs-title:2rem;--fs-big:2.65rem}
+  /* Todas las tablas se convierten en fichas en celular; escritorio conserva la tabla completa. */
+  #dashboard-app .tbox table:not(#t-notas){display:block;width:100%;min-width:0;border-collapse:separate;border-spacing:0}
+  #dashboard-app .tbox table:not(#t-notas) thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  #dashboard-app .tbox table:not(#t-notas) tbody{display:grid;gap:10px}
+  #dashboard-app .tbox table:not(#t-notas) tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--panel);min-width:0}
+  #dashboard-app .tbox table:not(#t-notas) tbody td{display:block;min-width:0;padding:8px 4px;border-bottom:1px solid var(--grid);text-align:left;overflow-wrap:anywhere;word-break:normal}
+  #dashboard-app .tbox table:not(#t-notas) tbody td::before{content:attr(data-label);display:block;color:var(--muted);font-size:.78rem;font-weight:500;line-height:1.35;margin-bottom:3px}
+  #dashboard-app .tbox table:not(#t-notas) tbody td:last-child{border-bottom:0}
+  #dashboard-app .tbox table:not(#t-notas) tbody td[colspan]{grid-column:1/-1}
+  #dashboard-app .tbox table:not(#t-notas) tbody td[colspan]::before{content:none}
+  #dashboard-app .tbox{overflow:visible}
+  /* En celular, la lista de notas se convierte en fichas legibles en vez de una tabla horizontal. */
+  #t-notas{display:block;width:100%;min-width:0}
+  #t-notas thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  #t-notas tbody{display:grid;gap:10px}
+  #t-notas tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+  #t-notas tbody td{display:block;min-width:0;padding:8px 4px;border-bottom:1px solid var(--grid);text-align:left;overflow-wrap:anywhere}
+  #t-notas tbody td::before{content:attr(data-label);display:block;color:var(--muted);font-size:.78rem;font-weight:500;line-height:1.35;margin-bottom:3px}
+  #t-notas tbody td:nth-child(2){grid-column:1/-1;order:-1;font-size:1.04rem;font-weight:600}
+  #t-notas tbody td:nth-child(6){grid-column:1/-1}
+  #t-notas tbody td:last-child{border-bottom:0}
   .wrap{padding:18px 14px 36px;gap:18px}
   .mast{gap:8px;padding-bottom:16px}
   .take{font-size:1.15rem;line-height:1.55}
@@ -374,7 +398,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
     <details class="ayuda-seccion"><summary>Qué muestra esta sección</summary><p>Lista las notas de Juschubut Noticias del período. Abrí una fila para ver sus referencias. “Medios distintos” cuenta medios, “Textos muy similares” compara textos y “Coincidencias por revisar” señala casos pendientes: son medidas diferentes.</p></details>
     <div class="card">
       <h2>Todas las notas del período</h2>
-      <p class="note">El monitoreo puede encontrar medios que publicaron sobre el mismo tema, pero eso no prueba que hayan tomado la información de Juschubut Noticias. "A verificar" son coincidencias que solo tienen el título como pista. Abrí una nota para ver si se menciona la fuente oficial o a otro medio.</p>
+      <p class="note">Buscá una nota y seleccioná su fila para consultar las publicaciones relacionadas y sus enlaces.</p>
       <div class="tools">
         <label for="q" class="lbl">Buscar</label><input type="search" id="q" placeholder="Título o medio">
         <label for="ftipo" class="lbl">Tipo</label>
@@ -383,7 +407,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
         <select id="fsin"><option value="">Todas</option><option value="sin">Solo sin repercusión</option><option value="con">Solo con repercusión</option></select>
       </div>
       <p class="note" id="cuenta-notas"></p>
-      <p class="note">“Medios distintos” cuenta cuántos medios diferentes tienen una publicación relacionada con enlace registrado. “Textos muy similares” cuenta registros cuyo texto coincide en un 50% o más con la nota oficial. “A verificar” son coincidencias que todavía no están confirmadas. Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio; para confirmarlas hay que verificar la publicación original. Abrí una fila para consultar los enlaces guardados; su vigencia debe comprobarse en el sitio de origen.</p>
+      <div class="nota-ayuda-tools"><p class="note">Los números resumen los registros disponibles. Seleccioná una nota para ver el detalle.</p><button class="btn" id="notas-ayuda-abrir" type="button">Cómo leer esta tabla</button></div>
       <div class="tbox">
         <table id="t-notas"><thead><tr>
           <th><button data-k="fecha">Fecha</button></th><th><button data-k="titulo">Nota</button></th><th><button data-k="tipo">Tipo</button></th>
@@ -520,11 +544,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 <script type="application/json" id="datos">/*DATOS*/</script>
 <dialog id="ayuda-dialog" aria-labelledby="ayuda-titulo">
   <h2 id="ayuda-titulo">Cómo leer este tablero</h2>
-  <p><b>Publicaciones detectadas:</b> suma las publicaciones verificadas y las que todavía están pendientes.</p>
-  <p><b>Verificada:</b> cumple los criterios del tablero y tiene un enlace directo al sitio del medio.</p>
-  <p><b>A verificar:</b> hay una posible publicación, pero falta confirmar que sea la publicación original y que la relación esté respaldada.</p>
-  <p><b>Texto muy similar:</b> el texto coincide en buena medida con una nota de Juschubut Noticias. Eso no demuestra por sí solo quién publicó primero ni de dónde salió la información.</p>
-  <p>Las coincidencias por tema o título y los resultados de Google Noticias sirven como pistas; no cuentan como verificadas hasta cumplir los criterios. Los datos reflejan los registros disponibles para el período elegido.</p>
+  <p><b>Medios distintos:</b> cantidad de medios diferentes con una publicación relacionada y un enlace registrado.</p>
+  <p><b>Textos muy similares:</b> registros cuyo texto coincide en un 50% o más con la nota oficial. La similitud no demuestra quién publicó primero ni de dónde salió la información.</p>
+  <p><b>Medios verificados:</b> medios con publicaciones confirmadas según los criterios del tablero.</p>
+  <p><b>A verificar:</b> coincidencias que todavía no están confirmadas.</p>
+  <p><b>Google Noticias:</b> Las referencias de Google Noticias son pistas de búsqueda, no enlaces directos al medio. Para confirmar una coincidencia hay que encontrar y revisar la publicación original. Los enlaces guardados pueden dejar de funcionar; su vigencia se comprueba en el sitio de origen.</p>
   <div class="ayuda-cierre"><button class="btn accion" id="ayuda-cerrar" type="button">Cerrar</button></div>
 </dialog>
 <script>
@@ -645,9 +669,27 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   };
   const bars = (id, items) => { const el = $(id); el.replaceChildren(...items); if (!items.length) { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'Sin datos en este período.'; el.append(p); } };
   const tbl = (sel, rows, cols) => {
-    const tb = document.querySelector(sel + ' tbody');
-    tb.replaceChildren(...rows.map(r => { const tr = document.createElement('tr'); cols.forEach(([f, cls]) => { const td = document.createElement('td'); const v = f(r); td.textContent = (v && typeof v === 'object') ? v.t : v; td.className = [cls, v && v.c].filter(Boolean).join(' '); tr.append(td); }); return tr; }));
+    const table = document.querySelector(sel);
+    const tb = table.querySelector('tbody');
+    const labels = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+    tb.replaceChildren(...rows.map(r => { const tr = document.createElement('tr'); cols.forEach(([f, cls], i) => { const td = document.createElement('td'); const v = f(r); td.textContent = (v && typeof v === 'object') ? v.t : v; td.className = [cls, v && v.c].filter(Boolean).join(' '); if (labels[i]) td.setAttribute('data-label', labels[i]); tr.append(td); }); return tr; }));
   };
+
+  // Etiquetas accesibles para todas las tablas: también cubre filas creadas fuera de tbl().
+  const etiquetarCeldas = (raiz = document) => {
+    raiz.querySelectorAll('table').forEach(table => {
+      const labels = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+      table.querySelectorAll('tbody tr').forEach(tr => {
+        [...tr.cells].forEach((td, i) => {
+          if (td.colSpan > 1 || !labels[i]) return;
+          if (!td.hasAttribute('data-label')) td.setAttribute('data-label', labels[i]);
+        });
+      });
+    });
+  };
+  etiquetarCeldas();
+  const observadorTablas = new MutationObserver(() => etiquetarCeldas());
+  document.querySelectorAll('table').forEach(table => observadorTablas.observe(table.querySelector('tbody') || table, { childList: true, subtree: true }));
 
   // Gráfico de barras por mes (SVG a mano, escalado al ancho)
   const NS = 'http://www.w3.org/2000/svg';
@@ -1383,6 +1425,7 @@ const draw = () => {
   };
   const ayudaDialog = $('ayuda-dialog');
   $('ayuda-abrir').addEventListener('click', () => { if (typeof ayudaDialog.showModal === 'function') ayudaDialog.showModal(); });
+  $('notas-ayuda-abrir').addEventListener('click', () => { if (typeof ayudaDialog.showModal === 'function') ayudaDialog.showModal(); });
   $('ayuda-cerrar').addEventListener('click', () => ayudaDialog.close());
   ayudaDialog.addEventListener('click', ev => { if (ev.target === ayudaDialog) ayudaDialog.close(); });
   $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
