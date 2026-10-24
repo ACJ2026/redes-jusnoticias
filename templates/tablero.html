@@ -33,6 +33,11 @@ h1{font-family:var(--f-display);font-weight:500;font-size:var(--fs-title);line-h
 .bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
 .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .lbl{color:var(--muted);font-size:var(--fs-cap)}
+.ayuda-seccion{border:1px solid var(--line);border-radius:8px;padding:9px 12px;background:var(--panel)}
+.ayuda-seccion summary{cursor:pointer;color:var(--accent);font-size:var(--fs-cap);font-weight:600;line-height:1.45;padding:2px 0}
+.ayuda-seccion summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.ayuda-seccion p{margin:8px 0 2px;line-height:1.5;max-width:75ch}
+
 select,input[type=search],.btn{font:inherit;font-size:var(--fs-cap);padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);min-height:2.25rem}
 .btn{cursor:pointer}.btn:disabled{opacity:.5;cursor:default}
 #ayuda-dialog{width:min(42rem,calc(100% - 32px));max-height:min(82vh,48rem);overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:20px;box-shadow:var(--shadow)}
@@ -256,6 +261,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   </nav>
 
   <section class="page" id="resumen">
+    <details class="ayuda-seccion"><summary>Qué muestra el resumen</summary><p>Reúne las cifras principales del período elegido. “Publicaciones detectadas” incluye las verificadas y las que todavía están a verificar. Una coincidencia no demuestra por sí sola que otro medio haya usado nuestra información.</p></details>
     <div class="tools"><button class="btn accion" id="info-abrir" type="button" aria-expanded="false" aria-controls="infografia">Generar infografía</button></div>
     <div class="card" id="infografia" hidden>
       <h2>Generador de infografía</h2>
@@ -343,6 +349,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   </section>
 
   <section class="page" id="medios" hidden>
+    <details class="ayuda-seccion"><summary>Qué muestra esta sección</summary><p>Permite revisar qué medios publicaron notas relacionadas y abrir las referencias disponibles. “Verificada” indica que cumple los criterios del tablero; “A verificar” indica que todavía falta confirmarla. El parecido entre textos no demuestra por sí solo una copia.</p></details>
     <div class="grid2">
       <div class="card">
         <h2>Medios donde encontramos más notas relacionadas</h2>
@@ -364,6 +371,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   </section>
 
   <section class="page" id="notas" hidden>
+    <details class="ayuda-seccion"><summary>Qué muestra esta sección</summary><p>Lista las notas de Juschubut Noticias del período. Abrí una fila para ver sus referencias. “Medios distintos” cuenta medios, “Textos muy similares” compara textos y “Coincidencias por revisar” señala casos pendientes: son medidas diferentes.</p></details>
     <div class="card">
       <h2>Todas las notas del período</h2>
       <p class="note">El monitoreo puede encontrar medios que publicaron sobre el mismo tema, pero eso no prueba que hayan tomado la información de Juschubut Noticias. "A verificar" son coincidencias que solo tienen el título como pista. Abrí una nota para ver si se menciona la fuente oficial o a otro medio.</p>
@@ -391,6 +399,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   </section>
 
   <section class="page" id="redes" hidden>
+    <details class="ayuda-seccion"><summary>Qué muestra esta sección</summary><p>Reúne publicaciones y métricas disponibles de las cuentas configuradas. Un dato vacío o “No disponible” no significa cero. Las cifras dependen de lo que cada plataforma permite consultar.</p></details>
     <div class="card" id="redes-vivo">
       <h2>Estado del monitoreo en vivo</h2>
       <p class="note">Consulta las APIs disponibles para Facebook, Instagram, YouTube, X y TikTok. Esta consulta es independiente del historial guardado. Facebook se muestra por página: JusNoticias y JusNoticias STJ, cada una con sus propios seguidores, publicaciones e Insights. X requiere credenciales y acceso autorizado a su API; TikTok está conectado con la cuenta institucional @juschubut. WhatsApp sigue pendiente de integración; no se suman plataformas sin datos ni se presentan como cero actividad.</p>
@@ -431,6 +440,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 
 
   <section class="page" id="google" hidden>
+    <details class="ayuda-seccion"><summary>Qué muestran estos datos</summary><p>Separa las visitas dentro del sitio (Analytics) de la aparición y los clics en el buscador (Search Console). No sumes esas cifras: miden cosas distintas. Usá “Consultar” para actualizar el período elegido.</p></details>
     <div class="card guia">
       <h2>Visitas al sitio y presencia en buscadores</h2>
       <p class="note">Los datos se muestran por separado: la actividad dentro del sitio proviene de Google Analytics 4; la información sobre resultados de búsqueda proviene actualmente de Google Search Console. “Visitas desde buscadores” cuenta los clics en resultados que llevan al sitio; “apariciones en buscadores” cuenta cuántas veces se mostró una página en los resultados. Estas cifras no son lo mismo que las visitas totales del sitio. Se pueden consultar hasta 90 días por vez; para períodos más largos se toma la ventana más reciente de 90 días.</p>
@@ -463,6 +473,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   </section>
 
   <section class="page" id="guia" hidden>
+    <details class="ayuda-seccion"><summary>Cómo usar esta guía</summary><p>Acá están las definiciones y los límites del tablero. Si solo necesitás entender una sección, usá el botón “Qué muestra…” de esa sección; no hace falta leer toda la metodología.</p></details>
     <div class="grid2">
       <div class="card guia">
         <h2>Cómo leer este tablero, en 1 minuto</h2>
