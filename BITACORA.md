@@ -439,3 +439,35 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Cada sección (Resumen, Medios, Notas, Redes, Visitas y buscadores) tiene un botón destacado **«Cómo leer esta sección»** que abre su propia explicación corta, en lenguaje simple. Las explicaciones están en `<template id="ayuda-…">` dentro de `templates/tablero.html` y se muestran en el mismo diálogo.
 - Se quitaron los desplegables «Qué muestra esta sección» (repetían lo mismo) y el botón «Cómo leer esta tabla» de Notas. La pestaña Guía queda igual.
 - Se actualizaron el manual y las pruebas (`test_ayuda_breve_en_cada_seccion_del_tablero` exige el botón y la explicación de cada sección y que no exista el botón general).
+
+
+## 2026-10-24 — Resolución de publicaciones pendientes y bitácora de decisiones
+
+**Objetivo acordado con el usuario**
+- No dejar casos en un estado inconcluso sin motivo, enlace y una salida clara.
+- Las coincidencias falsas comprobadas se descartan internamente y no aparecen en el tablero ni en sus contadores.
+- Las publicaciones que requieren decisión deben permitir confirmar o descartar, y el tablero debe reflejar la decisión sin duplicar medios.
+- El dato principal del resumen debe ser la cantidad de medios que publicaron nuestro contenido.
+- Toda intervención y resolución debe quedar en la bitácora.
+
+**Implementación iniciada en la rama `feature/revision-publicaciones-y-bitacora`**
+- `functions/api/revisiones.js`: endpoint de lectura y escritura de decisiones con clave secreta, validación de origen, validación de URL y guardado transaccional en D1.
+- `migrations/0002_revisiones_publicaciones.sql`: tablas para la decisión vigente por publicación y para conservar cada evento histórico en la bitácora.
+- `templates/tablero.html`: carga las decisiones guardadas, muestra el motivo y el enlace, ofrece «Confirmar publicación» y «Descartar coincidencia», solicita el enlace directo si el candidato procede de Google/Bing y prioriza el total de medios.
+- `docs/CLOUDFLARE_PAGES.md`: pasos de configuración del servicio.
+- `tests/test_tablero_publico.py`: comprobaciones estáticas del circuito y de su seguridad.
+- `.github/workflows/validar-tablero.yml`: incorpora la comprobación sintáctica de la nueva API.
+
+**Criterios de seguridad y trazabilidad**
+- No se guardan claves en el repositorio ni en el HTML.
+- El servidor exige el secreto `REVISIONES_CLAVE`; las escrituras fallan de forma cerrada si falta la clave o la base.
+- La decisión vigente se actualiza por nota y URL de origen; cada intervención se agrega por separado a `bitacora_revisiones_publicacion`.
+- Las filas con confianza Baja se excluyen de la interfaz y de los contadores; el método «A verificar» no se trata como confirmación.
+- Al confirmar, se conserva la URL directa del medio y se evita contar dos veces el mismo medio en la misma nota.
+
+**Pendiente antes de considerar terminado**
+- Ejecutar CI de la PR y corregir cualquier fallo.
+- Regenerar los HTML públicos desde la plantilla actualizada.
+- Configurar en Cloudflare Pages la base D1 independiente `REVISIONES_DB`, ejecutar la migración y guardar `REVISIONES_CLAVE` como secreto. No reutilizar `TIKTOK_AUTH_DB`.
+- Probar en el dominio público una confirmación, un descarte, persistencia tras recargar, contadores y bitácora.
+- Registrar aquí los enlaces y resultados reales de CI y del despliegue. Hasta entonces, el código preparado no equivale a un circuito operativo en producción.
