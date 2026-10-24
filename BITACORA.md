@@ -388,3 +388,10 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Se amplía la rama `fix/tabla-notas-movil-ayuda-boton` para que la adaptación móvil cubra todas las tablas del tablero: detalle de notas, medios, redes y Google, además de la tabla principal de notas. En escritorio se conserva la presentación tabular.
 - Se agregan etiquetas de dato a las celdas, también cuando las filas se generan o actualizan dinámicamente, y una prueba de regresión que exige la regla general.
 - No se modifican archivos de datos históricos. Pendiente: ejecutar y revisar los workflows sobre el nuevo commit, comprobar la vista previa y hacer prueba visual real en celular y escritorio. No declarar producción verificada ni fusionar sin autorización explícita.
+
+
+### 2026-10-24 — Integración del PR #86
+
+- A pedido del usuario, se integró mediante squash el PR [#86](https://github.com/ACJ2026/redes-jusnoticias/pull/86) en `main`. Commit resultante: `70c7f27b1e0f4b9d0f558ecb150f52f8d2888089`; commit revisado: `56b09399365eac75a89090522d406a720ba244d6`.
+- En el commit revisado, los workflows «Pruebas de regresión del historial» (run #481) y «Validar tablero y fuentes de tráfico» (run #225) figuraban como exitosos. No se modificaron datos históricos.
+- La integración ya está hecha, pero desde esta sesión no se pudo confirmar el despliegue de producción de Cloudflare Pages ni hacer una prueba visual real en el celular y escritorio. No declarar esos dos puntos como verificados hasta comprobarlos.
