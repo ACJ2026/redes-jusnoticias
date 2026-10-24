@@ -116,8 +116,6 @@ def main():
         url = (fila.get("url") or "").strip()
         if not any(m in metodo for m in MARCAS_CANDIDATA):
             continue
-        if fila.get("confianza") == "Baja":
-            continue
         texto_previo = ""
         if not url_directa(url):
             # Abrir la ficha del buscador permite seguir su redirección hasta el medio.
