@@ -416,3 +416,14 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - **Datos:** no se modificaron archivos históricos; solo se ajustó la presentación y el cálculo del total único de medios por nota usando los registros ya existentes.
 - **Pruebas:** se agregaron aserciones para el total, las etiquetas de estado y el orden de la ficha móvil. La ejecución automática de GitHub Actions está pendiente; falta revisar el resultado y comprobar visualmente móvil y escritorio.
 - **Pendiente:** verificar que la plantilla se regenere en los archivos públicos, revisar la vista real en ambos tamaños y abrir una PR. No afirmar que está publicado hasta confirmar el despliegue.
+
+
+## 24/10/2026 11:18 ART — Priorizar los medios que publicaron
+
+- Motivo: destacar cuántos medios distintos tienen una publicación confirmada y dejar las coincidencias pendientes en segundo plano.
+- Cambios: la tabla usa «Medios que publicaron» como cifra principal, basada en medios únicos confirmados; «A verificar» queda como indicador secundario. La ayuda del botón explica que los pendientes no se suman al total y que un medio no se cuenta dos veces. También se actualizan la ayuda de la sección, el manual y las pruebas.
+- Archivos: templates/tablero.html, tests/test_tablero_publico.py, docs/MANUAL_TABLERO.md y BITACORA.md.
+- Rama: fix/fichas-movil-medios-confirmados-pendientes. SHA de implementación antes de esta entrada: f8f9ae3e2b83311585dd5662cf72faace46d34b4.
+- Datos: no se modificaron archivos de data/; el número se calcula a partir de registros existentes y solo cuenta medios confirmados distintos.
+- Pruebas: al registrar la entrada, GitHub Actions seguía en curso para el SHA f8f9ae3e2b83311585dd5662cf72faace46d34b4: «Validar tablero y fuentes de tráfico» #230 (40101924235) y «Pruebas de regresión del historial» #484 (40101924194). Resultado final pendiente. Falta revisar visualmente celular y escritorio.
+- Pendiente: confirmar los checks del último commit, regeneración del HTML público, revisión visual y despliegue. PR #88 continúa abierto y no fusionado.
