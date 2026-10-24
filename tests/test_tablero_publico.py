@@ -383,8 +383,8 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("publicacionesVerificadas", template)
         self.assertIn("publicacionesPorVerificar", template)
         self.assertIn('id="ayuda-dialog"', template)
-        self.assertIn(">Verificada</", template)
-        self.assertIn(">A verificar</", template)
+        self.assertIn("p.textContent = confirmada ? 'Verificada' : 'A verificar'", template)
+        self.assertIn("p.textContent = confirmada ? 'Verificada' : 'A verificar'", template)
         self.assertNotIn("p.textContent = confirmada ? 'Encontrada' : 'A revisar'", template)
 
     def test_portada_visual_precede_al_tablero_oculto(self):
