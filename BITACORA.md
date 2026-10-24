@@ -500,3 +500,14 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - En el commit `97c7b06c50713f55880c8c933182a6030319c2ab` quedaron en **success** las pruebas del verificador, las regresiones del historial, la validación del tablero y el despliegue Preview de Cloudflare Pages.
 - Preview: https://d273a4a6.jusnoticias.pages.dev/
 - Las comprobaciones de código y el build de Preview están en verde. Sigue pendiente probar las escrituras reales de `/api/revisiones` con el binding D1 y el secreto de producción, que no se pueden declarar configurados solo por tener un build exitoso.
+
+
+## Registro posterior a la integración — 24/10/2026
+
+- La PR #97 se integró a `main` mediante squash en el commit `6126163793769f67bec2b3f0c9f442c64d3c9dee`: https://github.com/ACJ2026/redes-jusnoticias/commit/6126163793769f67bec2b3f0c9f442c64d3c9dee
+- El workflow `Reconstruir tablero público` terminó en **success**: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40119763372
+- El workflow `Validar tablero y fuentes de tráfico` terminó en **success**: https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40119763329
+- Cloudflare Pages reportó despliegue correcto del commit integrado: https://1df8aa23.jusnoticias.pages.dev/ (preview de commit; no equivale por sí solo a probar la API contra D1 de producción).
+- El relevamiento real posterior a la integración se inició en https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40119763360 y seguía en curso al registrar esta nota. La fecha de `data/actualizado.txt` todavía era anterior al merge, por lo que no se afirma que el nuevo relevamiento haya terminado.
+- Las validaciones automáticas de código están en verde. **La resolución manual persistente aún no puede darse por operativa en producción** hasta verificar el binding D1 `REVISIONES_DB`, ejecutar la migración `0002_revisiones_publicaciones.sql` y configurar el secreto `REVISIONES_CLAVE` en Cloudflare Pages. No se accedió a esos ajustes de cuenta desde las herramientas disponibles.
+- No se deben registrar decisiones de prueba sobre publicaciones reales en la base productiva hasta que esa configuración esté hecha y comprobada.
