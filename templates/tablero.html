@@ -1850,7 +1850,7 @@ const draw = () => {
           confirmar.type = 'button'; confirmar.className = 'btn accion'; confirmar.textContent = 'Confirmar publicación';
           confirmar.addEventListener('click', () => resolverPublicacion(r, 'confirmar'));
           const descartar = document.createElement('button');
-          descartar.type = 'button'; descartar.className = 'btn accion ayuda-sec'; descartar.textContent = 'Descartar coincidencia';
+          descartar.type = 'button'; descartar.className = 'btn accion'; descartar.textContent = 'Descartar coincidencia';
           descartar.addEventListener('click', () => resolverPublicacion(r, 'descartar'));
           accion.append(confirmar, document.createTextNode(' '), descartar);
         } else {

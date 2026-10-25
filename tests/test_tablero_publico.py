@@ -402,6 +402,8 @@ class TableroPublicoTests(unittest.TestCase):
                 self.assertTrue(siguiente == -1 or boton < siguiente)
                 self.assertIn(f'<template id="ayuda-{seccion}" data-titulo=', template)
         self.assertIn("$('ayuda-cuerpo').replaceChildren(t.content.cloneNode(true));", template)
+        # Solo los botones de ayuda llevan la clase que abre el diálogo de ayuda.
+        self.assertNotIn("className = 'btn accion ayuda-sec'", template)
         inicio = template.index('<section class="page" id="guia"')
         self.assertLess(template.index('<details class="ayuda-seccion">', inicio), template.index('</section>', inicio))
         self.assertIn("Verificada", template)
