@@ -1059,25 +1059,6 @@
       "redes": {}
     },
     {
-      "nombre": "Diario Nuevo Día",
-      "alias": [
-        "El Diario Nuevo Día"
-      ],
-      "dominio": "eldiarionuevodia.com.ar",
-      "url": "https://eldiarionuevodia.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Río Gallegos",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 2,
-      "notas": 2,
-      "ejemplo": "",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-25",
-      "redes": {}
-    },
-    {
       "nombre": "Infobae",
       "alias": [],
       "dominio": "infobae.com",
@@ -1339,6 +1320,23 @@
       "redes": {}
     },
     {
+      "nombre": "Diario Nuevo Día",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Prensa gráfica",
+      "localidad": "Río Gallegos",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
       "nombre": "Diario Río Negro",
       "alias": [],
       "dominio": "",
@@ -1404,6 +1402,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "El Diario Nuevo Día",
+      "alias": [],
+      "dominio": "eldiarionuevodia.com.ar",
+      "url": "https://eldiarionuevodia.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.eldiarionuevodia.com.ar/regionales/un-juez-le-escribio-una-carta-a-una-nina-de-10-anos-tras-condenar-a-su-tio-por-abuso-sexual/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1842,8 +1857,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
