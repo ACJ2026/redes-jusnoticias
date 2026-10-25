@@ -596,6 +596,11 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("CREATE TABLE IF NOT EXISTS bitacora_revisiones_publicacion", migration)
         self.assertIn("Confirmar publicación", template)
         self.assertIn("Descartar coincidencia", template)
+        # Botones de revisión compactos y la fila con la misma cantidad de celdas que el encabezado.
+        self.assertIn("confirmar.className = 'btn rev rev-ok'", template)
+        self.assertIn(".rev-botones{display:flex;flex-direction:column", template)
+        self.assertIn("<th>Motivo y enlace</th><th>Acción</th></tr>", template)
+        self.assertNotIn("c(motivo, 'dim');", template)
         self.assertIn("pendientes de decisión", template)
         self.assertIn("!/^A verificar:/i.test(r.metodo || '')", template)
         self.assertIn("r.confianza !== 'Baja'", template)
