@@ -276,7 +276,7 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 55,
+      "publicaciones": 56,
       "notas": 54,
       "ejemplo": "https://www.eqsnotas.com/judiciales/intentaron-robar--dispararon-contra-un-policia-y-el-jurado-popular-los-declaro-culpables_a69a0c57fd58fb9ae9fd2e582",
       "primera_deteccion": "2026-10-21",
@@ -1059,6 +1059,25 @@
       "redes": {}
     },
     {
+      "nombre": "Diario Nuevo Día",
+      "alias": [
+        "El Diario Nuevo Día"
+      ],
+      "dominio": "eldiarionuevodia.com.ar",
+      "url": "https://eldiarionuevodia.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Río Gallegos",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-25",
+      "redes": {}
+    },
+    {
       "nombre": "Infobae",
       "alias": [],
       "dominio": "infobae.com",
@@ -1093,7 +1112,7 @@
       "notas": 2,
       "ejemplo": "https://www.lavoz.com.ar/ciudadanos/dijo-chorra-vecina-facebook-justicia-debera-indemnizarla-pagara_0_ei9s7vvfd2.html",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1242,8 +1261,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
@@ -1320,23 +1339,6 @@
       "redes": {}
     },
     {
-      "nombre": "Diario Nuevo Día",
-      "alias": [],
-      "dominio": "",
-      "url": "",
-      "tipo": "Prensa gráfica",
-      "localidad": "Río Gallegos",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {}
-    },
-    {
       "nombre": "Diario Río Negro",
       "alias": [],
       "dominio": "",
@@ -1402,23 +1404,6 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
-      "redes": {}
-    },
-    {
-      "nombre": "El Diario Nuevo Día",
-      "alias": [],
-      "dominio": "eldiarionuevodia.com.ar",
-      "url": "https://eldiarionuevodia.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.eldiarionuevodia.com.ar/regionales/un-juez-le-escribio-una-carta-a-una-nina-de-10-anos-tras-condenar-a-su-tio-por-abuso-sexual/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1548,8 +1533,8 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
