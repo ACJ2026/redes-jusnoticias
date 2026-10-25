@@ -544,3 +544,11 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - **Cloudflare (hecho por Claude en Chrome desde la cuenta del usuario):** base D1 nueva `jusnoticias-revisiones` con las tablas de `migrations/0002_revisiones_publicaciones.sql`; binding `REVISIONES_DB` en Production y Preview; secreto `REVISIONES_CLAVE` en Production (cargado por el usuario); re-despliegue de producción `main c9ef708` sin errores. `https://jusnoticias.pages.dev/api/revisiones` responde `{"revisiones":[]}`. La base de TikTok no se tocó.
 - **Falta probar:** guardar una confirmación y un descarte reales desde el tablero con la clave y comprobar que persistan al recargar. Hasta eso, los botones están conectados pero no probados de punta a punta. En Preview no está la clave, así que ahí no se puede guardar (no afecta producción).
 - **Retoque:** el botón «Descartar coincidencia» tenía la clase `ayuda-sec` (la de los botones de ayuda); se quitó para que no se confunda con «Cómo leer esta sección». Prueba agregada.
+
+
+## 2026-10-25 — Botones de revisión: probados y achicados (Claude)
+
+- **Prueba del usuario:** confirmó que guardar una revisión desde el tablero funciona con la clave (Cloudflare D1 + `REVISIONES_CLAVE` operativo en producción).
+- **Problema visual reportado:** los botones quedaban muy grandes y se superponían. Causas: (1) cada fila del detalle tenía 7 celdas y el encabezado 6 («Motivo y enlace» estaba partido en dos), así que el enlace caía bajo «Acción» y los botones en una columna sin título; en celular las etiquetas quedaban corridas; (2) los botones usaban el estilo grande de acción principal y estaban pegados.
+- **Arreglo:** motivo y enlace en la misma celda (6 celdas = 6 columnas); botones compactos «Confirmar» (relleno) y «Descartar» (borde), con el texto completo como `title`, apilados con separación en escritorio y uno al lado del otro en celular, ocupando todo el ancho de la ficha.
+- **Verificado** con capturas a 1280, 1024, 768, 390 y 320 px: sin superposición, sin botones cortados y sin desplazamiento horizontal. Prueba agregada.

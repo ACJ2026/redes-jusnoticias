@@ -102,6 +102,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 #t-notas tbody tr:hover td{background:var(--grid)}
 #t-notas tbody tr.sel td{background:var(--grid);font-weight:600}
 #t-det a{color:var(--accent);font-weight:500}
+/* Botones de revisión: compactos y separados para que entren en la celda */
+.rev-botones{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.btn.rev{font-size:var(--fs-cap);padding:3px 10px;min-height:0;line-height:1.35;max-width:100%;color:var(--accent);border-color:var(--accent);font-weight:600}
+.btn.rev.rev-ok{background:var(--accent);color:var(--bg)}
+.btn.rev:hover{filter:brightness(1.1)}
 .det-resumen{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:2px 0 4px}
 .det-resumen .det-medios{font-family:var(--f-display);font-size:var(--fs-big);line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
 .det-resumen .det-medios-lbl{font-weight:600}
@@ -193,6 +198,10 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   #dashboard-app .tbox table:not(#t-notas) tbody td::before{content:attr(data-label);display:block;color:var(--muted);font-size:.78rem;font-weight:500;line-height:1.35;margin-bottom:3px}
   #dashboard-app .tbox table:not(#t-notas) tbody td:last-child{border-bottom:0}
   #dashboard-app .tbox table:not(#t-notas) tbody td[colspan]{grid-column:1/-1}
+  /* En la ficha del detalle, motivo y acción ocupan todo el ancho; los botones van uno al lado del otro. */
+  #t-det tbody td:nth-child(5),#t-det tbody td.det-accion{grid-column:1/-1}
+  #t-det .rev-botones{flex-direction:row;flex-wrap:wrap;gap:8px}
+  #t-det .btn.rev{padding:6px 12px}
   #dashboard-app .tbox table:not(#t-notas) tbody td[colspan]::before{content:none}
   #dashboard-app .tbox{overflow:auto}
   #dashboard-app #c-detalle .tbox{overflow:visible;max-height:none}
@@ -1839,20 +1848,25 @@ const draw = () => {
       const fuente = r.cita_fuente_oficial === 'Sí' ? 'Menciona Juschubut Noticias / Agencia' : (r.cita_otro_medio ? 'Nombra a: ' + r.cita_otro_medio : ((r.metodo || '').toLowerCase().includes('solo título') ? 'Solo coincide el título' : 'Fuente no identificada')); c(fuente, 'dim');
       c(r.origen === 'Sin dato' ? '—' : r.origen.replace(' (≥50%)', ''));
       const motivo = r.motivo || (r.metodo || '').replace(/^A verificar:\s*/i, '') || 'La evidencia disponible no alcanzó para decidir.';
-      c(motivo, 'dim');
       const enlace = r.url && /^https?:\/\//.test(r.url) ? document.createElement('a') : null;
       if (enlace) { enlace.href = r.url; enlace.target = '_blank'; enlace.rel = 'noopener noreferrer'; enlace.textContent = String(r.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia de búsqueda ↗' : 'Abrir publicación original ↗'; }
-      c(enlace || 'No hay enlace disponible', 'dim');
-      const accion = document.createElement('td');
+      // Motivo y enlace van en la misma celda, como indica el encabezado de la tabla.
+      const celdaMotivo = document.createElement('div');
+      const textoMotivo = document.createElement('span'); textoMotivo.className = 'dim'; textoMotivo.textContent = motivo;
+      celdaMotivo.append(textoMotivo, document.createElement('br'), enlace || document.createTextNode('No hay enlace disponible'));
+      c(celdaMotivo);
+      const accion = document.createElement('td'); accion.className = 'det-accion';
       if (!confirmada) {
         if (revisionApiDisponible && r.url && /^https?:\/\//.test(r.url)) {
           const confirmar = document.createElement('button');
-          confirmar.type = 'button'; confirmar.className = 'btn accion'; confirmar.textContent = 'Confirmar publicación';
+          confirmar.type = 'button'; confirmar.className = 'btn rev rev-ok'; confirmar.textContent = 'Confirmar'; confirmar.title = 'Confirmar publicación';
           confirmar.addEventListener('click', () => resolverPublicacion(r, 'confirmar'));
           const descartar = document.createElement('button');
-          descartar.type = 'button'; descartar.className = 'btn accion'; descartar.textContent = 'Descartar coincidencia';
+          descartar.type = 'button'; descartar.className = 'btn rev'; descartar.textContent = 'Descartar'; descartar.title = 'Descartar coincidencia';
           descartar.addEventListener('click', () => resolverPublicacion(r, 'descartar'));
-          accion.append(confirmar, document.createTextNode(' '), descartar);
+          const grupo = document.createElement('div'); grupo.className = 'rev-botones';
+          grupo.append(confirmar, descartar);
+          accion.append(grupo);
         } else {
           const aviso = document.createElement('span'); aviso.className = 'dim';
           aviso.textContent = 'Revisión manual no disponible: ' + errorRevisionApi;
