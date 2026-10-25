@@ -15,7 +15,7 @@
       "notas": 129,
       "ejemplo": "https://radio3cadenapatagonia.com.ar/por-que-la-escuela-presencial-no-puede-reemplazarse-por-homeschooling/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {
         "Facebook": [
           "/radio3cp"
@@ -249,7 +249,7 @@
       "notas": 52,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -280,7 +280,7 @@
       "notas": 54,
       "ejemplo": "https://www.eqsnotas.com/judiciales/intentaron-robar--dispararon-contra-un-policia-y-el-jurado-popular-los-declaro-culpables_a69a0c57fd58fb9ae9fd2e582",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -304,8 +304,8 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 49,
       "notas": 48,
       "ejemplo": "https://digitalchubut.com/puerto-madryn-condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
@@ -455,7 +455,7 @@
       "notas": 31,
       "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {
         "Facebook": [
           "/lu20radiochubut"
@@ -637,7 +637,7 @@
       "notas": 15,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -874,7 +874,7 @@
       "notas": 6,
       "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {
         "Facebook": [
           "/abcdiarioar"
@@ -904,7 +904,7 @@
       "notas": 6,
       "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -962,8 +962,8 @@
       "tipo": "Radio",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 5,
       "notas": 4,
       "ejemplo": "https://fmdelacordillera.com.ar/octubre-rosa-en-lago-puelo-realizaron-una-jornada-de-prevencion-del-cancer-de-mama/",
@@ -985,7 +985,7 @@
       "notas": 4,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1021,7 +1021,7 @@
       "notas": 4,
       "ejemplo": "https://genesis24.net/2026/09/14/casacion-ordeno-reparar-a-una-victima-de-abuso-sexual-cometido-en-el-ejercito/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1057,6 +1057,27 @@
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {}
+    },
+    {
+      "nombre": "Infobae",
+      "alias": [],
+      "dominio": "infobae.com",
+      "url": "https://infobae.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-25",
+      "redes": {
+        "Facebook": [
+          "Infobae"
+        ]
+      }
     },
     {
       "nombre": "La Voz del Interior",
@@ -1193,7 +1214,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1295,7 +1316,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1363,7 +1384,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1397,7 +1418,7 @@
       "notas": 1,
       "ejemplo": "https://www.eldiarionuevodia.com.ar/regionales/un-juez-le-escribio-una-carta-a-una-nina-de-10-anos-tras-condenar-a-su-tio-por-abuso-sexual/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1431,7 +1452,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1499,7 +1520,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1533,7 +1554,7 @@
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1649,27 +1670,6 @@
       "redes": {}
     },
     {
-      "nombre": "Infobae",
-      "alias": [],
-      "dominio": "infobae.com",
-      "url": "https://infobae.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-21",
-      "redes": {
-        "Facebook": [
-          "Infobae"
-        ]
-      }
-    },
-    {
       "nombre": "InfoBariloche",
       "alias": [],
       "dominio": "infobariloche.com.ar",
@@ -1683,7 +1683,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-24",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1795,7 +1795,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1812,7 +1812,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1846,7 +1846,7 @@
       "notas": 1,
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
@@ -1863,7 +1863,7 @@
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-24",
+      "ultima_deteccion": "2026-10-25",
       "redes": {}
     },
     {
