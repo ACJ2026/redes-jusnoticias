@@ -6,9 +6,31 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import verificar_publicaciones as vp
+from historial import publicaciones_faltantes
 
 
 class VerificarPublicacionesTests(unittest.TestCase):
+    def test_redireccion_conserva_url_anterior_para_el_historial(self):
+        # Caso real (24/10): EQS Notas redirigió y el control de historial frenaba el guardado.
+        vieja = "https://www.eqsnotas.com/judiciales/una-frenada-brusca_a6abbbcab06f9f6e175f3bf48"
+        nueva = "https://eqsnotas.com/judiciales/una-frenada-brusca-otra-ruta_a6abbbcab06f9f6e175f3bf48"
+        anterior = {"nota_id": 14593, "medio": "EQS Notas", "url": vieja}
+        fila = dict(anterior)
+        vp.reemplazar_url(fila, nueva)
+        self.assertEqual(fila["url"], nueva)
+        self.assertEqual(fila["url_alternativas"], [vieja])
+        self.assertEqual(publicaciones_faltantes([anterior], [fila], {14593}), set())
+        # Sin la URL anterior, el control la daría por perdida.
+        self.assertTrue(publicaciones_faltantes([anterior], [{**anterior, "url": nueva}], {14593}))
+
+    def test_misma_url_o_buscador_no_agrega_alternativas(self):
+        fila = {"url": "https://www.medio.com/nota/1/"}
+        vp.reemplazar_url(fila, "https://medio.com/nota/1")
+        self.assertNotIn("url_alternativas", fila)
+        fila = {"url": "https://news.google.com/rss/articles/ABC?oc=5"}
+        vp.reemplazar_url(fila, "https://medio.com/nota/2")
+        self.assertNotIn("url_alternativas", fila)
+
     def test_busqueda_no_cuenta_como_enlace_original(self):
         self.assertFalse(vp.url_directa("https://news.google.com/rss/articles/ABC?oc=5"))
         self.assertFalse(vp.url_directa("https://www.bing.com/news/search?q=nota"))

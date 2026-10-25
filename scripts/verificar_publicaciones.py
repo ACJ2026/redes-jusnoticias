@@ -17,6 +17,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; JusNoticiasVerificador/1.0)"}
+from historial import es_enlace_directo, normalizar_url
+
 BUSCADORES = ("news.google.com", "bing.com", "www.bing.com")
 STOP = set("""para sobre desde entre donde porque cuando hasta durante contra juzgado juzgados justicia judicial poder chubut provincia fallo causa pesos ordena ordenan ordeno penal trelew rawson madryn comodoro esquel puerto rivadavia millones prision tribunal superior ciudad nuevo nueva jusnoticias contenido gobierno provincia""".split())
 MARCAS_CANDIDATA = ("solo título", "solo titulo", "google noticias", "bing noticias", "coincidencia temática", "coincidencia tematica", "fuente no identificada", "a verificar:")
@@ -60,6 +62,21 @@ class TextoHTML(HTMLParser):
         if not self.omitir:
             self.partes.append(data)
 
+
+
+def reemplazar_url(fila, nueva):
+    """Cambia la URL de la fila sin perder la anterior.
+
+    Si el medio redirige a otra dirección, la URL original queda en «url_alternativas»:
+    así el control de historial sigue reconociendo la misma publicación.
+    """
+    anterior = (fila.get("url") or "").strip()
+    if anterior and es_enlace_directo(anterior) and normalizar_url(anterior) != normalizar_url(nueva):
+        alternativas = list(fila.get("url_alternativas") or [])
+        if anterior not in alternativas:
+            alternativas.append(anterior)
+        fila["url_alternativas"] = alternativas
+    fila["url"] = nueva
 
 def descargar(url, timeout=18):
     req = urllib.request.Request(url, headers=UA)
@@ -141,7 +158,7 @@ def main():
                 url_final, texto_previo = descargar(url)
                 if url_directa(url_final):
                     url = url_final
-                    fila["url"] = url_final
+                    reemplazar_url(fila, url_final)
                 else:
                     raise ValueError("el buscador no entregó una URL del medio")
             except Exception:
@@ -186,7 +203,7 @@ def main():
         title_common, body_official_ratio, body_media_ratio, common_count = evaluar(
             titulo_oficial, cuerpo_oficial, titulo_medio, texto
         )
-        fila["url"] = final_url
+        reemplazar_url(fila, final_url)
         fila["evidencia_verificacion"] = {
             "titulo_medio": titulo_medio[:300],
             "terminos_titulo_en_comun": title_common,

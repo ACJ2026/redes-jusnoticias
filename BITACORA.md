@@ -523,3 +523,16 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Validación del tablero y las fuentes: **success**, https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40132023990.
 - La actualización real posterior al arreglo se ejecuta en https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40132056378. No se marcará como exitosa ni se afirmará que se publicaron datos nuevos hasta verificar su conclusión y la fecha en `data/actualizado.txt`.
 - La revisión manual persistente continúa condicionada a la configuración en Cloudflare Pages de `REVISIONES_DB` (D1 independiente), la migración `0002_revisiones_publicaciones.sql` y el secreto `REVISIONES_CLAVE`. No se dispone de acceso administrativo a la cuenta Cloudflare desde las herramientas de esta sesión, por lo que ese paso no se registra como realizado.
+
+
+## 2026-10-25 — Estado de situación y arreglo del fallo de EQS Notas (Claude)
+
+**Estado al 25/10 (antes de este arreglo):** el tablero no guarda datos nuevos desde la corrida del 24/10 12:24 (hora argentina). Fallaron 7 relevamientos seguidos (desde el merge del #95) con el mismo mensaje: «faltan 1 publicaciones históricas… nota_id=14593 | medio=EQS Notas». El control de historial frenó bien el guardado; no se perdieron datos, pero tampoco se publicó nada nuevo.
+
+**Causa encontrada:** `scripts/verificar_publicaciones.py` (agregado en #95) reemplaza la URL de una candidata por la URL final después de abrirla (`fila["url"] = final_url`). Si el medio redirige a otra dirección, la URL anterior desaparece y `verificar_historial.py` —que identifica cada publicación por su URL canónica, también entre `url_alternativas`— la da por perdida. Indicios: la fila de EQS seguía en los datos y el total no cambiaba (1477 antes y después). El arreglo del #99 actuaba en `actualizar.py`, antes del verificador, por eso no alcanzó. (No se pudo abrir el sitio de EQS desde la sesión para ver la redirección exacta.)
+
+**Arreglo:** nueva función `reemplazar_url()` en el verificador: cuando cambia la URL, guarda la anterior en `url_alternativas` (si era un enlace directo y la forma canónica es distinta). Se usa en los dos lugares donde el verificador cambiaba la URL. Pruebas nuevas en `tests/test_verificar_publicaciones.py` con el caso de EQS: con la URL anterior guardada, el control de historial no marca faltantes; sin ella, sí.
+
+**Pendiente: botones de confirmar/descartar (#97).** El código está integrado, pero no funcionan hasta configurar Cloudflare una sola vez (lo hace el usuario o Claude en Chrome desde su cuenta): base D1 nueva → binding `REVISIONES_DB` (Production y Preview) → ejecutar `migrations/0002_revisiones_publicaciones.sql` → secreto `REVISIONES_CLAVE` (clave aleatoria larga, nunca en GitHub ni en el chat) → comprobar que `/api/revisiones` responde JSON y no 503. Pasos en `docs/CLOUDFLARE_PAGES.md`. Hasta probar una confirmación, un descarte y que persistan al recargar, no se consideran operativos.
+
+**Otros pendientes:** PR #94 de GPT abierto (explicación de la verificación); PR #88 de GPT abierto y en contra del criterio de total de medios (#92), no fusionar así; medios sin revisión correcta hace más de 24 h: El Diario Web, El Extremo Sur, LU17, Metadata Noticias, Rio Negro.
