@@ -10,6 +10,8 @@ on:
       - 'feature/**'
     paths:
       - 'templates/tablero.html'
+      - 'functions/api/analizar-enlace.js'
+      - 'functions/api/compartidos.js'
       - 'functions/api/redes.js'
       - 'functions/api/google-metrics.js'
       - 'functions/api/revisiones.js'
@@ -38,6 +40,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Comprobar sintaxis del analizador de enlaces multired
+        run: node --check --input-type=module < functions/api/analizar-enlace.js
+      - name: Comprobar sintaxis de la API de repercusiones
+        run: node --check --input-type=module < functions/api/compartidos.js
       - name: Comprobar sintaxis de la API de revisiones
         run: node --check --input-type=module < functions/api/revisiones.js
       - name: Comprobar sintaxis de la API de Google
