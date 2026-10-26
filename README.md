@@ -25,6 +25,7 @@ Tablero de repercusión y comunicación judicial de la Agencia de Comunicación 
 - [Estado de la integración de redes sociales](docs/REDES_SOCIALES.md)
 - [Configuración de TikTok Display API](docs/TIKTOK_DISPLAY_API.md)
 - [Incidente y control de enlaces compartidos](docs/INCIDENTE_ENLACES_COMPARTIDOS.md)
+- [Seguimiento de discrepancia por HTML obsoleto](docs/SEGUIMIENTO_CACHE_ENLACES_2026-10-26.md)
 - [Guía de Cloudflare Pages y estado de migración](docs/CLOUDFLARE_PAGES.md)
 
 Para ejecutar las pruebas de regresión del historial:
