@@ -711,5 +711,19 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("'/api/compartidos?fuente=' + encodeURIComponent(t.id) + '&lote=' + t.lote", template)
 
 
+    def test_busqueda_gratuita_de_publicaciones_publicas_de_facebook(self):
+        funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
+        self.assertIn("async function facebookPublico(", funcion)
+        self.assertIn("https://www.bing.com/search?", funcion)
+        self.assertIn('format: "rss"', funcion)
+        self.assertIn('id: "facebook-publico"', funcion)
+        self.assertIn('nombre: "Facebook (búsqueda pública)"', funcion)
+        self.assertIn("urlPostFacebook(link)", funcion)
+        self.assertIn("publicaciones_facebook_encontradas", funcion)
+        self.assertIn("no cubre publicaciones privadas ni todo Facebook", funcion)
+        # No requiere una API paga ni una clave nueva; solo busca resultados públicos indexados.
+        self.assertNotIn("FB_SEARCH_API_KEY", funcion)
+
+
 if __name__ == "__main__":
     unittest.main()

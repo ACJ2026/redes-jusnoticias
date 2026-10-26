@@ -1,7 +1,7 @@
 // Cloudflare Pages Function: busca publicaciones de OTRAS cuentas que compartan notas de Juschubut Noticias.
 // Instagram: lee las publicaciones recientes de las cuentas de la lista (business_discovery de Meta).
 // YouTube: busca por título los videos de otros canales publicados después de cada nota.
-// Facebook y TikTok quedan como búsquedas asistidas mientras no haya permisos oficiales para consultar publicaciones de terceros.
+// Facebook: búsqueda gratuita de publicaciones públicas indexadas por Bing RSS (no cubre todo Facebook). TikTok sigue asistido.
 import cuentasMonitoreo from "../../data/cuentas_monitoreo.json";
 import notasOficiales from "../../data/notas2.json";
 
@@ -292,17 +292,88 @@ async function youtubeCanales(env, notas, desde, n) {
   };
 }
 
+
+function decodeXml(value) {
+  return String(value || "").replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([\da-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/\s+/g, " ").trim();
+}
+function xmlTag(item, tag) {
+  const match = new RegExp("<" + tag + "(?:\\s[^>]*)?>([\\s\\S]*?)</" + tag + ">", "i").exec(item);
+  return match ? decodeXml(match[1]) : "";
+}
+function urlPostFacebook(value) {
+  try {
+    const u = new URL(value);
+    if (!/(^|\.)facebook\.com$/i.test(u.hostname)) return false;
+    return /\/(?:posts|permalink\.php|share\/(?:p|r)|reel|reels|videos|watch|photo|photos|story\.php|groups\/[^/]+\/posts)\b/i.test(u.pathname);
+  } catch { return false; }
+}
+
+// Busca en el índice público gratuito de Bing los posteos de Facebook que coinciden
+// con los títulos de las notas recientes. No requiere token ni servicio pago y no
+// equivale a leer todo Facebook: solo encuentra contenido público que el buscador indexó.
+async function facebookPublico(env, notas, desde, n) {
+  const recientes = notas.filter(nota => nota.fecha >= desde)
+    .sort((a, b) => b.fecha.localeCompare(a.fecha)).slice(0, 10);
+  const seleccionadas = lote(recientes, 5, n);
+  const filas = [], errores = {};
+  let resultadosRevisados = 0, enlacesPosteo = 0;
+  for (let i = 0; i < seleccionadas.length; i += 5) {
+    await Promise.all(seleccionadas.slice(i, i + 5).map(async nota => {
+      try {
+        const consulta = 'site:facebook.com "' + String(nota.titulo || "").replace(/["<>]/g, " ").trim() + '"';
+        const url = "https://www.bing.com/search?" + new URLSearchParams({ format: "rss", q: consulta, setlang: "es-AR" });
+        const response = await fetch(url, { headers: { Accept: "application/rss+xml, application/xml, text/xml", "User-Agent": "JusNoticiasRadar/1.0 (busqueda de publicaciones publicas)" } });
+        if (!response.ok) throw new Error("Bing RSS respondió HTTP " + response.status);
+        const xml = await response.text();
+        if (!/<(?:rss|feed)\b/i.test(xml) || /captcha|unusual traffic|verify you are human/i.test(xml.slice(0, 3000))) {
+          throw new Error("El buscador no devolvió un RSS utilizable.");
+        }
+        const items = xml.match(/<item(?:\s[^>]*)?>[\s\S]*?<\/item>/gi) || [];
+        resultadosRevisados += items.length;
+        items.forEach(item => {
+          const link = xmlTag(item, "link");
+          const titulo = xmlTag(item, "title");
+          const descripcion = xmlTag(item, "description");
+          const fechaRaw = xmlTag(item, "pubDate");
+          const fecha = fechaRaw ? new Date(fechaRaw).toISOString().slice(0, 10) : "";
+          if (!fecha || fecha < desde || fecha < sumarDias(nota.fecha, -1) || fecha > sumarDias(nota.fecha, 8) || !urlPostFacebook(link)) return;
+          const rel = notaRelacionada(titulo + " " + descripcion + " " + link, fecha, [nota]);
+          if (!rel) return;
+          enlacesPosteo += 1;
+          const partes = new URL(link).pathname.split("/").filter(Boolean);
+          const usuario = partes[0] && !/^(posts|share|reel|reels|videos|watch|permalink\.php|photo|photos|story\.php|groups)$/i.test(partes[0]) ? partes[0] : "Página pública de Facebook";
+          const cuentaUrl = usuario === "Página pública de Facebook" ? "https://www.facebook.com/" : "https://www.facebook.com/" + usuario + "/";
+          filas.push(fila("Facebook", usuario, cuentaUrl, link, fecha, titulo + (descripcion ? " — " + descripcion : ""), rel));
+        });
+      } catch (error) {
+        errores[String(nota.titulo || "nota").slice(0, 60)] = limpiarMensaje(error);
+      }
+    }));
+  }
+  return {
+    filas, revisadas: seleccionadas.length, publicaciones_revisadas: resultadosRevisados,
+    publicaciones_facebook_encontradas: enlacesPosteo, errores,
+    descripcion: "búsqueda gratuita en Bing de publicaciones públicas de Facebook indexadas; no cubre publicaciones privadas ni todo Facebook"
+  };
+}
+
 const FUENTES = [
   { id: "instagram", nombre: "Instagram", fn: instagram, lotes: Math.max(1, Math.ceil(USUARIOS_IG.length / TAM_LOTE_IG)) },
   { id: "ig-etiquetas", nombre: "Instagram (etiquetas)", fn: instagramEtiquetas, lotes: 1 },
   // Meta exige aprobar «Instagram Public Content Access» para buscar hashtags (respuesta del 26/10/2026).
   // Queda apagada hasta tener esa aprobación: se activa con la variable IG_HASHTAGS=1 en Cloudflare.
   { id: "ig-hashtags", nombre: "Instagram (hashtags)", fn: instagramHashtags, lotes: 1, requiere: "IG_HASHTAGS" },
+  { id: "facebook-publico", nombre: "Facebook (búsqueda pública)", fn: facebookPublico, lotes: 2 },
   { id: "youtube", nombre: "YouTube", fn: youtube, lotes: 1 },
   { id: "yt-canales", nombre: "YouTube (canales de medios)", fn: youtubeCanales, lotes: Math.max(1, Math.ceil(CANALES_YT.length / TAM_LOTE_YT)) }
 ];
 const NO_DISPONIBLES = {
-  Facebook: "No está habilitado el permiso de Meta necesario para buscar publicaciones públicas de otras páginas.",
   X: "La API de X para leer publicaciones de terceros es paga.",
   TikTok: "La API conectada permite consultar la cuenta autorizada, no buscar publicaciones de terceros de forma general; la búsqueda pública ampliada requiere acceso de investigación aprobado."
 };

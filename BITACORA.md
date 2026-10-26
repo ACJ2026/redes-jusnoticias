@@ -663,3 +663,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Archivos sincronizados:** `templates/tablero.html`, `publico/index.html` y `publico/tablero_publico.html`.
 - **Prueba de regresión:** se agregó una prueba que verifica el límite de espera y la limpieza del temporizador.
 - **Límite:** esta protección evita que una API lenta congele toda la interfaz; no sustituye la reparación de la API si sigue fallando.
+
+
+## 2026-10-26 — Búsqueda pública gratuita de Facebook
+
+- Se agregó la fuente automática **Facebook (búsqueda pública)** en `functions/api/compartidos.js`. Consulta el RSS público de Bing con el título de hasta diez notas recientes y busca resultados indexados en `facebook.com`; trabaja en dos tandas de cinco consultas para limitar la carga.
+- Solo acepta enlaces que parecen apuntar a una publicación directa de Facebook y cuya fecha y texto se relacionan con la nota dentro de la ventana prevista. Los resultados se deduplican con los de otras fuentes y conservan URL directa, fecha, cuenta/página y motivo de coincidencia.
+- No requiere suscripciones, tokens ni una API paga. No reemplaza el acceso de Meta: encuentra únicamente publicaciones públicas indexadas por Bing, por lo que no cubre todo Facebook. Si el buscador bloquea la consulta o no devuelve RSS utilizable, el error se informa por nota; la ausencia de resultados no demuestra que no existan publicaciones.
+- Se agregó una prueba estática de regresión. La validación de funcionamiento real requiere ejecutar la búsqueda en Cloudflare, porque la respuesta del buscador depende del acceso externo y de lo que tenga indexado.
