@@ -630,3 +630,10 @@ Resultado de «Buscar ahora» en producción:
 - **Tandas:** funcionaron (ninguna fuente cayó por el límite de Cloudflare).
 
 Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué cuentas o canales dieron error y por qué», agrupado por motivo, para corregir la lista (cuentas personales que Meta no permite consultar, nombres de usuario mal escritos, canales no encontrados).
+
+
+## 2026-10-26 — Instagram: error en las 64 cuentas en la segunda búsqueda seguida (Claude)
+
+- La segunda vez que se tocó «Buscar ahora» (pocos minutos después de la primera) Instagram dio **error en las 64 cuentas y 0 publicaciones**. La primera vez habían fallado 35. Causa más probable: **límite de consultas por hora de Meta** (cada búsqueda hacía hasta ~150 consultas con 3 páginas por cuenta); las 35 de la primera vez pueden ser en parte el mismo límite al final de la búsqueda y en parte cuentas personales o mal escritas. Falta confirmar con el detalle de errores.
+- Cambio: por defecto se lee **1 página (30 publicaciones) por cuenta** en vez de 3, así cada búsqueda hace ~64 consultas. Las cuentas pueden pedir más con `"paginas"`.
+- Recomendación de uso: **no tocar «Buscar ahora» más de una vez por hora**; si da error en todas las cuentas, esperar una hora.
