@@ -269,7 +269,7 @@ class TableroPublicoTests(unittest.TestCase):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
         self.assertIn('id="t-compartidos"', template)
-        self.assertIn("celdaEnlace(f.cuenta, f.cuenta_url)", template)
+        self.assertIn("celdaEnlace(String(f.cuenta || 'Cuenta sin identificar'), f.cuenta_url)", template)
         self.assertIn("const idNotaPorTitulo = new Map(notas.map(n => [String(n.titulo || '').trim().toLocaleLowerCase(), Number(n.id)]));", template)
         self.assertIn("const resolverNotaId = f => Number(f.nota_id) || idNotaPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null;", template)
         self.assertIn("Nota original pendiente de identificar", template)
