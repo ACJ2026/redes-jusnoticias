@@ -606,3 +606,15 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - **No se borraron filas:** los 39 pendientes «Por identificar» resueltos quedan con estado «Identificado el 26/10/2026».
 - **Qué se usa en cada red:** Instagram, búsqueda automática; YouTube, por ahora búsqueda por título (próximo paso: vigilar los canales cargados); Facebook, X y TikTok sirven para la búsqueda asistida y el analizador de enlaces (no hay API gratuita para leer publicaciones de terceros).
 - **Pendiente:** probar «Buscar ahora» en producción con las 64 cuentas y revisar si Meta devuelve errores en alguna (cuentas personales no admiten esta consulta); próximos pasos: hashtags y etiquetas a nuestra cuenta en Instagram, y canales de medios en YouTube.
+
+
+## 2026-10-26 — Radar de redes, fase 2: etiquetas, hashtags, canales de YouTube y tandas (Claude)
+
+Aprobado por el usuario. Cambios en `functions/api/compartidos.js` y en el botón «Buscar ahora» del tablero:
+
+- **Instagram, etiquetas:** lee las publicaciones donde otras cuentas etiquetan a nuestra cuenta (`/{IG_USER_ID}/tags`), aunque esa cuenta no esté en la lista. Si el texto no permite saber la nota, entra como «A verificar (etiquetó a nuestra cuenta; falta identificar la nota)».
+- **Instagram, hashtags:** busca en #justiciachubut, #poderjudicialchubut, #puertomadryn, #trelew y #comodororivadavia (Meta permite 30 hashtags distintos por semana; solo devuelve publicaciones de las últimas 24 h y no informa la cuenta). **Puede requerir un permiso de Meta que la app no tenga**: si Meta lo rechaza, el tablero lo muestra como «no disponible» con el motivo.
+- **YouTube, canales de medios:** lee los últimos 25 videos de cada canal de la lista (43 canales) y los compara con todas las notas. Formatos `/channel/UC…`, `/user/…` y `@…`; los `/c/…` se prueban como @usuario y, si YouTube no los encuentra, figuran como error de ese canal.
+- **Tandas (posible causa de que el recolector diera pocos resultados):** Cloudflare limita las consultas externas por pedido (50 en el plan gratuito). Con 64 cuentas de Instagram más los canales se superaba. Ahora el tablero pide primero un plan (`/api/compartidos?plan=1`) y después cada tanda por separado (`?fuente=…&lote=…`): 12 cuentas de Instagram (máx. 36 consultas) o 20 canales (40) por pedido. Probado con respuestas simuladas: ninguna tanda supera 40 consultas y el tablero junta los resultados y muestra el resumen por fuente.
+- Se corrigió además que «publicaciones consultadas» de Instagram nunca llegaba al tablero (la API no lo devolvía).
+- **Falta:** probar «Buscar ahora» en producción y anotar qué responde Meta para etiquetas y hashtags.
