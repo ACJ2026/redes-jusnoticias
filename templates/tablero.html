@@ -1139,12 +1139,26 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     }
   };
   const celdaPublicacionCompartida = f => {
-    if (f.publicacion_url && /^https?:\/\//i.test(f.publicacion_url)) return celdaEnlace('Ver publicación directa', f.publicacion_url);
+    const url = typeof f?.publicacion_url === 'string' && /^https?:\/\//i.test(f.publicacion_url)
+      ? f.publicacion_url : null;
+    // Una URL válida no demuestra que el post hable de nuestra nota.
+    // Solo una coincidencia fuerte permite mostrar el enlace directo.
+    if (url && f.verificacion === 'fuerte') return celdaEnlace('Abrir publicación coincidente', url);
+    const td = document.createElement('td');
+    td.className = 'dim';
+    if (url && f.verificacion === 'a_verificar') {
+      td.textContent = 'Candidata sin confirmar; enlace oculto';
+      td.title = 'La coincidencia de palabras no alcanza para atribuir esta publicación a la nota. El enlace queda oculto hasta verificar el contenido.';
+      return td;
+    }
+    if (url) {
+      td.textContent = 'Enlace registrado sin verificar';
+      td.title = 'Este registro no contiene una verificación de que el enlace abra la publicación correcta.';
+      return td;
+    }
     const busqueda = enlaceBusquedaCompartido(f);
     if (busqueda) return celdaEnlace('Buscar publicación (pendiente de verificar)', busqueda);
-    const td = document.createElement('td');
     td.textContent = 'Enlace directo pendiente de verificar';
-    td.className = 'dim';
     td.title = 'No se guardó una URL directa de esta publicación.';
     return td;
   };
@@ -1297,7 +1311,9 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       for (let i = 0; i < tareas.length; i += 3) await Promise.all(tareas.slice(i, i + 3).map(correr));
       const vistos = new Set();
       const unicas = filas.filter(f => f.publicacion_url && !vistos.has(f.publicacion_url) && vistos.add(f.publicacion_url));
-      // Solo el enlace directo o el título completo cuentan como coincidencia fuerte; el resto queda a verificar.
+      // Las coincidencias débiles se conservan como candidatas, pero nunca como publicaciones confirmadas.
+      const confirmadas = unicas.filter(f => f.verificacion === 'fuerte');
+      const candidatas = unicas.filter(f => f.verificacion !== 'fuerte');
       const nuevas = unicas.map(f => ({ ...f, tipo: (f.verificacion === 'fuerte' ? 'Coincidencia fuerte (' : 'A verificar (') + f.coincidencia + ')' }));
       dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
       dibujarBusquedasManuales(plan.desde);
@@ -1305,7 +1321,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
         ? fmt(f.revisadas) + (f.descripcion ? ' ' + f.descripcion : red === 'Instagram' ? ' cuentas revisadas' + (f.publicaciones_revisadas != null ? ', ' + fmt(f.publicaciones_revisadas) + ' publicaciones consultadas' : '') : ' notas buscadas') + (Object.keys(f.errores).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') + (f.fallas.length ? ' (' + f.fallas.length + ' tandas fallaron)' : '')
         : 'no disponible (' + (f.fallas[0] || 'sin respuesta') + ')')).join(' · ');
       const pendientes = Object.entries(plan.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');
-      estado.textContent = fmt(nuevas.length) + ' publicaciones detectadas desde ' + plan.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
+      estado.textContent = fmt(confirmadas.length) + ' coincidencias fuertes y ' + fmt(candidatas.length) + ' candidatas sin confirmar desde ' + plan.desde + '. Solo las coincidencias fuertes tienen enlace directo; las demás quedan sin enlace hasta verificar el contenido. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
       // Detalle de errores por cuenta o canal, agrupado por motivo para que se pueda corregir la lista.
       const porMotivo = new Map();
       Object.entries(fuentes).forEach(([red, f]) => Object.entries(f.errores || {}).forEach(([cuenta, motivo]) => {
