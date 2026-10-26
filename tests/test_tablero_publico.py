@@ -295,8 +295,9 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("if (f.url_sitio && /^https?:\\/\\//i.test(f.url_sitio))", template)
         self.assertIn("!/news\\.google\\.com/i.test(p.url)", template)
         self.assertIn("const perfil = cuenta ? enlaceCuenta(cuenta) : perfilUrl(f.red, f.cuenta);", template)
+        enlace_medio = template.split("const enlaceNotaSitioMedio = f =>", 1)[1].split("const celdaNotaSitioMedio", 1)[0]
+        self.assertNotIn("google.com/search", enlace_medio)
         self.assertNotIn("Buscar nota del medio (pendiente de verificar)", template)
-        self.assertNotIn("return { url: 'https://www.google.com/search?q=' + encodeURIComponent('\\\"' + medio", template)
         self.assertIn("Solo la URL directa identifica la publicación concreta.", template)
         self.assertIn("Abre una búsqueda; todavía no es el enlace directo al post.", template)
         self.assertNotIn("D.repercusion.filter(p => Number(p.nota_id) === Number(r.nota_id)", template)
