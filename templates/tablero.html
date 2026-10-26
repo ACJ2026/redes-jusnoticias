@@ -1229,7 +1229,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       const nuevas = (data.filas || []).map(f => ({ ...f, tipo: 'Detectada automáticamente (' + f.coincidencia + ')' }));
       dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
       dibujarBusquedasManuales(data.desde);
-      const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' · ');
+      const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' + (f.publicaciones_revisadas != null ? ', ' + fmt(f.publicaciones_revisadas) + ' publicaciones consultadas' : '') : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' ·');
       const pendientes = Object.entries(data.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');
       estado.textContent = fmt(nuevas.length) + ' publicaciones detectadas desde ' + data.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
     } catch (error) {
