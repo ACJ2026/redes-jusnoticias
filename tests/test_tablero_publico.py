@@ -292,7 +292,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn("Consultar fuente de esta cifra", template)
         self.assertIn("Buscar ahora</button>", template)
         self.assertIn("addEventListener('click', buscarCompartidos)", template)
-        self.assertIn("Facebook y TikTok se ofrece una búsqueda asistida marcada como pendiente de verificar.", template)
+        self.assertIn("las limitaciones de cada plataforma se informan por separado.", template)
 
     def test_generador_de_infografias_usa_los_datos_del_tablero(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
