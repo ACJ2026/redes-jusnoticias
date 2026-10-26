@@ -683,3 +683,13 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Verificación de CI:** correcta en [validación 40354366353](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40354366353) y [reconstrucción 40354366399](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40354366399). Ambos HTML públicos fueron reconstruidos y se comprobó que contienen las guardas nuevas.
 - **Cloudflare Pages:** despliegue de producción [df7e23dd](https://github.com/ACJ2026/redes-jusnoticias/commit/df7e23dd53184ea004a3a2a621d97b46209747f7) finalizó con estado success y figura como latest/canonical deployment: https://d86510d1.jusnoticias.pages.dev.
 - **Límite:** no se pudo hacer una prueba interactiva real de navegador desde esta sesión ni recuperar el texto inicial de la excepción original. El área afectada está aislada para que un fallo de esta tabla no detenga el resto del tablero; el diagnóstico de la expresión original exacta sigue siendo probable, no confirmado.
+
+
+## 2026-10-26 — Enlaces sociales no verificados presentados como directos
+
+- **Causa encontrada:** la API de `functions/api/compartidos.js` ya distinguía `verificacion: "fuerte"` de `verificacion: "a_verificar"`, pero `templates/tablero.html` ignoraba esa marca y mostraba «Ver publicación directa» ante cualquier URL HTTP. Los registros históricos sin estado de verificación también se trataban como enlaces directos. El formato de URL no demuestra que el contenido corresponda a la nota.
+- **Corrección:** solo las coincidencias fuertes conservan un enlace social clicable. Las candidatas débiles se muestran como «Candidata sin confirmar; enlace oculto» y los registros históricos sin verificación como «Enlace registrado sin verificar». El resumen separa coincidencias fuertes de candidatas.
+- **Prueba de regresión:** `tests/test_tablero_publico.py` ahora exige que el renderizador oculte los enlaces no verificados.
+- **Documento del incidente:** [docs/INCIDENTE_ENLACES_COMPARTIDOS.md](docs/INCIDENTE_ENLACES_COMPARTIDOS.md), con la relación de los cambios anteriores y los pasos de cierre.
+- **Commits correctivos:** plantilla [c9d8de8c](https://github.com/ACJ2026/redes-jusnoticias/commit/c9d8de8c121a5651984caf73accbbe0c493ea1e7), prueba [ff70d7ff](https://github.com/ACJ2026/redes-jusnoticias/commit/ff70d7ffb1bf39b2feed6edbf36dda09bf1a6649) y documentación [88f86cdd](https://github.com/ACJ2026/redes-jusnoticias/commit/88f86cdd034e907f806a7012d29e155e86999bd4).
+- **Pendiente para declarar resuelto:** resultado de CI, reconstrucción de los HTML públicos, despliegue de Cloudflare Pages y prueba funcional en la URL canónica.
