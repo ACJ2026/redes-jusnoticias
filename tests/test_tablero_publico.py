@@ -302,7 +302,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("const enlaceNotaSitioMedio = f =>", template)
         self.assertIn("Ver nota en sitio del medio", template)
         self.assertIn("Ver cuenta del medio (nota pendiente)", template)
-        self.assertIn("if (f.url_sitio && /^https?:\\/\\//i.test(f.url_sitio))", template)
+        self.assertIn("if (typeof f.url_sitio === 'string' && /^https?:\\/\\//i.test(f.url_sitio))", template)
         self.assertIn("!/news\\.google\\.com/i.test(p.url)", template)
         self.assertIn("const perfil = cuenta ? enlaceCuenta(cuenta) : perfilUrl(f.red, f.cuenta);", template)
         enlace_medio = template.split("const enlaceNotaSitioMedio = f =>", 1)[1].split("const celdaNotaSitioMedio", 1)[0]
