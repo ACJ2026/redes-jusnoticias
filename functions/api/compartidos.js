@@ -92,25 +92,37 @@ async function instagram(env, notas, desde) {
     .map(c => c.cuenta.slice(1)))];
   const filas = [], errores = {};
   const campos = "media.limit(30){caption,permalink,timestamp}";
+  const MAX_PAGINAS_POR_CUENTA = 3; // Hasta 90 publicaciones por cuenta; limita tiempo y consultas.
+  let publicacionesRevisadas = 0;
   // De a 5 en paralelo para no exceder los límites de Meta.
   for (let i = 0; i < usuarios.length; i += 5) {
     await Promise.all(usuarios.slice(i, i + 5).map(async usuario => {
       try {
         const url = `${GRAPH}/${env.IG_USER_ID}?fields=${encodeURIComponent(`business_discovery.username(${usuario}){${campos}}`)}`;
-        const data = await get(url, env.META_TOKEN);
-        const media = (data.business_discovery && data.business_discovery.media && data.business_discovery.media.data) || [];
-        media.forEach(m => {
-          const fecha = String(m.timestamp || "").slice(0, 10);
-          if (!fecha || fecha < desde) return;
-          const rel = notaRelacionada(m.caption, fecha, notas);
-          if (rel) filas.push(fila("Instagram", "@" + usuario, "https://www.instagram.com/" + usuario + "/", m.permalink, fecha, m.caption, rel));
-        });
+        let data = await get(url, env.META_TOKEN);
+        let paginas = 0;
+        while (data && paginas < MAX_PAGINAS_POR_CUENTA) {
+          const bloque = data.business_discovery && data.business_discovery.media;
+          const media = (bloque && bloque.data) || [];
+          publicacionesRevisadas += media.length;
+          media.forEach(m => {
+            const fecha = String(m.timestamp || "").slice(0, 10);
+            if (!fecha || fecha < desde) return;
+            const rel = notaRelacionada(m.caption, fecha, notas);
+            if (rel) filas.push(fila("Instagram", "@" + usuario, "https://www.instagram.com/" + usuario + "/", m.permalink, fecha, m.caption, rel));
+          });
+          paginas += 1;
+          // Seguir solo si Meta ofrece una página siguiente; nunca recorrer el historial sin límite.
+          const siguiente = bloque && bloque.paging && bloque.paging.next;
+          if (!siguiente || paginas >= MAX_PAGINAS_POR_CUENTA) break;
+          data = await get(siguiente, env.META_TOKEN);
+        }
       } catch (error) {
         errores["@" + usuario] = limpiarMensaje(error);
       }
     }));
   }
-  return { filas, revisadas: usuarios.length, errores };
+  return { filas, revisadas: usuarios.length, publicaciones_revisadas: publicacionesRevisadas, max_paginas_por_cuenta: MAX_PAGINAS_POR_CUENTA, errores };
 }
 
 async function youtube(env, notas, desde) {
