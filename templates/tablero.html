@@ -624,8 +624,6 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     } catch { return ''; }
   };
   // El historial se carga en segundo plano: nunca debe impedir que se active el tablero.
-  let revisionApiDisponible = false;
-  let errorRevisionApi = '';
   async function cargarRevisiones() {
   const timeoutRevision = new AbortController();
   const timeoutRevisionId = setTimeout(() => timeoutRevision.abort(), 3500);
