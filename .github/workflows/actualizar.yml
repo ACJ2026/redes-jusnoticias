@@ -15,8 +15,9 @@ on:
       - 'scripts/armar_inventario.py'
       - 'data/fuentes_descubiertas.json'
   schedule:
-    # Cron UTC: horas pares, minuto 59; en Argentina (UTC-3) corresponde a horas impares, minuto 59.
-    - cron: "59 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
+    # Cada 4 horas para no pasarse de los minutos gratis de GitHub Actions.
+    # Cron UTC minuto 59: en Argentina (UTC-3) corresponde a 21:59, 01:59, 05:59, 09:59, 13:59 y 17:59.
+    - cron: "59 0,4,8,12,16,20 * * *"
   workflow_dispatch:
     inputs:
       modo:
