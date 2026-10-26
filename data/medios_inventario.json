@@ -205,6 +205,37 @@
       }
     },
     {
+      "nombre": "ADN Sur",
+      "alias": [],
+      "dominio": "adnsur.com.ar",
+      "url": "https://adnsur.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
+      "publicaciones": 63,
+      "notas": 55,
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/historico-fallo-en-chubut--obligan-a-seros-a-cubrir-fertilizacion-asistida-para-una-pareja-de-mujeres_a69f36b1f70a58a58f84eb25c",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-26",
+      "redes": {
+        "Facebook": [
+          "ADN Sur",
+          "/ADNSUR"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: el sitio linkea @yasabes.arg; también existe @adnsur"
+        ],
+        "X": [
+          "@ADNsur"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: @ADNSURTV"
+        ]
+      }
+    },
+    {
       "nombre": "FM Bahía Engaño",
       "alias": [],
       "dominio": "fmbahiaengano.com",
@@ -236,33 +267,34 @@
       }
     },
     {
-      "nombre": "ADN Sur",
-      "alias": [],
-      "dominio": "adnsur.com.ar",
-      "url": "https://adnsur.com.ar",
+      "nombre": "El Diario Web",
+      "alias": [
+        "eldiarioweb.com"
+      ],
+      "dominio": "eldiarioweb.com",
+      "url": "https://eldiarioweb.com",
       "tipo": "Portal digital",
-      "localidad": "Comodoro Rivadavia",
-      "metodo": "Sitemap / índice propio",
+      "localidad": "Puerto Madryn",
+      "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 60,
-      "notas": 52,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-26",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 59,
+      "notas": 55,
+      "ejemplo": "https://www.eldiarioweb.com/2026/10/puerto-madryn-condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
       "redes": {
         "Facebook": [
-          "ADN Sur",
-          "/ADNSUR"
+          "/eldiarioonline"
         ],
         "Instagram": [
-          "Dudosa: Dudosa: el sitio linkea @yasabes.arg; también existe @adnsur"
+          "@eldiarioweb"
         ],
         "X": [
-          "@ADNsur"
+          "@ElDiario_web"
         ],
         "YouTube": [
-          "Dudosa: Dudosa: @ADNSURTV"
+          "/user/diariodemadryn"
         ]
       }
     },
@@ -320,38 +352,6 @@
         ],
         "X": [
           "Dudosa: Dudosa: @MollMadryn"
-        ]
-      }
-    },
-    {
-      "nombre": "El Diario Web",
-      "alias": [
-        "eldiarioweb.com"
-      ],
-      "dominio": "eldiarioweb.com",
-      "url": "https://eldiarioweb.com",
-      "tipo": "Portal digital",
-      "localidad": "Puerto Madryn",
-      "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
-      "publicaciones": 48,
-      "notas": 48,
-      "ejemplo": "https://www.eldiarioweb.com/2026/10/puerto-madryn-condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/eldiarioonline"
-        ],
-        "Instagram": [
-          "@eldiarioweb"
-        ],
-        "X": [
-          "@ElDiario_web"
-        ],
-        "YouTube": [
-          "/user/diariodemadryn"
         ]
       }
     },
@@ -971,7 +971,7 @@
       "cobertura": "Revisión completa (solo títulos)",
       "publicaciones": 6,
       "notas": 6,
-      "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
+      "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-inedito-en-chubut-la-justicia-autorizo-a-una-joven-a-cambiar-su-genero-por-segunda-vez-177/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
       "redes": {
@@ -1001,7 +1001,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 6,
       "notas": 6,
-      "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
+      "ejemplo": "https://diariosanrafael.com.ar/confirmo-el-vaticano-la-agenda-oficial-de-leon-xiv-en-la-argentina/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
       "redes": {
@@ -1235,8 +1235,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 3,
       "notas": 3,
       "ejemplo": "https://www.infobae.com/judiciales/2026/10/03/una-frenada-brusca-la-sube-como-prueba-y-la-discusion-por-la-indemnizacion-una-pasajera-le-gano-un-juicio-a-una-empresa-de-colectivos/",
@@ -1502,8 +1502,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
@@ -1895,8 +1895,8 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
@@ -2331,8 +2331,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
