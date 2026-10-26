@@ -309,8 +309,8 @@ function xmlTag(item, tag) {
 function urlPostFacebook(value) {
   try {
     const u = new URL(value);
-    if (!/(^|\\.)facebook\\.com$/i.test(u.hostname)) return false;
-    return /\\/(?:posts|permalink\\.php|share\\/(?:p|r)|reel|reels|videos|watch|photo|photos|story\\.php|groups\\/[^/]+\\/posts)\\b/i.test(u.pathname);
+    if (!/(^|\.)facebook\.com$/i.test(u.hostname)) return false;
+    return /\/(?:posts|permalink\.php|share\/(?:p|r)|reel|reels|videos|watch|photo|photos|story\.php|groups\/[^/]+\/posts)\b/i.test(u.pathname);
   } catch { return false; }
 }
 
