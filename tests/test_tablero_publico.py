@@ -267,7 +267,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("Nota original pendiente de identificar", template)
         self.assertIn("notaId ? notaUrl(notaId) : null", template)
         self.assertIn('id="compartidos-busqueda-manual"', template)
-        self.assertIn("dibujarBusquedasManuales(data.desde)", template)
+        self.assertIn("dibujarBusquedasManuales(plan.desde)", template)
         # Los textos «Buscar en <red>» se arman en el navegador: se comprueba la lista de redes y el armado.
         self.assertIn("a.textContent = 'Buscar en ' + red", template)
         for red in ("Instagram", "YouTube", "X", "LinkedIn"):
@@ -676,6 +676,21 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertTrue(all(c["cuenta"].startswith("@") for c in ig))
         funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
         self.assertIn("paginas >= paginasPorUsuario.get(usuario)", funcion)
+
+
+    def test_radar_redes_etiquetas_hashtags_canales_y_tandas(self):
+        funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        for fuente in ("instagramEtiquetas", "instagramHashtags", "youtubeCanales"):
+            self.assertIn(f"async function {fuente}(", funcion)
+        self.assertIn("/tags?fields=caption,permalink,timestamp,username", funcion)
+        self.assertIn("ig_hashtag_search", funcion)
+        self.assertIn("playlistItems", funcion)
+        # Tandas: 12 cuentas de Instagram (máx. 36 consultas) y 20 canales (40) por pedido, debajo del límite de 50.
+        self.assertIn("const TAM_LOTE_IG = 12, TAM_LOTE_YT = 20;", funcion)
+        self.assertIn('params.get("plan")', funcion)
+        self.assertIn("fetch('/api/compartidos?plan=1'", template)
+        self.assertIn("'/api/compartidos?fuente=' + encodeURIComponent(t.id) + '&lote=' + t.lote", template)
 
 
 if __name__ == "__main__":

@@ -1221,18 +1221,48 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
 
   const buscarCompartidos = async () => {
     const estado = $('compartidos-estado');
-    estado.textContent = 'Buscando en Instagram (cuentas del listado) y YouTube (hasta 10 notas recientes)…';
+    estado.textContent = 'Buscando en Instagram (cuentas, etiquetas y hashtags) y YouTube (búsqueda y canales de medios)…';
     try {
-      const response = await fetch('/api/compartidos', { headers: { Accept: 'application/json' } });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'HTTP ' + response.status);
+      // El servidor reparte las listas largas en tandas para no superar el límite de consultas de Cloudflare.
+      const planResp = await fetch('/api/compartidos?plan=1', { headers: { Accept: 'application/json' } });
+      const plan = await planResp.json();
+      if (!planResp.ok) throw new Error(plan.error || 'HTTP ' + planResp.status);
+      const tareas = plan.fuentes.flatMap(f => Array.from({ length: f.lotes }, (_, i) => ({ ...f, lote: i })));
+      const filas = [], fuentes = {};
+      let hechas = 0;
+      const correr = async t => {
+        let data;
+        try {
+          const r = await fetch('/api/compartidos?fuente=' + encodeURIComponent(t.id) + '&lote=' + t.lote, { headers: { Accept: 'application/json' } });
+          data = await r.json();
+          if (!r.ok) throw new Error(data.error || 'HTTP ' + r.status);
+        } catch (error) {
+          data = { filas: [], fuentes: { [t.nombre]: { estado: 'error', error: error.message } } };
+        }
+        filas.push(...(data.filas || []));
+        Object.entries(data.fuentes || {}).forEach(([nombre, f]) => {
+          const acc = fuentes[nombre] || (fuentes[nombre] = { estado: 'error', revisadas: 0, errores: {}, fallas: [] });
+          if (f.estado === 'ok') {
+            acc.estado = 'ok'; acc.revisadas += f.revisadas || 0; acc.descripcion = f.descripcion;
+            if (f.publicaciones_revisadas != null) acc.publicaciones_revisadas = (acc.publicaciones_revisadas || 0) + f.publicaciones_revisadas;
+            Object.assign(acc.errores, f.errores || {});
+          } else acc.fallas.push(f.error);
+        });
+        hechas += 1;
+        estado.textContent = 'Buscando… ' + hechas + ' de ' + tareas.length + ' consultas.';
+      };
+      for (let i = 0; i < tareas.length; i += 3) await Promise.all(tareas.slice(i, i + 3).map(correr));
+      const vistos = new Set();
+      const unicas = filas.filter(f => f.publicacion_url && !vistos.has(f.publicacion_url) && vistos.add(f.publicacion_url));
       // Solo el enlace directo o el título completo cuentan como coincidencia fuerte; el resto queda a verificar.
-      const nuevas = (data.filas || []).map(f => ({ ...f, tipo: (f.verificacion === 'fuerte' ? 'Coincidencia fuerte (' : 'A verificar (') + f.coincidencia + ')' }));
+      const nuevas = unicas.map(f => ({ ...f, tipo: (f.verificacion === 'fuerte' ? 'Coincidencia fuerte (' : 'A verificar (') + f.coincidencia + ')' }));
       dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
-      dibujarBusquedasManuales(data.desde);
-      const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' + (f.publicaciones_revisadas != null ? ', ' + fmt(f.publicaciones_revisadas) + ' publicaciones consultadas' : '') : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' ·');
-      const pendientes = Object.entries(data.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');
-      estado.textContent = fmt(nuevas.length) + ' publicaciones detectadas desde ' + data.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
+      dibujarBusquedasManuales(plan.desde);
+      const detalle = Object.entries(fuentes).map(([red, f]) => red + ': ' + (f.estado === 'ok'
+        ? fmt(f.revisadas) + (f.descripcion ? ' ' + f.descripcion : red === 'Instagram' ? ' cuentas revisadas' + (f.publicaciones_revisadas != null ? ', ' + fmt(f.publicaciones_revisadas) + ' publicaciones consultadas' : '') : ' notas buscadas') + (Object.keys(f.errores).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') + (f.fallas.length ? ' (' + f.fallas.length + ' tandas fallaron)' : '')
+        : 'no disponible (' + (f.fallas[0] || 'sin respuesta') + ')')).join(' · ');
+      const pendientes = Object.entries(plan.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');
+      estado.textContent = fmt(nuevas.length) + ' publicaciones detectadas desde ' + plan.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
     } catch (error) {
       const desdeManual = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
       dibujarBusquedasManuales(desdeManual);
