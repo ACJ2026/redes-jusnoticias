@@ -1113,7 +1113,10 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     }
     if (enlace.tipo === 'directa') return celdaEnlace('Ver nota en sitio del medio', enlace.url);
     if (enlace.tipo === 'cuenta') return celdaEnlace('Ver cuenta del medio (nota pendiente)', enlace.url);
-    return null;
+    const td = document.createElement('td');
+    td.textContent = 'Nota del medio pendiente de localizar';
+    td.className = 'dim';
+    return td;
   };
   const celdaPublicacionCompartida = f => {
     if (f.publicacion_url && /^https?:\/\//i.test(f.publicacion_url)) return celdaEnlace('Ver publicación directa', f.publicacion_url);
