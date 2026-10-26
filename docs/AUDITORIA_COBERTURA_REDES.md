@@ -19,7 +19,7 @@ El enlace de Instagram compartido como caso de prueba es `https://www.instagram.
 - Facebook y TikTok se presentan como búsquedas asistidas/manuales, no como detección automática general de publicaciones de terceros.
 - Instagram consulta las cuentas de `data/cuentas_monitoreo.json` cuyo estado no empieza con `Dudosa`; por cada cuenta solicita `media.limit(30)`. No busca cuentas desconocidas ni todo Instagram.
 - Instagram descarta publicaciones anteriores a la ventana de 30 días y relaciona el texto con títulos de notas publicadas entre un día antes y ocho días después. Si el Reel no tiene texto/caption útil, usa otro texto o no alcanza el umbral de palabras coincidentes, puede no aparecer aunque visualmente difunda la nota.
-- YouTube procesa solo las 10 notas más recientes dentro del período, hace una búsqueda por título con `maxResults=10` y no pagina los resultados. Los videos que no aparecen en esos resultados pueden quedar fuera.
+- YouTube combina la búsqueda por título de las 10 notas más recientes con el inventario de canales de medios. La búsqueda por título no pagina resultados; la lectura por canal recorre hasta 3 páginas de 25 videos (75 por canal) y se detiene si los videos ya son anteriores a la ventana. Si aún hay más páginas dentro del período, informa cuántos canales alcanzaron el límite; no equivale a leer todo el historial.
 - La respuesta informa errores por fuente/cuenta, pero una consulta exitosa con cero coincidencias no demuestra que se haya revisado toda la red.
 
 ### 2. Consulta de publicaciones propias: `functions/api/redes.js`
@@ -51,7 +51,7 @@ La búsqueda de Instagram depende de que las cuentas estén previamente cargadas
 |---|---|---|---|
 | Instagram | Sí, cuenta autorizada | Sí, solo cuentas monitoreadas y hasta 30 elementos por cuenta | Ventana de 30 días y coincidencia textual |
 | Facebook | Sí, páginas autorizadas y permisos disponibles | No; búsqueda asistida | No hay búsqueda automática general de posts de terceros |
-| YouTube | Sí, canal autorizado | Sí, por títulos de hasta 10 notas recientes | Hasta 10 resultados por búsqueda, sin paginación |
+| YouTube | Sí, canal autorizado | Sí, búsqueda por título de hasta 10 notas recientes y canales de medios inventariados | Búsqueda por título: hasta 10 resultados sin paginación; por canal: hasta 75 videos y aviso si alcanza el límite |
 | X | Sí, timeline de cuenta autorizada | No | No está incluido en `/api/compartidos`; el acceso propio depende de la API |
 | TikTok | Sí, cuenta autorizada | No; búsqueda asistida | Display API de la cuenta no busca publicaciones generales de terceros |
 | WhatsApp | No hay consulta automática de publicaciones validada en estas funciones | No | Sin integración de búsqueda de repercusiones validada |
@@ -70,7 +70,7 @@ La revisión estática no permite confirmar los permisos vigentes ni la respuest
 
 1. **No presentar una consulta vacía como cobertura completa.** Mostrar para cada red el período, cuentas consultadas, resultados, errores y límites alcanzados.
 2. **Mejorar la detección de Instagram:** registrar las causas por las que una cuenta/publicación no se procesa y evaluar criterios complementarios a las raíces del título. Mantener la URL directa como identificador del hallazgo.
-3. **Ampliar YouTube con control de cuota:** aumentar o repartir las notas consultadas en varias ejecuciones y manejar paginación/resultados, sin exceder el presupuesto de API.
+3. **Ampliar YouTube con control de cuota:** mantener la búsqueda por título y recorrer hasta 3 páginas de videos recientes de cada canal inventariado, con corte por fecha, contador de videos y aviso de límite alcanzado.
 4. **Cerrar la brecha de Facebook, X y TikTok para repercusiones externas** solo mediante fuentes y permisos realmente disponibles; no simular cobertura automática donde la API no la ofrece.
 5. **Conservar trazabilidad por publicación:** red, cuenta, fecha, URL directa, texto disponible, nota relacionada, fuente de detección y estado de verificación. Los hallazgos sin coincidencia segura deben quedar como pendientes, no desaparecer.
 6. **Añadir pruebas de regresión** para publicaciones con caption vacío, enlaces a JusNoticias, títulos reformulados, varias notas similares, duplicados, ventanas temporales, errores de API y límites de paginación.
