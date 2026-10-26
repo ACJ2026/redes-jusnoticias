@@ -623,7 +623,10 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       return u.toString();
     } catch { return ''; }
   };
-  // La pantalla principal no debe quedar bloqueada si la API de revisiones tarda o no responde.
+  // El historial se carga en segundo plano: nunca debe impedir que se active el tablero.
+  let revisionApiDisponible = false;
+  let errorRevisionApi = '';
+  async function cargarRevisiones() {
   const timeoutRevision = new AbortController();
   const timeoutRevisionId = setTimeout(() => timeoutRevision.abort(), 3500);
   try {
@@ -657,6 +660,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       : (error && error.message ? error.message : 'No se pudo conectar con el servicio de revisiones.');
   } finally {
     clearTimeout(timeoutRevisionId);
+  }
   }
   const $ = id => document.getElementById(id);
   const nf = new Intl.NumberFormat('es-AR');
@@ -2039,5 +2043,7 @@ const draw = () => {
     $('dashboard-app').hidden = false;
     show(h);
   } else draw();
+  // La portada y los controles ya están activos antes de consultar el historial.
+  cargarRevisiones().then(() => { updateLanding(calc()); draw(); });
 })();
 </script>
