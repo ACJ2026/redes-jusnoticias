@@ -131,6 +131,14 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertEqual((fila["nota_id"], fila["medio"]), (14545, "El Patagónico"))
         self.assertEqual(fila["cita_fuente_oficial"], "Sí")
 
+    def test_api_de_revisiones_no_bloquea_indefinidamente_la_pantalla(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("const timeoutRevision = new AbortController();", template)
+        self.assertIn("setTimeout(() => timeoutRevision.abort(), 3500)", template)
+        self.assertIn("signal: timeoutRevision.signal", template)
+        self.assertIn("clearTimeout(timeoutRevisionId)", template)
+        self.assertIn("El historial de revisiones tardó demasiado; el tablero cargó sin ese historial.", template)
+
     def test_portada_muestra_periodo_y_orden_correcto_de_indicadores(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn('id="portada-periodo"', template)
