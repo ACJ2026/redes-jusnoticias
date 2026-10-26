@@ -23,6 +23,7 @@ Tablero de repercusión y comunicación judicial de la Agencia de Comunicación 
 - [Manual sencillo del tablero](docs/MANUAL_TABLERO.md)
 - [Configuración de métricas de Google](docs/GOOGLE_METRICS.md)
 - [Estado de la integración de redes sociales](docs/REDES_SOCIALES.md)\n- [Configuración de TikTok Display API](docs/TIKTOK_DISPLAY_API.md)
+- [Incidente y control de enlaces compartidos](docs/INCIDENTE_ENLACES_COMPARTIDOS.md)
 - [Guía de Cloudflare Pages y estado de migración](docs/CLOUDFLARE_PAGES.md)
 
 Para ejecutar las pruebas de regresión del historial:
