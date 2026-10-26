@@ -645,3 +645,12 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - `Tablero_JusNoticias_como_funciona.pdf`: explicación simple (para qué sirve, fuentes, estados, secciones, acciones, actualización, límites y glosario).
   - `Tablero_JusNoticias_arquitectura_tecnica.pdf`: diagrama general, estructura del repositorio, relevamiento paso a paso, archivos de datos, flujos de Actions, protecciones del historial, generación del tablero, funciones de Cloudflare y bases D1/KV, nombres de secretos (sin valores), pruebas, costos y límites, forma de trabajo y pendientes.
 - Las versiones editables están como documentos de Claude; si cambian, hay que volver a exportar los PDF.
+
+
+## 2026-10-26 — Corregir enlaces de redes que derivaban a Google
+
+- **Problema:** en «Quién compartió nuestras notas», si no había una URL directa a la nota del medio, el tablero armaba una búsqueda de Google. Eso no era el enlace a la cuenta del medio y podía confundirse con la publicación original.
+- **Cambio en la rama `arreglar/enlaces-redes-cuentas`:** la columna pasa a llamarse «Nota o cuenta del medio». Si existe un enlace directo a la nota, abre esa nota; si no, abre el perfil de la cuenta cuando está identificado en el inventario; si tampoco hay perfil fiable, muestra que la nota está pendiente de localizar y no inventa una URL de Google.
+- **Búsqueda asistida de Instagram:** el enlace deja de abrir Google y pasa al buscador de palabras clave dentro de Instagram. La búsqueda puede requerir iniciar sesión y no garantiza encontrar todas las publicaciones.
+- **Pruebas:** se actualizaron las comprobaciones para exigir el enlace de perfil cuando existe, impedir que esa columna use Google como sustituto y verificar la ruta de búsqueda de Instagram. La salida pública debe regenerarse con `scripts/armar_publico.py` al integrar el cambio.
+- **Límites:** no se inventan usuarios ni se presenta un perfil como si fuera la URL exacta de un post. Las publicaciones sin enlace directo siguen marcadas como pendientes de verificar.

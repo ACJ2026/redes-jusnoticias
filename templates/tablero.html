@@ -459,7 +459,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <p class="note" id="compartidos-analisis-estado" role="status" aria-live="polite"></p>
       <div id="compartidos-analisis-resultados" aria-live="polite"></div>
       <details class="note" id="compartidos-busqueda-manual" hidden><summary>Búsqueda asistida en todas las redes y medios</summary><p>Abre búsquedas para cada nota en Facebook, Instagram, TikTok, YouTube, X, LinkedIn y la web. Son pistas para revisar manualmente; no equivalen a publicaciones verificadas.</p><div></div></details>
-      <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación compartida</th><th>Nota en sitio del medio</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
+      <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación compartida</th><th>Nota o cuenta del medio</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
     </div>
     <div class="card">
       <h2>Historial parcial de publicaciones propias por mes</h2>
@@ -1097,9 +1097,11 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     if (f.url_sitio && /^https?:\/\//i.test(f.url_sitio)) return { url: f.url_sitio, tipo: 'directa' };
     const directa = (D.repercusion || []).filter(p => Number(p.nota_id) === Number(notaId) && p.url && /^https?:\/\//i.test(p.url) && !/news\.google\.com/i.test(p.url) && normalizarMedioCompartido(p.medio) === claveMedio);
     if (directa.length) return { url: directa[0].url, tipo: 'directa' };
-    const titulo = String(f.nota_titulo || notas.find(n => Number(n.id) === Number(notaId))?.titulo || '').trim();
-    if (!medio || !titulo) return null;
-    return { url: 'https://www.google.com/search?q=' + encodeURIComponent('"' + medio + '" "' + titulo + '"'), tipo: 'busqueda' };
+    // Si no hay URL directa de la nota, enlazar al perfil real del medio si está identificado.
+    // No reemplazar un perfil por una búsqueda de Google ni presentar esa búsqueda como nota.
+    const perfil = cuenta ? enlaceCuenta(cuenta) : perfilUrl(f.red, f.cuenta);
+    if (perfil) return { url: perfil, tipo: 'cuenta' };
+    return null;
   };
   const celdaNotaSitioMedio = f => {
     const enlace = enlaceNotaSitioMedio(f);
@@ -1110,7 +1112,11 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       return td;
     }
     if (enlace.tipo === 'directa') return celdaEnlace('Ver nota en sitio del medio', enlace.url);
-    return celdaEnlace('Buscar nota del medio (pendiente de verificar)', enlace.url);
+    if (enlace.tipo === 'cuenta') return celdaEnlace('Ver cuenta del medio (nota pendiente)', enlace.url);
+    const td = document.createElement('td');
+    td.textContent = 'Nota del medio pendiente de localizar';
+    td.className = 'dim';
+    return td;
   };
   const celdaPublicacionCompartida = f => {
     if (f.publicacion_url && /^https?:\/\//i.test(f.publicacion_url)) return celdaEnlace('Ver publicación directa', f.publicacion_url);
@@ -1152,7 +1158,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       const consulta = encodeURIComponent('"' + n.titulo + '"');
       const enlaces = [
         ['Facebook', 'https://www.facebook.com/search/posts/?q=' + encodeURIComponent(n.titulo)],
-        ['Instagram', 'https://www.google.com/search?q=' + encodeURIComponent('site:instagram.com "' + n.titulo + '"')],
+        ['Instagram', 'https://www.instagram.com/explore/search/keyword/?q=' + encodeURIComponent(n.titulo)],
         ['TikTok', 'https://www.tiktok.com/search?q=' + encodeURIComponent(n.titulo)],
         ['YouTube', 'https://www.youtube.com/results?search_query=' + encodeURIComponent(n.titulo)],
         ['X', 'https://x.com/search?q=' + consulta],
