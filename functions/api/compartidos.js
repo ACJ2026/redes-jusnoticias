@@ -99,7 +99,9 @@ const fila = (red, cuenta, cuentaUrl, publicacionUrl, fecha, texto, rel) => ({
 const paginasPorUsuario = new Map();
 cuentasMonitoreo.cuentas
   .filter(c => c.red === "Instagram" && /^@[\w.]+$/.test(c.cuenta || "") && !/^Dudosa/.test(c.estado || ""))
-  .forEach(c => paginasPorUsuario.set(c.cuenta.slice(1).toLowerCase(), Math.max(1, Math.min(Number(c.paginas) || 3, 3))));
+  // Por defecto 1 página (30 publicaciones): con 64 cuentas, 3 páginas superaban el límite horario de Meta
+  // (26/10/2026: la segunda búsqueda seguida dio error en las 64 cuentas). Una cuenta puede pedir más con «paginas».
+  .forEach(c => paginasPorUsuario.set(c.cuenta.slice(1).toLowerCase(), Math.max(1, Math.min(Number(c.paginas) || 1, 3))));
 const USUARIOS_IG = [...paginasPorUsuario.keys()];
 const CANALES_YT = [...new Set(cuentasMonitoreo.cuentas
   .filter(c => c.red === "YouTube" && c.cuenta && !/^Dudosa/.test(c.estado || ""))
