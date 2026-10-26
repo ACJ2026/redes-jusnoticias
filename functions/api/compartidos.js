@@ -52,6 +52,11 @@ const normalizarTexto = texto => String(texto || "").toLowerCase().normalize("NF
 // Exige al menos 3 raíces compartidas con el título, o un enlace explícito a jusnoticias.
 function notaRelacionada(texto, fecha, notas) {
   const enlace = /jusnoticias\.juschubut\.gov\.ar\/\?p=(\d+)|jusnoticias\.juschubut\.gov\.ar/i.exec(texto || "");
+  // Un enlace con ID es evidencia directa: no exigir coincidencias de palabras del título.
+  if (enlace && enlace[1]) {
+    const exacta = notas.find(n => String(n.id) === enlace[1]);
+    if (exacta) return { nota: exacta, comunes: raices(exacta.titulo).size, motivo: "enlace directo a la nota" };
+  }
   const propias = raices(texto);
   const textoNormalizado = normalizarTexto(texto);
   let mejor = null;
@@ -138,7 +143,9 @@ async function youtube(env, notas, desde) {
 export async function onRequestGet({ env }) {
   const hoy = new Date().toISOString().slice(0, 10);
   const desde = sumarDias(hoy, -30);
-  const notas = notasOficiales.filter(n => n.fecha >= sumarDias(desde, -8));
+  // Se conservan todas las notas para resolver enlaces directos aunque la nota sea antigua.
+  // La comparación por texto sigue acotada por fecha dentro de notaRelacionada().
+  const notas = notasOficiales;
   const fuentes = { Instagram: instagram, YouTube: youtube };
   const resultado = { actualizado: new Date().toISOString(), desde, filas: [], fuentes: {} };
   await Promise.all(Object.entries(fuentes).map(async ([red, fn]) => {
