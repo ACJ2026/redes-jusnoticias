@@ -1,0 +1,26 @@
+name: Descubrir redes de los medios
+
+# Solo se ejecuta a mano: lee la portada de cada medio y lista sus cuentas en redes.
+# No guarda nada en el repositorio; el informe queda en el registro de la ejecución.
+on:
+  workflow_dispatch:
+    inputs:
+      todos:
+        description: "si = revisar todos los medios; no = solo los que no tienen redes identificadas"
+        required: false
+        default: "no"
+
+permissions:
+  contents: read
+
+jobs:
+  descubrir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Buscar redes en las portadas de los medios
+        run: python3 scripts/descubrir_redes.py ${{ inputs.todos == 'si' && '--todos' || '' }}

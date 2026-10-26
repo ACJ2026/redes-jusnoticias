@@ -1226,7 +1226,8 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       const response = await fetch('/api/compartidos', { headers: { Accept: 'application/json' } });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'HTTP ' + response.status);
-      const nuevas = (data.filas || []).map(f => ({ ...f, tipo: 'Detectada automáticamente (' + f.coincidencia + ')' }));
+      // Solo el enlace directo o el título completo cuentan como coincidencia fuerte; el resto queda a verificar.
+      const nuevas = (data.filas || []).map(f => ({ ...f, tipo: (f.verificacion === 'fuerte' ? 'Coincidencia fuerte (' : 'A verificar (') + f.coincidencia + ')' }));
       dibujarCompartidos([...filasCompartidosRegistrados(), ...nuevas]);
       dibujarBusquedasManuales(data.desde);
       const detalle = Object.entries(data.fuentes || {}).map(([red, f]) => red + ': ' + (f.estado === 'ok' ? fmt(f.revisadas) + (red === 'Instagram' ? ' cuentas revisadas' + (f.publicaciones_revisadas != null ? ', ' + fmt(f.publicaciones_revisadas) + ' publicaciones consultadas' : '') : ' notas buscadas') + (Object.keys(f.errores || {}).length ? ' (' + Object.keys(f.errores).length + ' con error)' : '') : 'no disponible (' + f.error + ')')).join(' ·');

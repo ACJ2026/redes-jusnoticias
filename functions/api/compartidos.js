@@ -55,7 +55,7 @@ function notaRelacionada(texto, fecha, notas) {
   // Un enlace con ID es evidencia directa: no exigir coincidencias de palabras del título.
   if (enlace && enlace[1]) {
     const exacta = notas.find(n => String(n.id) === enlace[1]);
-    if (exacta) return { nota: exacta, comunes: raices(exacta.titulo).size, motivo: "enlace directo a la nota" };
+    if (exacta) return { nota: exacta, comunes: raices(exacta.titulo).size, motivo: "enlace directo a la nota", fuerte: true };
   }
   const propias = raices(texto);
   const textoNormalizado = normalizarTexto(texto);
@@ -65,16 +65,17 @@ function notaRelacionada(texto, fecha, notas) {
     const tituloNormalizado = normalizarTexto(n.titulo);
     // Si el título completo aparece en el título o descripción del video/post, es una señal fuerte.
     if (tituloNormalizado.length >= 18 && textoNormalizado.includes(tituloNormalizado)) {
-      return { nota: n, comunes: raices(n.titulo).size, motivo: "título de la nota identificado" };
+      return { nota: n, comunes: raices(n.titulo).size, motivo: "título de la nota identificado", fuerte: true };
     }
     const raicesTitulo = raices(n.titulo);
     const comunes = [...raicesTitulo].filter(r => propias.has(r)).length;
     if (!mejor || comunes > mejor.comunes) mejor = { nota: n, comunes, totalRaices: raicesTitulo.size };
   }
-  // Títulos cortos suelen tener menos de tres palabras distintivas; usar un umbral adaptativo
-  // evita descartar coincidencias claras solo por tener dos raíces útiles.
-  const minimo = mejor ? Math.min(3, Math.max(2, mejor.totalRaices)) : 3;
-  if (mejor && mejor.comunes >= minimo) return { ...mejor, motivo: mejor.comunes + " palabras del título en común" };
+  // Tres palabras sueltas («redes», «sociales», «condenan») aparecen en cualquier noticia policial:
+  // además del mínimo, se pide al menos el 60 % de las palabras distintivas del título.
+  // Estas coincidencias quedan «A verificar»; solo el enlace directo o el título completo son fuertes.
+  const minimo = mejor ? Math.max(Math.min(3, Math.max(2, mejor.totalRaices)), Math.ceil(mejor.totalRaices * 0.6)) : 3;
+  if (mejor && mejor.comunes >= minimo) return { ...mejor, motivo: mejor.comunes + " de " + mejor.totalRaices + " palabras del título en común" };
   if (enlace && mejor && mejor.comunes >= 1) return { ...mejor, motivo: "enlaza a jusnoticias" };
   return null;
 }
@@ -82,7 +83,8 @@ function notaRelacionada(texto, fecha, notas) {
 const fila = (red, cuenta, cuentaUrl, publicacionUrl, fecha, texto, rel) => ({
   red, cuenta, cuenta_url: cuentaUrl, publicacion_url: publicacionUrl, fecha,
   texto: String(texto || "").replace(/\s+/g, " ").trim().slice(0, 140),
-  nota_id: rel.nota.id, nota_titulo: rel.nota.titulo, nota_url: NOTA_URL(rel.nota.id), coincidencia: rel.motivo
+  nota_id: rel.nota.id, nota_titulo: rel.nota.titulo, nota_url: NOTA_URL(rel.nota.id), coincidencia: rel.motivo,
+  verificacion: rel.fuerte ? "fuerte" : "a_verificar"
 });
 
 async function instagram(env, notas, desde) {
