@@ -686,6 +686,18 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("'Coincidencia fuerte (' : 'A verificar ('", template)
         self.assertNotIn("'Detectada automáticamente (' + f.coincidencia", template)
 
+    def test_enlaces_sociales_solo_se_muestran_si_la_coincidencia_es_fuerte(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        # Una URL HTTP válida no demuestra que la publicación trate de nuestra nota.
+        self.assertIn("if (url && f.verificacion === 'fuerte') return celdaEnlace('Abrir publicación coincidente', url);", template)
+        self.assertIn("Candidata sin confirmar; enlace oculto", template)
+        self.assertIn("Enlace registrado sin verificar", template)
+        self.assertIn("const confirmadas = unicas.filter(f => f.verificacion === 'fuerte');", template)
+        self.assertIn("const candidatas = unicas.filter(f => f.verificacion !== 'fuerte');", template)
+        self.assertIn("Solo las coincidencias fuertes tienen enlace directo", template)
+        self.assertNotIn("return celdaEnlace('Ver publicación directa', f.publicacion_url)", template)
+
+
     def test_descubrir_redes_solo_informa(self):
         script = (ROOT / "scripts/descubrir_redes.py").read_text(encoding="utf-8")
         flujo = (ROOT / ".github/workflows/descubrir-redes.yml").read_text(encoding="utf-8")
