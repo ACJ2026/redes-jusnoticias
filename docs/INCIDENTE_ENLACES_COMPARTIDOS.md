@@ -2,7 +2,7 @@
 
 **Fecha:** 26 de octubre de 2026  
 **Área:** «Quién compartió nuestras notas en redes»  
-**Estado:** corrección de código y prueba de regresión incorporadas; despliegue y comprobación real en producción pendientes de confirmación.
+**Estado:** corrección desplegada en Cloudflare Pages; validación automatizada aprobada. La comprobación interactiva de los enlaces desde esta sesión queda limitada porque no se pudo acceder por HTTP al sitio.
 
 ## Síntoma
 
@@ -31,12 +31,11 @@ Algunas filas mostraban «Ver publicación directa», pero el destino podía abr
 - El resumen separa «coincidencias fuertes» de «candidatas sin confirmar», para que las candidatas no se cuenten como publicaciones confirmadas.
 - Se agregó una prueba de regresión que exige estos controles.
 
-## Comprobaciones para cerrar el incidente
+## Comprobaciones y estado de cierre
 
-1. Ejecutar `python3 -m unittest discover -s tests -v`.
-2. Confirmar que el workflow de reconstrucción publica ambos HTML generados a partir de `templates/tablero.html`.
-3. Confirmar que Cloudflare Pages despliega el commit correctivo en producción.
-4. Abrir `https://jusnoticias.pages.dev/`, pulsar «Buscar ahora» y verificar que solo las coincidencias fuertes tengan enlace directo. Revisar por separado las candidatas sin confirmar.
-5. Si un enlace fuerte abre contenido distinto, conservar el caso como incidencia y revisar el permalink/texto devuelto por la API de origen; no volver a rotularlo como confirmado solo por su formato.
+- **Validación automatizada:** aprobada en [workflow 40407791620](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40407791620).
+- **Reconstrucción de HTML público:** aprobada en [workflow 40407763304](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40407763304). Los archivos `publico/index.html` y `publico/tablero_publico.html` contienen el cambio.
+- **Cloudflare Pages:** la API de Cloudflare informa el despliegue canónico de producción como `success`, asociado al commit `9abb60da689c546b7f9b8c71b23d395d04132395`; la URL pública canónica es https://jusnoticias.pages.dev/.
+- **Comprobación interactiva:** el acceso HTTP desde esta sesión no estuvo disponible, por lo que no afirmo haber pulsado «Buscar ahora» ni comprobado visualmente los enlaces en un navegador. Como paso final de aceptación, abrir el sitio actualizado y comprobar que solo las coincidencias fuertes tengan enlace directo. Si un enlace fuerte abre contenido distinto, registrar el caso y revisar el permalink/texto devuelto por la API de origen; no volver a rotularlo como confirmado solo por su formato.
 
 **Límite importante:** «evidencia fuerte» significa que el texto o el enlace devuelto por la fuente coincide de manera fuerte con la nota; no garantiza que una plataforma no cambie o retire el post después de la consulta.
