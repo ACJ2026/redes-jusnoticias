@@ -618,3 +618,15 @@ Aprobado por el usuario. Cambios en `functions/api/compartidos.js` y en el botó
 - **Tandas (posible causa de que el recolector diera pocos resultados):** Cloudflare limita las consultas externas por pedido (50 en el plan gratuito). Con 64 cuentas de Instagram más los canales se superaba. Ahora el tablero pide primero un plan (`/api/compartidos?plan=1`) y después cada tanda por separado (`?fuente=…&lote=…`): 12 cuentas de Instagram (máx. 36 consultas) o 20 canales (40) por pedido. Probado con respuestas simuladas: ninguna tanda supera 40 consultas y el tablero junta los resultados y muestra el resumen por fuente.
 - Se corrigió además que «publicaciones consultadas» de Instagram nunca llegaba al tablero (la API no lo devolvía).
 - **Falta:** probar «Buscar ahora» en producción y anotar qué responde Meta para etiquetas y hashtags.
+
+
+## 2026-10-26 — Primera prueba real del radar ampliado (resultado informado por el usuario) (Claude)
+
+Resultado de «Buscar ahora» en producción:
+- **Instagram (cuentas):** 64 cuentas, 842 publicaciones consultadas, **35 cuentas con error**. 5 publicaciones detectadas, todas «A verificar» (@lu20radio_chubut ×2, @radio3_cadenapatagonia, @metadatanoticias, @eqsnotas).
+- **Instagram (etiquetas):** Meta respondió «(#10) Application does not have permission for this action». Falta un permiso en el token de Meta (probablemente `instagram_manage_comments`, que pide la lectura de etiquetas). Se arregla regenerando el token con ese permiso; queda activa y lo informa mientras tanto.
+- **Instagram (hashtags):** Meta exige aprobar «Instagram Public Content Access» (revisión de la app). **Se apaga** hasta tener la aprobación (se reactiva con la variable `IG_HASHTAGS=1` en Cloudflare) y se informa en «Búsqueda no automática».
+- **YouTube (canales de medios):** 39 canales revisados, 4 con error (probablemente direcciones `/c/…` que no se resolvieron como @usuario). Sin videos coincidentes en el período.
+- **Tandas:** funcionaron (ninguna fuente cayó por el límite de Cloudflare).
+
+Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué cuentas o canales dieron error y por qué», agrupado por motivo, para corregir la lista (cuentas personales que Meta no permite consultar, nombres de usuario mal escritos, canales no encontrados).

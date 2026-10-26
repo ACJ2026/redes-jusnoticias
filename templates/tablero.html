@@ -449,6 +449,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <p class="note">Repercusiones de nuestras notas en todas las redes y medios. «Buscar ahora» consulta las fuentes automáticas disponibles; las limitaciones de cada plataforma se informan por separado.</p>
       <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar ahora</button></div>
       <p class="note" id="compartidos-estado" role="status"></p>
+      <details class="note" id="compartidos-errores" hidden><summary>Ver qué cuentas o canales dieron error y por qué</summary><ul></ul></details>
       <div class="tools" style="margin-top:12px;align-items:center">
         <label for="compartidos-url"><strong>Analizar un enlace de cualquier red o medio:</strong></label>
         <input id="compartidos-url" type="url" inputmode="url" autocomplete="url" placeholder="Pegá el enlace de la publicación" aria-describedby="compartidos-url-ayuda" style="flex:1;min-width:240px;max-width:100%;padding:10px;border:1px solid var(--line);border-radius:8px">
@@ -1263,6 +1264,17 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
         : 'no disponible (' + (f.fallas[0] || 'sin respuesta') + ')')).join(' · ');
       const pendientes = Object.entries(plan.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');
       estado.textContent = fmt(nuevas.length) + ' publicaciones detectadas desde ' + plan.desde + '. ' + detalle + (pendientes ? ' · Búsqueda no automática: ' + pendientes : '') + '.';
+      // Detalle de errores por cuenta o canal, agrupado por motivo para que se pueda corregir la lista.
+      const porMotivo = new Map();
+      Object.entries(fuentes).forEach(([red, f]) => Object.entries(f.errores || {}).forEach(([cuenta, motivo]) => {
+        const clave = red + ': ' + motivo;
+        porMotivo.set(clave, [...(porMotivo.get(clave) || []), cuenta]);
+      }));
+      const panelErrores = $('compartidos-errores');
+      panelErrores.querySelector('ul').replaceChildren(...[...porMotivo].map(([motivo, cuentas]) => {
+        const li = document.createElement('li'); li.textContent = motivo + ' → ' + cuentas.join(', '); return li;
+      }));
+      panelErrores.hidden = porMotivo.size === 0;
     } catch (error) {
       const desdeManual = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
       dibujarBusquedasManuales(desdeManual);

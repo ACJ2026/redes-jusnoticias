@@ -267,7 +267,9 @@ async function youtubeCanales(env, notas, desde, n) {
 const FUENTES = [
   { id: "instagram", nombre: "Instagram", fn: instagram, lotes: Math.max(1, Math.ceil(USUARIOS_IG.length / TAM_LOTE_IG)) },
   { id: "ig-etiquetas", nombre: "Instagram (etiquetas)", fn: instagramEtiquetas, lotes: 1 },
-  { id: "ig-hashtags", nombre: "Instagram (hashtags)", fn: instagramHashtags, lotes: 1 },
+  // Meta exige aprobar «Instagram Public Content Access» para buscar hashtags (respuesta del 26/10/2026).
+  // Queda apagada hasta tener esa aprobación: se activa con la variable IG_HASHTAGS=1 en Cloudflare.
+  { id: "ig-hashtags", nombre: "Instagram (hashtags)", fn: instagramHashtags, lotes: 1, requiere: "IG_HASHTAGS" },
   { id: "youtube", nombre: "YouTube", fn: youtube, lotes: 1 },
   { id: "yt-canales", nombre: "YouTube (canales de medios)", fn: youtubeCanales, lotes: Math.max(1, Math.ceil(CANALES_YT.length / TAM_LOTE_YT)) }
 ];
@@ -277,6 +279,12 @@ const NO_DISPONIBLES = {
   TikTok: "La API conectada permite consultar la cuenta autorizada, no buscar publicaciones de terceros de forma general; la búsqueda pública ampliada requiere acceso de investigación aprobado."
 };
 
+const activas = env => FUENTES.filter(f => !f.requiere || env[f.requiere] === "1");
+const noDisponibles = env => env.IG_HASHTAGS === "1" ? NO_DISPONIBLES : {
+  ...NO_DISPONIBLES,
+  "Instagram (hashtags)": "Meta exige aprobar el permiso «Instagram Public Content Access» (revisión de la app) para buscar por hashtags."
+};
+
 // Uso: ?plan=1 devuelve las fuentes y sus tandas; ?fuente=ID&lote=N consulta una sola tanda.
 // Sin parámetros consulta todo junto (puede superar el límite de Cloudflare con listas largas).
 export async function onRequestGet({ env, request }) {
@@ -284,14 +292,14 @@ export async function onRequestGet({ env, request }) {
   const desde = sumarDias(hoy, -30);
   const params = request ? new URL(request.url).searchParams : new URLSearchParams();
   if (params.get("plan")) {
-    return json({ desde, fuentes: FUENTES.map(({ id, nombre, lotes }) => ({ id, nombre, lotes })), no_disponibles: NO_DISPONIBLES });
+    return json({ desde, fuentes: activas(env).map(({ id, nombre, lotes }) => ({ id, nombre, lotes })), no_disponibles: noDisponibles(env) });
   }
   // Se conservan todas las notas para resolver enlaces directos aunque la nota sea antigua.
   // La comparación por texto sigue acotada por fecha dentro de notaRelacionada().
   const notas = notasOficiales;
   const pedida = params.get("fuente");
   const n = params.has("lote") ? Math.max(0, parseInt(params.get("lote"), 10) || 0) : null;
-  const elegidas = pedida ? FUENTES.filter(f => f.id === pedida) : FUENTES;
+  const elegidas = pedida ? activas(env).filter(f => f.id === pedida) : activas(env);
   if (pedida && !elegidas.length) return json({ error: "Fuente desconocida." }, 400);
   const resultado = { actualizado: new Date().toISOString(), desde, filas: [], fuentes: {} };
   await Promise.all(elegidas.map(async ({ nombre, fn }) => {
@@ -307,6 +315,6 @@ export async function onRequestGet({ env, request }) {
   const vistos = new Set();
   resultado.filas = resultado.filas.filter(f => !vistos.has(f.publicacion_url) && vistos.add(f.publicacion_url))
     .sort((a, b) => b.fecha.localeCompare(a.fecha));
-  resultado.no_disponibles = NO_DISPONIBLES;
+  resultado.no_disponibles = noDisponibles(env);
   return json(resultado);
 }
