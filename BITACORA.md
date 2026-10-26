@@ -560,3 +560,10 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Los estados distinguen coincidencia pendiente de revisión de un fallo de acceso. Si la plataforma exige sesión, bloquea la consulta o no expone texto suficiente, informa que no se pudo verificar; no afirma que la publicación no exista ni que no esté relacionada.
 - **Límite explícito:** esto analiza enlaces que se le proporcionan; no es una búsqueda global automática de todas las redes. Tampoco puede confirmar por sí solo contenido que solo aparezca dentro de imágenes, audio o video y no esté expuesto en el texto público. La búsqueda automática por plataforma sigue dependiendo de APIs, permisos y fuentes accesibles.
 - Se actualizaron `publico/index.html` y `publico/tablero_publico.html` para que el tablero publicado incluya la herramienta. Se añadieron pruebas estáticas de cobertura y de los estados de verificación. La vista previa de Cloudflare quedó desplegada correctamente para el commit `a00fc37` en https://feature-verificacion-enlaces.jusnoticias.pages.dev. GitHub Actions informó los dos workflows como fallidos, pero los jobs terminaron con `runner_id: 0` y `steps: []`, sin ejecutar los pasos; la suite sigue pendiente de validación real.
+
+## 2026-10-26 — Búsqueda asistida en todas las redes
+
+- Se amplió el bloque de búsqueda asistida para ofrecer enlaces de búsqueda por cada nota en Facebook, Instagram (mediante búsqueda web de publicaciones públicas), TikTok, YouTube, X, LinkedIn y la web general.
+- Las búsquedas se muestran como pistas para revisión manual; no se incorporan al conteo de repercusiones ni se presentan como publicaciones verificadas.
+- Se sincronizaron los dos HTML públicos y se agregaron pruebas estáticas para los accesos a las siete fuentes.
+- La detección automática directa sigue conectada solo a las fuentes que ya cuentan con API y credenciales habilitadas en el proyecto (Instagram y YouTube). Para que Facebook, TikTok, X y LinkedIn se consulten automáticamente se necesitan permisos/API compatibles; los enlaces de búsqueda no sustituyen esa integración.
