@@ -271,7 +271,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn('id="t-compartidos"', template)
         self.assertIn("celdaEnlace(String(f.cuenta || 'Cuenta sin identificar'), f.cuenta_url)", template)
         self.assertIn("const idNotaPorTitulo = new Map(notas.map(n => [String(n.titulo || '').trim().toLocaleLowerCase(), Number(n.id)]));", template)
-        self.assertIn("const resolverNotaId = f => Number(f.nota_id) || idNotaPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null;", template)
+        self.assertIn("const resolverNotaId = f => f && typeof f === 'object' ? (Number(f.nota_id) || idNotaPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null) : null;", template)
         self.assertIn("Nota original pendiente de identificar", template)
         self.assertIn("notaId ? notaUrl(notaId) : null", template)
         self.assertIn('id="compartidos-busqueda-manual"', template)
