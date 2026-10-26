@@ -369,7 +369,7 @@ const FUENTES = [
   // Meta exige aprobar «Instagram Public Content Access» para buscar hashtags (respuesta del 26/10/2026).
   // Queda apagada hasta tener esa aprobación: se activa con la variable IG_HASHTAGS=1 en Cloudflare.
   { id: "ig-hashtags", nombre: "Instagram (hashtags)", fn: instagramHashtags, lotes: 1, requiere: "IG_HASHTAGS" },
-  { id: "facebook-publico", nombre: "Facebook (búsqueda pública)", fn: facebookPublico, lotes: 2,
+  { id: "facebook-publico", nombre: "Facebook (búsqueda pública)", fn: facebookPublico, lotes: 2 },
   { id: "youtube", nombre: "YouTube", fn: youtube, lotes: 1 },
   { id: "yt-canales", nombre: "YouTube (canales de medios)", fn: youtubeCanales, lotes: Math.max(1, Math.ceil(CANALES_YT.length / TAM_LOTE_YT)) }
 ];
