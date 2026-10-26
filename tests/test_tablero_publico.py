@@ -629,6 +629,18 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("r.confianza !== 'Baja'", template)
 
 
+    def test_error_en_compartidos_no_bloquea_inicializacion_del_tablero(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("const redesDatos = Array.isArray(D.redes)", template)
+        self.assertIn("const repercusionDatos = Array.isArray(D.repercusion)", template)
+        self.assertIn("if (!f || typeof f !== 'object') return null;", template)
+        self.assertIn("Se omitió una fila defectuosa de publicaciones compartidas.", template)
+        self.assertIn("No se pudo dibujar la tabla de compartidos; se mantiene el tablero activo.", template)
+        # La sección complementaria debe capturar sus fallos para no impedir que se registren
+        # los listeners del tablero ni que se ejecute draw().
+        self.assertIn("try {\n    dibujarCompartidos(filasCompartidosRegistrados());\n  } catch (error)", template)
+
+
     def test_analizador_de_enlaces_funciona_para_cualquier_red_sin_marcar_automaticamente_como_verificada(self):
         api = (ROOT / "functions/api/analizar-enlace.js").read_text(encoding="utf-8")
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
