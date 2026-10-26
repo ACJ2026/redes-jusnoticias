@@ -1053,7 +1053,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   // ---------- Quién compartió nuestras notas en redes ----------
   const notaUrl = id => 'https://jusnoticias.juschubut.gov.ar/?p=' + id;
   const idNotaPorTitulo = new Map(notas.map(n => [String(n.titulo || '').trim().toLocaleLowerCase(), Number(n.id)]));
-  const resolverNotaId = f => Number(f.nota_id) || idNotaPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null;
+  const resolverNotaId = f => f && typeof f === 'object' ? (Number(f.nota_id) || idNotaPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null) : null;
   // Arma el enlace al perfil a partir de cómo quedó anotada la cuenta; si no es reconocible, no se inventa.
   const perfilUrl = (red, cuenta) => {
     const c = String(cuenta || '').trim();
@@ -1074,21 +1074,26 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     return td;
   };
   const filasCompartidosRegistrados = () => {
+    // Esta sección es complementaria: normalizar entradas evita que un registro incompleto
+    // interrumpa la inicialización del resto del tablero.
     const redesIncluidas = new Set(['Facebook', 'Instagram', 'YouTube', 'TikTok']);
-    const titulo = new Map(notas.map(n => [Number(n.id), n.titulo]));
-    const porCuenta = new Map((D.cuentas || []).filter(c => c.cuenta && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.cuenta, c]));
-    const porNombre = new Map((D.cuentas || []).filter(c => c.medio && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.medio, c]));
+    const cuentasDatos = Array.isArray(D.cuentas) ? D.cuentas.filter(c => c && typeof c === 'object') : [];
+    const redesDatos = Array.isArray(D.redes) ? D.redes.filter(r => r && typeof r === 'object') : [];
+    const notasDatos = Array.isArray(notas) ? notas.filter(n => n && typeof n === 'object') : [];
+    const titulo = new Map(notasDatos.map(n => [Number(n.id), n.titulo]));
+    const porCuenta = new Map(cuentasDatos.filter(c => c.cuenta && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.cuenta, c]));
+    const porNombre = new Map(cuentasDatos.filter(c => c.medio && redesIncluidas.has(c.red)).map(c => [c.red + '|' + c.medio, c]));
     // Historial de publicaciones de terceros en las redes incluidas.
-    const enlaceCuenta = c => c.url || perfilUrl(c.red, c.cuenta) || (c.medio && (D.cuentas || []).filter(x => x.red === c.red && x.medio === c.medio).map(x => x.url || perfilUrl(x.red, x.cuenta)).find(Boolean)) || null;
-    const historial = D.redes.filter(r => r.propia === 'No' && redesIncluidas.has(r.red)).map(r => {
+    const enlaceCuenta = c => c && (c.url || perfilUrl(c.red, c.cuenta) || (c.medio && cuentasDatos.filter(x => x.red === c.red && x.medio === c.medio).map(x => x.url || perfilUrl(x.red, x.cuenta)).find(Boolean))) || null;
+    const historial = redesDatos.filter(r => r.propia === 'No' && redesIncluidas.has(r.red)).map(r => {
       const c = porCuenta.get(r.red + '|' + r.cuenta) || porNombre.get(r.red + '|' + r.cuenta);
       return { fecha: r.fecha, red: r.red, cuenta: r.cuenta, cuenta_url: c ? enlaceCuenta(c) : perfilUrl(r.red, r.cuenta),
         tipo: c ? c.tipo : 'Medio', publicacion_url: r.url || null, url_sitio: r.url_sitio || null, nota_id: r.nota_id, nota_titulo: titulo.get(Number(r.nota_id)) || '' };
     });
     // Cuentas confirmadas, también limitadas a las redes incluidas.
-    const confirmadas = (D.cuentas || []).filter(c => redesIncluidas.has(c.red) && /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
+    const confirmadas = cuentasDatos.filter(c => redesIncluidas.has(c.red) && /^Confirmada/.test(c.estado || '') && c.cuenta && !historial.some(h => h.red === c.red && h.cuenta === c.cuenta))
       .map(c => ({ fecha: '', red: c.red, cuenta: c.cuenta, cuenta_url: enlaceCuenta(c), tipo: c.tipo, publicacion_url: c.ejemplo || null, nota_id: resolverNotaId(c), nota_titulo: c.nota_titulo || c.nota_compartida || '' }));
-    return [...historial, ...confirmadas];
+    return [...historial, ...confirmadas].filter(f => f && typeof f === 'object');
   };
   const enlaceBusquedaCompartido = f => {
     const titulo = String(f.nota_titulo || '').trim();
@@ -1099,12 +1104,15 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   };
   const normalizarMedioCompartido = s => String(s || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
   const enlaceNotaSitioMedio = f => {
+    if (!f || typeof f !== 'object') return null;
     const notaId = resolverNotaId(f);
-    const cuenta = (D.cuentas || []).find(c => c.red === f.red && c.cuenta === f.cuenta);
+    const cuentasDatos = Array.isArray(D.cuentas) ? D.cuentas.filter(c => c && typeof c === 'object') : [];
+    const repercusionDatos = Array.isArray(D.repercusion) ? D.repercusion.filter(p => p && typeof p === 'object') : [];
+    const cuenta = cuentasDatos.find(c => c.red === f.red && c.cuenta === f.cuenta);
     const medio = cuenta && cuenta.medio ? cuenta.medio : f.cuenta;
     const claveMedio = normalizarMedioCompartido(medio);
-    if (f.url_sitio && /^https?:\/\//i.test(f.url_sitio)) return { url: f.url_sitio, tipo: 'directa' };
-    const directa = (D.repercusion || []).filter(p => Number(p.nota_id) === Number(notaId) && p.url && /^https?:\/\//i.test(p.url) && !/news\.google\.com/i.test(p.url) && normalizarMedioCompartido(p.medio) === claveMedio);
+    if (typeof f.url_sitio === 'string' && /^https?:\/\//i.test(f.url_sitio)) return { url: f.url_sitio, tipo: 'directa' };
+    const directa = repercusionDatos.filter(p => Number(p.nota_id) === Number(notaId) && typeof p.url === 'string' && /^https?:\/\//i.test(p.url) && !/news\.google\.com/i.test(p.url) && normalizarMedioCompartido(p.medio) === claveMedio);
     if (directa.length) return { url: directa[0].url, tipo: 'directa' };
     // Si no hay URL directa de la nota, enlazar al perfil real del medio si está identificado.
     // No reemplazar un perfil por una búsqueda de Google ni presentar esa búsqueda como nota.
@@ -1113,19 +1121,22 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     return null;
   };
   const celdaNotaSitioMedio = f => {
-    const enlace = enlaceNotaSitioMedio(f);
-    if (!enlace) {
+    const tdPendiente = () => {
       const td = document.createElement('td');
       td.textContent = 'Nota del medio pendiente de localizar';
       td.className = 'dim';
       return td;
+    };
+    try {
+      const enlace = enlaceNotaSitioMedio(f);
+      if (!enlace || typeof enlace.url !== 'string') return tdPendiente();
+      if (enlace.tipo === 'directa') return celdaEnlace('Ver nota en sitio del medio', enlace.url);
+      if (enlace.tipo === 'cuenta') return celdaEnlace('Ver cuenta del medio (nota pendiente)', enlace.url);
+      return tdPendiente();
+    } catch (error) {
+      console.error('[JusNoticias] No se pudo resolver el enlace del medio; se deja pendiente.', error);
+      return tdPendiente();
     }
-    if (enlace.tipo === 'directa') return celdaEnlace('Ver nota en sitio del medio', enlace.url);
-    if (enlace.tipo === 'cuenta') return celdaEnlace('Ver cuenta del medio (nota pendiente)', enlace.url);
-    const td = document.createElement('td');
-    td.textContent = 'Nota del medio pendiente de localizar';
-    td.className = 'dim';
-    return td;
   };
   const celdaPublicacionCompartida = f => {
     if (f.publicacion_url && /^https?:\/\//i.test(f.publicacion_url)) return celdaEnlace('Ver publicación directa', f.publicacion_url);
@@ -1139,21 +1150,37 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   };
   const dibujarCompartidos = (filas) => {
     const tb = document.querySelector('#t-compartidos tbody');
-    const orden = filas.slice().sort((a, b) => String(b.fecha || '').localeCompare(String(a.fecha || '')));
-    tb.replaceChildren(...orden.map(f => {
-      const tr = document.createElement('tr');
-      const fecha = document.createElement('td'); fecha.textContent = f.fecha ? f.fecha.split('-').reverse().slice(0, 2).join('/') : '—';
-      const red = document.createElement('td'); red.textContent = f.red;
-      const tipo = document.createElement('td'); tipo.textContent = f.tipo || '—';
-      const notaId = resolverNotaId(f);
-      const tituloOficial = notaId ? (f.nota_titulo || notas.find(n => Number(n.id) === Number(notaId))?.titulo || 'Ver nota de JusNoticias') : 'Nota original pendiente de identificar';
-      tr.append(fecha, red, celdaEnlace(f.cuenta, f.cuenta_url), tipo,
-        celdaPublicacionCompartida(f),
-        celdaNotaSitioMedio(f),
-        celdaEnlace(tituloOficial, notaId ? notaUrl(notaId) : null));
-      return tr;
-    }));
-    if (!orden.length) { const tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 7; td.className = 'dim'; td.textContent = 'Sin registros.'; tr.append(td); tb.append(tr); }
+    if (!tb) return;
+    const entradas = Array.isArray(filas) ? filas.filter(f => f && typeof f === 'object') : [];
+    const orden = entradas.slice().sort((a, b) => String(b.fecha || '').localeCompare(String(a.fecha || '')));
+    const filasRenderizadas = orden.map(f => {
+      try {
+        const tr = document.createElement('tr');
+        const fecha = document.createElement('td'); fecha.textContent = typeof f.fecha === 'string' && f.fecha ? f.fecha.split('-').reverse().slice(0, 2).join('/') : '—';
+        const red = document.createElement('td'); red.textContent = String(f.red || '—');
+        const tipo = document.createElement('td'); tipo.textContent = String(f.tipo || '—');
+        const notaId = resolverNotaId(f);
+        const tituloOficial = notaId ? (f.nota_titulo || notas.find(n => n && Number(n.id) === Number(notaId))?.titulo || 'Ver nota de JusNoticias') : 'Nota original pendiente de identificar';
+        tr.append(fecha, red, celdaEnlace(String(f.cuenta || 'Cuenta sin identificar'), f.cuenta_url), tipo,
+          celdaPublicacionCompartida(f),
+          celdaNotaSitioMedio(f),
+          celdaEnlace(tituloOficial, notaId ? notaUrl(notaId) : null));
+        return tr;
+      } catch (error) {
+        // Un registro mal formado no debe dejar a todo el tablero sin inicializar.
+        console.error('[JusNoticias] Se omitió una fila defectuosa de publicaciones compartidas.', error, f);
+        const tr = document.createElement('tr'), td = document.createElement('td');
+        td.colSpan = 7; td.className = 'dim'; td.textContent = 'Un registro no se pudo mostrar; el resto del tablero sigue disponible.';
+        tr.append(td);
+        return tr;
+      }
+    });
+    if (!filasRenderizadas.length) {
+      const tr = document.createElement('tr'), td = document.createElement('td');
+      td.colSpan = 7; td.className = 'dim'; td.textContent = 'Sin registros.';
+      tr.append(td); filasRenderizadas.push(tr);
+    }
+    tb.replaceChildren(...filasRenderizadas);
   };
   const dibujarBusquedasManuales = (desde) => {
     const panel = $('compartidos-busqueda-manual');
@@ -1656,7 +1683,18 @@ const draw = () => {
   $('compartidos-buscar').addEventListener('click', buscarCompartidos);
   $('compartidos-analizar').addEventListener('click', analizarEnlaceCompartido);
   $('compartidos-url').addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); analizarEnlaceCompartido(); } });
-  dibujarCompartidos(filasCompartidosRegistrados());
+  try {
+    dibujarCompartidos(filasCompartidosRegistrados());
+  } catch (error) {
+    // La tabla de compartidos es secundaria; si falla, no bloquear métricas, navegación ni botones.
+    console.error('[JusNoticias] No se pudo dibujar la tabla de compartidos; se mantiene el tablero activo.', error);
+    const tb = document.querySelector('#t-compartidos tbody');
+    if (tb) {
+      const tr = document.createElement('tr'), td = document.createElement('td');
+      td.colSpan = 7; td.className = 'dim'; td.textContent = 'No se pudo cargar esta tabla. El resto del tablero permanece disponible.';
+      tr.append(td); tb.replaceChildren(tr);
+    }
+  }
   document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
   // ---------- Generador de infografías ----------
   // Primero pregunta (tema, período o nota, datos, formato y título) y después dibuja en un canvas
