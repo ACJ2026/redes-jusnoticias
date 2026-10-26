@@ -34,4 +34,9 @@ Se agregó una prueba de regresión estática en tests/test_tablero_publico.py y
 
 ## Estado de publicación
 
-El código fuente quedó actualizado en GitHub. La reparación **no se declara confirmada en producción** hasta verificar que CI pase, que la reconstrucción genere los dos HTML públicos, que Cloudflare Pages complete el despliegue y que el sitio de producción responda con el archivo nuevo. Esas comprobaciones deben quedar anotadas al terminar.
+## Verificación completada — 26 de octubre de 2026, 12:58 (Argentina)
+
+- CI de validación: correcto, [ejecución 40354366353](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40354366353).
+- Reconstrucción de los HTML públicos y pruebas de regresión: correcto, [ejecución 40354366399](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40354366399). La reconstrucción generó un nuevo commit de sincronización, [df7e23dd](https://github.com/ACJ2026/redes-jusnoticias/commit/df7e23dd53184ea004a3a2a621d97b46209747f7); se comprobó que ambos HTML contienen las guardas de error.
+- Cloudflare Pages: el despliegue de producción del commit df7e23dd finalizó con estado success y figura como latest y canonical deployment. URL del despliegue: https://d86510d1.jusnoticias.pages.dev. La rama de producción configurada es main.
+- Límite de verificación: la API de Cloudflare confirma que la versión está publicada; no se pudo ejecutar una prueba interactiva en un navegador real desde esta sesión. La traza original no incluía el mensaje inicial de excepción, por lo que el diagnóstico se documenta como causa probable y la corrección prioriza aislar esa sección para que no pueda bloquear el resto del tablero.
