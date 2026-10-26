@@ -640,5 +640,16 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("No puede confirmar contenido visual o audio", api)
 
 
+    def test_compartidos_pagina_instagram_con_limite_y_reporta_publicaciones_revisadas(self):
+        funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
+        self.assertIn("const MAX_PAGINAS_POR_CUENTA = 3", funcion)
+        self.assertIn("bloque.paging && bloque.paging.next", funcion)
+        self.assertIn("data = await get(siguiente, env.META_TOKEN)", funcion)
+        self.assertIn("publicacionesRevisadas += media.length", funcion)
+        self.assertIn("publicaciones_revisadas: publicacionesRevisadas", funcion)
+        self.assertIn("revisadas: usuarios.length", funcion)
+        self.assertIn("paginas >= MAX_PAGINAS_POR_CUENTA", funcion)
+
+
 if __name__ == "__main__":
     unittest.main()
