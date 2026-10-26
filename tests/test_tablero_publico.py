@@ -268,10 +268,10 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("notaId ? notaUrl(notaId) : null", template)
         self.assertIn('id="compartidos-busqueda-manual"', template)
         self.assertIn("dibujarBusquedasManuales(data.desde)", template)
-        self.assertIn("Buscar en Instagram", template)
-        self.assertIn("Buscar en YouTube", template)
-        self.assertIn("Buscar en X", template)
-        self.assertIn("Buscar en LinkedIn", template)
+        # Los textos «Buscar en <red>» se arman en el navegador: se comprueba la lista de redes y el armado.
+        self.assertIn("a.textContent = 'Buscar en ' + red", template)
+        for red in ("Instagram", "YouTube", "X", "LinkedIn"):
+            self.assertIn(f"['{red}', 'https://", template)
         self.assertIn("Búsqueda asistida en todas las redes y medios", template)
         self.assertIn("facebook.com/search/posts/?q=", template)
         self.assertIn("tiktok.com/search?q=", template)

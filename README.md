@@ -13,7 +13,7 @@ Tablero de repercusión y comunicación judicial de la Agencia de Comunicación 
 - `data/` contiene los registros históricos que usa el tablero.
 - `templates/tablero.html` es la plantilla fuente del tablero público.
 - `scripts/armar_publico.py` combina la plantilla y los datos para generar `publico/tablero_publico.html`; el workflow copia ese resultado a `publico/index.html`.
-- `.github/workflows/actualizar.yml` programa el relevamiento cada dos horas, en el minuto 59 (cron de GitHub en UTC; en Argentina (UTC-3) corre al minuto 59 de horas impares: 21:59, 23:59, 01:59, 03:59, 05:59, 07:59, 09:59, 11:59, 13:59, 15:59, 17:59 y 19:59).
+- `.github/workflows/actualizar.yml` programa el relevamiento cada cuatro horas, en el minuto 59 (cron de GitHub en UTC; en Argentina corre a las 21:59, 01:59, 05:59, 09:59, 13:59 y 17:59). Se pasó de 2 a 4 horas el 26/10/2026 para no superar los minutos gratis de GitHub Actions.
 - `functions/api/google-metrics.js` es la Pages Function para Google Analytics 4 y Search Console.
 - `functions/api/redes.js` consulta en Cloudflare Pages Facebook (dos páginas, con tokens de página e Insights de 28 días), Instagram (28 días), YouTube, X y TikTok; el parámetro `?redes=` limita la consulta a algunas fuentes. TikTok usa Display API con OAuth (rutas `/api/tiktok/auth`, `/api/tiktok/callback` y `/api/tiktok`), guarda el token en el KV `TIKTOK_KV` y el estado de autorización en la base D1 `TIKTOK_AUTH_DB`; ver `docs/TIKTOK_DISPLAY_API.md` antes de configurar Preview. WhatsApp sigue pendiente y ningún canal sin datos validados entra en un total general.
 
