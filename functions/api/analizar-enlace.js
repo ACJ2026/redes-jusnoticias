@@ -45,16 +45,20 @@ function extraerMeta(html, pattern) {
 
 function leerMetadata(html) {
   const meta = (key) => {
-    const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    return extraerMeta(html, new RegExp('<meta\\b[^>]*(?:property|name)\\s*=\\s*["\\']' + escaped + '["\\'][^>]*content\\s*=\\s*["\\']([^"\\']*)["\\'][^>]*>', "i")) ||
-      extraerMeta(html, new RegExp('<meta\\b[^>]*content\\s*=\\s*["\\']([^"\\']*)["\\'][^>]*(?:property|name)\\s*=\\s*["\\']' + escaped + '["\\'][^>]*>', "i"));
+    const tags = html.match(/<meta\\b[^>]*>/gi) || [];
+    for (const tag of tags) {
+      const name = /(?:property|name)\\s*=\\s*["']([^"']+)["']/i.exec(tag)?.[1];
+      const content = /\\bcontent\\s*=\\s*["']([^"']*)["']/i.exec(tag)?.[1];
+      if (name && content !== undefined && name.toLowerCase() === key.toLowerCase()) return limpiarHtml(content);
+    }
+    return "";
   };
-  const title = meta("og:title") || meta("twitter:title") || extraerMeta(html, /<title[^>]*>([\s\S]*?)<\/title>/i);
+  const title = meta("og:title") || meta("twitter:title") || extraerMeta(html, /<title[^>]*>([\\s\\S]*?)<\\/title>/i);
   const description = meta("og:description") || meta("description") || meta("twitter:description");
   const published = meta("article:published_time") || meta("datePublished") || meta("pubdate");
-  const canonical = extraerMeta(html, /<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i) ||
-    extraerMeta(html, /<link\b[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["'][^>]*>/i);
-  const text = html.replace(/<(script|style|noscript|svg)[\s\S]*?<\/\1>/gi, " ")
+  const canonical = extraerMeta(html, /<link\\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i) ||
+    extraerMeta(html, /<link\\b[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["'][^>]*>/i);
+  const text = html.replace(/<(script|style|noscript|svg)[\\s\\S]*?<\\/\\1>/gi, " ")
     .replace(/<[^>]+>/g, " ").replace(/&nbsp;/gi, " ");
   return { title: title.slice(0, 500), description: description.slice(0, 1800), published, canonical, text: limpiarHtml(text).slice(0, 12000) };
 }
