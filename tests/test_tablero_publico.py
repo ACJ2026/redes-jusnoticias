@@ -273,6 +273,8 @@ class TableroPublicoTests(unittest.TestCase):
         for red in ("Instagram", "YouTube", "X", "LinkedIn"):
             self.assertIn(f"['{red}', 'https://", template)
         self.assertIn("Búsqueda asistida en todas las redes y medios", template)
+        self.assertIn("instagram.com/explore/search/keyword/?q=", template)
+        self.assertNotIn("site:instagram.com", template)
         self.assertIn("facebook.com/search/posts/?q=", template)
         self.assertIn("tiktok.com/search?q=", template)
         self.assertIn("Falta YT_CANAL_ID para excluir los videos del canal institucional.", funcion)
