@@ -122,7 +122,7 @@ async function instagram(env, notas, desde) {
       }
     }));
   }
-  return { filas, revisadas: publicacionesRevisadas, cuentas_consultadas: usuarios.length, max_paginas_por_cuenta: MAX_PAGINAS_POR_CUENTA, errores };
+  return { filas, revisadas: usuarios.length, publicaciones_revisadas: publicacionesRevisadas, max_paginas_por_cuenta: MAX_PAGINAS_POR_CUENTA, errores };
 }
 
 async function youtube(env, notas, desde) {
