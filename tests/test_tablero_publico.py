@@ -618,7 +618,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("No se encontró una coincidencia suficiente", api)
         self.assertIn('id="compartidos-url"', template)
         self.assertIn('id="compartidos-analizar"', template)
-        self.assertIn("Analizar enlace de cualquier red o medio", template)
+        self.assertIn("Analizar un enlace de cualquier red o medio", template)
         self.assertIn("No se guardó ni se contó ninguna repercusión automáticamente", template)
         self.assertIn("No se pudo verificar el enlace:", template)
 
