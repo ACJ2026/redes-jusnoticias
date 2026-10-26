@@ -692,6 +692,10 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("/tags?fields=caption,permalink,timestamp,username", funcion)
         self.assertIn("ig_hashtag_search", funcion)
         self.assertIn("playlistItems", funcion)
+        self.assertIn("const MAX_PAGINAS_POR_CANAL = 3", funcion)
+        self.assertIn("publicaciones_revisadas: publicacionesRevisadas", funcion)
+        self.assertIn("canales_con_limite: canalesConLimite", funcion)
+        self.assertIn("data.nextPageToken", funcion)
         # Tandas: 12 cuentas de Instagram (máx. 36 consultas) y 20 canales (40) por pedido, debajo del límite de 50.
         self.assertIn("const TAM_LOTE_IG = 12, TAM_LOTE_YT = 20;", funcion)
         self.assertIn('params.get("plan")', funcion)

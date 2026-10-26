@@ -227,17 +227,22 @@ async function youtubeCanales(env, notas, desde, n) {
   if (!env.YT_KEY) throw new Error("Falta YT_KEY.");
   const canales = lote(CANALES_YT, TAM_LOTE_YT, n);
   const filas = [], errores = {};
-  let revisados = 0;
+  let revisados = 0, publicacionesRevisadas = 0, canalesConLimite = 0;
+  const MAX_PAGINAS_POR_CANAL = 3; // Hasta 75 videos por canal; se detiene antes si ya salió de la ventana.
   const canalDe = async ref => {
-    const limpio = ref.replace(/^\//, "");
-    const id = /^channel\/(UC[\w-]{20,})$/.exec(limpio);
+    const limpio = ref.replace(/^\//, "").replace(/^https?:\/\/(?:www\.)?youtube\.com\//i, "");
+    const id = /^(?:channel\/)?(UC[\w-]{20,})$/.exec(limpio);
     let params;
     if (id) params = { id: id[1] };
     else if (/^user\//.test(limpio)) params = { forUsername: limpio.slice(5) };
-    else params = { forHandle: "@" + limpio.replace(/^(@|c\/|channel\/)/, "") }; // /c/ y nombres sueltos: se prueba como @usuario
+    else {
+      const handle = limpio.replace(/^(@|c\/|channel\/)/, "");
+      if (!handle || handle.includes("/")) throw new Error("Formato de canal no compatible; se necesita @usuario, /user/nombre o /channel/UC…");
+      params = { forHandle: "@" + handle };
+    }
     const data = await get(`${YT}/channels?${new URLSearchParams({ part: "snippet,contentDetails", key: env.YT_KEY, ...params })}`);
     const item = data.items && data.items[0];
-    if (!item) throw new Error("YouTube no encontró el canal.");
+    if (!item) throw new Error("YouTube no encontró el canal con el identificador informado.");
     return item;
   };
   for (let i = 0; i < canales.length; i += 8) {
@@ -247,23 +252,44 @@ async function youtubeCanales(env, notas, desde, n) {
         if (env.YT_CANAL_ID && canal.id === env.YT_CANAL_ID) return; // canal propio
         const lista = canal.contentDetails && canal.contentDetails.relatedPlaylists && canal.contentDetails.relatedPlaylists.uploads;
         if (!lista) throw new Error("El canal no informa su lista de videos.");
-        const data = await get(`${YT}/playlistItems?${new URLSearchParams({ part: "snippet", playlistId: lista, maxResults: "25", key: env.YT_KEY })}`);
+        let pageToken = "";
+        let pagina = 0;
+        do {
+          const query = { part: "snippet", playlistId: lista, maxResults: "25", key: env.YT_KEY };
+          if (pageToken) query.pageToken = pageToken;
+          const data = await get(`${YT}/playlistItems?${new URLSearchParams(query)}`);
+          const items = data.items || [];
+          publicacionesRevisadas += items.length;
+          items.forEach(item => {
+            const sn = item.snippet || {};
+            const fecha = String(sn.publishedAt || "").slice(0, 10);
+            const videoId = sn.resourceId && sn.resourceId.videoId;
+            if (!fecha || fecha < desde || !videoId) return;
+            const rel = notaRelacionada((sn.title || "") + " " + (sn.description || ""), fecha, notas);
+            if (rel) filas.push(fila("YouTube", canal.snippet.title || ref, "https://www.youtube.com/channel/" + canal.id,
+              "https://www.youtube.com/watch?v=" + videoId, fecha, sn.title, rel));
+          });
+          const fechas = items.map(item => String((item.snippet || {}).publishedAt || "").slice(0, 10)).filter(Boolean);
+          const fechaMasAntigua = fechas.length ? fechas.sort()[0] : "";
+          pagina += 1;
+          pageToken = data.nextPageToken || "";
+          if (!items.length || (fechaMasAntigua && fechaMasAntigua < desde)) break;
+          if (pagina >= MAX_PAGINAS_POR_CANAL) {
+            if (pageToken) canalesConLimite += 1;
+            break;
+          }
+        } while (pageToken);
         revisados += 1;
-        (data.items || []).forEach(item => {
-          const sn = item.snippet || {};
-          const fecha = String(sn.publishedAt || "").slice(0, 10);
-          const videoId = sn.resourceId && sn.resourceId.videoId;
-          if (!fecha || fecha < desde || !videoId) return;
-          const rel = notaRelacionada((sn.title || "") + " " + (sn.description || ""), fecha, notas);
-          if (rel) filas.push(fila("YouTube", canal.snippet.title || ref, "https://www.youtube.com/channel/" + canal.id,
-            "https://www.youtube.com/watch?v=" + videoId, fecha, sn.title, rel));
-        });
       } catch (error) {
         errores[ref] = limpiarMensaje(error);
       }
     }));
   }
-  return { filas, revisadas: revisados, errores, descripcion: "canales de medios revisados" };
+  return {
+    filas, revisadas, publicaciones_revisadas: publicacionesRevisadas,
+    canales_con_limite: canalesConLimite, max_paginas_por_canal: MAX_PAGINAS_POR_CANAL,
+    errores, descripcion: "canales de medios revisados"
+  };
 }
 
 const FUENTES = [
