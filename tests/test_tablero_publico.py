@@ -616,7 +616,8 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("bloque.paging && bloque.paging.next", funcion)
         self.assertIn("data = await get(siguiente, env.META_TOKEN)", funcion)
         self.assertIn("publicacionesRevisadas += media.length", funcion)
-        self.assertIn("cuentas_consultadas: usuarios.length", funcion)
+        self.assertIn("publicaciones_revisadas: publicacionesRevisadas", funcion)
+        self.assertIn("revisadas: usuarios.length", funcion)
         self.assertIn("paginas >= MAX_PAGINAS_POR_CUENTA", funcion)
 
 if __name__ == "__main__":
