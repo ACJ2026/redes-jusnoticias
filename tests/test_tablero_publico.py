@@ -651,5 +651,22 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("paginas >= MAX_PAGINAS_POR_CUENTA", funcion)
 
 
+    def test_coincidencias_de_redes_debiles_quedan_a_verificar(self):
+        # Tres palabras sueltas no alcanzan: se pide el 60 % del título y solo enlace o título completo son fuertes.
+        funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("Math.ceil(mejor.totalRaices * 0.6)", funcion)
+        self.assertIn('verificacion: rel.fuerte ? "fuerte" : "a_verificar"', funcion)
+        self.assertIn("'Coincidencia fuerte (' : 'A verificar ('", template)
+        self.assertNotIn("'Detectada automáticamente (' + f.coincidencia", template)
+
+    def test_descubrir_redes_solo_informa(self):
+        script = (ROOT / "scripts/descubrir_redes.py").read_text(encoding="utf-8")
+        flujo = (ROOT / ".github/workflows/descubrir-redes.yml").read_text(encoding="utf-8")
+        self.assertIn("workflow_dispatch", flujo)
+        self.assertIn("contents: read", flujo)
+        self.assertNotIn("write_text", script)
+
+
 if __name__ == "__main__":
     unittest.main()
