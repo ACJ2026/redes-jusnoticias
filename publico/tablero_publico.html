@@ -446,10 +446,18 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     </div>
     <div class="card" id="compartidos">
       <h2>Quién compartió nuestras notas en redes</h2>
-      <p class="note">Otras cuentas que compartieron nuestras notas. «Buscar ahora» revisa Instagram y YouTube; para Facebook y TikTok arma búsquedas para hacer a mano. Si no hay enlace directo, aparece una búsqueda marcada como pendiente de verificar.</p>
+      <p class="note">Repercusiones de nuestras notas en todas las redes y medios. «Buscar ahora» consulta las fuentes automáticas disponibles; las limitaciones de cada plataforma se informan por separado.</p>
       <div class="tools"><button class="btn accion" id="compartidos-buscar" type="button">Buscar ahora</button></div>
       <p class="note" id="compartidos-estado" role="status"></p>
-      <details class="note" id="compartidos-busqueda-manual" hidden><summary>Búsqueda asistida en Facebook y TikTok</summary><p>Abren la búsqueda en cada red. Revisá el posteo antes de cargarlo.</p><div></div></details>
+      <div class="tools" style="margin-top:12px;align-items:center">
+        <label for="compartidos-url"><strong>Analizar un enlace de cualquier red o medio:</strong></label>
+        <input id="compartidos-url" type="url" inputmode="url" autocomplete="url" placeholder="Pegá el enlace de la publicación" aria-describedby="compartidos-url-ayuda" style="flex:1;min-width:240px;max-width:100%;padding:10px;border:1px solid var(--line);border-radius:8px">
+        <button class="btn accion" id="compartidos-analizar" type="button">Analizar enlace</button>
+      </div>
+      <p class="note" id="compartidos-url-ayuda">Analiza el título, la descripción y el texto público que la página permita leer. No requiere que el enlace sea de Instagram. Si una red bloquea el acceso, lo informa sin inventar resultados.</p>
+      <p class="note" id="compartidos-analisis-estado" role="status" aria-live="polite"></p>
+      <div id="compartidos-analisis-resultados" aria-live="polite"></div>
+      <details class="note" id="compartidos-busqueda-manual" hidden><summary>Búsqueda asistida en todas las redes y medios</summary><p>Abre búsquedas para cada nota en Facebook, Instagram, TikTok, YouTube, X, LinkedIn y la web. Son pistas para revisar manualmente; no equivalen a publicaciones verificadas.</p><div></div></details>
       <div class="tbox"><table id="t-compartidos"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Tipo</th><th>Publicación compartida</th><th>Nota en sitio del medio</th><th>Nuestra nota</th></tr></thead><tbody></tbody></table></div>
     </div>
     <div class="card">
@@ -1140,17 +1148,75 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       fila.style.margin = '0.5rem 0';
       const titulo = document.createElement('strong');
       titulo.textContent = n.fecha + ' · ' + n.titulo + ' ';
-      const facebook = document.createElement('a');
-      facebook.href = 'https://www.facebook.com/search/posts/?q=' + encodeURIComponent(n.titulo);
-      facebook.target = '_blank'; facebook.rel = 'noopener noreferrer'; facebook.textContent = 'Buscar en Facebook';
-      const separador = document.createTextNode(' · ');
-      const tiktok = document.createElement('a');
-      tiktok.href = 'https://www.tiktok.com/search?q=' + encodeURIComponent(n.titulo);
-      tiktok.target = '_blank'; tiktok.rel = 'noopener noreferrer'; tiktok.textContent = 'Buscar en TikTok';
-      fila.append(titulo, facebook, separador, tiktok);
+      const consulta = encodeURIComponent('"' + n.titulo + '"');
+      const enlaces = [
+        ['Facebook', 'https://www.facebook.com/search/posts/?q=' + encodeURIComponent(n.titulo)],
+        ['Instagram', 'https://www.google.com/search?q=' + encodeURIComponent('site:instagram.com "' + n.titulo + '"')],
+        ['TikTok', 'https://www.tiktok.com/search?q=' + encodeURIComponent(n.titulo)],
+        ['YouTube', 'https://www.youtube.com/results?search_query=' + encodeURIComponent(n.titulo)],
+        ['X', 'https://x.com/search?q=' + consulta],
+        ['LinkedIn', 'https://www.linkedin.com/search/results/content/?keywords=' + encodeURIComponent(n.titulo)],
+        ['Web y medios', 'https://www.google.com/search?q=' + consulta]
+      ];
+      enlaces.forEach(([red, url], i) => {
+        if (i) fila.append(document.createTextNode(' · '));
+        const a = document.createElement('a');
+        a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Buscar en ' + red;
+        fila.append(a);
+      });
       return fila;
     }));
     panel.hidden = recientes.length === 0;
+  };
+
+  const analizarEnlaceCompartido = async () => {
+    const campo = $('compartidos-url');
+    const estado = $('compartidos-analisis-estado');
+    const salida = $('compartidos-analisis-resultados');
+    const boton = $('compartidos-analizar');
+    const url = campo.value.trim();
+    salida.replaceChildren();
+    if (!url) { estado.textContent = 'Pegá el enlace de la publicación que querés revisar.'; campo.focus(); return; }
+    boton.disabled = true;
+    estado.textContent = 'Intentando leer el contenido público del enlace…';
+    try {
+      const response = await fetch('/api/analizar-enlace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'No se pudo analizar el enlace.');
+      const h = document.createElement('h3');
+      h.textContent = data.estado + ' · ' + data.plataforma;
+      salida.append(h);
+      if (data.titulo_publicacion) {
+        const titulo = document.createElement('p'); titulo.textContent = 'Título: ' + data.titulo_publicacion; salida.append(titulo);
+      }
+      if (data.descripcion) {
+        const desc = document.createElement('p'); desc.textContent = 'Descripción: ' + data.descripcion; salida.append(desc);
+      }
+      const a = document.createElement('a'); a.href = data.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Abrir publicación original ↗'; salida.append(a);
+      const candidatos = Array.isArray(data.coincidencias) ? data.coincidencias : [];
+      if (candidatos.length) {
+        const lista = document.createElement('ul');
+        candidatos.forEach(n => {
+          const li = document.createElement('li');
+          const link = document.createElement('a'); link.href = notaUrl(n.nota_id); link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = n.titulo;
+          const detalle = document.createElement('span'); detalle.textContent = ' — ' + n.evidencia + ' (coincidencia orientativa: ' + n.puntaje + '%).';
+          li.append(link, detalle); lista.append(li);
+        });
+        salida.append(lista);
+      } else {
+        const p = document.createElement('p'); p.textContent = 'No apareció una coincidencia suficiente en el texto accesible. Eso no demuestra que la publicación no esté relacionada.'; salida.append(p);
+      }
+      const aviso = document.createElement('p'); aviso.className = 'note'; aviso.textContent = data.aviso || 'El resultado automático es orientativo; verificá la publicación original antes de confirmarla.'; salida.append(aviso);
+      estado.textContent = 'Análisis terminado. No se guardó ni se contó ninguna repercusión automáticamente.';
+    } catch (error) {
+      estado.textContent = 'No se pudo verificar el enlace: ' + error.message + ' La publicación queda pendiente; no se la marca como no relacionada.';
+    } finally {
+      boton.disabled = false;
+    }
   };
 
   const buscarCompartidos = async () => {
@@ -1530,6 +1596,8 @@ const draw = () => {
   ayudaDialog.addEventListener('click', ev => { if (ev.target === ayudaDialog) ayudaDialog.close(); });
   $('redes-vivo-consultar').addEventListener('click', consultarRedesVivo);
   $('compartidos-buscar').addEventListener('click', buscarCompartidos);
+  $('compartidos-analizar').addEventListener('click', analizarEnlaceCompartido);
+  $('compartidos-url').addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); analizarEnlaceCompartido(); } });
   dibujarCompartidos(filasCompartidosRegistrados());
   document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
   // ---------- Generador de infografías ----------

@@ -268,6 +268,11 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("notaId ? notaUrl(notaId) : null", template)
         self.assertIn('id="compartidos-busqueda-manual"', template)
         self.assertIn("dibujarBusquedasManuales(data.desde)", template)
+        self.assertIn("Buscar en Instagram", template)
+        self.assertIn("Buscar en YouTube", template)
+        self.assertIn("Buscar en X", template)
+        self.assertIn("Buscar en LinkedIn", template)
+        self.assertIn("Búsqueda asistida en todas las redes y medios", template)
         self.assertIn("facebook.com/search/posts/?q=", template)
         self.assertIn("tiktok.com/search?q=", template)
         self.assertIn("Falta YT_CANAL_ID para excluir los videos del canal institucional.", funcion)
@@ -292,7 +297,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn("Consultar fuente de esta cifra", template)
         self.assertIn("Buscar ahora</button>", template)
         self.assertIn("addEventListener('click', buscarCompartidos)", template)
-        self.assertIn("Facebook y TikTok se ofrece una búsqueda asistida marcada como pendiente de verificar.", template)
+        self.assertIn("las limitaciones de cada plataforma se informan por separado.", template)
 
     def test_generador_de_infografias_usa_los_datos_del_tablero(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
@@ -604,6 +609,32 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("pendientes de decisión", template)
         self.assertIn("!/^A verificar:/i.test(r.metodo || '')", template)
         self.assertIn("r.confianza !== 'Baja'", template)
+
+
+    def test_analizador_de_enlaces_funciona_para_cualquier_red_sin_marcar_automaticamente_como_verificada(self):
+        api = (ROOT / "functions/api/analizar-enlace.js").read_text(encoding="utf-8")
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        for red in ("Instagram", "Facebook", "TikTok", "YouTube", "X", "LinkedIn"):
+            self.assertIn('return "' + red + '"', api)
+        self.assertIn("export async function onRequestPost", api)
+        self.assertIn("validarUrl", api)
+        self.assertIn("MAX_REDIRECTS = 3", api)
+        self.assertIn("AbortSignal.timeout(TIMEOUT_MS)", api)
+        self.assertIn("No se encontró una coincidencia suficiente", api)
+        self.assertIn('id="compartidos-url"', template)
+        self.assertIn('id="compartidos-analizar"', template)
+        self.assertIn("Analizar un enlace de cualquier red o medio", template)
+        self.assertIn("No se guardó ni se contó ninguna repercusión automáticamente", template)
+        self.assertIn("No se pudo verificar el enlace:", template)
+
+    def test_analizador_no_confunde_error_de_acceso_con_publicacion_no_relacionada(self):
+        api = (ROOT / "functions/api/analizar-enlace.js").read_text(encoding="utf-8")
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("Puede requerir inicio de sesión", api)
+        self.assertIn("no demuestra que la publicación no esté relacionada", template)
+        self.assertIn("requiere revisión humana", api)
+        self.assertIn("No puede confirmar contenido visual o audio", api)
+
 
 if __name__ == "__main__":
     unittest.main()
