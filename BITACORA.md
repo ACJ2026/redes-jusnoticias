@@ -567,3 +567,11 @@ Todos integrados a `main` con validaciones en verde (salvo lo indicado sobre #64
 - Las búsquedas se muestran como pistas para revisión manual; no se incorporan al conteo de repercusiones ni se presentan como publicaciones verificadas.
 - Se sincronizaron los dos HTML públicos y se agregaron pruebas estáticas para los accesos a las siete fuentes.
 - La detección automática directa sigue conectada solo a las fuentes que ya cuentan con API y credenciales habilitadas en el proyecto (Instagram y YouTube). Para que Facebook, TikTok, X y LinkedIn se consulten automáticamente se necesitan permisos/API compatibles; los enlaces de búsqueda no sustituyen esa integración.
+
+
+## 2026-10-26 — Integración de detección por enlace y ampliación acotada de Instagram
+
+- PR #105 integrado en `main` mediante squash, commit `d5015db0c1a0b2082e7d7698136325c44249fdc7`: una publicación que incluya un enlace directo `jusnoticias.juschubut.gov.ar/?p=ID` puede asociarse a la nota por su ID, sin depender de que el título esté repetido en el texto.
+- Se aplicó también la ampliación de PR #106 directamente sobre `main`, porque al fusionar #105 el PR encadenado dejó de ser integrable sin conflicto. Instagram pagina hasta 3 bloques de 30 publicaciones por cuenta monitoreada (máximo 90), solo cuando Meta devuelve `paging.next`; la respuesta y el tablero muestran cuántas publicaciones se consultaron.
+- Se sincronizaron la plantilla y las dos vistas HTML públicas y se agregó una prueba de regresión para el límite de paginación.
+- **Validación pendiente:** GitHub Actions sigue terminando con `runner_id: 0` y sin pasos ejecutados. El código no se declara probado por CI hasta que un runner ejecute la suite. La paginación sigue limitada a las cuentas cargadas y a los permisos/respuestas que conceda Meta; no equivale a búsqueda global de Instagram.
