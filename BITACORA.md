@@ -654,3 +654,12 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Búsqueda asistida de Instagram:** el enlace deja de abrir Google y pasa al buscador de palabras clave dentro de Instagram. La búsqueda puede requerir iniciar sesión y no garantiza encontrar todas las publicaciones.
 - **Pruebas:** se actualizaron las comprobaciones para exigir el enlace de perfil cuando existe, impedir que esa columna use Google como sustituto y verificar la ruta de búsqueda de Instagram. La salida pública debe regenerarse con `scripts/armar_publico.py` al integrar el cambio.
 - **Límites:** no se inventan usuarios ni se presenta un perfil como si fuera la URL exacta de un post. Las publicaciones sin enlace directo siguen marcadas como pendientes de verificar.
+
+
+## 2026-10-26 — Evitar que la API de revisiones deje muerto el tablero
+
+- **Problema corregido:** la inicialización esperaba la respuesta de `/api/revisiones` antes de dibujar la portada y el tablero. Si esa petición quedaba pendiente, los indicadores seguían en `—` y el botón de entrada no se activaba.
+- **Cambio:** la consulta ahora se cancela a los 3,5 segundos; si el historial no responde, el tablero continúa con los datos publicados y deja el aviso de que se omitió el historial de revisiones. La consulta normal sigue funcionando cuando la API responde a tiempo.
+- **Archivos sincronizados:** `templates/tablero.html`, `publico/index.html` y `publico/tablero_publico.html`.
+- **Prueba de regresión:** se agregó una prueba que verifica el límite de espera y la limpieza del temporizador.
+- **Límite:** esta protección evita que una API lenta congele toda la interfaz; no sustituye la reparación de la API si sigue fallando.
