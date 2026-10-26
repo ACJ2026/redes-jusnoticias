@@ -623,8 +623,11 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       return u.toString();
     } catch { return ''; }
   };
+  // La pantalla principal no debe quedar bloqueada si la API de revisiones tarda o no responde.
+  const timeoutRevision = new AbortController();
+  const timeoutRevisionId = setTimeout(() => timeoutRevision.abort(), 3500);
   try {
-    const response = await fetch('/api/revisiones', { headers: { Accept: 'application/json' }, cache: 'no-store' });
+    const response = await fetch('/api/revisiones', { headers: { Accept: 'application/json' }, cache: 'no-store', signal: timeoutRevision.signal });
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.error || 'No se pudo cargar el historial de revisiones.');
     revisionApiDisponible = true;
@@ -649,7 +652,11 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       }
     });
   } catch (error) {
-    errorRevisionApi = error && error.message ? error.message : 'No se pudo conectar con el servicio de revisiones.';
+    errorRevisionApi = timeoutRevision.signal.aborted
+      ? 'El historial de revisiones tardó demasiado; el tablero cargó sin ese historial.'
+      : (error && error.message ? error.message : 'No se pudo conectar con el servicio de revisiones.');
+  } finally {
+    clearTimeout(timeoutRevisionId);
   }
   const $ = id => document.getElementById(id);
   const nf = new Intl.NumberFormat('es-AR');
