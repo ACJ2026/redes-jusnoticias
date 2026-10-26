@@ -24,7 +24,7 @@ function validarUrl(value) {
   }
   const host = url.hostname.toLowerCase().replace(/^\[|\]$/g, "");
   if (host === "localhost" || host.endsWith(".localhost") || host.endsWith(".local") ||
-      host.endsWith(".internal") || /^\d{1,3}(\.\d{1,3}){3}$/.test(host) || host.includes(":")) {
+      host.endsWith(".internal") || /^[0-9.]+$/.test(host) || host.includes(":")) {
     throw new Error("Ese dominio no se puede consultar.");
   }
   return url;
@@ -62,7 +62,7 @@ function leerMetadata(html) {
 const normalizar = value => String(value || "").toLowerCase().normalize("NFD")
   .replace(/[\u0300-\u036f]/g, "").replace(/https?:\/\/\S+/g, " ")
   .replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
-const raices = value => new Set(normalizar(value).split(" ").filter(w => w.length >= 5 && !STOP.has(w)).map(w => w.slice(0, 6));
+const raices = value => new Set(normalizar(value).split(" ").filter(w => w.length >= 5 && !STOP.has(w)).map(w => w.slice(0, 6)));
 
 function comparar(metadata, url, notas) {
   const todo = normalizar([metadata.title, metadata.description, metadata.text].join(" "));
