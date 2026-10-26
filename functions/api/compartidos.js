@@ -89,9 +89,13 @@ const fila = (red, cuenta, cuentaUrl, publicacionUrl, fecha, texto, rel) => ({
 
 async function instagram(env, notas, desde) {
   if (!env.META_TOKEN || !env.IG_USER_ID) throw new Error("Faltan META_TOKEN o IG_USER_ID.");
-  const usuarios = [...new Set(cuentasMonitoreo.cuentas
+  // Cada cuenta puede limitar sus páginas (campo «paginas»): los medios nacionales publican tanto
+  // que con una página alcanza y así no se agota el límite de consultas de Meta.
+  const paginasPorUsuario = new Map();
+  cuentasMonitoreo.cuentas
     .filter(c => c.red === "Instagram" && /^@[\w.]+$/.test(c.cuenta || "") && !/^Dudosa/.test(c.estado || ""))
-    .map(c => c.cuenta.slice(1)))];
+    .forEach(c => paginasPorUsuario.set(c.cuenta.slice(1).toLowerCase(), Math.max(1, Math.min(Number(c.paginas) || 3, 3))));
+  const usuarios = [...paginasPorUsuario.keys()];
   const filas = [], errores = {};
   const campos = "media.limit(30){caption,permalink,timestamp}";
   const MAX_PAGINAS_POR_CUENTA = 3; // Hasta 90 publicaciones por cuenta; limita tiempo y consultas.
@@ -116,7 +120,7 @@ async function instagram(env, notas, desde) {
           paginas += 1;
           // Seguir solo si Meta ofrece una página siguiente; nunca recorrer el historial sin límite.
           const siguiente = bloque && bloque.paging && bloque.paging.next;
-          if (!siguiente || paginas >= MAX_PAGINAS_POR_CUENTA) break;
+          if (!siguiente || paginas >= MAX_PAGINAS_POR_CUENTA || paginas >= paginasPorUsuario.get(usuario)) break;
           data = await get(siguiente, env.META_TOKEN);
         }
       } catch (error) {

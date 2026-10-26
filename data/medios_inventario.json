@@ -655,7 +655,20 @@
       "ejemplo": "https://www.elvalleonline.com.ar/un-nino-de-rawson-fue-escuchado-por-la-justicia-y-podra-seguir-viviendo-con-sus-abuelos/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/ElValleOnline"
+        ],
+        "Instagram": [
+          "@elvalleonline"
+        ],
+        "X": [
+          "@elvalle_online"
+        ],
+        "YouTube": [
+          "/@elvalleonline"
+        ]
+      }
     },
     {
       "nombre": "CHACODIAPORDIA.COM",
@@ -672,7 +685,20 @@
       "ejemplo": "https://chacodiapordia.com/el-insssep-impulsa-la-prevencion-y-el-acceso-a-tratamientos-innovadores-contra-el-cancer-de-mama/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-22",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/chacodiapordia24"
+        ],
+        "Instagram": [
+          "@chacodiapordia"
+        ],
+        "X": [
+          "@chacodxd"
+        ],
+        "YouTube": [
+          "/@ciudadtvcontenidosok"
+        ]
+      }
     },
     {
       "nombre": "Crónica",
@@ -748,7 +774,17 @@
       "ejemplo": "https://madrynurbana.com/planeta-madryn-le-regalaron-una-tarjeta-de-credito-nunca-la-uso-y-termino-en-el-veraz-fuerte-condena-contra-un-banco/",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/jorgeylaradio"
+        ],
+        "Instagram": [
+          "@madrynurbana"
+        ],
+        "X": [
+          "@jorgeylaradio"
+        ]
+      }
     },
     {
       "nombre": "Red43",
@@ -824,7 +860,17 @@
       "ejemplo": "https://www.milpatagonias.com/el-municipio-de-comodoro-concreto-una-nueva-jornada-de-prevencion-de-cancer-de-mama/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/milpatagonias"
+        ],
+        "Instagram": [
+          "@milpatagonias"
+        ],
+        "X": [
+          "@milpatagonias"
+        ]
+      }
     },
     {
       "nombre": "La Opinión Austral",
@@ -841,7 +887,23 @@
       "ejemplo": "https://laopinionaustral.com.ar/comodoro-rivadavia/caso-ivan-torres-ya-excavaron-ocho-tumbas-en-el-cementerio-oeste-660437.html",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/opinionaustral"
+        ],
+        "Instagram": [
+          "@laopinionaustral"
+        ],
+        "X": [
+          "@opinionaustral"
+        ],
+        "YouTube": [
+          "/channel/UCcx4mXTC2uuN9Oe1paH1ozg"
+        ],
+        "TikTok": [
+          "@laopinionaustral"
+        ]
+      }
     },
     {
       "nombre": "Primera Edición",
@@ -858,7 +920,20 @@
       "ejemplo": "https://www.primeraedicion.com.ar/nota/100040437/dia-de-lucha-contra-el-cancer-de-mama-la-importancia-del-diagnostico-precoz/",
       "primera_deteccion": "2026-10-25",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/primeraedicionw"
+        ],
+        "Instagram": [
+          "@diarioprimeraedicion"
+        ],
+        "X": [
+          "@DPrimeraEdicion"
+        ],
+        "YouTube": [
+          "/@primeraedicioncomar"
+        ]
+      }
     },
     {
       "nombre": "Revista Quórum",
@@ -875,7 +950,14 @@
       "ejemplo": "https://revistaquorum.com.ar/2026/09/17/la-carta-de-un-juez-a-una-nina-victima-de-abuso-tu-tio-no-va-a-ir-a-la-carcel-y-no-es-porque-no-te-haya-creido/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Instagram": [
+          "@revistaquorumok"
+        ],
+        "YouTube": [
+          "/@revistaquorumok"
+        ]
+      }
     },
     {
       "nombre": "ABC Diario",
@@ -922,7 +1004,20 @@
       "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/DiarioSanRafael"
+        ],
+        "Instagram": [
+          "@diariosanrafael"
+        ],
+        "X": [
+          "@diariosanrafael"
+        ],
+        "YouTube": [
+          "/channel/UCWhsV1YALBkWBsbJQBkGv1g"
+        ]
+      }
     },
     {
       "nombre": "La Nota San Juan",
@@ -939,7 +1034,11 @@
       "ejemplo": "https://lanotasj.com.ar/el-gobierno-creo-una-comision-para-reformar-el-codigo-procesal-civil-y-comercial-e-instaurar-la-oralidad-en-los-juicios/",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Instagram": [
+          "@lanotasanjuan"
+        ]
+      }
     },
     {
       "nombre": "La Tecla Patagonia",
@@ -986,7 +1085,17 @@
       "ejemplo": "https://fmdelacordillera.com.ar/octubre-rosa-en-lago-puelo-realizaron-una-jornada-de-prevencion-del-cancer-de-mama/",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Instagram": [
+          "@laradiodelacordillera"
+        ],
+        "YouTube": [
+          "/@laradiodelacordillera105.5"
+        ],
+        "TikTok": [
+          "@laradiodelacordillera"
+        ]
+      }
     },
     {
       "nombre": "Diario Judicial",
@@ -1003,7 +1112,17 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/diariojudicial"
+        ],
+        "Instagram": [
+          "@diariojudicial"
+        ],
+        "X": [
+          "@diariojudicial"
+        ]
+      }
     },
     {
       "nombre": "Examedia",
@@ -1022,7 +1141,17 @@
       "ejemplo": "https://examedia.com.ar/portada/post/88064432",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/examedia"
+        ],
+        "Instagram": [
+          "@examediaok"
+        ],
+        "X": [
+          "@ExamediaAR"
+        ]
+      }
     },
     {
       "nombre": "GENESIS24.NET",
@@ -1039,7 +1168,17 @@
       "ejemplo": "https://genesis24.net/2026/09/14/casacion-ordeno-reparar-a-una-victima-de-abuso-sexual-cometido-en-el-ejercito/",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/genesisnoticias"
+        ],
+        "Instagram": [
+          "@genesisnoticias"
+        ],
+        "X": [
+          "@genesiscaseros"
+        ]
+      }
     },
     {
       "nombre": "Canal Doce Misiones",
@@ -1056,7 +1195,20 @@
       "ejemplo": "https://www.canal12misiones.com/justicia/misiones-regimen-penal-juvenil",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-22",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/tv12misiones"
+        ],
+        "Instagram": [
+          "@tv12misiones"
+        ],
+        "X": [
+          "@tv12misiones"
+        ],
+        "YouTube": [
+          "/c/tv12misiones"
+        ]
+      }
     },
     {
       "nombre": "El Extremo Sur",
@@ -1111,7 +1263,20 @@
       "ejemplo": "https://www.lavoz.com.ar/ciudadanos/dijo-chorra-vecina-facebook-justicia-debera-indemnizarla-pagara_0_ei9s7vvfd2.html",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/LaVoz.com.ar"
+        ],
+        "Instagram": [
+          "@lavozcomar"
+        ],
+        "X": [
+          "@lavozcomar"
+        ],
+        "YouTube": [
+          "/user/LVIcomar"
+        ]
+      }
     },
     {
       "nombre": "LM Neuquén",
@@ -1130,7 +1295,20 @@
       "ejemplo": "https://www.lmneuquen.com/patagonia/escracho-una-vecina-facebook-chorra-y-ahora-debe-pagarle-mas-10-veces-lo-que-dijo-que-le-robo-n1257847",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/lmneuquen"
+        ],
+        "Instagram": [
+          "@lmneuquen"
+        ],
+        "X": [
+          "@lmneuquen"
+        ],
+        "YouTube": [
+          "/@lmneuquenenvivo"
+        ]
+      }
     },
     {
       "nombre": "0223",
@@ -1147,7 +1325,23 @@
       "ejemplo": "https://www.0223.com.ar/nota/2026-10-19-19-12-0-escracho-a-una-mujer-por-chorra-la-acusacion-era-falsa-y-debera-pagarle-2-4-millones",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/0223com"
+        ],
+        "Instagram": [
+          "@0223com"
+        ],
+        "X": [
+          "@0223comar"
+        ],
+        "YouTube": [
+          "/@0223noticias"
+        ],
+        "TikTok": [
+          "@0223com"
+        ]
+      }
     },
     {
       "nombre": "A24.com",
@@ -1164,7 +1358,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/A24com"
+        ],
+        "Instagram": [
+          "@a24noticias"
+        ],
+        "X": [
+          "@A24COM"
+        ],
+        "YouTube": [
+          "/@Primiciasya"
+        ],
+        "TikTok": [
+          "@a24noticias"
+        ]
+      }
     },
     {
       "nombre": "Acento",
@@ -1215,7 +1425,20 @@
       "ejemplo": "https://www.ambito.com/politica/el-gobierno-reglamento-el-regimen-penal-juvenil-cuales-son-los-cambios-y-como-se-aplicara-n6319210",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/DiarioAmbitoFinanciero"
+        ],
+        "Instagram": [
+          "@ambito_financiero"
+        ],
+        "X": [
+          "@Ambitocom"
+        ],
+        "YouTube": [
+          "/channel/UCXKphgduQN0dXiz_ioRTfeA"
+        ]
+      }
     },
     {
       "nombre": "ANBariloche",
@@ -1232,7 +1455,20 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/ANBariloche"
+        ],
+        "Instagram": [
+          "@anbariloche"
+        ],
+        "X": [
+          "@anbariloche"
+        ],
+        "YouTube": [
+          "/channel/UCZf6UvSdHwYlk9IJo8Maucg"
+        ]
+      }
     },
     {
       "nombre": "APFDigital",
@@ -1249,7 +1485,14 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/apfdigital.com.ar"
+        ],
+        "X": [
+          "@APFDigitalok"
+        ]
+      }
     },
     {
       "nombre": "Atento Chubut",
@@ -1266,7 +1509,20 @@
       "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/AtentoChubut"
+        ],
+        "Instagram": [
+          "@atentochubut"
+        ],
+        "X": [
+          "@AtentoChubut"
+        ],
+        "YouTube": [
+          "/channel/UCYTCD9ktzHAmbYyJvCgunDw"
+        ]
+      }
     },
     {
       "nombre": "Caracol Radio",
@@ -1300,7 +1556,23 @@
       "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-24",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/clarincom"
+        ],
+        "Instagram": [
+          "@clarincom"
+        ],
+        "X": [
+          "@clarincom"
+        ],
+        "YouTube": [
+          "/@clarincom"
+        ],
+        "TikTok": [
+          "@clarincom"
+        ]
+      }
     },
     {
       "nombre": "Diario Chaco",
@@ -1334,7 +1606,20 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/DiarioHuarpe"
+        ],
+        "Instagram": [
+          "@diariohuarpecom"
+        ],
+        "X": [
+          "@DiarioHuarpeCom"
+        ],
+        "YouTube": [
+          "/@guanacoplay"
+        ]
+      }
     },
     {
       "nombre": "Diario Nuevo Día",
@@ -1402,7 +1687,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/el10tv"
+        ],
+        "Instagram": [
+          "@el10tv"
+        ],
+        "X": [
+          "@el10tv_"
+        ],
+        "YouTube": [
+          "/@dixsalta"
+        ],
+        "TikTok": [
+          "@el10tv"
+        ]
+      }
     },
     {
       "nombre": "El Atlantico",
@@ -1453,7 +1754,20 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/eleditormendoza"
+        ],
+        "Instagram": [
+          "@eleditormendoza"
+        ],
+        "X": [
+          "@eleditormendoza"
+        ],
+        "TikTok": [
+          "@eleditormendoza"
+        ]
+      }
     },
     {
       "nombre": "El Mediador - Santa Cruz",
@@ -1538,7 +1852,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/eltribuno"
+        ],
+        "Instagram": [
+          "@eltribunosalta"
+        ],
+        "X": [
+          "@ElTribuno"
+        ],
+        "YouTube": [
+          "/@eltribunodigital"
+        ],
+        "TikTok": [
+          "@eltribunosalta"
+        ]
+      }
     },
     {
       "nombre": "elatlantico.do",
@@ -1572,7 +1902,23 @@
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/eldocetv"
+        ],
+        "Instagram": [
+          "@eldocetv"
+        ],
+        "X": [
+          "@ElDoceOficial"
+        ],
+        "YouTube": [
+          "/@eldoce"
+        ],
+        "TikTok": [
+          "@eldocetv"
+        ]
+      }
     },
     {
       "nombre": "Elonce",
@@ -1589,7 +1935,23 @@
       "ejemplo": "https://www.elonce.com/amp/acuso-de-ladrona-a-una-vecina-y-debera-pagar-2-4-millones.htm",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/eloncecom"
+        ],
+        "Instagram": [
+          "@eloncecom"
+        ],
+        "X": [
+          "@eloncecom"
+        ],
+        "YouTube": [
+          "/@eloncecom"
+        ],
+        "TikTok": [
+          "@elonce.com"
+        ]
+      }
     },
     {
       "nombre": "Elonce.com",
@@ -1640,7 +2002,17 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-24",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/flipr.ar"
+        ],
+        "Instagram": [
+          "@flipr.news"
+        ],
+        "X": [
+          "@flipr_ar"
+        ]
+      }
     },
     {
       "nombre": "FM del Lago Esquel",
@@ -1684,7 +2056,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/infodelestero"
+        ],
+        "Instagram": [
+          "@infodelestero_"
+        ],
+        "X": [
+          "@infodelesterook"
+        ],
+        "YouTube": [
+          "/@infodelestero"
+        ],
+        "TikTok": [
+          "@infodelestero"
+        ]
+      }
     },
     {
       "nombre": "InfoBariloche",
@@ -1735,7 +2123,17 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/labrujula24"
+        ],
+        "Instagram": [
+          "@labrujula24com"
+        ],
+        "X": [
+          "@labrujula24"
+        ]
+      }
     },
     {
       "nombre": "Madryn Ahora",
@@ -1779,7 +2177,20 @@
       "ejemplo": "https://www.mdzol.com/politica/2026/9/16/que-penas-podran-recibir-los-jovenes-el-nuevo-regimen-penal-juvenil-1981295.html",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/DiarioMDZOnline"
+        ],
+        "Instagram": [
+          "@mdzol"
+        ],
+        "X": [
+          "@mdzol"
+        ],
+        "YouTube": [
+          "/@MDZOL"
+        ]
+      }
     },
     {
       "nombre": "MejorInformado.com",
@@ -1796,7 +2207,20 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/mejor.informado.diario"
+        ],
+        "Instagram": [
+          "@mejor.informado"
+        ],
+        "X": [
+          "@mejorinformado"
+        ],
+        "TikTok": [
+          "@mejorinformado"
+        ]
+      }
     },
     {
       "nombre": "Noticias de Bariloche",
@@ -1830,7 +2254,14 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/NoticiasDelBolson"
+        ],
+        "Instagram": [
+          "@noticiasdelbolson"
+        ]
+      }
     },
     {
       "nombre": "pagina12.com.ar",
@@ -1847,7 +2278,20 @@
       "ejemplo": "https://www.pagina12.com.ar/2026/09/09/respaldo-al-fallo-que-freno-el-nuevo-regimen-penal-juvenil-en-la-provincia/",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/Pagina12ok"
+        ],
+        "Instagram": [
+          "@pagina12"
+        ],
+        "X": [
+          "@pagina12"
+        ],
+        "YouTube": [
+          "/channel/UCJNDedOnljCssaiRZqg8-Dg"
+        ]
+      }
     },
     {
       "nombre": "Perfil",
@@ -1864,7 +2308,20 @@
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/perfilcom"
+        ],
+        "Instagram": [
+          "@perfilcom"
+        ],
+        "X": [
+          "@perfilcom"
+        ],
+        "YouTube": [
+          "/channel/perfilcom"
+        ]
+      }
     },
     {
       "nombre": "Perfil on MSN",
@@ -1898,7 +2355,17 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/PeriodicoElJaya"
+        ],
+        "Instagram": [
+          "@periodicoeljaya"
+        ],
+        "X": [
+          "@periodicoeljaya"
+        ]
+      }
     },
     {
       "nombre": "Portal de Cádiz",
@@ -1966,7 +2433,14 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/QPJujuy"
+        ],
+        "X": [
+          "@quepasajujuy"
+        ]
+      }
     },
     {
       "nombre": "Radio Sintonía",
@@ -2000,7 +2474,23 @@
       "ejemplo": "https://www.rionegro.com.ar/justicia/un-juez-de-chubut-aplico-lenguaje-claro-en-un-fallo-por-abuso-y-anexo-una-carta-para-la-victima-4725770/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/diariorionegro"
+        ],
+        "Instagram": [
+          "@rionegrocomar"
+        ],
+        "X": [
+          "@rionegrocomar"
+        ],
+        "YouTube": [
+          "/user/diariorionegro"
+        ],
+        "TikTok": [
+          "@rionegrocomar"
+        ]
+      }
     },
     {
       "nombre": "Somos Jujuy",
@@ -2017,7 +2507,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/diariosomosjujuy"
+        ],
+        "Instagram": [
+          "@diariosomosjujuy"
+        ],
+        "X": [
+          "@somosjujuy"
+        ],
+        "YouTube": [
+          "/c/DiarioSomosJujuy"
+        ],
+        "TikTok": [
+          "@somosjujuy"
+        ]
+      }
     },
     {
       "nombre": "TVPerú",
@@ -2118,7 +2624,14 @@
       "ejemplo": "",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
+      "redes": {
+        "Instagram": [
+          "@vibranewsok"
+        ],
+        "X": [
+          "@vibra_news"
+        ]
+      }
     }
   ]
 }
