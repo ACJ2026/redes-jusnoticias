@@ -668,5 +668,15 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn("write_text", script)
 
 
+    def test_cuentas_de_instagram_ampliadas_y_paginas_por_cuenta(self):
+        import json
+        cuentas = json.loads((ROOT / "data/cuentas_monitoreo.json").read_text(encoding="utf-8"))["cuentas"]
+        ig = [c for c in cuentas if c.get("red") == "Instagram" and c.get("cuenta") and not str(c.get("estado", "")).startswith("Dudosa")]
+        self.assertGreaterEqual(len(ig), 60)
+        self.assertTrue(all(c["cuenta"].startswith("@") for c in ig))
+        funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
+        self.assertIn("paginas >= paginasPorUsuario.get(usuario)", funcion)
+
+
 if __name__ == "__main__":
     unittest.main()

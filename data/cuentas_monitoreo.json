@@ -1,6 +1,6 @@
 {
   "descripcion": "Cuentas de redes a monitorear para detectar quién comparte contenido de Juschubut Noticias. Tipos: medio con sitio web, medio solo en redes, otra cuenta (no medio). Las cuentas sin usuario están pendientes de identificar; no se inventan usuarios.",
-  "actualizado": "2026-10-22",
+  "actualizado": "2026-10-26",
   "cuentas": [
     {
       "red": "Facebook",
@@ -989,7 +989,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "La Opinión Austral",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 6
     },
     {
@@ -1005,7 +1005,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Diario Judicial",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 3
     },
     {
@@ -1013,7 +1013,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "La Voz del Interior",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 2
     },
     {
@@ -1021,7 +1021,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "El Valle Online",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 2
     },
     {
@@ -1029,7 +1029,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Examedia",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 2
     },
     {
@@ -1045,7 +1045,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Flipr.news",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1053,7 +1053,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "CHACODIAPORDIA.COM",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1069,7 +1069,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "El 10 TV",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1077,7 +1077,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "El Tribuno",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1085,7 +1085,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Diario Huarpe",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1109,7 +1109,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "MejorInformado.com",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1117,7 +1117,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Revista Quórum",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1141,7 +1141,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "ANBariloche",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1149,7 +1149,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "NoticiasdelBolson",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1157,7 +1157,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "A24.com",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1165,7 +1165,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Somos Jujuy",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1173,7 +1173,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Canal Doce Misiones",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1189,7 +1189,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "APFDigital",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1197,7 +1197,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Info del Estero",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1205,7 +1205,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "La Brújula 24",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1213,7 +1213,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "El Editor Mendoza",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1221,7 +1221,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Que Pasa Jujuy",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1237,7 +1237,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "0223",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1245,7 +1245,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Elonce",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1253,7 +1253,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Clarín",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1261,7 +1261,7 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "Diario San Rafael",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
     },
     {
@@ -1293,8 +1293,1281 @@
       "cuenta": null,
       "tipo": "Medio con sitio web",
       "medio": "LM Neuquén",
-      "estado": "Pendiente: identificar sus cuentas en Facebook, Instagram, X, YouTube y TikTok",
+      "estado": "Identificado el 26/10/2026: ver sus cuentas en esta lista",
       "publicaciones_confirmadas": 1
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/ElValleOnline",
+      "tipo": "Medio con sitio web",
+      "medio": "El Valle Online",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@elvalleonline",
+      "tipo": "Medio con sitio web",
+      "medio": "El Valle Online",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@elvalle_online",
+      "tipo": "Medio con sitio web",
+      "medio": "El Valle Online",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@elvalleonline",
+      "tipo": "Medio con sitio web",
+      "medio": "El Valle Online",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/chacodiapordia24",
+      "tipo": "Medio con sitio web",
+      "medio": "CHACODIAPORDIA.COM",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@chacodiapordia",
+      "tipo": "Medio con sitio web",
+      "medio": "CHACODIAPORDIA.COM",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@chacodxd",
+      "tipo": "Medio con sitio web",
+      "medio": "CHACODIAPORDIA.COM",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@ciudadtvcontenidosok",
+      "tipo": "Medio con sitio web",
+      "medio": "CHACODIAPORDIA.COM",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/jorgeylaradio",
+      "tipo": "Medio con sitio web",
+      "medio": "Madryn Urbana",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@madrynurbana",
+      "tipo": "Medio con sitio web",
+      "medio": "Madryn Urbana",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@jorgeylaradio",
+      "tipo": "Medio con sitio web",
+      "medio": "Madryn Urbana",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/milpatagonias",
+      "tipo": "Medio con sitio web",
+      "medio": "Mil Patagonias",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@milpatagonias",
+      "tipo": "Medio con sitio web",
+      "medio": "Mil Patagonias",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@milpatagonias",
+      "tipo": "Medio con sitio web",
+      "medio": "Mil Patagonias",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/opinionaustral",
+      "tipo": "Medio con sitio web",
+      "medio": "La Opinión Austral",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@laopinionaustral",
+      "tipo": "Medio con sitio web",
+      "medio": "La Opinión Austral",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@opinionaustral",
+      "tipo": "Medio con sitio web",
+      "medio": "La Opinión Austral",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCcx4mXTC2uuN9Oe1paH1ozg",
+      "tipo": "Medio con sitio web",
+      "medio": "La Opinión Austral",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@laopinionaustral",
+      "tipo": "Medio con sitio web",
+      "medio": "La Opinión Austral",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/primeraedicionw",
+      "tipo": "Medio con sitio web",
+      "medio": "Primera Edición",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@diarioprimeraedicion",
+      "tipo": "Medio con sitio web",
+      "medio": "Primera Edición",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@DPrimeraEdicion",
+      "tipo": "Medio con sitio web",
+      "medio": "Primera Edición",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@primeraedicioncomar",
+      "tipo": "Medio con sitio web",
+      "medio": "Primera Edición",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@revistaquorumok",
+      "tipo": "Medio con sitio web",
+      "medio": "Revista Quórum",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@revistaquorumok",
+      "tipo": "Medio con sitio web",
+      "medio": "Revista Quórum",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/DiarioSanRafael",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario San Rafael",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@diariosanrafael",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario San Rafael",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@diariosanrafael",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario San Rafael",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCWhsV1YALBkWBsbJQBkGv1g",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario San Rafael",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@lanotasanjuan",
+      "tipo": "Medio con sitio web",
+      "medio": "La Nota San Juan",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@laradiodelacordillera",
+      "tipo": "Medio con sitio web",
+      "medio": "FM de la Cordillera",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@laradiodelacordillera105.5",
+      "tipo": "Medio con sitio web",
+      "medio": "FM de la Cordillera",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@laradiodelacordillera",
+      "tipo": "Medio con sitio web",
+      "medio": "FM de la Cordillera",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/diariojudicial",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Judicial",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@diariojudicial",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Judicial",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@diariojudicial",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Judicial",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/examedia",
+      "tipo": "Medio con sitio web",
+      "medio": "Examedia",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@examediaok",
+      "tipo": "Medio con sitio web",
+      "medio": "Examedia",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@ExamediaAR",
+      "tipo": "Medio con sitio web",
+      "medio": "Examedia",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/genesisnoticias",
+      "tipo": "Medio con sitio web",
+      "medio": "GENESIS24.NET",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@genesisnoticias",
+      "tipo": "Medio con sitio web",
+      "medio": "GENESIS24.NET",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@genesiscaseros",
+      "tipo": "Medio con sitio web",
+      "medio": "GENESIS24.NET",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/tv12misiones",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal Doce Misiones",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@tv12misiones",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal Doce Misiones",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@tv12misiones",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal Doce Misiones",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/c/tv12misiones",
+      "tipo": "Medio con sitio web",
+      "medio": "Canal Doce Misiones",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/LaVoz.com.ar",
+      "tipo": "Medio con sitio web",
+      "medio": "La Voz del Interior",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@lavozcomar",
+      "tipo": "Medio con sitio web",
+      "medio": "La Voz del Interior",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26",
+      "paginas": 1
+    },
+    {
+      "red": "X",
+      "cuenta": "@lavozcomar",
+      "tipo": "Medio con sitio web",
+      "medio": "La Voz del Interior",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/user/LVIcomar",
+      "tipo": "Medio con sitio web",
+      "medio": "La Voz del Interior",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/lmneuquen",
+      "tipo": "Medio con sitio web",
+      "medio": "LM Neuquén",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@lmneuquen",
+      "tipo": "Medio con sitio web",
+      "medio": "LM Neuquén",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@lmneuquen",
+      "tipo": "Medio con sitio web",
+      "medio": "LM Neuquén",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@lmneuquenenvivo",
+      "tipo": "Medio con sitio web",
+      "medio": "LM Neuquén",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/0223com",
+      "tipo": "Medio con sitio web",
+      "medio": "0223",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@0223com",
+      "tipo": "Medio con sitio web",
+      "medio": "0223",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@0223comar",
+      "tipo": "Medio con sitio web",
+      "medio": "0223",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@0223noticias",
+      "tipo": "Medio con sitio web",
+      "medio": "0223",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@0223com",
+      "tipo": "Medio con sitio web",
+      "medio": "0223",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/A24com",
+      "tipo": "Medio con sitio web",
+      "medio": "A24.com",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@a24noticias",
+      "tipo": "Medio con sitio web",
+      "medio": "A24.com",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26",
+      "paginas": 1
+    },
+    {
+      "red": "X",
+      "cuenta": "@A24COM",
+      "tipo": "Medio con sitio web",
+      "medio": "A24.com",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@Primiciasya",
+      "tipo": "Medio con sitio web",
+      "medio": "A24.com",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@a24noticias",
+      "tipo": "Medio con sitio web",
+      "medio": "A24.com",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/DiarioAmbitoFinanciero",
+      "tipo": "Medio con sitio web",
+      "medio": "Ambito Financiero",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@ambito_financiero",
+      "tipo": "Medio con sitio web",
+      "medio": "Ambito Financiero",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26",
+      "paginas": 1
+    },
+    {
+      "red": "X",
+      "cuenta": "@Ambitocom",
+      "tipo": "Medio con sitio web",
+      "medio": "Ambito Financiero",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCXKphgduQN0dXiz_ioRTfeA",
+      "tipo": "Medio con sitio web",
+      "medio": "Ambito Financiero",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/ANBariloche",
+      "tipo": "Medio con sitio web",
+      "medio": "ANBariloche",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@anbariloche",
+      "tipo": "Medio con sitio web",
+      "medio": "ANBariloche",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@anbariloche",
+      "tipo": "Medio con sitio web",
+      "medio": "ANBariloche",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCZf6UvSdHwYlk9IJo8Maucg",
+      "tipo": "Medio con sitio web",
+      "medio": "ANBariloche",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/apfdigital.com.ar",
+      "tipo": "Medio con sitio web",
+      "medio": "APFDigital",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@APFDigitalok",
+      "tipo": "Medio con sitio web",
+      "medio": "APFDigital",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/AtentoChubut",
+      "tipo": "Medio con sitio web",
+      "medio": "Atento Chubut",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@atentochubut",
+      "tipo": "Medio con sitio web",
+      "medio": "Atento Chubut",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@AtentoChubut",
+      "tipo": "Medio con sitio web",
+      "medio": "Atento Chubut",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCYTCD9ktzHAmbYyJvCgunDw",
+      "tipo": "Medio con sitio web",
+      "medio": "Atento Chubut",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/clarincom",
+      "tipo": "Medio con sitio web",
+      "medio": "Clarín",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@clarincom",
+      "tipo": "Medio con sitio web",
+      "medio": "Clarín",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26",
+      "paginas": 1
+    },
+    {
+      "red": "X",
+      "cuenta": "@clarincom",
+      "tipo": "Medio con sitio web",
+      "medio": "Clarín",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@clarincom",
+      "tipo": "Medio con sitio web",
+      "medio": "Clarín",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@clarincom",
+      "tipo": "Medio con sitio web",
+      "medio": "Clarín",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/DiarioHuarpe",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Huarpe",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@diariohuarpecom",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Huarpe",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@DiarioHuarpeCom",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Huarpe",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@guanacoplay",
+      "tipo": "Medio con sitio web",
+      "medio": "Diario Huarpe",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/el10tv",
+      "tipo": "Medio con sitio web",
+      "medio": "El 10 TV",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@el10tv",
+      "tipo": "Medio con sitio web",
+      "medio": "El 10 TV",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@el10tv_",
+      "tipo": "Medio con sitio web",
+      "medio": "El 10 TV",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@dixsalta",
+      "tipo": "Medio con sitio web",
+      "medio": "El 10 TV",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@el10tv",
+      "tipo": "Medio con sitio web",
+      "medio": "El 10 TV",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/eleditormendoza",
+      "tipo": "Medio con sitio web",
+      "medio": "El Editor Mendoza",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@eleditormendoza",
+      "tipo": "Medio con sitio web",
+      "medio": "El Editor Mendoza",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@eleditormendoza",
+      "tipo": "Medio con sitio web",
+      "medio": "El Editor Mendoza",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@eleditormendoza",
+      "tipo": "Medio con sitio web",
+      "medio": "El Editor Mendoza",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/eltribuno",
+      "tipo": "Medio con sitio web",
+      "medio": "El Tribuno",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@eltribunosalta",
+      "tipo": "Medio con sitio web",
+      "medio": "El Tribuno",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@ElTribuno",
+      "tipo": "Medio con sitio web",
+      "medio": "El Tribuno",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@eltribunodigital",
+      "tipo": "Medio con sitio web",
+      "medio": "El Tribuno",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@eltribunosalta",
+      "tipo": "Medio con sitio web",
+      "medio": "El Tribuno",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/eldocetv",
+      "tipo": "Medio con sitio web",
+      "medio": "ElDoce.tv",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@eldocetv",
+      "tipo": "Medio con sitio web",
+      "medio": "ElDoce.tv",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26",
+      "paginas": 1
+    },
+    {
+      "red": "X",
+      "cuenta": "@ElDoceOficial",
+      "tipo": "Medio con sitio web",
+      "medio": "ElDoce.tv",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@eldoce",
+      "tipo": "Medio con sitio web",
+      "medio": "ElDoce.tv",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@eldocetv",
+      "tipo": "Medio con sitio web",
+      "medio": "ElDoce.tv",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/eloncecom",
+      "tipo": "Medio con sitio web",
+      "medio": "Elonce",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@eloncecom",
+      "tipo": "Medio con sitio web",
+      "medio": "Elonce",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@eloncecom",
+      "tipo": "Medio con sitio web",
+      "medio": "Elonce",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@eloncecom",
+      "tipo": "Medio con sitio web",
+      "medio": "Elonce",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@elonce.com",
+      "tipo": "Medio con sitio web",
+      "medio": "Elonce",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/flipr.ar",
+      "tipo": "Medio con sitio web",
+      "medio": "Flipr.news",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@flipr.news",
+      "tipo": "Medio con sitio web",
+      "medio": "Flipr.news",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@flipr_ar",
+      "tipo": "Medio con sitio web",
+      "medio": "Flipr.news",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/infodelestero",
+      "tipo": "Medio con sitio web",
+      "medio": "Info del Estero",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@infodelestero_",
+      "tipo": "Medio con sitio web",
+      "medio": "Info del Estero",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@infodelesterook",
+      "tipo": "Medio con sitio web",
+      "medio": "Info del Estero",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@infodelestero",
+      "tipo": "Medio con sitio web",
+      "medio": "Info del Estero",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@infodelestero",
+      "tipo": "Medio con sitio web",
+      "medio": "Info del Estero",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/labrujula24",
+      "tipo": "Medio con sitio web",
+      "medio": "La Brújula 24",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@labrujula24com",
+      "tipo": "Medio con sitio web",
+      "medio": "La Brújula 24",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@labrujula24",
+      "tipo": "Medio con sitio web",
+      "medio": "La Brújula 24",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/DiarioMDZOnline",
+      "tipo": "Medio con sitio web",
+      "medio": "mdz online",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@mdzol",
+      "tipo": "Medio con sitio web",
+      "medio": "mdz online",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26",
+      "paginas": 1
+    },
+    {
+      "red": "X",
+      "cuenta": "@mdzol",
+      "tipo": "Medio con sitio web",
+      "medio": "mdz online",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/@MDZOL",
+      "tipo": "Medio con sitio web",
+      "medio": "mdz online",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/mejor.informado.diario",
+      "tipo": "Medio con sitio web",
+      "medio": "MejorInformado.com",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@mejor.informado",
+      "tipo": "Medio con sitio web",
+      "medio": "MejorInformado.com",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@mejorinformado",
+      "tipo": "Medio con sitio web",
+      "medio": "MejorInformado.com",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@mejorinformado",
+      "tipo": "Medio con sitio web",
+      "medio": "MejorInformado.com",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/NoticiasDelBolson",
+      "tipo": "Medio con sitio web",
+      "medio": "NoticiasdelBolson",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@noticiasdelbolson",
+      "tipo": "Medio con sitio web",
+      "medio": "NoticiasdelBolson",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/Pagina12ok",
+      "tipo": "Medio con sitio web",
+      "medio": "pagina12.com.ar",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@pagina12",
+      "tipo": "Medio con sitio web",
+      "medio": "pagina12.com.ar",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26",
+      "paginas": 1
+    },
+    {
+      "red": "X",
+      "cuenta": "@pagina12",
+      "tipo": "Medio con sitio web",
+      "medio": "pagina12.com.ar",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/UCJNDedOnljCssaiRZqg8-Dg",
+      "tipo": "Medio con sitio web",
+      "medio": "pagina12.com.ar",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/perfilcom",
+      "tipo": "Medio con sitio web",
+      "medio": "Perfil",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@perfilcom",
+      "tipo": "Medio con sitio web",
+      "medio": "Perfil",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26",
+      "paginas": 1
+    },
+    {
+      "red": "X",
+      "cuenta": "@perfilcom",
+      "tipo": "Medio con sitio web",
+      "medio": "Perfil",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/channel/perfilcom",
+      "tipo": "Medio con sitio web",
+      "medio": "Perfil",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/PeriodicoElJaya",
+      "tipo": "Medio con sitio web",
+      "medio": "Periódico EL JAYA",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@periodicoeljaya",
+      "tipo": "Medio con sitio web",
+      "medio": "Periódico EL JAYA",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@periodicoeljaya",
+      "tipo": "Medio con sitio web",
+      "medio": "Periódico EL JAYA",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/QPJujuy",
+      "tipo": "Medio con sitio web",
+      "medio": "Que Pasa Jujuy",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@quepasajujuy",
+      "tipo": "Medio con sitio web",
+      "medio": "Que Pasa Jujuy",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/diariorionegro",
+      "tipo": "Medio con sitio web",
+      "medio": "Rio Negro",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@rionegrocomar",
+      "tipo": "Medio con sitio web",
+      "medio": "Rio Negro",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@rionegrocomar",
+      "tipo": "Medio con sitio web",
+      "medio": "Rio Negro",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/user/diariorionegro",
+      "tipo": "Medio con sitio web",
+      "medio": "Rio Negro",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@rionegrocomar",
+      "tipo": "Medio con sitio web",
+      "medio": "Rio Negro",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Facebook",
+      "cuenta": "/diariosomosjujuy",
+      "tipo": "Medio con sitio web",
+      "medio": "Somos Jujuy",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@diariosomosjujuy",
+      "tipo": "Medio con sitio web",
+      "medio": "Somos Jujuy",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@somosjujuy",
+      "tipo": "Medio con sitio web",
+      "medio": "Somos Jujuy",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "YouTube",
+      "cuenta": "/c/DiarioSomosJujuy",
+      "tipo": "Medio con sitio web",
+      "medio": "Somos Jujuy",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "TikTok",
+      "cuenta": "@somosjujuy",
+      "tipo": "Medio con sitio web",
+      "medio": "Somos Jujuy",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@vibranewsok",
+      "tipo": "Medio con sitio web",
+      "medio": "Vibra News",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "X",
+      "cuenta": "@vibra_news",
+      "tipo": "Medio con sitio web",
+      "medio": "Vibra News",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@cadena3com",
+      "tipo": "Medio con sitio web",
+      "medio": "Cadena 3",
+      "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
+      "visto": "2026-10-26",
+      "paginas": 1
     }
   ],
   "relevamiento": "Claude Chrome, 22/10/2026: pie de página de 30 sitios y búsqueda en Facebook y X de 5 notas. Instagram no permite buscar publicaciones por texto; los resultados de Facebook son aproximados."
