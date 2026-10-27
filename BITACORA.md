@@ -786,3 +786,24 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - EQS Notas y El Monterizo sí pasan el filtro: lo más probable es que Google todavía no los tuviera indexados a la hora de la corrida.
   - Chubutline, El Chubut y Red43 quedaron solo con el enlace de Google Noticias porque el verificador no logró resolver la redirección al enlace real.
 - **Propuesta para que no vuelva a pasar (pendiente del OK de Ignacio, porque cambia la detección):** segunda oportunidad por texto para resultados rechazados por título, y búsqueda del enlace real en el sitio del medio cuando solo hay enlace de Google Noticias.
+
+
+## 2026-10-27 — Que el tablero traiga al menos lo mismo que Google (Claude)
+
+**Objetivo de Ignacio:** si el tablero no trae al menos lo mismo que Google, no sirve.
+
+**Diagnóstico en GitHub (rama `claude/diagnostico-buscador`, solo lectura, nota 14925):**
+- Desde GitHub, Google Noticias devuelve casi nada: 0 o 1 resultado por búsqueda (solo JusNoticias y El Chubut). Bing Noticias trajo El Diario Web, El Chubut, ADN Sur y El Patagónico, con enlace directo.
+- Las 9 páginas de los medios se pudieron leer. 5 copian el comunicado (el criterio de «misma nota» las confirma); 4 lo cuentan con palabras propias (ADN Sur, EQS Notas, El Monterizo, La Posta) y el verificador las sacaba del conteo.
+- Control contra las demás notas de esos días: con la nota correcta, ≥33 % del texto del medio y ≥3 términos del título; con cualquier otra, ≤16 % y ningún término del título.
+
+**Decisión de Ignacio (opción A):** el mismo caso contado con palabras propias del medio cuenta como verificado.
+
+**Cambios:**
+- `relevancia_publicaciones.py`: nuevo criterio «mismo caso» (≥2 términos del título, ≥40 términos del cuerpo y ≥25 % del texto del medio) y `es_misma_publicacion()`, que usan el recolector y el verificador.
+- `actualizar.py`: más consultas a Bing para notas recientes; los enlaces directos tienen prioridad sobre los de Google Noticias; segunda oportunidad por texto para resultados del buscador cuyo título no alcanza (se lee la página y se asigna solo si la nota correcta es la de más evidencia); una redacción propia ya no queda con confianza baja. Los artículos leídos con el criterio anterior se releen una vez.
+- `verificar_publicaciones.py`: acepta «mismo caso» y lo explica en el motivo.
+- Nueva prueba en seco (`prueba-relevamiento.yml`): en cada PR que cambie la detección corre el relevamiento completo sin guardar y muestra qué medios nuevos aparecen.
+- `scripts/diagnostico_buscador.py`: herramienta de diagnóstico para comparar una nota con los buscadores.
+
+**Pendiente:** lectura directa de las últimas noticias de cada medio conocido (sin buscadores) y control diario de «aparece en buscadores y no en el tablero».

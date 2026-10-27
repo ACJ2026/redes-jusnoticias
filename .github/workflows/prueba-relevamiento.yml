@@ -1,0 +1,58 @@
+name: Prueba en seco del relevamiento
+
+# Corre el relevamiento completo sobre la rama del PR, sin guardar nada, cuando un PR
+# cambia cómo se detectan las publicaciones. Así un error aparece antes de llegar a main.
+on:
+  pull_request:
+    paths:
+      - 'scripts/actualizar.py'
+      - 'scripts/relevancia_publicaciones.py'
+      - 'scripts/verificar_publicaciones.py'
+      - '.github/workflows/prueba-relevamiento.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prueba-relevamiento-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  en-seco:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Relevamiento y verificación (sin guardar)
+        run: |
+          mkdir -p out
+          python3 -u scripts/actualizar.py out data/rep2.json | tee run.log
+          grep -q "^OK notas" run.log
+          python3 scripts/verificar_publicaciones.py out/notas2.json out/rep2.json
+          python3 scripts/verificar_historial.py data/rep2.json out/rep2.json out/notas2.json
+      - name: Comparar con los datos guardados
+        run: |
+          python3 - <<'PY'
+          import json
+          antes = json.load(open('data/rep2.json')); ahora = json.load(open('out/rep2.json'))
+          def medios(filas):
+              out = {}
+              for r in filas:
+                  out.setdefault(r['nota_id'], set()).add(r['medio'])
+              return out
+          a, b = medios(antes), medios(ahora)
+          nuevas = {n: sorted(b[n] - a.get(n, set())) for n in b if b[n] - a.get(n, set())}
+          print('Publicaciones antes:', len(antes), '| ahora:', len(ahora))
+          print('Notas con medios nuevos:', len(nuevas))
+          for n, ms in sorted(nuevas.items(), reverse=True)[:40]:
+              print(f'  nota {n}: +{len(ms)} ->', ', '.join(ms))
+          # Detalle de cada medio nuevo para revisar a mano que sea la nota correcta.
+          print('\nDETALLE (medios nuevos por nota):')
+          for r in sorted(ahora, key=lambda r: -r['nota_id']):
+              if r['medio'] in nuevas.get(r['nota_id'], []):
+                  ev = r.get('evidencia_verificacion') or {}
+                  print(f"  {r['nota_id']} | {r['medio']} | {r.get('confianza')} | {r.get('metodo','')[:70]} | {r.get('url','')[:110]} | {(r.get('motivo') or '')[:160]} | {ev.get('titulo_medio','')[:90]}")
+          PY

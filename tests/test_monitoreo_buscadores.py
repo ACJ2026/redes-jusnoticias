@@ -73,9 +73,9 @@ def cargar_segunda_oportunidad(nota_texto, nota_titulo, fecha="2026-10-16"):
     nodos += [n for n in arbol if isinstance(n, ast.Assign) and any(getattr(t, "id", "") in ("STOP", "MED") for t in n.targets)]
     import unicodedata
     sys.path.insert(0, str(ROOT / "scripts"))
-    from relevancia_publicaciones import evidencia_misma_nota
+    from relevancia_publicaciones import evidencia_misma_nota, es_misma_publicacion
     espacio = {"re": re, "html": html, "dt": dt, "unicodedata": unicodedata,
-               "evidencia_misma_nota": evidencia_misma_nota}
+               "evidencia_misma_nota": evidencia_misma_nota, "es_misma_publicacion": es_misma_publicacion}
     exec(compile(ast.Module(body=nodos, type_ignores=[]), "actualizar.py", "exec"), espacio)
     j = {"id": 1, "date": fecha, "titulo": nota_titulo, "body": nota_texto,
          "tk": espacio["toks"](nota_titulo + " " + nota_texto[:1500]), "sh": espacio["shing"](nota_texto),
