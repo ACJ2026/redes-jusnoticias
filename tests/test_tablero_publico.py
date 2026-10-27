@@ -793,9 +793,11 @@ class TableroPublicoTests(unittest.TestCase):
             ))
             for r in por_medio.values()
         ))
+        actualizador = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
         for medio in ("Radio Chubut", "Canal 12", "Cholila Online", "ADN Sur"):
-            self.assertIn(medio, por_medio)
-            self.assertEqual("Verificación manual de URL aportada", por_medio[medio]["metodo"])
+            self.assertIn(f"('{medio}',", actualizador)
+        self.assertIn("Última capa de protección", actualizador)
+        self.assertIn("fila['metodo'] = 'Verificación manual de URL aportada'", actualizador)
 
     def test_relevancia_exige_misma_nota_y_no_solo_mismo_evento(self):
         sys.path.insert(0, str(ROOT / "scripts"))
