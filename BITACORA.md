@@ -729,3 +729,5 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - Protección de datos: no se editan los JSON históricos ni se elimina ninguna fila. Las decisiones automáticas solo cambian el estado de las filas excluidas; el historial sigue conservado para auditoría.
 - Validación de CI: las tres comprobaciones pasaron en el commit 29d44c95c173a69343aad94637627a226302d69b: regresiones del historial (run 40522775550), verificador de publicaciones (run 40522775897) y validación del tablero/fuentes (run 40522775552).
 - Estado actual: PR 125 abierta, pendiente de integración. La suite no ejecutó el relevamiento completo ni confirmó una publicación de producción; no dar por actualizado el tablero hasta integrar y verificar una corrida real.
+
+- Refuerzo posterior a la integración: la exclusión de la nota 14664 normaliza mayúsculas y espacios en el nombre del medio, tanto en el recolector como en el verificador. Esto evita que una variante de capitalización haga reaparecer una cobertura temática. Se agregó una regresión específica para esa condición.
