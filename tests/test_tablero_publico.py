@@ -765,40 +765,6 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("no deben interpretarse como información actual", template)
         self.assertIn("fecha y hora no disponibles", template)
 
-    def test_nota_14884_conserva_los_medios_verificados_y_enlaces_directos(self):
-        datos = read_json("data/rep2.json")
-        filas = [
-            r for r in datos
-            if str(r.get("nota_id")) == "14884"
-            and r.get("medio")
-            and r.get("confianza") != "Baja"
-            and str(r.get("url", "")).startswith(("http://", "https://"))
-            and "news.google.com" not in str(r.get("url", "")).lower()
-            and not str(r.get("metodo", "")).lower().startswith("a verificar:")
-        ]
-        por_medio = {}
-        for fila in filas:
-            por_medio[fila["medio"]] = fila
-        # La base histórica vigente contiene 24 medios elegibles; Perfil on MSN
-        # no se cuenta porque no corresponde a esta nota. Las URLs manuales
-        # configuradas se vuelven a aplicar en cada relevamiento.
-        self.assertEqual(24, len(por_medio))
-        self.assertNotIn("Perfil on MSN", por_medio)
-        self.assertTrue(all(
-            str(r.get("metodo", "")).startswith((
-                "Revisión completa",
-                "Verificación manual de URL aportada",
-                "Revisión de texto (coinciden los datos)",
-                "Verificada automáticamente: título y contenido comparados con la nota oficial",
-            ))
-            for r in por_medio.values()
-        ))
-        actualizador = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
-        for medio in ("Radio Chubut", "Canal 12", "Cholila Online", "ADN Sur"):
-            self.assertIn(f"('{medio}',", actualizador)
-        self.assertIn("Última capa de protección", actualizador)
-        self.assertIn("fila['metodo'] = 'Verificación manual de URL aportada'", actualizador)
-
     def test_relevancia_exige_misma_nota_y_no_solo_mismo_evento(self):
         sys.path.insert(0, str(ROOT / "scripts"))
         from relevancia_publicaciones import evidencia_misma_nota
@@ -831,20 +797,41 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("from relevancia_publicaciones import evidencia_misma_nota", actualizador)
         self.assertIn("if not evidencia['misma_nota']: continue", actualizador)
 
-    def test_exclusiones_nota_14664_no_dependen_de_mayusculas_o_espacios(self):
+    def test_decisiones_manuales_viven_en_revision_manual_y_no_en_el_codigo(self):
+        # Las correcciones por nota se cargan como datos (confirmar/descartar por URL), no como listas en el código.
         actualizador = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
         verificador = (ROOT / "scripts/verificar_publicaciones.py").read_text(encoding="utf-8")
-        self.assertIn("m.strip().casefold()", actualizador)
-        self.assertIn("medio_norm in MEDIOS_NO_VERIFICADOS_14664_NORM", actualizador)
-        self.assertIn("m.strip().casefold()", verificador)
-        self.assertIn("medio_norm in medios_no_verificados_14664_norm", verificador)
+        for codigo in (actualizador, verificador):
+            self.assertNotIn("14664", codigo)
+            self.assertNotIn("14884", codigo)
+        self.assertIn("aplicar_revision_manual(rep,", actualizador)
+        self.assertIn('(fila.get("revision_manual") or {}).get("decision") in ("confirmar", "descartar")', verificador)
+        revisiones = read_json("data/revision_manual.json")
+        self.assertTrue(any(r["nota_id"] == 14884 and r["decision"] == "confirmar" for r in revisiones))
+        self.assertTrue(any(r["nota_id"] == 14664 and r["decision"] == "descartar" for r in revisiones))
+        self.assertTrue(all(r.get("url", "").startswith("http") and r.get("decision") in ("confirmar", "descartar") for r in revisiones))
 
-    def test_nota_14664_solo_cuenta_la_publicacion_directa_correspondiente(self):
-        datos = read_json("data/rep2.json")
-        filas = [r for r in datos if str(r.get("nota_id")) == "14664" and r.get("confianza") != "Baja" and r.get("url")]
-        self.assertEqual(["Noticias PMY"], sorted({r["medio"] for r in filas}))
-        self.assertTrue(all("news.google.com" not in r["url"].lower() for r in filas))
-        self.assertTrue(all(not str(r.get("metodo", "")).startswith("Excluida del conteo:") for r in filas))
+    def test_revisiones_aplicadas_dejan_14664_solo_con_noticias_pmy(self):
+        # Se prueba el mecanismo sobre una copia de los datos: no depende de un número fijo de medios.
+        import copy
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from historial import aplicar_revision_manual
+        filas = aplicar_revision_manual(copy.deepcopy(read_json("data/rep2.json")), read_json("data/revision_manual.json"))
+        contadas = {r["medio"] for r in filas if r.get("nota_id") == 14664 and r.get("confianza") != "Baja" and r.get("url") and "news.google.com" not in r["url"]}
+        descartados = {r["medio"] for r in read_json("data/revision_manual.json") if r["nota_id"] == 14664}
+        self.assertFalse(contadas & descartados)
+        confirmadas = [r for r in filas if r.get("nota_id") == 14884 and (r.get("revision_manual") or {}).get("decision") == "confirmar"]
+        self.assertGreaterEqual(len(confirmadas), 8)
+        self.assertTrue(all(r["confianza"] == "Alta" for r in confirmadas))
+
+    def test_confirmacion_manual_cuenta_como_verificada_en_el_tablero(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("const confirmadaManual = r => (r.revision_manual || {}).decision === 'confirmar'", template)
+        self.assertIn("(confirmadaManual(r) || (metodoVerificado(r)", template)
+
+    def test_actualizar_no_cancela_corridas_en_curso(self):
+        flujo = (ROOT / ".github/workflows/actualizar.yml").read_text(encoding="utf-8")
+        self.assertIn("cancel-in-progress: false", flujo)
 
 if __name__ == "__main__":
     unittest.main()

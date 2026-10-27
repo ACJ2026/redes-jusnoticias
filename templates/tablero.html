@@ -687,7 +687,9 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const esReferenciaGoogle = r => /news\.google\.com/i.test(String(r.url || ''));
   // Confirmar exige un método que documente revisión real; encontrar una URL en un buscador no alcanza.
   const metodoVerificado = r => /^(Revisión completa|Verificación manual de URL aportada|Revisión de texto \(coinciden los datos\)|Verificada automáticamente: título y contenido comparados con la nota oficial)/i.test(String(r.metodo || '').trim());
-  const esConfirmada = r => r.confianza !== 'Baja' && metodoVerificado(r) && !/^A verificar:/i.test(r.metodo || '') && !soloCoincidenciaTitulo(r) && !esReferenciaGoogle(r) && /^https?:\/\//i.test(String(r.url || ''));
+  // Una confirmación manual (botón Confirmar o data/revision_manual.json) cuenta siempre que tenga enlace directo.
+  const confirmadaManual = r => (r.revision_manual || {}).decision === 'confirmar' || /^(Confirmada manualmente|Revisión manual)/i.test(String(r.metodo || '').trim());
+  const esConfirmada = r => r.confianza !== 'Baja' && !esReferenciaGoogle(r) && /^https?:\/\//i.test(String(r.url || '')) && (confirmadaManual(r) || (metodoVerificado(r) && !/^A verificar:/i.test(r.metodo || '') && !soloCoincidenciaTitulo(r)));
   const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id) && r.confianza !== 'Baja' && Boolean(r.url));

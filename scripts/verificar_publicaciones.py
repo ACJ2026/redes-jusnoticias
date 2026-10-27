@@ -147,28 +147,9 @@ def main():
     titulos = {int(n["id"]): n.get("titulo", "") for n in notas}
     cache = {}
     revisadas = confirmadas = descartadas = pendientes = 0
-    medios_no_verificados_14664 = {
-        "CHACODIAPORDIA.COM", "Diario La Portada", "Metadata Noticias",
-        "Del Mar Digital", "Canal Doce Misiones", "La Nota San Juan",
-        "InfoBariloche", "El Mediador - Santa Cruz", "El 10 TV",
-        "El Tribuno", "Diario Huarpe",
-    }
-    medios_no_verificados_14664_norm = {m.strip().casefold() for m in medios_no_verificados_14664}
     for fila in filas:
-        revision = fila.get("revision_manual") or {}
-        medio_norm = str(fila.get("medio") or "").strip().casefold()
-        if (str(fila.get("nota_id")) == "14664"
-                and medio_norm in medios_no_verificados_14664_norm
-                and revision.get("decision") != "confirmar"):
-            fila["confianza"] = "Baja"
-            fila["metodo"] = (
-                "Excluida del conteo: cobertura distinta del mismo congreso; "
-                "no acredita reproducción de la nota de Chubut"
-            )
-            fila["motivo"] = (
-                "La coincidencia temática o la referencia de búsqueda no acredita "
-                "que el medio haya publicado esta nota"
-            )
+        # Una decisión manual (data/revision_manual.json) manda: el verificador no la reabre.
+        if (fila.get("revision_manual") or {}).get("decision") in ("confirmar", "descartar"):
             continue
         metodo = (fila.get("metodo") or "").lower()
         url = (fila.get("url") or "").strip()
