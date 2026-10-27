@@ -95,6 +95,11 @@ class LecturaDirectaSinWordPressTest(unittest.TestCase):
                "<link>https://medio.com.ar/nota-1</link><pubDate>Tue, 27 Oct 2026 11:00:00 -0300</pubDate></item></channel></rss>")
         self.assertEqual(self.e["items_de_feed"](xml), [{"t": "Sancionan a Ford y Plan Óvalo", "u": "https://medio.com.ar/nota-1", "d": "2026-10-27"}])
 
+    def test_rss_quita_el_nombre_del_medio_al_final_del_titulo(self):
+        xml = ("<rss><item><title>Un plan de ahorro aumentó 952% y la Justicia sancionó a Ford - Últimas Noticias: El Chubut</title>"
+               "<link>https://agregador.com.ar/post/1</link><pubDate>Tue, 27 Oct 2026 11:00:00 -0300</pubDate></item></rss>")
+        self.assertEqual(self.e["items_de_feed"](xml)[0]["t"], "Un plan de ahorro aumentó 952% y la Justicia sancionó a Ford")
+
     def test_atom(self):
         xml = '<feed><entry><title>Otra nota</title><link href="https://m.com/x"/><published>2026-10-26T10:00:00Z</published></entry></feed>'
         self.assertEqual(self.e["items_de_feed"](xml)[0]["d"], "2026-10-26")
@@ -111,3 +116,5 @@ class LecturaDirectaSinWordPressTest(unittest.TestCase):
         recolector = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
         self.assertIn("'Examedia': 'examedia.com.ar'", recolector)
         self.assertIn("'El Monterizo': 'elmonterizo.com'", recolector)
+        # En los medios sin WordPress, lo que coincide por título también se confirma leyendo el texto.
+        self.assertIn("extra = confirmar_por_texto(ms + cerca_ms, textos)", recolector)

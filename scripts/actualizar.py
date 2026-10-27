@@ -396,7 +396,7 @@ def items_de_feed(xml):
         ti = re.search(r'<title[^>]*>(.*?)</title>', it, re.S); lk = re.search(r'<link[^>]*>(.*?)</link>', it, re.S)
         pd = re.search(r'<pubDate>(.*?)</pubDate>', it) or re.search(r'<dc:date>(.*?)</dc:date>', it)
         if ti and lk:
-            out.append({'t': strip(re.sub(r'<!\[CDATA\[|\]\]>', '', ti.group(1))), 'u': html.unescape(lk.group(1)).strip(), 'd': fecha_iso(pd.group(1) if pd else '')})
+            out.append({'t': re.sub(r'\s+[-–—|·]\s+[^-–—|·]{2,60}$', '', strip(re.sub(r'<!\[CDATA\[|\]\]>', '', ti.group(1)))), 'u': html.unescape(lk.group(1)).strip(), 'd': fecha_iso(pd.group(1) if pd else '')})
     for it in re.findall(r'<entry[\s>](.*?)</entry>', xml, re.S):
         ti = re.search(r'<title[^>]*>(.*?)</title>', it, re.S); lk = re.search(r'<link[^>]+href="([^"]+)"', it)
         pd = re.search(r'<(?:published|updated)>(.*?)</', it)
@@ -415,35 +415,42 @@ def items_de_sitemap(xml):
         out.append({'t': strip(re.sub(r'<!\[CDATA\[|\]\]>', '', ti.group(1))) if ti else titulo_de_url(u), 'u': u, 'd': fecha_iso(fe.group(1) if fe else '')})
     return out
 
+def recientes_de(items):
+    return [it for it in items if it.get('d') and it['d'] >= LIMITE_TEXTO and it.get('u', '').startswith('http')]
+
 def ultimas_noticias(dom):
-    """Notas de los últimos días del medio: primero su RSS; si no tiene, su mapa del sitio."""
+    """Notas de los últimos días del medio. Junta su RSS y sus mapas del sitio: un RSS puede
+    estar viejo (Red43) o cubrir pocas horas (El Monterizo), y el primer mapa del sitio puede
+    no ser el de noticias (El Chubut). Se usa todo lo que traiga notas recientes."""
     base = 'https://' + dom
+    fuentes, juntos = [], {}
     for ruta in RUTAS_FEED:
         t = get(base + ruta, timeout=15, tries=1) or ''
-        items = items_de_feed(t) if ('<item' in t or '<entry' in t) else []
-        if items: return 'RSS', items
-    rutas = list(RUTAS_SITEMAP)
+        items = recientes_de(items_de_feed(t)) if ('<item' in t or '<entry' in t) else []
+        if items:
+            fuentes.append('RSS'); juntos.update({it['u']: it for it in items}); break
     robots = get(base + '/robots.txt', timeout=10, tries=1) or ''
-    rutas = [u.strip() for u in re.findall(r'(?im)^sitemap:\s*(\S+)', robots)] + rutas
+    rutas = [u.strip() for u in re.findall(r'(?im)^sitemap:\s*(\S+)', robots)] + list(RUTAS_SITEMAP)
+    # Primero los mapas de noticias, que traen las notas del día con fecha.
+    rutas = sorted(dict.fromkeys(rutas), key=lambda r: 'news' not in r.lower())
     anio = dt.date.today().strftime('%Y')
     for ruta in rutas[:8]:
         t = get(ruta if ruta.startswith('http') else base + ruta, timeout=15, tries=1) or ''
+        items = []
         if '<sitemapindex' in t:
             hijos = re.findall(r'<loc>(.*?)</loc>', t)
-            recientes = [h for h in hijos if 'news' in h or anio in h] or hijos[-2:]
-            items = []
-            for h in recientes[-3:]:
+            for h in ([h for h in hijos if 'news' in h or anio in h] or hijos[-2:])[-3:]:
                 items += items_de_sitemap(get(html.unescape(h).strip(), timeout=15, tries=1) or '')
-            if items: return 'mapa del sitio', items
         elif '<urlset' in t:
             items = items_de_sitemap(t)
-            if items: return 'mapa del sitio', items
-    return '', []
+        items = recientes_de(items)
+        if items:
+            fuentes.append('mapa del sitio'); juntos.update({it['u']: it for it in items if it['u'] not in juntos}); break
+    return ' y '.join(fuentes), list(juntos.values())
 
 def leer_medio_no_wp(par):
     name, dom = par
     fuente, items = ultimas_noticias(dom)
-    items = [it for it in items if it['d'] and it['d'] >= LIMITE_TEXTO and it['u'].startswith('http')]
     return name, dom, fuente, items
 
 lecturas_no_wp = 0
@@ -461,8 +468,9 @@ for name, dom, fuente, items in resultados_no_wp:
         lecturas_no_wp += len(a_leer)
         with ThreadPoolExecutor(8) as ex:
             textos = dict(zip(a_leer, ex.map(texto_pagina, a_leer)))
-        extra = [(m, classify(textos[m['u']], m['nid']) if textos.get(m['u']) else None) for m in ms]
-        extra += confirmar_por_texto(cerca_ms, textos)
+        # Sin WordPress el título suele venir del enlace y puede coincidir por azar (p. ej. «Día
+        # de la Astronomía» con un congreso): también lo que coincide por título se confirma leyendo el texto.
+        extra = confirmar_por_texto(ms + cerca_ms, textos)
         extra += revisar_texto(recientes, textos, name)
         for m, c in extra:
             if c: addrow(name, m, m.get('metodo', f'Revisión completa ({fuente})'), c[0], c[1], c[2])
