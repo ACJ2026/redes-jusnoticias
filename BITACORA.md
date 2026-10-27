@@ -822,3 +822,10 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Por qué:** con el #129 el tablero encuentra más solo, pero los medios que no usan WordPress (El Chubut, Red43, El Patagónico, El Monterizo, Examedia, Canal 4 Esquel) dependen de Google Noticias y Bing, que desde un programa traen poco. En la nota de Panigadi faltaban dos de ellos respecto de Google.
 - **Cambio:** se leen directo desde su RSS o su mapa del sitio, junto con Diario Jornada y los medios descubiertos que no usan WordPress. Solo notas de los últimos 10 días (hacia adelante, regla 10) y con un tope de 600 páginas leídas por corrida. Un sitio que falla no frena la actualización.
 - **Comprobación prevista:** prueba en seco del PR y, después, comparar las próximas notas nuevas con Google.
+
+
+## 2026-10-27 — Lectura directa: usar las listas de noticias correctas (Claude)
+
+- **Resultado del #131 (prueba en seco):** se leyeron 23 de 42 medios sin WordPress. Sumó solo Canal 4 Esquel y Chubut Hoy a la 14925. El Chubut, Red43 y Diario Jornada quedaron «sin lista legible».
+- **Diagnóstico:** El Chubut, Red43 y El Monterizo sí publican la nota del Plan Óvalo en su mapa de noticias (`sitemap-news.xml`, `sitemaps_news.xml`). El sistema tomaba la primera lista que respondía aunque no trajera notas recientes: el RSS de Red43 es de 2025, el primer mapa de El Chubut no es el de noticias y el RSS de El Monterizo cubre unos 40 minutos. Diario Jornada no tiene lista legible. La lista de Examedia cubre pocas horas.
+- **Cambio:** solo se aceptan listas con notas de los últimos días, primero los mapas de noticias, y se junta el RSS con el mapa del sitio. Se quita el nombre del medio al final del título del RSS (por ejemplo, «… - Últimas Noticias: El Chubut»).
