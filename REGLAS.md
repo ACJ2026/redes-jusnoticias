@@ -1,7 +1,7 @@
 # Reglas para trabajar en este tablero
 
 Este repo es **el único lugar** del código y los datos del Tablero de repercusión JusNoticias.
-Lo usan varias conversaciones de Claude (la de Chrome y la de Claude Code). Antes de tocar algo, leé esto y después [CONTINUIDAD_IA.md](CONTINUIDAD_IA.md), que contiene el estado detallado, las verificaciones y los próximos pasos para dar continuidad entre IAs.
+Lo usan varias conversaciones de Claude (la de Chrome y la de Claude Code). **También GPT/Codex: todas las IAs deben leer antes [docs/REGLAS_IA.md](docs/REGLAS_IA.md).** Antes de tocar algo, leé esto y después [CONTINUIDAD_IA.md](CONTINUIDAD_IA.md), que contiene el estado detallado, las verificaciones y los próximos pasos para dar continuidad entre IAs.
 
 ## Qué hay acá
 
