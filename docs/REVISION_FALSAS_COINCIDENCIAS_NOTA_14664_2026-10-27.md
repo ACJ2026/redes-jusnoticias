@@ -36,8 +36,8 @@ En las cinco referencias de Google Noticias, «excluida del conteo» significa q
 
 ## Validación pendiente
 
-- [ ] Ejecutar suite de regresión de GitHub Actions.
-- [ ] Comprobar sintaxis de los scripts y del JavaScript público generado.
-- [ ] Regenerar `publico/index.html` y `publico/tablero_publico.html`.
-- [ ] Confirmar que el despliegue de Cloudflare Pages terminó correctamente.
-- [ ] Revisar visualmente el tablero publicado; no dar por cerrada la incidencia solo porque el código pase las pruebas.
+- [x] Suite de regresión de GitHub Actions: `40511710345` completada correctamente.
+- [x] Validación de tablero, sintaxis y JavaScript: `40511710397` completada correctamente.
+- [x] Regeneración de `publico/index.html` y `publico/tablero_publico.html`: `40511810178` completada correctamente.
+- [x] Cloudflare Pages confirmó despliegue exitoso del commit `e574b0bcee01da1f5855ed2102fde1d0b97077c4` en `https://2052f316.jusnoticias.pages.dev`.
+- [ ] Revisar visualmente el tablero publicado. La actualización completa de medios/Google Noticias (`40511810256`) seguía ejecutándose al momento de cerrar este informe; comprobar su resultado antes de dar la incidencia por cerrada.
