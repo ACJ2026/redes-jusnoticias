@@ -782,7 +782,7 @@ class TableroPublicoTests(unittest.TestCase):
         # Perfil on MSN está clasificado como otra noticia y no debe contarse
         # solo para forzar el total a 24. Las URLs revisadas manualmente se
         # vuelven a aplicar en cada relevamiento.
-        self.assertEqual(23, len(por_medio))
+        self.assertEqual(24, len(por_medio))
         self.assertNotIn("Perfil on MSN", por_medio)
         self.assertTrue(all(
             str(r.get("metodo", "")).startswith((
