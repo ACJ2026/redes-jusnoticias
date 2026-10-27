@@ -836,9 +836,10 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "Revisión completa",
+    "metodo": "Excluida del conteo: artículo distinto sobre una capacitación a estudiantes",
     "url": "https://diariolaportada.com.ar/2026/10/02/la-ley-penal-juvenil-eje-de-un-encuentro-con-estudiantes-de-escuelas-secundarias/",
-    "key": "p75"
+    "key": "p75",
+    "motivo": "El enlace trata un encuentro con estudiantes sobre la ley penal juvenil, no la participación del Poder Judicial de Chubut en el IV Congreso. Se conserva el registro histórico, sin contarlo como repercusión de esta nota."
   },
   {
     "nota_id": 14509,
@@ -4812,9 +4813,10 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "Revisión completa",
+    "metodo": "Excluida del conteo: artículo distinto sobre capacitación del régimen penal juvenil",
     "url": "https://www.metadatanoticias.com.ar/2026/10/03/nuevo-regimen-penal-juvenil-mas-de-120-agentes-participaron-de-una-capacitacion-en-chubut/",
-    "key": "p428"
+    "key": "p428",
+    "motivo": "El enlace trata una capacitación sobre el nuevo régimen penal juvenil, no reproduce la nota sobre la participación de Chubut en el IV Congreso. Se conserva el registro histórico, sin contarlo como repercusión."
   },
   {
     "nota_id": 14637,
@@ -6062,7 +6064,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p541"
   },
@@ -6102,7 +6104,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p544"
   },
@@ -6131,7 +6133,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p546"
   },
@@ -6240,7 +6242,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p554"
   },
@@ -6258,7 +6260,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p555"
   },
@@ -7222,7 +7224,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "url_alternativas": [
       "https://news.google.com/rss/articles/CBMilwFBVV95cUxOUmJZOU5VZXRoUE9DcjJIRWJ2eUtBRGg4RkdaUVFFQV9peHNDTjVJR1hZV0x2bkFJUV8zQ0xOMXR0a2VLUTY3czJhdHFaeWxFZ1pmME1jVHVVT3EteVZCblZFNlI0TXBzVHg0LU5ZTTc5Rlp6WERwcXpGNnlGcUp0d2gtWjZpT1FzbkwzMzBmb1pWcEdnSFVj?oc=5"
@@ -7243,7 +7245,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "url_alternativas": [
       "https://news.google.com/rss/articles/CBMivwFBVV95cUxNaHcyeVZiS3c0a09JUUR1TDh1RVRLWEJUcllaREJSLV9RbkgzazVDcDBwcTZzbk11ZG44Q2k5X0NuY1dTTHBZSXp3ZjAyRWl5QXlDSnF4UVliQUhiQm5zT1dEUWl6UFBvQUM1UTlRSENQQ0lLWXA3Y0w0UUFlMklZMjBOTF9GV1hxYlhvMXhiNDZkcURiNWFQOE9hTTd0R3lVbEI1eFF6bk9zLWF6NDJtVmFiTkxkSmtWbS13aERBQQ?oc=5"
@@ -7402,9 +7404,10 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "Revisión completa",
+    "metodo": "Excluida del conteo: cobertura independiente del mismo congreso",
     "url": "https://delmardigital.net/ministros-del-superior-tribunal-de-justicia-participan-del-iv-congreso-nacional-penal-adolescente-y-juvenil/",
-    "key": "p657"
+    "key": "p657",
+    "motivo": "El enlace informa sobre la participación de ministros de Chubut en el mismo evento, pero es una nota propia con título y redacción distintos; no es republicación de la nota de Jusnoticias. Se conserva como cobertura relacionada, sin contarla como publicación de esta nota."
   },
   {
     "nota_id": 14593,
@@ -9772,9 +9775,10 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "Revisión completa",
+    "metodo": "Excluida del conteo: cobertura de la delegación de Misiones",
     "url": "https://www.canal12misiones.com/justicia/misiones-regimen-penal-juvenil",
-    "key": "p871"
+    "key": "p871",
+    "motivo": "El enlace trata la participación del Poder Judicial de Misiones en el Congreso, no la nota sobre la delegación de Chubut. Se conserva el registro histórico, sin contarlo como repercusión de esta nota."
   },
   {
     "nota_id": 14505,
@@ -9844,8 +9848,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: cobertura distinta del mismo congreso",
     "url": "https://chacodiapordia.com/la-justicia-chaquena-con-activa-participacion-en-el-iv-congreso-nacional-penal-adolescente-juvenil/",
     "evidencia_verificacion": {
       "titulo_medio": "La justicia chaqueña con activa participación en el IV Congreso Nacional Penal Adolescente Juvenil - CHACODIAPORDIA.COM",
@@ -9853,7 +9857,7 @@
       "terminos_nota_oficial_en_comun": 89,
       "coincidencia_cuerpo_oficial": 0.5174
     },
-    "motivo": "Título: 4 términos en común; cuerpo: 89 términos compartidos",
+    "motivo": "La publicación trata la participación de la Justicia chaqueña. Comparte el evento, pero no reproduce la nota sobre la delegación del Poder Judicial de Chubut. Se conserva como pista histórica y no cuenta como publicación de esta nota.",
     "key": "p877"
   },
   {
@@ -11138,7 +11142,7 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "Revisión completa + Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "metodo": "Excluida del conteo: publicación no coincidente con esta nota",
     "url": "https://lanotasj.com.ar/el-poder-judicial-participo-en-un-encuentro-nacional-sobre-el-nuevo-regimen-penal-juvenil/",
     "evidencia_verificacion": {
       "titulo_medio": "El Poder Judicial participó en un encuentro nacional sobre el nuevo régimen penal juvenil",
@@ -11146,7 +11150,7 @@
       "terminos_nota_oficial_en_comun": 26,
       "coincidencia_cuerpo_oficial": 0.1512
     },
-    "motivo": "Título: 2 términos en común; cuerpo: 26 términos compartidos",
+    "motivo": "El enlace trata un encuentro sobre el régimen penal juvenil, pero no hay evidencia de que reproduzca la nota del Poder Judicial de Chubut sobre el IV Congreso. Se conserva como pista histórica, sin contarla como publicación de esta nota.",
     "key": "p991"
   },
   {
@@ -15188,7 +15192,7 @@
       "titulo_medio": "El STJ de Chubut garantizó la cobertura integral para un niño con autismo y adecuó los plazos de pago a la obra social Seros",
       "terminos_titulo_en_comun": 8,
       "terminos_nota_oficial_en_comun": 223,
-      "coincidencia_cuerpo_oficial": 1.0
+      "coincidencia_cuerpo_oficial": 1
     },
     "motivo": "Título: 8 términos en común; cuerpo: 223 términos compartidos",
     "key": "p1287"
@@ -15625,7 +15629,7 @@
       "titulo_medio": "La Justicia garantizó la cobertura integral para un niño con autismo",
       "terminos_titulo_en_comun": 4,
       "terminos_nota_oficial_en_comun": 223,
-      "coincidencia_cuerpo_oficial": 1.0
+      "coincidencia_cuerpo_oficial": 1
     },
     "motivo": "Título: 4 términos en común; cuerpo: 223 términos compartidos",
     "key": "p1321"
@@ -16134,10 +16138,10 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Media",
-    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: referencia de búsqueda sin publicación directa corroborada",
     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQNEtOQUJMeVFjNmk3RVZ6b1BkOURoR1RqbjF5OXVZMDVnWHdSaVdfSnlSeUJKNG9uY2pTeVJsVUhFOFF5S0ZTZVppUDV0Wjk3SERCbldrM2JTazFhdWo3aVQxb3VNMUwxUzZtU2NleDNvSm9zN2RVdWZEcUZLdnZpTmQ0N3VFaDViQXVJczRjd0Z0d3NwcWI5dmxyQXNOVWpjZUxySWtMWFhYd3lqUmVxME82WVFZVkRpUm5iWjdtd0VnbnlmV2pSbllCTQ?oc=5",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "motivo": "La referencia de Google Noticias no demuestra que este medio haya publicado esta nota y no aporta una URL directa comprobada. Se conserva como pista histórica; no se cuenta hasta localizar y verificar la publicación original.",
     "key": "p1366"
   },
   {
@@ -16146,10 +16150,10 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Media",
-    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: referencia de búsqueda sin publicación directa corroborada",
     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMnY4a1RuY3NNcDRCOGxVMnNWTnhRMjVaOWtxd19wV1owOENkMnV5T2szYUprMklqdGg1cnY1Q3k1T0ZkdmpSOXhJUUVDYVlIcERfOXZpZk5NWVh4Si1mLTUtOElzaXJGc2dmZzhFUjNhVVNQdE9YbFhIbW1UcmNqc1BQU3hOdkdXWVhZNUw1aThRZEFrNDM1elBDN2w1cl9zdTlpOTFoQnFmTVhfeEZmcFdmWU9tUdIBrgFBVV95cUxQUklLc1dXMk03OEI0OXh3Z1J4ZldseUdTNktFWjFUMWN3SjNBX3BBWDRVRFp2U3hSQ0Nlb3V0VXBkQWFkVE5aWUlxdUNfTTV5VVh0S05nTzducnd0OHVDSElXRF9weEhYRVBSdEpTU0w0bTZhblN3Q00yWEZqUWZoSzhZcmRuLTJCMmw0cTVmUFI0V0VFWTlMLTlsUlN2VEREVmtLeXRTM0hpc2JrMFE?oc=5",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "motivo": "La referencia de Google Noticias no demuestra que este medio haya publicado esta nota y no aporta una URL directa comprobada. Se conserva como pista histórica; no se cuenta hasta localizar y verificar la publicación original.",
     "key": "p1367"
   },
   {
@@ -16158,10 +16162,10 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Media",
-    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: referencia de búsqueda sin publicación directa corroborada",
     "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxObVkzN2RFTzE2cnBHYzFNRDBaSXMyTWxGM0xKdFJmNnFrS1NLNDRmLWQ2TkdxWnBTQ1R5R0MtcDEtYWc0Z3FxckZvTGttOEF3Q2dVU0JnZkZjcXlPdVlZZjF0Z2dYbGxoeEZJV253MnFMbVNyY3Y0dXdITzF4cC14ZDBQWTl6QTNTUGFlQzQwX1ljaVhuWnlxTURVLXN4Y3ZsU2o0N0w3Wk1WaE9XYWJ5WHg1QmNYa3AzazJwYV9SYnhoMzlncnBROUhKdDA?oc=5",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "motivo": "La referencia de Google Noticias no demuestra que este medio haya publicado esta nota y no aporta una URL directa comprobada. Se conserva como pista histórica; no se cuenta hasta localizar y verificar la publicación original.",
     "key": "p1368"
   },
   {
@@ -16170,10 +16174,10 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Media",
-    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: referencia de búsqueda sin publicación directa corroborada",
     "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOQmRJV0p2eHVic3JScXpNbTJ2Nl9HYVN5T201OFRtZDgxT2ZkNE9ZZURWUGt0NjhzYWl2ZGY1ejRXdFVsTmItZkRIQU1Rb3Yycm0xMmlIbjlOZDRfM0k2M2YwOXI1X2MzUXFwWVI4M3pjeDFTMmZsTEp2eHRsU0NncnlmaUtDUFh2YzBkQ0xaeXptWEdhWDdsN0R5Wk5IcW16Y2J5NUlXVnJ1TW1McUpnb0RuTnpVLXkwYU1odC01NjlIUlRXSkdoYVh0endacFhqLVltQkNRV3VubGFMVnl4aXVFa0tjMHRGcG95aGM3cmNaaVNMUXdSOdIB_gFBVV95cUxOUDEwUGlMc090cmx2ZmhYbTVDN3hSWFR1Z1lXODIxY3dwZW5XWTdhMjRtSEdsUGVqZHlvMjdMRkdWUkxGbXpwNzBoVmtta0s5Q2hkWFp4VkZVTHpiLWtIcUdfUjZZZWpjb0p5SjNsX3V0X2xZS3BseGZTNzNnbTVCTjZ1QnVQZUNtdVRreTNLRTdYTnNMZzhjMnZBTE1KaXZWNTNtbENfN3U4d0d3Umdhd3B2MkczRUNjZFlsLWRGaXJKbzlsR25DanR4Qjc1QjlSZ0w2TkdKWFJhbENNemktV3JoTzdXRGpwdkVZWklYZ3ZlekpRZnBWOUtmWXBXZw?oc=5",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "motivo": "La referencia de Google Noticias no demuestra que este medio haya publicado esta nota y no aporta una URL directa comprobada. Se conserva como pista histórica; no se cuenta hasta localizar y verificar la publicación original.",
     "key": "p1369"
   },
   {
@@ -16182,10 +16186,10 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Media",
-    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: referencia de búsqueda sin publicación directa corroborada",
     "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQMmFWUE1sTEI1RTNnbVhzRVVnaW11T183bHZTN1JENkJYSDNyVjV4UzlUV3ExaHgyeUpNZm83cHpyYi0zelZ0Sk80TDY5di1KTm1XVGExakFmUk9DQ3hwVVVXTmpwQnFOcG5kRVpoY05wVWNrR3NZRnlHTTZjZUdpSEdWTWZCTWppSVg5SEw1UWNJMjBOV0tWQ2hrbHNDSlo5bWpfX0w3Q3huMjhGaUd6RDV2X0NDWlM0TU5aSw?oc=5",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "motivo": "La referencia de Google Noticias no demuestra que este medio haya publicado esta nota y no aporta una URL directa comprobada. Se conserva como pista histórica; no se cuenta hasta localizar y verificar la publicación original.",
     "key": "p1370"
   },
   {
@@ -16465,7 +16469,7 @@
       "titulo_medio": "MSN",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "motivo": "El título comparte 0 términos y el contenido 0; no coincide con la nota oficial",
     "key": "p1392"
