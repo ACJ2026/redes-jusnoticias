@@ -749,5 +749,21 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn("FB_SEARCH_API_KEY", funcion)
 
 
+    def test_un_enlace_de_buscador_no_cuenta_como_publicacion_verificada(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("const metodoVerificado = r =>", template)
+        self.assertIn("Verificación manual de URL aportada", template)
+        self.assertIn("Revisión completa", template)
+        self.assertIn("Verificada automáticamente: título y contenido comparados con la nota oficial", template)
+        # Buscador web, una URL válida o un resultado de Google no son evidencia suficiente por sí solos.
+        self.assertIn("!esReferenciaGoogle(r)", template)
+        self.assertIn("metodoVerificado(r)", template)
+
+    def test_tablero_advierte_si_los_datos_tienen_mas_de_24_horas(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("antiguedad > 24 * 60 * 60 * 1000", template)
+        self.assertIn("no deben interpretarse como información actual", template)
+        self.assertIn("fecha y hora no disponibles", template)
+
 if __name__ == "__main__":
     unittest.main()
