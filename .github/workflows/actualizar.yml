@@ -1,7 +1,7 @@
 name: Actualizar tablero
 
 on:
-  # Permite lanzar una actualización al modificar el propio proceso o el recolector. Disparo manual forzado: 27/10/2026.
+  # Permite lanzar una actualización al modificar el propio proceso o el recolector. Reintento tras corregir prueba: 27/10/2026.
   push:
     # El relevamiento escribe datos y genera el HTML público; solo debe ejecutarse desde main.
     branches:
