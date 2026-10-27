@@ -625,31 +625,40 @@ if os.environ.get('DIAG_TEXTO'):
     with open(os.environ['DIAG_TEXTO'], 'w', encoding='utf8') as rf:
         json.dump(sorted(DIAG_TEXTO, reverse=True), rf, ensure_ascii=False)
 
-# ---------- Fuentes verificadas manualmente: cobertura del fallo de Puerto Madryn ----------
-# URLs aportadas y comprobadas para la nota 14884. Google Noticias puede omitir medios
-# nacionales cuyos titulares no mencionan Chubut/Madryn. Evitar duplicados por nota y medio.
+# URLs verificadas manualmente para la nota 14884. La decisión humana prevalece sobre
+# una clasificación automática previa o posterior. Se conservan las filas históricas.
 FUENTES_VERIFICADAS = [
     ('0223', 'https://www.0223.com.ar/nota/2026-10-19-19-12-0-escracho-a-una-mujer-por-chorra-la-acusacion-era-falsa-y-debera-pagarle-2-4-millones'),
     ('Elonce', 'https://www.elonce.com/amp/acuso-de-ladrona-a-una-vecina-y-debera-pagar-2-4-millones.htm'),
     ('La Voz del Interior', 'https://www.lavoz.com.ar/ciudadanos/dijo-chorra-vecina-facebook-justicia-debera-indemnizarla-pagara_0_ei9s7vvfd2.html'),
     ('Clarín', 'https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html'),
+    ('Radio Chubut', 'https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/'),
+    ('Canal 12', 'https://canal12web.com/una-madrynense-debera-pagar-mas-de-2-millones-por-escrachar-a-una-vecina-de-robarle-dinero-en-facebook/'),
+    ('Cholila Online', 'https://cholilaonline.ar/2026/10/precedente-escraches-redes-puerto-madryn-sancion-difamacion-facebook.html'),
+    ('ADN Sur', 'https://www.adnsur.com.ar/policiales---judiciales/escracho-a-una-mujer-en-chubut--la-llamo--chorra--y-ahora-debera-pagar--2-4-millones-por-difamarla_a6ad6255759814e2274499dd6'),
 ]
 NOTA_PUERTO_MADRYN = 14884
 ids_notas = {n['id'] for n in notas}
 for medio, url in FUENTES_VERIFICADAS:
-    if NOTA_PUERTO_MADRYN in ids_notas and (NOTA_PUERTO_MADRYN, medio) not in ya:
-        ya.add((NOTA_PUERTO_MADRYN, medio))
-        rows.append({
-            'nota_id': NOTA_PUERTO_MADRYN,
-            'medio': medio,
-            'origen': 'Sin dato',
-            'cita_fuente_oficial': '',
-            'cita_otro_medio': '',
-            'confianza': 'Media',
-            'metodo': 'Verificación manual de URL aportada',
-            'url': url,
-        })
-        cobertura[medio] = 'Cobertura verificada manualmente'
+    # La nota puede faltar en el feed de esta corrida y recuperarse del historial
+    # unos pasos después. Las verificaciones manuales no dependen del feed actual.
+    existente = next((r for r in rows
+        if r.get('nota_id') == NOTA_PUERTO_MADRYN
+        and r.get('medio') == medio
+        and r.get('url') == url), None)
+    if existente is None:
+        # Una decisión manual no se descarta porque el recolector ya tenga otra
+        # URL de ese medio o una fila pendiente para la misma nota.
+        existente = {
+            'nota_id': NOTA_PUERTO_MADRYN, 'medio': medio,
+            'origen': 'Sin dato', 'cita_fuente_oficial': '',
+            'cita_otro_medio': '', 'url': url,
+        }
+        rows.append(existente)
+    existente['confianza'] = 'Alta'
+    existente['metodo'] = 'Verificación manual de URL aportada'
+    existente['motivo'] = 'URL comprobada manualmente; la verificación manual prevalece sobre la clasificación automática'
+    cobertura[medio] = 'Cobertura verificada manualmente'
 
 
 # ---------- Conservación del historial: una revisión nueva no borra hallazgos anteriores ----------
@@ -718,12 +727,44 @@ confirmadas_previas = set()
 if PREV and os.path.exists(PREV):
     confirmadas_previas = {clave_publicacion(r) for r in json.load(open(PREV, encoding='utf8')) if r.get('confianza') != 'Baja'}
 rep = marcar_secundarias(rep, confirmadas_previas)
+# Exclusiones explícitas para impedir que un nuevo rastreo vuelva a contar coberturas
+# del mismo congreso como si fueran la nota institucional del Poder Judicial de Chubut.
+MEDIOS_NO_VERIFICADOS_14664 = {
+    'CHACODIAPORDIA.COM', 'Diario La Portada', 'Metadata Noticias',
+    'Del Mar Digital', 'Canal Doce Misiones', 'La Nota San Juan',
+    'InfoBariloche', 'El Mediador - Santa Cruz', 'El 10 TV',
+    'El Tribuno', 'Diario Huarpe'
+}
+for r in rep:
+    if str(r.get('nota_id')) == '14664' and r.get('medio') in MEDIOS_NO_VERIFICADOS_14664:
+        r['confianza'] = 'Baja'
+        r['metodo'] = 'Excluida del conteo: cobertura distinta del mismo congreso; no acredita reproducción de la nota de Chubut'
+        r['motivo'] = 'La coincidencia temática o la referencia de búsqueda no acredita que el medio haya publicado esta nota'
 # Decisiones del equipo sobre «por revisar»: mandan sobre la detección automática.
 REVISION_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'revision_manual.json')
 if os.path.exists(REVISION_PATH):
     revisiones = json.load(open(REVISION_PATH, encoding='utf8'))
     rep = aplicar_revision_manual(rep, [r for r in revisiones if r.get('nota_id') in ids])
     print('Revisiones manuales aplicadas:', len(revisiones))
+
+# Última capa de protección: reimponer las URLs manuales después de todos los
+# filtros, deduplicación y revisión automática. El feed puede omitir una nota o
+# rebajar una fila que ya fue comprobada por una persona.
+for medio, url in FUENTES_VERIFICADAS:
+    fila = next((r for r in rep
+        if str(r.get('nota_id')) == str(NOTA_PUERTO_MADRYN)
+        and r.get('medio') == medio and r.get('url') == url), None)
+    if fila is None:
+        fila = {
+            'nota_id': NOTA_PUERTO_MADRYN, 'medio': medio,
+            'origen': 'Sin dato', 'cita_fuente_oficial': '',
+            'cita_otro_medio': '', 'url': url,
+        }
+        rep.append(fila)
+    fila['confianza'] = 'Alta'
+    fila['metodo'] = 'Verificación manual de URL aportada'
+    fila['motivo'] = 'URL comprobada manualmente; la verificación manual prevalece sobre la clasificación automática'
+    cobertura[medio] = 'Cobertura verificada manualmente'
 for i, r in enumerate(rep): r['key'] = f'p{i}'
 # «notas» cuenta notas distintas por medio (un medio con dos artículos de una nota suma una).
 notas_por_medio = {}

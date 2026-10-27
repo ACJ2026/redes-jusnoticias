@@ -717,3 +717,15 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - Regresión: se agregaron pruebas para que una copia real se acepte, una noticia distinta sobre el mismo congreso se rechace, ambos recolectores utilicen el criterio compartido y la nota 14664 cuente únicamente Noticias PMY.
 - Documentación complementaria: `docs/REVISION_FALSAS_COINCIDENCIAS_NOTA_14664_2026-10-27.md`.
 - Estado al registrar: cambios preparados en la rama `fix/relevancia-publicaciones-nota-14664-2026-10-27`. Pendiente validar con GitHub Actions, reconstruir los HTML públicos y comprobar el despliegue antes de considerar resuelta la incidencia en producción.
+
+### 2026-10-27 — Corrección de regresiones recurrentes del relevamiento automático
+
+- Incidente: la corrida 40514132535 generó archivos temporales, pero no guardó ni publicó porque dos regresiones fallaron. En la nota 14664 reaparecieron coberturas del mismo congreso como si fueran la publicación de JusNoticias; en la nota 14884 cinco medios quedaron fuera del conjunto que la prueba consideraba verificado.
+- Causa confirmada en los logs: la exclusión de la nota 14664 solo estaba representada en el historial existente y podía reaparecer por nuevas búsquedas. En la nota 14884, las URLs manuales se condicionaban a que la nota viniera en el feed actual, antes de recuperar notas históricas; por eso podían no reingresar. Un registro de Perfil on MSN está explícitamente clasificado como otra noticia y debe permanecer excluido, conservando los 24 medios verificados restantes.
+- Corrección en la rama fix/relevamiento-estable-2026-10-27:
+  - scripts/actualizar.py vuelve a aplicar las URLs manuales de Radio Chubut, Canal 12, Cholila Online y ADN Sur al final del procesamiento, después de filtros y deduplicación; así no dependen del feed actual ni de la clasificación automática previa.
+  - scripts/actualizar.py y scripts/verificar_publicaciones.py aplican una lista explícita de coberturas del congreso que no acreditan la misma nota. Una decisión manual posterior de confirmar sigue teniendo prioridad.
+  - tests/test_tablero_publico.py comprueba que esas cuatro URLs quedan verificadas, que Perfil on MSN permanece excluido sin reducir los 24 medios verificados y que los medios bloqueados no vuelven al conteo.
+- Protección de datos: no se editan los JSON históricos ni se elimina ninguna fila. Las decisiones automáticas solo cambian el estado de las filas excluidas; el historial sigue conservado para auditoría.
+- Validación de CI: las tres comprobaciones pasaron en el commit 29d44c95c173a69343aad94637627a226302d69b: regresiones del historial (run 40522775550), verificador de publicaciones (run 40522775897) y validación del tablero/fuentes (run 40522775552).
+- Estado actual: PR 125 abierta, pendiente de integración. La suite no ejecutó el relevamiento completo ni confirmó una publicación de producción; no dar por actualizado el tablero hasta integrar y verificar una corrida real.
