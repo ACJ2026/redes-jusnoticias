@@ -807,3 +807,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - `scripts/diagnostico_buscador.py`: herramienta de diagnóstico para comparar una nota con los buscadores.
 
 **Pendiente:** lectura directa de las últimas noticias de cada medio conocido (sin buscadores) y control diario de «aparece en buscadores y no en el tablero».
+
+
+## 2026-10-27 — Nota 14925 igualada a Google y dos reglas nuevas (Claude)
+
+- **Reglas de Ignacio:** (1) toda difusión de una nota de JusNoticias cuenta, también la copia de otro medio (Examedia); (2) las mejoras son hacia adelante: no se completan notas anteriores. Agregadas a `docs/REGLAS_IA.md`, `AGENTS.md` y `CLAUDE.md`.
+- **Nota 14925 (Plan Óvalo):** nueva búsqueda web; se confirmaron en `data/revision_manual.json` Examedia, Canal 12 (estaba con confianza baja), Radio 3 Cadena Patagonia y Canal 4 Esquel. Queda con 15 medios, todos los que muestra la búsqueda.
+- Panigadi (14913): se confirmaron Examedia y El Monterizo, que faltaban respecto de Google.
+- Se dejó en pausa, sin fusionar, la lectura directa de medios sin WordPress (RSS o mapa del sitio), a pedido de Ignacio.

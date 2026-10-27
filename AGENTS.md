@@ -12,6 +12,8 @@ Reglas obligatorias (detalle y errores ya cometidos en `docs/REGLAS_IA.md`):
 6. Leer el motivo real de un error antes de corregir; no declarar nada resuelto sin una corrida exitosa y la fecha nueva en `data/actualizado.txt`.
 7. Revisar PR abiertos y últimos cambios de `main` antes de empezar; anotar todo en `BITACORA.md`.
 8. No borrar filas históricas ni inventar resultados. Escribir en español, en lenguaje simple.
+9. Toda difusión de una nota de JusNoticias cuenta (copia, versión propia o copia de otro medio).
+10. Las mejoras de detección son hacia adelante: no completar notas anteriores salvo pedido de Ignacio.
 
 Comprobaciones antes de abrir un PR:
 - `python3 -m unittest discover -s tests -v`

@@ -241,5 +241,59 @@
   "fecha": "2026-10-27",
   "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
   "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "Examedia",
+  "url": "https://examedia.com.ar/portada/post/88127949",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Nota de JusNoticias difundida por el medio (copia de El Chubut); toda difusión cuenta. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14913,
+  "medio": "Examedia",
+  "url": "https://examedia.com.ar/portada/post/88107999",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Nota de JusNoticias difundida por el medio (copia de El Chubut); toda difusión cuenta. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14913,
+  "medio": "El Monterizo",
+  "url": "https://elmonterizo.com/una-nena-faltaba-al-jardin-y-sus-padres-la-educaban-en-casa-la-justicia-dijo-basta",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y caso coinciden con la nota de Panigadi. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "Canal 12",
+  "url": "https://canal12web.com/esquel-la-justicia-elevo-a-4-millones-la-multa-contra-plan-ovalo-por-aumentos-en-un-plan-de-ahorro/",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio: igualar a Google."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "Radio 3 Cadena Patagonia",
+  "url": "https://radio3cadenapatagonia.com.ar/un-fallo-en-esquel-sanciono-a-ford-y-plan-ovalo-por-aumentos-sin-explicaciones-en-un-plan-de-ahorro/",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio: igualar a Google."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "Canal 4 Esquel",
+  "url": "https://canal4esquel.com.ar/un-auto-aumento-un-952-y-la-justicia-de-esquel-elevo-a-4-millones-la-sancion-contra-plan-ovalo-y-ford/",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio: igualar a Google."
  }
 ]
