@@ -717,3 +717,14 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - Regresión: se agregaron pruebas para que una copia real se acepte, una noticia distinta sobre el mismo congreso se rechace, ambos recolectores utilicen el criterio compartido y la nota 14664 cuente únicamente Noticias PMY.
 - Documentación complementaria: `docs/REVISION_FALSAS_COINCIDENCIAS_NOTA_14664_2026-10-27.md`.
 - Estado al registrar: cambios preparados en la rama `fix/relevancia-publicaciones-nota-14664-2026-10-27`. Pendiente validar con GitHub Actions, reconstruir los HTML públicos y comprobar el despliegue antes de considerar resuelta la incidencia en producción.
+
+### 2026-10-27 — Corrección de regresiones recurrentes del relevamiento automático
+
+- Incidente: la corrida 40514132535 generó archivos temporales, pero no guardó ni publicó porque dos regresiones fallaron. En la nota 14664 reaparecieron coberturas del mismo congreso como si fueran la publicación de JusNoticias; en la nota 14884 cinco medios quedaron fuera del conjunto que la prueba consideraba verificado.
+- Causa confirmada en los logs: la exclusión de la nota 14664 solo estaba representada en el historial existente y podía reaparecer por nuevas búsquedas. En la nota 14884, cuatro URLs revisadas manualmente no se reimponían al terminar el rastreo; además, un registro de Perfil on MSN estaba explícitamente clasificado como otra noticia y no debe contarse solo para llegar a 24.
+- Corrección en la rama fix/relevamiento-estable-2026-10-27:
+  - scripts/actualizar.py vuelve a aplicar las URLs manuales de Radio Chubut, Canal 12, Cholila Online y ADN Sur en cada corrida; la decisión manual fija confianza y método y no depende de la clasificación automática previa.
+  - scripts/actualizar.py y scripts/verificar_publicaciones.py aplican una lista explícita de coberturas del congreso que no acreditan la misma nota. Una decisión manual posterior de confirmar sigue teniendo prioridad.
+  - tests/test_tablero_publico.py comprueba que esas cuatro URLs quedan verificadas, que Perfil on MSN no se cuenta como publicación de la nota y que los medios bloqueados no vuelven al conteo.
+- Protección de datos: no se editan los JSON históricos ni se elimina ninguna fila. Las decisiones automáticas solo cambian el estado de las filas excluidas; el historial sigue conservado para auditoría.
+- Estado: cambios preparados en rama de trabajo; falta comprobar GitHub Actions y revisar los resultados antes de integrar. No afirmar actualización ni despliegue de producción hasta que la corrida completa termine correctamente.
