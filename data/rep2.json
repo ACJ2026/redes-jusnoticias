@@ -6062,7 +6062,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p541"
   },
@@ -6102,7 +6102,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p544"
   },
@@ -6131,7 +6131,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p546"
   },
@@ -6240,7 +6240,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p554"
   },
@@ -6258,7 +6258,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "key": "p555"
   },
@@ -7222,7 +7222,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "url_alternativas": [
       "https://news.google.com/rss/articles/CBMilwFBVV95cUxOUmJZOU5VZXRoUE9DcjJIRWJ2eUtBRGg4RkdaUVFFQV9peHNDTjVJR1hZV0x2bkFJUV8zQ0xOMXR0a2VLUTY3czJhdHFaeWxFZ1pmME1jVHVVT3EteVZCblZFNlI0TXBzVHg0LU5ZTTc5Rlp6WERwcXpGNnlGcUp0d2gtWjZpT1FzbkwzMzBmb1pWcEdnSFVj?oc=5"
@@ -7243,7 +7243,7 @@
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "url_alternativas": [
       "https://news.google.com/rss/articles/CBMivwFBVV95cUxNaHcyeVZiS3c0a09JUUR1TDh1RVRLWEJUcllaREJSLV9RbkgzazVDcDBwcTZzbk11ZG44Q2k5X0NuY1dTTHBZSXp3ZjAyRWl5QXlDSnF4UVliQUhiQm5zT1dEUWl6UFBvQUM1UTlRSENQQ0lLWXA3Y0w0UUFlMklZMjBOTF9GV1hxYlhvMXhiNDZkcURiNWFQOE9hTTd0R3lVbEI1eFF6bk9zLWF6NDJtVmFiTkxkSmtWbS13aERBQQ?oc=5"
@@ -15188,7 +15188,7 @@
       "titulo_medio": "El STJ de Chubut garantizó la cobertura integral para un niño con autismo y adecuó los plazos de pago a la obra social Seros",
       "terminos_titulo_en_comun": 8,
       "terminos_nota_oficial_en_comun": 223,
-      "coincidencia_cuerpo_oficial": 1.0
+      "coincidencia_cuerpo_oficial": 1
     },
     "motivo": "Título: 8 términos en común; cuerpo: 223 términos compartidos",
     "key": "p1287"
@@ -15625,7 +15625,7 @@
       "titulo_medio": "La Justicia garantizó la cobertura integral para un niño con autismo",
       "terminos_titulo_en_comun": 4,
       "terminos_nota_oficial_en_comun": 223,
-      "coincidencia_cuerpo_oficial": 1.0
+      "coincidencia_cuerpo_oficial": 1
     },
     "motivo": "Título: 4 términos en común; cuerpo: 223 términos compartidos",
     "key": "p1321"
@@ -16465,7 +16465,7 @@
       "titulo_medio": "MSN",
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 0,
-      "coincidencia_cuerpo_oficial": 0.0
+      "coincidencia_cuerpo_oficial": 0
     },
     "motivo": "El título comparte 0 términos y el contenido 0; no coincide con la nota oficial",
     "key": "p1392"
