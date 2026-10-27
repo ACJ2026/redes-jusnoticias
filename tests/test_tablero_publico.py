@@ -790,5 +790,44 @@ class TableroPublicoTests(unittest.TestCase):
             for r in por_medio.values()
         ))
 
+    def test_relevancia_exige_misma_nota_y_no_solo_mismo_evento(self):
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from relevancia_publicaciones import evidencia_misma_nota
+
+        titulo = "El Poder Judicial de Chubut participa del IV Congreso Nacional Penal Adolescente y Juvenil"
+        cuerpo = (
+            "El Poder Judicial del Chubut participa del IV Congreso Nacional Penal Adolescente y Juvenil, "
+            "que se desarrolla en el Centro de Convenciones Salta. Los ministros Camila Banfi Saavedra "
+            "y Ricardo Napolitani participan junto a jueces, defensores públicos y equipos técnicos. "
+            "La convocatoria reúne a más de 1.900 participantes y es organizada por JuFeJus."
+        )
+        copia = evidencia_misma_nota(titulo, cuerpo, titulo, cuerpo)
+        self.assertTrue(copia["misma_nota"])
+
+        titulo_distinto = "La justicia chaqueña con activa participación en el IV Congreso Nacional Penal Adolescente Juvenil"
+        cuerpo_distinto = (
+            "La delegación del Poder Judicial del Chaco participa de las actividades del congreso en Salta. "
+            "Sus magistrados intercambian experiencias sobre el régimen penal juvenil y los desafíos de la justicia "
+            "especializada. La noticia trata la participación chaqueña y no reproduce la nota sobre los ministros "
+            "Camila Banfi Saavedra y Ricardo Napolitani del Poder Judicial de Chubut."
+        )
+        distinta = evidencia_misma_nota(titulo, cuerpo, titulo_distinto, cuerpo_distinto)
+        self.assertFalse(distinta["misma_nota"])
+
+    def test_verificador_automatico_aplica_el_criterio_de_misma_nota(self):
+        verificador = (ROOT / "scripts/verificar_publicaciones.py").read_text(encoding="utf-8")
+        actualizador = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
+        self.assertIn("from relevancia_publicaciones import evidencia_misma_nota", verificador)
+        self.assertIn('if evidencia["misma_nota"]:', verificador)
+        self.assertIn("from relevancia_publicaciones import evidencia_misma_nota", actualizador)
+        self.assertIn("if not evidencia['misma_nota']: continue", actualizador)
+
+    def test_nota_14664_solo_cuenta_la_publicacion_directa_correspondiente(self):
+        datos = read_json("data/rep2.json")
+        filas = [r for r in datos if str(r.get("nota_id")) == "14664" and r.get("confianza") != "Baja" and r.get("url")]
+        self.assertEqual(["Noticias PMY"], sorted({r["medio"] for r in filas}))
+        self.assertTrue(all("news.google.com" not in r["url"].lower() for r in filas))
+        self.assertTrue(all(not str(r.get("metodo", "")).startswith("Excluida del conteo:") for r in filas))
+
 if __name__ == "__main__":
     unittest.main()
