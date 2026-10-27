@@ -829,5 +829,12 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertTrue(all("news.google.com" not in r["url"].lower() for r in filas))
         self.assertTrue(all(not str(r.get("metodo", "")).startswith("Excluida del conteo:") for r in filas))
 
+    def test_decisiones_manuales_actualizan_contadores_y_publicaciones_confirmadas(self):
+        plantilla = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("|Confirmada manualmente)", plantilla)
+        self.assertIn("const publicacionesConfirmadas = () => D.repercusion.filter(esConfirmada)", plantilla)
+        self.assertIn("repOk = publicacionesConfirmadas();", plantilla)
+        self.assertIn("cargarRevisiones().then(() => {", plantilla)
+
 if __name__ == "__main__":
     unittest.main()
