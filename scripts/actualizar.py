@@ -735,8 +735,10 @@ MEDIOS_NO_VERIFICADOS_14664 = {
     'InfoBariloche', 'El Mediador - Santa Cruz', 'El 10 TV',
     'El Tribuno', 'Diario Huarpe'
 }
+MEDIOS_NO_VERIFICADOS_14664_NORM = {m.strip().casefold() for m in MEDIOS_NO_VERIFICADOS_14664}
 for r in rep:
-    if str(r.get('nota_id')) == '14664' and r.get('medio') in MEDIOS_NO_VERIFICADOS_14664:
+    medio_norm = str(r.get('medio') or '').strip().casefold()
+    if str(r.get('nota_id')) == '14664' and medio_norm in MEDIOS_NO_VERIFICADOS_14664_NORM:
         r['confianza'] = 'Baja'
         r['metodo'] = 'Excluida del conteo: cobertura distinta del mismo congreso; no acredita reproducción de la nota de Chubut'
         r['motivo'] = 'La coincidencia temática o la referencia de búsqueda no acredita que el medio haya publicado esta nota'
