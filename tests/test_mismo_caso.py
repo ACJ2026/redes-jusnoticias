@@ -116,3 +116,5 @@ class LecturaDirectaSinWordPressTest(unittest.TestCase):
         recolector = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
         self.assertIn("'Examedia': 'examedia.com.ar'", recolector)
         self.assertIn("'El Monterizo': 'elmonterizo.com'", recolector)
+        # En los medios sin WordPress, lo que coincide por título también se confirma leyendo el texto.
+        self.assertIn("extra = confirmar_por_texto(ms + cerca_ms, textos)", recolector)

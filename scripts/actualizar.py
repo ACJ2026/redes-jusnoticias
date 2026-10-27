@@ -468,8 +468,9 @@ for name, dom, fuente, items in resultados_no_wp:
         lecturas_no_wp += len(a_leer)
         with ThreadPoolExecutor(8) as ex:
             textos = dict(zip(a_leer, ex.map(texto_pagina, a_leer)))
-        extra = [(m, classify(textos[m['u']], m['nid']) if textos.get(m['u']) else None) for m in ms]
-        extra += confirmar_por_texto(cerca_ms, textos)
+        # Sin WordPress el título suele venir del enlace y puede coincidir por azar (p. ej. «Día
+        # de la Astronomía» con un congreso): también lo que coincide por título se confirma leyendo el texto.
+        extra = confirmar_por_texto(ms + cerca_ms, textos)
         extra += revisar_texto(recientes, textos, name)
         for m, c in extra:
             if c: addrow(name, m, m.get('metodo', f'Revisión completa ({fuente})'), c[0], c[1], c[2])
