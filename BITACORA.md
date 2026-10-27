@@ -774,3 +774,15 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 ## 2026-10-27 — Reglas para las IAs (Claude)
 
 - Nuevo `docs/REGLAS_IA.md` (y `AGENTS.md`/`CLAUDE.md` en la raíz, que Codex y Claude leen solos): reglas de trabajo para Claude y GPT/Codex y tabla de los errores del 24 al 27/10/2026 con su corrección. `REGLAS.md` ahora remite a ese archivo. A pedido del usuario, para que GPT lo lea antes de empezar.
+
+
+## 2026-10-27 — Nota 14925 (Plan Óvalo y Ford, Esquel): comparación con Google (Claude)
+
+- La actualización de las 12:35 falló por la prueba vieja de «24 medios en la 14884» (arrancó con el código anterior al #126). La siguiente (13:09) anduvo bien y guardó datos.
+- Comparación pedida por Ignacio: Google mostraba 10 medios y el tablero 6 (3 de ellos solo con enlace de Google Noticias, «a verificar»).
+- Se cargaron en `data/revision_manual.json` 8 confirmaciones con enlace directo: ADN Sur, El Patagónico, EQS Notas, El Monterizo, Chubutline, El Chubut, Red43 y La Posta Comodorense. Los sitios no se pudieron abrir desde el entorno de Claude; se confirmaron por título, medio y fecha del buscador. Examedia (copia de El Chubut) queda sin cargar hasta que Ignacio decida si los agregadores cuentan.
+- **Por qué se escaparon (simulando el filtro `gmatch` con los títulos reales):**
+  - ADN Sur y El Patagónico usan títulos distintos al de JusNoticias («Compró un auto por plan de ahorro…», «Sancionan en Chubut a Plan Óvalo y Ford»): comparten menos de 2 palabras clave con el título oficial y el filtro los rechaza sin leer el texto.
+  - EQS Notas y El Monterizo sí pasan el filtro: lo más probable es que Google todavía no los tuviera indexados a la hora de la corrida.
+  - Chubutline, El Chubut y Red43 quedaron solo con el enlace de Google Noticias porque el verificador no logró resolver la redirección al enlace real.
+- **Propuesta para que no vuelva a pasar (pendiente del OK de Ignacio, porque cambia la detección):** segunda oportunidad por texto para resultados rechazados por título, y búsqueda del enlace real en el sitio del medio cuando solo hay enlace de Google Noticias.
