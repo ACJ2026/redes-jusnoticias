@@ -10,16 +10,16 @@
  "A24.com": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "ABC Diario": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -27,24 +27,24 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (títulos; texto en casos dudosos)",
   "ultimo_fallo": ""
  },
  "ANBariloche": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "APFDigital": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Acento": {
@@ -66,48 +66,56 @@
  "Ambito Financiero": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Argentar Noticias": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-10-26T21:43:40Z"
  },
  "Atento Chubut": {
   "alerta": false,
-  "fallos_seguidos": 2,
+  "fallos_seguidos": 3,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-10-27T17:53:42Z",
   "ultimo_estado": "Fuente temporalmente no disponible; se conserva el historial previo",
-  "ultimo_fallo": "2026-10-27T21:39:07Z"
+  "ultimo_fallo": "2026-10-27T23:03:23Z"
  },
  "CHACODIAPORDIA.COM": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
  "Canal 12": {
   "alerta": false,
-  "fallos_seguidos": 2,
+  "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T17:53:42Z",
-  "ultimo_estado": "Fuente temporalmente no disponible; se conserva el historial previo",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-10-27T21:39:07Z"
+ },
+ "Canal 4 Esquel": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_fallo": ""
  },
  "Canal Doce Misiones": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -123,7 +131,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -131,7 +139,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -139,7 +147,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -147,15 +155,15 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T09:41:08Z",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Comodoro 24": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -171,7 +179,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -180,15 +188,15 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "Diario Huarpe": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Diario Jornada": {
@@ -202,16 +210,16 @@
  "Diario Judicial": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Diario La Portada": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -220,7 +228,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "Diario Río Negro": {
@@ -235,7 +243,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -251,7 +259,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-10-27T01:47:21Z"
  },
@@ -259,7 +267,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (títulos; texto en casos dudosos)",
   "ultimo_fallo": ""
  },
@@ -268,7 +276,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "El Atlantico": {
@@ -291,7 +299,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -307,40 +315,40 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-10-26T09:52:50Z"
  },
  "El Editor Mendoza": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "El Extremo Sur": {
   "alerta": true,
-  "fallos_seguidos": 37,
+  "fallos_seguidos": 38,
   "lectura_directa": true,
   "ultima_revision_ok": "",
   "ultimo_estado": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
-  "ultimo_fallo": "2026-10-27T21:39:07Z"
+  "ultimo_fallo": "2026-10-27T23:03:23Z"
  },
  "El Mediador - Santa Cruz": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "El Monterizo": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "El Patagónico": {
@@ -370,16 +378,16 @@
  "El Tribuno": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "El Valle Online": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -410,16 +418,16 @@
  "Examedia": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "FM Bahía Engaño": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -427,7 +435,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -435,7 +443,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-10-25T17:26:56Z"
  },
@@ -443,7 +451,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -458,41 +466,41 @@
  "Flipr.news": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "GENESIS24.NET": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
  "Info del Estero": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "InfoBariloche": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Infobae": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Instituto Colombiano Agropecuario - ICA": {
@@ -513,25 +521,25 @@
  },
  "LU17": {
   "alerta": true,
-  "fallos_seguidos": 37,
+  "fallos_seguidos": 38,
   "lectura_directa": true,
   "ultima_revision_ok": "",
   "ultimo_estado": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
-  "ultimo_fallo": "2026-10-27T21:39:07Z"
+  "ultimo_fallo": "2026-10-27T23:03:23Z"
  },
  "La Brújula 24": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "La Nota San Juan": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -539,7 +547,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -547,7 +555,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -555,7 +563,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -563,7 +571,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -572,7 +580,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-10-27T09:41:08Z",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "La Voz del Neuquén": {
@@ -580,15 +588,15 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "Lmneuquen.com": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Madryn Ahora": {
@@ -603,31 +611,31 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
  "MejorInformado.com": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Metadata Noticias": {
   "alerta": true,
-  "fallos_seguidos": 37,
+  "fallos_seguidos": 38,
   "lectura_directa": true,
   "ultima_revision_ok": "",
   "ultimo_estado": "Fuente temporalmente no disponible; se conserva el historial previo",
-  "ultimo_fallo": "2026-10-27T21:39:07Z"
+  "ultimo_fallo": "2026-10-27T23:03:23Z"
  },
  "Mil Patagonias": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -635,7 +643,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-10-27T19:13:47Z"
  },
@@ -644,7 +652,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "NoticiasdelBolson": {
@@ -652,30 +660,30 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "Perfil": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Perfil on MSN": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Periódico EL JAYA": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -692,14 +700,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "Prensa Mercosur": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -715,7 +723,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -724,14 +732,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "Radio 3 Cadena Patagonia": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -739,7 +747,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-10-27T01:47:21Z"
  },
@@ -747,7 +755,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -755,7 +763,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-10-27T17:53:42Z"
  },
@@ -771,24 +779,24 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
  "Rio Negro": {
   "alerta": true,
-  "fallos_seguidos": 37,
+  "fallos_seguidos": 38,
   "lectura_directa": true,
   "ultima_revision_ok": "",
   "ultimo_estado": "Fuente temporalmente no disponible; se conserva el historial previo",
-  "ultimo_fallo": "2026-10-27T21:39:07Z"
+  "ultimo_fallo": "2026-10-27T23:03:23Z"
  },
  "Somos Jujuy": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "TVPerú": {
@@ -810,16 +818,16 @@
  "Urgente24": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "Vibra News": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-10-27T21:39:07Z",
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -858,17 +866,17 @@
  "mdz online": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "pagina12.com.ar": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-10-27T23:03:23Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  }
 }
