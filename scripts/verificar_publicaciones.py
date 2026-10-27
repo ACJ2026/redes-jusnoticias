@@ -18,6 +18,7 @@ from pathlib import Path
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; JusNoticiasVerificador/1.0)"}
 from historial import es_enlace_directo, normalizar_url
+from relevancia_publicaciones import evidencia_misma_nota
 
 BUSCADORES = ("news.google.com", "bing.com", "www.bing.com")
 STOP = set("""para sobre desde entre donde porque cuando hasta durante contra juzgado juzgados justicia judicial poder chubut provincia fallo causa pesos ordena ordenan ordeno penal trelew rawson madryn comodoro esquel puerto rivadavia millones prision tribunal superior ciudad nuevo nueva jusnoticias contenido gobierno provincia""".split())
@@ -203,29 +204,37 @@ def main():
         title_common, body_official_ratio, body_media_ratio, common_count = evaluar(
             titulo_oficial, cuerpo_oficial, titulo_medio, texto
         )
+        evidencia = evidencia_misma_nota(titulo_oficial, cuerpo_oficial, titulo_medio, texto)
         reemplazar_url(fila, final_url)
         fila["evidencia_verificacion"] = {
             "titulo_medio": titulo_medio[:300],
             "terminos_titulo_en_comun": title_common,
             "terminos_nota_oficial_en_comun": common_count,
             "coincidencia_cuerpo_oficial": round(body_official_ratio, 4),
+            "coincidencia_cuerpo_medio": round(body_media_ratio, 4),
+            "coincidencia_frases": evidencia["coincidencia_frases"],
+            "misma_nota": evidencia["misma_nota"],
         }
-        # Confirmar requiere más que un título similar: debe haber evidencia en el cuerpo.
-        if title_common >= 2 and common_count >= 5 and body_official_ratio >= 0.08:
+        if evidencia["misma_nota"]:
             fila["confianza"] = "Alta"
             fila["metodo"] = "Verificada automáticamente: título y contenido comparados con la nota oficial"
-            fila["motivo"] = f"Título: {title_common} términos en común; cuerpo: {common_count} términos compartidos"
+            fila["motivo"] = (
+                f"Coincidencia específica confirmada: {evidencia['terminos_titulo']} términos distintivos "
+                f"del título, {evidencia['terminos_cuerpo']} del cuerpo; "
+                f"frases compartidas {round(evidencia['coincidencia_frases'] * 100)}%"
+            )
             confirmadas += 1
-        # Si título y cuerpo son distintos, no dejar una falsa coincidencia en pendientes.
-        elif common_count < 3 and body_official_ratio < 0.03:
-            fila["confianza"] = "Baja"
-            fila["metodo"] = "Descartada automáticamente: es otra noticia"
-            fila["motivo"] = f"El título comparte {title_common} términos y el contenido {common_count}; no coincide con la nota oficial"
-            descartadas += 1
         else:
-            fila["metodo"] = "A verificar: la comparación automática no alcanzó evidencia suficiente; se reintentará"
-            fila["motivo"] = "Se pudo abrir la página, pero el texto no coincide lo suficiente con la nota oficial para confirmarla o descartarla automáticamente."
-            pendientes += 1
+            # No mantener en el conteo una coincidencia de tema que no pruebe la misma publicación.
+            fila["confianza"] = "Baja"
+            fila["metodo"] = "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota"
+            fila["motivo"] = (
+                f"No se confirmó la misma publicación: {evidencia['terminos_titulo']} términos "
+                f"distintivos del título, {evidencia['terminos_cuerpo']} del cuerpo; "
+                f"frases compartidas {round(evidencia['coincidencia_frases'] * 100)}%. "
+                "Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente."
+            )
+            descartadas += 1
         time.sleep(0.05)
     Path(sys.argv[2]).write_text(json.dumps(filas, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Verificación de candidatas: leídas {revisadas}, verificadas {confirmadas}, descartadas {descartadas}, pendientes {pendientes}")
