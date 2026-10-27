@@ -364,6 +364,115 @@ with ThreadPoolExecutor(4) as ex:
             rows.extend({k: v for k, v in r.items() if k != 'key'} for r in prev_rows)
             print(f'{name}: ERROR aislado ({type(e).__name__}); se conservan {len(prev_rows)} registros previos')
 
+# ---------- 2b. Medios sin WordPress: lista de últimas noticias (RSS o mapa del sitio) ----------
+# Toda nota de JusNoticias difundida por cualquier medio cuenta, aunque copie a otro medio
+# (regla de Ignacio, 27/10/2026). Los medios conocidos que no usan WordPress se leen directo
+# desde su lista de noticias, sin depender de Google o Bing (que desde un programa traen poco).
+NO_WP = {'El Chubut': 'www.elchubut.com.ar', 'Red43': 'www.red43.com.ar', 'El Patagónico': 'www.elpatagonico.com',
+         'El Monterizo': 'elmonterizo.com', 'Examedia': 'examedia.com.ar', 'Diario Jornada': 'www.diariojornada.com.ar',
+         'Canal 4 Esquel': 'canal4esquel.com.ar'}
+for r in REGISTRO:
+    d = (r.get('dominio') or '').lower()
+    if (d and r.get('nombre') and r.get('wp') is False and not WP_NO_DESCUBRIR.search(d) and not EXTRANJERO.search(d)
+            and d.replace('www.', '') not in {x.replace('www.', '') for x in NO_WP.values()}):
+        NO_WP.setdefault(r['nombre'], d)
+RUTAS_FEED = ('/feed', '/rss', '/rss.xml', '/feed.xml', '/rss/', '/index.xml')
+RUTAS_SITEMAP = ('/news-sitemap.xml', '/sitemap-news.xml', '/sitemap_news.xml', '/sitemap.xml', '/sitemap_index.xml')
+LIMITE_LECTURAS_NO_WP = 600
+
+def fecha_iso(texto):
+    texto = (texto or '').strip()
+    m = re.match(r'(\d{4}-\d{2}-\d{2})', texto)
+    if m: return m.group(1)
+    try: return dt.datetime.strptime(texto[5:16], '%d %b %Y').date().isoformat()
+    except Exception: return ''
+
+def titulo_de_url(u):
+    return re.sub(r'[-_]+', ' ', re.sub(r'\.(html?|php)$', '', u.rstrip('/').split('/')[-1]))
+
+def items_de_feed(xml):
+    out = []
+    for it in re.findall(r'<item[\s>](.*?)</item>', xml, re.S):
+        ti = re.search(r'<title[^>]*>(.*?)</title>', it, re.S); lk = re.search(r'<link[^>]*>(.*?)</link>', it, re.S)
+        pd = re.search(r'<pubDate>(.*?)</pubDate>', it) or re.search(r'<dc:date>(.*?)</dc:date>', it)
+        if ti and lk:
+            out.append({'t': strip(re.sub(r'<!\[CDATA\[|\]\]>', '', ti.group(1))), 'u': html.unescape(lk.group(1)).strip(), 'd': fecha_iso(pd.group(1) if pd else '')})
+    for it in re.findall(r'<entry[\s>](.*?)</entry>', xml, re.S):
+        ti = re.search(r'<title[^>]*>(.*?)</title>', it, re.S); lk = re.search(r'<link[^>]+href="([^"]+)"', it)
+        pd = re.search(r'<(?:published|updated)>(.*?)</', it)
+        if ti and lk:
+            out.append({'t': strip(re.sub(r'<!\[CDATA\[|\]\]>', '', ti.group(1))), 'u': html.unescape(lk.group(1)), 'd': fecha_iso(pd.group(1) if pd else '')})
+    return out
+
+def items_de_sitemap(xml):
+    out = []
+    for bloque in re.findall(r'<url>(.*?)</url>', xml, re.S):
+        loc = re.search(r'<loc>(.*?)</loc>', bloque, re.S)
+        if not loc: continue
+        u = html.unescape(loc.group(1)).strip()
+        fe = re.search(r'<news:publication_date>(.*?)</', bloque) or re.search(r'<lastmod>(.*?)</lastmod>', bloque)
+        ti = re.search(r'<news:title>(.*?)</news:title>', bloque, re.S)
+        out.append({'t': strip(re.sub(r'<!\[CDATA\[|\]\]>', '', ti.group(1))) if ti else titulo_de_url(u), 'u': u, 'd': fecha_iso(fe.group(1) if fe else '')})
+    return out
+
+def ultimas_noticias(dom):
+    """Notas de los últimos días del medio: primero su RSS; si no tiene, su mapa del sitio."""
+    base = 'https://' + dom
+    for ruta in RUTAS_FEED:
+        t = get(base + ruta, timeout=15, tries=1) or ''
+        items = items_de_feed(t) if ('<item' in t or '<entry' in t) else []
+        if items: return 'RSS', items
+    rutas = list(RUTAS_SITEMAP)
+    robots = get(base + '/robots.txt', timeout=10, tries=1) or ''
+    rutas = [u.strip() for u in re.findall(r'(?im)^sitemap:\s*(\S+)', robots)] + rutas
+    anio = dt.date.today().strftime('%Y')
+    for ruta in rutas[:8]:
+        t = get(ruta if ruta.startswith('http') else base + ruta, timeout=15, tries=1) or ''
+        if '<sitemapindex' in t:
+            hijos = re.findall(r'<loc>(.*?)</loc>', t)
+            recientes = [h for h in hijos if 'news' in h or anio in h] or hijos[-2:]
+            items = []
+            for h in recientes[-3:]:
+                items += items_de_sitemap(get(html.unescape(h).strip(), timeout=15, tries=1) or '')
+            if items: return 'mapa del sitio', items
+        elif '<urlset' in t:
+            items = items_de_sitemap(t)
+            if items: return 'mapa del sitio', items
+    return '', []
+
+def leer_medio_no_wp(par):
+    name, dom = par
+    fuente, items = ultimas_noticias(dom)
+    items = [it for it in items if it['d'] and it['d'] >= LIMITE_TEXTO and it['u'].startswith('http')]
+    return name, dom, fuente, items
+
+lecturas_no_wp = 0
+with ThreadPoolExecutor(8) as ex:
+    resultados_no_wp = list(ex.map(leer_medio_no_wp, NO_WP.items()))
+for name, dom, fuente, items in resultados_no_wp:
+    try:
+        if not items:
+            cobertura.setdefault(name, 'Sin lista de noticias legible: se busca por Google y Bing')
+            print(name, 'sin lista de noticias legible'); continue
+        ms = match(items)
+        cerca_ms = cerca(items, ms)
+        recientes = pendientes_texto(items, ms + cerca_ms)[:40]
+        a_leer = [m['u'] for m in ms + cerca_ms + recientes][:max(0, LIMITE_LECTURAS_NO_WP - lecturas_no_wp)]
+        lecturas_no_wp += len(a_leer)
+        with ThreadPoolExecutor(8) as ex:
+            textos = dict(zip(a_leer, ex.map(texto_pagina, a_leer)))
+        extra = [(m, classify(textos[m['u']], m['nid']) if textos.get(m['u']) else None) for m in ms]
+        extra += confirmar_por_texto(cerca_ms, textos)
+        extra += revisar_texto(recientes, textos, name)
+        for m, c in extra:
+            if c: addrow(name, m, m.get('metodo', f'Revisión completa ({fuente})'), c[0], c[1], c[2])
+            else: addrow(name, m, f'Revisión completa ({fuente})')
+        cobertura[name] = f'Revisión completa (lectura directa por {fuente})'
+        print(name, fuente, len(items), 'por texto:', len(extra))
+    except Exception as e:
+        print(f'{name}: ERROR aislado en lectura directa ({type(e).__name__}); se conserva el historial')
+print('Medios sin WordPress en lectura directa:', sum(1 for r in resultados_no_wp if r[3]), 'de', len(NO_WP), '| páginas leídas:', lecturas_no_wp)
+
 # ---------- 3. Sitemaps mensuales (ADN Sur, EQS Notas) ----------
 def months():
     d = dt.date.fromisoformat(DESDE); today = dt.date.today(); out = []

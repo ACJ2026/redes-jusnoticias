@@ -815,3 +815,10 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Nota 14925 (Plan Óvalo):** nueva búsqueda web; se confirmaron en `data/revision_manual.json` Examedia, Canal 12 (estaba con confianza baja), Radio 3 Cadena Patagonia y Canal 4 Esquel. Queda con 15 medios, todos los que muestra la búsqueda.
 - Panigadi (14913): se confirmaron Examedia y El Monterizo, que faltaban respecto de Google.
 - Se dejó en pausa, sin fusionar, la lectura directa de medios sin WordPress (RSS o mapa del sitio), a pedido de Ignacio.
+
+
+## 2026-10-27 — Lectura directa de medios sin WordPress (Claude, aprobado por Ignacio)
+
+- **Por qué:** con el #129 el tablero encuentra más solo, pero los medios que no usan WordPress (El Chubut, Red43, El Patagónico, El Monterizo, Examedia, Canal 4 Esquel) dependen de Google Noticias y Bing, que desde un programa traen poco. En la nota de Panigadi faltaban dos de ellos respecto de Google.
+- **Cambio:** se leen directo desde su RSS o su mapa del sitio, junto con Diario Jornada y los medios descubiertos que no usan WordPress. Solo notas de los últimos 10 días (hacia adelante, regla 10) y con un tope de 600 páginas leídas por corrida. Un sitio que falla no frena la actualización.
+- **Comprobación prevista:** prueba en seco del PR y, después, comparar las próximas notas nuevas con Google.
