@@ -12,6 +12,8 @@ Leer este archivo, `REGLAS.md` y la última entrada de `BITACORA.md` **antes de 
 6. **Leer el motivo real del error antes de corregir.** No declarar nada resuelto sin una corrida terminada con éxito y la fecha nueva en `data/actualizado.txt`.
 7. **Coordinar:** revisar los PR abiertos y los últimos cambios de `main` antes de empezar, y anotar cada cambio en `BITACORA.md` (qué, por qué, PR y resultado).
 8. **No borrar filas de datos históricos** ni inventar resultados (ver `REGLAS.md`).
+9. **Toda difusión de una nota de JusNoticias cuenta**, sea copia textual, versión propia del medio o copia de otro medio (por ejemplo, Examedia que replica a El Chubut). Lo que importa es que la noticia es de JusNoticias (decisión de Ignacio, 27/10/2026).
+10. **Mejoras de detección hacia adelante.** Se aplican a las notas nuevas; no se completan notas anteriores salvo pedido expreso de Ignacio (27/10/2026).
 
 ## Errores ya cometidos que no deben repetirse (24 al 27/10/2026)
 
