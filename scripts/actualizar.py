@@ -9,6 +9,7 @@ import urllib.request, urllib.parse
 from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from fuentes import exigir_lista_json
+from relevancia_publicaciones import evidencia_misma_nota
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else '.'
 PREV = sys.argv[2] if len(sys.argv) > 2 else None
@@ -63,7 +64,7 @@ for x in jn_raw:
     d = x['date'][:10]
     tipo = 'Agenda y servicios' if (SERV.search(t) and not re.search(r'conden|culpable|fallo', t, re.I)) else ('Fallo o caso' if FALLO.search(t) else 'Institucional')
     notas.append({'id': x['id'], 'fecha': d, 'titulo': t, 'tipo': tipo, 'mes': d[:7]})
-    JN.append({'id': x['id'], 'date': d, 'tk': toks(t + ' ' + body[:1500]), 'sh': shing(body), 'tb': toks(t + ' ' + body)})
+    JN.append({'id': x['id'], 'date': d, 'titulo': t, 'body': body, 'tk': toks(t + ' ' + body[:1500]), 'sh': shing(body), 'tb': toks(t + ' ' + body)})
 print('notas', len(notas))
 
 def match(items, win=8, thr=0.57, before=-1, nodate_thr=0.7, need_chubut=False):
@@ -167,26 +168,33 @@ def motivo_texto(t, j, sim=None, sc=None):
     return f"frases en común {round(sim * 100)}%; datos coincidentes {round(sc * 100)}% ({', '.join(raras)})"
 
 def revisar_texto(items, textos, medio=''):
-    """Compara el texto completo con las notas de la ventana: frases iguales o datos que coinciden."""
+    """Solo asocia artículos con evidencia de la misma nota, no por tema compartido."""
     out = []
     for it in items:
         t = textos.get(it['u'])
         if not t: continue
         REVISADOS[it['u']] = dt.date.today().isoformat()
-        sh, tk = shing(t), toks(t)
         mejor = None
         for j in JN:
             if it['d'] < addd(j['date'], -1) or it['d'] > addd(j['date'], 8): continue
+            evidencia = evidencia_misma_nota(j['titulo'], j['body'], it.get('t', ''), t)
+            if not evidencia['misma_nota']: continue
+            sh = shing(t)
             sim = len(sh & j['sh']) / len(sh) if sh else 0
-            sc = puntaje_datos(tk, j)
-            if not mejor or (sim, sc) > (mejor[0], mejor[1]): mejor = (sim, sc, j)
+            sc = puntaje_datos(toks(t), j)
+            clave = (evidencia['coincidencia_frases'], evidencia['coincidencia_cuerpo_medio'], sim, sc)
+            if not mejor or clave > mejor[0]: mejor = (clave, sim, sc, j, evidencia)
         if not mejor: continue
-        sim, sc, j = mejor
+        _, sim, sc, j, evidencia = mejor
         DIAG_TEXTO.append((round(sc, 3), round(sim, 3), j['id'], it['u']))
+        motivo = motivo_texto(t, j, sim, sc) + (
+            f"; validación misma nota: {evidencia['terminos_titulo']} términos del título, "
+            f"{evidencia['terminos_cuerpo']} del cuerpo, frases {round(evidencia['coincidencia_frases'] * 100)}%"
+        )
         if sim >= 0.2:
-            out.append((dict(it, nid=j['id'], metodo='Revisión completa (confirmado por texto)', motivo=motivo_texto(t, j, sim, sc)), classify(t, j['id'])))
+            out.append((dict(it, nid=j['id'], metodo='Revisión completa (confirmado por texto)', motivo=motivo), classify(t, j['id'])))
         elif sc >= UMBRAL_DATOS:
-            DATOS_PEND.append((medio, dict(it, nid=j['id'], metodo='Revisión de texto (coinciden los datos)', motivo=motivo_texto(t, j, sim, sc)), classify(t, j['id'])))
+            DATOS_PEND.append((medio, dict(it, nid=j['id'], metodo='Revisión de texto (coinciden los datos)', motivo=motivo), classify(t, j['id'])))
     return out
 
 def agregar_por_datos():
