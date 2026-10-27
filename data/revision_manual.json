@@ -169,5 +169,77 @@
   "fecha": "2026-10-27",
   "revisado_por": "Revisión de la nota 14664",
   "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14925,
+  "medio": "ADN Sur",
+  "url": "https://www.adnsur.com.ar/policiales---judiciales/compro-un-auto-por-plan-de-ahorro--sufrio-aumentos-extraordinarios-y-gano-un-juicio-millonario-en-chubut_a6ae0c219a6427ef3bf05935b",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "El Patagónico",
+  "url": "https://www.elpatagonico.com/sancionan-chubut-plan-ovalo-y-ford-n6338373",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "EQS Notas",
+  "url": "https://www.eqsnotas.com/judiciales/condenaron-a-plan-ovalo-y-ford-por-los-aumentos-de-un-plan-de-ahorro",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "El Monterizo",
+  "url": "https://elmonterizo.com/compro-un-auto-en-plan-de-ahorro-en-esquel-y-la-cuota-subio-952-la-justicia-fallo-contra-ford-y-plan-ovalo",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "Chubutline",
+  "url": "https://chubutline.com/esquel-la-justicia-sanciono-a-plan-ovalo-y-ford-por-ocultar-informacion-de-aumento-desmedido-en-un-plan-de-ahorro/",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "El Chubut",
+  "url": "https://www.elchubut.com.ar/esquel/2026-10-27-11-9-0-un-plan-de-ahorro-aumento-952-y-la-justicia-de-esquel-sanciono-a-ford-y-plan-ovalo",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "Red43",
+  "url": "https://www.red43.com.ar/nota/2026-10-27-11-31-27-esquel-fallo-contra-plan-ovalo-y-ford-por-aumentos-desmedidos-en-un-plan-de-ahorro",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio."
+ },
+ {
+  "nota_id": 14925,
+  "medio": "La Posta Comodorense",
+  "url": "https://lapostacomodorense.com.ar/2026/10/27/plan-ovalo-y-ford-deberan-pagar-4-millones-por-incumplimiento-en-un-plan-de-ahorro/",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión manual (Claude, a pedido de Ignacio)",
+  "motivo": "Enlace directo hallado en búsqueda web; título y fecha (27/10) corresponden al fallo de Esquel contra Plan Óvalo y Ford. Pedido de Ignacio."
  }
 ]
