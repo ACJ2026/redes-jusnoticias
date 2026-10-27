@@ -11,9 +11,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 172,
-      "notas": 130,
-      "ejemplo": "https://radio3cadenapatagonia.com.ar/por-que-la-escuela-presencial-no-puede-reemplazarse-por-homeschooling/",
+      "publicaciones": 173,
+      "notas": 131,
+      "ejemplo": "https://radio3cadenapatagonia.com.ar/un-fallo-en-esquel-sanciono-a-ford-y-plan-ovalo-por-aumentos-sin-explicaciones-en-un-plan-de-ahorro/",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-10-25",
       "redes": {
@@ -188,8 +188,8 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 71,
       "notas": 68,
       "ejemplo": "https://noticiaspmy.com/condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
@@ -308,7 +308,7 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 58,
+      "publicaciones": 59,
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/intentaron-robar--dispararon-contra-un-policia-y-el-jurado-popular-los-declaro-culpables_a69a0c57fd58fb9ae9fd2e582",
       "primera_deteccion": "2026-10-21",
@@ -498,9 +498,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 28,
-      "notas": 28,
-      "ejemplo": "https://www.chubuthoy.com/2026/09/29/empresa-de-transporte-debera-pagar-millonaria-indemnizacion-a-una-pasajera/",
+      "publicaciones": 29,
+      "notas": 29,
+      "ejemplo": "https://www.chubuthoy.com/2026/10/27/esquel-la-justicia-sanciono-a-plan-ovalo-y-ford-por-ocultar-informacion-de-un-plan-de-ahorro/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -1037,6 +1037,35 @@
       }
     },
     {
+      "nombre": "Examedia",
+      "alias": [
+        "examedia.com.ar"
+      ],
+      "dominio": "examedia.com.ar",
+      "url": "https://examedia.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Entre Ríos (localidad por verificar)",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://examedia.com.ar/portada/post/88064432",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/examedia"
+        ],
+        "Instagram": [
+          "@examediaok"
+        ],
+        "X": [
+          "@ExamediaAR"
+        ]
+      }
+    },
+    {
       "nombre": "FM de la Cordillera",
       "alias": [],
       "dominio": "fmdelacordillera.com.ar",
@@ -1126,7 +1155,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 6,
       "notas": 5,
-      "ejemplo": "https://prensamercosur.org/2026/10/21/octubre-rosa-el-congreso-se-ilumino-para-concientizar-sobre-la-prevencion-del-cancer-de-mama/",
+      "ejemplo": "https://prensamercosur.org/2026/10/19/19-de-octubre-dia-internacional-de-lucha-contra-el-cancer-de-mama/",
       "primera_deteccion": "2026-10-26",
       "ultima_deteccion": "2026-10-27",
       "redes": {}
@@ -1155,35 +1184,6 @@
         ],
         "X": [
           "@diariojudicial"
-        ]
-      }
-    },
-    {
-      "nombre": "Examedia",
-      "alias": [
-        "examedia.com.ar"
-      ],
-      "dominio": "examedia.com.ar",
-      "url": "https://examedia.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Entre Ríos (localidad por verificar)",
-      "metodo": "Sin método automático",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
-      "publicaciones": 4,
-      "notas": 4,
-      "ejemplo": "https://examedia.com.ar/portada/post/88064432",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/examedia"
-        ],
-        "Instagram": [
-          "@examediaok"
-        ],
-        "X": [
-          "@ExamediaAR"
         ]
       }
     },
@@ -1262,6 +1262,23 @@
       "redes": {}
     },
     {
+      "nombre": "El Monterizo",
+      "alias": [],
+      "dominio": "elmonterizo.com",
+      "url": "https://elmonterizo.com",
+      "tipo": "Portal digital",
+      "localidad": "San Miguel de Tucumán",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 3,
+      "notas": 3,
+      "ejemplo": "https://elmonterizo.com/lo-acuso-de-chorra-en-facebook-y-prometio-arruinarla-lo-que-resolvio-la-justicia",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
       "nombre": "Infobae",
       "alias": [],
       "dominio": "infobae.com",
@@ -1299,23 +1316,6 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-27",
-      "redes": {}
-    },
-    {
-      "nombre": "El Monterizo",
-      "alias": [],
-      "dominio": "elmonterizo.com",
-      "url": "https://elmonterizo.com",
-      "tipo": "Portal digital",
-      "localidad": "San Miguel de Tucumán",
-      "metodo": "Sin método automático",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
-      "publicaciones": 2,
-      "notas": 2,
-      "ejemplo": "https://elmonterizo.com/lo-acuso-de-chorra-en-facebook-y-prometio-arruinarla-lo-que-resolvio-la-justicia",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
       "redes": {}
     },
     {
@@ -1591,6 +1591,27 @@
         ],
         "YouTube": [
           "/channel/UCYTCD9ktzHAmbYyJvCgunDw"
+        ]
+      }
+    },
+    {
+      "nombre": "Canal 4 Esquel",
+      "alias": [],
+      "dominio": "canal4esquel.com.ar",
+      "url": "https://canal4esquel.com.ar",
+      "tipo": "TV",
+      "localidad": "Por verificar",
+      "metodo": "Sin método automático",
+      "estado": "Sin clasificar",
+      "cobertura": "",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://canal4esquel.com.ar/un-auto-aumento-un-952-y-la-justicia-de-esquel-elevo-a-4-millones-la-sancion-contra-plan-ovalo-y-ford/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Canal 4 Esquel"
         ]
       }
     },
@@ -1914,8 +1935,8 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
@@ -2101,8 +2122,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2153,6 +2174,23 @@
           "@labrujula24"
         ]
       }
+    },
+    {
+      "nombre": "La Voz del Neuquén",
+      "alias": [],
+      "dominio": "weblavoz.com.ar",
+      "url": "https://weblavoz.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://weblavoz.com.ar/secciones/sociedad/157191-banco-despidio-a-trabajador-con-licencia-medica-y-debera-pagar-indemnizacion-multimillonaria",
+      "primera_deteccion": "2026-10-27",
+      "ultima_deteccion": "2026-10-27",
+      "redes": {}
     },
     {
       "nombre": "Madryn Ahora",
@@ -2219,8 +2257,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2350,8 +2388,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
