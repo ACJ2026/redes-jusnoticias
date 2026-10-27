@@ -746,6 +746,25 @@ if os.path.exists(REVISION_PATH):
     revisiones = json.load(open(REVISION_PATH, encoding='utf8'))
     rep = aplicar_revision_manual(rep, [r for r in revisiones if r.get('nota_id') in ids])
     print('Revisiones manuales aplicadas:', len(revisiones))
+
+# Última capa de protección: reimponer las URLs manuales después de todos los
+# filtros, deduplicación y revisión automática. El feed puede omitir una nota o
+# rebajar una fila que ya fue comprobada por una persona.
+for medio, url in FUENTES_VERIFICADAS:
+    fila = next((r for r in rep
+        if str(r.get('nota_id')) == str(NOTA_PUERTO_MADRYN)
+        and r.get('medio') == medio and r.get('url') == url), None)
+    if fila is None:
+        fila = {
+            'nota_id': NOTA_PUERTO_MADRYN, 'medio': medio,
+            'origen': 'Sin dato', 'cita_fuente_oficial': '',
+            'cita_otro_medio': '', 'url': url,
+        }
+        rep.append(fila)
+    fila['confianza'] = 'Alta'
+    fila['metodo'] = 'Verificación manual de URL aportada'
+    fila['motivo'] = 'URL comprobada manualmente; la verificación manual prevalece sobre la clasificación automática'
+    cobertura[medio] = 'Cobertura verificada manualmente'
 for i, r in enumerate(rep): r['key'] = f'p{i}'
 # «notas» cuenta notas distintas por medio (un medio con dos artículos de una nota suma una).
 notas_por_medio = {}
