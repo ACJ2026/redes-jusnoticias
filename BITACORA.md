@@ -731,3 +731,13 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - Estado actual: PR 125 abierta, pendiente de integración. La suite no ejecutó el relevamiento completo ni confirmó una publicación de producción; no dar por actualizado el tablero hasta integrar y verificar una corrida real.
 
 - Refuerzo posterior a la integración: la exclusión de la nota 14664 normaliza mayúsculas y espacios en el nombre del medio, tanto en el recolector como en el verificador. Esto evita que una variante de capitalización haga reaparecer una cobertura temática. Se agregó una regresión específica para esa condición.
+
+
+### 2026-10-27 — Validación de medios y nuevo intento de relevamiento completo
+
+- Se detectó una regresión en la prueba de `tests/test_tablero_publico.py`: esperaba 21 medios, aunque el conjunto vigente de `data/rep2.json` contiene 24 medios elegibles para la nota 14884, excluyendo Perfil on MSN. Se restauró la expectativa correcta de 24; no se usó la prueba para alterar ni reducir el historial.
+- Validación posterior: los workflows de validación y reconstrucción pública finalizaron correctamente: [validación 40529633846](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40529633846) y [reconstrucción 40529633936](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40529633936).
+- Se solicitó un nuevo relevamiento completo con el commit `b3fb14f764e48e604221457c3a8c1c40c7a7ef75` (run [40526068741](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40526068741)). En la última revisión, esa ejecución seguía activa en «Revisar medios y Google Noticias»; no se confirmó que hubiera guardado los datos nuevos.
+- Se cambió la concurrencia del workflow `.github/workflows/actualizar.yml` a `cancel-in-progress: true` para permitir que una ejecución nueva reemplace una anterior de la misma concurrencia. El cambio quedó en el commit `795ee67af03da3fb6f58529fedb17dc4c82e7e58`; el nuevo run [40529795882](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40529795882) estaba en cola al momento de registrar esta entrada.
+- **Estado de actualización:** pendiente. No afirmar que el tablero o `data/actualizado.txt` se renovaron hasta que el relevamiento termine correctamente y se compruebe la fecha guardada y la salida pública.
+- **Siguiente paso:** seguir los runs 40526068741 y 40529795882; si uno finaliza correctamente, comprobar `data/actualizado.txt` y la salida pública. Si falla, registrar el error real del log antes de corregir.
