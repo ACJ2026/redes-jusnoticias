@@ -717,3 +717,13 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - Regresión: se agregaron pruebas para que una copia real se acepte, una noticia distinta sobre el mismo congreso se rechace, ambos recolectores utilicen el criterio compartido y la nota 14664 cuente únicamente Noticias PMY.
 - Documentación complementaria: `docs/REVISION_FALSAS_COINCIDENCIAS_NOTA_14664_2026-10-27.md`.
 - Estado al registrar: cambios preparados en la rama `fix/relevancia-publicaciones-nota-14664-2026-10-27`. Pendiente validar con GitHub Actions, reconstruir los HTML públicos y comprobar el despliegue antes de considerar resuelta la incidencia en producción.
+
+
+### 2026-10-27 — Estado manual de repercusiones no se reflejaba en contadores
+
+- Incidencia reportada: una publicación podía confirmarse o descartarse desde el detalle de una nota y, aun así, el tablero podía conservar los contadores o la lista anterior después de recuperar el historial de revisiones.
+- Causa raíz adicional: `repOk` se calculaba una sola vez antes de completar la consulta asíncrona a `/api/revisiones`. Al aplicar las decisiones, el tablero redibujaba las vistas, pero reutilizaba esa lista derivada anterior. Además, `metodoVerificado` no incluía `Confirmada manualmente`, por lo que las filas confirmadas manualmente no pasaban el filtro de publicaciones confirmadas.
+- Corrección: se agregó `Confirmada manualmente` a los métodos aceptados; la lista de publicaciones confirmadas ahora se calcula mediante una función y se vuelve a generar después de cargar las decisiones manuales, antes de actualizar los contadores y redibujar el tablero.
+- Regresión: se añadió una prueba que exige ambos comportamientos para evitar que la clasificación y los contadores vuelvan a divergir.
+- Relación con la auditoría de la nota 14664: se mantiene el criterio compartido de relevancia de publicación para impedir que una noticia sobre el mismo evento se asocie a la nota equivocada. En esa nota solo cuenta Noticias PMY como publicación directa comprobada; las referencias temáticas o de Google Noticias no se cuentan como publicaciones verificadas.
+- Estado: corrección preparada en `fix/estados-revision-manual-y-repercusion-2026-10-27`. Pendiente ejecutar y revisar CI, regeneración del HTML público y despliegue; no se afirma que producción esté corregida hasta verificar esos pasos.
