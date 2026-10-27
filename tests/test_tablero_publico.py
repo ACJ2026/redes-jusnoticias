@@ -831,6 +831,14 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("from relevancia_publicaciones import evidencia_misma_nota", actualizador)
         self.assertIn("if not evidencia['misma_nota']: continue", actualizador)
 
+    def test_exclusiones_nota_14664_no_dependen_de_mayusculas_o_espacios(self):
+        actualizador = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
+        verificador = (ROOT / "scripts/verificar_publicaciones.py").read_text(encoding="utf-8")
+        self.assertIn("m.strip().casefold()", actualizador)
+        self.assertIn("medio_norm in MEDIOS_NO_VERIFICADOS_14664_NORM", actualizador)
+        self.assertIn("m.strip().casefold()", verificador)
+        self.assertIn("medio_norm in medios_no_verificados_14664_norm", verificador)
+
     def test_nota_14664_solo_cuenta_la_publicacion_directa_correspondiente(self):
         datos = read_json("data/rep2.json")
         filas = [r for r in datos if str(r.get("nota_id")) == "14664" and r.get("confianza") != "Baja" and r.get("url")]
