@@ -116,9 +116,19 @@ def confirmar_por_texto(cands, textos):
     for m in cands:
         t = textos.get(m['u'])
         if not t: continue
+        j = JNBY[m['nid']]
+        evidencia = evidencia_misma_nota(j['titulo'], j['body'], m.get('t', ''), t)
+        if not evidencia['misma_nota']:
+            continue
         c = classify(t, m['nid'])
-        if c[0] != 'Redacción propia' or c[1]:
-            out.append((dict(m, metodo='Revisión completa (confirmado por texto)', motivo=motivo_texto(t, JNBY[m['nid']])), c))
+        out.append((dict(
+            m,
+            metodo='Revisión completa (confirmado por texto)',
+            motivo=motivo_texto(t, j) + (
+                f"; validación misma nota: {evidencia['terminos_titulo']} términos del título, "
+                f"{evidencia['terminos_cuerpo']} del cuerpo, frases {round(evidencia['coincidencia_frases'] * 100)}%"
+            )
+        ), c))
     return out
 
 def texto_pagina(u):
