@@ -640,8 +640,8 @@ FUENTES_VERIFICADAS = [
 NOTA_PUERTO_MADRYN = 14884
 ids_notas = {n['id'] for n in notas}
 for medio, url in FUENTES_VERIFICADAS:
-    if NOTA_PUERTO_MADRYN not in ids_notas:
-        continue
+    # La nota puede faltar en el feed de esta corrida y recuperarse del historial
+    # unos pasos después. Las verificaciones manuales no dependen del feed actual.
     existente = next((r for r in rows
         if r.get('nota_id') == NOTA_PUERTO_MADRYN
         and r.get('medio') == medio
