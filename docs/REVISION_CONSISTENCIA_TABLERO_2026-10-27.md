@@ -2,7 +2,7 @@
 
 ## Incidencia reproducida en los datos
 
-La nota 14884, «Puerto Madryn: condenan a una comerciante por difamar a una vecina en redes sociales», tenía 24 medios distintos. Cinco registros conservaban métodos genéricos o estados de búsqueda («Buscador web», «A verificar» y enlaces de Google Noticias), por lo que la interfaz mostraba 19 confirmados y 5 pendientes a pesar de la tabla de revisión manual aportada con enlaces originales para los 24.
+La nota 14884, «Puerto Madryn: condenan a una comerciante por difamar a una vecina en redes sociales», tenía 24 medios distintos. Cinco registros aparecían como pendientes por conservar estados de búsqueda o enlaces de Google Noticias. Además, otros registros se contaban como confirmados solo por tener un enlace y el método genérico «Buscador web», sin evidencia explícita de revisión. La tabla de revisión manual aportada incluía enlaces originales para los 24 medios.
 
 ## Cambios preparados
 
@@ -22,7 +22,7 @@ La nota 14884, «Puerto Madryn: condenan a una comerciante por difamar a una vec
 
 ## Validación pendiente
 
-- [ ] Suite `python3 -m unittest discover -s tests -v`.
-- [ ] `node --check` sobre el JavaScript extraído del HTML generado.
-- [ ] Regeneración de ambos HTML públicos.
-- [ ] Revisión del estado de GitHub Actions y del despliegue de producción.
+- [x] Suite `python3 -m unittest discover -s tests -v` (validación GitHub Actions 40507446150 y 40507548209).
+- [x] `node --check` sobre el JavaScript extraído del HTML generado (validación GitHub Actions 40507548209).
+- [x] Regeneración de `publico/index.html` y `publico/tablero_publico.html` (workflow 40507547948, correcto).
+- [x] GitHub Actions y despliegue de producción verificados: Cloudflare Pages confirmó estado `success` para el commit `a30d206913741dd5babd3502242dd3b15e05d343` el 27/10/2026.
