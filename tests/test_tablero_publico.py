@@ -779,7 +779,11 @@ class TableroPublicoTests(unittest.TestCase):
         por_medio = {}
         for fila in filas:
             por_medio[fila["medio"]] = fila
-        self.assertEqual(24, len(por_medio))
+        # Perfil on MSN está clasificado como otra noticia y no debe contarse
+        # solo para forzar el total a 24. Las URLs revisadas manualmente se
+        # vuelven a aplicar en cada relevamiento.
+        self.assertEqual(23, len(por_medio))
+        self.assertNotIn("Perfil on MSN", por_medio)
         self.assertTrue(all(
             str(r.get("metodo", "")).startswith((
                 "Revisión completa",
@@ -789,6 +793,9 @@ class TableroPublicoTests(unittest.TestCase):
             ))
             for r in por_medio.values()
         ))
+        for medio in ("Radio Chubut", "Canal 12", "Cholila Online", "ADN Sur"):
+            self.assertIn(medio, por_medio)
+            self.assertEqual("Verificación manual de URL aportada", por_medio[medio]["metodo"])
 
     def test_relevancia_exige_misma_nota_y_no_solo_mismo_evento(self):
         sys.path.insert(0, str(ROOT / "scripts"))
