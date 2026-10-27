@@ -749,5 +749,46 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn("FB_SEARCH_API_KEY", funcion)
 
 
+    def test_un_enlace_de_buscador_no_cuenta_como_publicacion_verificada(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("const metodoVerificado = r =>", template)
+        self.assertIn("Verificación manual de URL aportada", template)
+        self.assertIn("Revisión completa", template)
+        self.assertIn("Verificada automáticamente: título y contenido comparados con la nota oficial", template)
+        # Buscador web, una URL válida o un resultado de Google no son evidencia suficiente por sí solos.
+        self.assertIn("!esReferenciaGoogle(r)", template)
+        self.assertIn("metodoVerificado(r)", template)
+
+    def test_tablero_advierte_si_los_datos_tienen_mas_de_24_horas(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("antiguedad > 24 * 60 * 60 * 1000", template)
+        self.assertIn("no deben interpretarse como información actual", template)
+        self.assertIn("fecha y hora no disponibles", template)
+
+    def test_nota_14884_conserva_los_24_medios_verificados_y_enlaces_directos(self):
+        datos = read_json("data/rep2.json")
+        filas = [
+            r for r in datos
+            if str(r.get("nota_id")) == "14884"
+            and r.get("medio")
+            and r.get("confianza") != "Baja"
+            and str(r.get("url", "")).startswith(("http://", "https://"))
+            and "news.google.com" not in str(r.get("url", "")).lower()
+            and not str(r.get("metodo", "")).lower().startswith("a verificar:")
+        ]
+        por_medio = {}
+        for fila in filas:
+            por_medio[fila["medio"]] = fila
+        self.assertEqual(24, len(por_medio))
+        self.assertTrue(all(
+            str(r.get("metodo", "")).startswith((
+                "Revisión completa",
+                "Verificación manual de URL aportada",
+                "Revisión de texto (coinciden los datos)",
+                "Verificada automáticamente: título y contenido comparados con la nota oficial",
+            ))
+            for r in por_medio.values()
+        ))
+
 if __name__ == "__main__":
     unittest.main()

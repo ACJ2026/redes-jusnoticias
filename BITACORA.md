@@ -695,3 +695,14 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Validación de CI:** correcta en [workflow 40407791620](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40407791620); reconstrucción de HTML correcta en [workflow 40407763304](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40407763304). Ambos HTML públicos contienen la lógica nueva.
 - **Despliegue:** Cloudflare informa como despliegue canónico exitoso el commit `9abb60da689c546b7f9b8c71b23d395d04132395`, publicado en `https://jusnoticias.pages.dev/`.
 - **Límite de verificación:** el entorno de esta sesión no pudo acceder por HTTP al sitio para una prueba interactiva; no se afirma que se hayan probado visualmente los enlaces en navegador. El comportamiento automático ya impide abrir como directas las candidatas débiles o las URLs históricas sin verificación.
+
+
+### 2026-10-27 — Consistencia de estados y vigencia visible
+
+- Incidencia: la nota 14884 («Puerto Madryn: condenan a una comerciante por difamar a una vecina en redes sociales») mostraba 24 medios, pero 19 confirmados y 5 pendientes, aunque el relevamiento manual aportado incluía enlaces directos verificados para los 24.
+- Datos: se actualizaron los 24 registros de medios de esa nota con los enlaces directos y la verificación manual indicados en la revisión. No se eliminaron registros históricos.
+- Criterio: un resultado de buscador o una URL por sí solos no prueban que la publicación esté verificada. El tablero ahora exige un método explícito de revisión (revisión completa, verificación manual, revisión de texto o verificación automática documentada), además de URL directa y ausencia de estado pendiente/Google Noticias.
+- Vigencia: el pie del tablero advierte cuando la fecha del relevamiento supera las 24 horas o falta/no se puede interpretar la fecha. Se distingue la fecha del relevamiento de las consultas en vivo de redes y Google.
+- Regresión: se añadieron pruebas estáticas para evitar que «Buscador web» se trate como verificación y para comprobar el aviso de datos vencidos.
+- Automatización: el workflow `.github/workflows/reconstruir-publico.yml` ya contempla cambios en plantilla, datos y pruebas; al integrar esta rama debe regenerar ambos HTML públicos y ejecutar `node --check` y la suite de unittest.
+- Estado al registrar: cambios preparados en la rama `fix/tablero-consistencia-vigencia-2026-10-27`. No declarar producción corregida hasta revisar el resultado de las pruebas, la regeneración del HTML y el despliegue.

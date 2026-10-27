@@ -685,7 +685,9 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const soloCoincidenciaTitulo = r => /solo t[ií]tulos?/i.test(r.metodo || '');
   // Google Noticias sirve como pista de búsqueda, no como enlace directo a la publicación del medio.
   const esReferenciaGoogle = r => /news\.google\.com/i.test(String(r.url || ''));
-  const esConfirmada = r => r.confianza !== 'Baja' && !/^A verificar:/i.test(r.metodo || '') && !soloCoincidenciaTitulo(r) && !esReferenciaGoogle(r) && ((r.url || '').startsWith('http://') || (r.url || '').startsWith('https://'));
+  // Confirmar exige un método que documente revisión real; encontrar una URL en un buscador no alcanza.
+  const metodoVerificado = r => /^(Revisión completa|Verificación manual de URL aportada|Revisión de texto \(coinciden los datos\)|Verificada automáticamente: título y contenido comparados con la nota oficial)/i.test(String(r.metodo || '').trim());
+  const esConfirmada = r => r.confianza !== 'Baja' && metodoVerificado(r) && !/^A verificar:/i.test(r.metodo || '') && !soloCoincidenciaTitulo(r) && !esReferenciaGoogle(r) && /^https?:\/\//i.test(String(r.url || ''));
   const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id) && r.confianza !== 'Baja' && Boolean(r.url));
@@ -2080,8 +2082,16 @@ const draw = () => {
   const fechaVisible = document.createElement('strong'); fechaVisible.className = 'actualizacion-fecha';
   fechaVisible.textContent = 'Última actualización del relevamiento: ' + sello;
   const aclaracionVisible = document.createElement('small'); aclaracionVisible.className = 'actualizacion-aclaracion';
-  aclaracionVisible.textContent = 'La fecha corresponde a los datos publicados; las métricas de redes y Google se consultan por separado.';
-  pie.replaceChildren(fechaVisible, aclaracionVisible);
+  aclaracionVisible.textContent = 'La fecha corresponde al último relevamiento guardado; las métricas de redes y Google se consultan por separado.';
+  const antiguedad = D.datos_actualizados ? Date.now() - new Date(D.datos_actualizados).getTime() : Infinity;
+  const avisoDesactualizado = document.createElement('strong');
+  avisoDesactualizado.className = 'actualizacion-alerta';
+  if (!Number.isFinite(antiguedad) || antiguedad > 24 * 60 * 60 * 1000) {
+    avisoDesactualizado.textContent = 'ATENCIÓN: los datos tienen más de 24 horas o no tienen fecha válida; no deben interpretarse como información actual.';
+    avisoDesactualizado.setAttribute('role', 'status');
+  }
+  pie.replaceChildren(fechaVisible, document.createTextNode(' · '), aclaracionVisible);
+  if (avisoDesactualizado.textContent) pie.append(document.createTextNode(' · '), avisoDesactualizado);
   const h = location.hash.slice(1);
   updateLanding(calc());
   $('entrar-tablero').addEventListener('click', () => {
