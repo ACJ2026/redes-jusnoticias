@@ -769,3 +769,8 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 4. Antes de cambiar cómo se cuenta o se detecta, consultar al usuario.
 5. No cambiar la concurrencia del flujo de actualización ni lanzar corridas en cadena.
 6. Revisar los PR abiertos y los últimos cambios antes de empezar, y anotar todo en esta bitácora.
+
+
+## 2026-10-27 — Reglas para las IAs (Claude)
+
+- Nuevo `docs/REGLAS_IA.md` (y `AGENTS.md`/`CLAUDE.md` en la raíz, que Codex y Claude leen solos): reglas de trabajo para Claude y GPT/Codex y tabla de los errores del 24 al 27/10/2026 con su corrección. `REGLAS.md` ahora remite a ese archivo. A pedido del usuario, para que GPT lo lea antes de empezar.
