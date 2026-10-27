@@ -147,7 +147,27 @@ def main():
     titulos = {int(n["id"]): n.get("titulo", "") for n in notas}
     cache = {}
     revisadas = confirmadas = descartadas = pendientes = 0
+    medios_no_verificados_14664 = {
+        "CHACODIAPORDIA.COM", "Diario La Portada", "Metadata Noticias",
+        "Del Mar Digital", "Canal Doce Misiones", "La Nota San Juan",
+        "InfoBariloche", "El Mediador - Santa Cruz", "El 10 TV",
+        "El Tribuno", "Diario Huarpe",
+    }
     for fila in filas:
+        revision = fila.get("revision_manual") or {}
+        if (str(fila.get("nota_id")) == "14664"
+                and fila.get("medio") in medios_no_verificados_14664
+                and revision.get("decision") != "confirmar"):
+            fila["confianza"] = "Baja"
+            fila["metodo"] = (
+                "Excluida del conteo: cobertura distinta del mismo congreso; "
+                "no acredita reproducción de la nota de Chubut"
+            )
+            fila["motivo"] = (
+                "La coincidencia temática o la referencia de búsqueda no acredita "
+                "que el medio haya publicado esta nota"
+            )
+            continue
         metodo = (fila.get("metodo") or "").lower()
         url = (fila.get("url") or "").strip()
         if not any(m in metodo for m in MARCAS_CANDIDATA):
