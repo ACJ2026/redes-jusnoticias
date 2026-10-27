@@ -18,6 +18,7 @@ on:
       - 'migrations/0002_revisiones_publicaciones.sql'
       - 'docs/CLOUDFLARE_PAGES.md'
       - 'BITACORA.md'
+      - 'scripts/armar_publico.py'
       - 'functions/api/tiktok.js'
       - 'functions/api/tiktok/**'
       - 'migrations/0001_tiktok_auth_security.sql'
@@ -69,5 +70,16 @@ jobs:
           Path("/tmp/tablero.js").write_text(scripts[0], encoding="utf-8")
           PY
           node --check /tmp/tablero.js
+      - name: Reconstruir HTML público en temporal y comprobar la corrección
+        run: |
+          python3 scripts/armar_publico.py data/notas2.json data/rep2.json data/redes2.json data/canales.json data/medios.json /tmp/tablero-publico.html
+          python3 - <<'PY'
+          from pathlib import Path
+          html = Path('/tmp/tablero-publico.html').read_text(encoding='utf-8')
+          assert 'const publicacionesConfirmadas = () =>' in html, 'La reconstrucción no incluye el recálculo de publicaciones confirmadas'
+          assert '|Confirmada manualmente)' in html, 'La reconstrucción no acepta confirmaciones manuales'
+          assert 'cargarRevisiones().then(() =>' in html, 'La reconstrucción no actualiza tras cargar revisiones'
+          print('OK: HTML público reconstruido con la corrección de decisiones manuales')
+          PY
       - name: Ejecutar pruebas de regresión
         run: python3 -m unittest discover -s tests -v
