@@ -153,10 +153,12 @@ def main():
         "InfoBariloche", "El Mediador - Santa Cruz", "El 10 TV",
         "El Tribuno", "Diario Huarpe",
     }
+    medios_no_verificados_14664_norm = {m.strip().casefold() for m in medios_no_verificados_14664}
     for fila in filas:
         revision = fila.get("revision_manual") or {}
+        medio_norm = str(fila.get("medio") or "").strip().casefold()
         if (str(fila.get("nota_id")) == "14664"
-                and fila.get("medio") in medios_no_verificados_14664
+                and medio_norm in medios_no_verificados_14664_norm
                 and revision.get("decision") != "confirmar"):
             fila["confianza"] = "Baja"
             fila["metodo"] = (
