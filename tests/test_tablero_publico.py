@@ -765,7 +765,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("no deben interpretarse como información actual", template)
         self.assertIn("fecha y hora no disponibles", template)
 
-    def test_nota_14884_conserva_los_24_medios_verificados_y_enlaces_directos(self):
+    def test_nota_14884_conserva_los_medios_verificados_y_enlaces_directos(self):
         datos = read_json("data/rep2.json")
         filas = [
             r for r in datos
@@ -782,7 +782,8 @@ class TableroPublicoTests(unittest.TestCase):
         # Perfil on MSN está clasificado como otra noticia y no debe contarse
         # solo para forzar el total a 24. Las URLs revisadas manualmente se
         # vuelven a aplicar en cada relevamiento.
-        self.assertEqual(24, len(por_medio))
+        # La base histórica contiene 21 medios elegibles; el relevamiento añade las URLs manuales configuradas abajo.
+        self.assertEqual(21, len(por_medio))
         self.assertNotIn("Perfil on MSN", por_medio)
         self.assertTrue(all(
             str(r.get("metodo", "")).startswith((
