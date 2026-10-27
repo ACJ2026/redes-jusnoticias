@@ -11,8 +11,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 171,
-      "notas": 129,
+      "publicaciones": 172,
+      "notas": 130,
       "ejemplo": "https://radio3cadenapatagonia.com.ar/por-que-la-escuela-presencial-no-puede-reemplazarse-por-homeschooling/",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-10-25",
@@ -39,8 +39,8 @@
       "tipo": "TV",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 115,
       "notas": 92,
       "ejemplo": "https://canal12web.com/esquel-la-justicia-elevo-a-4-millones-la-multa-contra-plan-ovalo-por-aumentos-en-un-plan-de-ahorro/",
@@ -99,8 +99,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 100,
-      "notas": 94,
+      "publicaciones": 102,
+      "notas": 96,
       "ejemplo": "https://delmardigital.net/buscan-referentes-afectivos-para-una-adolescente-de-17-anos-como-postularse/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
@@ -130,8 +130,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 84,
-      "notas": 72,
+      "publicaciones": 85,
+      "notas": 73,
       "ejemplo": "https://lapostacomodorense.com.ar/2026/10/27/plan-ovalo-y-ford-deberan-pagar-4-millones-por-incumplimiento-en-un-plan-de-ahorro/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
@@ -157,8 +157,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 72,
-      "notas": 61,
+      "publicaciones": 74,
+      "notas": 62,
       "ejemplo": "https://cholilaonline.ar/2026/10/jueza-panigadi-explico-fallo-sobre-escolarizacion-presencial-en-puerto-madryn.html",
       "primera_deteccion": "",
       "ultima_deteccion": "",
@@ -188,8 +188,8 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 71,
       "notas": 68,
       "ejemplo": "https://noticiaspmy.com/condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
@@ -214,8 +214,8 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 64,
-      "notas": 56,
+      "publicaciones": 66,
+      "notas": 58,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-27",
@@ -245,8 +245,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 61,
-      "notas": 54,
+      "publicaciones": 63,
+      "notas": 55,
       "ejemplo": "https://fmbahiaengano.com/puerto-madryn-condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
@@ -309,7 +309,7 @@
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
       "publicaciones": 58,
-      "notas": 55,
+      "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/intentaron-robar--dispararon-contra-un-policia-y-el-jurado-popular-los-declaro-culpables_a69a0c57fd58fb9ae9fd2e582",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-27",
@@ -365,8 +365,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 47,
-      "notas": 43,
+      "publicaciones": 48,
+      "notas": 44,
       "ejemplo": "https://comodoro24.com.ar/sancionaron-a-plan-ovalo-y-ford-por-ocultar-informacion-ante-la-suba-desmedida-de-cuotas-de-un-plan-de-ahorro/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-27",
@@ -380,6 +380,36 @@
         ],
         "YouTube": [
           "/channel/UCBc0w72RGAFyvbaKSHO6h_Q"
+        ]
+      }
+    },
+    {
+      "nombre": "Argentar Noticias",
+      "alias": [],
+      "dominio": "argentarnoticias.com.ar",
+      "url": "https://argentarnoticias.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 43,
+      "notas": 39,
+      "ejemplo": "https://argentarnoticias.com.ar/buscan-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Dudosa: Dudosa: el sitio linkea Radio del Sur 97.1: /RadioDelSur97.1"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: @radiodelsur971"
+        ],
+        "X": [
+          "Dudosa: Dudosa: @RadioDelSur971"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: @radiodelsur971"
         ]
       }
     },
@@ -401,36 +431,6 @@
       "redes": {}
     },
     {
-      "nombre": "Argentar Noticias",
-      "alias": [],
-      "dominio": "argentarnoticias.com.ar",
-      "url": "https://argentarnoticias.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Comodoro Rivadavia",
-      "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 37,
-      "notas": 34,
-      "ejemplo": "https://argentarnoticias.com.ar/buscan-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "Dudosa: Dudosa: el sitio linkea Radio del Sur 97.1: /RadioDelSur97.1"
-        ],
-        "Instagram": [
-          "Dudosa: Dudosa: @radiodelsur971"
-        ],
-        "X": [
-          "Dudosa: Dudosa: @RadioDelSur971"
-        ],
-        "YouTube": [
-          "Dudosa: Dudosa: @radiodelsur971"
-        ]
-      }
-    },
-    {
       "nombre": "El Comodorense",
       "alias": [],
       "dominio": "elcomodorense.net",
@@ -440,8 +440,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 33,
-      "notas": 30,
+      "publicaciones": 34,
+      "notas": 31,
       "ejemplo": "https://www.elcomodorense.net/convocan-a-guarda-con-fines-adoptivos-para-un-nino-de-9-anos-en-comodoro/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
@@ -468,8 +468,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 33,
-      "notas": 31,
+      "publicaciones": 34,
+      "notas": 32,
       "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-27",
@@ -555,7 +555,7 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 24,
+      "publicaciones": 23,
       "notas": 23,
       "ejemplo": "https://www.elchubut.com.ar/trelew/2026-9-11-10-37-0-convocan-en-trelew-a-familias-monoparentales-para-adoptar-a-una-adolescente",
       "primera_deteccion": "2026-10-23",
@@ -586,10 +586,10 @@
       "tipo": "Radio",
       "localidad": "Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
-      "publicaciones": 22,
-      "notas": 21,
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 23,
+      "notas": 22,
       "ejemplo": "https://radiodecamioneros.com.ar/el-municipio-concreto-una-nueva-jornada-de-prevencion-de-cancer-de-mama/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
@@ -606,6 +606,63 @@
         ],
         "YouTube": [
           "/channel/UCx0ZTnObZJEuNvOlI-BhDvQ"
+        ]
+      }
+    },
+    {
+      "nombre": "Madryn Urbana",
+      "alias": [],
+      "dominio": "madrynurbana.com",
+      "url": "https://madrynurbana.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 16,
+      "notas": 15,
+      "ejemplo": "https://madrynurbana.com/planeta-madryn-le-regalaron-una-tarjeta-de-credito-nunca-la-uso-y-termino-en-el-veraz-fuerte-condena-contra-un-banco/",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Facebook": [
+          "/jorgeylaradio"
+        ],
+        "Instagram": [
+          "@madrynurbana"
+        ],
+        "X": [
+          "@jorgeylaradio"
+        ]
+      }
+    },
+    {
+      "nombre": "El Valle Online",
+      "alias": [],
+      "dominio": "elvalleonline.com.ar",
+      "url": "https://elvalleonline.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Valle Inferior del Río Chubut",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 15,
+      "notas": 15,
+      "ejemplo": "https://www.elvalleonline.com.ar/un-nino-de-rawson-fue-escuchado-por-la-justicia-y-podra-seguir-viviendo-con-sus-abuelos/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Facebook": [
+          "/ElValleOnline"
+        ],
+        "Instagram": [
+          "@elvalleonline"
+        ],
+        "X": [
+          "@elvalle_online"
+        ],
+        "YouTube": [
+          "/@elvalleonline"
         ]
       }
     },
@@ -656,36 +713,6 @@
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-27",
       "redes": {}
-    },
-    {
-      "nombre": "El Valle Online",
-      "alias": [],
-      "dominio": "elvalleonline.com.ar",
-      "url": "https://elvalleonline.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Valle Inferior del Río Chubut",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 13,
-      "notas": 13,
-      "ejemplo": "https://www.elvalleonline.com.ar/un-nino-de-rawson-fue-escuchado-por-la-justicia-y-podra-seguir-viviendo-con-sus-abuelos/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {
-        "Facebook": [
-          "/ElValleOnline"
-        ],
-        "Instagram": [
-          "@elvalleonline"
-        ],
-        "X": [
-          "@elvalle_online"
-        ],
-        "YouTube": [
-          "/@elvalleonline"
-        ]
-      }
     },
     {
       "nombre": "CHACODIAPORDIA.COM",
@@ -777,33 +804,6 @@
       }
     },
     {
-      "nombre": "Madryn Urbana",
-      "alias": [],
-      "dominio": "madrynurbana.com",
-      "url": "https://madrynurbana.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 11,
-      "notas": 10,
-      "ejemplo": "https://madrynurbana.com/planeta-madryn-le-regalaron-una-tarjeta-de-credito-nunca-la-uso-y-termino-en-el-veraz-fuerte-condena-contra-un-banco/",
-      "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {
-        "Facebook": [
-          "/jorgeylaradio"
-        ],
-        "Instagram": [
-          "@madrynurbana"
-        ],
-        "X": [
-          "@jorgeylaradio"
-        ]
-      }
-    },
-    {
       "nombre": "Red43",
       "alias": [],
       "dominio": "red43.com.ar",
@@ -813,7 +813,7 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 11,
+      "publicaciones": 10,
       "notas": 10,
       "ejemplo": "https://www.red43.com.ar/nota/2026-10-19-15-25-42-chubut-la-condenaron-por-escrachar-a-una-vecina-por-facebook-y-debera-pagar-2-4-millones",
       "primera_deteccion": "2026-10-27",
@@ -831,6 +831,30 @@
         ],
         "YouTube": [
           "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
+        ]
+      }
+    },
+    {
+      "nombre": "Revista Quórum",
+      "alias": [],
+      "dominio": "revistaquorum.com.ar",
+      "url": "https://revistaquorum.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Cobertura nacional",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 10,
+      "notas": 10,
+      "ejemplo": "https://revistaquorum.com.ar/2026/09/17/la-carta-de-un-juez-a-una-nina-victima-de-abuso-tu-tio-no-va-a-ir-a-la-carcel-y-no-es-porque-no-te-haya-creido/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Instagram": [
+          "@revistaquorumok"
+        ],
+        "YouTube": [
+          "/@revistaquorumok"
         ]
       }
     },
@@ -953,30 +977,6 @@
       }
     },
     {
-      "nombre": "Revista Quórum",
-      "alias": [],
-      "dominio": "revistaquorum.com.ar",
-      "url": "https://revistaquorum.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Cobertura nacional",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 7,
-      "notas": 7,
-      "ejemplo": "https://revistaquorum.com.ar/2026/09/17/la-carta-de-un-juez-a-una-nina-victima-de-abuso-tu-tio-no-va-a-ir-a-la-carcel-y-no-es-porque-no-te-haya-creido/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {
-        "Instagram": [
-          "@revistaquorumok"
-        ],
-        "YouTube": [
-          "/@revistaquorumok"
-        ]
-      }
-    },
-    {
       "nombre": "ABC Diario",
       "alias": [],
       "dominio": "abcdiario.com.ar",
@@ -1033,6 +1033,33 @@
         ],
         "YouTube": [
           "/channel/UCWhsV1YALBkWBsbJQBkGv1g"
+        ]
+      }
+    },
+    {
+      "nombre": "FM de la Cordillera",
+      "alias": [],
+      "dominio": "fmdelacordillera.com.ar",
+      "url": "https://fmdelacordillera.com.ar",
+      "tipo": "Radio",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 6,
+      "notas": 5,
+      "ejemplo": "https://fmdelacordillera.com.ar/octubre-rosa-en-lago-puelo-realizaron-una-jornada-de-prevencion-del-cancer-de-mama/",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-10-23",
+      "redes": {
+        "Instagram": [
+          "@laradiodelacordillera"
+        ],
+        "YouTube": [
+          "/@laradiodelacordillera105.5"
+        ],
+        "TikTok": [
+          "@laradiodelacordillera"
         ]
       }
     },
@@ -1105,33 +1132,6 @@
       "redes": {}
     },
     {
-      "nombre": "FM de la Cordillera",
-      "alias": [],
-      "dominio": "fmdelacordillera.com.ar",
-      "url": "https://fmdelacordillera.com.ar",
-      "tipo": "Radio",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 5,
-      "notas": 4,
-      "ejemplo": "https://fmdelacordillera.com.ar/octubre-rosa-en-lago-puelo-realizaron-una-jornada-de-prevencion-del-cancer-de-mama/",
-      "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {
-        "Instagram": [
-          "@laradiodelacordillera"
-        ],
-        "YouTube": [
-          "/@laradiodelacordillera105.5"
-        ],
-        "TikTok": [
-          "@laradiodelacordillera"
-        ]
-      }
-    },
-    {
       "nombre": "Diario Judicial",
       "alias": [],
       "dominio": "diariojudicial.com",
@@ -1143,7 +1143,7 @@
       "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 4,
       "notas": 4,
-      "ejemplo": "",
+      "ejemplo": "https://www.diariojudicial.com/news-104681-el-poder-judicial-presento-su-campana-audiovisual-sobre-mujeres-rurales",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-27",
       "redes": {
@@ -1281,6 +1281,25 @@
           "Infobae"
         ]
       }
+    },
+    {
+      "nombre": "Diario Nuevo Día",
+      "alias": [
+        "El Diario Nuevo Día"
+      ],
+      "dominio": "eldiarionuevodia.com.ar",
+      "url": "https://eldiarionuevodia.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Río Gallegos",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-27",
+      "redes": {}
     },
     {
       "nombre": "El Monterizo",
@@ -1553,8 +1572,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
@@ -1673,23 +1692,6 @@
       }
     },
     {
-      "nombre": "Diario Nuevo Día",
-      "alias": [],
-      "dominio": "",
-      "url": "",
-      "tipo": "Prensa gráfica",
-      "localidad": "Río Gallegos",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {}
-    },
-    {
       "nombre": "Diario Río Negro",
       "alias": [],
       "dominio": "",
@@ -1731,8 +1733,8 @@
       "tipo": "TV",
       "localidad": "Salta",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -1771,23 +1773,6 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
-      "redes": {}
-    },
-    {
-      "nombre": "El Diario Nuevo Día",
-      "alias": [],
-      "dominio": "eldiarionuevodia.com.ar",
-      "url": "https://eldiarionuevodia.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.eldiarionuevodia.com.ar/regionales/un-juez-le-escribio-una-carta-a-una-nina-de-10-anos-tras-condenar-a-su-tio-por-abuso-sexual/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-27",
       "redes": {}
     },
     {
@@ -1879,8 +1864,8 @@
       "tipo": "Portal digital",
       "localidad": "Salta",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -1929,8 +1914,8 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
@@ -2116,8 +2101,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2365,8 +2350,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
@@ -2574,6 +2559,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Urgente24",
+      "alias": [],
+      "dominio": "urgente24.com",
+      "url": "https://urgente24.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://urgente24.com/actualidad/la-justicia-rechazo-una-demanda-despido-y-responsabilizo-al-abogado-que-debera-pagar-excederse-n635028",
+      "primera_deteccion": "2026-10-27",
+      "ultima_deteccion": "2026-10-27",
       "redes": {}
     },
     {
