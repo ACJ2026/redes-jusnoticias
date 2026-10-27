@@ -15908,7 +15908,7 @@
     "confianza": "Alta",
     "metodo": "Verificación manual de URL aportada",
     "url": "https://diariojornada.com.ar/425491/policiales/le_dijo_chorra_a_su_vecina_por_redes_y_le_tendra_que_pagar__24_millones",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "motivo": "Publicación original confirmada mediante revisión manual; enlace directo registrado.",
     "key": "p1348"
   },
   {
@@ -16041,7 +16041,7 @@
     "confianza": "Alta",
     "metodo": "Verificación manual de URL aportada",
     "url": "https://lu17.com/contenido/153801/madryn-millonaria-condena-a-una-comerciante-por-difamar-a-una-vecina-en-las-redes-sociales",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "motivo": "Publicación original confirmada mediante revisión manual; enlace directo registrado.",
     "key": "p1359"
   },
   {
@@ -16053,7 +16053,7 @@
     "confianza": "Alta",
     "metodo": "Verificación manual de URL aportada",
     "url": "https://comodoro24.com.ar/la-condenaron-por-difamar-a-una-vecina-en-facebook-y-debera-pagar-24-millones",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "motivo": "Publicación original confirmada mediante revisión manual; enlace directo registrado.",
     "key": "p1360"
   },
   {
@@ -16691,7 +16691,7 @@
     "confianza": "Alta",
     "metodo": "Verificación manual de URL aportada",
     "url": "https://noticiasdebariloche.com.ar/trato-de-chorra-a-una-vecina-en-redes-sociales-y-la-condenaron-a-pagarle-una-indemnizacion/amp",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "motivo": "Publicación original confirmada mediante revisión manual; enlace directo registrado.",
     "key": "p1410"
   },
   {
@@ -16703,7 +16703,7 @@
     "confianza": "Alta",
     "metodo": "Verificación manual de URL aportada",
     "url": "https://radio3cadenapatagonia.com.ar/madryn-confirmaron-una-condena-de-245-millones-por-difamacion-en-facebook",
-    "motivo": "Se pudo abrir la página, pero el texto no coincide lo suficiente con la nota oficial para confirmarla o descartarla automáticamente.",
+    "motivo": "Publicación original confirmada mediante revisión manual; enlace directo registrado.",
     "evidencia_verificacion": {
       "titulo_medio": "Madryn: confirmaron una condena de $2,45 millones por difamación en Facebook - Radio 3 Cadena Patagonia",
       "terminos_titulo_en_comun": 0,
