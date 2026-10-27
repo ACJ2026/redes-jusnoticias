@@ -9,7 +9,7 @@ import urllib.request, urllib.parse
 from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from fuentes import exigir_lista_json
-from relevancia_publicaciones import evidencia_misma_nota
+from relevancia_publicaciones import evidencia_misma_nota, es_misma_publicacion
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else '.'
 PREV = sys.argv[2] if len(sys.argv) > 2 else None
@@ -118,7 +118,7 @@ def confirmar_por_texto(cands, textos):
         if not t: continue
         j = JNBY[m['nid']]
         evidencia = evidencia_misma_nota(j['titulo'], j['body'], m.get('t', ''), t)
-        if not evidencia['misma_nota']:
+        if not es_misma_publicacion(evidencia):
             continue
         c = classify(t, m['nid'])
         out.append((dict(
@@ -150,6 +150,10 @@ except Exception:
     _guardado = {}
 if 'revisados' not in _guardado: _guardado = {'revisados': _guardado, 'candidatos': {}}
 REVISADOS = {u: d for u, d in _guardado.get('revisados', {}).items() if d >= _corte}
+# Criterio 2 (27/10/2026): también cuenta el mismo caso contado con palabras propias.
+# Los artículos leídos con el criterio anterior se vuelven a leer una vez.
+CRITERIO_TEXTO = 2
+if _guardado.get('criterio') != CRITERIO_TEXTO: REVISADOS = {}
 # Candidatos por datos de corridas anteriores: sirven para detectar notas «genéricas».
 CANDIDATOS_DATOS = {u: c for u, c in _guardado.get('candidatos', {}).items() if c.get('fecha', '') >= _corte}
 DATOS_PEND = []
@@ -188,11 +192,11 @@ def revisar_texto(items, textos, medio=''):
         for j in JN:
             if it['d'] < addd(j['date'], -1) or it['d'] > addd(j['date'], 8): continue
             evidencia = evidencia_misma_nota(j['titulo'], j['body'], it.get('t', ''), t)
-            if not evidencia['misma_nota']: continue
+            if not es_misma_publicacion(evidencia): continue
             sh = shing(t)
             sim = len(sh & j['sh']) / len(sh) if sh else 0
             sc = puntaje_datos(toks(t), j)
-            clave = (evidencia['coincidencia_frases'], evidencia['coincidencia_cuerpo_medio'], sim, sc)
+            clave = (evidencia['misma_nota'], evidencia['coincidencia_frases'], evidencia['coincidencia_cuerpo_medio'], sim, sc)
             if not mejor or clave > mejor[0]: mejor = (clave, sim, sc, j, evidencia)
         if not mejor: continue
         _, sim, sc, j, evidencia = mejor
@@ -203,6 +207,8 @@ def revisar_texto(items, textos, medio=''):
         )
         if sim >= 0.2:
             out.append((dict(it, nid=j['id'], metodo='Revisión completa (confirmado por texto)', motivo=motivo), classify(t, j['id'])))
+        elif evidencia['mismo_caso'] and not evidencia['misma_nota']:
+            out.append((dict(it, nid=j['id'], metodo='Revisión completa (mismo caso con redacción propia)', motivo=motivo), classify(t, j['id'])))
         elif sc >= UMBRAL_DATOS:
             DATOS_PEND.append((medio, dict(it, nid=j['id'], metodo='Revisión de texto (coinciden los datos)', motivo=motivo), classify(t, j['id'])))
     return out
@@ -238,7 +244,9 @@ def verify(cands, win=8):
     return out
 rows = []
 def addrow(medio, m, metodo, origen='Sin dato', off=False, otros=''):
-    conf = 'Media' if origen == 'Sin dato' else ('Alta' if (origen != 'Redacción propia' or off) else 'Baja')
+    # Una redacción propia del mismo caso es repercusión (decisión de Ignacio, 27/10/2026):
+    # cuenta con confianza media; si además cita a JusNoticias, alta.
+    conf = 'Media' if origen == 'Sin dato' else ('Alta' if (origen != 'Redacción propia' or off) else 'Media')
     fila = {'nota_id': m['nid'], 'medio': medio, 'origen': origen, 'cita_fuente_oficial': ('Sí' if off else 'No') if origen != 'Sin dato' else '', 'cita_otro_medio': otros, 'confianza': conf, 'metodo': metodo, 'url': m.get('u', '')}
     if m.get('motivo'): fila['motivo'] = m['motivo']
     rows.append(fila)
@@ -537,8 +545,14 @@ def gnews(n):
         host = (host or '').lower()
         if host.startswith('www.'): host = host[4:]
         out.append({'fuerte': it in fuerte, 't': tt, 'd': d, 'u': html.unescape(lk.group(1)) if lk else '', 'src': src_name, 'dominio': host})
-    # Segunda fuente: Bing Noticias, para medios que Google no indexa. Título y primera frase.
-    for q in [n['titulo'][:120]] + frases[:1]:
+    # Segunda fuente: Bing Noticias, para medios que Google no indexa. Desde GitHub, Google
+    # Noticias devuelve muy pocos resultados y Bing trae más, con el enlace directo del medio
+    # (diagnóstico del 27/10/2026): para notas recientes se consulta también por palabras clave
+    # y por la segunda frase.
+    consultas_bing = [n['titulo'][:120]] + frases[:1]
+    if n['fecha'] >= addd(dt.date.today().isoformat(), -15):
+        consultas_bing += [' '.join(clave_t)] + frases[1:2]
+    for q in consultas_bing:
         r = get('https://www.bing.com/news/search?q=' + urllib.parse.quote(q) + '&format=rss&setlang=es&cc=AR', timeout=20) or ''
         for item in bing_items(r):
             item['fuerte'] = q.startswith('"')
@@ -549,6 +563,7 @@ JSTEM, CUERPO = {}, {}
 for x in jn_raw:
     CUERPO[x['id']] = strip(x['content']['rendered'])
     JSTEM[x['id']] = STEM(strip(x['title']['rendered']) + ' ' + strip(x['content']['rendered'])[:3000])
+GENERICOS_TITULO = {'mujer', 'rural', 'rurale', 'campan', 'homena', 'celebr', 'conmem', 'mundia', 'intern', 'nacion', 'provin'}
 def gmatch(it, n):
     st = STEM(it['t'])
     if len(st) < 3: return None
@@ -561,7 +576,6 @@ def gmatch(it, n):
     # significativos con el título oficial de JusNoticias.
     # Los términos temáticos amplios no bastan para atribuir una publicación a una nota.
     # Por ejemplo, compartir solo "mujeres rurales" no acredita relación con la campaña de JusNoticias.
-    GENERICOS_TITULO = {'mujer', 'rural', 'rurale', 'campan', 'homena', 'celebr', 'conmem', 'mundia', 'intern', 'nacion', 'provin'}
     coincidencias_titulo = len(st & STEM(n.get('titulo', '')))
     coincidencias_especificas = len((st & STEM(n.get('titulo', ''))) - GENERICOS_TITULO)
     if (not best or best['id'] != n['id'] or sc(n['id']) < minimo
@@ -578,15 +592,42 @@ conocidos = {clave(m): m for m in list(cobertura) + ['Crónica', 'El Chubut', 'D
 conocidos.update(ALIAS)
 MEDIO_POR_DOMINIO = {d.replace('www.', ''): n for n, d in list(WP.items()) + list(WP_DESCUBIERTOS.items())}
 NO = re.compile(r'jusnoticias|juschubut|poder judicial|justicia\.ar|ministerio p[uú]blico|youtube|facebook|instagram', re.I)
+def es_google_noticias(u): return (u or '').startswith('https://news.google.com/')
+
+# Segunda oportunidad por texto: un resultado del buscador cuyo título no alcanza (el medio
+# tituló distinto, p. ej. «Sancionan en Chubut a Plan Óvalo y Ford») se lee completo si tiene
+# enlace directo, comparte algún término específico del título y el cuerpo de la nota.
+def candidato_por_texto(it, n):
+    st = STEM(it['t'])
+    if not st or es_google_noticias(it.get('u')) or not it.get('u', '').startswith('http'): return False
+    especificos = (st & STEM(n.get('titulo', ''))) - GENERICOS_TITULO
+    return len(especificos) >= 1 and len(st & JSTEM.get(n['id'], set())) / len(st) >= 0.3
+
+def mejor_nota_por_texto(it, t):
+    """La nota de JusNoticias de esos días con más evidencia; solo si es la misma publicación o caso."""
+    mejor = None
+    for j in JN:
+        if it['d'] < addd(j['date'], -1) or it['d'] > addd(j['date'], 8): continue
+        ev = evidencia_misma_nota(j['titulo'], j['body'], it.get('t', ''), t)
+        clave_ev = (es_misma_publicacion(ev), ev['misma_nota'], ev['coincidencia_cuerpo_medio'])
+        if not mejor or clave_ev > mejor[0]: mejor = (clave_ev, j, ev)
+    return mejor if mejor and mejor[0][0] else None
+
 ya = {(r['nota_id'], r['medio']) for r in rows}
+segunda_oportunidad = {}
 desde_g = addd(dt.date.today().isoformat(), -45)
 con_g = 0
 with ThreadPoolExecutor(4) as ex:
     for n, items in ex.map(gnews, [n for n in notas if n['fecha'] >= desde_g]):
+        # Primero los enlaces directos (Bing): así un medio no queda con el enlace de Google Noticias.
+        items.sort(key=lambda it: es_google_noticias(it.get('u')))
         for it in items:
             if NO.search(it['src']) or not (addd(n['fecha'], -1) <= it['d'] <= addd(n['fecha'], 8)): continue
             m = gmatch(it, n)
-            if not m: continue
+            if not m:
+                if candidato_por_texto(it, n) and it['u'] not in REVISADOS:
+                    segunda_oportunidad.setdefault(it['u'], (it, n))
+                continue
             medio = MEDIO_POR_DOMINIO.get(it.get('dominio', '')) or conocidos.get(clave(it['src']), limpio(it['src']))
             # El título puede omitir la ciudad aunque trate el mismo fallo local.
             # La nota de JusNoticias y la ventana temporal ya se validaron en gmatch().
@@ -596,6 +637,11 @@ with ThreadPoolExecutor(4) as ex:
                 for r0 in rows:
                     if r0['nota_id'] == n['id'] and r0['medio'] == medio and r0['confianza'] == 'Baja':
                         r0['confianza'] = 'Media'; r0['metodo'] += ' + confirmado por Google Noticias'; con_g += 1
+                    # Si el medio quedó con el enlace de Google Noticias y ahora hay uno directo, se usa
+                    # el directo (el de Google queda como alternativa para el historial).
+                    if (r0['nota_id'] == n['id'] and r0['medio'] == medio and es_google_noticias(r0.get('url'))
+                            and it.get('u', '').startswith('http') and not es_google_noticias(it['u'])):
+                        r0.setdefault('url_alternativas', []).append(r0['url']); r0['url'] = it['u']
                 continue
             ya.add((n['id'], medio)); con_g += 1
             buscador = m.get('buscador', 'Google Noticias')
@@ -614,12 +660,34 @@ with ThreadPoolExecutor(4) as ex:
                     REGISTRO.append({'nombre': medio, 'dominio': dominio, 'primera_deteccion': hoy, 'ultima_deteccion': hoy, 'detecciones': 1, 'ultima_url': it.get('u', ''), 'estado': 'seguimiento_google_news'})
 print('Google Noticias', con_g)
 
+# Lectura de los candidatos de segunda oportunidad (tope por corrida; cada enlace se lee una vez).
+pendientes_so = [(it, n) for it, n in segunda_oportunidad.values()][:60]
+with ThreadPoolExecutor(8) as ex:
+    textos_so = list(ex.map(lambda par: texto_pagina(par[0]['u']), pendientes_so))
+sumados_so = 0
+for (it, n), t in zip(pendientes_so, textos_so):
+    if not t: continue
+    REVISADOS[it['u']] = dt.date.today().isoformat()
+    mejor = mejor_nota_por_texto(it, t)
+    if not mejor or mejor[1]['id'] != n['id']: continue
+    medio = MEDIO_POR_DOMINIO.get(it.get('dominio', '')) or conocidos.get(clave(it['src']), limpio(it['src']))
+    if NO.search(medio) or (n['id'], medio) in ya: continue
+    ev = mejor[2]
+    tipo = 'confirmado por texto' if ev['misma_nota'] else 'mismo caso con redacción propia'
+    motivo = (f"El título no coincidía; se leyó la nota: {ev['terminos_titulo']} términos del título, "
+              f"{ev['terminos_cuerpo']} del cuerpo, {round(ev['coincidencia_cuerpo_medio'] * 100)}% del texto del medio")
+    ya.add((n['id'], medio)); sumados_so += 1
+    c = classify(t, n['id'])
+    addrow(medio, dict(it, nid=n['id'], motivo=motivo), f"Revisión completa ({tipo}, hallado por buscador)", c[0], c[1], c[2])
+    cobertura.setdefault(medio, 'Encontrado por buscador; fuente descubierta automáticamente')
+print('Segunda oportunidad por texto: leídos', len(pendientes_so), '| sumados', sumados_so)
+
 # Guardar el registro para que la siguiente ejecución siga monitorizando los dominios nuevos.
 REGISTRO.sort(key=lambda r: (r.get('ultima_deteccion', ''), r.get('dominio', '')))
 with open(REG_PATH, 'w', encoding='utf8') as rf:
     json.dump(REGISTRO, rf, ensure_ascii=False, indent=2)
 with open(REVISADOS_PATH, 'w', encoding='utf8') as rf:
-    json.dump({'revisados': dict(sorted(REVISADOS.items())), 'candidatos': dict(sorted(CANDIDATOS_DATOS.items()))}, rf, ensure_ascii=False, indent=0)
+    json.dump({'criterio': CRITERIO_TEXTO, 'revisados': dict(sorted(REVISADOS.items())), 'candidatos': dict(sorted(CANDIDATOS_DATOS.items()))}, rf, ensure_ascii=False, indent=0)
 print('Textos leídos en esta corrida:', len(DIAG_TEXTO), '| lista de revisados:', len(REVISADOS))
 if os.environ.get('DIAG_TEXTO'):
     with open(os.environ['DIAG_TEXTO'], 'w', encoding='utf8') as rf:

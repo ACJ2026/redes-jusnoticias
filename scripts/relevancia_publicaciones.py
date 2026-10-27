@@ -36,6 +36,11 @@ def shingles(texto, k=6):
             for i in range(max(0, len(palabras) - k + 1))}
 
 
+def es_misma_publicacion(evidencia):
+    """Cuenta como repercusión: copia o reescribe la nota, o cuenta el mismo caso."""
+    return bool(evidencia.get("misma_nota") or evidencia.get("mismo_caso"))
+
+
 def evidencia_misma_nota(titulo_oficial, cuerpo_oficial, titulo_medio, cuerpo_medio):
     """Devuelve métricas y si hay evidencia suficiente de la misma publicación."""
     ot, mt = tokens(titulo_oficial), tokens(titulo_medio)
@@ -55,8 +60,19 @@ def evidencia_misma_nota(titulo_oficial, cuerpo_oficial, titulo_medio, cuerpo_me
         and ratio_medio >= 0.30
         and ratio_frases >= 0.20
     )
+    # Mismo caso contado con palabras propias del medio: no copia frases, pero comparte
+    # términos específicos del título y buena parte del vocabulario de la nota. Medido el
+    # 27/10/2026 (nota 14925): las versiones propias de ADN Sur, EQS Notas, El Monterizo y
+    # La Posta dieron ≥33 % del cuerpo del medio y ≥3 términos del título; contra las demás
+    # notas de esos días, ≤16 % y ningún término del título.
+    mismo_caso = (
+        len(comunes_titulo) >= 2
+        and len(comunes_cuerpo) >= 40
+        and ratio_medio >= 0.25
+    )
     return {
         "misma_nota": bool(cuerpo_reproducido and (titulo_especifico or ratio_frases >= 0.35)),
+        "mismo_caso": bool(mismo_caso),
         "terminos_titulo": len(comunes_titulo),
         "terminos_cuerpo": len(comunes_cuerpo),
         "coincidencia_cuerpo_oficial": round(ratio_oficial, 4),

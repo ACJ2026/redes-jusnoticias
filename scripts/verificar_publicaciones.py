@@ -18,7 +18,7 @@ from pathlib import Path
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; JusNoticiasVerificador/1.0)"}
 from historial import es_enlace_directo, normalizar_url
-from relevancia_publicaciones import evidencia_misma_nota
+from relevancia_publicaciones import evidencia_misma_nota, es_misma_publicacion
 
 BUSCADORES = ("news.google.com", "bing.com", "www.bing.com")
 STOP = set("""para sobre desde entre donde porque cuando hasta durante contra juzgado juzgados justicia judicial poder chubut provincia fallo causa pesos ordena ordenan ordeno penal trelew rawson madryn comodoro esquel puerto rivadavia millones prision tribunal superior ciudad nuevo nueva jusnoticias contenido gobierno provincia""".split())
@@ -217,12 +217,15 @@ def main():
             "coincidencia_cuerpo_medio": round(body_media_ratio, 4),
             "coincidencia_frases": evidencia["coincidencia_frases"],
             "misma_nota": evidencia["misma_nota"],
+            "mismo_caso": evidencia["mismo_caso"],
         }
-        if evidencia["misma_nota"]:
+        if es_misma_publicacion(evidencia):
             fila["confianza"] = "Alta"
             fila["metodo"] = "Verificada automáticamente: título y contenido comparados con la nota oficial"
             fila["motivo"] = (
-                f"Coincidencia específica confirmada: {evidencia['terminos_titulo']} términos distintivos "
+                ("Coincidencia específica confirmada: " if evidencia["misma_nota"]
+                 else "Mismo caso contado con palabras propias del medio: ")
+                + f"{evidencia['terminos_titulo']} términos distintivos "
                 f"del título, {evidencia['terminos_cuerpo']} del cuerpo; "
                 f"frases compartidas {round(evidencia['coincidencia_frases'] * 100)}%"
             )

@@ -793,9 +793,9 @@ class TableroPublicoTests(unittest.TestCase):
         verificador = (ROOT / "scripts/verificar_publicaciones.py").read_text(encoding="utf-8")
         actualizador = (ROOT / "scripts/actualizar.py").read_text(encoding="utf-8")
         self.assertIn("from relevancia_publicaciones import evidencia_misma_nota", verificador)
-        self.assertIn('if evidencia["misma_nota"]:', verificador)
+        self.assertIn("if es_misma_publicacion(evidencia):", verificador)
         self.assertIn("from relevancia_publicaciones import evidencia_misma_nota", actualizador)
-        self.assertIn("if not evidencia['misma_nota']: continue", actualizador)
+        self.assertIn("if not es_misma_publicacion(evidencia): continue", actualizador)
 
     def test_decisiones_manuales_viven_en_revision_manual_y_no_en_el_codigo(self):
         # Las correcciones por nota se cargan como datos (confirmar/descartar por URL), no como listas en el código.
