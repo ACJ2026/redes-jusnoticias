@@ -779,11 +779,10 @@ class TableroPublicoTests(unittest.TestCase):
         por_medio = {}
         for fila in filas:
             por_medio[fila["medio"]] = fila
-        # Perfil on MSN está clasificado como otra noticia y no debe contarse
-        # solo para forzar el total a 24. Las URLs revisadas manualmente se
-        # vuelven a aplicar en cada relevamiento.
-        # La base histórica contiene 21 medios elegibles; el relevamiento añade las URLs manuales configuradas abajo.
-        self.assertEqual(21, len(por_medio))
+        # La base histórica vigente contiene 24 medios elegibles; Perfil on MSN
+        # no se cuenta porque no corresponde a esta nota. Las URLs manuales
+        # configuradas se vuelven a aplicar en cada relevamiento.
+        self.assertEqual(24, len(por_medio))
         self.assertNotIn("Perfil on MSN", por_medio)
         self.assertTrue(all(
             str(r.get("metodo", "")).startswith((
