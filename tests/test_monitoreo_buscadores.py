@@ -2,6 +2,7 @@ import ast
 import datetime as dt
 import html
 import re
+import sys
 import unittest
 import urllib.parse
 from pathlib import Path
@@ -71,9 +72,13 @@ def cargar_segunda_oportunidad(nota_texto, nota_titulo, fecha="2026-10-16"):
     nodos = [n for n in arbol if isinstance(n, ast.FunctionDef) and n.name in nombres]
     nodos += [n for n in arbol if isinstance(n, ast.Assign) and any(getattr(t, "id", "") in ("STOP", "MED") for t in n.targets)]
     import unicodedata
-    espacio = {"re": re, "html": html, "dt": dt, "unicodedata": unicodedata}
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from relevancia_publicaciones import evidencia_misma_nota
+    espacio = {"re": re, "html": html, "dt": dt, "unicodedata": unicodedata,
+               "evidencia_misma_nota": evidencia_misma_nota}
     exec(compile(ast.Module(body=nodos, type_ignores=[]), "actualizar.py", "exec"), espacio)
-    j = {"id": 1, "date": fecha, "tk": espacio["toks"](nota_titulo + " " + nota_texto[:1500]), "sh": espacio["shing"](nota_texto),
+    j = {"id": 1, "date": fecha, "titulo": nota_titulo, "body": nota_texto,
+         "tk": espacio["toks"](nota_titulo + " " + nota_texto[:1500]), "sh": espacio["shing"](nota_texto),
          "tb": espacio["toks"](nota_titulo + " " + nota_texto)}
     otra = {"id": 2, "date": fecha, "tk": set(), "sh": set(), "tb": espacio["toks"]("Juzgado de Esquel condena por estafa a un comerciante del centro")}
     import math
@@ -125,12 +130,12 @@ class SegundaOportunidadTest(unittest.TestCase):
                  + " ".join(f"Párrafo {i} con opiniones distintas de especialistas, docentes y familias sobre la escuela." for i in range(12)))
         self.assertEqual(e["confirmar_por_texto"](candidatos, {item["u"]: texto}), [])
 
-    def test_si_nombra_a_jusnoticias_se_acepta_aunque_redacte_distinto(self):
+    def test_mencionar_jusnoticias_sin_reproducir_la_nota_no_alcanza(self):
         e = cargar_segunda_oportunidad(NOTA, TITULO)
         item = {"t": "Escolarización presencial: lo que dijo la Cámara", "d": "2026-10-17", "u": "https://y.com.ar/n"}
         candidatos = e["cerca"]([item], [])
         texto = "Según informó Jusnoticias, la Cámara resolvió el caso de la escolarización de una niña de cinco años."
-        self.assertEqual(len(e["confirmar_por_texto"](candidatos, {item["u"]: texto})), 1)
+        self.assertEqual(e["confirmar_por_texto"](candidatos, {item["u"]: texto}), [])
 
     def test_fuera_de_la_ventana_de_fechas_no_es_candidato(self):
         e = cargar_segunda_oportunidad(NOTA, TITULO)
@@ -144,19 +149,18 @@ class SegundaOportunidadTest(unittest.TestCase):
 
 
 class LecturaTextoCompletoTest(unittest.TestCase):
-    def test_reescritura_con_datos_propios_queda_por_revisar_con_motivo(self):
+    def test_reescritura_tematicamente_parecida_sin_evidencia_no_se_asocia(self):
         e = cargar_segunda_oportunidad(NOTA, TITULO)
         item = {"t": "Madryn: no podrán educarla en casa", "d": "2026-10-19", "u": "https://www.adnsur.com.ar/x"}
         texto = ("La Cámara de Apelaciones de Puerto Madryn ratificó que una niña de cinco años debe asistir a una escuela "
                  "reconocida por el Estado. Sus padres pretendían reemplazar la escolarización presencial por plataformas privadas "
                  "no supervisadas. El tribunal recordó que la educación es un servicio público esencial.")
         out = e["revisar_texto"]([item], {item["u"]: texto}, "ADN Sur")
-        candidatos = [m for _, m, _ in e["DATOS_PEND"]] + [m for m, _ in out]
-        self.assertEqual(len(candidatos), 1)
-        self.assertIn("datos coincidentes", candidatos[0]["motivo"])
+        self.assertEqual(out, [])
+        self.assertEqual(e["DATOS_PEND"], [])
         self.assertIn(item["u"], e["REVISADOS"])
         e["agregar_por_datos"]()
-        self.assertEqual(len(e["FILAS"]) + len(out), 1)
+        self.assertEqual(e["FILAS"], [])
 
     def test_otro_tema_no_se_asocia_pero_queda_como_leido(self):
         e = cargar_segunda_oportunidad(NOTA, TITULO)
