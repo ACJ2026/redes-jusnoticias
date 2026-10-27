@@ -49,4 +49,10 @@ jobs:
           print('Notas con medios nuevos:', len(nuevas))
           for n, ms in sorted(nuevas.items(), reverse=True)[:40]:
               print(f'  nota {n}: +{len(ms)} ->', ', '.join(ms))
+          # Detalle de cada medio nuevo para revisar a mano que sea la nota correcta.
+          print('\nDETALLE (medios nuevos por nota):')
+          for r in sorted(ahora, key=lambda r: -r['nota_id']):
+              if r['medio'] in nuevas.get(r['nota_id'], []):
+                  ev = r.get('evidencia_verificacion') or {}
+                  print(f"  {r['nota_id']} | {r['medio']} | {r.get('confianza')} | {r.get('metodo','')[:70]} | {r.get('url','')[:110]} | {(r.get('motivo') or '')[:160]} | {ev.get('titulo_medio','')[:90]}")
           PY
