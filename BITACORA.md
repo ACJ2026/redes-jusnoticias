@@ -741,3 +741,31 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - Se cambió la concurrencia del workflow `.github/workflows/actualizar.yml` a `cancel-in-progress: true` para permitir que una ejecución nueva reemplace una anterior de la misma concurrencia. El cambio quedó en el commit `795ee67af03da3fb6f58529fedb17dc4c82e7e58`; el nuevo run [40529795882](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40529795882) estaba en cola al momento de registrar esta entrada.
 - **Estado de actualización:** pendiente. No afirmar que el tablero o `data/actualizado.txt` se renovaron hasta que el relevamiento termine correctamente y se compruebe la fecha guardada y la salida pública.
 - **Siguiente paso:** seguir los runs 40526068741 y 40529795882; si uno finaliza correctamente, comprobar `data/actualizado.txt` y la salida pública. Si falla, registrar el error real del log antes de corregir.
+
+
+## 2026-10-27 — Estabilizar el relevamiento: decisiones como datos, pruebas por mecanismo y corridas sin cancelar (Claude)
+
+**Situación:** el tablero no guardaba datos desde el 27/10 06:45 (hora argentina). Desde los cambios del #122 todas las corridas fallaron o se cancelaron (1 falla por prueba, 1 por regresiones y 4 canceladas por empujes seguidos a `main`).
+
+**Causas:**
+1. Correcciones por nota cargadas como listas fijas en el código (`FUENTES_VERIFICADAS` para la nota 14884 en dos lugares de `actualizar.py`; `MEDIOS_NO_VERIFICADOS_14664` en `actualizar.py` y `verificar_publicaciones.py`).
+2. Pruebas que exigían números de los datos vivos («la 14884 tiene 24 medios», «la 14664 solo Noticias PMY»): corren antes de guardar y frenan el guardado si una corrida cambia esos datos. Se llegó a cambiar el número esperado de 24 a 21 y de nuevo a 24.
+3. `cancel-in-progress: true` en `actualizar.yml`: cada empuje al recolector cancelaba la corrida en curso.
+4. **Error en el conteo:** la lista `metodoVerificado` del tablero no incluía las confirmaciones manuales («Confirmada manualmente»), así que las publicaciones confirmadas con el botón **Confirmar** dejaban de contarse como verificadas.
+
+**Cambios:**
+- Las 8 URLs verificadas de la nota 14884 (confirmar) y las 11 URLs de la nota 14664 (descartar) pasan a `data/revision_manual.json`, el mecanismo general que ya existía (`aplicar_revision_manual`). Se borraron las listas fijas del código; el verificador ahora respeta cualquier decisión manual (confirmar o descartar) sin reabrirla.
+- El tablero cuenta como verificada toda publicación con confirmación manual y enlace directo.
+- `cancel-in-progress: false`: una corrida nueva espera a la anterior.
+- Pruebas: se reemplazaron las que exigían números por pruebas del mecanismo (las decisiones viven en `revision_manual.json`, al aplicarlas la 14664 no cuenta los medios descartados, una confirmación manual cuenta en el tablero, el flujo no cancela corridas). Se conservan las pruebas de GPT sobre el criterio de «misma nota» (`relevancia_publicaciones.py`).
+- No se tocaron `data/rep2.json` ni otros datos históricos.
+
+**Para revisar con el usuario (cambio de conteo de GPT no consultado):** desde el #120 el tablero ya no cuenta como verificadas las filas con método «Buscador (solo sep–oct)» (42) ni «Buscador web» (7). Puede ser correcto, pero cambia las cifras.
+
+**Reglas de trabajo para todas las IAs (Claude y GPT):**
+1. Nada directo en `main`: siempre rama + PR, y fusionar solo con los chequeos en verde.
+2. Una corrección de una nota puntual (confirmar o descartar una publicación) se carga en `data/revision_manual.json` o con los botones del tablero, nunca como código.
+3. Las pruebas verifican mecanismos, no cantidades de los datos vivos.
+4. Antes de cambiar cómo se cuenta o se detecta, consultar al usuario.
+5. No cambiar la concurrencia del flujo de actualización ni lanzar corridas en cadena.
+6. Revisar los PR abiertos y los últimos cambios antes de empezar, y anotar todo en esta bitácora.

@@ -1,1 +1,173 @@
-[]
+[
+ {
+  "nota_id": 14884,
+  "medio": "0223",
+  "url": "https://www.0223.com.ar/nota/2026-10-19-19-12-0-escracho-a-una-mujer-por-chorra-la-acusacion-era-falsa-y-debera-pagarle-2-4-millones",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Verificación manual de URL aportada",
+  "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
+ },
+ {
+  "nota_id": 14884,
+  "medio": "Elonce",
+  "url": "https://www.elonce.com/amp/acuso-de-ladrona-a-una-vecina-y-debera-pagar-2-4-millones.htm",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Verificación manual de URL aportada",
+  "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
+ },
+ {
+  "nota_id": 14884,
+  "medio": "La Voz del Interior",
+  "url": "https://www.lavoz.com.ar/ciudadanos/dijo-chorra-vecina-facebook-justicia-debera-indemnizarla-pagara_0_ei9s7vvfd2.html",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Verificación manual de URL aportada",
+  "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
+ },
+ {
+  "nota_id": 14884,
+  "medio": "Clarín",
+  "url": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Verificación manual de URL aportada",
+  "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
+ },
+ {
+  "nota_id": 14884,
+  "medio": "Radio Chubut",
+  "url": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Verificación manual de URL aportada",
+  "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
+ },
+ {
+  "nota_id": 14884,
+  "medio": "Canal 12",
+  "url": "https://canal12web.com/una-madrynense-debera-pagar-mas-de-2-millones-por-escrachar-a-una-vecina-de-robarle-dinero-en-facebook/",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Verificación manual de URL aportada",
+  "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
+ },
+ {
+  "nota_id": 14884,
+  "medio": "Cholila Online",
+  "url": "https://cholilaonline.ar/2026/10/precedente-escraches-redes-puerto-madryn-sancion-difamacion-facebook.html",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Verificación manual de URL aportada",
+  "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
+ },
+ {
+  "nota_id": 14884,
+  "medio": "ADN Sur",
+  "url": "https://www.adnsur.com.ar/policiales---judiciales/escracho-a-una-mujer-en-chubut--la-llamo--chorra--y-ahora-debera-pagar--2-4-millones-por-difamarla_a6ad6255759814e2274499dd6",
+  "decision": "confirmar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Verificación manual de URL aportada",
+  "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "Diario La Portada",
+  "url": "https://diariolaportada.com.ar/2026/10/02/la-ley-penal-juvenil-eje-de-un-encuentro-con-estudiantes-de-escuelas-secundarias/",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "Metadata Noticias",
+  "url": "https://www.metadatanoticias.com.ar/2026/10/03/nuevo-regimen-penal-juvenil-mas-de-120-agentes-participaron-de-una-capacitacion-en-chubut/",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "Del Mar Digital",
+  "url": "https://delmardigital.net/ministros-del-superior-tribunal-de-justicia-participan-del-iv-congreso-nacional-penal-adolescente-y-juvenil/",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "Canal Doce Misiones",
+  "url": "https://www.canal12misiones.com/justicia/misiones-regimen-penal-juvenil",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "CHACODIAPORDIA.COM",
+  "url": "https://chacodiapordia.com/la-justicia-chaquena-con-activa-participacion-en-el-iv-congreso-nacional-penal-adolescente-juvenil/",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "La Nota San Juan",
+  "url": "https://lanotasj.com.ar/el-poder-judicial-participo-en-un-encuentro-nacional-sobre-el-nuevo-regimen-penal-juvenil/",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "InfoBariloche",
+  "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQNEtOQUJMeVFjNmk3RVZ6b1BkOURoR1RqbjF5OXVZMDVnWHdSaVdfSnlSeUJKNG9uY2pTeVJsVUhFOFF5S0ZTZVppUDV0Wjk3SERCbldrM2JTazFhdWo3aVQxb3VNMUwxUzZtU2NleDNvSm9zN2RVdWZEcUZLdnZpTmQ0N3VFaDViQXVJczRjd0Z0d3NwcWI5dmxyQXNOVWpjZUxySWtMWFhYd3lqUmVxME82WVFZVkRpUm5iWjdtd0VnbnlmV2pSbllCTQ?oc=5",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "El Mediador - Santa Cruz",
+  "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMnY4a1RuY3NNcDRCOGxVMnNWTnhRMjVaOWtxd19wV1owOENkMnV5T2szYUprMklqdGg1cnY1Q3k1T0ZkdmpSOXhJUUVDYVlIcERfOXZpZk5NWVh4Si1mLTUtOElzaXJGc2dmZzhFUjNhVVNQdE9YbFhIbW1UcmNqc1BQU3hOdkdXWVhZNUw1aThRZEFrNDM1elBDN2w1cl9zdTlpOTFoQnFmTVhfeEZmcFdmWU9tUdIBrgFBVV95cUxQUklLc1dXMk03OEI0OXh3Z1J4ZldseUdTNktFWjFUMWN3SjNBX3BBWDRVRFp2U3hSQ0Nlb3V0VXBkQWFkVE5aWUlxdUNfTTV5VVh0S05nTzducnd0OHVDSElXRF9weEhYRVBSdEpTU0w0bTZhblN3Q00yWEZqUWZoSzhZcmRuLTJCMmw0cTVmUFI0V0VFWTlMLTlsUlN2VEREVmtLeXRTM0hpc2JrMFE?oc=5",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "El 10 TV",
+  "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxObVkzN2RFTzE2cnBHYzFNRDBaSXMyTWxGM0xKdFJmNnFrS1NLNDRmLWQ2TkdxWnBTQ1R5R0MtcDEtYWc0Z3FxckZvTGttOEF3Q2dVU0JnZkZjcXlPdVlZZjF0Z2dYbGxoeEZJV253MnFMbVNyY3Y0dXdITzF4cC14ZDBQWTl6QTNTUGFlQzQwX1ljaVhuWnlxTURVLXN4Y3ZsU2o0N0w3Wk1WaE9XYWJ5WHg1QmNYa3AzazJwYV9SYnhoMzlncnBROUhKdDA?oc=5",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "El Tribuno",
+  "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOQmRJV0p2eHVic3JScXpNbTJ2Nl9HYVN5T201OFRtZDgxT2ZkNE9ZZURWUGt0NjhzYWl2ZGY1ejRXdFVsTmItZkRIQU1Rb3Yycm0xMmlIbjlOZDRfM0k2M2YwOXI1X2MzUXFwWVI4M3pjeDFTMmZsTEp2eHRsU0NncnlmaUtDUFh2YzBkQ0xaeXptWEdhWDdsN0R5Wk5IcW16Y2J5NUlXVnJ1TW1McUpnb0RuTnpVLXkwYU1odC01NjlIUlRXSkdoYVh0endacFhqLVltQkNRV3VubGFMVnl4aXVFa0tjMHRGcG95aGM3cmNaaVNMUXdSOdIB_gFBVV95cUxOUDEwUGlMc090cmx2ZmhYbTVDN3hSWFR1Z1lXODIxY3dwZW5XWTdhMjRtSEdsUGVqZHlvMjdMRkdWUkxGbXpwNzBoVmtta0s5Q2hkWFp4VkZVTHpiLWtIcUdfUjZZZWpjb0p5SjNsX3V0X2xZS3BseGZTNzNnbTVCTjZ1QnVQZUNtdVRreTNLRTdYTnNMZzhjMnZBTE1KaXZWNTNtbENfN3U4d0d3Umdhd3B2MkczRUNjZFlsLWRGaXJKbzlsR25DanR4Qjc1QjlSZ0w2TkdKWFJhbENNemktV3JoTzdXRGpwdkVZWklYZ3ZlekpRZnBWOUtmWXBXZw?oc=5",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ },
+ {
+  "nota_id": 14664,
+  "medio": "Diario Huarpe",
+  "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQMmFWUE1sTEI1RTNnbVhzRVVnaW11T183bHZTN1JENkJYSDNyVjV4UzlUV3ExaHgyeUpNZm83cHpyYi0zelZ0Sk80TDY5di1KTm1XVGExakFmUk9DQ3hwVVVXTmpwQnFOcG5kRVpoY05wVWNrR3NZRnlHTTZjZUdpSEdWTWZCTWppSVg5SEw1UWNJMjBOV0tWQ2hrbHNDSlo5bWpfX0w3Q3huMjhGaUd6RDV2X0NDWlM0TU5aSw?oc=5",
+  "decision": "descartar",
+  "fecha": "2026-10-27",
+  "revisado_por": "Revisión de la nota 14664",
+  "motivo": "Cobertura distinta del mismo congreso; no acredita que el medio publicó esta nota (antes fija en el código)"
+ }
+]
