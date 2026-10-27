@@ -765,5 +765,30 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("no deben interpretarse como información actual", template)
         self.assertIn("fecha y hora no disponibles", template)
 
+    def test_nota_14884_conserva_los_24_medios_verificados_y_enlaces_directos(self):
+        datos = read_json("data/rep2.json")
+        filas = [
+            r for r in datos
+            if str(r.get("nota_id")) == "14884"
+            and r.get("medio")
+            and r.get("confianza") != "Baja"
+            and str(r.get("url", "")).startswith(("http://", "https://"))
+            and "news.google.com" not in str(r.get("url", "")).lower()
+            and not str(r.get("metodo", "")).lower().startswith("a verificar:")
+        ]
+        por_medio = {}
+        for fila in filas:
+            por_medio[fila["medio"]] = fila
+        self.assertEqual(24, len(por_medio))
+        self.assertTrue(all(
+            str(r.get("metodo", "")).startswith((
+                "Revisión completa",
+                "Verificación manual de URL aportada",
+                "Revisión de texto (coinciden los datos)",
+                "Verificada automáticamente: título y contenido comparados con la nota oficial",
+            ))
+            for r in por_medio.values()
+        ))
+
 if __name__ == "__main__":
     unittest.main()
