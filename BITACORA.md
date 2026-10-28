@@ -956,3 +956,20 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Sin cambios a propósito:**
   - Visitas sigue consultando a Google al abrir la pestaña: gasta muy poca cuota y evita un clic.
   - Faltan las claves de TikTok, Google y X en la vista previa: es configuración de Cloudflare, no código.
+
+## 2026-10-28 — Actualización de redes verificada y carga manual de X (Claude, opción 2 de Ignacio)
+
+- **Actualización automática verificada:**
+  - La corrida 40709052506 terminó bien y `data/actualizado.txt` quedó en 2026-10-28T15:17:45Z.
+  - `data/redes2.json` pasó de 285 a 301 filas: las 16 publicaciones que faltaban, entre ellas la página STJ, la nota del 19/10 de Puerto Madryn y las del 20/10.
+- **Comparado con los perfiles reales que pegó Ignacio:**
+  - Facebook, Instagram, YouTube y TikTok no tienen publicaciones propias después del 20/10. En TikTok, el último video es del 14/10.
+  - X sí tiene posts del 19 y del 23/10 que no estaban: X no se consulta porque su API cobra por consulta.
+- **Carga manual de X:**
+  - Nuevo `functions/api/x-manual.js`: lectura libre; para guardar pide la misma clave y la misma base que la revisión manual (`REVISIONES_CLAVE`, `REVISIONES_DB`). La tabla `x_publicaciones_manual` se crea sola.
+  - Formulario «Cargar un post de X a mano» en la pestaña Redes: enlace, fecha, comienzo del texto, me gusta, respuestas, reposts y vistas. Una cifra vacía queda «sin dato», nunca 0.
+  - El tablero suma esos posts al abrir. `scripts/actualizar_redes.py` los guarda en `data/redes2.json` cada 4 h, sin duplicar ni borrar.
+- **4 posts de X cargados ya**, copiados del perfil por Ignacio, con las cifras sin dato hasta completarlas con el formulario:
+  - 23/10 Panigadi (nota 14913);
+  - 19/10 Quiroga y su respuesta en el mismo hilo;
+  - 19/10 Puerto Madryn (nota 14884).

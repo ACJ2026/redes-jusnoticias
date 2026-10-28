@@ -78,6 +78,8 @@ def combinar(guardadas, nuevas):
             fila["fecha"] = str(fila["fecha"])[:10]
             if n.get("url"):
                 fila["url"] = n["url"]
+            if n.get("carga"):
+                fila["carga"] = n["carga"]
             filas.append(fila)
             por_clave[fila["key"]] = fila
             usadas.add(id(fila))
@@ -102,7 +104,17 @@ def consultar():
         datos = json.load(r)
     for red, error in (datos.get("errores") or {}).items():
         print(f"AVISO: {red} no respondió: {str(error)[:200]}")
-    return [f for v in (datos.get("redes") or {}).values() for f in (v.get("filas") or [])]
+    filas = [f for v in (datos.get("redes") or {}).values() for f in (v.get("filas") or [])]
+    # X no se consulta por API (cobra por consulta): se suman los posts cargados a mano en el tablero.
+    try:
+        req = urllib.request.Request(f"{SITIO}/api/x-manual", headers={"Accept": "application/json", "User-Agent": "jusnoticias-relevamiento"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            manuales = json.load(r).get("filas") or []
+        print(f"X (carga manual): {len(manuales)} posts.")
+        filas += manuales
+    except Exception as error:
+        print(f"AVISO: no se pudo leer la carga manual de X ({error}).")
+    return filas
 
 
 def main():
