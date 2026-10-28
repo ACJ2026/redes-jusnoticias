@@ -943,3 +943,16 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Problema: Ignacio seguía viendo el comportamiento viejo («Activa · responde en vivo», el clic filtraba) con el HTML nuevo. `_headers` impide guardar solo la página: `panel-vivo.js/.css` y `tablero-plausible.js/.css` podían quedar viejos en el navegador.
   - Arreglo: `armar_publico.py` los pide con `?v=<huella del contenido>`, que cambia cuando cambia el código.
   - Prueba nueva: el HTML público tiene la versión puesta.
+
+## 2026-10-28 — Arreglos menores de la revisión (Claude)
+
+- **Portada:**
+  - «Ingresar al tablero completo» también aparece arriba, junto al período. Antes estaba solo al final, a unos 1.950 px.
+  - «Atrás» vuelve a dejar en su lugar el botón que se tocó.
+- **«Repercusiones entrando»:** el título de la nota va una sola vez y debajo cada medio que la publicó. Antes se repetía el mismo título muchas veces (en la prueba quedaron 6 títulos para 40 filas).
+- **Redes:** una cifra que falta se muestra como «—», no como celda vacía (función `sinDatoGuion`).
+- **X:** el mismo mensaje simple en todas las versiones: «la API de X pide créditos pagos; se usan los registros guardados».
+- **Tabla de Notas en celular:** sin cambios, porque ya se muestra como fichas y a 375 px no se corre de costado. Lo que vio Chrome fue por probar con un marco dentro de la página.
+- **Sin cambios a propósito:**
+  - Visitas sigue consultando a Google al abrir la pestaña: gasta muy poca cuota y evita un clic.
+  - Faltan las claves de TikTok, Google y X en la vista previa: es configuración de Cloudflare, no código.

@@ -113,14 +113,18 @@
   const unicas = [...new Map(filas.map(r => [r.nota_id + '|' + canonMedio(r.medio), r])).values()];
   const recientes = unicas.sort((a, b) => notaPorId.get(Number(b.nota_id)).fecha.localeCompare(notaPorId.get(Number(a.nota_id)).fecha) || Number(b.nota_id) - Number(a.nota_id)).slice(0, 40);
   if (!recientes.length) lista.append(el('li', 'pv-fila', 'Todavía no hay publicaciones en medios registradas.'));
-  recientes.forEach(r => {
+  // El título de la nota va una sola vez; debajo, cada medio que la publicó (sin repetir el título).
+  recientes.forEach((r, k) => {
     const n = notaPorId.get(Number(r.nota_id));
-    const li = el('li');
+    const misma = k > 0 && Number(recientes[k - 1].nota_id) === Number(r.nota_id);
+    const li = el('li', misma ? 'pv-misma' : '');
     const a = el('a', 'pv-fila'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
+    a.title = canonMedio(r.medio) + ' · ' + n.titulo;
     const linea = el('span', 'pv-medio'); linea.append(el('b', '', canonMedio(r.medio)), el('span', 'pv-mono pv-cuando', ' · nota del ' + ddmm(n.fecha)));
-    const tit = el('span', 'pv-tit', n.titulo);
     const ok = esConfirmada(r); const b = el('span', 'pv-badge pv-der ' + (ok ? 'ok' : 'pend'), ok ? 'Verificada' : 'A verificar');
-    a.append(linea, b, tit); li.append(a); lista.append(li);
+    a.append(linea, b);
+    if (!misma) a.append(el('span', 'pv-tit', n.titulo));
+    li.append(a); lista.append(li);
   });
   const verTodas = el('button', 'pv-ver-todas', 'Ver todas →'); verTodas.type = 'button';
   verTodas.addEventListener('click', () => {
