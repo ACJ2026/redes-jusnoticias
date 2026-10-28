@@ -308,7 +308,7 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 58,
+      "publicaciones": 59,
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/intentaron-robar--dispararon-contra-un-policia-y-el-jurado-popular-los-declaro-culpables_a69a0c57fd58fb9ae9fd2e582",
       "primera_deteccion": "2026-10-21",
@@ -336,8 +336,8 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 49,
       "notas": 48,
       "ejemplo": "https://digitalchubut.com/puerto-madryn-condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
@@ -466,8 +466,8 @@
       "tipo": "Radio",
       "localidad": "Trelew",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 34,
       "notas": 32,
       "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
@@ -555,7 +555,7 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 23,
+      "publicaciones": 24,
       "notas": 23,
       "ejemplo": "https://www.elchubut.com.ar/esquel/2026-10-27-11-9-0-un-plan-de-ahorro-aumento-952-y-la-justicia-de-esquel-sanciono-a-ford-y-plan-ovalo",
       "primera_deteccion": "2026-10-23",
@@ -715,6 +715,34 @@
       "redes": {}
     },
     {
+      "nombre": "Crónica",
+      "alias": [],
+      "dominio": "diariocronica.com.ar",
+      "url": "https://diariocronica.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 13,
+      "notas": 13,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-28",
+      "redes": {
+        "Facebook": [
+          "Crónica Comodoro Rivadavia",
+          "/diariocronicacomodoro"
+        ],
+        "Instagram": [
+          "@cronicacrd"
+        ],
+        "X": [
+          "@cronicacrd"
+        ]
+      }
+    },
+    {
       "nombre": "CHACODIAPORDIA.COM",
       "alias": [],
       "dominio": "chacodiapordia.com",
@@ -741,34 +769,6 @@
         ],
         "YouTube": [
           "/@ciudadtvcontenidosok"
-        ]
-      }
-    },
-    {
-      "nombre": "Crónica",
-      "alias": [],
-      "dominio": "",
-      "url": "",
-      "tipo": "Prensa gráfica",
-      "localidad": "Comodoro Rivadavia",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 12,
-      "notas": 12,
-      "ejemplo": "",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "Crónica Comodoro Rivadavia",
-          "/diariocronicacomodoro"
-        ],
-        "Instagram": [
-          "@cronicacrd"
-        ],
-        "X": [
-          "@cronicacrd"
         ]
       }
     },
@@ -1151,8 +1151,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 6,
       "notas": 5,
       "ejemplo": "https://prensamercosur.org/2026/10/21/octubre-rosa-el-congreso-se-ilumino-para-concientizar-sobre-la-prevencion-del-cancer-de-mama/",
@@ -1668,18 +1668,18 @@
     {
       "nombre": "Crónica Digital",
       "alias": [],
-      "dominio": "diariocronica.com.ar",
-      "url": "https://diariocronica.com.ar",
+      "dominio": "",
+      "url": "",
       "tipo": "Portal digital",
       "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
-      "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-10-28",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
       "redes": {}
     },
     {
