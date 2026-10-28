@@ -1122,7 +1122,9 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     if (directa.length) return { url: directa[0].url, tipo: 'directa' };
     // Si no hay URL directa de la nota, enlazar al perfil real del medio si está identificado.
     // No reemplazar un perfil por una búsqueda de Google ni presentar esa búsqueda como nota.
-    const perfil = cuenta ? enlaceCuenta(cuenta) : perfilUrl(f.red, f.cuenta);
+    // Mismo criterio que enlaceCuenta (definida en otra función): URL guardada, perfil o cuenta del mismo medio.
+    const perfilCuenta = c => c.url || perfilUrl(c.red, c.cuenta) || (c.medio && cuentasDatos.filter(x => x.red === c.red && x.medio === c.medio).map(x => x.url || perfilUrl(x.red, x.cuenta)).find(Boolean)) || null;
+    const perfil = cuenta ? perfilCuenta(cuenta) : perfilUrl(f.red, f.cuenta);
     if (perfil) return { url: perfil, tipo: 'cuenta' };
     return null;
   };
