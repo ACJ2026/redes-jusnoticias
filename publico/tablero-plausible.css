@@ -1,7 +1,7 @@
 /* Resumen con el esquema de Plausible. Usa los colores del tablero (azul petróleo, títulos serif, claro/oscuro). */
 .pl-barra{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0 0;margin:0 0 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"f1 f1" "f2 nav" "per per";gap:6px 12px;align-items:center}
 .pl-renglon-1{grid-area:f1}.pl-renglon-2{grid-area:f2;min-width:0}.pl-barra .tabs{grid-area:nav}.pl-periodo-texto{grid-area:per}
-#dashboard-app .page,#pl-resumen{scroll-margin-top:150px}
+#dashboard-app .page,#pl-resumen,#c-detalle,#medios-detalle{scroll-margin-top:150px}
 .pl-renglon{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .pl-renglon-1{justify-content:space-between;flex-wrap:nowrap}
 .pl-renglon-1 .pl-vivo{margin-left:auto}
@@ -30,6 +30,10 @@
 .pl-barra .tabs{margin:0;border-bottom:0}
 .pl-periodo-texto{margin:0 0 6px;font-size:.78rem}
 .pl-take{margin:0 0 14px}
+/* «← Volver» del detalle de una nota y de la lista de publicaciones; cabecera de la infografía */
+.pl-volver{margin:0 0 10px;min-height:40px}
+.pl-info-cab{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pl-info-cab h2{margin:0}
 /* Las ayudas por sección viven en «?» */
 #dashboard-app .ayuda-boton{display:none}
 .pl-vivo-host{border-radius:16px;margin:0 0 16px;padding:clamp(10px,2vw,16px);background:radial-gradient(ellipse at 85% 10%,rgba(91,157,198,.22),transparent 38%),linear-gradient(145deg,#102b43 0%,#174f73 58%,#1f6c82 100%)}
@@ -93,15 +97,27 @@ div.pl-fila{cursor:default}
 @media (max-width:700px){
   .pl-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pl-grilla{grid-template-columns:1fr}
-  .pl-renglon-1{flex-wrap:nowrap}
-  .pl-titulo .kicker{display:none}
-  .pl-titulo h1:focus{outline:none}
-.pl-titulo h1:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.pl-titulo h1{font-size:1.05rem}
-  .pl-vivo{display:none}
-  .pl-acciones .btn{padding:6px 10px}
-  .pl-renglon-2{flex-wrap:nowrap;overflow:hidden}
-  .pl-barra .tabs{overflow-x:auto}
   .pl-cajon{width:100vw;border-radius:0}
+}
+/* Celular: barra compacta. Al bajar, la barra se corre hacia arriba y quedan fijas solo las pestañas
+   (el corrimiento lo calcula tablero-plausible.js en --pl-barra-oculta). */
+.pl-corto{display:none}
+@media (max-width:480px){
+  .pl-barra{top:calc(-1 * var(--pl-barra-oculta,0px));grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"tit acc" "f2 f2" "per viv" "nav nav";gap:6px 8px;padding-top:6px;margin-bottom:10px}
+  .pl-renglon-1{display:contents}
+  .pl-titulo{grid-area:tit;min-width:0}
+  .pl-titulo .kicker{display:none}
+  .pl-titulo h1{font-size:1.05rem;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pl-acciones{grid-area:acc;margin-left:0;gap:4px}
+  .pl-acciones .btn{min-height:40px;padding:6px 9px;font-size:.85rem}
+  .pl-vivo{grid-area:viv;display:inline-flex;margin-left:0;font-size:.72rem;justify-self:end}
+  .pl-periodo-texto{grid-area:per;margin:0;font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .pl-renglon-2{flex-wrap:wrap;gap:6px}
+  .pl-chips{flex-wrap:wrap;gap:4px;overflow:visible}
+  .pl-chip{padding:6px 7px;font-size:.78rem}
+  .pl-largo{display:none}.pl-corto{display:inline}
+  .pl-barra .tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible;gap:0}
+  .pl-barra .tabs button{min-width:0;padding:10px 1px;font-size:.8rem;text-align:center;white-space:nowrap}
+  #dashboard-app .page,#pl-resumen,#c-detalle,#medios-detalle{scroll-margin-top:60px}
 }
 @media (prefers-reduced-motion:reduce){.pl-vivo.ok i{animation:none}}

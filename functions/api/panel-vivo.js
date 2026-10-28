@@ -4,7 +4,7 @@ import { onRequestGet as consultarRedes } from "./redes.js";
 // data/redes2.json ni en data/canales.json: solo se guarda en una caché compartida de 5 minutos,
 // para no gastar la cuota de Meta y YouTube con cada visita.
 const CACHE_SEGUNDOS = 300;
-const CLAVE = "panel-vivo:v1";
+const CLAVE = "panel-vivo:v2";
 const CLAVE_ULTIMO = "panel-vivo:ultimo-ok";
 const DIAS = 7;
 // Se consultan 28 días para que el alcance de Instagram cubra la ventana completa de la cuenta;
@@ -39,9 +39,18 @@ const publicacion = fila => ({
   interacciones: interacciones(fila), vistas: typeof fila.vistas === "number" ? fila.vistas : null
 });
 
+// Fecha de la última publicación dentro de lo consultado (hasta 28 días). Solo se informa como
+// referencia («último video: 14/10»); no entra en las cifras de los 7 días.
+const ultimaFecha = filas => {
+  const fechas = filas.map(f => String(f.fecha || "").slice(0, 10)).filter(Boolean).sort();
+  return fechas.length ? fechas[fechas.length - 1] : null;
+};
+
 export function resumir(datos, desde) {
   const cuentas = [];
   const errores = datos.errores || {};
+  const original = datos.redes || {};
+  const ultimaDe = (red, cuenta) => ultimaFecha(((original[red] && original[red].filas) || []).filter(f => !cuenta || f.cuenta === cuenta));
   const redes = {};
   for (const [red, valor] of Object.entries(datos.redes || {})) {
     redes[red] = { ...valor, filas: (valor.filas || []).filter(f => !desde || !f.fecha || f.fecha >= desde) };
@@ -57,7 +66,8 @@ export function resumir(datos, desde) {
         seguidores: typeof pagina.seguidores === "number" ? pagina.seguidores : null,
         publicaciones: sinPublicaciones ? null : filas.length,
         interacciones: sinPublicaciones ? null : (filas.length ? sumar(filas, ["me_gusta", "comentarios", "compartidos"]) : null),
-        vistas: null
+        vistas: null,
+        ultimaPublicacion: sinPublicaciones ? null : ultimaDe("Facebook", pagina.nombre)
       });
     }
   } else {
@@ -71,21 +81,24 @@ export function resumir(datos, desde) {
     vistas: null,
     // Alcance de la CUENTA en la ventana de Insights (hasta 28 días), no por publicación.
     alcance: ig.insights && typeof ig.insights.reach === "number" ? ig.insights.reach : null,
-    alcanceDesde: ig.insightsDesde || null, alcanceHasta: ig.insightsHasta || null
+    alcanceDesde: ig.insightsDesde || null, alcanceHasta: ig.insightsHasta || null,
+    ultimaPublicacion: ultimaDe("Instagram")
   } : { red: "Instagram", cuenta: "@jus_chubut", ok: false, error: errores.Instagram || "Sin respuesta." });
   const yt = redes.YouTube;
   cuentas.push(yt ? {
     red: "YouTube", cuenta: yt.cuentaNombre || "YouTube", ok: true, error: null,
     seguidores: yt.seguidores ?? null, publicaciones: (yt.filas || []).length,
     interacciones: (yt.filas || []).length ? sumar(yt.filas, ["me_gusta", "comentarios"]) : null,
-    vistas: (yt.filas || []).length ? sumar(yt.filas, ["vistas"]) : null
+    vistas: (yt.filas || []).length ? sumar(yt.filas, ["vistas"]) : null,
+    ultimaPublicacion: ultimaDe("YouTube")
   } : { red: "YouTube", cuenta: "YouTube", ok: false, error: errores.YouTube || "Sin respuesta." });
   const tt = redes.TikTok;
   cuentas.push(tt ? {
     red: "TikTok", cuenta: "@juschubut", ok: true, error: null,
     seguidores: tt.seguidores ?? null, publicaciones: (tt.filas || []).length,
     interacciones: (tt.filas || []).length ? sumar(tt.filas, ["me_gusta", "comentarios", "compartidos"]) : null,
-    vistas: (tt.filas || []).length ? sumar(tt.filas, ["vistas"]) : null
+    vistas: (tt.filas || []).length ? sumar(tt.filas, ["vistas"]) : null,
+    ultimaPublicacion: ultimaDe("TikTok")
   } : { red: "TikTok", cuenta: "@juschubut", ok: false, error: errores.TikTok || "Sin respuesta." });
   cuentas.push({ red: "X", cuenta: "@Jus_Noticias", ok: false, error: "La API de X pide créditos: no se consulta en vivo." });
   const publicaciones = REDES.flatMap(red => (redes[red] && redes[red].filas) || []).map(publicacion)

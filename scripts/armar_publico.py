@@ -28,6 +28,15 @@ try:
                 d["localidades"][nombre] = m["localidad"]
 except OSError:
     d["localidades"] = {}
+# Otros nombres con que aparece un medio (p. ej. «examedia.com.ar» es Examedia), según el inventario.
+try:
+    d["alias_medios"] = {}
+    for m in L(ROOT / "data" / "medios_inventario.json").get("medios", []):
+        for alias in m.get("alias") or []:
+            if alias and alias != m["nombre"]:
+                d["alias_medios"][alias] = m["nombre"]
+except OSError:
+    d["alias_medios"] = {}
 js = json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 open(f[5], "w", encoding="utf-8").write(T.replace("/*DATOS*/", js))
 print("OK publico", len(d["notas"]), "notas", len(d["repercusion"]), "publicaciones", len(d["redes"]), "posteos")

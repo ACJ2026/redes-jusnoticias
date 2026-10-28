@@ -62,6 +62,18 @@ class PanelVivoServidorTest(unittest.TestCase):
         self.assertEqual(yt["publicaciones"], 1)
         self.assertEqual(yt["vistas"], 7)
 
+    def test_red_sin_publicaciones_en_7_dias_informa_la_ultima_sin_sumarla(self):
+        datos = {"redes": {"TikTok": {"seguidores": 26, "filas": [
+            {"red": "TikTok", "fecha": "2026-10-14", "vistas": 300, "me_gusta": 10}]}}, "errores": {}}
+        r = resumir(datos)
+        tt = next(c for c in r["cuentas"] if c["red"] == "TikTok")
+        self.assertTrue(tt["ok"])
+        self.assertEqual(tt["publicaciones"], 0)
+        self.assertIsNone(tt["vistas"])
+        self.assertIsNone(tt["interacciones"])
+        self.assertEqual(tt["ultimaPublicacion"], "2026-10-14")
+        self.assertEqual(r["publicaciones"], [])
+
     def test_cache_compartida_y_sin_escribir_datos(self):
         self.assertIn("CACHE_SEGUNDOS = 300", FUNCION)
         self.assertIn("env.PANEL_KV", FUNCION)
@@ -89,6 +101,11 @@ class PanelVivoClienteTest(unittest.TestCase):
     def test_interaccion_es_solo_ayuda_visual_y_no_usa_la_confianza(self):
         self.assertIn("'Interacción ' + n", CLIENTE)
         self.assertNotIn("confianza", CLIENTE.replace("r.confianza !== 'Baja'", ""))
+
+    def test_chip_gris_solo_con_error_y_leyenda_de_ultima_publicacion(self):
+        self.assertIn("c.classList.toggle('caida', !responde.length);", CLIENTE)
+        self.assertIn("'último video: '", CLIENTE)
+        self.assertIn("sin publicaciones en 7 días", CLIENTE)
 
     def test_respeta_menos_movimiento(self):
         self.assertIn("prefers-reduced-motion: reduce", CLIENTE)

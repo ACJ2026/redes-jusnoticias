@@ -862,3 +862,73 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - «Por verificar» deja de ser fila de Ciudades o Regiones y pasa a un aviso único con «revisar».
 - **Arreglo de la entrada desde la portada:** al tocar «Ingresar al tablero completo» la pantalla va arriba de todo y el foco al título. «Atrás» del navegador vuelve a la portada en la misma posición. Cambiar de pestaña también lleva arriba.
 - El resumen anterior queda en la página, oculto, porque lo usa el generador de infografías.
+
+## 2026-10-28 — Arreglos tras la revisión con Claude en Chrome (Claude)
+
+- **#135 fusionado por Ignacio.** Claude en Chrome revisó la versión publicada; en el mismo pedido hizo lo siguiente:
+  - Creó el espacio KV `panel-vivo` en Cloudflare y lo vinculó como `PANEL_KV` en Producción y en Vista previa. Empieza a funcionar con la próxima publicación del sitio.
+  - TikTok **no** necesita volver a autorizarse: `/api/panel-vivo` responde bien (ok: true). Tiene 0 publicaciones en 7 días porque el último video es del 14/10.
+- **Panel en vivo, redes que responden pero no publicaron** (pedido de Ignacio):
+  - El chip gris queda solo para redes con error (ok: false, como X).
+  - En «Redes en vivo» se muestran los seguidores, «sin publicaciones en 7 días» y «último video: dd/mm» (o «última publicación»). La fecha sale de lo consultado (28 días) y no se suma a la semana; la ventana de 7 días no cambia.
+  - Clave de caché nueva `panel-vivo:v2`, para no servir respuestas viejas sin ese dato.
+- **Tablero completo:**
+  - «Atrás» vuelve a dejar el botón «Ingresar» en el mismo lugar de la pantalla aunque cambie el alto de la portada. La página restaura la posición sola (`scrollRestoration = 'manual'`) y repite el ajuste unos instantes.
+  - Un enlace con `#resumen` arranca arriba.
+  - Queda un solo botón de infografía, el de la barra.
+  - Si se toca «?», «Filtro» o «Infografía» antes de que cargue `tablero-plausible.js`, el toque queda guardado y se atiende al terminar de cargar.
+  - La guía explica los chips de período, el filtro y las 4 pestañas.
+  - Con un filtro activo, la oración de arriba describe lo filtrado y vuelve a la original al sacar el filtro.
+  - «Visitas al sitio» sin dato ya no remite «a la tarjeta de arriba».
+  - Debajo de los números se muestra contra qué días comparan las flechas.
+- **Flechas rojas:** no era un error. Octubre (1–28) ya se comparaba contra el 03/09–30/09, la misma cantidad de días, y la baja es real (28 notas contra 32). Se aclara además que las notas de los últimos días todavía pueden sumar publicaciones.
+- **Celular (≤ 480 px):**
+  - La barra pasa de unos 248 px a unos 195 px, y al bajar quedan fijas solo las pestañas (unos 69 px).
+  - Las 4 pestañas entran completas y los chips usan textos cortos («Mes ant.», «Elegir»).
+  - Se ve el «● en vivo · hora».
+- **Lo que no se hizo:** la «barra inferior con 4 secciones y menú ⋯» que mencionó Chrome no estaba en la especificación de Ignacio.
+- **Pruebas:** 159 OK. Se probó en el navegador en 1280, 390 y 375 px.
+- **Pestaña Notas restituida (pedido de Ignacio, mismo PR):**
+  - Problema: en el #135 la tabla de notas había quedado al final de la pestaña Medios, para dejar 4 pestañas. Además, tocar una nota en el Resumen la usaba como filtro. Comparado con la versión anterior (pestaña Notas propia, y al tocar una nota se abría su detalle), parecía que la sección había desaparecido.
+  - Notas vuelve a ser una pestaña propia, como antes. En celular entran las 5 pestañas.
+  - Tocar una nota en «Qué salió» o en «ver todo» abre su detalle: cuántos medios la publicaron y el enlace de cada uno, empezando por el título.
+  - Para filtrar por una nota sigue estando el botón «Filtro».
+  - `#notas` vuelve a ser un enlace directo a esa pestaña.
+  - Pruebas: 160 OK. Se probó en el navegador en 1280 y 375 px: la nota del 19/10 muestra «28 medios publicaron esta nota» y 28 enlaces.
+- **Revisión completa con Claude en Chrome (mismo PR):**
+  - **Clics del Resumen:** vuelven a mostrar de dónde sale el dato, como en el tablero anterior.
+    - Medio, ciudad o región abren sus publicaciones con enlaces. Nota abre su detalle. Tema abre Notas filtrada. Red abre Redes filtrada.
+    - Filtrar todo el Resumen queda en el botón «Filtro».
+    - El detalle de una nota y la lista de publicaciones tienen «← Volver».
+  - **Facebook JusNoticias aparecía «sin publicaciones» en la tarjeta Redes.** Causa: el nombre «JusNoticias (prensastjchubut)» contiene «stj» y se lo tomaba por la página STJ. Ahora se busca la palabra «STJ» suelta.
+  - **Estado de las cuentas en el Resumen:** si la red responde en vivo, se muestra lo consultado. El estado guardado (p. ej. «STJ inactiva desde 22/04») queda marcado como «dato guardado».
+  - **Visitas:** se distingue «Google no está configurado en esta versión» (la vista previa no tiene las credenciales) de «Google no respondió».
+  - **Números con un filtro activo:**
+    - «Notas publicadas» cambia de nombre con un filtro de medio, ciudad o región.
+    - «Interacciones» avisa que no se filtra por medio.
+    - «% con repercusión» compara en puntos.
+  - **Otros detalles:**
+    - Período con fechas al revés: se avisa.
+    - Enlaces de Google Noticias: se nombran como tales.
+    - Detalle de una nota: aclara cuando hay más enlaces que medios.
+    - Fechas en formato dd/mm/aaaa.
+    - Notas sin resultados: muestra un mensaje.
+    - Infografía: tiene botón «Cerrar».
+    - Redes: texto claro sobre la consulta completa.
+    - Chips del celular más compactos.
+  - **Pendiente de decisión de Ignacio (cambia qué se cuenta):**
+    - Totales distintos entre secciones: 154 del Resumen, que incluye «a verificar», contra 136 verificadas en la pestaña Medios y en la infografía.
+    - Examedia repetido como «examedia.com.ar».
+    - Sedes de medios por verificar (0223, ElDoce.tv, Canal 4 Esquel, Chubut Hoy).
+  - **Del entorno, no del código:** en la vista previa faltan el token de TikTok (TIKTOK_KV de Preview), las credenciales de Google y X_BEARER_TOKEN; en la oficial andan.
+  - **Redes, sin publicaciones en 7 días:** consulta desde GitHub al sitio publicado. Meta, YouTube y TikTok devuelven como última publicación: Facebook 20/10, Instagram 15/10, YouTube 15/10 y TikTok 14/10. `data/redes2.json` no se actualiza solo desde el 23/10.
+- **Decisiones de Ignacio, aplicadas en el mismo PR:**
+  1. **Contar todas las publicaciones** (verificadas y a verificar) en todo el tablero.
+     - La pestaña Medios, las listas con enlaces y la infografía usan el mismo criterio que el Resumen. Siguen exigiendo un enlace real.
+     - Octubre queda en 154 publicaciones y 51 medios en el Resumen y en Medios. Cada fila sigue mostrando si está verificada.
+  2. **Nombres repetidos unificados:** el tablero usa los alias del inventario (`alias_medios` en `armar_publico.py`). «examedia.com.ar» cuenta como Examedia. Los medios de octubre pasan de 53 a 51 por esos alias.
+  3. **«Sede» pasa a decir «ciudad del medio»:** «Medios de Comodoro», «ciudad del medio sin confirmar». No se cargó ninguna ciudad nueva: hace falta confirmarla.
+- **Redes: actualización automática de `data/redes2.json`** (`scripts/actualizar_redes.py`, en `actualizar.yml`).
+  - Cada 4 h consulta `/api/redes` del sitio (30 días). Suma las publicaciones propias nuevas y actualiza sus cifras. Nunca borra ni pisa una cifra con «sin dato»; si falla, sigue.
+  - Reconoce las filas viejas por red, fecha (±1 día) y comienzo del texto. La primera versión duplicaba porque la API recorta el texto a unos 26 caracteres.
+  - Prueba desde GitHub sobre una copia: 38 consultadas, 16 nuevas (incluida la página STJ, que no estaba guardada), 19 actualizadas y ninguna duplicada.
