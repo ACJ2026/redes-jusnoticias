@@ -40,6 +40,8 @@ async function get(url, token) {
 }
 
 const corto = value => (value || "").replace(/\s+/g, " ").trim().slice(0, 26);
+// Texto más largo para que el panel en vivo pueda asociar una publicación con una nota.
+const resumen = value => (value || "").replace(/\s+/g, " ").trim().slice(0, 280);
 const sumarDias = (fecha, dias) => {
   const date = new Date(fecha + "T00:00:00Z");
   date.setUTCDate(date.getUTCDate() + dias);
@@ -75,7 +77,7 @@ async function facebookPagina(id, pageToken, desde) {
     const result = await get(url, pageToken);
     (result.data || []).forEach(post => filas.push({
       red: "Facebook", cuenta: page.name || id, fecha: (post.created_time || "").slice(0, 10),
-      texto: corto(post.message), nota_id: null,
+      texto: corto(post.message), resumen: resumen(post.message), nota_id: null,
       me_gusta: post.reactions ? post.reactions.summary.total_count : null,
       comentarios: post.comments ? post.comments.summary.total_count : null,
       compartidos: post.shares ? post.shares.count : 0, vistas: null, propia: "Sí", key: "fb-" + post.id
@@ -212,7 +214,7 @@ async function instagram(desde, env) {
     const within = posts.filter(post => (post.timestamp || "").slice(0, 10) >= desde);
     within.forEach(post => filas.push({
       red: "Instagram", cuenta: account.username || "@jus_chubut", fecha: (post.timestamp || "").slice(0, 10),
-      texto: corto(post.caption), nota_id: null, me_gusta: post.like_count ?? null,
+      texto: corto(post.caption), resumen: resumen(post.caption), nota_id: null, me_gusta: post.like_count ?? null,
       comentarios: post.comments_count ?? null, compartidos: null, vistas: null, propia: "Sí", key: "ig-" + post.id
     }));
     if (within.length < posts.length) break;
@@ -349,7 +351,7 @@ async function youtube(desde, env) {
       const number = field => stats[field] !== undefined ? Number(stats[field]) : null;
       filas.push({
         red: "YouTube", cuenta: nombreCanal, fecha: (video.snippet.publishedAt || "").slice(0, 10),
-        texto: corto(video.snippet.title), nota_id: null, me_gusta: number("likeCount"),
+        texto: corto(video.snippet.title), resumen: resumen(video.snippet.title), nota_id: null, me_gusta: number("likeCount"),
         comentarios: number("commentCount"), compartidos: null, vistas: number("viewCount"),
         propia: "Sí", key: "yt-" + video.id
       });
@@ -373,6 +375,7 @@ async function tiktok(desde, env) {
       cuenta: data.perfil.usuario ? "@" + data.perfil.usuario : data.perfil.nombre || "@juschubut",
       fecha: video.fecha || "",
       texto: corto(video.title),
+      resumen: resumen(video.title),
       nota_id: null,
       me_gusta: video.me_gusta,
       comentarios: video.comentarios,
