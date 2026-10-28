@@ -78,8 +78,8 @@
     const fuera = conSede.filter(m => regionMedio(localidadDe(m)) !== 'Chubut');
     const sinSede = medios.length - conSede.length;
     if (!medios.length) { E[2].v.textContent = '—'; E[2].d.textContent = 'Sin medios todavía.'; }
-    else if (!conSede.length) { E[2].v.textContent = 'Sin dato'; E[2].v.classList.add('texto'); E[2].d.textContent = 'Falta identificar la sede de los medios.'; }
-    else { E[2].v.textContent = fmt(fuera.length); E[2].d.textContent = (fuera.length ? fuera.slice(0, 3).join(', ') + (fuera.length > 3 ? '…' : '') : 'Todos con sede en Chubut') + (sinSede ? ` · ${sinSede} sin sede identificada` : ''); }
+    else if (!conSede.length) { E[2].v.textContent = 'Sin dato'; E[2].v.classList.add('texto'); E[2].d.textContent = 'Falta identificar la ciudad de los medios.'; }
+    else { E[2].v.textContent = fmt(fuera.length); E[2].d.textContent = (fuera.length ? fuera.slice(0, 3).join(', ') + (fuera.length > 3 ? '…' : '') : 'Todos de Chubut') + (sinSede ? ` · ${sinSede} sin ciudad identificada` : ''); }
     pintarRedesEtapa();
   };
   const palabras = t => new Set(String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length >= 5 && !['chubut', 'judicial', 'justicia', 'juzgado', 'poder', 'sobre', 'desde', 'entre', 'fallo', 'causa'].includes(w)));

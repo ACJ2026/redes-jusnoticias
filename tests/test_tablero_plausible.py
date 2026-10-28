@@ -32,7 +32,7 @@ class PlausibleTest(unittest.TestCase):
         self.assertIn("return previo[0] < primerDato ? null : previo;", VISTA)
 
     def test_por_verificar_es_aviso_y_no_fila(self):
-        self.assertIn("con sede del medio por verificar", VISTA)
+        self.assertIn("de medios con la ciudad sin confirmar", VISTA)
         self.assertIn("const conSede = act.filas.filter(r => !POR_VERIFICAR(r.localidad));", VISTA)
 
     def test_filtro_por_clic_con_chip_para_quitar(self):

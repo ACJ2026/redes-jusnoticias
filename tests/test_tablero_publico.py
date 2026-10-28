@@ -87,6 +87,8 @@ class TableroPublicoTests(unittest.TestCase):
         data["cuentas"] = read_json("data/cuentas_monitoreo.json")["cuentas"]
         data["localidades"] = {n: m["localidad"] for m in read_json("data/medios_inventario.json")["medios"]
                                if m.get("localidad") and m["localidad"] != "Por verificar" for n in [m["nombre"]] + m.get("alias", [])}
+        data["alias_medios"] = {a: m["nombre"] for m in read_json("data/medios_inventario.json")["medios"]
+                                for a in (m.get("alias") or []) if a and a != m["nombre"]}
         self.assertEqual(json.loads(payload), data)
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertEqual(template.count("/*DATOS*/"), 1)
@@ -250,7 +252,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn('id="c-territorio"', template)
         self.assertIn('id="b-territorio-region"', template)
         self.assertIn("No indica dónde viven los lectores", template)
-        # Usa solo publicaciones confirmadas (repOk excluye confianza baja) y enlaces únicos.
+        # Usa todas las publicaciones con enlace (verificadas y a verificar; repOk excluye confianza baja) y enlaces únicos.
         self.assertIn("const rs = [...new Map(repOk.filter(r => en(r.mes)).map(r => [r.url, r])).values()];", template)
         self.assertIn("    drawTerritorio();", template)
         # Los controles retirados en el PR #32 no vuelven.
@@ -562,7 +564,8 @@ class TableroPublicoTests(unittest.TestCase):
         ]
         self.assertGreater(len(sin_enlace), 0)
         self.assertIn("const esConfirmada = r =>", template)
-        self.assertIn("D.repercusion.filter(esConfirmada)", template)
+        # Se cuentan verificadas y a verificar (decisión de Ignacio, 28/10), pero solo con un enlace real.
+        self.assertIn("const repOk = D.repercusion.filter(r => r.confianza !== 'Baja' && /^https?:\\/\\//i.test(String(r.url || ''))).map(", template)
         self.assertIn("const ok = rs.filter(esConfirmada)", template)
 
 

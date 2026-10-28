@@ -922,3 +922,13 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
     - Sedes de medios por verificar (0223, ElDoce.tv, Canal 4 Esquel, Chubut Hoy).
   - **Del entorno, no del código:** en la vista previa faltan el token de TikTok (TIKTOK_KV de Preview), las credenciales de Google y X_BEARER_TOKEN; en la oficial andan.
   - **Redes, sin publicaciones en 7 días:** consulta desde GitHub al sitio publicado. Meta, YouTube y TikTok devuelven como última publicación: Facebook 20/10, Instagram 15/10, YouTube 15/10 y TikTok 14/10. `data/redes2.json` no se actualiza solo desde el 23/10.
+- **Decisiones de Ignacio, aplicadas en el mismo PR:**
+  1. **Contar todas las publicaciones** (verificadas y a verificar) en todo el tablero.
+     - La pestaña Medios, las listas con enlaces y la infografía usan el mismo criterio que el Resumen. Siguen exigiendo un enlace real.
+     - Octubre queda en 154 publicaciones y 51 medios en el Resumen y en Medios. Cada fila sigue mostrando si está verificada.
+  2. **Nombres repetidos unificados:** el tablero usa los alias del inventario (`alias_medios` en `armar_publico.py`). «examedia.com.ar» cuenta como Examedia. Los medios de octubre pasan de 53 a 51 por esos alias.
+  3. **«Sede» pasa a decir «ciudad del medio»:** «Medios de Comodoro», «ciudad del medio sin confirmar». No se cargó ninguna ciudad nueva: hace falta confirmarla.
+- **Redes: actualización automática de `data/redes2.json`** (`scripts/actualizar_redes.py`, en `actualizar.yml`).
+  - Cada 4 h consulta `/api/redes` del sitio (30 días). Suma las publicaciones propias nuevas y actualiza sus cifras. Nunca borra ni pisa una cifra con «sin dato»; si falla, sigue.
+  - Reconoce las filas viejas por red, fecha (±1 día) y comienzo del texto. La primera versión duplicaba porque la API recorta el texto a unos 26 caracteres.
+  - Prueba desde GitHub sobre una copia: 38 consultadas, 16 nuevas (incluida la página STJ, que no estaba guardada), 19 actualizadas y ninguna duplicada.

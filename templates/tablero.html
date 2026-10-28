@@ -567,7 +567,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <div class="detail-content">
         <div class="card">
           <h2>Medios con publicaciones y enlace de referencia</h2>
-          <p class="note">Medios con al menos una publicación verificada en el período, con su enlace. Algunos enlaces pueden dejar de funcionar con el tiempo.</p>
+          <p class="note">Medios con al menos una publicación en el período (verificada o a verificar), con su enlace. Algunos enlaces pueden dejar de funcionar con el tiempo.</p>
           <div class="tbox"><table id="t-medios"><thead><tr><th>Medio</th><th>Estado del relevamiento</th><th>Publicaciones relacionadas</th><th>Enlace de referencia</th></tr></thead><tbody></tbody></table></div>
         </div>
       </div>
@@ -609,7 +609,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   <p><b>Notas publicadas en más medios:</b> las notas que salieron en más lugares.</p>
   <p><b>Cómo la publican:</b> «copia textual» es un texto casi igual al nuestro; «reescritura», que cambiaron partes; «redacción propia», que lo escribieron a su manera.</p>
   <p><b>Fuentes que mencionan:</b> a quién nombra el medio como fuente.</p>
-  <p>Estos rankings usan solo publicaciones verificadas, porque hace falta haber leído el texto del medio.</p>
+  <p>Estos rankings cuentan todas las publicaciones, verificadas y a verificar. Las que no se pudieron leer quedan como «texto no disponible para comparar».</p>
   <p>Tocá cualquier barra para ver los enlaces.</p>
 </template>
 <template id="ayuda-notas" data-titulo="Cómo leer Notas">
@@ -701,7 +701,9 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const TIPOS = ['Fallo o caso', 'Institucional', 'Agenda y servicios'];
   const ORIG = ['Copia textual (≥50%)', 'Reescritura parcial', 'Redacción propia', 'Sin dato'];
   // Unifica una variante de nombre que apuntaba al mismo enlace de El Atlantico.
-  const canonMedio = medio => ({ 'elatlantico.do': 'El Atlantico' }[String(medio || '')] || String(medio || ''));
+  // Un mismo medio con otro nombre (alias del inventario) cuenta como uno solo.
+  const ALIAS_MEDIOS = { 'elatlantico.do': 'El Atlantico', ...(D.alias_medios || {}) };
+  const canonMedio = medio => ALIAS_MEDIOS[String(medio || '')] || String(medio || '');
 
   // Base: notas y publicaciones confirmadas
   const notas = D.notas;
@@ -718,7 +720,9 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   // Una confirmación manual (botón Confirmar o data/revision_manual.json) cuenta siempre que tenga enlace directo.
   const confirmadaManual = r => (r.revision_manual || {}).decision === 'confirmar' || /^(Confirmada manualmente|Revisión manual)/i.test(String(r.metodo || '').trim());
   const esConfirmada = r => r.confianza !== 'Baja' && !esReferenciaGoogle(r) && /^https?:\/\//i.test(String(r.url || '')) && (confirmadaManual(r) || (metodoVerificado(r) && !/^A verificar:/i.test(r.metodo || '') && !soloCoincidenciaTitulo(r)));
-  const repOk = D.repercusion.filter(esConfirmada).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
+  // Decisión de Ignacio (28/10): en todo el tablero se cuentan todas las publicaciones encontradas,
+  // verificadas y a verificar (el mismo criterio que el Resumen). Cada fila sigue mostrando si está verificada.
+  const repOk = D.repercusion.filter(r => r.confianza !== 'Baja' && /^https?:\/\//i.test(String(r.url || ''))).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
   const porNota = notas.map(n => {
     const rs = D.repercusion.filter(r => Number(r.nota_id) === Number(n.id) && r.confianza !== 'Baja' && Boolean(r.url));
     const ok = rs.filter(esConfirmada);
@@ -902,7 +906,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       hacerSeleccionable(e, 'Ver publicaciones relacionadas con ' + r.titulo, () => abrirEnMedios('Publicaciones relacionadas con esta nota', 'Los medios donde salió esta nota. Los enlaces se abren en otra pestaña.', repOk.filter(x => en(x.mes) && Number(x.nota_id) === Number(r.id))));
     });
 };
-  // Localidades conocidas de algunos medios; no se presume una sede cuando no está identificada.
+  // Localidades conocidas de algunos medios; no se presume la ciudad de un medio cuando no está identificada.
   const localidadMedio = {
     'FM Tropical':'Rawson','FM Bahía Engaño':'Rawson',
     'Chubut Hoy':'Chubut (localidad por verificar)',
@@ -992,11 +996,11 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     // Cada ciudad abre las publicaciones de sus medios, con el nombre y el enlace de cada uno.
     [...$('b-territorio').querySelectorAll('.bar-row')].forEach((e, i) => {
       const x = orden[i];
-      hacerSeleccionable(e, 'Ver publicaciones de medios con sede en ' + x.localidad, () => abrirEnMedios('Medios con sede en ' + x.localidad + ': ' + [...x.medios].sort((m1, m2) => m1.localeCompare(m2, 'es')).join(', '), 'Publicaciones de los medios de esta ciudad o cobertura dentro del período elegido. Los enlaces se abren en otra pestaña.', rs.filter(r => x.medios.has(r.medio))));
+      hacerSeleccionable(e, 'Ver publicaciones de medios de ' + x.localidad, () => abrirEnMedios('Medios de ' + x.localidad + ': ' + [...x.medios].sort((m1, m2) => m1.localeCompare(m2, 'es')).join(', '), 'Publicaciones de los medios de esta ciudad o cobertura dentro del período elegido. Los enlaces se abren en otra pestaña.', rs.filter(r => x.medios.has(r.medio))));
     });
     const verif = orden.filter(x => /verificar/.test(x.localidad)).reduce((t, x) => t + x.publicaciones, 0);
     $('territorio-resumen').textContent = rs.length
-      ? fmt(rs.length) + ' publicaciones en ' + fmt(new Set(rs.map(r => r.medio)).size) + ' medios. ' + fmt(rs.length - verif) + ' tienen la sede del medio identificada y ' + fmt(verif) + ' corresponden a medios con sede por verificar.'
+      ? fmt(rs.length) + ' publicaciones en ' + fmt(new Set(rs.map(r => r.medio)).size) + ' medios. ' + fmt(rs.length - verif) + ' son de medios con la ciudad identificada y ' + fmt(verif) + ' de medios con la ciudad sin confirmar.'
       : 'Sin publicaciones confirmadas en este período.';
   };
 
@@ -1044,7 +1048,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const drawMedios = (c) => {
     const t = c.porMedio, mx = t.length ? Math.max(...t.map(r => r.notas)) : 1;
     const contador = $('medios-count');
-    if (contador) contador.textContent = fmt(t.length) + ' medios con publicaciones verificadas en el período. Tocá una barra para ver los enlaces.';
+    if (contador) contador.textContent = fmt(t.length) + ' medios con publicaciones en el período (verificadas y a verificar). Tocá una barra para ver los enlaces.';
     bars('b-medios', t.map(r => row(r.medio, [[r.copia, 'var(--copia)'], [r.otra, 'var(--accent)'], [r.sin_dato, 'var(--muted-bar)']], r.notas, mx)));
     [...$('b-medios').querySelectorAll('.bar-row')].forEach((e, i) => {
       const r = t[i];
@@ -1783,7 +1787,7 @@ const draw = () => {
     });
     const total = rs.length || 1;
     return {
-      regiones: [...reg.entries()].sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ nombre: k === 'Chubut' ? 'Medios de Chubut' : k === 'Localidad por verificar' ? 'Sede por verificar' : k, valor: v, pct: Math.round(v / total * 100) })),
+      regiones: [...reg.entries()].sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ nombre: k === 'Chubut' ? 'Medios de Chubut' : k === 'Localidad por verificar' ? 'Ciudad del medio sin confirmar' : k, valor: v, pct: Math.round(v / total * 100) })),
       ciudades: [...loc.values()].filter(x => !/verificar|Cobertura/.test(x.localidad)).sort((a, b) => b.publicaciones - a.publicaciones || a.localidad.localeCompare(b.localidad, 'es')).slice(0, 4)
     };
   };
@@ -1793,7 +1797,7 @@ const draw = () => {
       const id = Number($('info-nota').value), nota = notas.find(n => Number(n.id) === id);
       if (!nota) return null;
       const rs = [...new Map(repOk.filter(r => Number(r.nota_id) === id).map(r => [r.medio, r])).values()];
-      return { tipo: 'nota', nota, rs, medios: rs.map(r => ({ medio: r.medio, sede: localidadDe(r.medio) || 'sede por verificar' })).sort((a, b) => a.medio.localeCompare(b.medio, 'es')), ...regionesDe(rs), corte: corteDatos(),
+      return { tipo: 'nota', nota, rs, medios: rs.map(r => ({ medio: r.medio, sede: localidadDe(r.medio) || 'ciudad sin confirmar' })).sort((a, b) => a.medio.localeCompare(b.medio, 'es')), ...regionesDe(rs), corte: corteDatos(),
         titulo: $('info-titulo').value.trim() || nota.titulo, periodo: nota.fecha.split('-').reverse().join('/') };
     }
     const desde = $('info-desde').value, hasta = $('info-hasta').value < desde ? desde : $('info-hasta').value;
@@ -1843,7 +1847,7 @@ const draw = () => {
     const barrasBloque = (titulo, filas, maximo) => ({ alto: 48 + filas.length * BARRA_ALTO, dibujar: (ctx, x, y) => { encabezadoBloque(ctx, titulo, x, y); barras(ctx, filas, x, y + 48, ancho, maximo); } });
     elegidos.forEach(b => {
       if (b === 'indicadores' && d.tipo === 'periodo') {
-        const c = d.c, tiles = [[c.notas, 'notas publicadas en Juschubut Noticias'], [c.publicaciones, 'publicaciones verificadas en otros medios'], [c.medios, 'medios']];
+        const c = d.c, tiles = [[c.notas, 'notas publicadas en Juschubut Noticias'], [c.publicaciones, 'publicaciones en otros medios (verificadas y a verificar)'], [c.medios, 'medios']];
         const th = formato === 'x' ? 182 : 170;
         out.push({ alto: th, dibujar: (ctx, x, y) => {
           const tw = (ancho - 40) / 3;

@@ -345,7 +345,7 @@
   const alTocar = x => {
     if (x.tipo === 'nota') return abrirNota(x.valor);
     if (x.tipo === 'medio') return verReferencias('Publicaciones de ' + x.etiqueta, 'Nuestras notas que salieron en este medio en el período elegido. Los enlaces se abren en otra pestaña.', filasDelPeriodo(r => r.medio === x.valor));
-    if (x.tipo === 'ciudad') return verReferencias('Medios con sede en ' + x.etiqueta, 'Publicaciones de los medios de esta ciudad en el período elegido. Los enlaces se abren en otra pestaña.', filasDelPeriodo(r => r.localidad === x.valor));
+    if (x.tipo === 'ciudad') return verReferencias('Medios de ' + x.etiqueta, 'Publicaciones de los medios de esta ciudad en el período elegido. Los enlaces se abren en otra pestaña.', filasDelPeriodo(r => r.localidad === x.valor));
     if (x.tipo === 'region') return verReferencias('Medios de ' + x.etiqueta, 'Publicaciones de los medios de esta región en el período elegido. Los enlaces se abren en otra pestaña.', filasDelPeriodo(r => r.region === x.valor));
     if (x.tipo === 'tema') return elegirEn('notas', { ftipo: x.valor });
     if (x.tipo === 'red') { const c = CUENTAS_REDES.find(k => k.id === x.valor); return elegirEn('redes', { fred: c ? c.red : '', fprop: 'Sí' }); }
@@ -391,8 +391,8 @@
     const n = new Set(pv.map(r => r.url)).size;
     if (!n) return;
     const b = el('button', 'pl-aviso-btn'); b.type = 'button';
-    b.append(document.createTextNode(`${fmt(n)} ${n === 1 ? 'publicación' : 'publicaciones'} con sede del medio por verificar `), el('span', 'pl-aviso-ir', '→ revisar'));
-    b.addEventListener('click', () => { const filas = contar(pv, r => r.medio).map(x => ({ ...x, tipo: 'medio', sufijo: 'publicaciones' })); abrirModal('Medios con sede por verificar', filas, Math.max(...filas.map(x => x.n))); });
+    b.append(document.createTextNode(`${fmt(n)} ${n === 1 ? 'publicación' : 'publicaciones'} de medios con la ciudad sin confirmar `), el('span', 'pl-aviso-ir', '→ revisar'));
+    b.addEventListener('click', () => { const filas = contar(pv, r => r.medio).map(x => ({ ...x, tipo: 'medio', sufijo: 'publicaciones' })); abrirModal('Medios con la ciudad sin confirmar', filas, Math.max(...filas.map(x => x.n))); });
     avisoCaja.append(b);
   };
 
