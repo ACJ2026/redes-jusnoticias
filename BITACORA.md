@@ -939,3 +939,7 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Arreglo:** el `run:` pasa a bloque (`run: |`), sin cambiar nada más.
 - **Prueba nueva:** ningún `run:` de una línea puede tener «: » suelto. Detecta el error en la versión rota y pasa con la arreglada.
 - **Error mío:** la prueba local no validaba el formato de los workflows. Ahora sí.
+- **Mismo PR, versión de los archivos de código:**
+  - Problema: Ignacio seguía viendo el comportamiento viejo («Activa · responde en vivo», el clic filtraba) con el HTML nuevo. `_headers` impide guardar solo la página: `panel-vivo.js/.css` y `tablero-plausible.js/.css` podían quedar viejos en el navegador.
+  - Arreglo: `armar_publico.py` los pide con `?v=<huella del contenido>`, que cambia cuando cambia el código.
+  - Prueba nueva: el HTML público tiene la versión puesta.

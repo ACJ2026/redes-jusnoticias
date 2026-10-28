@@ -118,3 +118,12 @@ class ArreglosRevisionTest(unittest.TestCase):
         # Filtrar todo el Resumen queda en el botón «Filtro».
         self.assertIn("abrirModal('Filtrar el tablero', todas, Math.max(0, ...todas.map(x => typeof x.n === 'number' ? x.n : 0)), ponerFiltro);", VISTA)
         self.assertIn("T.show('notas');", VISTA)
+
+
+class VersionDeArchivosTest(unittest.TestCase):
+    def test_el_html_publico_pide_los_archivos_con_su_version(self):
+        # Si cambia el código, cambia la versión y el navegador no usa una copia vieja.
+        publico = (ROOT / "publico/index.html").read_text(encoding="utf-8")
+        self.assertNotIn("__VERSION__", publico)
+        self.assertRegex(publico, r"tablero-plausible\.js\?v=[0-9a-f]{10}")
+        self.assertRegex(publico, r'panel-vivo\.css\?v=[0-9a-f]{10}')
