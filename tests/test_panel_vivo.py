@@ -54,6 +54,14 @@ class PanelVivoServidorTest(unittest.TestCase):
         self.assertEqual(ig["alcance"], 1234)
         self.assertEqual(ig["alcanceDesde"], "2026-09-30")
 
+    def test_interacciones_solo_de_los_ultimos_7_dias(self):
+        datos = {"redes": {"YouTube": {"seguidores": 1, "filas": [
+            {"red": "YouTube", "fecha": "2026-10-01", "vistas": 50},
+            {"red": "YouTube", "fecha": "2026-10-25", "vistas": 7}]}}, "errores": {}}
+        yt = next(c for c in resumir(datos)["cuentas"] if c["red"] == "YouTube")
+        self.assertEqual(yt["publicaciones"], 1)
+        self.assertEqual(yt["vistas"], 7)
+
     def test_cache_compartida_y_sin_escribir_datos(self):
         self.assertIn("CACHE_SEGUNDOS = 300", FUNCION)
         self.assertIn("env.PANEL_KV", FUNCION)

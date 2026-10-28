@@ -10,7 +10,7 @@
   const fmt = n => typeof n === 'number' ? n.toLocaleString('es-AR') : '—';
   const corto = n => typeof n === 'number' ? (n >= 1000 ? (n / 1000).toLocaleString('es-AR', { maximumFractionDigits: 1 }) + ' mil' : n.toLocaleString('es-AR')) : '—';
   const ddmm = f => f ? f.slice(8, 10) + '/' + f.slice(5, 7) : '';
-  const hhmm = iso => { try { return new Date(iso).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Argentina/Buenos_Aires' }); } catch { return ''; } };
+  const hhmm = iso => { try { return new Date(iso).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Argentina/Buenos_Aires' }); } catch { return ''; } };
   const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
   const hoy = new Date().toISOString().slice(0, 10);
   const restar = (f, d) => { const x = new Date(f + 'T00:00:00Z'); x.setUTCDate(x.getUTCDate() - d); return x.toISOString().slice(0, 10); };
@@ -205,6 +205,7 @@
         linea.textContent = 'sin dato en vivo · último dato: ' + ult;
       } else {
         const partes = [];
+        if (typeof c.seguidores === 'number') partes.push(fmt(c.seguidores) + (c.red === 'YouTube' ? ' suscriptores' : ' seguidores'));
         if (c.publicaciones === 0) partes.push('sin publicaciones en 7 días');
         else {
           if (typeof c.interacciones === 'number') partes.push(corto(c.interacciones) + ' interacciones');

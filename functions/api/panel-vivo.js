@@ -7,6 +7,9 @@ const CACHE_SEGUNDOS = 300;
 const CLAVE = "panel-vivo:v1";
 const CLAVE_ULTIMO = "panel-vivo:ultimo-ok";
 const DIAS = 7;
+// Se consultan 28 días para que el alcance de Instagram cubra la ventana completa de la cuenta;
+// las publicaciones y sus interacciones se resumen solo de los últimos 7 días.
+const DIAS_CONSULTA = 28;
 // X no se consulta: su API pide créditos y la consulta siempre falla.
 const REDES = ["Facebook", "Instagram", "YouTube", "TikTok"];
 
@@ -39,7 +42,10 @@ const publicacion = fila => ({
 export function resumir(datos, desde) {
   const cuentas = [];
   const errores = datos.errores || {};
-  const redes = datos.redes || {};
+  const redes = {};
+  for (const [red, valor] of Object.entries(datos.redes || {})) {
+    redes[red] = { ...valor, filas: (valor.filas || []).filter(f => !desde || !f.fecha || f.fecha >= desde) };
+  }
   const fb = redes.Facebook;
   if (fb && Array.isArray(fb.paginas)) {
     for (const pagina of fb.paginas) {
@@ -128,11 +134,12 @@ export async function onRequestGet(context) {
   const enCache = await leerCache(env);
   if (enCache) return responder({ ...enCache.datos, ultimoOk: await ultimosOk(env) }, enCache.origen);
   const hoy = new Date();
-  const desdeFecha = new Date(Date.UTC(hoy.getUTCFullYear(), hoy.getUTCMonth(), hoy.getUTCDate() - (DIAS - 1)));
-  const desde = desdeFecha.toISOString().slice(0, 10);
+  const dia = n => new Date(Date.UTC(hoy.getUTCFullYear(), hoy.getUTCMonth(), hoy.getUTCDate() - n)).toISOString().slice(0, 10);
+  const desde = dia(DIAS - 1);
+  const desdeConsulta = dia(DIAS_CONSULTA - 1);
   let datos;
   try {
-    const consulta = new Request(new URL(`/api/redes?desde=${desde}&redes=${REDES.join(",")}`, request.url).toString());
+    const consulta = new Request(new URL(`/api/redes?desde=${desdeConsulta}&redes=${REDES.join(",")}`, request.url).toString());
     const respuesta = await consultarRedes({ request: consulta, env });
     datos = resumir(await respuesta.json(), desde);
   } catch (error) {
