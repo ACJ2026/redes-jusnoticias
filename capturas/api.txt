@@ -1,0 +1,18 @@
+cache: consulta consultado: 2026-10-28T12:36:29.774Z
+  Facebook JusNoticias ok {'publicaciones': 0, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': 3774}
+  Facebook JusNoticias STJ ok {'publicaciones': 0, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': 10468}
+  Instagram @jus_chubut ok {'publicaciones': 0, 'interacciones': None, 'vistas': None, 'alcance': 2193, 'seguidores': 2617}
+  YouTube Poder Judicial del Chubut ok {'publicaciones': 0, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': 1200}
+  TikTok @juschubut FALLA: Token refresh failed. {'publicaciones': None, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': None}
+  X @Jus_Noticias FALLA: La API de X pide créditos: no se consulta en vivo. {'publicaciones': None, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': None}
+cache: cache consultado: 2026-10-28T12:36:29.774Z
+  Facebook JusNoticias ok {'publicaciones': 0, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': 3774}
+  Facebook JusNoticias STJ ok {'publicaciones': 0, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': 10468}
+  Instagram @jus_chubut ok {'publicaciones': 0, 'interacciones': None, 'vistas': None, 'alcance': 2193, 'seguidores': 2617}
+  YouTube Poder Judicial del Chubut ok {'publicaciones': 0, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': 1200}
+  TikTok @juschubut FALLA: Token refresh failed. {'publicaciones': None, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': None}
+  X @Jus_Noticias FALLA: La API de X pide créditos: no se consulta en vivo. {'publicaciones': None, 'interacciones': None, 'vistas': None, 'alcance': None, 'seguidores': None}
+375x667 alto panel 883 scrollWidth 375 errores []
+390x844 alto panel 883 scrollWidth 390 errores []
+390x844-menos-mov alto panel 844 scrollWidth 390 errores []
+computadora alto panel 1205 scrollWidth 1366 errores []
