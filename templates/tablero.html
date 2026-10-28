@@ -4,8 +4,8 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="panel-vivo.css">
-<link rel="stylesheet" href="tablero-plausible.css">
+<link rel="stylesheet" href="panel-vivo.css?v=__VERSION__">
+<link rel="stylesheet" href="tablero-plausible.css?v=__VERSION__">
 <style>
 /* Layout: encabezado de diario institucional + pestañas; plano 1 (Resumen) arriba, plano 2 (consulta) en pestañas */
 :root{
@@ -2143,7 +2143,7 @@ const draw = () => {
   updateLanding(calc());
   // Panel en vivo de la portada (publico/panel-vivo.js): usa los mismos criterios de conteo del tablero.
   window.__panelVivo = { D, esConfirmada, canonMedio, localidadDe, regionMedio };
-  const scriptPanel = document.createElement('script'); scriptPanel.src = 'panel-vivo.js'; scriptPanel.defer = true; document.head.appendChild(scriptPanel);
+  const scriptPanel = document.createElement('script'); scriptPanel.src = 'panel-vivo.js?v=__VERSION__'; scriptPanel.defer = true; document.head.appendChild(scriptPanel);
   // Al entrar al tablero se arranca arriba de todo y el foco va al título. La posición de la portada
   // queda guardada para que «atrás» del navegador vuelva al mismo lugar.
   const irArriba = () => window.scrollTo({ top: 0, behavior: 'instant' });
@@ -2193,7 +2193,7 @@ const draw = () => {
   [['pl-ayuda-btn', 'guia'], ['pl-filtro-btn', 'filtro'], ['pl-info-btn', 'infografia']].forEach(([id, pedido]) => {
     $(id).addEventListener('click', () => { if (typeof window.__tableroRender !== 'function') window.__tableroHashPedido = pedido; });
   });
-  const scriptResumen = document.createElement('script'); scriptResumen.src = 'tablero-plausible.js'; scriptResumen.defer = true; document.head.appendChild(scriptResumen);
+  const scriptResumen = document.createElement('script'); scriptResumen.src = 'tablero-plausible.js?v=__VERSION__'; scriptResumen.defer = true; document.head.appendChild(scriptResumen);
   const hDestino = ({ visitas: 'google', guia: 'resumen' })[h] || h;
   if (h && $(hDestino) && $(hDestino).classList.contains('page')) {
     $('portada').hidden = true;

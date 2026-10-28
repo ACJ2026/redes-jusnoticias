@@ -61,6 +61,15 @@ class ActualizarRedesTest(unittest.TestCase):
         self.assertIn("python3 scripts/actualizar_redes.py", flujo)
         self.assertIn("cancel-in-progress: false", flujo)
 
+    def test_ningun_run_de_una_linea_tiene_dos_puntos_sueltos(self):
+        # Un «: » dentro de un «run:» de una sola línea rompe todo el workflow (pasó el 28/10).
+        import re
+        for ruta in (ROOT / ".github/workflows").glob("*.yml"):
+            for n, linea in enumerate(ruta.read_text(encoding="utf-8").splitlines(), 1):
+                m = re.match(r"\s*(?:- )?run: (?![|>])(.*)$", linea)
+                if m and not re.fullmatch(r"(['\"]).*\1", m.group(1).strip()):
+                    with self.subTest(f"{ruta.name}:{n}"):
+                        self.assertNotIn(": ", m.group(1))
 
 if __name__ == "__main__":
     unittest.main()

@@ -87,9 +87,9 @@ class PanelVivoServidorTest(unittest.TestCase):
 class PanelVivoClienteTest(unittest.TestCase):
     def test_portada_carga_el_panel_sin_un_segundo_script_en_el_html(self):
         self.assertIn('id="panel-vivo"', PLANTILLA)
-        self.assertIn('href="panel-vivo.css"', PLANTILLA)
+        self.assertIn('href="panel-vivo.css?v=__VERSION__"', PLANTILLA)
         self.assertIn("window.__panelVivo = { D, esConfirmada, canonMedio, localidadDe, regionMedio }", PLANTILLA)
-        self.assertIn("scriptPanel.src = 'panel-vivo.js'", PLANTILLA)
+        self.assertIn("scriptPanel.src = 'panel-vivo.js?v=__VERSION__'", PLANTILLA)
         publico = (ROOT / "publico/index.html").read_text(encoding="utf-8")
         scripts = re.findall(r'<script(?![^>]*application/json)[^>]*>([\s\S]*?)</script>', publico)
         self.assertEqual(len(scripts), 1)

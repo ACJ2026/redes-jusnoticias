@@ -38,5 +38,14 @@ try:
 except OSError:
     d["alias_medios"] = {}
 js = json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-open(f[5], "w", encoding="utf-8").write(T.replace("/*DATOS*/", js))
+# Versión de los archivos de código: cambia cuando cambian, así el navegador no usa una copia vieja.
+import hashlib
+huella = hashlib.sha1()
+for nombre in ("panel-vivo.js", "panel-vivo.css", "tablero-plausible.js", "tablero-plausible.css"):
+    try:
+        huella.update((ROOT / "publico" / nombre).read_bytes())
+    except OSError:
+        pass
+version = huella.hexdigest()[:10]
+open(f[5], "w", encoding="utf-8").write(T.replace("__VERSION__", version).replace("/*DATOS*/", js))
 print("OK publico", len(d["notas"]), "notas", len(d["repercusion"]), "publicaciones", len(d["redes"]), "posteos")

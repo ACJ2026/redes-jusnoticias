@@ -69,7 +69,8 @@ jobs:
       - name: Actualizar publicaciones propias en redes
         if: github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.modo != 'publico')
         # Suma a data/redes2.json lo que devuelve /api/redes del sitio (nunca borra). Si falla, sigue.
-        run: python3 scripts/actualizar_redes.py || echo "AVISO: no se pudo actualizar data/redes2.json"
+        run: |
+          python3 scripts/actualizar_redes.py || echo "AVISO - no se pudo actualizar data/redes2.json"
 
       - name: Registrar fecha del relevamiento
         if: github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.modo != 'publico')
