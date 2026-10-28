@@ -242,6 +242,8 @@
       c.classList.toggle('caida', !cs.some(x => x.ok));
       c.title = cs.some(x => x.ok) ? 'Responde en vivo' : 'Sin dato en vivo';
     });
+    // Aviso para la barra superior del tablero completo («● en vivo · consultado HH:MM»).
+    document.dispatchEvent(new CustomEvent('panelvivo:estado', { detail: { ok: Boolean(redesVivo && redesVivo.cuentas.some(c => c.ok)), consultado: redesVivo && redesVivo.consultado, hora: redesVivo && redesVivo.consultado ? hhmm(redesVivo.consultado) : '' } }));
     pintarRedes(); pintarRedesEtapa(); pintarMovil();
   };
 

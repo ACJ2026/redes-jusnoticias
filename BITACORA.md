@@ -840,3 +840,20 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Portada:** `publico/panel-vivo.js` y `publico/panel-vivo.css` (se cargan desde el script del tablero, así el HTML sigue teniendo un solo script). Recorrido animado de la última nota (Nota → Medios que la publicaron → Fuera de Chubut → Redes en vivo), lista de repercusiones en medios, contadores de redes en vivo con «consultado HH:MM», alcance de Instagram como dato de la cuenta (28 días), medios con más notas en 7 días, volumen de 14 días y verificadas / a verificar. «Interacción alta/media/baja» es solo ayuda visual. En celular (≤ 480 px): una sola tarjeta de etapa con puntitos y deslizable, lista de 4 filas, bloques laterales deslizables. Respeta «menos movimiento».
 - **Pendiente para Ignacio:** vincular un KV propio llamado `PANEL_KV` en Cloudflare Pages (Producción y Preview) para asegurar la caché compartida.
 - **Nota:** al probar se vio un error previo en la consola (`enlaceCuenta is not defined` en la sección de compartidos), ajeno a este cambio.
+
+
+## 2026-10-28 — Tablero completo con el esquema de Plausible (Claude, PR sin fusionar)
+
+- **Pedido de Ignacio:** reordenar el tablero completo como plausible.io, sin cambiar cómo se calcula ninguna cifra.
+- **Barra superior fija:** título, «● en vivo · consultado HH:MM» (aviso que manda el panel en vivo), períodos en chips (Este mes, Mes pasado, 3 meses, Todo, Personalizado con los desplegables de siempre) y botones Filtro, Infografía y «?».
+- **Menú de 4 secciones:** Resumen, Medios (incluye la tabla de Notas), Redes y Visitas. Los enlaces viejos siguen funcionando (#notas va a Medios, #visitas a Visitas y #guia abre la guía). La guía completa y los «Cómo leer» de cada sección pasan al panel lateral «?». Se sacó el botón duplicado «Ver el tablero completo».
+- **Resumen nuevo** (`publico/tablero-plausible.js` y `.css`):
+  - Panel en vivo arriba de los números.
+  - 6 tarjetas: Notas publicadas, % con repercusión, Publicaciones en medios, Medios distintos, Interacciones en redes y Visitas al sitio. Sin filtro, las cuatro de medios salen de `calc()`.
+  - Variación contra el período anterior de la misma cantidad de días, solo si los dos tienen dato.
+  - Gráfico por día de la tarjeta elegida. Visitas no tiene serie diaria en la fuente y lo dice.
+  - Tarjetas con pestañas, top 9 y «ver todo» con buscador: Medios/Ciudades/Regiones, Notas/Temas, Redes (6 cuentas con su estado) y Visitas/Buscadores.
+  - Clic en una fila filtra el Resumen y aparece un chip con ✕. Por ahora el filtro no se aplica a Medios, Redes ni Visitas, y el chip lo aclara.
+  - «Por verificar» deja de ser fila de Ciudades o Regiones y pasa a un aviso único con «revisar».
+- **Arreglo de la entrada desde la portada:** al tocar «Ingresar al tablero completo» la pantalla va arriba de todo y el foco al título. «Atrás» del navegador vuelve a la portada en la misma posición. Cambiar de pestaña también lleva arriba.
+- El resumen anterior queda en la página, oculto, porque lo usa el generador de infografías.
