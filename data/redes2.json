@@ -3711,5 +3711,61 @@
     "vistas": 1506,
     "propia": "No",
     "key": "s284"
+  },
+  {
+    "red": "X",
+    "cuenta": "@Jus_Noticias",
+    "fecha": "2026-10-23",
+    "texto": "Panigadi: \"Los padres pueden elegir la educación de sus hijos, pero en el marco de instituciones habilitadas por el Estado\"",
+    "nota_id": 14913,
+    "me_gusta": null,
+    "comentarios": null,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "xm-2026-10-23-1",
+    "carga": "manual (copiado del perfil de X el 28/10; cifras sin dato)"
+  },
+  {
+    "red": "X",
+    "cuenta": "@Jus_Noticias",
+    "fecha": "2026-10-19",
+    "texto": "Rawson: empezó el debate oral contra dirigente gremial Guillermo Quiroga",
+    "nota_id": null,
+    "me_gusta": null,
+    "comentarios": null,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "xm-2026-10-19-2",
+    "carga": "manual (copiado del perfil de X el 28/10; cifras sin dato)"
+  },
+  {
+    "red": "X",
+    "cuenta": "@Jus_Noticias",
+    "fecha": "2026-10-19",
+    "texto": "Antes de comenzar el debate, el defensor de Guillermo Quiroga invocó tres cuestiones previas, rechazadas por la magistrada",
+    "nota_id": null,
+    "me_gusta": null,
+    "comentarios": null,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "xm-2026-10-19-3",
+    "carga": "manual (copiado del perfil de X el 28/10; cifras sin dato)"
+  },
+  {
+    "red": "X",
+    "cuenta": "@Jus_Noticias",
+    "fecha": "2026-10-19",
+    "texto": "Puerto Madryn: condenan a una comerciante por difamar a una clienta en redes sociales",
+    "nota_id": 14884,
+    "me_gusta": null,
+    "comentarios": null,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "xm-2026-10-19-4",
+    "carga": "manual (copiado del perfil de X el 28/10; cifras sin dato)"
   }
 ]

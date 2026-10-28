@@ -156,6 +156,11 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
 .landing-enter{border:0;border-radius:999px;padding:15px 23px;background:#fff;color:#123b55;font:600 1rem var(--f-body);cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.18)}
 .landing-enter:hover{background:#dff2fa}
 .landing-arriba{margin:6px 0 18px}
+.x-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:8px;min-width:0}
+.x-form label{display:flex;flex-direction:column;gap:4px;font-size:var(--fs-cap);color:var(--muted);min-width:0}
+.x-form input{min-height:40px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;width:100%;min-width:0;box-sizing:border-box}
+.x-form .x-ancho{grid-column:1/-1}
+@media(max-width:600px){.x-form{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .landing-enter-arriba{padding:11px 20px;font-size:.95rem}
 .landing-small{font-size:.78rem;color:#c7e5f4;max-width:260px;line-height:1.4}
 #dashboard-app{max-width:100%}
@@ -501,6 +506,21 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
         <label for="fprop" class="lbl">De quién es</label><select id="fprop"><option value="">Todas</option><option value="Sí">Nuestras cuentas</option><option value="No">Otras cuentas</option></select>
       </div>
       <div class="tbox"><table id="t-redes"><thead><tr><th>Fecha</th><th>Red</th><th>Cuenta</th><th>Posteo</th><th>Me gusta</th><th>Comentarios</th><th>Compartidos</th><th>Vistas</th></tr></thead><tbody></tbody></table></div>
+    </div>
+    <div class="card" id="x-manual">
+      <h2>Cargar un post de X a mano</h2>
+      <p class="note">La API de X cobra por consulta, así que lo que publicamos en X se registra acá. Pegá el enlace del post y copiá sus números tal como los muestra X; si alguno no lo tenés, dejalo vacío (queda «sin dato», nunca 0). Para guardar se pide la misma clave que para confirmar publicaciones. Si cargás el mismo post otra vez, se actualizan sus números.</p>
+      <form id="x-form" class="x-form">
+        <label class="x-ancho">Enlace del post<input type="url" id="x-url" required placeholder="https://x.com/Jus_Noticias/status/…"></label>
+        <label>Fecha<input type="date" id="x-fecha" required></label>
+        <label class="x-ancho">Comienzo del texto<input type="text" id="x-texto" required minlength="8" maxlength="280" placeholder="Las primeras palabras del post"></label>
+        <label>Me gusta<input type="number" id="x-megusta" min="0" inputmode="numeric"></label>
+        <label>Respuestas<input type="number" id="x-respuestas" min="0" inputmode="numeric"></label>
+        <label>Reposts<input type="number" id="x-reposts" min="0" inputmode="numeric"></label>
+        <label>Vistas<input type="number" id="x-vistas" min="0" inputmode="numeric"></label>
+        <div class="x-ancho"><button class="btn accion" type="submit" id="x-guardar">Guardar post</button></div>
+      </form>
+      <p class="note" id="x-estado" role="status"></p>
     </div>
   </section>
 
@@ -2211,6 +2231,47 @@ const draw = () => {
     window.addEventListener('load', () => { if (window.scrollY < 600) irArriba(); }, { once: true });
   } else draw();
   // La portada y los controles ya están activos antes de consultar el historial.
-  cargarRevisiones().then(() => { updateLanding(calc()); draw(); });
+  // Posts de X cargados a mano (functions/api/x-manual.js): se suman a los datos al abrir la página.
+  const textoX = t => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 25);
+  const sumarPostX = f => {
+    const i = D.redes.findIndex(r => r.key === f.key || (r.red === 'X' && r.fecha === f.fecha && textoX(r.texto) && textoX(r.texto) === textoX(f.texto)));
+    if (i >= 0) {
+      // Una cifra vacía no pisa una guardada.
+      ['me_gusta', 'comentarios', 'compartidos', 'vistas'].forEach(k => { if (typeof f[k] === 'number') D.redes[i][k] = f[k]; });
+      if (f.url) D.redes[i].url = f.url;
+    } else D.redes.push(f);
+  };
+  const cargarXManual = async () => {
+    try {
+      const r = await fetch('/api/x-manual', { headers: { Accept: 'application/json' }, cache: 'no-store' });
+      if (!r.ok) return;
+      ((await r.json()).filas || []).forEach(sumarPostX);
+    } catch (e) { /* sin la carga manual, el tablero sigue con lo guardado */ }
+  };
+  $('x-form').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const estado = $('x-estado');
+    if (!claveRevision) {
+      claveRevision = window.prompt('Ingresá la clave autorizada por el administrador del tablero:') || '';
+      if (!claveRevision) return;
+      try { sessionStorage.setItem('jusnoticias_revision_key', claveRevision); } catch {}
+    }
+    const datos = { url: $('x-url').value, fecha: $('x-fecha').value, texto: $('x-texto').value, me_gusta: $('x-megusta').value, comentarios: $('x-respuestas').value, compartidos: $('x-reposts').value, vistas: $('x-vistas').value };
+    $('x-guardar').disabled = true; estado.textContent = 'Guardando…';
+    try {
+      const r = await fetch('/api/x-manual', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + claveRevision }, body: JSON.stringify(datos) });
+      const j = await r.json();
+      if (!r.ok) {
+        if (r.status === 401) { claveRevision = ''; try { sessionStorage.removeItem('jusnoticias_revision_key'); } catch {} }
+        throw new Error(j.error || 'No se pudo guardar el post.');
+      }
+      sumarPostX(j.fila);
+      $('x-form').reset();
+      estado.textContent = 'Guardado: post del ' + j.fila.fecha.split('-').reverse().join('/') + '. Ya cuenta en el tablero y queda registrado en la próxima actualización.';
+      draw();
+    } catch (e) { estado.textContent = e.message || 'No se pudo guardar el post.'; }
+    $('x-guardar').disabled = false;
+  });
+  Promise.all([cargarRevisiones(), cargarXManual()]).then(() => { updateLanding(calc()); draw(); });
 })();
 </script>

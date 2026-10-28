@@ -21,7 +21,8 @@
     const loc = localidadDe(medio);
     return { ...r, medio, mes: n.mes, fecha: n.fecha, tipo: n.tipo, localidad: loc || '', region: loc ? regionMedio(loc) : '' };
   });
-  const propias = (D.redes || []).filter(r => r.propia === 'Sí');
+  // Se lee cada vez: los posts de X cargados a mano se suman a D.redes después de abrir la página.
+  const propiasDe = () => (D.redes || []).filter(r => r.propia === 'Sí');
   const interaccion = r => { const v = [r.me_gusta, r.comentarios, r.compartidos].filter(x => typeof x === 'number'); return v.length ? v.reduce((a, b) => a + b, 0) : null; };
   const CUENTAS_REDES = [
     { id: 'fb', red: 'Facebook', nombre: 'Facebook', es: r => r.red === 'Facebook' && !/\bSTJ\b/i.test(r.cuenta || '') && /^JusNoticias/i.test(r.cuenta || ''), canal: c => c.red === 'Facebook' && !/\bSTJ\b/.test(c.cuenta) },
@@ -79,7 +80,7 @@
     const idsNs = new Set(ns.map(n => Number(n.id)));
     const filasNs = filas.filter(r => idsNs.has(Number(r.nota_id)));
     const con = new Set(filasNs.map(r => Number(r.nota_id)));
-    const posts = propias.filter(r => r.fecha && enP(r.fecha.slice(0, 10)) && (!filtro || filtro.tipo !== 'red' || CUENTAS_REDES.find(c => c.id === filtro.valor).es(r)));
+    const posts = propiasDe().filter(r => r.fecha && enP(r.fecha.slice(0, 10)) && (!filtro || filtro.tipo !== 'red' || CUENTAS_REDES.find(c => c.id === filtro.valor).es(r)));
     const inter = posts.map(interaccion).filter(v => typeof v === 'number');
     return {
       notas: ns.length,
