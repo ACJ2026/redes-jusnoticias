@@ -842,6 +842,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Nota:** al probar se vio un error previo en la consola (`enlaceCuenta is not defined` en la sección de compartidos), ajeno a este cambio.
 
 
+## 2026-10-28 — Panel en vivo fusionado y arreglo de un error de consola (Claude)
+
+- **Panel en vivo:** PR #133 fusionado a pedido de Ignacio («dale, terminá todo»). Prueba en la vista previa con datos reales (28/10 09:36): responden Facebook JusNoticias (3.774 seguidores), Facebook STJ (10.468), Instagram (2.617; alcance de la cuenta 2,2 mil en 28 días) y YouTube (1.200). TikTok falla con «Token refresh failed» (hay que volver a autorizar desde `/api/tiktok/auth`) y X no se consulta. La caché compartida funcionó (segunda consulta desde la caché). Ninguna cuenta tuvo publicaciones en los últimos 7 días. Capturas en el PR #133 y guía en `docs/PANEL_EN_VIVO.md`. Pendiente: vincular `PANEL_KV` en Cloudflare.
+- **Error de consola:** «enlaceCuenta is not defined» en la sección de cuentas que compartieron notas. `enlaceNotaSitioMedio` usaba una función definida dentro de otra; ahora resuelve el perfil con una función local con el mismo criterio. Se actualizó la prueba que exigía el texto con el error.
+- **Siguiente:** reordenamiento del tablero completo con el esquema de Plausible (rama y PR aparte, sin fusionar), con el panel en vivo arriba de los números.
 ## 2026-10-28 — Tablero completo con el esquema de Plausible (Claude, PR sin fusionar)
 
 - **Pedido de Ignacio:** reordenar el tablero completo como plausible.io, sin cambiar cómo se calcula ninguna cifra.
