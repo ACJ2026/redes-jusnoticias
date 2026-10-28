@@ -24,8 +24,8 @@
   const propias = (D.redes || []).filter(r => r.propia === 'Sí');
   const interaccion = r => { const v = [r.me_gusta, r.comentarios, r.compartidos].filter(x => typeof x === 'number'); return v.length ? v.reduce((a, b) => a + b, 0) : null; };
   const CUENTAS_REDES = [
-    { id: 'fb', red: 'Facebook', nombre: 'Facebook', es: r => r.red === 'Facebook' && !/STJ/i.test(r.cuenta || '') && /^JusNoticias/i.test(r.cuenta || ''), canal: c => c.red === 'Facebook' && !/STJ/.test(c.cuenta) },
-    { id: 'fbstj', red: 'Facebook', nombre: 'FB STJ', es: r => r.red === 'Facebook' && /JusNoticias STJ/i.test(r.cuenta || ''), canal: c => c.red === 'Facebook' && /STJ/.test(c.cuenta) },
+    { id: 'fb', red: 'Facebook', nombre: 'Facebook', es: r => r.red === 'Facebook' && !/\bSTJ\b/i.test(r.cuenta || '') && /^JusNoticias/i.test(r.cuenta || ''), canal: c => c.red === 'Facebook' && !/\bSTJ\b/.test(c.cuenta) },
+    { id: 'fbstj', red: 'Facebook', nombre: 'FB STJ', es: r => r.red === 'Facebook' && /JusNoticias STJ/i.test(r.cuenta || ''), canal: c => c.red === 'Facebook' && /\bSTJ\b/.test(c.cuenta) },
     { id: 'ig', red: 'Instagram', nombre: 'Instagram', es: r => r.red === 'Instagram', canal: c => c.red === 'Instagram' },
     { id: 'yt', red: 'YouTube', nombre: 'YouTube', es: r => r.red === 'YouTube', canal: c => c.red === 'YouTube' },
     { id: 'tt', red: 'TikTok', nombre: 'TikTok', es: r => r.red === 'TikTok', canal: c => c.red === 'TikTok' },
@@ -120,7 +120,7 @@
       const ant = rango ? [sumarDias(rango[0], -diasEntre(rango[0], rango[1])), sumarDias(rango[0], -1)] : null;
       if (ant) { try { const a = await pedirVisitas(ant); visitas.anterior = a && a.analytics && typeof a.analytics.sessions === 'number' ? a.analytics.sessions : null; } catch { visitas.anterior = null; } }
       visitas.estado = 'ok';
-    } catch (e) { if (visitas.clave === clave) { visitas.estado = 'error'; visitas.error = e.message; } }
+    } catch (e) { if (visitas.clave === clave) { visitas.estado = 'error'; visitas.error = e.message; visitas.sinConfigurar = /pendiente|configuraci|credencial/i.test(e.message || ''); } }
     if (visitas.clave === clave) render();
   };
 
@@ -152,15 +152,22 @@
       b.type = 'button'; b.setAttribute('aria-pressed', String(metrica === m.k));
       let valor = m.k === 'visitas' ? visitas.actual : act[m.k];
       let previo = m.k === 'visitas' ? visitas.anterior : (ant ? ant[m.k] : null);
-      if (m.k === 'visitas' && filtro) { valor = null; previo = null; }
-      b.append(el('span', 'pl-kpi-nombre', m.nombre));
+      // Visitas no se filtran; las interacciones solo se filtran por red.
+      const sinFiltrar = filtro && (m.k === 'visitas' || (m.k === 'interacciones' && filtro.tipo !== 'red'));
+      if (sinFiltrar) { valor = null; previo = null; }
+      const nombre = m.k === 'notas' && filtro && ['medio', 'ciudad', 'region'].includes(filtro.tipo) ? 'Notas nuestras que salieron ' + ({ medio: 'en este medio', ciudad: 'en medios de esta ciudad', region: 'en medios de esta región' })[filtro.tipo] : m.nombre;
+      b.append(el('span', 'pl-kpi-nombre', nombre));
       const v = el('strong', 'pl-kpi-valor', typeof valor === 'number' ? fmt(valor) + (m.suf || '') : '—');
       b.append(v);
-      const d = variacion(valor, previo);
-      if (d !== null && d !== 0) b.append(el('span', 'pl-delta ' + (d > 0 ? 'sube' : 'baja'), (d > 0 ? '↗ ' : '↘ ') + Math.abs(d) + '%'));
-      else if (d === 0) b.append(el('span', 'pl-delta igual', '= 0%'));
+      // El porcentaje se compara en puntos (79 % contra 83 % = 4 puntos menos), no en variación relativa.
+      const enPuntos = m.k === 'pct';
+      const d = enPuntos ? (typeof valor === 'number' && typeof previo === 'number' ? valor - previo : null) : variacion(valor, previo);
+      const unidad = enPuntos ? (Math.abs(d) === 1 ? ' punto' : ' puntos') : '%';
+      if (d !== null && d !== 0) b.append(el('span', 'pl-delta ' + (d > 0 ? 'sube' : 'baja'), (d > 0 ? '↗ ' : '↘ ') + Math.abs(d) + unidad));
+      else if (d === 0) b.append(el('span', 'pl-delta igual', enPuntos ? '= 0 puntos' : '= 0%'));
+      if (m.k === 'interacciones' && sinFiltrar) b.append(el('span', 'pl-kpi-nota', 'no se filtra por ' + ETIQUETA_FILTRO[filtro.tipo].toLowerCase()));
       if (m.k === 'visitas') {
-        const nota = filtro ? 'no se filtra por ' + ETIQUETA_FILTRO[filtro.tipo].toLowerCase() : visitas.estado === 'cargando' ? 'consultando…' : visitas.estado === 'error' ? 'sin dato' : 'sesiones · Google Analytics';
+        const nota = filtro ? 'no se filtra por ' + ETIQUETA_FILTRO[filtro.tipo].toLowerCase() : visitas.estado === 'cargando' ? 'consultando…' : visitas.estado === 'error' ? (visitas.sinConfigurar ? 'sin dato: Google no está configurado en esta versión' : 'sin dato: Google no respondió') : 'sesiones · Google Analytics';
         b.append(el('span', 'pl-kpi-nota', nota));
       }
       b.addEventListener('click', () => { metrica = m.k; render(); });
@@ -195,6 +202,7 @@
       const texto = filtro ? 'Las visitas no se filtran por ' + ETIQUETA_FILTRO[filtro.tipo].toLowerCase() + '.'
         : visitas.estado === 'cargando' ? 'Consultando Google Analytics…'
         : typeof visitas.actual === 'number' ? 'Google Analytics no entrega visitas por día en esta conexión: el total del período está en la tarjeta de arriba y el detalle en la pestaña Visitas.'
+        : visitas.sinConfigurar ? 'Sin dato: en esta versión del sitio no están cargadas las credenciales de Google.'
         : 'Sin dato: Google Analytics no respondió en este momento. Se vuelve a consultar al cambiar el período o al abrir la pestaña Visitas.';
       grafCaja.append(el('p', 'pl-nota', texto)); return;
     }
@@ -229,9 +237,21 @@
   };
   const estadoCuenta = c => {
     const canal = (D.canales || []).find(c.canal);
-    const v = vivo && vivo.cuentas ? vivo.cuentas.filter(x => x.red === c.red && (c.id === 'fbstj' ? /STJ/.test(x.cuenta) : c.id === 'fb' ? !/STJ/.test(x.cuenta) : true)) : [];
-    const enVivo = v.length ? (v.some(x => x.ok) ? 'responde en vivo' : 'sin dato en vivo') : (vivo ? 'sin dato en vivo' : '');
-    return [canal && canal.estado, enVivo].filter(Boolean).join(' · ') || 'Sin estado registrado';
+    const v = vivo && vivo.cuentas ? vivo.cuentas.filter(x => x.red === c.red && (c.id === 'fbstj' ? /\bSTJ\b/.test(x.cuenta) : c.id === 'fb' ? !/\bSTJ\b/.test(x.cuenta) : true)) : [];
+    const ok = v.filter(x => x.ok);
+    if (ok.length) {
+      // Lo consultado en vivo es más nuevo que el estado guardado del relevamiento.
+      const partes = ['responde en vivo'];
+      if (ok.some(x => x.publicaciones > 0)) partes.push('con publicaciones en los últimos 7 días');
+      else {
+        partes.push('sin publicaciones en los últimos 7 días');
+        const ult = ok.map(x => x.ultimaPublicacion).filter(Boolean).sort().pop();
+        if (ult) partes.push('última: ' + ddmm(ult));
+      }
+      return partes.join(' · ');
+    }
+    const enVivo = v.length || vivo ? 'sin dato en vivo' : '';
+    return [canal && canal.estado ? canal.estado + ' (dato guardado)' : '', enVivo].filter(Boolean).join(' · ') || 'Sin estado registrado';
   };
   const datosTarjeta = (grupo, pest, act) => {
     if (grupo === 'medios') {
@@ -259,7 +279,7 @@
     // Visitas | Buscadores
     if (filtro) return { filas: [], vacio: 'Las visitas no se filtran por ' + ETIQUETA_FILTRO[filtro.tipo].toLowerCase() + '.' };
     if (visitas.estado === 'cargando') return { filas: [], vacio: 'Consultando Google…' };
-    if (visitas.estado === 'error' || !visitas.datos) return { filas: [], vacio: 'Sin dato: no se pudo consultar Google en este momento.' };
+    if (visitas.estado === 'error' || !visitas.datos) return { filas: [], vacio: visitas.sinConfigurar ? 'Sin dato: en esta versión del sitio no están cargadas las credenciales de Google.' : 'Sin dato: no se pudo consultar Google en este momento.' };
     if (pest === 'visitas') return { filas: (visitas.datos.analytics.paginas || []).map(p => ({ valor: p.ruta, etiqueta: p.titulo || p.ruta, n: typeof p.screenPageViews === 'number' ? p.screenPageViews : null, sufijo: 'vistas', enlace: 'https://jusnoticias.juschubut.gov.ar' + (p.ruta || '') })).sort((a, b) => (b.n ?? -1) - (a.n ?? -1)), vacio: 'Sin páginas en este período.' };
     return { filas: ((visitas.datos.searchConsole && visitas.datos.searchConsole.consultas) || []).map(q => ({ valor: q.consulta, etiqueta: q.consulta, n: typeof q.clics === 'number' ? q.clics : null, sufijo: 'clics' })).sort((a, b) => (b.n ?? -1) - (a.n ?? -1)), vacio: 'Sin búsquedas en este período.' };
   };
@@ -279,9 +299,10 @@
     const valor = el('span', 'pl-fila-valor', typeof x.n === 'number' ? fmt(x.n) : 'sin dato'); valor.title = typeof x.n === 'number' ? fmt(x.n) + ' ' + (x.sufijo || '') : 'Sin dato';
     f.append(fondo, nombre, valor);
     if (x.tipo && alClic) f.addEventListener('click', () => alClic(x));
-    if (x.tipo) f.title = x.tipo === 'nota' && alClic !== ponerFiltro ? 'Ver los medios que la publicaron y sus enlaces' : 'Filtrar todo el tablero por ' + x.etiqueta;
+    if (x.tipo) f.title = alClic === ponerFiltro ? 'Filtrar todo el Resumen por ' + x.etiqueta : (TITULO_REFERENCIA[x.tipo] || 'Ver el detalle');
     return f;
   };
+  const TITULO_REFERENCIA = { nota: 'Ver los medios que la publicaron y sus enlaces', medio: 'Ver las publicaciones de este medio y sus enlaces', ciudad: 'Ver las publicaciones de los medios de esta ciudad', region: 'Ver las publicaciones de los medios de esta región', tema: 'Ver las notas de este tema', red: 'Ver las publicaciones de esta cuenta' };
   const ponerFiltro = x => {
     if (x.tipo === 'red') filtro = { tipo: 'red', valor: x.valor, etiqueta: CUENTAS_REDES.find(c => c.id === x.valor).nombre };
     else filtro = { tipo: x.tipo, valor: x.valor, etiqueta: x.tipo === 'nota' ? (x.etiqueta.length > 60 ? x.etiqueta.slice(0, 58) + '…' : x.etiqueta) : x.etiqueta };
@@ -291,14 +312,45 @@
   };
   // Tocar una nota (en las tarjetas o en «ver todo») abre su detalle: cuántos medios la publicaron
   // y el enlace de cada uno. Para filtrar por una nota está el botón «Filtro».
+  const ponerVolver = cardId => {
+    const card = $(cardId); if (!card) return;
+    const desde = { pagina: st.page, y: window.scrollY };
+    let b = card.querySelector('.pl-volver');
+    if (!b) { b = el('button', 'btn pl-volver', '← Volver'); b.type = 'button'; card.prepend(b); }
+    b.hidden = false;
+    b.onclick = () => { b.hidden = true; T.show(desde.pagina); requestAnimationFrame(() => window.scrollTo({ top: desde.y, behavior: 'instant' })); };
+  };
   const abrirNota = id => {
+    ponerVolver('c-detalle');
     const modal = $('pl-modal'); if (modal && modal.open) modal.close();
     T.show('notas');
     if (typeof T.detalle === 'function') T.detalle(Number(id));
     // Arranca en el título y el total de medios, no en el medio de la lista.
     const det = $('c-detalle'); if (det && !det.hidden) det.scrollIntoView({ block: 'start', behavior: 'instant' });
   };
-  const alTocar = x => x.tipo === 'nota' ? abrirNota(x.valor) : ponerFiltro(x);
+  // Tocar un dato muestra de dónde sale (como el tablero anterior): las publicaciones con sus enlaces.
+  // Filtrar todo el Resumen queda en el botón «Filtro».
+  const filasDelPeriodo = cond => { const [a, b] = rangoActual(); return filasTodas.filter(r => r.fecha && r.fecha >= a && r.fecha <= b && cond(r)); };
+  const elegirEn = (pagina, campos) => {
+    T.show(pagina);
+    Object.entries(campos).forEach(([id, valor]) => { const e = $(id); if (e) { e.value = valor; e.dispatchEvent(new Event('change', { bubbles: true })); } });
+    const sec = $(pagina); if (sec) sec.scrollIntoView({ block: 'start', behavior: 'instant' });
+  };
+  const verReferencias = (titulo, intro, filas) => {
+    ponerVolver('medios-detalle');
+    const modal = $('pl-modal'); if (modal && modal.open) modal.close();
+    if (typeof T.abrirEnMedios === 'function') T.abrirEnMedios(titulo, intro, filas);
+    const det = $('medios-detalle'); if (det && !det.hidden) det.scrollIntoView({ block: 'start', behavior: 'instant' });
+  };
+  const alTocar = x => {
+    if (x.tipo === 'nota') return abrirNota(x.valor);
+    if (x.tipo === 'medio') return verReferencias('Publicaciones de ' + x.etiqueta, 'Nuestras notas que salieron en este medio en el período elegido. Los enlaces se abren en otra pestaña.', filasDelPeriodo(r => r.medio === x.valor));
+    if (x.tipo === 'ciudad') return verReferencias('Medios con sede en ' + x.etiqueta, 'Publicaciones de los medios de esta ciudad en el período elegido. Los enlaces se abren en otra pestaña.', filasDelPeriodo(r => r.localidad === x.valor));
+    if (x.tipo === 'region') return verReferencias('Medios de ' + x.etiqueta, 'Publicaciones de los medios de esta región en el período elegido. Los enlaces se abren en otra pestaña.', filasDelPeriodo(r => r.region === x.valor));
+    if (x.tipo === 'tema') return elegirEn('notas', { ftipo: x.valor });
+    if (x.tipo === 'red') { const c = CUENTAS_REDES.find(k => k.id === x.valor); return elegirEn('redes', { fred: c ? c.red : '', fprop: 'Sí' }); }
+    return ponerFiltro(x);
+  };
   const abrirModal = (titulo, filas, max, alClic = alTocar) => {
     const modal = $('pl-modal'); if (!modal) return;
     $('pl-modal-titulo').textContent = titulo;

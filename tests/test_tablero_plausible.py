@@ -107,5 +107,14 @@ class ArreglosRevisionTest(unittest.TestCase):
     def test_notas_tiene_pestana_propia_y_tocar_una_nota_abre_su_detalle(self):
         self.assertIn('<button role="tab" id="tab-notas" data-page="notas"', PLANTILLA)
         self.assertIn("drawGuia, detalle,", PLANTILLA)
-        self.assertIn("const alTocar = x => x.tipo === 'nota' ? abrirNota(x.valor) : ponerFiltro(x);", VISTA)
+        self.assertIn("if (x.tipo === 'nota') return abrirNota(x.valor);", VISTA)
+
+    def test_tocar_un_dato_muestra_sus_publicaciones_con_enlaces(self):
+        self.assertIn("drawGuia, detalle, abrirEnMedios,", PLANTILLA)
+        self.assertIn("if (x.tipo === 'medio') return verReferencias(", VISTA)
+        self.assertIn("if (x.tipo === 'ciudad') return verReferencias(", VISTA)
+        self.assertIn("if (x.tipo === 'region') return verReferencias(", VISTA)
+        self.assertIn("elegirEn('notas', { ftipo: x.valor })", VISTA)
+        # Filtrar todo el Resumen queda en el botón «Filtro».
+        self.assertIn("abrirModal('Filtrar el tablero', todas, Math.max(0, ...todas.map(x => typeof x.n === 'number' ? x.n : 0)), ponerFiltro);", VISTA)
         self.assertIn("T.show('notas');", VISTA)

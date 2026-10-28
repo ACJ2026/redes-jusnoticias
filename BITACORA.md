@@ -895,3 +895,30 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Para filtrar por una nota sigue estando el botón «Filtro».
   - `#notas` vuelve a ser un enlace directo a esa pestaña.
   - Pruebas: 160 OK. Se probó en el navegador en 1280 y 375 px: la nota del 19/10 muestra «28 medios publicaron esta nota» y 28 enlaces.
+- **Revisión completa con Claude en Chrome (mismo PR):**
+  - **Clics del Resumen:** vuelven a mostrar de dónde sale el dato, como en el tablero anterior.
+    - Medio, ciudad o región abren sus publicaciones con enlaces. Nota abre su detalle. Tema abre Notas filtrada. Red abre Redes filtrada.
+    - Filtrar todo el Resumen queda en el botón «Filtro».
+    - El detalle de una nota y la lista de publicaciones tienen «← Volver».
+  - **Facebook JusNoticias aparecía «sin publicaciones» en la tarjeta Redes.** Causa: el nombre «JusNoticias (prensastjchubut)» contiene «stj» y se lo tomaba por la página STJ. Ahora se busca la palabra «STJ» suelta.
+  - **Estado de las cuentas en el Resumen:** si la red responde en vivo, se muestra lo consultado. El estado guardado (p. ej. «STJ inactiva desde 22/04») queda marcado como «dato guardado».
+  - **Visitas:** se distingue «Google no está configurado en esta versión» (la vista previa no tiene las credenciales) de «Google no respondió».
+  - **Números con un filtro activo:**
+    - «Notas publicadas» cambia de nombre con un filtro de medio, ciudad o región.
+    - «Interacciones» avisa que no se filtra por medio.
+    - «% con repercusión» compara en puntos.
+  - **Otros detalles:**
+    - Período con fechas al revés: se avisa.
+    - Enlaces de Google Noticias: se nombran como tales.
+    - Detalle de una nota: aclara cuando hay más enlaces que medios.
+    - Fechas en formato dd/mm/aaaa.
+    - Notas sin resultados: muestra un mensaje.
+    - Infografía: tiene botón «Cerrar».
+    - Redes: texto claro sobre la consulta completa.
+    - Chips del celular más compactos.
+  - **Pendiente de decisión de Ignacio (cambia qué se cuenta):**
+    - Totales distintos entre secciones: 154 del Resumen, que incluye «a verificar», contra 136 verificadas en la pestaña Medios y en la infografía.
+    - Examedia repetido como «examedia.com.ar».
+    - Sedes de medios por verificar (0223, ElDoce.tv, Canal 4 Esquel, Chubut Hoy).
+  - **Del entorno, no del código:** en la vista previa faltan el token de TikTok (TIKTOK_KV de Preview), las credenciales de Google y X_BEARER_TOKEN; en la oficial andan.
+  - **Redes, sin publicaciones en 7 días:** consulta desde GitHub al sitio publicado. Meta, YouTube y TikTok devuelven como última publicación: Facebook 20/10, Instagram 15/10, YouTube 15/10 y TikTok 14/10. `data/redes2.json` no se actualiza solo desde el 23/10.

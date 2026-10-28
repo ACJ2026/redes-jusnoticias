@@ -314,7 +314,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     <div class="ayuda-boton"><button class="btn accion ayuda-sec" type="button" data-ayuda="resumen" aria-haspopup="dialog">Cómo leer esta sección</button></div>
     <div class="tools" hidden><button class="btn accion" id="info-abrir" type="button" aria-expanded="false" aria-controls="infografia">Generar infografía</button></div>
     <div class="card" id="infografia" hidden>
-      <h2>Generador de infografía</h2>
+      <div class="pl-info-cab"><h2>Generador de infografía</h2><button class="btn" type="button" id="info-cerrar" aria-label="Cerrar el generador de infografía">Cerrar ✕</button></div>
       <p class="note">Respondé las preguntas y después generá la vista previa. La imagen se descarga exactamente como se ve y no se publica en ningún lado.</p>
       <fieldset class="info-paso"><legend>1. ¿Sobre qué querés la infografía?</legend>
         <label><input type="radio" name="info-tipo" value="periodo" checked> Resumen de un período</label>
@@ -458,7 +458,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <h2>Estado del monitoreo en vivo</h2>
       <p class="note">Trae los datos de ahora de Facebook (JusNoticias y JusNoticias STJ por separado), Instagram, YouTube, X y TikTok. TikTok está conectado con la cuenta institucional @juschubut. X necesita un acceso pago que hoy no tenemos. WhatsApp sigue pendiente de integración; no se suman plataformas sin datos.</p>
       <div class="tools"><button class="btn accion" id="redes-vivo-consultar" type="button">Consultar fuentes disponibles</button></div>
-      <p class="note" id="redes-vivo-estado" role="status">La consulta en vivo aún no se ejecutó.</p>
+      <p class="note" id="redes-vivo-estado" role="status">La consulta completa de esta tabla todavía no se ejecutó: tocá «Consultar fuentes disponibles». (El panel en vivo de arriba se consulta solo cada 5 minutos).</p>
       <div class="tbox"><table id="t-redes-vivo"><thead><tr><th>Red</th><th>Estado de la fuente</th><th>Publicaciones en la ventana consultada</th><th>Seguidores informados</th><th>Última publicación</th><th>Insights disponibles</th></tr></thead><tbody><tr><td colspan="6">Seleccioná «Consultar fuentes disponibles» para revisar la conexión.</td></tr></tbody></table></div>
     </div>
     <div class="card" id="compartidos">
@@ -1026,9 +1026,9 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
         const titulo = document.createElement('strong'); titulo.className = 'medios-ref-titulo';
         titulo.textContent = n?.titulo || 'Nota de JusNoticias relacionada (título no disponible)';
         const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-        a.textContent = String(r.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia en Google Noticias ↗' : 'Abrir publicación en ' + (r.medio || 'el medio de origen') + ' ↗';
+        a.textContent = /news\.google\./.test(String(r.url)) ? 'Abrir referencia en Google Noticias (no es el sitio del medio) ↗' : 'Abrir publicación en ' + (r.medio || 'el medio de origen') + ' ↗';
         const meta = document.createElement('small');
-        meta.textContent = 'Fecha de la nota oficial: ' + (n?.fecha || 'No disponible') + ' · Comparación: ' + (r.origen || 'No clasificada') + ' · Confianza del registro: ' + (r.confianza || 'No indicada');
+        meta.textContent = 'Fecha de la nota oficial: ' + (n?.fecha ? n.fecha.split('-').reverse().join('/') : 'No disponible') + ' · Comparación: ' + (r.origen || 'No clasificada') + ' · Confianza del registro: ' + (r.confianza || 'No indicada');
         item.append(titulo, a, meta); lista.append(item);
       });
     }
@@ -1080,6 +1080,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     $('cuenta-notas').textContent = fmt(rows.length) + ' notas';
     tbl('#t-notas', rows, [[r => ddmm(r.fecha)], [r => r.titulo], [r => r.tipo], [r => ({ t: fmt(r.n_medios), c: r.n_medios ? '' : 'zero' }), 'num'], [r => fmt(r.copias), 'num'], [r => ({ t: r.medios || 'Ningún medio', c: r.medios ? '' : 'zero' })], [r => r.posibles ? fmt(r.posibles) : '', 'num dim']]);
     [...document.querySelectorAll('#t-notas tbody tr')].forEach((tr, i) => { tr.dataset.id = rows[i].id; tr.classList.toggle('sel', rows[i].id === st.sel); });
+    if (!rows.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 7; td.className = 'dim'; td.textContent = 'Ninguna nota coincide con la búsqueda o los filtros elegidos.'; tr.append(td); document.querySelector('#t-notas tbody').append(tr); }
     document.querySelectorAll('#t-notas th').forEach(th => { const b = th.querySelector('button'); th.setAttribute('aria-sort', b && b.dataset.k === st.sort ? (st.dir > 0 ? 'ascending' : 'descending') : 'none'); });
   };
   // ---------- Quién compartió nuestras notas en redes ----------
@@ -1569,7 +1570,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     const yd = st.desde.slice(0, 4), yh = st.hasta.slice(0, 4);
     const per = st.desde === st.hasta ? mesLargo(st.desde) + ' de ' + yd : mesLargo(st.desde) + (yd !== yh ? ' de ' + yd : '') + ' a ' + mesLargo(st.hasta) + ' de ' + yh;
     const ultima = notas.filter(n => en(n.mes)).map(n => n.fecha).sort().pop();
-    $('periodo').textContent = cap(per) + (ultima ? ' · última nota del período: ' + ultima.split('-').reverse().join('/') : ' · sin notas en el período seleccionado');
+    $('periodo').textContent = cap(per) + (ultima ? ' · última nota del período: ' + ultima.split('-').reverse().join('/') : ' · sin notas en el período seleccionado') + (st.invertido ? ' · «Desde» era posterior a «Hasta»: se ordenaron los meses elegidos' : '');
     const tp = c.tipo.filter(x => x.notas).sort((a, b) => b.pct - a.pct), hi = tp[0], lo = tp[tp.length - 1];
     let t = 'Publicamos ' + fmt(c.notas) + ' notas y el ' + c.pct + '% salió en otros medios: ' + fmt(c.publicacionesDetectadas) + ' publicaciones en ' + fmt(c.mediosDetectados) + ' medios.';
     if (hi && lo && hi !== lo) t += ' Lo que más salió: ' + hi.tipo + ' (' + hi.levantadas + ' de ' + hi.notas + ' notas). Lo que menos: ' + lo.tipo + ' (' + lo.levantadas + ' de ' + lo.notas + ').';
@@ -1707,7 +1708,11 @@ const draw = () => {
     const isoLocal = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
     $('g-desde').value = isoLocal(effectiveStart); $('g-hasta').value = isoLocal(end);
   };
-  const setRango = (d, h) => { if (d > h) [d, h] = [h, d]; st.desde = d; st.hasta = h; syncGoogleDates(); draw(); };
+  const setRango = (d, h) => {
+    // Si «Desde» queda después de «Hasta», se ordenan y se avisa (no se cambia el período en silencio).
+    st.invertido = d > h; if (st.invertido) [d, h] = [h, d];
+    st.desde = d; st.hasta = h; syncGoogleDates(); draw();
+  };
   $('fdesde').addEventListener('change', e => setRango(e.target.value, st.hasta));
   $('fhasta').addEventListener('change', e => setRango(st.desde, e.target.value));
   $('ftodo').addEventListener('click', () => setRango(meses[0], meses[meses.length - 1]));
@@ -1990,6 +1995,7 @@ const draw = () => {
     estado.textContent = 'Vista previa lista (' + (d.tipo === 'nota' ? 'nota del ' + d.periodo : d.periodo) + '; datos al ' + d.corte + ').' + (omitidos ? ' ' + omitidos + (omitidos === 1 ? ' dato no entró' : ' datos no entraron') + ' en este formato: ' + ($('info-formato').value === 'story' ? 'quitá alguno de los datos elegidos.' : 'probá con «Historia» o quitá alguno.') : '');
     $('info-descargar').dataset.nombre = 'infografia-juschubut-' + (d.tipo === 'nota' ? 'nota-' + d.nota.id : d.desde + (d.hasta !== d.desde ? '_' + d.hasta : '')) + '-' + $('info-formato').value + '.png';
   };
+  $('info-cerrar').addEventListener('click', () => { if (!$('infografia').hidden) $('info-abrir').click(); });
   $('info-abrir').addEventListener('click', () => {
     const panel = $('infografia'); panel.hidden = !panel.hidden;
     $('info-abrir').setAttribute('aria-expanded', String(!panel.hidden));
@@ -2056,6 +2062,7 @@ const draw = () => {
       span('det-medios-lbl', n.n_medios === 1 ? 'medio publicó esta nota' : 'medios publicaron esta nota'),
       span('det-revisar', n.posibles ? fmt(n.n_verificados) + (n.n_verificados === 1 ? ' confirmado y ' : ' confirmados y ') + fmt(n.posibles) + ' pendientes de decisión.' : (n.n_medios ? 'Todos verificados.' : ''))
     );
+    if (rs.length > n.n_medios) $('det-resumen').append(span('det-revisar', ' La tabla tiene ' + fmt(rs.length) + ' enlaces porque algún medio la publicó en más de una dirección.'));
     $('det-sub').textContent = 'Nota del ' + ddmm(n.fecha) + '. Tocá un enlace para ver la publicación del medio.';
     const tb = document.querySelector('#t-det tbody');
     tb.replaceChildren(...rs.map(r => {
@@ -2067,7 +2074,7 @@ const draw = () => {
       c(r.origen === 'Sin dato' ? '—' : r.origen.replace(' (≥50%)', ''));
       const motivo = r.motivo || (r.metodo || '').replace(/^A verificar:\s*/i, '') || 'La evidencia disponible no alcanzó para decidir.';
       const enlace = r.url && /^https?:\/\//.test(r.url) ? document.createElement('a') : null;
-      if (enlace) { enlace.href = r.url; enlace.target = '_blank'; enlace.rel = 'noopener noreferrer'; enlace.textContent = String(r.url).includes('news.google.com/rss/articles/') ? 'Abrir referencia de búsqueda ↗' : 'Abrir publicación original ↗'; }
+      if (enlace) { enlace.href = r.url; enlace.target = '_blank'; enlace.rel = 'noopener noreferrer'; enlace.textContent = /news\.google\./.test(String(r.url)) ? 'Abrir referencia en Google Noticias (no es el sitio del medio) ↗' : 'Abrir publicación original ↗'; }
       // Motivo y enlace van en la misma celda, como indica el encabezado de la tabla.
       const celdaMotivo = document.createElement('div');
       const textoMotivo = document.createElement('span'); textoMotivo.className = 'dim'; textoMotivo.textContent = motivo;
@@ -2175,7 +2182,7 @@ const draw = () => {
     }
   });
   // Vista de resumen con el esquema de Plausible (publico/tablero-plausible.js): usa los mismos cálculos del tablero.
-  window.__tablero = { D, st, meses, notas, porNota, TIPOS, calc, setRango, show, draw, drawGuia, detalle, esConfirmada, canonMedio, localidadDe, regionMedio, nf, mesLargo, cap };
+  window.__tablero = { D, st, meses, notas, porNota, TIPOS, calc, setRango, show, draw, drawGuia, detalle, abrirEnMedios, esConfirmada, canonMedio, localidadDe, regionMedio, nf, mesLargo, cap };
   window.__tableroHashPedido = h;
   // Si se toca «?», «Filtro» o «Infografía» antes de que termine de cargar tablero-plausible.js,
   // el pedido queda guardado y se atiende apenas carga (así el primer toque no se pierde).
