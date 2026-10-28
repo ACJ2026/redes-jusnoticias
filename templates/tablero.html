@@ -287,10 +287,10 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     <div class="pl-renglon pl-renglon-2">
       <div class="pl-chips" role="group" aria-label="Período">
         <button type="button" class="pl-chip" data-periodo="mes">Este mes</button>
-        <button type="button" class="pl-chip" data-periodo="pasado">Mes pasado</button>
+        <button type="button" class="pl-chip" data-periodo="pasado" aria-label="Mes pasado"><span class="pl-largo">Mes pasado</span><span class="pl-corto" aria-hidden="true">Mes ant.</span></button>
         <button type="button" class="pl-chip" data-periodo="tres">3 meses</button>
         <button type="button" class="pl-chip" data-periodo="todo">Todo</button>
-        <button type="button" class="pl-chip" data-periodo="personalizado" aria-expanded="false" aria-controls="filtro">Personalizado</button>
+        <button type="button" class="pl-chip" data-periodo="personalizado" aria-label="Personalizado" aria-expanded="false" aria-controls="filtro"><span class="pl-largo">Personalizado</span><span class="pl-corto" aria-hidden="true">Elegir</span></button>
       </div>
       <div class="tools pl-personalizado" id="filtro" hidden>
         <label for="fdesde" class="lbl">Desde</label><select id="fdesde"></select>
@@ -311,7 +311,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
 
   <section class="page" id="resumen">
     <div class="ayuda-boton"><button class="btn accion ayuda-sec" type="button" data-ayuda="resumen" aria-haspopup="dialog">Cómo leer esta sección</button></div>
-    <div class="tools"><button class="btn accion" id="info-abrir" type="button" aria-expanded="false" aria-controls="infografia">Generar infografía</button></div>
+    <div class="tools" hidden><button class="btn accion" id="info-abrir" type="button" aria-expanded="false" aria-controls="infografia">Generar infografía</button></div>
     <div class="card" id="infografia" hidden>
       <h2>Generador de infografía</h2>
       <p class="note">Respondé las preguntas y después generá la vista previa. La imagen se descarga exactamente como se ve y no se publica en ningún lado.</p>
@@ -535,14 +535,15 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   </section>
 
   <section class="page" id="guia" hidden>
-    <details class="ayuda-seccion"><summary>Cómo usar esta guía</summary><p>Acá están las definiciones y los límites del tablero. Si solo necesitás entender una sección, usá el botón «Cómo leer esta sección» de esa sección; no hace falta leer toda la metodología.</p></details>
+    <details class="ayuda-seccion"><summary>Cómo usar esta guía</summary><p>Acá están las definiciones y los límites del tablero. Si solo necesitás entender una sección, abrí «Cómo leer cada sección», al final de este panel; no hace falta leer toda la metodología.</p></details>
     <div class="grid2">
       <div class="card guia">
         <h2>Cómo leer este tablero, en 1 minuto</h2>
         <p><b>¿Qué mide?</b> Cuánto de lo que publica Juschubut Noticias llega a los medios y a las redes.</p>
-        <p><b>1. Elegí el período</b> arriba (desde y hasta). Todo se recalcula con esas fechas.</p>
-        <p><b>2. Mirá el Resumen.</b> La oración de arriba dice lo principal. Debajo de cada número y gráfico hay una explicación de qué cuenta y de dónde sale.</p>
-        <p><b>3. Para un dato puntual,</b> usá las pestañas <b>Medios</b>, <b>Notas</b> y <b>Redes</b>. <b>Visitas y buscadores</b> muestra los datos de Google.</p>
+        <p><b>1. Elegí el período</b> con los botones de arriba: Este mes, Mes pasado, 3 meses, Todo o Personalizado (este último abre los meses desde y hasta). Todo se recalcula con esas fechas.</p>
+        <p><b>2. Mirá el Resumen.</b> La oración de arriba dice lo principal. Tocá cualquiera de los seis números para ver su gráfico por día; la flecha compara con la misma cantidad de días inmediatamente anteriores.</p>
+        <p><b>3. Para filtrar,</b> tocá una fila de las listas (un medio, una ciudad, una nota) o usá el botón <b>Filtro</b>. El filtro aparece arriba con una ✕ para sacarlo.</p>
+        <p><b>Para un dato puntual,</b> usá las pestañas <b>Medios</b> (incluye la tabla de notas), <b>Redes</b> y <b>Visitas</b> (datos de Google).</p>
         <p><b>4. Se actualiza solo cada cuatro horas.</b> Visitas y buscadores se consulta al abrir la pestaña o al tocar «Consultar».</p>
       </div>
       <details class="detail-group">
@@ -2135,8 +2136,13 @@ const draw = () => {
   // Al entrar al tablero se arranca arriba de todo y el foco va al título. La posición de la portada
   // queda guardada para que «atrás» del navegador vuelva al mismo lugar.
   const irArriba = () => window.scrollTo({ top: 0, behavior: 'instant' });
+  // El navegador no restaura la posición por su cuenta: lo hace esta página (si no, compite con ella).
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
   $('entrar-tablero').addEventListener('click', () => {
-    try { history.replaceState({ portada: true, scrollY: window.scrollY }, '', location.pathname + location.search + location.hash); } catch (e) {}
+    // Se guarda dónde estaba el botón en la pantalla: si algo de arriba cambia de alto al volver
+    // (por ejemplo el panel en vivo), se vuelve a dejar el botón en el mismo lugar.
+    const ancla = Math.round($('entrar-tablero').getBoundingClientRect().top);
+    try { history.replaceState({ portada: true, scrollY: window.scrollY, ancla }, '', location.pathname + location.search + location.hash); } catch (e) {}
     try { history.pushState({ tablero: true }, '', location.pathname + location.search + '#resumen'); } catch (e) {}
     $('portada').hidden = true;
     $('dashboard-app').hidden = false;
@@ -2149,8 +2155,19 @@ const draw = () => {
     if (!destino || (ev.state && ev.state.portada)) {
       $('dashboard-app').hidden = true;
       $('portada').hidden = false;
-      const y = ev.state && typeof ev.state.scrollY === 'number' ? ev.state.scrollY : 0;
-      requestAnimationFrame(() => window.scrollTo({ top: y, behavior: 'instant' }));
+      const st0 = ev.state || {};
+      const volver = () => {
+        const y = typeof st0.ancla === 'number'
+          ? $('entrar-tablero').getBoundingClientRect().top + window.scrollY - st0.ancla
+          : (typeof st0.scrollY === 'number' ? st0.scrollY : 0);
+        window.scrollTo({ top: Math.max(0, Math.round(y)), behavior: 'instant' });
+      };
+      // Se repite unos instantes mientras la portada termina de acomodarse, salvo que la persona ya se mueva.
+      let movio = false;
+      const marcar = () => { movio = true; };
+      ['wheel', 'touchstart', 'keydown'].forEach(t => window.addEventListener(t, marcar, { once: true, passive: true }));
+      requestAnimationFrame(volver);
+      [150, 400, 900].forEach(ms => setTimeout(() => { if (!movio) volver(); }, ms));
     } else if ($(({ notas: 'medios', visitas: 'google', guia: 'resumen' })[destino] || destino)) {
       $('portada').hidden = true;
       $('dashboard-app').hidden = false;
@@ -2160,12 +2177,20 @@ const draw = () => {
   // Vista de resumen con el esquema de Plausible (publico/tablero-plausible.js): usa los mismos cálculos del tablero.
   window.__tablero = { D, st, meses, notas, porNota, TIPOS, calc, setRango, show, draw, drawGuia, esConfirmada, canonMedio, localidadDe, regionMedio, nf, mesLargo, cap };
   window.__tableroHashPedido = h;
+  // Si se toca «?», «Filtro» o «Infografía» antes de que termine de cargar tablero-plausible.js,
+  // el pedido queda guardado y se atiende apenas carga (así el primer toque no se pierde).
+  [['pl-ayuda-btn', 'guia'], ['pl-filtro-btn', 'filtro'], ['pl-info-btn', 'infografia']].forEach(([id, pedido]) => {
+    $(id).addEventListener('click', () => { if (typeof window.__tableroRender !== 'function') window.__tableroHashPedido = pedido; });
+  });
   const scriptResumen = document.createElement('script'); scriptResumen.src = 'tablero-plausible.js'; scriptResumen.defer = true; document.head.appendChild(scriptResumen);
   const hDestino = ({ notas: 'medios', visitas: 'google', guia: 'resumen' })[h] || h;
   if (h && $(hDestino) && $(hDestino).classList.contains('page')) {
     $('portada').hidden = true;
     $('dashboard-app').hidden = false;
     show(h);
+    // El navegador baja hasta el ancla (#resumen); el tablero arranca arriba de todo.
+    irArriba();
+    window.addEventListener('load', () => { if (window.scrollY < 600) irArriba(); }, { once: true });
   } else draw();
   // La portada y los controles ya están activos antes de consultar el historial.
   cargarRevisiones().then(() => { updateLanding(calc()); draw(); });

@@ -93,15 +93,27 @@ div.pl-fila{cursor:default}
 @media (max-width:700px){
   .pl-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pl-grilla{grid-template-columns:1fr}
-  .pl-renglon-1{flex-wrap:nowrap}
-  .pl-titulo .kicker{display:none}
-  .pl-titulo h1:focus{outline:none}
-.pl-titulo h1:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.pl-titulo h1{font-size:1.05rem}
-  .pl-vivo{display:none}
-  .pl-acciones .btn{padding:6px 10px}
-  .pl-renglon-2{flex-wrap:nowrap;overflow:hidden}
-  .pl-barra .tabs{overflow-x:auto}
   .pl-cajon{width:100vw;border-radius:0}
+}
+/* Celular: barra compacta. Al bajar, la barra se corre hacia arriba y quedan fijas solo las pestañas
+   (el corrimiento lo calcula tablero-plausible.js en --pl-barra-oculta). */
+.pl-corto{display:none}
+@media (max-width:480px){
+  .pl-barra{top:calc(-1 * var(--pl-barra-oculta,0px));grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"tit acc" "f2 f2" "per viv" "nav nav";gap:6px 8px;padding-top:6px;margin-bottom:10px}
+  .pl-renglon-1{display:contents}
+  .pl-titulo{grid-area:tit;min-width:0}
+  .pl-titulo .kicker{display:none}
+  .pl-titulo h1{font-size:1.05rem;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pl-acciones{grid-area:acc;margin-left:0;gap:4px}
+  .pl-acciones .btn{min-height:40px;padding:6px 9px;font-size:.85rem}
+  .pl-vivo{grid-area:viv;display:inline-flex;margin-left:0;font-size:.72rem;justify-self:end}
+  .pl-periodo-texto{grid-area:per;margin:0;font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .pl-renglon-2{flex-wrap:wrap;gap:6px}
+  .pl-chips{flex-wrap:wrap;gap:5px;overflow:visible}
+  .pl-chip{padding:6px 9px;font-size:.8rem}
+  .pl-largo{display:none}.pl-corto{display:inline}
+  .pl-barra .tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible;gap:0}
+  .pl-barra .tabs button{min-width:0;padding:10px 2px;font-size:.85rem;text-align:center;white-space:nowrap}
+  #dashboard-app .page,#pl-resumen{scroll-margin-top:56px}
 }
 @media (prefers-reduced-motion:reduce){.pl-vivo.ok i{animation:none}}

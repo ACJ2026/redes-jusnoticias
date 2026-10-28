@@ -862,3 +862,29 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - «Por verificar» deja de ser fila de Ciudades o Regiones y pasa a un aviso único con «revisar».
 - **Arreglo de la entrada desde la portada:** al tocar «Ingresar al tablero completo» la pantalla va arriba de todo y el foco al título. «Atrás» del navegador vuelve a la portada en la misma posición. Cambiar de pestaña también lleva arriba.
 - El resumen anterior queda en la página, oculto, porque lo usa el generador de infografías.
+
+## 2026-10-28 — Arreglos tras la revisión con Claude en Chrome (Claude)
+
+- **#135 fusionado por Ignacio.** Claude en Chrome revisó la versión publicada; en el mismo pedido hizo lo siguiente:
+  - Creó el espacio KV `panel-vivo` en Cloudflare y lo vinculó como `PANEL_KV` en Producción y en Vista previa. Empieza a funcionar con la próxima publicación del sitio.
+  - TikTok **no** necesita volver a autorizarse: `/api/panel-vivo` responde bien (ok: true). Tiene 0 publicaciones en 7 días porque el último video es del 14/10.
+- **Panel en vivo, redes que responden pero no publicaron** (pedido de Ignacio):
+  - El chip gris queda solo para redes con error (ok: false, como X).
+  - En «Redes en vivo» se muestran los seguidores, «sin publicaciones en 7 días» y «último video: dd/mm» (o «última publicación»). La fecha sale de lo consultado (28 días) y no se suma a la semana; la ventana de 7 días no cambia.
+  - Clave de caché nueva `panel-vivo:v2`, para no servir respuestas viejas sin ese dato.
+- **Tablero completo:**
+  - «Atrás» vuelve a dejar el botón «Ingresar» en el mismo lugar de la pantalla aunque cambie el alto de la portada. La página restaura la posición sola (`scrollRestoration = 'manual'`) y repite el ajuste unos instantes.
+  - Un enlace con `#resumen` arranca arriba.
+  - Queda un solo botón de infografía, el de la barra.
+  - Si se toca «?», «Filtro» o «Infografía» antes de que cargue `tablero-plausible.js`, el toque queda guardado y se atiende al terminar de cargar.
+  - La guía explica los chips de período, el filtro y las 4 pestañas.
+  - Con un filtro activo, la oración de arriba describe lo filtrado y vuelve a la original al sacar el filtro.
+  - «Visitas al sitio» sin dato ya no remite «a la tarjeta de arriba».
+  - Debajo de los números se muestra contra qué días comparan las flechas.
+- **Flechas rojas:** no era un error. Octubre (1–28) ya se comparaba contra el 03/09–30/09, la misma cantidad de días, y la baja es real (28 notas contra 32). Se aclara además que las notas de los últimos días todavía pueden sumar publicaciones.
+- **Celular (≤ 480 px):**
+  - La barra pasa de unos 248 px a unos 195 px, y al bajar quedan fijas solo las pestañas (unos 69 px).
+  - Las 4 pestañas entran completas y los chips usan textos cortos («Mes ant.», «Elegir»).
+  - Se ve el «● en vivo · hora».
+- **Lo que no se hizo:** la «barra inferior con 4 secciones y menú ⋯» que mencionó Chrome no estaba en la especificación de Ignacio.
+- **Pruebas:** 159 OK. Se probó en el navegador en 1280, 390 y 375 px.

@@ -206,8 +206,11 @@
       } else {
         const partes = [];
         if (typeof c.seguidores === 'number') partes.push(fmt(c.seguidores) + (c.red === 'YouTube' ? ' suscriptores' : ' seguidores'));
-        if (c.publicaciones === 0) partes.push('sin publicaciones en 7 días');
-        else {
+        if (c.publicaciones === 0) {
+          // Responde pero no publicó en la ventana: se aclara la fecha de lo último, sin sumarlo a la semana.
+          partes.push('sin publicaciones en 7 días');
+          if (c.ultimaPublicacion) partes.push((['YouTube', 'TikTok'].includes(c.red) ? 'último video: ' : 'última publicación: ') + ddmm(c.ultimaPublicacion));
+        } else {
           if (typeof c.interacciones === 'number') partes.push(corto(c.interacciones) + ' interacciones');
           if (typeof c.vistas === 'number') partes.push(corto(c.vistas) + ' vistas');
           if (typeof c.publicaciones === 'number') partes.push(fmt(c.publicaciones) + ' publ.');
@@ -235,12 +238,14 @@
       estado.textContent = 'sin dato en vivo';
       estado.title = 'Se reintenta en 5 minutos';
     }
-    // Chip gris si ninguna cuenta de esa red respondió en esta consulta.
+    // Chip gris solo si ninguna cuenta de esa red respondió (error). Una red que responde pero no
+    // publicó en los 7 días conserva su color.
     chips.querySelectorAll('.pv-chip').forEach(c => {
       if (c.dataset.red === 'Medios') return;
       const cs = redesVivo.cuentas.filter(x => x.red === c.dataset.red);
-      c.classList.toggle('caida', !cs.some(x => x.ok));
-      c.title = cs.some(x => x.ok) ? 'Responde en vivo' : 'Sin dato en vivo';
+      const responde = cs.filter(x => x.ok);
+      c.classList.toggle('caida', !responde.length);
+      c.title = !responde.length ? 'Sin dato en vivo' : responde.every(x => x.publicaciones === 0) ? 'Responde en vivo · sin publicaciones en 7 días' : 'Responde en vivo';
     });
     // Aviso para la barra superior del tablero completo («● en vivo · consultado HH:MM»).
     document.dispatchEvent(new CustomEvent('panelvivo:estado', { detail: { ok: Boolean(redesVivo && redesVivo.cuentas.some(c => c.ok)), consultado: redesVivo && redesVivo.consultado, hora: redesVivo && redesVivo.consultado ? hhmm(redesVivo.consultado) : '' } }));

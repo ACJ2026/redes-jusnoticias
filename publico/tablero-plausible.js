@@ -127,9 +127,10 @@
   // ---------- Estructura ----------
   const kpisCaja = el('div', 'pl-kpis');
   const grafCaja = el('section', 'pl-card pl-grafico');
+  const compCaja = el('p', 'pl-nota pl-comparacion');
   const avisoCaja = el('div', 'pl-aviso');
   const grilla = el('div', 'pl-grilla');
-  raiz.replaceChildren(kpisCaja, grafCaja, avisoCaja, grilla);
+  raiz.replaceChildren(kpisCaja, compCaja, grafCaja, avisoCaja, grilla);
 
   const KPIS = [
     { k: 'notas', nombre: 'Notas publicadas' },
@@ -190,7 +191,13 @@
     const m = KPIS.find(x => x.k === metrica);
     grafCaja.replaceChildren(el('h2', 'pl-card-titulo', m.nombre + ' por día'));
     const nota = { publicaciones: 'Por fecha de la nota de JusNoticias.', medios: 'Medios distintos por fecha de la nota.', pct: 'Notas de cada día que salieron en al menos un medio.', notas: 'Notas publicadas cada día.', interacciones: 'Reacciones, comentarios y compartidos de las publicaciones propias registradas, por fecha de publicación.' }[metrica];
-    if (metrica === 'visitas') { grafCaja.append(el('p', 'pl-nota', 'Google Analytics no entrega visitas por día en esta conexión: el total del período está en la tarjeta de arriba y el detalle en la pestaña Visitas.')); return; }
+    if (metrica === 'visitas') {
+      const texto = filtro ? 'Las visitas no se filtran por ' + ETIQUETA_FILTRO[filtro.tipo].toLowerCase() + '.'
+        : visitas.estado === 'cargando' ? 'Consultando Google Analytics…'
+        : typeof visitas.actual === 'number' ? 'Google Analytics no entrega visitas por día en esta conexión: el total del período está en la tarjeta de arriba y el detalle en la pestaña Visitas.'
+        : 'Sin dato: Google Analytics no respondió en este momento. Se vuelve a consultar al cambiar el período o al abrir la pestaña Visitas.';
+      grafCaja.append(el('p', 'pl-nota', texto)); return;
+    }
     const dias = diasDelPeriodo();
     const ys = serie(act, dias);
     const validos = ys.filter(v => typeof v === 'number');
@@ -327,6 +334,19 @@
     avisoCaja.append(b);
   };
 
+  // Oración de arriba: con un filtro activo, describe lo filtrado (la de siempre la arma el tablero).
+  let takeFiltrado = '';
+  const pintarTake = act => {
+    const take = $('take'); if (!take) return;
+    if (!filtro) { if (take.dataset.original !== undefined && take.textContent === takeFiltrado) take.textContent = take.dataset.original; delete take.dataset.original; takeFiltrado = ''; return; }
+    if (take.textContent !== takeFiltrado) take.dataset.original = take.textContent;
+    const pub = act.publicaciones, med = act.medios;
+    takeFiltrado = `Con el filtro ${ETIQUETA_FILTRO[filtro.tipo].toLowerCase()} «${filtro.etiqueta}»: ` + (filtro.tipo === 'red'
+      ? (typeof act.interacciones === 'number' ? `${fmt(act.posts.length)} publicaciones propias con ${fmt(act.interacciones)} interacciones registradas.` : `${fmt(act.posts.length)} publicaciones propias, sin dato de interacciones.`)
+      : `${fmt(pub)} ${pub === 1 ? 'publicación' : 'publicaciones'} en ${fmt(med)} ${med === 1 ? 'medio' : 'medios'}, sobre ${fmt(act.notas)} ${act.notas === 1 ? 'nota' : 'notas'} del período.`);
+    take.textContent = takeFiltrado;
+  };
+
   // ---------- Barra superior ----------
   const pintarActivos = () => {
     const caja = $('pl-activos'); if (!caja) return;
@@ -421,9 +441,21 @@
   };
   new MutationObserver(ubicarPanel).observe($('dashboard-app'), { attributes: true, attributeFilter: ['hidden'] });
 
+  // Celular: al bajar, la barra sube hasta dejar fijas solo las pestañas (no tapa un tercio de la pantalla).
+  const barra = $('pl-barra');
+  const enCelular = window.matchMedia('(max-width: 480px)');
+  const medirBarra = () => {
+    const nav = barra && barra.querySelector('.tabs');
+    if (!nav) return;
+    barra.style.setProperty('--pl-barra-oculta', enCelular.matches ? nav.offsetTop + 'px' : '0px');
+  };
+  if (barra && 'ResizeObserver' in window) new ResizeObserver(medirBarra).observe(barra);
+  if (enCelular.addEventListener) enCelular.addEventListener('change', medirBarra);
+  medirBarra();
+
   // ---------- Dibujo ----------
   function render() {
-    if (st.page !== 'resumen' && !filtro) { pintarChips(); pintarActivos(); return; }
+    if (st.page !== 'resumen' && !filtro) { pintarChips(); pintarActivos(); pintarTake(null); return; }
     pintarChips(); pintarActivos(); ubicarPanel();
     const rango = rangoActual();
     const act = cifras(rango[0], rango[1]);
@@ -432,7 +464,8 @@
     const ant = rangoAnterior(rango);
     const prev = ant ? cifras(ant[0], ant[1]) : null;
     pintarKpis(act, prev);
-    kpisCaja.title = ant ? `Comparación contra ${ddmm(ant[0])} – ${ddmm(ant[1])} (misma cantidad de días)` : 'Sin período anterior con datos para comparar';
+    compCaja.textContent = ant ? `Del ${ddmm(rango[0])} al ${ddmm(rango[1])}. Las flechas comparan con el ${ddmm(ant[0])} al ${ddmm(ant[1])} (la misma cantidad de días). Las notas de los últimos días todavía pueden sumar publicaciones.` : `Del ${ddmm(rango[0])} al ${ddmm(rango[1])}. Sin período anterior con datos para comparar.`;
+    pintarTake(act);
     pintarGrafico(act);
     pintarAviso(act);
     pintarGrilla(act);
@@ -442,4 +475,5 @@
   const pedido = window.__tableroHashPedido;
   render();
   if (pedido === 'guia') abrirGuia();
+  if (pedido === 'filtro' || pedido === 'infografia') $(pedido === 'filtro' ? 'pl-filtro-btn' : 'pl-info-btn').click();
 })();
