@@ -932,3 +932,10 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Cada 4 h consulta `/api/redes` del sitio (30 días). Suma las publicaciones propias nuevas y actualiza sus cifras. Nunca borra ni pisa una cifra con «sin dato»; si falla, sigue.
   - Reconoce las filas viejas por red, fecha (±1 día) y comienzo del texto. La primera versión duplicaba porque la API recorta el texto a unos 26 caracteres.
   - Prueba desde GitHub sobre una copia: 38 consultadas, 16 nuevas (incluida la página STJ, que no estaba guardada), 19 actualizadas y ninguna duplicada.
+
+## 2026-10-28 — Arreglo urgente: `actualizar.yml` quedó con un error de formato (Claude)
+
+- **Qué pasó:** al fusionar el #136, el paso nuevo «Actualizar publicaciones propias en redes» tenía `run: … || echo "AVISO: …"` en una sola línea. El «: » rompe el formato YAML, así que GitHub marcó todo `actualizar.yml` como inválido. La corrida de 5442338 falló sin ejecutar nada y el relevamiento de cada 4 h quedó frenado.
+- **Arreglo:** el `run:` pasa a bloque (`run: |`), sin cambiar nada más.
+- **Prueba nueva:** ningún `run:` de una línea puede tener «: » suelto. Detecta el error en la versión rota y pasa con la arreglada.
+- **Error mío:** la prueba local no validaba el formato de los workflows. Ahora sí.
