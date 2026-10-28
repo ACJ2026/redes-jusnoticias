@@ -3,7 +3,8 @@
 <title>Juschubut Noticias | Tablero de repercusión y comunicación judicial</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="panel-vivo.css">
 <style>
 /* Layout: encabezado de diario institucional + pestañas; plano 1 (Resumen) arriba, plano 2 (consulta) en pestañas */
 :root{
@@ -254,6 +255,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <article class="landing-stat"><div class="symbol" aria-hidden="true">◎</div><strong id="portada-notas-repercusion">—</strong><span>de esas notas tuvieron al menos una publicación relacionada en otros medios</span></article>
       <article class="landing-stat"><div class="symbol" aria-hidden="true">↗</div><strong id="portada-repercusion">—</strong><span>porcentaje de notas con al menos una publicación relacionada</span></article>
     </div>
+    <section class="pv" id="panel-vivo" aria-label="Panel en vivo: última nota, repercusiones en medios y redes" hidden></section>
     <div class="landing-bottom">
       <div class="landing-points">
         <div class="landing-point"><i aria-hidden="true">01</i><div><b>Repercusión en medios</b>Qué notas aparecen y dónde se publican.</div></div>
@@ -2096,6 +2098,9 @@ const draw = () => {
   if (avisoDesactualizado.textContent) pie.append(document.createTextNode(' · '), avisoDesactualizado);
   const h = location.hash.slice(1);
   updateLanding(calc());
+  // Panel en vivo de la portada (publico/panel-vivo.js): usa los mismos criterios de conteo del tablero.
+  window.__panelVivo = { D, esConfirmada, canonMedio, localidadDe, regionMedio };
+  const scriptPanel = document.createElement('script'); scriptPanel.src = 'panel-vivo.js'; scriptPanel.defer = true; document.head.appendChild(scriptPanel);
   $('entrar-tablero').addEventListener('click', () => {
     $('portada').hidden = true;
     $('dashboard-app').hidden = false;
