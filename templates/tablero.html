@@ -155,6 +155,8 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
 .landing-actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .landing-enter{border:0;border-radius:999px;padding:15px 23px;background:#fff;color:#123b55;font:600 1rem var(--f-body);cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.18)}
 .landing-enter:hover{background:#dff2fa}
+.landing-arriba{margin:6px 0 18px}
+.landing-enter-arriba{padding:11px 20px;font-size:.95rem}
 .landing-small{font-size:.78rem;color:#c7e5f4;max-width:260px;line-height:1.4}
 #dashboard-app{max-width:100%}
 [hidden]{display:none!important}
@@ -251,6 +253,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     <p class="landing-intro landing-subtitle">Tablero de repercusión y comunicación judicial</p>
     <p class="landing-intro">Una mirada a las notas publicadas por Juschubut Noticias y su presencia en otros medios y redes.</p>
     <p class="landing-period" id="portada-periodo">Indicadores del período: —</p>
+    <p class="landing-arriba"><button class="landing-enter landing-enter-arriba" id="entrar-tablero-arriba" type="button">Ingresar al tablero completo <span aria-hidden="true">→</span></button></p>
     <div class="landing-visual" aria-label="Indicadores principales del período">
       <article class="landing-stat"><div class="symbol" aria-hidden="true">▤</div><strong id="portada-notas">—</strong><span>notas publicadas en Juschubut Noticias durante este período</span></article>
       <article class="landing-stat"><div class="symbol" aria-hidden="true">◎</div><strong id="portada-notas-repercusion">—</strong><span>de esas notas tuvieron al menos una publicación relacionada en otros medios</span></article>
@@ -691,6 +694,8 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   const $ = id => document.getElementById(id);
   const nf = new Intl.NumberFormat('es-AR');
   const fmt = v => (v === null || v === undefined || v === '') ? '' : nf.format(Number(v));
+  // En tablas, una cifra que falta se muestra como «—» (no como celda vacía ni como 0).
+  const sinDatoGuion = v => (v === null || v === undefined || v === '') ? '—' : fmt(v);
   const MES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
   const mesLargo = m => MES[Number(m.slice(5, 7)) - 1];
   const mesCorto = m => mesLargo(m).slice(0, 3);
@@ -1387,7 +1392,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     const ms = meses.filter(en);
     const val = (m, s) => cnt.get(m + '|' + s.red) || 0;
     chart('ch-redes', 'tip-redes', ms, series, val, true, m => series.filter(s => val(m, s)).map(s => [s.color, s.red + ': ' + fmt(val(m, s))]));
-    tbl('#t-red', c.porRed, [[r => r.red], [r => fmt(r.posteos), 'num'], [r => r.mg === null ? '' : String(r.mg).replace('.', ','), 'num'], [r => fmt(r.vi), 'num'], [r => r.mejor]]);
+    tbl('#t-red', c.porRed, [[r => r.red], [r => fmt(r.posteos), 'num'], [r => r.mg === null || r.mg === undefined ? '—' : String(r.mg).replace('.', ','), 'num'], [r => sinDatoGuion(r.vi), 'num'], [r => r.mejor || '—']]);
     tbl('#t-canales', D.canales, [[r => r.red], [r => r.cuenta], [r => fmt(r.seguidores), 'num'], [r => ({ t: r.estado, c: /Inactiva|No existe|Pendiente|no computar|referencia institucional/i.test(r.estado) ? 'zero' : '' })]]);
     const fr = $('fred').value, fp = $('fprop').value;
     const score = r => (Number(r.vistas) || 0) + 10 * ((Number(r.me_gusta) || 0) + (Number(r.comentarios) || 0) + (Number(r.compartidos) || 0));
@@ -1405,7 +1410,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       }
       return null;
     };
-    tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto || 'Enlace directo no registrado'], [r => fmt(r.me_gusta), 'num'], [r => fmt(r.comentarios), 'num'], [r => fmt(r.compartidos), 'num'], [r => fmt(r.vistas), 'num']]);
+    tbl('#t-redes', rows, [[r => ddmm(r.fecha)], [r => r.red], [r => r.cuenta], [r => r.texto || 'Enlace directo no registrado'], [r => sinDatoGuion(r.me_gusta), 'num'], [r => sinDatoGuion(r.comentarios), 'num'], [r => sinDatoGuion(r.compartidos), 'num'], [r => sinDatoGuion(r.vistas), 'num']]);
     // No enlazar métricas ni la nota oficial como si fueran la publicación del medio.
     [...document.querySelectorAll('#t-redes tbody tr')].forEach((tr, i) => {
       const r = rows[i], enlace = enlacePosteo(r), td = tr.children[3];
@@ -1494,6 +1499,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       const connected = ['Facebook', 'Instagram', 'YouTube', 'X', 'TikTok'].flatMap(red => {
         const result = data.redes && data.redes[red];
         const error = data.errores && data.errores[red];
+        if (red === 'X' && (error || !result)) return [{ red, estado: 'No se consulta en vivo: la API de X pide créditos pagos. Se usan los registros guardados.', publicaciones: '—', seguidores: '—', ultima: '—' }];
         if (error || !result) return [{ red, estado: 'No disponible: ' + (error || 'la API no devolvió datos'), publicaciones: '—', seguidores: '—', ultima: '—' }];
         if (red === 'Facebook' && Array.isArray(result.paginas) && result.paginas.length) return result.paginas.map(p => filaPaginaFacebook(p, result));
         const filas = Array.isArray(result.filas) ? result.filas : [];
@@ -2149,18 +2155,19 @@ const draw = () => {
   const irArriba = () => window.scrollTo({ top: 0, behavior: 'instant' });
   // El navegador no restaura la posición por su cuenta: lo hace esta página (si no, compite con ella).
   try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
-  $('entrar-tablero').addEventListener('click', () => {
+  const entrarAlTablero = boton => {
     // Se guarda dónde estaba el botón en la pantalla: si algo de arriba cambia de alto al volver
     // (por ejemplo el panel en vivo), se vuelve a dejar el botón en el mismo lugar.
-    const ancla = Math.round($('entrar-tablero').getBoundingClientRect().top);
-    try { history.replaceState({ portada: true, scrollY: window.scrollY, ancla }, '', location.pathname + location.search + location.hash); } catch (e) {}
+    const ancla = Math.round(boton.getBoundingClientRect().top);
+    try { history.replaceState({ portada: true, scrollY: window.scrollY, ancla, boton: boton.id }, '', location.pathname + location.search + location.hash); } catch (e) {}
     try { history.pushState({ tablero: true }, '', location.pathname + location.search + '#resumen'); } catch (e) {}
     $('portada').hidden = true;
     $('dashboard-app').hidden = false;
     show('resumen');
     irArriba();
     $('tablero-titulo').focus({ preventScroll: true });
-  });
+  };
+  ['entrar-tablero', 'entrar-tablero-arriba'].forEach(id => $(id).addEventListener('click', e => entrarAlTablero(e.currentTarget)));
   window.addEventListener('popstate', ev => {
     const destino = location.hash.slice(1);
     if (!destino || (ev.state && ev.state.portada)) {
@@ -2169,7 +2176,7 @@ const draw = () => {
       const st0 = ev.state || {};
       const volver = () => {
         const y = typeof st0.ancla === 'number'
-          ? $('entrar-tablero').getBoundingClientRect().top + window.scrollY - st0.ancla
+          ? ($(st0.boton) || $('entrar-tablero')).getBoundingClientRect().top + window.scrollY - st0.ancla
           : (typeof st0.scrollY === 'number' ? st0.scrollY : 0);
         window.scrollTo({ top: Math.max(0, Math.round(y)), behavior: 'instant' });
       };

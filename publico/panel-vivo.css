@@ -119,3 +119,6 @@
   .pv-con.is-active::after{animation:none;display:none}
   .pv-lista-ventana{overflow:auto;-webkit-mask-image:none;mask-image:none}
 }
+
+/* Medios siguientes de la misma nota: fila compacta, sin repetir el título */
+.pv-misma .pv-fila{padding-top:4px;padding-bottom:4px;padding-left:18px;border-top:0}

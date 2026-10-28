@@ -60,17 +60,17 @@ if __name__ == "__main__":
 class EntrarAlTableroTest(unittest.TestCase):
     def test_entrar_arranca_arriba_con_foco_y_atras_vuelve_a_la_portada(self):
         self.assertIn('<h1 id="tablero-titulo" tabindex="-1">', PLANTILLA)
-        self.assertIn("history.replaceState({ portada: true, scrollY: window.scrollY, ancla }", PLANTILLA)
+        self.assertIn("history.replaceState({ portada: true, scrollY: window.scrollY, ancla, boton: boton.id }", PLANTILLA)
         # Al volver, el botón queda en el mismo lugar de la pantalla aunque algo de arriba cambie de alto.
         self.assertIn("history.scrollRestoration = 'manual'", PLANTILLA)
-        self.assertIn("getBoundingClientRect().top + window.scrollY - st0.ancla", PLANTILLA)
+        self.assertIn(".getBoundingClientRect().top + window.scrollY - st0.ancla", PLANTILLA)
         self.assertIn("history.pushState({ tablero: true }", PLANTILLA)
         self.assertIn("$('tablero-titulo').focus({ preventScroll: true });", PLANTILLA)
         self.assertIn("window.addEventListener('popstate'", PLANTILLA)
         # Cambiar de pestaña también lleva arriba de todo.
         self.assertIn("show(b.dataset.page); window.scrollTo({ top: 0, behavior: 'instant' });", PLANTILLA)
         # El pushState va antes de show(): si no, show() pisaría la posición guardada de la portada.
-        bloque = PLANTILLA[PLANTILLA.index("$('entrar-tablero').addEventListener"):]
+        bloque = PLANTILLA[PLANTILLA.index("const entrarAlTablero = boton =>"):]
         self.assertLess(bloque.index("history.pushState"), bloque.index("show('resumen')"))
 
 
@@ -127,3 +127,20 @@ class VersionDeArchivosTest(unittest.TestCase):
         self.assertNotIn("__VERSION__", publico)
         self.assertRegex(publico, r"tablero-plausible\.js\?v=[0-9a-f]{10}")
         self.assertRegex(publico, r'panel-vivo\.css\?v=[0-9a-f]{10}')
+
+
+class ArreglosMenoresTest(unittest.TestCase):
+    def test_boton_de_ingreso_tambien_arriba(self):
+        self.assertIn('id="entrar-tablero-arriba"', PLANTILLA)
+        self.assertIn("['entrar-tablero', 'entrar-tablero-arriba'].forEach(id => $(id).addEventListener('click', e => entrarAlTablero(e.currentTarget)));", PLANTILLA)
+
+    def test_cifra_que_falta_es_un_guion_en_las_tablas_de_redes(self):
+        self.assertIn("const sinDatoGuion = v =>", PLANTILLA)
+        self.assertIn("[r => sinDatoGuion(r.vi), 'num']", PLANTILLA)
+
+    def test_x_tiene_el_mismo_mensaje_simple_en_todas_las_versiones(self):
+        self.assertIn("la API de X pide créditos pagos. Se usan los registros guardados.", PLANTILLA)
+
+    def test_la_lista_de_la_portada_no_repite_el_titulo(self):
+        cliente = (ROOT / "publico/panel-vivo.js").read_text(encoding="utf-8")
+        self.assertIn("if (!misma) a.append(el('span', 'pv-tit', n.titulo));", cliente)
