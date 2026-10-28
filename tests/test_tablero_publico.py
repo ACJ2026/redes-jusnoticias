@@ -198,7 +198,9 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn('id="b-tipo"', template)
         self.assertIn('id="b-top5m"', template)
         self.assertIn('id="t-medios"', template)
-        self.assertIn(">Guía y metodología</button>", template)
+        # La guía se abre desde el botón «?» de la barra superior (esquema Plausible); la sección sigue completa.
+        self.assertIn('id="pl-ayuda-btn"', template)
+        self.assertIn('<section class="page" id="guia"', template)
         self.assertNotIn("redesVivoConsultado", template)
         self.assertIn("addEventListener('click', consultarRedesVivo)", template)
         self.assertNotIn("if (page === 'redes' && !redesVivoConsultado)", template)
