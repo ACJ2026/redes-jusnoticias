@@ -888,3 +888,10 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Se ve el «● en vivo · hora».
 - **Lo que no se hizo:** la «barra inferior con 4 secciones y menú ⋯» que mencionó Chrome no estaba en la especificación de Ignacio.
 - **Pruebas:** 159 OK. Se probó en el navegador en 1280, 390 y 375 px.
+- **Pestaña Notas restituida (pedido de Ignacio, mismo PR):**
+  - Problema: en el #135 la tabla de notas había quedado al final de la pestaña Medios, para dejar 4 pestañas. Además, tocar una nota en el Resumen la usaba como filtro. Comparado con la versión anterior (pestaña Notas propia, y al tocar una nota se abría su detalle), parecía que la sección había desaparecido.
+  - Notas vuelve a ser una pestaña propia, como antes. En celular entran las 5 pestañas.
+  - Tocar una nota en «Qué salió» o en «ver todo» abre su detalle: cuántos medios la publicaron y el enlace de cada uno, empezando por el título.
+  - Para filtrar por una nota sigue estando el botón «Filtro».
+  - `#notas` vuelve a ser un enlace directo a esa pestaña.
+  - Pruebas: 160 OK. Se probó en el navegador en 1280 y 375 px: la nota del 19/10 muestra «28 medios publicaron esta nota» y 28 enlaces.

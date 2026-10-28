@@ -279,7 +279,7 @@
     const valor = el('span', 'pl-fila-valor', typeof x.n === 'number' ? fmt(x.n) : 'sin dato'); valor.title = typeof x.n === 'number' ? fmt(x.n) + ' ' + (x.sufijo || '') : 'Sin dato';
     f.append(fondo, nombre, valor);
     if (x.tipo && alClic) f.addEventListener('click', () => alClic(x));
-    if (x.tipo) f.title = 'Filtrar todo el tablero por ' + x.etiqueta;
+    if (x.tipo) f.title = x.tipo === 'nota' && alClic !== ponerFiltro ? 'Ver los medios que la publicaron y sus enlaces' : 'Filtrar todo el tablero por ' + x.etiqueta;
     return f;
   };
   const ponerFiltro = x => {
@@ -289,14 +289,24 @@
     render();
     if (!menosMovimiento) $('pl-barra').scrollIntoView({ block: 'start' });
   };
-  const abrirModal = (titulo, filas, max) => {
+  // Tocar una nota (en las tarjetas o en «ver todo») abre su detalle: cuántos medios la publicaron
+  // y el enlace de cada uno. Para filtrar por una nota está el botón «Filtro».
+  const abrirNota = id => {
+    const modal = $('pl-modal'); if (modal && modal.open) modal.close();
+    T.show('notas');
+    if (typeof T.detalle === 'function') T.detalle(Number(id));
+    // Arranca en el título y el total de medios, no en el medio de la lista.
+    const det = $('c-detalle'); if (det && !det.hidden) det.scrollIntoView({ block: 'start', behavior: 'instant' });
+  };
+  const alTocar = x => x.tipo === 'nota' ? abrirNota(x.valor) : ponerFiltro(x);
+  const abrirModal = (titulo, filas, max, alClic = alTocar) => {
     const modal = $('pl-modal'); if (!modal) return;
     $('pl-modal-titulo').textContent = titulo;
     const buscar = $('pl-modal-buscar'); buscar.value = '';
     const pintar = () => {
       const q = buscar.value.trim().toLowerCase();
       const vis = filas.filter(x => !q || String(x.etiqueta).toLowerCase().includes(q));
-      $('pl-modal-lista').replaceChildren(...(vis.length ? vis.map(x => filaLista(x, max, ponerFiltro)) : [el('p', 'pl-nota', 'Nada coincide con la búsqueda.')]));
+      $('pl-modal-lista').replaceChildren(...(vis.length ? vis.map(x => filaLista(x, max, alClic)) : [el('p', 'pl-nota', 'Nada coincide con la búsqueda.')]));
     };
     buscar.oninput = pintar; pintar();
     if (typeof modal.showModal === 'function') modal.showModal();
@@ -318,7 +328,7 @@
       if (dt.estado) card.append(el('p', 'pl-estado-fuente', 'Estado de la fuente: ' + dt.estado));
       const lista = el('div', 'pl-lista');
       if (!dt.filas.length) lista.append(el('p', 'pl-nota', dt.vacio || 'Sin datos en este período.'));
-      dt.filas.slice(0, 9).forEach(x => lista.append(filaLista(x, max, ponerFiltro)));
+      dt.filas.slice(0, 9).forEach(x => lista.append(filaLista(x, max, alTocar)));
       card.append(lista);
       grilla.append(card);
     });
@@ -402,7 +412,7 @@
     const todas = [];
     [['medios', 'medios'], ['medios', 'ciudades'], ['medios', 'regiones'], ['notas', 'notas'], ['notas', 'temas']].forEach(([g, p]) => datosTarjeta(g, p, act).filas.forEach(x => todas.push({ ...x, etiqueta: x.etiqueta, detalle: ETIQUETA_FILTRO[x.tipo] })));
     CUENTAS_REDES.forEach(c => todas.push({ valor: c.id, etiqueta: c.nombre, n: null, tipo: 'red', detalle: 'Red' }));
-    abrirModal('Filtrar el tablero', todas, Math.max(0, ...todas.map(x => typeof x.n === 'number' ? x.n : 0)));
+    abrirModal('Filtrar el tablero', todas, Math.max(0, ...todas.map(x => typeof x.n === 'number' ? x.n : 0)), ponerFiltro);
   });
   // «?»: guía y «Cómo leer» de cada sección, en un panel lateral.
   const cajon = $('pl-cajon');

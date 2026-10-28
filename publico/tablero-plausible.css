@@ -1,7 +1,7 @@
 /* Resumen con el esquema de Plausible. Usa los colores del tablero (azul petróleo, títulos serif, claro/oscuro). */
 .pl-barra{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0 0;margin:0 0 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"f1 f1" "f2 nav" "per per";gap:6px 12px;align-items:center}
 .pl-renglon-1{grid-area:f1}.pl-renglon-2{grid-area:f2;min-width:0}.pl-barra .tabs{grid-area:nav}.pl-periodo-texto{grid-area:per}
-#dashboard-app .page,#pl-resumen{scroll-margin-top:150px}
+#dashboard-app .page,#pl-resumen,#c-detalle{scroll-margin-top:150px}
 .pl-renglon{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .pl-renglon-1{justify-content:space-between;flex-wrap:nowrap}
 .pl-renglon-1 .pl-vivo{margin-left:auto}
@@ -112,8 +112,8 @@ div.pl-fila{cursor:default}
   .pl-chips{flex-wrap:wrap;gap:5px;overflow:visible}
   .pl-chip{padding:6px 9px;font-size:.8rem}
   .pl-largo{display:none}.pl-corto{display:inline}
-  .pl-barra .tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible;gap:0}
-  .pl-barra .tabs button{min-width:0;padding:10px 2px;font-size:.85rem;text-align:center;white-space:nowrap}
-  #dashboard-app .page,#pl-resumen{scroll-margin-top:56px}
+  .pl-barra .tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible;gap:0}
+  .pl-barra .tabs button{min-width:0;padding:10px 1px;font-size:.8rem;text-align:center;white-space:nowrap}
+  #dashboard-app .page,#pl-resumen,#c-detalle{scroll-margin-top:60px}
 }
 @media (prefers-reduced-motion:reduce){.pl-vivo.ok i{animation:none}}

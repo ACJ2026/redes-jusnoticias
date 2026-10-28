@@ -10,10 +10,10 @@ ESTILO = (ROOT / "publico/tablero-plausible.css").read_text(encoding="utf-8")
 
 
 class PlausibleTest(unittest.TestCase):
-    def test_cuatro_secciones_y_enlaces_viejos(self):
+    def test_cinco_secciones_y_enlaces_viejos(self):
         nav = PLANTILLA[PLANTILLA.index('<nav class="tabs"'):PLANTILLA.index('</nav>')]
-        self.assertEqual(re.findall(r'data-page="([a-z]+)"', nav), ["resumen", "medios", "redes", "google"])
-        self.assertIn("const ALIAS_SECCION = { notas: 'medios', visitas: 'google', guia: 'resumen' };", PLANTILLA)
+        self.assertEqual(re.findall(r'data-page="([a-z]+)"', nav), ["resumen", "medios", "notas", "redes", "google"])
+        self.assertIn("const ALIAS_SECCION = { visitas: 'google', guia: 'resumen' };", PLANTILLA)
         self.assertNotIn('id="ir-completo"', PLANTILLA)
 
     def test_periodos_en_chips_y_desplegables_actuales(self):
@@ -102,4 +102,10 @@ class ArreglosRevisionTest(unittest.TestCase):
     def test_celular_deja_fijas_las_pestanas(self):
         self.assertIn("--pl-barra-oculta", ESTILO)
         self.assertIn("setProperty('--pl-barra-oculta'", VISTA)
-        self.assertIn("grid-template-columns:repeat(4,minmax(0,1fr))", ESTILO)
+        self.assertIn("grid-template-columns:repeat(5,minmax(0,1fr))", ESTILO)
+
+    def test_notas_tiene_pestana_propia_y_tocar_una_nota_abre_su_detalle(self):
+        self.assertIn('<button role="tab" id="tab-notas" data-page="notas"', PLANTILLA)
+        self.assertIn("drawGuia, detalle,", PLANTILLA)
+        self.assertIn("const alTocar = x => x.tipo === 'nota' ? abrirNota(x.valor) : ponerFiltro(x);", VISTA)
+        self.assertIn("T.show('notas');", VISTA)

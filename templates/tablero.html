@@ -302,6 +302,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     <nav class="tabs" role="tablist" aria-label="Secciones">
       <button role="tab" id="tab-resumen" data-page="resumen" aria-selected="true">Resumen</button>
       <button role="tab" id="tab-medios" data-page="medios" aria-selected="false">Medios</button>
+      <button role="tab" id="tab-notas" data-page="notas" aria-selected="false">Notas</button>
       <button role="tab" id="tab-redes" data-page="redes" aria-selected="false">Redes</button>
       <button role="tab" id="tab-google" data-page="google" aria-selected="false">Visitas</button>
     </nav>
@@ -543,7 +544,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
         <p><b>1. Elegí el período</b> con los botones de arriba: Este mes, Mes pasado, 3 meses, Todo o Personalizado (este último abre los meses desde y hasta). Todo se recalcula con esas fechas.</p>
         <p><b>2. Mirá el Resumen.</b> La oración de arriba dice lo principal. Tocá cualquiera de los seis números para ver su gráfico por día; la flecha compara con la misma cantidad de días inmediatamente anteriores.</p>
         <p><b>3. Para filtrar,</b> tocá una fila de las listas (un medio, una ciudad, una nota) o usá el botón <b>Filtro</b>. El filtro aparece arriba con una ✕ para sacarlo.</p>
-        <p><b>Para un dato puntual,</b> usá las pestañas <b>Medios</b> (incluye la tabla de notas), <b>Redes</b> y <b>Visitas</b> (datos de Google).</p>
+        <p><b>Para un dato puntual,</b> usá las pestañas <b>Medios</b>, <b>Notas</b> (tocá una nota para ver qué medios la publicaron y sus enlaces), <b>Redes</b> y <b>Visitas</b> (datos de Google).</p>
         <p><b>4. Se actualiza solo cada cuatro horas.</b> Visitas y buscadores se consulta al abrir la pestaña o al tocar «Consultar».</p>
       </div>
       <details class="detail-group">
@@ -1689,7 +1690,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
 const draw = () => {
     const c = calc();
     drawHeader(c);
-    ({ resumen: drawResumen, medios: c2 => { drawMedios(c2); drawNotas(c2); }, notas: drawNotas, redes: drawRedes, google: drawGoogle, guia: drawGuia })[st.page](c);
+    ({ resumen: drawResumen, medios: drawMedios, notas: drawNotas, redes: drawRedes, google: drawGoogle, guia: drawGuia })[st.page](c);
     if (typeof window.__tableroRender === 'function') window.__tableroRender();
   };
 
@@ -1711,17 +1712,16 @@ const draw = () => {
   $('fhasta').addEventListener('change', e => setRango(st.desde, e.target.value));
   $('ftodo').addEventListener('click', () => setRango(meses[0], meses[meses.length - 1]));
   syncGoogleDates();
-  // Enlaces viejos: #notas va a Medios (la tabla de notas está ahí), #visitas a Visitas y #guia abre la guía «?».
-  const ALIAS_SECCION = { notas: 'medios', visitas: 'google', guia: 'resumen' };
+  // Enlaces viejos: #visitas va a Visitas y #guia abre la guía «?».
+  const ALIAS_SECCION = { visitas: 'google', guia: 'resumen' };
   const show = (pedida) => {
     const page = ALIAS_SECCION[pedida] || pedida;
     if (!$(page) || !$(page).classList.contains('page')) return;
     st.page = page;
-    document.querySelectorAll('.page').forEach(s => { s.hidden = !(s.id === page || (page === 'medios' && s.id === 'notas')); });
+    document.querySelectorAll('.page').forEach(s => { s.hidden = s.id !== page; });
     document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.page === page)));
     try { history.replaceState(null, '', '#' + page); } catch (e) {}
     draw();
-    if (pedida === 'notas') $('notas').scrollIntoView({ block: 'start' });
     if (pedida === 'guia' && typeof window.__tableroAbrirGuia === 'function') window.__tableroAbrirGuia();
   };
   const ayudaDialog = $('ayuda-dialog');
@@ -2168,14 +2168,14 @@ const draw = () => {
       ['wheel', 'touchstart', 'keydown'].forEach(t => window.addEventListener(t, marcar, { once: true, passive: true }));
       requestAnimationFrame(volver);
       [150, 400, 900].forEach(ms => setTimeout(() => { if (!movio) volver(); }, ms));
-    } else if ($(({ notas: 'medios', visitas: 'google', guia: 'resumen' })[destino] || destino)) {
+    } else if ($(({ visitas: 'google', guia: 'resumen' })[destino] || destino)) {
       $('portada').hidden = true;
       $('dashboard-app').hidden = false;
       show(destino);
     }
   });
   // Vista de resumen con el esquema de Plausible (publico/tablero-plausible.js): usa los mismos cálculos del tablero.
-  window.__tablero = { D, st, meses, notas, porNota, TIPOS, calc, setRango, show, draw, drawGuia, esConfirmada, canonMedio, localidadDe, regionMedio, nf, mesLargo, cap };
+  window.__tablero = { D, st, meses, notas, porNota, TIPOS, calc, setRango, show, draw, drawGuia, detalle, esConfirmada, canonMedio, localidadDe, regionMedio, nf, mesLargo, cap };
   window.__tableroHashPedido = h;
   // Si se toca «?», «Filtro» o «Infografía» antes de que termine de cargar tablero-plausible.js,
   // el pedido queda guardado y se atiende apenas carga (así el primer toque no se pierde).
@@ -2183,7 +2183,7 @@ const draw = () => {
     $(id).addEventListener('click', () => { if (typeof window.__tableroRender !== 'function') window.__tableroHashPedido = pedido; });
   });
   const scriptResumen = document.createElement('script'); scriptResumen.src = 'tablero-plausible.js'; scriptResumen.defer = true; document.head.appendChild(scriptResumen);
-  const hDestino = ({ notas: 'medios', visitas: 'google', guia: 'resumen' })[h] || h;
+  const hDestino = ({ visitas: 'google', guia: 'resumen' })[h] || h;
   if (h && $(hDestino) && $(hDestino).classList.contains('page')) {
     $('portada').hidden = true;
     $('dashboard-app').hidden = false;
