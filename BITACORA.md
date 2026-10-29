@@ -973,3 +973,12 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - 23/10 Panigadi (nota 14913);
   - 19/10 Quiroga y su respuesta en el mismo hilo;
   - 19/10 Puerto Madryn (nota 14884).
+
+
+## 2026-10-29 — Separar artículo web del perfil en «Quién compartió nuestras notas»
+
+- **Motivo:** la columna «Nota o cuenta del medio» podía buscar otra fila de repercusión por coincidencia de nota y nombre del medio, y mostrar su URL como si fuera el artículo relacionado con esa fila social. Esa asociación no demuestra que el artículo sea el post compartido ni que sea el artículo correcto.
+- **Cambio en la rama `fix/separar-enlace-articulo-perfil-compartidos-2026-10-29`:** la columna pasa a llamarse «Artículo del medio / perfil». Solo muestra «Ver artículo del medio» cuando la fila trae explícitamente `url_sitio`; si no hay artículo explícito, muestra «Ver perfil del medio (sin artículo localizado)» o indica que el artículo está pendiente. Se elimina el enlace indirecto por `nota_id` + nombre del medio. La columna «Publicación compartida» conserva sus controles existentes: solo evidencia fuerte permite abrir el post; las candidatas siguen ocultas y sin confirmación.
+- **Alcance:** no se modifican datos históricos, decisiones manuales, umbrales de detección ni criterios de conteo. No se completan notas anteriores.
+- **Pruebas:** se actualizó `tests/test_tablero_publico.py` para exigir la separación artículo/perfil y evitar que vuelva la asociación indirecta. Pendiente ejecutar la suite, reconstruir el HTML público y revisar los checks de CI/Cloudflare; no se afirma que esté publicado ni resuelto en producción.
+- **Estado:** cambios preparados en rama separada; se abrirá PR para revisión. `data/actualizado.txt` y los JSON históricos no se tocaron.
