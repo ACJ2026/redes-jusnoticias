@@ -305,7 +305,7 @@ class TableroPublicoTests(unittest.TestCase):
         # Nuestras notas en las redes de otras cuentas: por nota, cada posteo con su enlace; solo lo comprobado.
         self.assertIn('id="redes-notas-medios"', template)
         self.assertNotIn('id="t-compartidos"', template)
-        self.assertIn("const vivos = postsVivos.filter(f => f && f.verificacion === 'fuerte' && esUrl(f.publicacion_url) && Number(f.nota_id))", template)
+        self.assertIn("const vivos = [...postsVivos, ...postsManuales].filter(f => f && f.verificacion === 'fuerte' && esUrl(f.publicacion_url) && Number(f.nota_id))", template)
         self.assertIn("r.propia === 'No' && esUrl(r.url) && Number(r.nota_id)", template)
         self.assertIn("enlace('Ver posteo ↗', p.publicacion_url)", template)
         # Sin candidatas débiles ni sustitutos (artículo web, perfil o búsqueda en lugar del posteo).

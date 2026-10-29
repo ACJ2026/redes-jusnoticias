@@ -110,7 +110,8 @@ def terceros_comprobados(filas_api):
             "texto": str(f.get("texto") or "")[:140], "nota_id": int(f["nota_id"]),
             "me_gusta": None, "comentarios": None, "compartidos": None, "vistas": None,
             "propia": "No", "key": "cp-" + hashlib.sha1(url.encode("utf-8")).hexdigest()[:16], "url": url,
-            "cuenta_url": f.get("cuenta_url"), "carga": "búsqueda en redes de otras cuentas (" + str(f.get("coincidencia") or "coincidencia fuerte") + ")",
+            "cuenta_url": f.get("cuenta_url"),
+            "carga": "carga manual en el tablero" if f.get("carga") == "manual" else "búsqueda en redes de otras cuentas (" + str(f.get("coincidencia") or "coincidencia fuerte") + ")",
         })
     return out
 
@@ -135,8 +136,15 @@ def consultar_compartidos():
         req = urllib.request.Request(f"{SITIO}{ruta}", headers={"Accept": "application/json", "User-Agent": "jusnoticias-relevamiento"})
         with urllib.request.urlopen(req, timeout=90) as r:
             return json.load(r)
-    plan = pedir("/api/compartidos?plan=1")
     filas = []
+    # Posteos cargados a mano en el tablero (cualquier red; Facebook y TikTok no se pueden leer por API).
+    try:
+        manuales = pedir("/api/posteo-manual").get("filas") or []
+        print(f"Posteos de otras cuentas cargados a mano: {len(manuales)}.")
+        filas += manuales
+    except Exception as error:
+        print(f"AVISO: no se pudo leer la carga manual de posteos ({error}).")
+    plan = pedir("/api/compartidos?plan=1")
     for fuente in plan.get("fuentes") or []:
         for lote in range(int(fuente.get("lotes") or 1)):
             try:

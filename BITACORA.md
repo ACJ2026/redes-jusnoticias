@@ -995,3 +995,10 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Lo que no aparece:** las 18 publicaciones de terceros guardadas antes no tienen enlace al posteo (solo medio, nota y a veces el artículo web), así que no entran en esta lista.
 - **Pruebas:** OK, con pruebas nuevas del actualizador. En el navegador, a 1280 y 375 px, con una búsqueda de prueba (una coincidencia fuerte y una débil), solo se muestra la fuerte, con su enlace.
 - **Supera al #140 de GPT:** se recomienda cerrarlo.
+- **Carga manual de posteos de otras cuentas, para cualquier red** (mismo PR, pedido de Ignacio; sin solicitud a Meta):
+  - Facebook y TikTok no permiten leer cuentas ajenas por API.
+  - Nuevo `functions/api/posteo-manual.js`: lectura libre; para guardar pide la misma clave y usa la misma base que la revisión manual (`REVISIONES_CLAVE`, `REVISIONES_DB`). La tabla `posteos_manuales` se crea sola.
+  - La red se reconoce por el enlace, y la cuenta también cuando el enlace la trae (TikTok `@cuenta`, X, Facebook, Instagram). Se limpian los parámetros de rastreo. No acepta el enlace de nuestra propia nota.
+  - Formulario «Cargar a mano un posteo de otra cuenta» en Redes: enlace, nota, cuenta y fecha (estas dos opcionales).
+  - Lo cargado aparece enseguida bajo su nota y `scripts/actualizar_redes.py` lo guarda cada 4 h en `data/redes2.json` (`propia: "No"`, «carga manual en el tablero»).
+  - Pruebas nuevas. Probado en el navegador a 1280 y 375 px.
