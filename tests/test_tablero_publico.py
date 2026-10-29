@@ -641,7 +641,8 @@ class TableroPublicoTests(unittest.TestCase):
     def test_error_en_compartidos_no_bloquea_inicializacion_del_tablero(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("const redesDatos = Array.isArray(D.redes)", template)
-        self.assertIn("const repercusionDatos = Array.isArray(D.repercusion)", template)
+        self.assertIn("const cuentasDatos = Array.isArray(D.cuentas)", template)
+        self.assertNotIn("const repercusionDatos = Array.isArray(D.repercusion)", template)
         self.assertIn("if (!f || typeof f !== 'object') return null;", template)
         self.assertIn("Se omitió una fila defectuosa de publicaciones compartidas.", template)
         self.assertIn("No se pudo dibujar la tabla de compartidos; se mantiene el tablero activo.", template)
