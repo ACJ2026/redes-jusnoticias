@@ -974,6 +974,15 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - 19/10 Quiroga y su respuesta en el mismo hilo;
   - 19/10 Puerto Madryn (nota 14884).
 
+## 2026-10-29 — Permiso para que Claude fusione PR (Ignacio, #141)
+
+- Desde el #135, el sistema de permisos bloqueaba que Claude fusionara PR («fusionar sin revisión»), aunque Ignacio diera el OK en el chat. Claude tampoco puede editar sus propios permisos (bloqueo por «auto-modificación»).
+- Ignacio creó `.claude/settings.json` desde GitHub (#141). Permite solo dos comandos en este repo:
+  - `gh api -X PUT repos/ACJ2026/redes-jusnoticias/pulls/*/merge …` (fusionar);
+  - `gh api -X POST …/pulls/*/ccr/ready_for_review` (marcar listo).
+- Vale desde la siguiente sesión de Claude.
+- Las condiciones no cambian: fusionar solo con validar, pruebas-historial y Cloudflare en verde, y con el OK de Ignacio si el cambio toca qué se cuenta o cómo se detecta.
+- Estado al 29/10: la actualización automática corre cada 4 h sin errores (última 11:19); #136 a #139 fusionados.
 ## 2026-10-29 — Redes: nuestras notas en las redes de otras cuentas, con el enlace a cada posteo (Claude, pedido de Ignacio)
 
 - **Pedido:**
