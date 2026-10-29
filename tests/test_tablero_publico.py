@@ -327,6 +327,17 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("addEventListener('click', buscarCompartidos)", template)
         self.assertIn("las limitaciones de cada plataforma se informan por separado.", template)
 
+    def test_seccion_redes_inicia_busqueda_automatica_al_entrar_una_vez(self):
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("let compartidosAutoBuscado = false;", template)
+        show = template.split("const show = (pedida) =>", 1)[1].split("const ayudaDialog =", 1)[0]
+        self.assertIn("if (page === 'redes' && !compartidosAutoBuscado)", show)
+        self.assertIn("compartidosAutoBuscado = true;", show)
+        self.assertIn("buscarCompartidos();", show)
+        self.assertIn("No se repite en cada cambio de pestaña", template)
+        # La acción manual sigue disponible para repetir la consulta a pedido.
+        self.assertIn("$('compartidos-buscar').addEventListener('click', buscarCompartidos);", template)
+
     def test_generador_de_infografias_usa_los_datos_del_tablero(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn('id="info-abrir"', template)
