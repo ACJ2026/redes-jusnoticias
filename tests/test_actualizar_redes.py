@@ -71,5 +71,57 @@ class ActualizarRedesTest(unittest.TestCase):
                     with self.subTest(f"{ruta.name}:{n}"):
                         self.assertNotIn(": ", m.group(1))
 
+class TercerosComprobadosTest(unittest.TestCase):
+    def test_solo_se_guardan_posteos_fuertes_con_enlace_y_nota(self):
+        api = [
+            {"red": "Instagram", "cuenta": "@medio", "publicacion_url": "https://www.instagram.com/p/AAA/", "fecha": "2026-10-20", "nota_id": 14884, "verificacion": "fuerte", "coincidencia": "título de la nota identificado"},
+            {"red": "Instagram", "cuenta": "@otro", "publicacion_url": "https://www.instagram.com/p/BBB/", "fecha": "2026-10-20", "nota_id": 14884, "verificacion": "a_verificar"},
+            {"red": "YouTube", "cuenta": "Canal", "publicacion_url": "", "fecha": "2026-10-20", "nota_id": 14884, "verificacion": "fuerte"},
+        ]
+        filas = modulo.terceros_comprobados(api)
+        self.assertEqual(len(filas), 1)
+        self.assertEqual(filas[0]["propia"], "No")
+        self.assertEqual(filas[0]["url"], "https://www.instagram.com/p/AAA/")
+        self.assertIsNone(filas[0]["me_gusta"])
+
+    def test_no_duplica_un_posteo_ya_guardado(self):
+        guardadas = [{"red": "Instagram", "url": "https://www.instagram.com/p/AAA/", "key": "s1", "propia": "No"}]
+        nuevas = modulo.terceros_comprobados([{"red": "Instagram", "cuenta": "@medio", "publicacion_url": "https://www.instagram.com/p/AAA/", "fecha": "2026-10-20", "nota_id": 1, "verificacion": "fuerte"}])
+        self.assertEqual(modulo.sumar_terceros(guardadas, nuevas), 0)
+        self.assertEqual(len(guardadas), 1)
+
+
+class PosteoManualTest(unittest.TestCase):
+    def js(self, expr):
+        import json, subprocess
+        codigo = "const m = await import(process.argv[1]); try { console.log(JSON.stringify(" + expr + ")); } catch (e) { console.log(JSON.stringify({error: e.message})); }"
+        salida = subprocess.run(["node", "--input-type=module", "-e", codigo, (ROOT / "functions/api/posteo-manual.js").as_uri()], capture_output=True, text=True, check=True)
+        return json.loads(salida.stdout)
+
+    def test_reconoce_la_red_y_la_cuenta_por_el_enlace(self):
+        tt = self.js("m.leerPosteo('https://www.tiktok.com/@canal12web/video/123?is_from_webapp=1')")
+        self.assertEqual((tt["red"], tt["cuenta"], tt["url"]), ("TikTok", "@canal12web", "https://www.tiktok.com/@canal12web/video/123"))
+        fb = self.js("m.leerPosteo('https://www.facebook.com/canal12web/posts/pfbid0abc?__cft__[0]=x&__tn__=y')")
+        self.assertEqual((fb["red"], fb["cuenta"]), ("Facebook", "canal12web"))
+        self.assertNotIn("__cft__", fb["url"])
+        self.assertEqual(self.js("m.leerPosteo('https://ejemplo.com/post/1')")["red"], "Otra red")
+
+    def test_no_acepta_el_enlace_de_nuestra_propia_nota(self):
+        self.assertIn("error", self.js("m.leerPosteo('https://jusnoticias.juschubut.gov.ar/?p=14884')"))
+
+    def test_el_cargado_a_mano_se_guarda_como_tercero_comprobado(self):
+        fila = self.js("m.fila({url: 'https://www.facebook.com/x/posts/1', red: 'Facebook', cuenta: 'x', fecha: '', nota_id: 14884})")
+        guardada = modulo.terceros_comprobados([{**fila, "carga": "manual"}])
+        self.assertEqual(len(guardada), 1)
+        self.assertEqual(guardada[0]["carga"], "carga manual en el tablero")
+        self.assertEqual(guardada[0]["propia"], "No")
+
+    def test_el_tablero_tiene_el_formulario_generico(self):
+        plantilla = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn('<form id="rn-form" class="x-form">', plantilla)
+        self.assertIn("const vivos = [...postsVivos, ...postsManuales].filter(", plantilla)
+        self.assertIn("cargarPosteosManuales()", plantilla)
+
+
 if __name__ == "__main__":
     unittest.main()
