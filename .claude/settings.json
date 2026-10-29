@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api -X PUT repos/ACJ2026/redes-jusnoticias/pulls/*/merge *)",
+      "Bash(gh api -X POST repos/ACJ2026/redes-jusnoticias/pulls/*/ccr/ready_for_review*)"
+    ]
+  }
+}
