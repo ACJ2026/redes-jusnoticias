@@ -3984,9 +3984,9 @@
     "fecha": "2026-10-29",
     "texto": "👥 ⚖️ En la apertura de la",
     "nota_id": null,
-    "me_gusta": 0,
+    "me_gusta": 2,
     "comentarios": 0,
-    "compartidos": 1,
+    "compartidos": 2,
     "vistas": null,
     "propia": "Sí",
     "key": "fb-116101835114568_1768122605313327"
@@ -3997,11 +3997,37 @@
     "fecha": "2026-10-29",
     "texto": "👥 ⚖️ En la apertura de la",
     "nota_id": null,
-    "me_gusta": 8,
+    "me_gusta": 25,
     "comentarios": 0,
     "compartidos": null,
     "vistas": null,
     "propia": "Sí",
     "key": "ig-17906387319355349"
+  },
+  {
+    "red": "Instagram",
+    "cuenta": "jus_chubut",
+    "fecha": "2026-10-29",
+    "texto": "Juicio por jurados: 🖥️Se ",
+    "nota_id": null,
+    "me_gusta": 10,
+    "comentarios": 0,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "ig-18071770787685201"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-10-29",
+    "texto": "Juicio por jurados: 🖥️Se ",
+    "nota_id": null,
+    "me_gusta": 0,
+    "comentarios": 0,
+    "compartidos": 1,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1768363698622551"
   }
 ]
