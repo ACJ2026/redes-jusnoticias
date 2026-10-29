@@ -982,3 +982,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Alcance:** no se modifican datos históricos, decisiones manuales, umbrales de detección ni criterios de conteo. No se completan notas anteriores.
 - **Pruebas:** `pruebas-historial` pasó en [run 40873690066](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40873690066) y `validar` pasó en [run 40873690045](https://github.com/ACJ2026/redes-jusnoticias/actions/runs/40873690045), con 179 pruebas unitarias en la suite. Cloudflare Pages confirmó despliegue exitoso de la vista previa en [https://fix-separar-enlace-articulo.jusnoticias.pages.dev](https://fix-separar-enlace-articulo.jusnoticias.pages.dev). Se sincronizaron los dos HTML públicos con el bloque actualizado de la plantilla. No se pudo ejecutar el generador completo en el entorno local porque no tiene acceso de red a GitHub; por eso la sincronización fue puntual y queda como limitación documentada. El PR sigue sin fusionar: producción no se considera corregida hasta que se integre y se confirme su despliegue.
 - **Estado:** cambios preparados en rama separada; se abrirá PR para revisión. `data/actualizado.txt` y los JSON históricos no se tocaron.
+
+
+## 2026-10-29 — Ajuste de alcance en «Quién compartió nuestras notas» (pedido de Ignacio)
+
+- **Corrección de la revisión anterior:** la columna «Artículo del medio / perfil» no debe mostrar un artículo web ni el perfil como sustituto de la publicación social buscada.
+- **Comportamiento solicitado:** en la sección Redes, la columna pasa a llamarse «Nota en la cuenta del medio» y solo enlaza la URL directa de la publicación cuando la fila tiene publicacion_url válida y verificacion: "fuerte". El enlace al perfil oficial permanece separado en la columna «Cuenta». Si no hay una publicación exacta y confiable, la columna queda visualmente vacía: sin texto, enlace, aviso ni marcador. Los errores al resolverla también dejan el espacio vacío.
+- **Alcance:** solo esta columna de la sección Redes; no se cambian otras secciones, datos históricos, criterios de detección, umbrales ni conteos.
+- **Pruebas:** se actualizó la prueba de regresión para exigir enlace directo al post verificado y ausencia de textos de sustitución. La validación automatizada y la sincronización de los HTML públicos quedan pendientes de confirmar después de este commit.
