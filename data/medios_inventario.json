@@ -15,7 +15,7 @@
       "notas": 131,
       "ejemplo": "https://radio3cadenapatagonia.com.ar/un-fallo-en-esquel-sanciono-a-ford-y-plan-ovalo-por-aumentos-sin-explicaciones-en-un-plan-de-ahorro/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-25",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/radio3cp"
@@ -39,8 +39,8 @@
       "tipo": "TV",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 119,
       "notas": 95,
       "ejemplo": "https://canal12web.com/esquel-la-justicia-elevo-a-4-millones-la-multa-contra-plan-ovalo-por-aumentos-en-un-plan-de-ahorro/",
@@ -525,9 +525,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 25,
-      "notas": 23,
-      "ejemplo": "https://diariolaportada.com.ar/2026/10/22/ingram-se-reunio-con-el-ministro-de-desarrollo-agrario-de-buenos-aires/",
+      "publicaciones": 26,
+      "notas": 24,
+      "ejemplo": "https://diariolaportada.com.ar/2026/10/29/trevelin-sera-sede-del-2-congreso-patagonico-de-derecho-publico/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -1047,7 +1047,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 6,
       "notas": 6,
-      "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
+      "ejemplo": "https://diariosanrafael.com.ar/confirmo-el-vaticano-la-agenda-oficial-de-leon-xiv-en-la-argentina/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-29",
       "redes": {
@@ -1157,7 +1157,7 @@
       "notas": 5,
       "ejemplo": "https://prensamercosur.org/2026/10/21/octubre-rosa-el-congreso-se-ilumino-para-concientizar-sobre-la-prevencion-del-cancer-de-mama/",
       "primera_deteccion": "2026-10-26",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {}
     },
     {

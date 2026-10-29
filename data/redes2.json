@@ -3800,7 +3800,7 @@
     "nota_id": null,
     "me_gusta": 22,
     "comentarios": 0,
-    "compartidos": 4,
+    "compartidos": 3,
     "vistas": null,
     "propia": "Sí",
     "key": "fb-116101835114568_1749809043811350"
@@ -3977,5 +3977,31 @@
     "propia": "Sí",
     "key": "xm-2026-10-19-4",
     "carga": "manual (copiado del perfil de X el 28/10; cifras sin dato)"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-10-29",
+    "texto": "👥 ⚖️ En la apertura de la",
+    "nota_id": null,
+    "me_gusta": 0,
+    "comentarios": 0,
+    "compartidos": 1,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1768122605313327"
+  },
+  {
+    "red": "Instagram",
+    "cuenta": "jus_chubut",
+    "fecha": "2026-10-29",
+    "texto": "👥 ⚖️ En la apertura de la",
+    "nota_id": null,
+    "me_gusta": 8,
+    "comentarios": 0,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "ig-17906387319355349"
   }
 ]
