@@ -1011,3 +1011,17 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Formulario «Cargar a mano un posteo de otra cuenta» en Redes: enlace, nota, cuenta y fecha (estas dos opcionales).
   - Lo cargado aparece enseguida bajo su nota y `scripts/actualizar_redes.py` lo guarda cada 4 h en `data/redes2.json` (`propia: "No"`, «carga manual en el tablero»).
   - Pruebas nuevas. Probado en el navegador a 1280 y 375 px.
+
+## 2026-10-29 — Redes: mensaje claro, publicaciones anteriores y dos fallas de la búsqueda (Claude)
+
+- **Qué vio Ignacio:** la lista nueva aparecía vacía y sin explicación.
+- **Diagnóstico** desde GitHub contra el sitio publicado: la búsqueda devolvió 4 candidatas «a verificar» y ninguna fuerte. Tres no tenían nada que ver; una sí (escolarización de la niña, @metadatanoticias), pero coincidía solo en 3 de 4 palabras. Además había tres fallas:
+  1. **YouTube (canales de medios)** se rompía siempre por un error de tipeo («revisadas is not defined»). Corregido.
+  2. **Facebook (búsqueda pública):** una fecha mal formada en un resultado («Invalid time value») tiraba abajo la búsqueda de la nota. Corregido.
+  3. **Instagram:** Meta corta por límite de consultas («(#4) Application request limit reached»): de 6 tandas, 5 quedaron sin revisar. No se corrigió; queda anotado como limitación.
+- **Mensaje simple en la sección:**
+  - La búsqueda automática revisa solo Instagram y YouTube; Facebook y TikTok se cargan a mano.
+  - Solo aparece con enlace un posteo que enlaza la nota o repite su título completo.
+  - Lo registrado antes del 29/10 no tiene el enlace al posteo.
+- **Publicaciones anteriores:** las registradas sin enlace al posteo vuelven a verse, debajo de su nota, como «Registrado sin enlace al posteo: …». No se inventa ningún enlace.
+- **Criterio sin cambiar:** sigue «fuerte» = enlace a la nota o título completo. Cambiarlo requiere el OK de Ignacio (regla 5).

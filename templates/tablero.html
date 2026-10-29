@@ -97,6 +97,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 #b-medios .bar-row:focus-visible,#b-top .bar-row:focus-visible,#b-origen .bar-row:focus-visible,#b-cadena .bar-row:focus-visible,#b-top5m .bar-row:focus-visible,#b-top5n .bar-row:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 #medios-detalle-lista{display:flex;flex-direction:column;gap:10px}
 .rn-lista{display:flex;flex-direction:column;gap:12px}
+.rn-aviso{border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);background:color-mix(in srgb,var(--accent) 8%,var(--panel));border-radius:10px;padding:10px 12px;margin:8px 0 12px;font-size:var(--fs-cap)}
+.rn-aviso p{margin:0 0 6px}.rn-aviso p:last-child{margin:0}
+.rn-sin{margin:6px 0 0;color:var(--muted);font-size:var(--fs-cap)}
 .rn-nota{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel)}
 .rn-cab a{font-weight:600;color:var(--ink)}
 .rn-meta{color:var(--muted);font-size:var(--fs-cap)}
@@ -494,6 +497,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <p class="note" id="compartidos-analisis-estado" role="status" aria-live="polite"></p>
       <div id="compartidos-analisis-resultados" aria-live="polite"></div>
       <details class="note" id="compartidos-busqueda-manual" hidden><summary>Búsqueda asistida en todas las redes y medios</summary><p>Abre búsquedas para cada nota en Facebook, Instagram, TikTok, YouTube, X, LinkedIn y la web. Son pistas para revisar manualmente; no equivalen a publicaciones verificadas.</p><div></div></details>
+      <div class="rn-aviso"><p><b>Cómo se arma esta lista.</b> La búsqueda automática revisa solo <b>Instagram y YouTube</b> de los medios. <b>Facebook y TikTok</b> no lo permiten: esos posteos se cargan a mano, abajo. Un posteo aparece con su enlace solo si enlaza la nota o repite su título completo.</p><p>Las publicaciones registradas antes del 29/10/2026 se guardaron <b>sin el enlace al posteo</b>: aparecen debajo de cada nota como «registrado sin enlace». Si encontrás el posteo, cargalo abajo y queda con su enlace.</p></div>
       <div id="redes-notas-medios" class="rn-lista" aria-live="polite"></div>
       <details class="rn-cargar" id="rn-cargar">
         <summary>Cargar a mano un posteo de otra cuenta (Facebook, TikTok o cualquier red)</summary>
@@ -1174,23 +1178,33 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     const posts = [...guardados, ...vivos].filter(p => !vistos.has(p.publicacion_url) && vistos.add(p.publicacion_url));
     const porNotaRedes = new Map();
     posts.forEach(p => { const n = notas.find(x => Number(x.id) === p.nota_id); if (n && en(n.mes)) porNotaRedes.set(n.id, [...(porNotaRedes.get(n.id) || []), p]); });
+    // Publicaciones registradas antes sin el enlace al posteo: se nombran, sin inventar un enlace.
+    const sinEnlace = new Map();
+    (Array.isArray(D.redes) ? D.redes : []).filter(r => r && r.propia === 'No' && !esUrl(r.url) && Number(r.nota_id)).forEach(r => {
+      const n = notas.find(x => Number(x.id) === Number(r.nota_id)); if (!n || !en(n.mes)) return;
+      const nombre = (r.cuenta || 'Cuenta') + ' (' + r.red + ')';
+      sinEnlace.set(n.id, [...new Set([...(sinEnlace.get(n.id) || []), nombre])]);
+      if (!porNotaRedes.has(n.id)) porNotaRedes.set(n.id, []);
+    });
     const lista = [...porNotaRedes.entries()].map(([id, ps]) => ({ n: notas.find(x => x.id === id), ps }))
       .sort((a, b) => String(b.n.fecha).localeCompare(String(a.n.fecha)));
     const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
     const enlace = (txt, href) => { if (!esUrl(href)) return el('span', '', txt); const a = el('a', '', txt); a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; return a; };
-    if (!lista.length) { caja.replaceChildren(el('p', 'note', 'Todavía no hay posteos comprobados de otras cuentas con nuestras notas en este período.')); return; }
-    const resumen = el('p', 'note', fmt(lista.length) + (lista.length === 1 ? ' nota publicada' : ' notas publicadas') + ' en redes de otras cuentas, con ' + (k => fmt(k) + (k === 1 ? ' posteo enlazado.' : ' posteos enlazados.'))(posts.filter(p => porNotaRedes.has(p.nota_id)).length));
+    if (!lista.length) { caja.replaceChildren(el('p', 'note', 'Todavía no hay posteos de otras cuentas con nuestras notas en este período. Eso no quiere decir que nadie las haya publicado: la búsqueda automática solo ve Instagram y YouTube. Si encontraste uno en Facebook o TikTok, cargalo abajo.')); return; }
+    const resumen = el('p', 'note', fmt(lista.length) + (lista.length === 1 ? ' nota publicada' : ' notas publicadas') + ' en redes de otras cuentas: ' + (k => fmt(k) + (k === 1 ? ' posteo con enlace' : ' posteos con enlace'))(posts.filter(p => porNotaRedes.has(p.nota_id)).length) + (sinEnlace.size ? ' y otras registradas sin enlace.' : '.'));
     caja.replaceChildren(resumen, ...lista.map(({ n, ps }) => {
       const item = el('div', 'rn-nota');
       const cab = el('div', 'rn-cab');
-      cab.append(enlace(n.titulo, notaUrl(n.id)), el('span', 'rn-meta', ' · nota del ' + ddmm(n.fecha) + ' · ' + fmt(ps.length) + (ps.length === 1 ? ' posteo' : ' posteos')));
+      cab.append(enlace(n.titulo, notaUrl(n.id)), el('span', 'rn-meta', ' · nota del ' + ddmm(n.fecha) + (ps.length ? ' · ' + fmt(ps.length) + (ps.length === 1 ? ' posteo con enlace' : ' posteos con enlace') : '')));
       const ul = el('ul', 'rn-posts');
       ps.slice().sort((a, b) => String(a.fecha || '').localeCompare(String(b.fecha || ''))).forEach(p => {
         const li = el('li');
         li.append(el('span', 'rn-red', p.red + ' · '), enlace(p.cuenta || 'Cuenta', p.cuenta_url), el('span', 'rn-meta', p.fecha ? ' · ' + ddmm(p.fecha) : ''), document.createTextNode(' · '), enlace('Ver posteo ↗', p.publicacion_url));
         ul.append(li);
       });
-      item.append(cab, ul);
+      item.append(cab);
+      if (ps.length) item.append(ul);
+      if (sinEnlace.has(n.id)) item.append(el('p', 'rn-sin', 'Registrado sin enlace al posteo: ' + sinEnlace.get(n.id).join(', ') + '.'));
       return item;
     }));
   };

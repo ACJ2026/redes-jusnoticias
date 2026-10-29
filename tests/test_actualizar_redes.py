@@ -123,5 +123,24 @@ class PosteoManualTest(unittest.TestCase):
         self.assertIn("cargarPosteosManuales()", plantilla)
 
 
+class FallasBusquedaTest(unittest.TestCase):
+    def test_canales_de_youtube_no_usan_una_variable_inexistente(self):
+        # «revisadas is not defined» rompía la búsqueda en canales de medios (29/10).
+        fuente = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
+        bloque = fuente[fuente.index("async function youtubeCanales"):]
+        bloque = bloque[:bloque.index("\n}\n")]
+        self.assertIn("revisadas: revisados", bloque)
+
+    def test_una_fecha_mal_formada_no_rompe_la_busqueda_de_facebook(self):
+        fuente = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
+        self.assertIn("!Number.isNaN(fechaD.getTime())", fuente)
+        self.assertNotIn("new Date(fechaRaw).toISOString()", fuente)
+
+    def test_la_seccion_explica_que_se_ve_y_muestra_lo_registrado_sin_enlace(self):
+        plantilla = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        self.assertIn("Cómo se arma esta lista.", plantilla)
+        self.assertIn("Registrado sin enlace al posteo: ", plantilla)
+
+
 if __name__ == "__main__":
     unittest.main()
