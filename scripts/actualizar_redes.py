@@ -9,11 +9,13 @@ Uso: python3 scripts/actualizar_redes.py [data/redes2.json]
 - Si la consulta falla, no cambia nada.
 """
 import datetime as dt
+import hashlib
 import json
 import os
 import re
 import sys
 import unicodedata
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -96,6 +98,54 @@ def combinar(guardadas, nuevas):
     return filas, agregadas, actualizadas
 
 
+def terceros_comprobados(filas_api):
+    """Posteos de otras cuentas que la búsqueda marcó «fuerte» (enlazan la nota o repiten su título completo)."""
+    out = []
+    for f in filas_api:
+        url = f.get("publicacion_url") or ""
+        if f.get("verificacion") != "fuerte" or not str(url).startswith("http") or not f.get("nota_id"):
+            continue
+        out.append({
+            "red": f.get("red"), "cuenta": f.get("cuenta"), "fecha": str(f.get("fecha") or "")[:10],
+            "texto": str(f.get("texto") or "")[:140], "nota_id": int(f["nota_id"]),
+            "me_gusta": None, "comentarios": None, "compartidos": None, "vistas": None,
+            "propia": "No", "key": "cp-" + hashlib.sha1(url.encode("utf-8")).hexdigest()[:16], "url": url,
+            "cuenta_url": f.get("cuenta_url"), "carga": "búsqueda en redes de otras cuentas (" + str(f.get("coincidencia") or "coincidencia fuerte") + ")",
+        })
+    return out
+
+
+def sumar_terceros(filas, nuevas):
+    """Agrega posteos de otras cuentas que no estén ya guardados (por enlace o clave). No borra ni cambia nada."""
+    urls = {f.get("url") for f in filas if f.get("url")}
+    claves = {f.get("key") for f in filas if f.get("key")}
+    agregadas = 0
+    for n in nuevas:
+        if n["url"] in urls or n["key"] in claves:
+            continue
+        filas.append(n)
+        urls.add(n["url"]); claves.add(n["key"])
+        agregadas += 1
+    return agregadas
+
+
+def consultar_compartidos():
+    """Recorre la búsqueda en las redes de otras cuentas (/api/compartidos), tanda por tanda."""
+    def pedir(ruta):
+        req = urllib.request.Request(f"{SITIO}{ruta}", headers={"Accept": "application/json", "User-Agent": "jusnoticias-relevamiento"})
+        with urllib.request.urlopen(req, timeout=90) as r:
+            return json.load(r)
+    plan = pedir("/api/compartidos?plan=1")
+    filas = []
+    for fuente in plan.get("fuentes") or []:
+        for lote in range(int(fuente.get("lotes") or 1)):
+            try:
+                filas += pedir(f"/api/compartidos?fuente={urllib.parse.quote(str(fuente['id']))}&lote={lote}").get("filas") or []
+            except Exception as error:
+                print(f"AVISO: {fuente.get('nombre')} (tanda {lote}) no respondió ({error}).")
+    return filas
+
+
 def consultar():
     desde = (dt.date.today() - dt.timedelta(days=DIAS - 1)).isoformat()
     url = f"{SITIO}/api/redes?desde={desde}&redes={REDES}"
@@ -126,6 +176,12 @@ def main():
         print(f"AVISO: no se pudo consultar la API de redes ({error}); data/redes2.json queda igual.")
         return 0
     filas, agregadas, actualizadas = combinar(guardadas, nuevas)
+    # Posteos de otras cuentas con nuestras notas (solo los comprobados), para que no se pierdan.
+    try:
+        terceros = sumar_terceros(filas, terceros_comprobados(consultar_compartidos()))
+        print(f"Redes de otras cuentas: {terceros} posteos comprobados nuevos.")
+    except Exception as error:
+        print(f"AVISO: no se pudo consultar la búsqueda en redes de otras cuentas ({error}).")
     if len(filas) < len(guardadas):
         raise SystemExit("Se perderían filas de redes; no se guarda.")
     ruta.write_text(json.dumps(filas, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

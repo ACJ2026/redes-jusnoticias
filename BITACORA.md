@@ -973,3 +973,25 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - 23/10 Panigadi (nota 14913);
   - 19/10 Quiroga y su respuesta en el mismo hilo;
   - 19/10 Puerto Madryn (nota 14884).
+
+## 2026-10-29 — Redes: nuestras notas en las redes de otras cuentas, con el enlace a cada posteo (Claude, pedido de Ignacio)
+
+- **Pedido:**
+  - En Redes tienen que aparecer nuestras notas que un medio (u otra cuenta) publicó en sus redes, con el enlace a ese posteo, como en la pestaña Notas.
+  - Antes aparecían enlaces y medios que no tenían nada que ver.
+  - Al entrar se veían datos viejos.
+- **Causa:**
+  - La tabla «Quién compartió nuestras notas» mezclaba tres cosas:
+    - coincidencias débiles («a verificar»: un par de palabras en común) con un enlace a una nota adivinada;
+    - 16 cuentas sueltas sin posteo ni nota;
+    - sustitutos (artículo web o perfil) en lugar del posteo.
+  - El #140 de GPT arreglaba una sola columna.
+- **Cambio:**
+  - **Lista nueva por nota**, «Nuestras notas en las redes de otras cuentas»: cada nota del período y, debajo, cada posteo (red · cuenta · fecha · «Ver posteo ↗»).
+  - **Solo entra lo comprobado:** que el posteo enlace la nota o repita su título completo («fuerte» en `functions/api/compartidos.js`; no se cambió ese criterio). Las débiles no se muestran.
+  - **Se busca sola al abrir Redes** (idea del #140) y muestra «Actualizado a las hh:mm». Las respuestas quedan en caché 30 minutos.
+  - **Se guarda lo comprobado:** `scripts/actualizar_redes.py` recorre la búsqueda cada 4 h y guarda los posteos «fuertes» en `data/redes2.json` como `propia: "No"`, con su enlace. Nunca borra ni duplica. Así no se pierden y aparecen apenas se abre la pestaña.
+  - **No cambia ningún conteo:** los números de redes usan solo las cuentas propias.
+- **Lo que no aparece:** las 18 publicaciones de terceros guardadas antes no tienen enlace al posteo (solo medio, nota y a veces el artículo web), así que no entran en esta lista.
+- **Pruebas:** OK, con pruebas nuevas del actualizador. En el navegador, a 1280 y 375 px, con una búsqueda de prueba (una coincidencia fuerte y una débil), solo se muestra la fuerte, con su enlace.
+- **Supera al #140 de GPT:** se recomienda cerrarlo.

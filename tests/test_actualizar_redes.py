@@ -71,5 +71,25 @@ class ActualizarRedesTest(unittest.TestCase):
                     with self.subTest(f"{ruta.name}:{n}"):
                         self.assertNotIn(": ", m.group(1))
 
+class TercerosComprobadosTest(unittest.TestCase):
+    def test_solo_se_guardan_posteos_fuertes_con_enlace_y_nota(self):
+        api = [
+            {"red": "Instagram", "cuenta": "@medio", "publicacion_url": "https://www.instagram.com/p/AAA/", "fecha": "2026-10-20", "nota_id": 14884, "verificacion": "fuerte", "coincidencia": "título de la nota identificado"},
+            {"red": "Instagram", "cuenta": "@otro", "publicacion_url": "https://www.instagram.com/p/BBB/", "fecha": "2026-10-20", "nota_id": 14884, "verificacion": "a_verificar"},
+            {"red": "YouTube", "cuenta": "Canal", "publicacion_url": "", "fecha": "2026-10-20", "nota_id": 14884, "verificacion": "fuerte"},
+        ]
+        filas = modulo.terceros_comprobados(api)
+        self.assertEqual(len(filas), 1)
+        self.assertEqual(filas[0]["propia"], "No")
+        self.assertEqual(filas[0]["url"], "https://www.instagram.com/p/AAA/")
+        self.assertIsNone(filas[0]["me_gusta"])
+
+    def test_no_duplica_un_posteo_ya_guardado(self):
+        guardadas = [{"red": "Instagram", "url": "https://www.instagram.com/p/AAA/", "key": "s1", "propia": "No"}]
+        nuevas = modulo.terceros_comprobados([{"red": "Instagram", "cuenta": "@medio", "publicacion_url": "https://www.instagram.com/p/AAA/", "fecha": "2026-10-20", "nota_id": 1, "verificacion": "fuerte"}])
+        self.assertEqual(modulo.sumar_terceros(guardadas, nuevas), 0)
+        self.assertEqual(len(guardadas), 1)
+
+
 if __name__ == "__main__":
     unittest.main()

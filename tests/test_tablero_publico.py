@@ -272,12 +272,8 @@ class TableroPublicoTests(unittest.TestCase):
     def test_seccion_compartidos_enlaza_cuenta_publicacion_y_nota(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
-        self.assertIn('id="t-compartidos"', template)
-        self.assertIn("celdaEnlace(String(f.cuenta || 'Cuenta sin identificar'), f.cuenta_url)", template)
         self.assertIn("const idNotaPorTitulo = new Map(notas.map(n => [String(n.titulo || '').trim().toLocaleLowerCase(), Number(n.id)]));", template)
         self.assertIn("const resolverNotaId = f => f && typeof f === 'object' ? (Number(f.nota_id) || idNotaPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null) : null;", template)
-        self.assertIn("Nota original pendiente de identificar", template)
-        self.assertIn("notaId ? notaUrl(notaId) : null", template)
         self.assertIn('id="compartidos-busqueda-manual"', template)
         self.assertIn("dibujarBusquedasManuales(plan.desde)", template)
         # Los textos «Buscar en <red>» se arman en el navegador: se comprueba la lista de redes y el armado.
@@ -299,29 +295,24 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn('import cuentasMonitoreo from "../../data/cuentas_monitoreo.json";', funcion)
         self.assertIn("const enlacePosteo = r =>", template)
         self.assertIn("Ver publicación directa", template)
-        self.assertIn("Buscar publicación (pendiente de verificar)", template)
-        self.assertIn("const redesIncluidas = new Set(['Facebook', 'Instagram', 'YouTube', 'TikTok']);", template)
-        self.assertIn("celdaPublicacionCompartida(f)", template)
-        self.assertIn('<th>Nota o cuenta del medio</th>', template)
-        self.assertIn("const enlaceNotaSitioMedio = f =>", template)
-        self.assertIn("Ver nota en sitio del medio", template)
-        self.assertIn("Ver cuenta del medio (nota pendiente)", template)
-        self.assertIn("if (typeof f.url_sitio === 'string' && /^https?:\\/\\//i.test(f.url_sitio))", template)
-        self.assertIn("!/news\\.google\\.com/i.test(p.url)", template)
-        # El perfil se resuelve con una función local: enlaceCuenta vive en otra función y no está al alcance (error en consola).
-        self.assertIn("const perfil = cuenta ? perfilCuenta(cuenta) : perfilUrl(f.red, f.cuenta);", template)
-        enlace_medio = template.split("const enlaceNotaSitioMedio = f =>", 1)[1].split("const celdaNotaSitioMedio", 1)[0]
-        self.assertNotIn("google.com/search", enlace_medio)
         self.assertNotIn("Buscar nota del medio (pendiente de verificar)", template)
-        self.assertIn("Solo la URL directa identifica la publicación concreta.", template)
-        self.assertIn("Abre una búsqueda; todavía no es el enlace directo al post.", template)
         self.assertNotIn("D.repercusion.filter(p => Number(p.nota_id) === Number(r.nota_id)", template)
         self.assertNotIn("Ver nota original en JusNoticias ↗", template)
         self.assertNotIn("Consultar fuente de esta cifra", template)
         self.assertIn("Buscar ahora</button>", template)
         self.assertIn("addEventListener('click', buscarCompartidos)", template)
-        self.assertIn("las limitaciones de cada plataforma se informan por separado.", template)
 
+        # Nuestras notas en las redes de otras cuentas: por nota, cada posteo con su enlace; solo lo comprobado.
+        self.assertIn('id="redes-notas-medios"', template)
+        self.assertNotIn('id="t-compartidos"', template)
+        self.assertIn("const vivos = postsVivos.filter(f => f && f.verificacion === 'fuerte' && esUrl(f.publicacion_url) && Number(f.nota_id))", template)
+        self.assertIn("r.propia === 'No' && esUrl(r.url) && Number(r.nota_id)", template)
+        self.assertIn("enlace('Ver posteo ↗', p.publicacion_url)", template)
+        # Sin candidatas débiles ni sustitutos (artículo web, perfil o búsqueda en lugar del posteo).
+        self.assertNotIn('Candidata sin confirmar', template)
+        self.assertNotIn('Ver cuenta del medio (nota pendiente)', template)
+        # Al entrar a Redes se busca sola una vez (no hay datos viejos); «Buscar ahora» la repite.
+        self.assertIn("if (page === 'redes' && !compartidosAutoBuscado)", template)
     def test_generador_de_infografias_usa_los_datos_del_tablero(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn('id="info-abrir"', template)
@@ -637,15 +628,9 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_error_en_compartidos_no_bloquea_inicializacion_del_tablero(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn("const redesDatos = Array.isArray(D.redes)", template)
-        self.assertIn("const repercusionDatos = Array.isArray(D.repercusion)", template)
-        self.assertIn("if (!f || typeof f !== 'object') return null;", template)
-        self.assertIn("Se omitió una fila defectuosa de publicaciones compartidas.", template)
-        self.assertIn("No se pudo dibujar la tabla de compartidos; se mantiene el tablero activo.", template)
-        # La sección complementaria debe capturar sus fallos para no impedir que se registren
-        # los listeners del tablero ni que se ejecute draw().
-        self.assertIn("try {\n    dibujarCompartidos(filasCompartidosRegistrados());\n  } catch (error)", template)
-
+        # La lista es complementaria: si falla, no impide registrar los listeners ni ejecutar draw().
+        self.assertIn("try {\n    dibujarNotasEnRedes();\n  } catch (error)", template)
+        self.assertIn("try { dibujarNotasEnRedes(); } catch (error)", template)
 
     def test_analizador_de_enlaces_funciona_para_cualquier_red_sin_marcar_automaticamente_como_verificada(self):
         api = (ROOT / "functions/api/analizar-enlace.js").read_text(encoding="utf-8")
@@ -689,20 +674,17 @@ class TableroPublicoTests(unittest.TestCase):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn("Math.ceil(mejor.totalRaices * 0.6)", funcion)
         self.assertIn('verificacion: rel.fuerte ? "fuerte" : "a_verificar"', funcion)
-        self.assertIn("'Coincidencia fuerte (' : 'A verificar ('", template)
+        # Las «a verificar» no se muestran: solo entran posteos fuertes.
+        self.assertIn("f.verificacion === 'fuerte'", template)
         self.assertNotIn("'Detectada automáticamente (' + f.coincidencia", template)
 
     def test_enlaces_sociales_solo_se_muestran_si_la_coincidencia_es_fuerte(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        # Una URL HTTP válida no demuestra que la publicación trate de nuestra nota.
-        self.assertIn("if (url && f.verificacion === 'fuerte') return celdaEnlace('Abrir publicación coincidente', url);", template)
-        self.assertIn("Candidata sin confirmar; enlace oculto", template)
-        self.assertIn("Enlace registrado sin verificar", template)
+        # Una URL HTTP válida no demuestra que la publicación trate de nuestra nota: solo las fuertes entran.
         self.assertIn("const confirmadas = unicas.filter(f => f.verificacion === 'fuerte');", template)
-        self.assertIn("const candidatas = unicas.filter(f => f.verificacion !== 'fuerte');", template)
-        self.assertIn("Solo las coincidencias fuertes tienen enlace directo", template)
+        self.assertIn("postsVivos = unicas;", template)
+        self.assertIn("f.verificacion === 'fuerte' && esUrl(f.publicacion_url)", template)
         self.assertNotIn("return celdaEnlace('Ver publicación directa', f.publicacion_url)", template)
-
 
     def test_descubrir_redes_solo_informa(self):
         script = (ROOT / "scripts/descubrir_redes.py").read_text(encoding="utf-8")
