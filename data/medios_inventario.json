@@ -39,8 +39,8 @@
       "tipo": "TV",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 119,
       "notas": 95,
       "ejemplo": "https://canal12web.com/esquel-la-justicia-elevo-a-4-millones-la-multa-contra-plan-ovalo-por-aumentos-en-un-plan-de-ahorro/",
@@ -218,7 +218,7 @@
       "notas": 58,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -310,9 +310,9 @@
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
       "publicaciones": 59,
       "notas": 56,
-      "ejemplo": "https://www.eqsnotas.com/judiciales/intentaron-robar--dispararon-contra-un-policia-y-el-jurado-popular-los-declaro-culpables_a69a0c57fd58fb9ae9fd2e582",
+      "ejemplo": "https://www.eqsnotas.com/judiciales/condenaron-a-plan-ovalo-y-ford-por-los-aumentos-de-un-plan-de-ahorro",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -369,7 +369,7 @@
       "notas": 44,
       "ejemplo": "https://comodoro24.com.ar/sancionaron-a-plan-ovalo-y-ford-por-ocultar-informacion-ante-la-suba-desmedida-de-cuotas-de-un-plan-de-ahorro/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "C24",
@@ -472,7 +472,7 @@
       "notas": 32,
       "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/lu20radiochubut"
@@ -711,7 +711,7 @@
       "notas": 15,
       "ejemplo": "https://lu17.com/contenido/153801/madryn-millonaria-condena-a-una-comerciante-por-difamar-a-una-vecina-en-las-redes-sociales",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {}
     },
     {
@@ -989,7 +989,7 @@
       "notas": 7,
       "ejemplo": "https://www.primeraedicion.com.ar/nota/100040437/dia-de-lucha-contra-el-cancer-de-mama-la-importancia-del-diagnostico-precoz/",
       "primera_deteccion": "2026-10-25",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/primeraedicionw"
@@ -1019,7 +1019,7 @@
       "notas": 6,
       "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/abcdiarioar"
@@ -1174,7 +1174,7 @@
       "notas": 4,
       "ejemplo": "https://www.diariojudicial.com/news-104681-el-poder-judicial-presento-su-campana-audiovisual-sobre-mujeres-rurales",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/diariojudicial"
@@ -1315,7 +1315,7 @@
       "notas": 2,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {}
     },
     {
@@ -1332,7 +1332,7 @@
       "notas": 2,
       "ejemplo": "https://www.lavoz.com.ar/ciudadanos/dijo-chorra-vecina-facebook-justicia-debera-indemnizarla-pagara_0_ei9s7vvfd2.html",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/LaVoz.com.ar"
@@ -1524,7 +1524,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/ANBariloche"
@@ -1572,8 +1572,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
@@ -1640,13 +1640,13 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.centraldenoticiasmadariaga.com/2026/10/pagaba-un-plan-de-ahorro-para-comprar.html",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {}
     },
     {
@@ -1730,7 +1730,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/DiarioHuarpe"
@@ -1794,7 +1794,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/el10tv"
@@ -1874,7 +1874,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {}
     },
     {
@@ -1925,7 +1925,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/eltribuno"
@@ -2162,7 +2162,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-24",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {}
     },
     {
@@ -2297,7 +2297,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/mejor.informado.diario"
@@ -2344,7 +2344,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/NoticiasDelBolson"
@@ -2398,7 +2398,7 @@
       "notas": 1,
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/perfilcom"
