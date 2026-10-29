@@ -39,8 +39,8 @@
       "tipo": "TV",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 119,
       "notas": 95,
       "ejemplo": "https://canal12web.com/esquel-la-justicia-elevo-a-4-millones-la-multa-contra-plan-ovalo-por-aumentos-en-un-plan-de-ahorro/",
@@ -1049,7 +1049,7 @@
       "notas": 6,
       "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/DiarioSanRafael"
@@ -1969,13 +1969,13 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {
         "Facebook": [
           "/eldocetv"
@@ -2428,7 +2428,7 @@
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-29",
       "redes": {}
     },
     {
