@@ -286,7 +286,7 @@ async function youtubeCanales(env, notas, desde, n) {
     }));
   }
   return {
-    filas, revisadas, publicaciones_revisadas: publicacionesRevisadas,
+    filas, revisadas: revisados, publicaciones_revisadas: publicacionesRevisadas,
     canales_con_limite: canalesConLimite, max_paginas_por_canal: MAX_PAGINAS_POR_CANAL,
     errores, descripcion: "canales de medios revisados"
   };
@@ -341,7 +341,9 @@ async function facebookPublico(env, notas, desde, n) {
           const titulo = xmlTag(item, "title");
           const descripcion = xmlTag(item, "description");
           const fechaRaw = xmlTag(item, "pubDate");
-          const fecha = fechaRaw ? new Date(fechaRaw).toISOString().slice(0, 10) : "";
+          // Una fecha mal formada en un resultado no debe tirar abajo la búsqueda de toda la nota.
+          const fechaD = fechaRaw ? new Date(fechaRaw) : null;
+          const fecha = fechaD && !Number.isNaN(fechaD.getTime()) ? fechaD.toISOString().slice(0, 10) : "";
           if (!fecha || fecha < desde || fecha < sumarDias(nota.fecha, -1) || fecha > sumarDias(nota.fecha, 8) || !urlPostFacebook(link)) return;
           const rel = notaRelacionada(titulo + " " + descripcion + " " + link, fecha, [nota]);
           if (!rel) return;
