@@ -1164,7 +1164,6 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     if (f.red === 'TikTok') return 'https://www.tiktok.com/search?q=' + encodeURIComponent(titulo);
     return null;
   };
-  const normalizarMedioCompartido = s => String(s || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
   const enlaceNotaSitioMedio = f => {
     if (!f || typeof f !== 'object') return null;
     const cuentasDatos = Array.isArray(D.cuentas) ? D.cuentas.filter(c => c && typeof c === 'object') : [];
