@@ -1731,6 +1731,9 @@ const draw = () => {
   syncGoogleDates();
   // Enlaces viejos: #visitas va a Visitas y #guia abre la guía «?».
   const ALIAS_SECCION = { visitas: 'google', guia: 'resumen' };
+  // La búsqueda de terceros arranca sola la primera vez que se abre Redes en esta visita.
+  // No se repite en cada cambio de pestaña para evitar consumir consultas de las APIs.
+  let compartidosAutoBuscado = false;
   const show = (pedida) => {
     const page = ALIAS_SECCION[pedida] || pedida;
     if (!$(page) || !$(page).classList.contains('page')) return;
@@ -1739,6 +1742,10 @@ const draw = () => {
     document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.page === page)));
     try { history.replaceState(null, '', '#' + page); } catch (e) {}
     draw();
+    if (page === 'redes' && !compartidosAutoBuscado) {
+      compartidosAutoBuscado = true;
+      buscarCompartidos();
+    }
     if (pedida === 'guia' && typeof window.__tableroAbrirGuia === 'function') window.__tableroAbrirGuia();
   };
   const ayudaDialog = $('ayuda-dialog');
