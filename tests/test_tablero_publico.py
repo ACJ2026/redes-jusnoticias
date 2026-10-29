@@ -306,6 +306,8 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("const enlaceNotaSitioMedio = f =>", template)
         self.assertIn("f.publicacion_url", template)
         self.assertIn("f.verificacion === 'fuerte'", template)
+        self.assertIn("return url && f.verificacion === 'fuerte' ? url : null;", template)
+        self.assertIn("// Sin publicación exacta y confiable, no mostrar texto ni enlace.", template)
         self.assertIn("Nota en la cuenta del medio", template)
         self.assertIn("if (url) return celdaEnlace('Nota en la cuenta del medio', url);", template)
         self.assertIn("// Sin publicación exacta y confiable, no mostrar texto ni enlace.", template)
