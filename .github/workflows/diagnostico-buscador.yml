@@ -1,0 +1,35 @@
+name: Diagnóstico del buscador (solo lectura)
+
+# Corre solo en ramas de diagnóstico; no escribe datos ni toca main.
+on:
+  push:
+    branches:
+      - 'claude/diagnostico-*'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnostico:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Revisiones manuales guardadas en el tablero (sitio publicado)
+        run: |
+          mkdir -p salida
+          python3 - <<'PY' | tee salida/revisiones.txt
+          import json, urllib.request
+          with urllib.request.urlopen(urllib.request.Request("https://jusnoticias.pages.dev/api/revisiones", headers={"User-Agent": "diag"}), timeout=60) as x:
+              d = json.load(x)
+          revs = d.get("revisiones") or []
+          print("total", len(revs))
+          for r in revs:
+              print(r.get("fecha"), "|", r.get("decision"), "|", r.get("nota_id"), "|", r.get("medio"), "|", r.get("url"), "|", r.get("source_url"), "|", r.get("revisado_por"))
+          PY
+      - name: Guardar salida
+        run: |
+          git config user.name "jusnoticias-bot"; git config user.email "actions@users.noreply.github.com"
+          git checkout --orphan diagnostico-redes-salida
+          git rm -rq --cached . ; git add salida; git commit -qm "Diagnóstico: revisiones manuales"
+          git push -f origin diagnostico-redes-salida
