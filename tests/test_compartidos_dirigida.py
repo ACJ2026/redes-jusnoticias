@@ -47,5 +47,21 @@ class BusquedaDirigidaTest(unittest.TestCase):
         self.assertIn("return USUARIOS_IG.filter(u => !dirigidas.has(u));", fuente)
 
 
+class ParaConfirmarTest(unittest.TestCase):
+    def test_solo_marca_parecidos_de_un_medio_que_publico_esa_nota(self):
+        rep = [{"nota_id": 1, "medio": "Diario Uno", "url": "https://a", "confianza": "Alta"},
+               {"nota_id": 2, "medio": "Radio Dos", "url": "https://b", "confianza": "Baja"}]
+        cuentas = "new Map([['Instagram|diariouno_ig','diariouno'],['Instagram|radiodos_ig','radiodos'],['YouTube|/@canaluno','diariouno']])"
+        filas = [
+            {"red": "Instagram", "cuenta": "@DiarioUno_IG", "nota_id": 1, "verificacion": "a_verificar"},   # medio publicó la nota
+            {"red": "Instagram", "cuenta": "@diariouno_ig", "nota_id": 2, "verificacion": "a_verificar"},   # otra nota
+            {"red": "Instagram", "cuenta": "@radiodos_ig", "nota_id": 2, "verificacion": "a_verificar"},    # baja confianza
+            {"red": "Instagram", "cuenta": "@ajena", "nota_id": 1, "verificacion": "a_verificar"},          # cuenta sin medio
+            {"red": "YouTube", "cuenta": "Canal Uno", "cuenta_ref": "/@canaluno", "nota_id": 1, "verificacion": "a_verificar"},
+        ]
+        r = js(f"(() => {{ const p = m.mediosQuePublicaron({json.dumps(rep)}); return {json.dumps(filas)}.map(f => m.marcarMedioQuePublico(f, p, {cuentas}).medio_publico_nota === true); }})()")
+        self.assertEqual(r, [True, False, False, False, True])
+
+
 if __name__ == "__main__":
     unittest.main()

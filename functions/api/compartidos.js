@@ -111,6 +111,29 @@ cuentasMonitoreo.cuentas
   .filter(c => c.red === "Instagram" && c.medio && /^@[\w.]+$/.test(c.cuenta || "") && paginasPorUsuario.has(c.cuenta.slice(1).toLowerCase()))
   .forEach(c => igPorMedio.set(claveMedio(c.medio), c.cuenta.slice(1).toLowerCase()));
 const DIAS_DIRIGIDA = 10, MAX_DIRIGIDA = 12;
+// Cuenta (Instagram @usuario o canal de YouTube tal como figura en la lista) → medio, y medios
+// que publicaron cada nota en su web. Sirve para marcar los parecidos que vienen de un medio que
+// ya publicó esa misma nota: el tablero los muestra «para confirmar» (no se cuentan solos).
+const medioDeCuenta = new Map();
+cuentasMonitoreo.cuentas
+  .filter(c => c.medio && c.cuenta && !/^Dudosa/.test(c.estado || "") && (c.red === "Instagram" || c.red === "YouTube"))
+  .forEach(c => medioDeCuenta.set(c.red + "|" + (c.red === "Instagram" ? c.cuenta.replace(/^@/, "").toLowerCase() : c.cuenta.trim()), claveMedio(c.medio)));
+export function mediosQuePublicaron(rep = repercusion) {
+  const m = new Map();
+  rep.filter(r => r && r.url && r.confianza !== "Baja").forEach(r => {
+    const id = Number(r.nota_id);
+    if (!m.has(id)) m.set(id, new Set());
+    m.get(id).add(claveMedio(r.medio));
+  });
+  return m;
+}
+export function marcarMedioQuePublico(f, porNota = mediosQuePublicaron(), cuentas = medioDeCuenta) {
+  if (!f || f.verificacion === "fuerte" || !f.nota_id) return f;
+  const clave = f.red === "Instagram" ? "Instagram|" + String(f.cuenta || "").replace(/^@/, "").toLowerCase() : f.red + "|" + String(f.cuenta_ref || "");
+  const medio = cuentas.get(clave);
+  if (medio && porNota.has(Number(f.nota_id)) && porNota.get(Number(f.nota_id)).has(medio)) f.medio_publico_nota = true;
+  return f;
+}
 // Búsqueda dirigida: las cuentas de Instagram de los medios que ya publicaron en su web alguna nota
 // de los últimos días, empezando por la publicación más reciente. Son pocas consultas (no agota el
 // límite de Meta) y son las cuentas donde es más probable que aparezca la nota.
@@ -302,8 +325,8 @@ async function youtubeCanales(env, notas, desde, n) {
             const videoId = sn.resourceId && sn.resourceId.videoId;
             if (!fecha || fecha < desde || !videoId) return;
             const rel = notaRelacionada((sn.title || "") + " " + (sn.description || ""), fecha, notas);
-            if (rel) filas.push(fila("YouTube", canal.snippet.title || ref, "https://www.youtube.com/channel/" + canal.id,
-              "https://www.youtube.com/watch?v=" + videoId, fecha, sn.title, rel));
+            if (rel) filas.push({ ...fila("YouTube", canal.snippet.title || ref, "https://www.youtube.com/channel/" + canal.id,
+              "https://www.youtube.com/watch?v=" + videoId, fecha, sn.title, rel), cuenta_ref: ref });
           });
           const fechas = items.map(item => String((item.snippet || {}).publishedAt || "").slice(0, 10)).filter(Boolean);
           const fechaMasAntigua = fechas.length ? fechas.sort()[0] : "";
@@ -451,6 +474,8 @@ export async function onRequestGet({ env, request }) {
       resultado.fuentes[nombre] = { estado: "error", error: limpiarMensaje(error) };
     }
   }));
+  const porNota = mediosQuePublicaron();
+  resultado.filas.forEach(f => marcarMedioQuePublico(f, porNota));
   const vistos = new Set();
   resultado.filas = resultado.filas.filter(f => !vistos.has(f.publicacion_url) && vistos.add(f.publicacion_url))
     .sort((a, b) => b.fecha.localeCompare(a.fecha));

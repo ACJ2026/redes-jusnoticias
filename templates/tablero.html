@@ -114,6 +114,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .rn-meta{color:var(--muted);font-size:var(--fs-cap)}
 .rn-sin{margin:8px 0 0;color:var(--muted);font-size:var(--fs-cap)}
 .rn-sub{margin:10px 0 0;font-size:var(--fs-cap);font-weight:600}
+.rn-pend{color:var(--muted);font-weight:400;font-size:var(--fs-cap)}
+.rn-posts .btn{margin-left:6px;min-height:28px;padding:2px 10px}
 .rn-tecnico{margin-top:14px}.rn-tecnico>summary{cursor:pointer;color:var(--muted);min-height:32px}
 .rn-separador{margin:22px 0 8px;font-size:1.05rem}
 .det-redes{margin-top:12px}
@@ -511,7 +513,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <div id="redes-notas-medios" class="rn-lista" aria-live="polite"></div>
       <details class="rn-tecnico" id="rn-tecnico">
         <summary>Detalle técnico</summary>
-        <p class="note">Un posteo entra solo si enlaza nuestra nota o repite su título completo. Los que solo se parecen no se muestran: casi siempre son de otro tema. Instagram revisa primero las cuentas de los medios que ya publicaron la nota en su web. Facebook, TikTok y X no permiten leer cuentas ajenas: esos posteos se agregan a mano. Lo registrado antes del 29/10/2026 se guardó sin el enlace al posteo.</p>
+        <p class="note">Un posteo entra solo si enlaza nuestra nota o repite su título completo. Un parecido (palabras del título en común) se muestra «para confirmar» solo si viene de la cuenta de un medio que ya publicó esa misma nota en su web; los demás no se muestran porque casi siempre son de otro tema. Instagram revisa primero las cuentas de los medios que ya publicaron la nota en su web. Facebook, TikTok y X no permiten leer cuentas ajenas: esos posteos se agregan a mano. Lo registrado antes del 29/10/2026 se guardó sin el enlace al posteo.</p>
         <p class="note" id="compartidos-detalle"></p>
         <details class="note" id="compartidos-errores" hidden><summary>Cuentas o canales que dieron error</summary><ul></ul></details>
         <div class="tools" style="margin-top:12px;align-items:center">
@@ -1211,10 +1213,16 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     const caja = $('redes-notas-medios');
     if (!caja) return;
     const posts = postsConfirmados();
+    const confirmados = new Set(posts.map(p => p.publicacion_url));
     const grupo = new Map();
-    const de = id => grupo.get(id) || (grupo.set(id, { ps: [], sin: [] }), grupo.get(id));
+    const de = id => grupo.get(id) || (grupo.set(id, { ps: [], rev: [], sin: [] }), grupo.get(id));
     const notaDe = id => notas.find(x => Number(x.id) === Number(id));
     posts.forEach(p => { const n = notaDe(p.nota_id); if (n && en(n.mes)) de(n.id).ps.push(p); });
+    // Para confirmar: parecidos que vienen de la cuenta de un medio que ya publicó esa misma nota en su web.
+    // Los demás parecidos no se muestran (casi siempre son de otro tema). Nada se cuenta hasta confirmarlo.
+    postsVivos.filter(f => f && f.verificacion !== 'fuerte' && f.medio_publico_nota === true && esUrl(f.publicacion_url) && Number(f.nota_id) && !confirmados.has(f.publicacion_url)).forEach(f => {
+      const n = notaDe(f.nota_id); if (n && en(n.mes)) de(n.id).rev.push(f);
+    });
     // Registrados antes sin el enlace al posteo: se nombran, sin inventar un enlace.
     (Array.isArray(D.redes) ? D.redes : []).filter(r => r && r.propia === 'No' && !esUrl(r.url) && Number(r.nota_id)).forEach(r => {
       const n = notaDe(r.nota_id); if (!n || !en(n.mes)) return;
@@ -1225,24 +1233,40 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     if (!lista.length) { caja.replaceChildren(elRn('p', 'note', 'Todavía no hay posteos de otras cuentas con nuestras notas en este período. Si encontraste uno, tocá «+ Agregar posteo».')); return; }
     // La nota más reciente se muestra abierta hasta que la persona abre o cierra otra.
     if (!rnTocada) { rnAbiertas.clear(); rnAbiertas.add(lista[0].n.id); }
-    const totalPs = lista.reduce((s, x) => s + x.ps.length, 0);
+    const totalPs = lista.reduce((s, x) => s + x.ps.length, 0), totalRev = lista.reduce((s, x) => s + x.rev.length, 0);
     const conPosteos = lista.filter(x => x.ps.length || x.sin.length).length;
-    const resumen = elRn('p', 'note', fmt(conPosteos) + (conPosteos === 1 ? ' nota publicada' : ' notas publicadas') + ' en redes de otras cuentas · ' + fmt(totalPs) + (totalPs === 1 ? ' posteo con enlace' : ' posteos con enlace') + '.');
+    const resumen = elRn('p', 'note', fmt(conPosteos) + (conPosteos === 1 ? ' nota publicada' : ' notas publicadas') + ' en redes de otras cuentas · ' + fmt(totalPs) + (totalPs === 1 ? ' posteo con enlace' : ' posteos con enlace') + (totalRev ? ' · ' + fmt(totalRev) + ' para confirmar' : '') + '.');
     const tabla = elRn('table', 'rn-tabla');
     const thead = elRn('thead'); const hr = elRn('tr');
     [['Nota'], ['Fecha'], ['Posteos en redes', 'num']].forEach(([t, c]) => hr.append(elRn('th', c, t)));
     thead.append(hr);
     const tbody = elRn('tbody');
-    lista.forEach(({ n, ps, sin }) => {
+    lista.forEach(({ n, ps, rev, sin }) => {
       const abierta = rnAbiertas.has(n.id);
       const tr = elRn('tr', 'rn-fila'); tr.tabIndex = 0; tr.setAttribute('aria-expanded', String(abierta)); tr.dataset.id = n.id;
       const t1 = elRn('td'); t1.append(elRn('span', 'rn-flecha', '▸'), document.createTextNode(n.titulo));
       const t3 = elRn('td', 'num', ps.length ? fmt(ps.length) : (sin.length ? 'sin enlace' : '0'));
+      if (rev.length) t3.append(elRn('div', 'rn-pend', fmt(rev.length) + ' para confirmar'));
       tr.append(t1, elRn('td', 'num', ddmm(n.fecha)), t3);
       const det = elRn('tr', 'rn-det'); det.hidden = !abierta;
       const td = elRn('td'); td.colSpan = 3;
       td.append(enlaceRn('Abrir la nota en JusNoticias ↗', notaUrl(n.id)));
       if (ps.length) { const ul = elRn('ul', 'rn-posts'); ps.slice().sort(porFecha).forEach(p => ul.append(itemPosteo(p))); td.append(ul); }
+      if (rev.length) {
+        td.append(elRn('p', 'rn-sub', 'Para confirmar: los publicó un medio que ya subió esta nota a su web, y comparten palabras del título. No se cuentan hasta que los confirmes.'));
+        const ul = elRn('ul', 'rn-posts');
+        rev.slice().sort(porFecha).forEach(f => {
+          const li = itemPosteo(f);
+          const b = elRn('button', 'btn rev rev-ok', 'Confirmar'); b.type = 'button'; b.title = 'Es nuestra nota: sumarla con su enlace';
+          b.addEventListener('click', async ev => {
+            ev.stopPropagation(); b.disabled = true;
+            try { await guardarPosteo({ url: f.publicacion_url, nota_id: Number(f.nota_id), cuenta: f.cuenta || '', fecha: String(f.fecha || '').slice(0, 10) }); }
+            catch (e) { b.disabled = false; alert(e.message || 'No se pudo confirmar el posteo.'); }
+          });
+          li.append(b); ul.append(li);
+        });
+        td.append(ul);
+      }
       if (sin.length) td.append(elRn('p', 'rn-sin', 'Registrado antes sin el enlace al posteo: ' + sin.join(', ') + '. Si lo encontrás, agregalo y queda con su enlace.'));
       det.append(td);
       const alternar = () => { rnTocada = true; const ab = det.hidden; det.hidden = !ab; tr.setAttribute('aria-expanded', String(ab)); if (ab) rnAbiertas.add(n.id); else rnAbiertas.delete(n.id); };
@@ -1378,7 +1402,8 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
         : 'no disponible (' + (f.fallas[0] || 'sin respuesta') + ')')).join(' · ');
       const pendientes = Object.entries(plan.no_disponibles || {}).map(([red, motivo]) => red + ': ' + motivo).join(' · ');
       const hora = new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Argentina/Buenos_Aires' });
-      estado.textContent = 'Actualizado a las ' + hora + ' · ' + fmt(confirmadas.length) + (confirmadas.length === 1 ? ' posteo nuevo comprobado' : ' posteos nuevos comprobados') + '.';
+      const paraConfirmar = unicas.filter(f => f.verificacion !== 'fuerte' && f.medio_publico_nota === true).length;
+      estado.textContent = 'Actualizado a las ' + hora + ' · ' + fmt(confirmadas.length) + (confirmadas.length === 1 ? ' posteo nuevo comprobado' : ' posteos nuevos comprobados') + (paraConfirmar ? ' · ' + fmt(paraConfirmar) + ' para confirmar' : '') + '.';
       $('compartidos-detalle').textContent = 'Última búsqueda (desde ' + plan.desde.split('-').reverse().join('/') + '): ' + detalle + (pendientes ? ' · Sin búsqueda automática: ' + pendientes : '');
       // Detalle de errores por cuenta o canal, agrupado por motivo para que se pueda corregir la lista.
       const porMotivo = new Map();
