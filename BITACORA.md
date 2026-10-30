@@ -1044,3 +1044,10 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Comprobado:**
   - Pruebas en verde, incluida la nueva `tests/test_compartidos_dirigida.py`.
   - Probado en el navegador a 1280 y 375 px, sin desborde horizontal.
+
+## 2026-10-30 — Redes: se sacan los «para revisar» (Claude, aviso de Ignacio)
+
+- **Qué vio Ignacio:** en «Para revisar» aparecieron 6 posteos de Instagram (@anbariloche, @radio3_cadenapatagonia, @chacodiapordia, @lu20radio_chubut, @tv12misiones, @el10tv). Ninguno era de una nota nuestra.
+- **Causa:** eran coincidencias de palabras sueltas del título. Nunca se contaron, pero mostrarlas confundía.
+- **Arreglo:** la sección muestra solo los posteos comprobados, es decir los que enlazan la nota o repiten su título completo, y los cargados a mano. Se quitó el botón «Confirmar» de los parecidos. «+ Agregar posteo» sigue igual.
+- **Criterio de lo que se cuenta:** sin cambios.
