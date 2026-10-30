@@ -1085,3 +1085,15 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - Argentar Noticias, Canal 12, Radio 3 Cadena Patagonia y Prensa Mercosur figuraban como «verificadas» en la nota del veredicto del crimen de Nieves (30/10), pero son notas del 28-29/10 sobre el comienzo del juicio.
 - Se cargan como «descartar» en `data/revision_manual.json`. No se borra ninguna fila.
 - La causa de fondo se corrige en el PR del buscador (ventana desde el día de la nota).
+## 2026-10-30 — Buscador: nada anterior a la nota y coincidencias por tema al verificador (Claude, OK de Ignacio)
+
+- **Qué se vio:** la nota 14943 (veredicto del crimen de Nieves, 30/10) mostraba 4 medios «verificados» (Argentar Noticias, Canal 12, Radio 3 Cadena Patagonia y Prensa Mercosur). Las 4 eran notas del 28 y 29/10 sobre el **inicio** del juicio, no sobre nuestra nota.
+- **Causa:**
+  1. La ventana aceptaba publicaciones desde **un día antes** de la nota.
+  2. En la lectura directa de WordPress, un título parecido con redacción propia contaba con confianza «Media» (verificada) sin comprobar el texto. Mismo caso, otra etapa.
+- **Arreglo en `scripts/actualizar.py`:**
+  - La ventana empieza **el día de la nota** en `match`, `cerca`, `revisar_texto`, `verify`, `gmatch`, `mejor_nota_por_texto` y el filtro de Google/Bing. LU17 mantiene su ventana propia (fecha estimada).
+  - En WordPress, si el título coincide pero el texto no copia la nota, no la cita y no hay evidencia de la misma nota (`evidencia_misma_nota`), la fila queda como «coincidencia temática (a verificar)». El verificador la abre y la confirma o la excluye, como ya hacía con las de buscadores.
+- **Alcance:** hacia adelante. Las filas ya guardadas se conservan; las 4 de la nota 14943 se descartan aparte en `data/revision_manual.json`.
+- **Medición previa:** de las 9 filas de este tipo de los últimos 12 días, al menos 6 eran de otro tema (además de las 4 de Nieves, dos de la nota 14648 y una de la 14913).
+- **Pruebas nuevas:** `tests/test_ventana_nota.py` (6). Suite completa: 199 OK.
