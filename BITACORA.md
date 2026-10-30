@@ -1051,3 +1051,13 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Causa:** eran coincidencias de palabras sueltas del título. Nunca se contaron, pero mostrarlas confundía.
 - **Arreglo:** la sección muestra solo los posteos comprobados, es decir los que enlazan la nota o repiten su título completo, y los cargados a mano. Se quitó el botón «Confirmar» de los parecidos. «+ Agregar posteo» sigue igual.
 - **Criterio de lo que se cuenta:** sin cambios.
+
+## 2026-10-30 — Redes: nuestras publicaciones con su enlace (Claude, revisión completa pedida por Ignacio)
+
+- **Qué se vio:** ninguna publicación propia guardada en `data/redes2.json` (Facebook, Instagram, X, YouTube) tenía el enlace al posteo. Por eso la tabla «Publicaciones del período» no podía abrirlas.
+- **Causa:** `functions/api/redes.js` no le pedía a Meta el enlace de cada publicación (`permalink_url` en Facebook, `permalink` en Instagram) y no armaba el de YouTube.
+- **Arreglo:**
+  - La API ahora trae el enlace de cada publicación de Facebook, Instagram y YouTube. TikTok ya lo traía.
+  - `scripts/actualizar_redes.py` agrega el enlace a una fila guardada solo si le faltaba. Nunca cambia uno ya guardado ni borra filas.
+  - No cambia qué se cuenta.
+- **Pruebas nuevas** en `tests/test_actualizar_redes.py`.
