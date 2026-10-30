@@ -4,6 +4,7 @@
 // Facebook: búsqueda gratuita de publicaciones públicas indexadas por Bing RSS (no cubre todo Facebook). TikTok sigue asistido.
 import cuentasMonitoreo from "../../data/cuentas_monitoreo.json";
 import notasOficiales from "../../data/notas2.json";
+import repercusion from "../../data/rep2.json";
 
 const GRAPH = "https://graph.facebook.com/v26.0";
 const YT = "https://www.googleapis.com/youtube/v3";
@@ -103,6 +104,30 @@ cuentasMonitoreo.cuentas
   // (26/10/2026: la segunda búsqueda seguida dio error en las 64 cuentas). Una cuenta puede pedir más con «paginas».
   .forEach(c => paginasPorUsuario.set(c.cuenta.slice(1).toLowerCase(), Math.max(1, Math.min(Number(c.paginas) || 1, 3))));
 const USUARIOS_IG = [...paginasPorUsuario.keys()];
+// Medio → cuenta de Instagram, para la búsqueda dirigida.
+const claveMedio = texto => normalizarTexto(texto).replace(/ /g, "");
+const igPorMedio = new Map();
+cuentasMonitoreo.cuentas
+  .filter(c => c.red === "Instagram" && c.medio && /^@[\w.]+$/.test(c.cuenta || "") && paginasPorUsuario.has(c.cuenta.slice(1).toLowerCase()))
+  .forEach(c => igPorMedio.set(claveMedio(c.medio), c.cuenta.slice(1).toLowerCase()));
+const DIAS_DIRIGIDA = 10, MAX_DIRIGIDA = 12;
+// Búsqueda dirigida: las cuentas de Instagram de los medios que ya publicaron en su web alguna nota
+// de los últimos días, empezando por la publicación más reciente. Son pocas consultas (no agota el
+// límite de Meta) y son las cuentas donde es más probable que aparezca la nota.
+export function cuentasDirigidas(hoy, notas = notasOficiales, rep = repercusion, mapa = igPorMedio) {
+  const desde = sumarDias(hoy, -DIAS_DIRIGIDA);
+  const fechaNota = new Map(notas.map(n => [Number(n.id), n.fecha]));
+  const orden = rep
+    .filter(r => r && r.url && r.confianza !== "Baja" && (fechaNota.get(Number(r.nota_id)) || "") >= desde)
+    .sort((a, b) => String(fechaNota.get(Number(b.nota_id))).localeCompare(String(fechaNota.get(Number(a.nota_id)))));
+  const cuentas = [];
+  for (const r of orden) {
+    const u = mapa.get(claveMedio(r.medio));
+    if (u && !cuentas.includes(u)) cuentas.push(u);
+    if (cuentas.length >= MAX_DIRIGIDA) break;
+  }
+  return cuentas;
+}
 const CANALES_YT = [...new Set(cuentasMonitoreo.cuentas
   .filter(c => c.red === "YouTube" && c.cuenta && !/^Dudosa/.test(c.estado || ""))
   .map(c => c.cuenta.trim()))];
@@ -111,9 +136,19 @@ const CANALES_YT = [...new Set(cuentasMonitoreo.cuentas
 const TAM_LOTE_IG = 12, TAM_LOTE_YT = 20;
 const lote = (lista, tam, n) => n == null ? lista : lista.slice(n * tam, (n + 1) * tam);
 
-async function instagram(env, notas, desde, n) {
+// Las cuentas de la búsqueda dirigida no se repiten en la búsqueda general (ahorra consultas a Meta).
+const usuariosGenerales = () => {
+  const dirigidas = new Set(cuentasDirigidas(new Date().toISOString().slice(0, 10)));
+  return USUARIOS_IG.filter(u => !dirigidas.has(u));
+};
+
+async function instagramDirigida(env, notas, desde) {
+  return instagram(env, notas, desde, null, cuentasDirigidas(new Date().toISOString().slice(0, 10)));
+}
+
+async function instagram(env, notas, desde, n, lista) {
   if (!env.META_TOKEN || !env.IG_USER_ID) throw new Error("Faltan META_TOKEN o IG_USER_ID.");
-  const usuarios = lote(USUARIOS_IG, TAM_LOTE_IG, n);
+  const usuarios = lista || lote(usuariosGenerales(), TAM_LOTE_IG, n);
   const filas = [], errores = {};
   const campos = "media.limit(30){caption,permalink,timestamp}";
   const MAX_PAGINAS_POR_CUENTA = 3; // Hasta 90 publicaciones por cuenta; limita tiempo y consultas.
@@ -366,6 +401,8 @@ async function facebookPublico(env, notas, desde, n) {
 }
 
 const FUENTES = [
+  // Primero la dirigida: si Meta corta por límite, lo más probable ya se consultó.
+  { id: "ig-dirigida", nombre: "Instagram (medios que ya publicaron la nota)", fn: instagramDirigida, lotes: 1 },
   { id: "instagram", nombre: "Instagram", fn: instagram, lotes: Math.max(1, Math.ceil(USUARIOS_IG.length / TAM_LOTE_IG)) },
   { id: "ig-etiquetas", nombre: "Instagram (etiquetas)", fn: instagramEtiquetas, lotes: 1 },
   // Meta exige aprobar «Instagram Public Content Access» para buscar hashtags (respuesta del 26/10/2026).
