@@ -1097,3 +1097,9 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Alcance:** hacia adelante. Las filas ya guardadas se conservan; las 4 de la nota 14943 se descartan aparte en `data/revision_manual.json`.
 - **Medición previa:** de las 9 filas de este tipo de los últimos 12 días, al menos 6 eran de otro tema (además de las 4 de Nieves, dos de la nota 14648 y una de la 14913).
 - **Pruebas nuevas:** `tests/test_ventana_nota.py` (6). Suite completa: 199 OK.
+
+## 2026-10-30 — Cierre de PR viejos (Claude, OK de Ignacio)
+
+- Se cerraron 14 PR abiertos que habían quedado superados por lo que ya está en `main` (#136 a #148): #36, #37, #43, #44, #45, #46, #47, #67, #88, #94, #117, #123, #124 y #140.
+- Cada uno tiene un comentario que explica el motivo. Las ramas no se borraron: se pueden reabrir si hace falta algo.
+- No queda ningún PR abierto.
