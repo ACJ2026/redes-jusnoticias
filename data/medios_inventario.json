@@ -11,9 +11,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 173,
-      "notas": 131,
-      "ejemplo": "https://radio3cadenapatagonia.com.ar/un-fallo-en-esquel-sanciono-a-ford-y-plan-ovalo-por-aumentos-sin-explicaciones-en-un-plan-de-ahorro/",
+      "publicaciones": 174,
+      "notas": 132,
+      "ejemplo": "https://radio3cadenapatagonia.com.ar/comodoro-rivadavia-comenzo-el-juicio-por-el-homicidio-de-jorge-nieves/",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-10-29",
       "redes": {
@@ -41,9 +41,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 119,
-      "notas": 95,
-      "ejemplo": "https://canal12web.com/esquel-la-justicia-elevo-a-4-millones-la-multa-contra-plan-ovalo-por-aumentos-en-un-plan-de-ahorro/",
+      "publicaciones": 120,
+      "notas": 96,
+      "ejemplo": "https://canal12web.com/comenzo-en-comodoro-el-juicio-por-jurados-por-homicidio-de-jorge-nieves/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
       "redes": {
@@ -214,8 +214,8 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 66,
-      "notas": 58,
+      "publicaciones": 67,
+      "notas": 59,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-30",
@@ -393,9 +393,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 43,
-      "notas": 39,
-      "ejemplo": "https://argentarnoticias.com.ar/buscan-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
+      "publicaciones": 44,
+      "notas": 40,
+      "ejemplo": "https://argentarnoticias.com.ar/comenzo-el-juicio-por-jurados-por-el-crimen-de-jorge-nieves-en-comodoro-que-dijeron-la-fiscalia-y-la-defensa/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -943,6 +943,23 @@
       }
     },
     {
+      "nombre": "Prensa Mercosur",
+      "alias": [],
+      "dominio": "prensamercosur.org",
+      "url": "https://prensamercosur.org",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 8,
+      "notas": 7,
+      "ejemplo": "https://prensamercosur.org/2026/10/30/argentina-plataforma-de-impunidad-internacional/",
+      "primera_deteccion": "2026-10-26",
+      "ultima_deteccion": "2026-10-29",
+      "redes": {}
+    },
+    {
       "nombre": "La Opinión Austral",
       "alias": [],
       "dominio": "laopinionaustral.com.ar",
@@ -974,23 +991,6 @@
           "@laopinionaustral"
         ]
       }
-    },
-    {
-      "nombre": "Prensa Mercosur",
-      "alias": [],
-      "dominio": "prensamercosur.org",
-      "url": "https://prensamercosur.org",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 7,
-      "notas": 6,
-      "ejemplo": "https://prensamercosur.org/2026/10/30/argentina-plataforma-de-impunidad-internacional/",
-      "primera_deteccion": "2026-10-26",
-      "ultima_deteccion": "2026-10-29",
-      "redes": {}
     },
     {
       "nombre": "Primera Edición",
@@ -2003,8 +2003,8 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
@@ -2331,7 +2331,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-29",
+      "ultima_deteccion": "2026-10-30",
       "redes": {
         "Facebook": [
           "/mejor.informado.diario"
