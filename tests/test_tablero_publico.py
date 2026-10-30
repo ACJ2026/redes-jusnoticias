@@ -308,9 +308,9 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("const vivos = [...postsVivos, ...postsManuales].filter(f => f && f.verificacion === 'fuerte' && esUrl(f.publicacion_url) && Number(f.nota_id))", template)
         self.assertIn("r.propia === 'No' && esUrl(r.url) && Number(r.nota_id)", template)
         self.assertIn("enlaceRn('Ver posteo ↗', p.publicacion_url)", template)
-        # Los parecidos se muestran aparte, «para revisar», con un botón para confirmarlos; no se cuentan solos.
-        self.assertIn("f.verificacion !== 'fuerte' && esUrl(f.publicacion_url)", template)
-        self.assertIn("await guardarPosteo({ url: f.publicacion_url", template)
+        # Los parecidos (sin enlace a la nota ni título completo) no se muestran: eran casi siempre de otro tema (30/10).
+        self.assertNotIn("Para revisar:", template)
+        self.assertNotIn("f.verificacion !== 'fuerte'", template)
         # Tabla como la de Notas: nota, fecha y cantidad de posteos; la más reciente abierta.
         self.assertIn("[['Nota'], ['Fecha'], ['Posteos en redes', 'num']]", template)
         self.assertIn("if (!rnTocada) { rnAbiertas.clear(); rnAbiertas.add(lista[0].n.id); }", template)
