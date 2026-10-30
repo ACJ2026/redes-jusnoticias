@@ -1069,3 +1069,13 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Instagram (etiquetas) sigue sin permiso de Meta.
   - X y la carga manual de posteos no tienen nada cargado todavía en el formulario. Los 4 posts de X guardados se habían cargado directo en los datos.
 - **Pendiente de decisión de Ignacio (regla 5):** mostrar como «para confirmar» solo los parecidos que vengan de la cuenta de un medio que ya publicó esa misma nota en su web. Con este diagnóstico, eso habría dejado el de Metadata y descartado los 15 ajenos.
+
+## 2026-10-30 — Redes: «para confirmar» solo de medios que ya publicaron la nota (Claude, OK de Ignacio)
+
+- **Decisión de Ignacio:** un posteo parecido (palabras del título en común, sin enlace a la nota ni título completo) se muestra con el botón «Confirmar» solo si viene de la cuenta de un medio que ya publicó esa misma nota en su web.
+- **Cómo funciona:**
+  - `functions/api/compartidos.js` marca esos posteos con `medio_publico_nota`. Para saberlo cruza la cuenta (Instagram o canal de YouTube de `cuentas_monitoreo.json`) con los medios que publicaron la nota en `rep2.json`, con enlace y confianza no «Baja».
+  - El tablero muestra solo los marcados. Los demás parecidos siguen sin mostrarse.
+  - No se cuenta nada hasta confirmarlo. Confirmar lo guarda con la carga manual (misma clave) y el relevamiento lo suma cada 4 h.
+- **Prueba con los 16 parecidos del diagnóstico de hoy:** queda solo el de @metadatanoticias (escolarización de la niña), que sí era nuestro. Los 15 ajenos quedan afuera.
+- **Pruebas nuevas** en `tests/test_compartidos_dirigida.py`. Probado en el navegador a 1280 y 375 px.
