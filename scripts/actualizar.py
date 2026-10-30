@@ -67,7 +67,11 @@ for x in jn_raw:
     JN.append({'id': x['id'], 'date': d, 'titulo': t, 'body': body, 'tk': toks(t + ' ' + body[:1500]), 'sh': shing(body), 'tb': toks(t + ' ' + body)})
 print('notas', len(notas))
 
-def match(items, win=8, thr=0.57, before=-1, nodate_thr=0.7, need_chubut=False):
+# Una publicación anterior a la nota no puede ser su repercusión: la ventana empieza el día
+# de la nota (antes, un día antes). Evita confundir etapas de un mismo caso, p. ej. el inicio
+# de un juicio con su veredicto (nota 14943, decisión de Ignacio, 30/10/2026). LU17 sigue con
+# su propia ventana porque su fecha es estimada.
+def match(items, win=8, thr=0.57, before=0, nodate_thr=0.7, need_chubut=False):
     res = []
     for it in items:
         tt = toks(it['t'])
@@ -93,7 +97,7 @@ def classify(text, nid):
 
 # Segunda oportunidad: títulos reescritos o muy cortos quedan bajo el umbral de match()
 # aunque el artículo sea sobre la nota. Esos casos "cerca" se confirman leyendo el texto.
-def cerca(items, ya, win=8, before=-1, minimo=2, umbral=0.34, tope=40):
+def cerca(items, ya, win=8, before=0, minimo=2, umbral=0.34, tope=40):
     vistos = {m['u'] for m in ya}
     res = []
     for it in items:
@@ -190,7 +194,7 @@ def revisar_texto(items, textos, medio=''):
         REVISADOS[it['u']] = dt.date.today().isoformat()
         mejor = None
         for j in JN:
-            if it['d'] < addd(j['date'], -1) or it['d'] > addd(j['date'], 8): continue
+            if it['d'] < j['date'] or it['d'] > addd(j['date'], 8): continue
             evidencia = evidencia_misma_nota(j['titulo'], j['body'], it.get('t', ''), t)
             if not es_misma_publicacion(evidencia): continue
             sh = shing(t)
@@ -240,7 +244,7 @@ def verify(cands, win=8):
     with ThreadPoolExecutor(8) as ex:
         for m, d in zip(cands, ex.map(lambda c: page_date(c['u']), cands)):
             jd = JDATE[m['nid']]
-            if d and addd(jd, -1) <= d <= addd(jd, win): out.append(m)
+            if d and jd <= d <= addd(jd, win): out.append(m)
     return out
 rows = []
 def addrow(medio, m, metodo, origen='Sin dato', off=False, otros=''):
@@ -310,7 +314,16 @@ def wp_site(item):
     out = []
     for m in ms:
         t = texts.get(m['pid'])
-        out.append((m, classify(t, m['nid']) if t else None))
+        c = classify(t, m['nid']) if t else None
+        if t and c[0] == 'Redacción propia' and not c[1]:
+            # Coincide el título pero el medio no copia ni cita la nota: el tema puede ser el
+            # mismo caso en otra etapa. Sin evidencia de la misma nota en el texto, pasa al
+            # verificador como coincidencia temática (decisión de Ignacio, 30/10/2026).
+            j = JNBY[m['nid']]
+            evidencia = evidencia_misma_nota(j['titulo'], j['body'], m.get('t', ''), t)
+            if not es_misma_publicacion(evidencia):
+                m = dict(m, metodo='Revisión completa · coincidencia temática (a verificar)')
+        out.append((m, c))
     out += confirmar_por_texto(cerca_ms, {m['u']: texts.get(m['pid']) for m in cerca_ms})
     out += revisar_texto(recientes, {m['u']: texts.get(m['pid']) for m in recientes}, name)
     return name, len(items), out
@@ -685,7 +698,7 @@ def gmatch(it, n):
     st = STEM(it['t'])
     if len(st) < 3: return None
     def sc(nid): return len(st & JSTEM.get(nid, set())) / len(st)
-    cand = [j for j in notas if addd(j['fecha'], -1) <= it['d'] <= addd(j['fecha'], 8)]
+    cand = [j for j in notas if j['fecha'] <= it['d'] <= addd(j['fecha'], 8)]
     best = max(cand, key=lambda j: sc(j['id']), default=None)
     minimo = 0.25 if it.get('fuerte') else 0.45
     # Evitar asignar una noticia por coincidencias genéricas del cuerpo (p. ej. "Patagonia").
@@ -724,7 +737,7 @@ def mejor_nota_por_texto(it, t):
     """La nota de JusNoticias de esos días con más evidencia; solo si es la misma publicación o caso."""
     mejor = None
     for j in JN:
-        if it['d'] < addd(j['date'], -1) or it['d'] > addd(j['date'], 8): continue
+        if it['d'] < j['date'] or it['d'] > addd(j['date'], 8): continue
         ev = evidencia_misma_nota(j['titulo'], j['body'], it.get('t', ''), t)
         clave_ev = (es_misma_publicacion(ev), ev['misma_nota'], ev['coincidencia_cuerpo_medio'])
         if not mejor or clave_ev > mejor[0]: mejor = (clave_ev, j, ev)
@@ -739,7 +752,7 @@ with ThreadPoolExecutor(4) as ex:
         # Primero los enlaces directos (Bing): así un medio no queda con el enlace de Google Noticias.
         items.sort(key=lambda it: es_google_noticias(it.get('u')))
         for it in items:
-            if NO.search(it['src']) or not (addd(n['fecha'], -1) <= it['d'] <= addd(n['fecha'], 8)): continue
+            if NO.search(it['src']) or not (n['fecha'] <= it['d'] <= addd(n['fecha'], 8)): continue
             m = gmatch(it, n)
             if not m:
                 if candidato_por_texto(it, n) and it['u'] not in REVISADOS:

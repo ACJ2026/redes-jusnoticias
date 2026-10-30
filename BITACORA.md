@@ -1079,3 +1079,16 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - No se cuenta nada hasta confirmarlo. Confirmar lo guarda con la carga manual (misma clave) y el relevamiento lo suma cada 4 h.
 - **Prueba con los 16 parecidos del diagnóstico de hoy:** queda solo el de @metadatanoticias (escolarización de la niña), que sí era nuestro. Los 15 ajenos quedan afuera.
 - **Pruebas nuevas** en `tests/test_compartidos_dirigida.py`. Probado en el navegador a 1280 y 375 px.
+
+## 2026-10-30 — Buscador: nada anterior a la nota y coincidencias por tema al verificador (Claude, OK de Ignacio)
+
+- **Qué se vio:** la nota 14943 (veredicto del crimen de Nieves, 30/10) mostraba 4 medios «verificados» (Argentar Noticias, Canal 12, Radio 3 Cadena Patagonia y Prensa Mercosur). Las 4 eran notas del 28 y 29/10 sobre el **inicio** del juicio, no sobre nuestra nota.
+- **Causa:**
+  1. La ventana aceptaba publicaciones desde **un día antes** de la nota.
+  2. En la lectura directa de WordPress, un título parecido con redacción propia contaba con confianza «Media» (verificada) sin comprobar el texto. Mismo caso, otra etapa.
+- **Arreglo en `scripts/actualizar.py`:**
+  - La ventana empieza **el día de la nota** en `match`, `cerca`, `revisar_texto`, `verify`, `gmatch`, `mejor_nota_por_texto` y el filtro de Google/Bing. LU17 mantiene su ventana propia (fecha estimada).
+  - En WordPress, si el título coincide pero el texto no copia la nota, no la cita y no hay evidencia de la misma nota (`evidencia_misma_nota`), la fila queda como «coincidencia temática (a verificar)». El verificador la abre y la confirma o la excluye, como ya hacía con las de buscadores.
+- **Alcance:** hacia adelante. Las filas ya guardadas se conservan; las 4 de la nota 14943 se descartan aparte en `data/revision_manual.json`.
+- **Medición previa:** de las 9 filas de este tipo de los últimos 12 días, al menos 6 eran de otro tema (además de las 4 de Nieves, dos de la nota 14648 y una de la 14913).
+- **Pruebas nuevas:** `tests/test_ventana_nota.py` (6). Suite completa: 199 OK.
