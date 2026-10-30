@@ -52,6 +52,18 @@ class ActualizarRedesTest(unittest.TestCase):
         self.assertEqual(filas[0]["me_gusta"], 5)
         self.assertEqual(actualizadas, 0)
 
+    def test_agrega_el_enlace_si_faltaba_y_no_cambia_uno_guardado(self):
+        filas, _, actualizadas = modulo.combinar([fila()], [fila(url="https://www.facebook.com/x/posts/1")])
+        self.assertEqual((filas[0]["url"], actualizadas), ("https://www.facebook.com/x/posts/1", 1))
+        filas, _, _ = modulo.combinar([fila(url="https://guardado")], [fila(url="https://otro")])
+        self.assertEqual(filas[0]["url"], "https://guardado")
+
+    def test_la_api_pide_el_enlace_de_cada_publicacion(self):
+        api = (ROOT / "functions/api/redes.js").read_text(encoding="utf-8")
+        self.assertIn("url: post.permalink_url || null", api)
+        self.assertIn("url: post.permalink || null", api)
+        self.assertIn('url: "https://www.youtube.com/watch?v="', api)
+
     def test_ignora_publicaciones_que_no_son_propias(self):
         filas, agregadas, _ = modulo.combinar([], [fila(propia="No")])
         self.assertEqual((len(filas), agregadas), (0, 0))

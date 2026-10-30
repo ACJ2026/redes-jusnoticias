@@ -132,8 +132,9 @@ const CANALES_YT = [...new Set(cuentasMonitoreo.cuentas
   .filter(c => c.red === "YouTube" && c.cuenta && !/^Dudosa/.test(c.estado || ""))
   .map(c => c.cuenta.trim()))];
 // Cloudflare limita las consultas externas por pedido (50 en el plan gratuito): las listas largas
-// se reparten en tandas que el tablero pide por separado. 12 cuentas × 3 páginas = 36 consultas como máximo.
-const TAM_LOTE_IG = 12, TAM_LOTE_YT = 20;
+// se reparten en tandas que el tablero pide por separado. 12 cuentas × 3 páginas = 36 consultas como máximo;
+// 12 canales de YouTube × (1 canal + 3 páginas) = 48 (con 20 canales se pasaba: «Too many subrequests», 30/10/2026).
+const TAM_LOTE_IG = 12, TAM_LOTE_YT = 12;
 const lote = (lista, tam, n) => n == null ? lista : lista.slice(n * tam, (n + 1) * tam);
 
 // Las cuentas de la búsqueda dirigida no se repiten en la búsqueda general (ahorra consultas a Meta).

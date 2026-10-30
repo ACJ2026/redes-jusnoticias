@@ -72,7 +72,7 @@ async function facebookPagina(id, pageToken, desde) {
   let limiteAlcanzado = false;
   let publicacionesError = null;
   try {
-  let url = `${GRAPH}/${id}/posts?fields=created_time,message,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${encodeURIComponent(desde)}&limit=100`;
+  let url = `${GRAPH}/${id}/posts?fields=created_time,message,permalink_url,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&since=${encodeURIComponent(desde)}&limit=100`;
   for (let i = 0; url && i < 10; i++) {
     const result = await get(url, pageToken);
     (result.data || []).forEach(post => filas.push({
@@ -80,7 +80,8 @@ async function facebookPagina(id, pageToken, desde) {
       texto: corto(post.message), resumen: resumen(post.message), nota_id: null,
       me_gusta: post.reactions ? post.reactions.summary.total_count : null,
       comentarios: post.comments ? post.comments.summary.total_count : null,
-      compartidos: post.shares ? post.shares.count : 0, vistas: null, propia: "Sí", key: "fb-" + post.id
+      compartidos: post.shares ? post.shares.count : 0, vistas: null, propia: "Sí", key: "fb-" + post.id,
+      url: post.permalink_url || null
     }));
     const next = result.paging && result.paging.next;
     if (i === 9 && next) limiteAlcanzado = true;
@@ -207,7 +208,7 @@ async function instagram(desde, env) {
   const account = await get(`${GRAPH}/${id}?fields=username,followers_count`, token);
   const filas = [];
   let limiteAlcanzado = false;
-  let url = `${GRAPH}/${id}/media?fields=timestamp,caption,like_count,comments_count&limit=100`;
+  let url = `${GRAPH}/${id}/media?fields=timestamp,caption,permalink,like_count,comments_count&limit=100`;
   for (let i = 0; url && i < 10; i++) {
     const result = await get(url, token);
     const posts = result.data || [];
@@ -215,7 +216,8 @@ async function instagram(desde, env) {
     within.forEach(post => filas.push({
       red: "Instagram", cuenta: account.username || "@jus_chubut", fecha: (post.timestamp || "").slice(0, 10),
       texto: corto(post.caption), resumen: resumen(post.caption), nota_id: null, me_gusta: post.like_count ?? null,
-      comentarios: post.comments_count ?? null, compartidos: null, vistas: null, propia: "Sí", key: "ig-" + post.id
+      comentarios: post.comments_count ?? null, compartidos: null, vistas: null, propia: "Sí", key: "ig-" + post.id,
+      url: post.permalink || null
     }));
     if (within.length < posts.length) break;
     const next = result.paging && result.paging.next;
@@ -353,7 +355,7 @@ async function youtube(desde, env) {
         red: "YouTube", cuenta: nombreCanal, fecha: (video.snippet.publishedAt || "").slice(0, 10),
         texto: corto(video.snippet.title), resumen: resumen(video.snippet.title), nota_id: null, me_gusta: number("likeCount"),
         comentarios: number("commentCount"), compartidos: null, vistas: number("viewCount"),
-        propia: "Sí", key: "yt-" + video.id
+        propia: "Sí", key: "yt-" + video.id, url: "https://www.youtube.com/watch?v=" + encodeURIComponent(video.id)
       });
     });
   }

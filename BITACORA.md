@@ -1051,3 +1051,21 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Causa:** eran coincidencias de palabras sueltas del título. Nunca se contaron, pero mostrarlas confundía.
 - **Arreglo:** la sección muestra solo los posteos comprobados, es decir los que enlazan la nota o repiten su título completo, y los cargados a mano. Se quitó el botón «Confirmar» de los parecidos. «+ Agregar posteo» sigue igual.
 - **Criterio de lo que se cuenta:** sin cambios.
+
+## 2026-10-30 — Redes: nuestras publicaciones con su enlace (Claude, revisión completa pedida por Ignacio)
+
+- **Qué se vio:** ninguna publicación propia guardada en `data/redes2.json` (Facebook, Instagram, X, YouTube) tenía el enlace al posteo. Por eso la tabla «Publicaciones del período» no podía abrirlas.
+- **Causa:** `functions/api/redes.js` no le pedía a Meta el enlace de cada publicación (`permalink_url` en Facebook, `permalink` en Instagram) y no armaba el de YouTube.
+- **Arreglo:**
+  - La API ahora trae el enlace de cada publicación de Facebook, Instagram y YouTube. TikTok ya lo traía.
+  - `scripts/actualizar_redes.py` agrega el enlace a una fila guardada solo si le faltaba. Nunca cambia uno ya guardado ni borra filas.
+  - No cambia qué se cuenta.
+- **Pruebas nuevas** en `tests/test_actualizar_redes.py`.
+- **Revisión completa (diagnóstico del 30/10 contra el sitio publicado):**
+  - Nuestras redes responden bien: Facebook (26 publicaciones en 30 días), Instagram (8), YouTube (3) y TikTok (2). Ninguna dio error.
+  - **Instagram de otras cuentas funcionó entero:** todas las tandas respondieron, unas 2.100 publicaciones de unas 64 cuentas, sin corte de Meta. Dos cuentas de la lista no existen (@chubutdigital, @milpatagonias).
+  - **Resultado:** ningún posteo «fuerte». De 16 parecidos, solo 1 era nuestro: @metadatanoticias, escolarización de la niña, que coincidía en 3 de 4 palabras. Los otros 15 eran de otro tema; la mayoría se pegaban a las notas «Adopciones: Convocatoria Pública…», cuyo título es muy genérico.
+  - **YouTube (canales de medios):** con 20 canales por tanda se pasaba del límite de Cloudflare («Too many subrequests»). Se baja a 12 por tanda. Varios canales de la lista no existen.
+  - Instagram (etiquetas) sigue sin permiso de Meta.
+  - X y la carga manual de posteos no tienen nada cargado todavía en el formulario. Los 4 posts de X guardados se habían cargado directo en los datos.
+- **Pendiente de decisión de Ignacio (regla 5):** mostrar como «para confirmar» solo los parecidos que vengan de la cuenta de un medio que ya publicó esa misma nota en su web. Con este diagnóstico, eso habría dejado el de Metadata y descartado los 15 ajenos.

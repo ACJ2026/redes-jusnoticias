@@ -89,6 +89,10 @@ def combinar(guardadas, nuevas):
             continue
         usadas.add(id(previa))
         cambio = False
+        # El enlace a la publicación se agrega si faltaba; nunca se cambia uno ya guardado.
+        if not previa.get("url") and str(n.get("url") or "").startswith("http"):
+            previa["url"] = n["url"]
+            cambio = True
         for campo in CIFRAS:
             valor = n.get(campo)
             if isinstance(valor, (int, float)) and valor != previa.get(campo):
