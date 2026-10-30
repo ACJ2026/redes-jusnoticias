@@ -280,7 +280,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("a.textContent = 'Buscar en ' + red", template)
         for red in ("Instagram", "YouTube", "X", "LinkedIn"):
             self.assertIn(f"['{red}', 'https://", template)
-        self.assertIn("Búsqueda asistida en todas las redes y medios", template)
+        self.assertIn("Búsqueda asistida en todas las redes", template)
         self.assertIn("instagram.com/explore/search/keyword/?q=", template)
         self.assertNotIn("site:instagram.com", template)
         self.assertIn("facebook.com/search/posts/?q=", template)
@@ -307,7 +307,16 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertNotIn('id="t-compartidos"', template)
         self.assertIn("const vivos = [...postsVivos, ...postsManuales].filter(f => f && f.verificacion === 'fuerte' && esUrl(f.publicacion_url) && Number(f.nota_id))", template)
         self.assertIn("r.propia === 'No' && esUrl(r.url) && Number(r.nota_id)", template)
-        self.assertIn("enlace('Ver posteo ↗', p.publicacion_url)", template)
+        self.assertIn("enlaceRn('Ver posteo ↗', p.publicacion_url)", template)
+        # Los parecidos se muestran aparte, «para revisar», con un botón para confirmarlos; no se cuentan solos.
+        self.assertIn("f.verificacion !== 'fuerte' && esUrl(f.publicacion_url)", template)
+        self.assertIn("await guardarPosteo({ url: f.publicacion_url", template)
+        # Tabla como la de Notas: nota, fecha y cantidad de posteos; la más reciente abierta.
+        self.assertIn("[['Nota'], ['Fecha'], ['Posteos en redes', 'num']]", template)
+        self.assertIn("if (!rnTocada) { rnAbiertas.clear(); rnAbiertas.add(lista[0].n.id); }", template)
+        # Lo técnico va plegado y el detalle de cada nota (pestaña Notas) muestra sus posteos en redes.
+        self.assertIn('<details class="rn-tecnico" id="rn-tecnico">', template)
+        self.assertIn('id="det-redes"', template)
         # Sin candidatas débiles ni sustitutos (artículo web, perfil o búsqueda en lugar del posteo).
         self.assertNotIn('Candidata sin confirmar', template)
         self.assertNotIn('Ver cuenta del medio (nota pendiente)', template)
@@ -644,7 +653,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("No se encontró una coincidencia suficiente", api)
         self.assertIn('id="compartidos-url"', template)
         self.assertIn('id="compartidos-analizar"', template)
-        self.assertIn("Analizar un enlace de cualquier red o medio", template)
+        self.assertIn("Analizar un enlace:", template)
         self.assertIn("No se guardó ni se contó ninguna repercusión automáticamente", template)
         self.assertIn("No se pudo verificar el enlace:", template)
 

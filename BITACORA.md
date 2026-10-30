@@ -1025,3 +1025,22 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Lo registrado antes del 29/10 no tiene el enlace al posteo.
 - **Publicaciones anteriores:** las registradas sin enlace al posteo vuelven a verse, debajo de su nota, como «Registrado sin enlace al posteo: …». No se inventa ningún enlace.
 - **Criterio sin cambiar:** sigue «fuerte» = enlace a la nota o título completo. Cambiarlo requiere el OK de Ignacio (regla 5).
+
+## 2026-10-30 — Redes simple: una tabla como la de Notas (Claude, plan aprobado por Ignacio)
+
+- **Pedido de Ignacio:** la sección era confusa. Quería ver qué notas publicó un medio en sus redes, cuántas, de qué cuenta y el enlace a cada posteo. Pidió también un botón para aprobar, como en Notas.
+- **Pantalla nueva** (va primera en Redes):
+  - Una línea: «Se busca solo: Instagram · YouTube | A mano: Facebook · TikTok · X».
+  - Botones «+ Agregar posteo» (abre el formulario) y «Buscar ahora».
+  - Tabla: Nota · Fecha · Posteos en redes. Al tocar una nota se ve cada posteo: «Red · cuenta · fecha · Ver posteo ↗». La nota más reciente aparece abierta.
+  - **Para revisar:** los posteos parecidos (que no enlazan la nota ni repiten su título) se muestran aparte, con el botón «Confirmar». No se cuentan hasta que alguien los confirma. Confirmar los guarda con la carga manual (misma clave), y desde ahí el relevamiento los suma cada 4 h. No hay «Descartar»: lo que no se confirma no se cuenta.
+  - Lo técnico (errores, analizador de enlaces, búsqueda asistida, explicación del criterio) quedó plegado en «Detalle técnico».
+  - Las tarjetas de nuestras propias cuentas quedan debajo, con el título «Nuestras propias cuentas».
+- **Pestaña Notas:** el detalle de cada nota muestra también sus posteos en redes de otras cuentas.
+- **Instagram dirigido** (`functions/api/compartidos.js`, fuente `ig-dirigida`):
+  - Primero revisa las cuentas de Instagram de los medios que ya publicaron en su web alguna nota de los últimos 10 días (hasta 12 cuentas, de la nota más reciente a la más vieja).
+  - La búsqueda general ya no repite esas cuentas. Son menos consultas a Meta, y lo más probable se revisa antes de que Meta corte por límite.
+- **Criterio sin cambiar:** sigue siendo «fuerte» un posteo con enlace a la nota o con el título completo (regla 5).
+- **Comprobado:**
+  - Pruebas en verde, incluida la nueva `tests/test_compartidos_dirigida.py`.
+  - Probado en el navegador a 1280 y 375 px, sin desborde horizontal.
