@@ -1079,3 +1079,9 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - No se cuenta nada hasta confirmarlo. Confirmar lo guarda con la carga manual (misma clave) y el relevamiento lo suma cada 4 h.
 - **Prueba con los 16 parecidos del diagnóstico de hoy:** queda solo el de @metadatanoticias (escolarización de la niña), que sí era nuestro. Los 15 ajenos quedan afuera.
 - **Pruebas nuevas** en `tests/test_compartidos_dirigida.py`. Probado en el navegador a 1280 y 375 px.
+
+## 2026-10-30 — Nota 14943: se descartan 4 publicaciones del inicio del juicio (Claude, pedido de Ignacio)
+
+- Argentar Noticias, Canal 12, Radio 3 Cadena Patagonia y Prensa Mercosur figuraban como «verificadas» en la nota del veredicto del crimen de Nieves (30/10), pero son notas del 28-29/10 sobre el comienzo del juicio.
+- Se cargan como «descartar» en `data/revision_manual.json`. No se borra ninguna fila.
+- La causa de fondo se corrige en el PR del buscador (ventana desde el día de la nota).
