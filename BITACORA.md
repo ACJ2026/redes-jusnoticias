@@ -1103,3 +1103,20 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - Se cerraron 14 PR abiertos que habían quedado superados por lo que ya está en `main` (#136 a #148): #36, #37, #43, #44, #45, #46, #47, #67, #88, #94, #117, #123, #124 y #140.
 - Cada uno tiene un comentario que explica el motivo. Las ramas no se borraron: se pueden reabrir si hace falta algo.
 - No queda ningún PR abierto.
+
+## 2026-10-30 — Notas: un mismo medio no se cuenta dos veces (sitio propio y Google) (Claude, pedido de Ignacio)
+
+- **Qué vio Ignacio:** en la última nota (14943, crimen de Nieves) Diario Jornada aparecía dos veces: una con el enlace de su sitio y otra que había llegado por Google Noticias. Había otro caso igual.
+- **Causa:**
+  - A las 14:15 se confirmó con el botón del tablero el Diario Jornada que había llegado por Google. La confirmación guardó la dirección real, pero sin «www» y con un «_» de más al final.
+  - En la actualización de las 14:55, el buscador encontró la misma nota en el sitio de Jornada, con «www». Como las direcciones no eran idénticas, el tablero sumó la confirmación como una fila más.
+  - El otro caso es El Chubut en la nota 14913 (Panigadi): la confirmación desde Google era el enlace del 23/10 y en los datos ya estaba la misma nota del 25/10.
+- **Arreglo** (en `templates/tablero.html`; `data/rep2.json` no se toca):
+  - Si un medio tiene la misma nota con el enlace de su sitio y con el de Google Noticias, se deja el del sitio y se quita el de Google.
+  - Si solo está el de Google Noticias, se deja ese.
+  - La misma dirección con y sin «www» (o con parámetros de rastreo) es una sola publicación.
+  - Una confirmación con el botón, si el medio ya tiene esa nota con el enlace de su sitio, se aplica a esa fila en lugar de sumar otra.
+  - Dos notas distintas del mismo medio, o de otro medio, no se tocan.
+- **Comprobado:**
+  - En el navegador, con los datos reales y esa confirmación: antes Diario Jornada salía dos veces («La tabla tiene 11 enlaces…»), ahora una.
+  - Pruebas nuevas en `tests/test_sin_duplicado_google.py`.

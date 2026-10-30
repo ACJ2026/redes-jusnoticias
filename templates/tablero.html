@@ -736,13 +736,22 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       const sourceUrl = rev.source_url || rev.url;
       let fila = D.repercusion.find(r => Number(r.nota_id) === Number(rev.nota_id) &&
         (normalizarUrlRevision(r.url) === normalizarUrlRevision(sourceUrl) || normalizarUrlRevision(r.url) === normalizarUrlRevision(rev.url)));
+      // Si el medio ya tiene esta nota con el enlace de su propio sitio, la confirmación se aplica a esa fila
+      // (y se conserva su enlace) en lugar de sumar otra: así no se cuenta dos veces (decisión de Ignacio, 30/10).
+      let mismaDelMedio = false;
+      if (!fila && rev.decision === 'confirmar' && rev.medio) {
+        const nombre = claveNombre(canonMedio(rev.medio)), host = hostDe(rev.url);
+        fila = D.repercusion.find(r => Number(r.nota_id) === Number(rev.nota_id) && r.confianza !== 'Baja' && /^https?:\/\//i.test(String(r.url || '')) && !esReferenciaGoogle(r) &&
+          (claveNombre(canonMedio(r.medio)) === nombre || (host && hostDe(r.url) === host)));
+        mismaDelMedio = Boolean(fila);
+      }
       if (!fila && rev.decision === 'confirmar' && rev.medio) {
         fila = { nota_id: Number(rev.nota_id), medio: rev.medio, origen: rev.origen || 'Sin dato', cita_fuente_oficial: '', cita_otro_medio: '', confianza: 'Alta', metodo: 'Confirmada manualmente', url: rev.url };
         D.repercusion.push(fila);
       }
       if (fila) {
         if (rev.decision === 'confirmar') {
-          fila.url = rev.url;
+          if (!mismaDelMedio) fila.url = rev.url;
           fila.medio = rev.medio || fila.medio;
           fila.origen = rev.origen || fila.origen || 'Sin dato';
         }
@@ -794,6 +803,45 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   // Una confirmación manual (botón Confirmar o data/revision_manual.json) cuenta siempre que tenga enlace directo.
   const confirmadaManual = r => (r.revision_manual || {}).decision === 'confirmar' || /^(Confirmada manualmente|Revisión manual)/i.test(String(r.metodo || '').trim());
   const esConfirmada = r => r.confianza !== 'Baja' && !esReferenciaGoogle(r) && /^https?:\/\//i.test(String(r.url || '')) && (confirmadaManual(r) || (metodoVerificado(r) && !/^A verificar:/i.test(r.metodo || '') && !soloCoincidenciaTitulo(r)));
+  // Decisión de Ignacio (30/10): una misma nota de un mismo medio no se cuenta dos veces.
+  // - La misma dirección con y sin «www» (o con parámetros de rastreo) es una sola publicación.
+  // - Si el medio tiene el enlace a su propio sitio, se deja ese y se quita el de Google Noticias.
+  // - Si solo está el de Google Noticias, se deja ese.
+  // Solo cambia lo que muestra y cuenta el tablero: data/rep2.json no se toca.
+  const claveNombre = t => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+  const hostDe = u => { try { return new URL(u).hostname.toLowerCase().replace(/^www\./, ''); } catch { return ''; } };
+  const quitarDuplicados = lista => {
+    const vigentes = lista.filter(r => r && r.confianza !== 'Baja' && /^https?:\/\//i.test(String(r.url || '')));
+    const fuera = new Set();
+    const porNotaId = new Map();
+    vigentes.forEach(r => { const k = Number(r.nota_id); if (!porNotaId.has(k)) porNotaId.set(k, []); porNotaId.get(k).push(r); });
+    const preferida = (a, b) => (confirmadaManual(b) && !confirmadaManual(a)) || (esReferenciaGoogle(a) && !esReferenciaGoogle(b));
+    porNotaId.forEach(rs => {
+      // 1) Misma dirección: queda una (la confirmada a mano o la que no es de Google).
+      const porUrl = new Map();
+      rs.forEach(r => {
+        const k = normalizarUrlRevision(r.url) || r.url;
+        const previa = porUrl.get(k);
+        if (!previa) porUrl.set(k, r);
+        else if (preferida(previa, r)) { fuera.add(previa); porUrl.set(k, r); }
+        else fuera.add(r);
+      });
+      // 2) Google Noticias de un medio que ya tiene el enlace de su sitio para esta nota.
+      const directas = rs.filter(r => !fuera.has(r) && !esReferenciaGoogle(r));
+      const nombres = new Set();
+      directas.forEach(r => {
+        nombres.add(claveNombre(canonMedio(r.medio)));
+        const h = hostDe(r.url);
+        if (h) { nombres.add(claveNombre(h)); nombres.add(claveNombre(h.split('.')[0])); }
+      });
+      rs.filter(r => !fuera.has(r) && esReferenciaGoogle(r)).forEach(r => {
+        if (nombres.has(claveNombre(canonMedio(r.medio))) || nombres.has(claveNombre(r.medio))) fuera.add(r);
+      });
+    });
+    for (let i = lista.length - 1; i >= 0; i--) if (fuera.has(lista[i])) lista.splice(i, 1);
+    return fuera.size;
+  };
+  quitarDuplicados(D.repercusion);
   // Decisión de Ignacio (28/10): en todo el tablero se cuentan todas las publicaciones encontradas,
   // verificadas y a verificar (el mismo criterio que el Resumen). Cada fila sigue mostrando si está verificada.
   const repOk = D.repercusion.filter(r => r.confianza !== 'Baja' && /^https?:\/\//i.test(String(r.url || ''))).map(r => ({ ...r, medio: canonMedio(r.medio), mes: mesDe.get(Number(r.nota_id)) }));
@@ -2344,6 +2392,6 @@ const draw = () => {
     } catch (e) { estado.textContent = e.message || 'No se pudo guardar el posteo.'; }
     $('rn-guardar').disabled = false;
   });
-  Promise.all([cargarRevisiones(), cargarXManual(), cargarPosteosManuales()]).then(() => { updateLanding(calc()); draw(); });
+  Promise.all([cargarRevisiones(), cargarXManual(), cargarPosteosManuales()]).then(() => { quitarDuplicados(D.repercusion); updateLanding(calc()); draw(); });
 })();
 </script>
