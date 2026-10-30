@@ -726,7 +726,7 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("canales_con_limite: canalesConLimite", funcion)
         self.assertIn("data.nextPageToken", funcion)
         # Tandas: 12 cuentas de Instagram (máx. 36 consultas) y 20 canales (40) por pedido, debajo del límite de 50.
-        self.assertIn("const TAM_LOTE_IG = 12, TAM_LOTE_YT = 20;", funcion)
+        self.assertIn("const TAM_LOTE_IG = 12, TAM_LOTE_YT = 12;", funcion)
         self.assertIn('params.get("plan")', funcion)
         self.assertIn("fetch('/api/compartidos?plan=1'", template)
         self.assertIn("'/api/compartidos?fuente=' + encodeURIComponent(t.id) + '&lote=' + t.lote", template)

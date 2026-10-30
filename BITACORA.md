@@ -1061,3 +1061,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - `scripts/actualizar_redes.py` agrega el enlace a una fila guardada solo si le faltaba. Nunca cambia uno ya guardado ni borra filas.
   - No cambia qué se cuenta.
 - **Pruebas nuevas** en `tests/test_actualizar_redes.py`.
+- **Revisión completa (diagnóstico del 30/10 contra el sitio publicado):**
+  - Nuestras redes responden bien: Facebook (26 publicaciones en 30 días), Instagram (8), YouTube (3) y TikTok (2). Ninguna dio error.
+  - **Instagram de otras cuentas funcionó entero:** todas las tandas respondieron, unas 2.100 publicaciones de unas 64 cuentas, sin corte de Meta. Dos cuentas de la lista no existen (@chubutdigital, @milpatagonias).
+  - **Resultado:** ningún posteo «fuerte». De 16 parecidos, solo 1 era nuestro: @metadatanoticias, escolarización de la niña, que coincidía en 3 de 4 palabras. Los otros 15 eran de otro tema; la mayoría se pegaban a las notas «Adopciones: Convocatoria Pública…», cuyo título es muy genérico.
+  - **YouTube (canales de medios):** con 20 canales por tanda se pasaba del límite de Cloudflare («Too many subrequests»). Se baja a 12 por tanda. Varios canales de la lista no existen.
+  - Instagram (etiquetas) sigue sin permiso de Meta.
+  - X y la carga manual de posteos no tienen nada cargado todavía en el formulario. Los 4 posts de X guardados se habían cargado directo en los datos.
+- **Pendiente de decisión de Ignacio (regla 5):** mostrar como «para confirmar» solo los parecidos que vengan de la cuenta de un medio que ya publicó esa misma nota en su web. Con este diagnóstico, eso habría dejado el de Metadata y descartado los 15 ajenos.
