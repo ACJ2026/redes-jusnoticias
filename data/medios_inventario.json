@@ -308,7 +308,7 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 58,
+      "publicaciones": 59,
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
@@ -1381,6 +1381,39 @@
       }
     },
     {
+      "nombre": "Rio Negro",
+      "alias": [],
+      "dominio": "rionegro.com.ar",
+      "url": "https://rionegro.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://www.rionegro.com.ar/justicia/un-juez-de-chubut-aplico-lenguaje-claro-en-un-fallo-por-abuso-y-anexo-una-carta-para-la-victima-4725770/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-31",
+      "redes": {
+        "Facebook": [
+          "/diariorionegro"
+        ],
+        "Instagram": [
+          "@rionegrocomar"
+        ],
+        "X": [
+          "@rionegrocomar"
+        ],
+        "YouTube": [
+          "/user/diariorionegro"
+        ],
+        "TikTok": [
+          "@rionegrocomar"
+        ]
+      }
+    },
+    {
       "nombre": "0223",
       "alias": [],
       "dominio": "0223.com.ar",
@@ -2003,8 +2036,8 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
@@ -2600,39 +2633,6 @@
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
       "redes": {}
-    },
-    {
-      "nombre": "Rio Negro",
-      "alias": [],
-      "dominio": "rionegro.com.ar",
-      "url": "https://rionegro.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.rionegro.com.ar/justicia/un-juez-de-chubut-aplico-lenguaje-claro-en-un-fallo-por-abuso-y-anexo-una-carta-para-la-victima-4725770/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {
-        "Facebook": [
-          "/diariorionegro"
-        ],
-        "Instagram": [
-          "@rionegrocomar"
-        ],
-        "X": [
-          "@rionegrocomar"
-        ],
-        "YouTube": [
-          "/user/diariorionegro"
-        ],
-        "TikTok": [
-          "@rionegrocomar"
-        ]
-      }
     },
     {
       "nombre": "Somos Jujuy",
