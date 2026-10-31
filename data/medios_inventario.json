@@ -216,9 +216,9 @@
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
       "publicaciones": 68,
       "notas": 59,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/juicio-por-el-crimen-de-jorge-nieves--declararon-culpable-a-mauro-pavei-en-comodoro_a6ae4a0994c1b26cf08c4e099",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -312,7 +312,7 @@
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -336,8 +336,8 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 50,
       "notas": 49,
       "ejemplo": "https://digitalchubut.com/esquel-la-justicia-sanciono-a-ford-y-plan-ovalo-con-una-multa-de-4-millones-por-las-subas-desmedidas-de-cuotas/",
@@ -369,7 +369,7 @@
       "notas": 45,
       "ejemplo": "https://comodoro24.com.ar/homicidio-de-jorge-nieves-jurado-declara-a-pavei-culpable-de-homicidio-agravado/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "C24",
@@ -397,7 +397,7 @@
       "notas": 41,
       "ejemplo": "https://argentarnoticias.com.ar/buscan-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
       "primera_deteccion": "2026-10-30",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "Dudosa: Dudosa: el sitio linkea Radio del Sur 97.1: /RadioDelSur97.1"
@@ -466,13 +466,13 @@
       "tipo": "Radio",
       "localidad": "Trelew",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 34,
       "notas": 32,
       "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/lu20radiochubut"
@@ -653,7 +653,7 @@
       "notas": 16,
       "ejemplo": "https://lu17.com/contenido/155520/declaran-culpable-a-mauro-pavei-por-el-homicidio-de-nieves-en-comodoro",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {}
     },
     {
@@ -715,6 +715,36 @@
       }
     },
     {
+      "nombre": "CHACODIAPORDIA.COM",
+      "alias": [],
+      "dominio": "chacodiapordia.com",
+      "url": "https://chacodiapordia.com",
+      "tipo": "Portal digital",
+      "localidad": "Resistencia",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 13,
+      "notas": 12,
+      "ejemplo": "https://chacodiapordia.com/la-facultad-de-derecho-sera-sede-del-concurso-nacional-de-litigacion-penal/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-10-22",
+      "redes": {
+        "Facebook": [
+          "/chacodiapordia24"
+        ],
+        "Instagram": [
+          "@chacodiapordia"
+        ],
+        "X": [
+          "@chacodxd"
+        ],
+        "YouTube": [
+          "/@ciudadtvcontenidosok"
+        ]
+      }
+    },
+    {
       "nombre": "Crónica",
       "alias": [],
       "dominio": "diariocronica.com.ar",
@@ -739,36 +769,6 @@
         ],
         "X": [
           "@cronicacrd"
-        ]
-      }
-    },
-    {
-      "nombre": "CHACODIAPORDIA.COM",
-      "alias": [],
-      "dominio": "chacodiapordia.com",
-      "url": "https://chacodiapordia.com",
-      "tipo": "Portal digital",
-      "localidad": "Resistencia",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 12,
-      "notas": 11,
-      "ejemplo": "https://chacodiapordia.com/el-insssep-impulsa-la-prevencion-y-el-acceso-a-tratamientos-innovadores-contra-el-cancer-de-mama/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-22",
-      "redes": {
-        "Facebook": [
-          "/chacodiapordia24"
-        ],
-        "Instagram": [
-          "@chacodiapordia"
-        ],
-        "X": [
-          "@chacodxd"
-        ],
-        "YouTube": [
-          "/@ciudadtvcontenidosok"
         ]
       }
     },
@@ -1006,7 +1006,7 @@
       "notas": 7,
       "ejemplo": "https://www.primeraedicion.com.ar/nota/100040437/dia-de-lucha-contra-el-cancer-de-mama-la-importancia-del-diagnostico-precoz/",
       "primera_deteccion": "2026-10-25",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/primeraedicionw"
@@ -1174,7 +1174,7 @@
       "notas": 4,
       "ejemplo": "https://www.diariojudicial.com/news-104681-el-poder-judicial-presento-su-campana-audiovisual-sobre-mujeres-rurales",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/diariojudicial"
@@ -1315,7 +1315,7 @@
       "notas": 2,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {}
     },
     {
@@ -1332,7 +1332,7 @@
       "notas": 2,
       "ejemplo": "https://www.lavoz.com.ar/ciudadanos/dijo-chorra-vecina-facebook-justicia-debera-indemnizarla-pagara_0_ei9s7vvfd2.html",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/LaVoz.com.ar"
@@ -1524,7 +1524,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/ANBariloche"
@@ -1646,7 +1646,7 @@
       "notas": 1,
       "ejemplo": "https://www.centraldenoticiasmadariaga.com/2026/10/pagaba-un-plan-de-ahorro-para-comprar.html",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {}
     },
     {
@@ -1713,7 +1713,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-30",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {}
     },
     {
@@ -1747,7 +1747,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/DiarioHuarpe"
@@ -1908,7 +1908,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {}
     },
     {
@@ -2196,7 +2196,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-24",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {}
     },
     {
@@ -2242,6 +2242,23 @@
           "@labrujula24"
         ]
       }
+    },
+    {
+      "nombre": "La Nueva Mañana",
+      "alias": [],
+      "dominio": "lmdiario.com.ar",
+      "url": "https://lmdiario.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://lmdiario.com.ar/contenido/532531/convocatoria-de-adopcion-morena-suena-un-nuevo-comienzo-en-un-hogar-afectuoso-y",
+      "primera_deteccion": "2026-10-31",
+      "ultima_deteccion": "2026-10-31",
+      "redes": {}
     },
     {
       "nombre": "La Voz del Neuquén",
@@ -2331,7 +2348,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/mejor.informado.diario"
@@ -2378,7 +2395,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/NoticiasDelBolson"
@@ -2462,7 +2479,7 @@
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {}
     },
     {
