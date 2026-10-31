@@ -308,7 +308,7 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 59,
+      "publicaciones": 58,
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
@@ -393,7 +393,7 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 46,
+      "publicaciones": 45,
       "notas": 41,
       "ejemplo": "https://argentarnoticias.com.ar/buscan-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
       "primera_deteccion": "2026-10-30",
@@ -1036,7 +1036,7 @@
       "notas": 6,
       "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/abcdiarioar"
@@ -1066,7 +1066,7 @@
       "notas": 6,
       "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-10-31",
       "redes": {
         "Facebook": [
           "/DiarioSanRafael"
@@ -2251,8 +2251,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://lmdiario.com.ar/contenido/532531/convocatoria-de-adopcion-morena-suena-un-nuevo-comienzo-en-un-hogar-afectuoso-y",
@@ -2681,7 +2681,7 @@
       "notas": 1,
       "ejemplo": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-10-31",
       "redes": {}
     },
     {
