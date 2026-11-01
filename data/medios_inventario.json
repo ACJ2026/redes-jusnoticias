@@ -97,8 +97,8 @@
       "tipo": "Portal digital",
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 103,
       "notas": 97,
       "ejemplo": "https://delmardigital.net/el-jurado-declaro-a-pavei-culpable-de-homicidio-agravado-en-estado-de-emocion-violenta/",
@@ -308,7 +308,7 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 59,
+      "publicaciones": 58,
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
@@ -1036,7 +1036,7 @@
       "notas": 6,
       "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-31",
+      "ultima_deteccion": "2026-11-01",
       "redes": {
         "Facebook": [
           "/abcdiarioar"
@@ -1679,7 +1679,7 @@
       "notas": 1,
       "ejemplo": "https://www.centraldenoticiasmadariaga.com/2026/10/pagaba-un-plan-de-ahorro-para-comprar.html",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-10-31",
+      "ultima_deteccion": "2026-11-01",
       "redes": {}
     },
     {
@@ -1746,7 +1746,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-30",
-      "ultima_deteccion": "2026-10-31",
+      "ultima_deteccion": "2026-11-01",
       "redes": {}
     },
     {
@@ -2036,13 +2036,13 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-31",
+      "ultima_deteccion": "2026-11-01",
       "redes": {
         "Facebook": [
           "/eldocetv"
@@ -2290,7 +2290,7 @@
       "notas": 1,
       "ejemplo": "https://lmdiario.com.ar/contenido/532531/convocatoria-de-adopcion-morena-suena-un-nuevo-comienzo-en-un-hogar-afectuoso-y",
       "primera_deteccion": "2026-10-31",
-      "ultima_deteccion": "2026-10-31",
+      "ultima_deteccion": "2026-11-01",
       "redes": {}
     },
     {
@@ -2381,7 +2381,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-31",
+      "ultima_deteccion": "2026-11-01",
       "redes": {
         "Facebook": [
           "/mejor.informado.diario"
