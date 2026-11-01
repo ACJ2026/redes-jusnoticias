@@ -39,8 +39,8 @@
       "tipo": "TV",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 123,
       "notas": 98,
       "ejemplo": "https://canal12web.com/crimen-de-jorge-nieves-mauro-pavei-fue-declarado-culpable-de-homicidio-atenuado-por-emocion-violenta/",
@@ -950,8 +950,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 8,
       "notas": 7,
       "ejemplo": "https://prensamercosur.org/2026/10/30/argentina-plataforma-de-impunidad-internacional/",
@@ -1066,7 +1066,7 @@
       "notas": 6,
       "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-31",
+      "ultima_deteccion": "2026-11-01",
       "redes": {
         "Facebook": [
           "/DiarioSanRafael"
