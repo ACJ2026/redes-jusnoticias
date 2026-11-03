@@ -1120,3 +1120,20 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Comprobado:**
   - En el navegador, con los datos reales y esa confirmación: antes Diario Jornada salía dos veces («La tabla tiene 11 enlaces…»), ahora una.
   - Pruebas nuevas en `tests/test_sin_duplicado_google.py`.
+
+## 2026-11-03 — El relevamiento se frenó desde el 2/11: arreglo de la fila de LU17 en la nota 14356 (Claude)
+
+- **Qué vio Ignacio:** el tablero decía «Última actualización: 2/11 a las 03:18» y avisaba que los datos tenían más de 24 horas.
+- **Qué pasó:** desde el 2/11 a las 06:44 fallaron 7 corridas seguidas y la octava se cortó. Motivo real: «ERROR: faltan 3 publicaciones históricas de notas vigentes. nota_id=14356 | medio=LU17».
+- **Causa:**
+  - En la corrida del 2/11 03:18, el verificador reemplazó el enlace de esa fila de LU17 por la dirección completa: `…/147889/juicio-por-la-muerte-de-maradona-…`.
+  - `scripts/actualizar.py` tiene una lista de palabras de falsos positivos (`FP`) que incluye «maradona». Las filas cuyo enlace coincide se sacan y tampoco se reincorporan desde el historial.
+  - La fila ya estaba excluida del conteo («Baja»): es una nota sobre Maradona asociada por error a la del juicio de los motociclistas. Al caerse, el control de historial (`verificar_historial.py`) frenó todo, como corresponde.
+- **Arreglo, para que no vuelva a pasar (pedido de Ignacio):**
+  - Una fila ya guardada cuyo enlace coincide con `FP` no se borra más: queda excluida del conteo («Baja»).
+  - Lo nuevo que coincide con `FP` se sigue descartando como antes.
+  - El control de historial ya no puede frenarse por esto. No se borra historial y no cambia lo que se cuenta (simulación: 1.122 contadas con y sin el cambio).
+- **Comprobado:**
+  - Simulación con los datos reales: sin el arreglo faltan 3 (igual que en GitHub); con el arreglo, 0.
+  - Prueba nueva en `tests/test_conservar_historial.py`.
+- **Pendiente de confirmar:** que la corrida que dispara la fusión termine bien y que `data/actualizado.txt` tenga la fecha nueva.
