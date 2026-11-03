@@ -104,12 +104,12 @@ class HistorialTests(unittest.TestCase):
         ruta = os.path.join(os.path.dirname(__file__), "..", "scripts", "actualizar.py")
         with open(ruta, encoding="utf-8") as f:
             codigo = f.read()
-        filtro = codigo.index("if r['nota_id'] not in ids or FP.search")
+        filtro = codigo.index("    if FP.search(norm(r.get('url', ''))):")
         reconciliacion = codigo.index("rep = conservar_historial(rep, anteriores_finales, ids, cobertura)")
         deduplicacion = codigo.index("rep = deduplicar_publicaciones(rep)", reconciliacion)
         self.assertLess(filtro, reconciliacion)
         self.assertLess(reconciliacion, deduplicacion)
-        self.assertIn("not in URLS_DESCARTADAS", codigo)
+        self.assertIn("if (a.get('nota_id'), a.get('medio'), a.get('url')) in URLS_DESCARTADAS:", codigo)
 
     def test_verificador_detecta_enlace_directo_perdido(self):
         anteriores = [{"nota_id": 1, "medio": "A", "url": "https://a.com/x"}, {"nota_id": 1, "medio": "A", "url": "https://a.com/y"}]
@@ -238,9 +238,11 @@ class EstadoMediosTests(unittest.TestCase):
         # Una fila ya excluida («Baja») cuyo enlace coincide con FP vuelve desde el historial:
         # si se cae, el control de historial frena toda la actualización (03/11/2026).
         fuente = open(os.path.join(os.path.dirname(__file__), "..", "scripts", "actualizar.py"), encoding="utf8").read()
-        self.assertIn("and (a.get('confianza') == 'Baja' or not FP.search(norm(a.get('url', ''))))", fuente)
-        previa = {"nota_id": 1, "medio": "Radio X", "url": "https://radiox.com/contenido/9/otro-tema", "confianza": "Baja"}
-        filtro = lambda a: a.get("confianza") == "Baja" or "otro-tema" not in a.get("url", "")
-        salida = conservar_historial([], [a for a in [previa] if filtro(a)], {1}, {})
+        # Lo que ya estaba guardado no se borra: queda excluido del conteo; lo nuevo con FP se descarta.
+        self.assertIn("if clave_publicacion(r) not in claves_previas: continue", fuente)
+        self.assertIn("    if FP.search(norm(a.get('url', ''))):\n        marcar_falso_positivo(a)\n    anteriores_finales.append(a)", fuente)
+        previa = {"nota_id": 1, "medio": "Radio X", "url": "https://radiox.com/contenido/9/otro-tema", "confianza": "Media"}
+        reincorporada = dict(previa, confianza="Baja")
+        salida = conservar_historial([], [reincorporada], {1}, {})
         self.assertEqual(publicaciones_faltantes([previa], salida, {1}), set())
         self.assertEqual(salida[0]["confianza"], "Baja")

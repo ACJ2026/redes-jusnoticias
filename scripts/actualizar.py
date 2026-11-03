@@ -845,6 +845,11 @@ if PREV and os.path.exists(PREV):
 # ---------- Salida ----------
 ids = {n['id'] for n in notas}; rep = []
 FP = re.compile(r'pity alvarez|dinosaur|papa leon|maradona|reforma laboral fue promulgada')
+claves_previas = {clave_publicacion(a) for a in anteriores}
+def marcar_falso_positivo(fila):
+    if fila.get('confianza') != 'Baja':
+        fila['metodo'] = 'Excluida del conteo: falso positivo conocido (otro tema)'
+    fila['confianza'] = 'Baja'
 # Corrección de una asociación histórica detectada por regresión: este enlace de
 # Radio 3 corresponde a una noticia policial, no a la nota institucional 14674.
 # La limpieza se aplica después de consolidar el historial para impedir que vuelva
@@ -876,19 +881,26 @@ for r in rows:
             and (r.get('url') or '').startswith('https://news.google.com/rss/articles/')):
         r['confianza'] = 'Baja'
         r['metodo'] = 'Google Noticias (coincidencia temática; relación no verificada)'
-    if r['nota_id'] not in ids or FP.search(norm(r.get('url', ''))): continue
+    if r['nota_id'] not in ids: continue
+    if FP.search(norm(r.get('url', ''))):
+        # Falso positivo conocido: lo nuevo se descarta; lo que ya estaba guardado no se borra
+        # (el control de historial frenaría la actualización): queda excluido del conteo.
+        if clave_publicacion(r) not in claves_previas: continue
+        marcar_falso_positivo(r)
     rep.append(r)
 # Última protección: algunos filtros de limpieza se aplican después de fusionar el historial.
-# Reincorporar publicaciones históricas de notas vigentes que no sean falsos positivos explícitos.
-# Una fila histórica ya excluida del conteo (confianza «Baja») se conserva aunque su enlace
-# coincida con FP: no suma, queda para auditoría y no se borra historial (03/11/2026: el
-# verificador cambió el enlace de LU17 en la nota 14356 por uno con «maradona», la fila se
-# caía en cada corrida y el control de historial frenó siete actualizaciones seguidas).
-anteriores_finales = [
-    a for a in anteriores
-    if (a.get('nota_id'), a.get('medio'), a.get('url')) not in URLS_DESCARTADAS
-    and (a.get('confianza') == 'Baja' or not FP.search(norm(a.get('url', ''))))
-]
+# Se reincorporan las publicaciones históricas de notas vigentes. Si una coincide con FP no se
+# borra: queda excluida del conteo (03/11/2026: el verificador cambió el enlace de LU17 en la
+# nota 14356 por uno con «maradona», la fila se caía en cada corrida y el control de historial
+# frenó siete actualizaciones seguidas).
+anteriores_finales = []
+for a in anteriores:
+    if (a.get('nota_id'), a.get('medio'), a.get('url')) in URLS_DESCARTADAS:
+        continue
+    a = dict(a)
+    if FP.search(norm(a.get('url', ''))):
+        marcar_falso_positivo(a)
+    anteriores_finales.append(a)
 rep = conservar_historial(rep, anteriores_finales, ids, cobertura)
 # Una fila por publicación (nota, medio y URL canónica): si un medio tiene dos artículos
 # asociados a la misma nota se conservan ambos, pero solo uno queda confirmado (ver

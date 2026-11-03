@@ -1129,7 +1129,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - En la corrida del 2/11 03:18, el verificador reemplazó el enlace de esa fila de LU17 por la dirección completa: `…/147889/juicio-por-la-muerte-de-maradona-…`.
   - `scripts/actualizar.py` tiene una lista de palabras de falsos positivos (`FP`) que incluye «maradona». Las filas cuyo enlace coincide se sacan y tampoco se reincorporan desde el historial.
   - La fila ya estaba excluida del conteo («Baja»): es una nota sobre Maradona asociada por error a la del juicio de los motociclistas. Al caerse, el control de historial (`verificar_historial.py`) frenó todo, como corresponde.
-- **Arreglo:** una fila del historial ya excluida del conteo («Baja») se reincorpora aunque su enlace coincida con `FP`. No se borra historial y no cambia lo que se cuenta.
+- **Arreglo, para que no vuelva a pasar (pedido de Ignacio):**
+  - Una fila ya guardada cuyo enlace coincide con `FP` no se borra más: queda excluida del conteo («Baja»).
+  - Lo nuevo que coincide con `FP` se sigue descartando como antes.
+  - El control de historial ya no puede frenarse por esto. No se borra historial y no cambia lo que se cuenta (simulación: 1.122 contadas con y sin el cambio).
+- **Aviso a Claude:** una tarea programada revisa cada 4 h las corridas de «Actualizar tablero». Si fallan, lee el motivo real, prepara el arreglo en un PR y avisa a Ignacio.
 - **Comprobado:**
   - Simulación con los datos reales: sin el arreglo faltan 3 (igual que en GitHub); con el arreglo, 0.
   - Prueba nueva en `tests/test_conservar_historial.py`.
