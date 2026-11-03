@@ -880,10 +880,14 @@ for r in rows:
     rep.append(r)
 # Última protección: algunos filtros de limpieza se aplican después de fusionar el historial.
 # Reincorporar publicaciones históricas de notas vigentes que no sean falsos positivos explícitos.
+# Una fila histórica ya excluida del conteo (confianza «Baja») se conserva aunque su enlace
+# coincida con FP: no suma, queda para auditoría y no se borra historial (03/11/2026: el
+# verificador cambió el enlace de LU17 en la nota 14356 por uno con «maradona», la fila se
+# caía en cada corrida y el control de historial frenó siete actualizaciones seguidas).
 anteriores_finales = [
     a for a in anteriores
     if (a.get('nota_id'), a.get('medio'), a.get('url')) not in URLS_DESCARTADAS
-    and not FP.search(norm(a.get('url', '')))
+    and (a.get('confianza') == 'Baja' or not FP.search(norm(a.get('url', ''))))
 ]
 rep = conservar_historial(rep, anteriores_finales, ids, cobertura)
 # Una fila por publicación (nota, medio y URL canónica): si un medio tiene dos artículos

@@ -233,3 +233,14 @@ class EstadoMediosTests(unittest.TestCase):
         e = actualizar_estado_medios({}, {"Infobae": "Encontrado por Google Noticias; fuente descubierta automáticamente"}, "2026-10-23T12:00:00Z")
         self.assertEqual(e["Infobae"]["fallos_seguidos"], 0)
         self.assertFalse(e["Infobae"]["alerta"])
+
+    def test_fila_excluida_con_palabra_de_falso_positivo_se_conserva(self):
+        # Una fila ya excluida («Baja») cuyo enlace coincide con FP vuelve desde el historial:
+        # si se cae, el control de historial frena toda la actualización (03/11/2026).
+        fuente = open(os.path.join(os.path.dirname(__file__), "..", "scripts", "actualizar.py"), encoding="utf8").read()
+        self.assertIn("and (a.get('confianza') == 'Baja' or not FP.search(norm(a.get('url', ''))))", fuente)
+        previa = {"nota_id": 1, "medio": "Radio X", "url": "https://radiox.com/contenido/9/otro-tema", "confianza": "Baja"}
+        filtro = lambda a: a.get("confianza") == "Baja" or "otro-tema" not in a.get("url", "")
+        salida = conservar_historial([], [a for a in [previa] if filtro(a)], {1}, {})
+        self.assertEqual(publicaciones_faltantes([previa], salida, {1}), set())
+        self.assertEqual(salida[0]["confianza"], "Baja")
