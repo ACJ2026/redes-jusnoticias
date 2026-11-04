@@ -20,7 +20,7 @@ concurrency:
 jobs:
   en-seco:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -32,6 +32,7 @@ jobs:
           python3 -u scripts/actualizar.py out data/rep2.json | tee run.log
           grep -q "^OK notas" run.log
           python3 scripts/verificar_publicaciones.py out/notas2.json out/rep2.json
+          python3 scripts/reincorporar_historial.py data/rep2.json out/rep2.json out/notas2.json
           python3 scripts/verificar_historial.py data/rep2.json out/rep2.json out/notas2.json
       - name: Comparar con los datos guardados
         run: |

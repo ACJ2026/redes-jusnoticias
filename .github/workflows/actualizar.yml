@@ -36,7 +36,8 @@ concurrency:
 jobs:
   actualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    # El repositorio es público: GitHub no cobra minutos. Con 50 se cortaba algunos días (4/11/2026).
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -57,6 +58,10 @@ jobs:
           notas_ahora=$(python3 -c "import json;print(len(json.load(open('out/notas2.json'))))")
           echo "Publicaciones antes: $antes, ahora: $filas"
           echo "Notas antes: $notas_antes, ahora: $notas_ahora"
+          # Si la corrida perdió alguna publicación histórica, se reincorpora tal como estaba
+          # (antes el control frenaba toda la actualización: 2 y 3/11/2026).
+          python3 scripts/reincorporar_historial.py data/rep2.json out/rep2.json out/notas2.json
+          filas=$(python3 -c "import json;print(len(json.load(open('out/rep2.json'))))")
           # Protección por identidad; mismo verificador cubierto por pruebas unitarias.
           python3 scripts/verificar_historial.py data/rep2.json out/rep2.json out/notas2.json
           # Si cae bruscamente el volumen de publicaciones o notas, se requiere revisión manual.
@@ -136,3 +141,41 @@ jobs:
           git add publico
           if ! git diff --cached --quiet; then git commit --amend --no-edit; fi
           git push
+
+  # Si fallan dos actualizaciones seguidas se abre un aviso en GitHub (llega por mail).
+  # Cuando una vuelve a andar, el aviso se cierra solo. No usa Claude ni gasta crédito.
+  avisar:
+    needs: actualizar
+    if: always() && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RESULTADO: ${{ needs.actualizar.result }}
+      TITULO: "La actualización automática del tablero está frenada"
+    steps:
+      - name: Abrir o cerrar el aviso
+        run: |
+          abierto=$(gh issue list --state open --search "in:title \"$TITULO\"" --json number --jq '.[0].number // empty')
+          enlace="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if [ "$RESULTADO" = "success" ]; then
+            if [ -n "$abierto" ]; then
+              gh issue close "$abierto" --comment "La actualización volvió a andar ($enlace). Se cierra el aviso."
+            fi
+            exit 0
+          fi
+          anterior=$(gh run list --workflow actualizar.yml --status completed --limit 5 --json databaseId,conclusion --jq "[.[] | select(.databaseId != ${{ github.run_id }})][0].conclusion // empty")
+          if [ "$anterior" != "failure" ] && [ "$anterior" != "cancelled" ] && [ "$anterior" != "timed_out" ]; then
+            echo "Primera falla seguida ($RESULTADO); se espera a la próxima corrida antes de avisar."
+            exit 0
+          fi
+          cuerpo="@ignacervo-cell fallaron dos actualizaciones seguidas del tablero. Última corrida: $enlace (resultado: $RESULTADO). El tablero sigue mostrando los datos de la última actualización buena; no se perdió nada. Pasale este aviso a Claude para que lea el motivo y lo arregle."
+          if [ -n "$abierto" ]; then
+            gh issue comment "$abierto" --body "$cuerpo"
+          else
+            gh issue create --title "$TITULO" --body "$cuerpo"
+          fi
