@@ -331,5 +331,23 @@
   "fecha": "2026-10-30",
   "revisado_por": "Ignacio (pedido en conversación con Claude)",
   "motivo": "Nota sobre el inicio del juicio (28-29/10), anterior a la nota del veredicto; no es repercusión de la nota 14943."
+ },
+ {
+  "nota_id": 14960,
+  "decision": "confirmar",
+  "fecha": "2026-11-04",
+  "revisado_por": "Ignacio (pedido en conversación con Claude)",
+  "medio": "ADN Sur",
+  "url": "https://www.adnsur.com.ar/policiales---judiciales/un-hombre-ira-a-juicio-por-abusar-de-la-hija-de-su-pareja-durante-varios-anos-en-comodoro_a6ae9e9c8d2522645e6a9d3aa",
+  "motivo": "Misma nota con título propio: selección de jurado del 2/11 en Comodoro, 12 titulares y 2 suplentes, debate el 5 y 6/11; acredita «Foto: JusNoticias». Aparece en Google Noticias junto a nuestra nota (captura de Ignacio)."
+ },
+ {
+  "nota_id": 14960,
+  "decision": "confirmar",
+  "fecha": "2026-11-04",
+  "revisado_por": "Ignacio (pedido en conversación con Claude)",
+  "medio": "El Patagónico",
+  "url": "https://www.elpatagonico.com/abuso-siete-anos-la-hija-menor-su-pareja-n6340950",
+  "motivo": "Misma nota con título propio: selección de jurado (Voir Dire) en Comodoro, 12 titulares y 2 suplentes, debate el 5 y 6/11, pese al feriado. Aparece en Google Noticias junto a nuestra nota (captura de Ignacio)."
  }
 ]
