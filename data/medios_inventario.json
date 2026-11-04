@@ -364,8 +364,8 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 50,
       "notas": 49,
       "ejemplo": "https://digitalchubut.com/esquel-la-justicia-sanciono-a-ford-y-plan-ovalo-con-una-multa-de-4-millones-por-las-subas-desmedidas-de-cuotas/",
@@ -1292,7 +1292,7 @@
       "notas": 3,
       "ejemplo": "https://www.infobae.com/judiciales/2026/10/03/una-frenada-brusca-la-sube-como-prueba-y-la-discusion-por-la-indemnizacion-una-pasajera-le-gano-un-juicio-a-una-empresa-de-colectivos/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-01",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "Infobae"
@@ -2666,6 +2666,23 @@
           "@somosjujuy"
         ]
       }
+    },
+    {
+      "nombre": "TN24",
+      "alias": [],
+      "dominio": "tn24.com.ar",
+      "url": "https://tn24.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.tn24.com.ar/2026/11/reconocieron-a-la-justicia-chaquena-como-pionera-durante-el-encuentro-nacional-de-mediacion-de-jufejus/",
+      "primera_deteccion": "2026-11-04",
+      "ultima_deteccion": "2026-11-04",
+      "redes": {}
     },
     {
       "nombre": "Todo Noticias",
