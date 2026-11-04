@@ -1156,3 +1156,14 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - No cambia qué se cuenta ni cómo se verifica.
 - **Prueba nueva** en `tests/test_verificar_publicaciones.py`.
 - **Pendiente de confirmar:** que la corrida que dispara la fusión termine bien y deje la fecha nueva en `data/actualizado.txt`.
+
+## 2026-11-04 — Actualización robusta: que una falla puntual no frene todo (Claude, OK de Ignacio)
+
+- **Pedido de Ignacio:** solucionarlo «de una vez por todas». En la semana la actualización se frenó dos veces por causas distintas: una fila de LU17 que se caía (2-3/11) y el límite de tiempo (3 y 4/11).
+- **Tres cambios:**
+  1. **El historial se repara solo.** Nuevo `scripts/reincorporar_historial.py`: antes del control de historial, vuelve a poner cualquier publicación histórica que la corrida haya perdido, tal como estaba guardada y con su misma confianza. No se borra nada y no cambia lo que se cuenta. El control (`verificar_historial.py`) sigue como última barrera. También corre en «en-seco».
+  2. **90 minutos en vez de 50** (`timeout-minutes`) en «Actualizar tablero» y en «en-seco». El repositorio es público desde el 3/11, así que GitHub no cobra los minutos.
+  3. **Aviso por mail si fallan 2 seguidas.** Nuevo trabajo `avisar` en `actualizar.yml`: abre en GitHub el aviso «La actualización automática del tablero está frenada», que llega por mail a Ignacio. Cuando una actualización vuelve a andar, lo cierra solo. No usa Claude ni gasta crédito.
+- **Comprobado:**
+  - Con el caso real del 2/11, faltaban 3 claves de LU17 (nota 14356); la fila se reincorpora («Baja») y el control queda en 0.
+  - Pruebas nuevas en `tests/test_reincorporar_historial.py`. Suite completa OK.
