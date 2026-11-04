@@ -1145,3 +1145,14 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Decisión de Ignacio:** dejarlo **público**. Con el relevamiento cada 4 horas el consumo ronda los 2.000 min/mes, justo en el límite: en privado se volvería a frenar en meses con muchas pruebas. El repositorio no guarda secretos (las claves están en los secretos de GitHub y Cloudflare) y el tablero ya es público.
 - **Consecuencia:** no se cambia el cron ni la visibilidad. Se actualizaron `README.md` y `docs/CLOUDFLARE_PAGES.md`, que todavía decían que el repositorio era privado.
 - **Regla que se refuerza:** no guardar en el repositorio secretos, correos, contraseñas ni datos de causas.
+
+## 2026-11-04 — La actualización de las 14:38 se cortó por tiempo: tope al verificador (Claude)
+
+- **Qué vio Ignacio:** no había actualización nueva desde las 11:39.
+- **Qué pasó:** la corrida programada de las 14:38 se canceló sola al llegar a los 50 minutos (`timeout-minutes: 50`). Según el registro, el relevamiento terminó bien en 31 minutos («OK notas 292 publicaciones 1654»). Después, el verificador de candidatas (`scripts/verificar_publicaciones.py`) siguió 19 minutos más leyendo sitios de medios y no llegó a terminar. No se guardó nada y no se perdió nada. Lo mismo había pasado el 3/11 a las 10:56.
+- **Arreglo:**
+  - El verificador tiene un tope de 12 minutos (variable `VERIFICAR_TOPE_SEGUNDOS`). Lo que no entra queda igual, «A verificar», y se revisa en la próxima corrida.
+  - Ahora revisa primero las notas más nuevas. Antes recorría siempre en el mismo orden, así que si las primeras eran lentas, las últimas nunca llegaban.
+  - No cambia qué se cuenta ni cómo se verifica.
+- **Prueba nueva** en `tests/test_verificar_publicaciones.py`.
+- **Pendiente de confirmar:** que la corrida que dispara la fusión termine bien y deje la fecha nueva en `data/actualizado.txt`.

@@ -23,6 +23,19 @@ class VerificarPublicacionesTests(unittest.TestCase):
         # Sin la URL anterior, el control la daría por perdida.
         self.assertTrue(publicaciones_faltantes([anterior], [{**anterior, "url": nueva}], {14593}))
 
+    def test_tope_de_tiempo_deja_las_candidatas_para_la_proxima_corrida(self):
+        # 04/11/2026: la verificación pasó el límite de 50 minutos de la actualización y se cortó todo.
+        import json, os, subprocess, tempfile
+        with tempfile.TemporaryDirectory() as d:
+            notas, rep = Path(d) / "notas.json", Path(d) / "rep.json"
+            notas.write_text(json.dumps([{"id": 1, "titulo": "Nota"}]), encoding="utf-8")
+            fila = {"nota_id": 1, "medio": "M", "url": "https://news.google.com/rss/articles/X", "metodo": "Google Noticias", "confianza": "Media"}
+            rep.write_text(json.dumps([fila]), encoding="utf-8")
+            salida = subprocess.run([sys.executable, str(ROOT / "scripts/verificar_publicaciones.py"), str(notas), str(rep)],
+                                    capture_output=True, text=True, check=True, env={**os.environ, "VERIFICAR_TOPE_SEGUNDOS": "0"})
+            self.assertIn("sin tiempo) 1", salida.stdout)
+            self.assertEqual(json.loads(rep.read_text(encoding="utf-8")), [fila])
+
     def test_misma_url_o_buscador_no_agrega_alternativas(self):
         fila = {"url": "https://www.medio.com/nota/1/"}
         vp.reemplazar_url(fila, "https://medio.com/nota/1")
