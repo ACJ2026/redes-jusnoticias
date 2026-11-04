@@ -1173,3 +1173,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 
 - Se suma a `CLAUDE.md` y `AGENTS.md` la sección «Orden de chats»: cada chat es de un proyecto («Tablero ·», «Jurisprudencia ·», «AME ·», «Trading ·», «Personal ·»). Lo que corresponde a otro proyecto se deriva a su chat con `send_message`, o se crea uno, y se avisa a Ignacio.
 - Solo documentación: no cambia el relevamiento ni el tablero.
+
+## 2026-11-04 — Nota 14960: se suman ADN Sur y El Patagónico (Claude, pedido de Ignacio)
+
+- **Qué vio Ignacio:** en Google Noticias, junto a nuestra nota «Comodoro Rivadavia: seleccionaron al jurado para un juicio por abuso sexual agravado contra una niña», aparecían Comodoro 24, ADN Sur y El Patagónico. El tablero tenía Comodoro 24 (más Argentar, Del Mar Digital, Radio 3 y Jornada), pero no ADN Sur ni El Patagónico.
+- **Por qué no estaban:** los dos titularon con palabras propias («Un hombre irá a juicio por abusar de la hija de su pareja…» y «Abusó siete años de la hija menor de su pareja»), así que el buscador no los asoció a la nota.
+- **Comprobado** con el diagnóstico de solo lectura en GitHub (desde la sesión de Claude esos sitios no se pueden abrir): los dos cuentan la misma audiencia (Voir Dire del 2/11, 12 titulares y 2 suplentes, debate el 5 y 6/11, pese al feriado). ADN Sur acredita «Foto: JusNoticias».
+- **Cargados como «confirmar»** en `data/revision_manual.json`. Se aplican en la próxima actualización automática.
+- No cambia cómo se detectan las publicaciones.
