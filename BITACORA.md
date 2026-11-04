@@ -1137,3 +1137,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Simulación con los datos reales: sin el arreglo faltan 3 (igual que en GitHub); con el arreglo, 0.
   - Prueba nueva en `tests/test_conservar_historial.py`.
 - **Pendiente de confirmar:** que la corrida que dispara la fusión termine bien y que `data/actualizado.txt` tenga la fecha nueva.
+
+
+## 2026-11-04 — El repositorio queda público (Claude, decisión de Ignacio)
+
+- **Contexto:** el 26/10 el repositorio pasó a público porque se habían agotado los 2.000 minutos mensuales de GitHub Actions de los repos privados; había quedado pendiente volver a privado cuando se renovara el cupo.
+- **Decisión de Ignacio:** dejarlo **público**. Con el relevamiento cada 4 horas el consumo ronda los 2.000 min/mes, justo en el límite: en privado se volvería a frenar en meses con muchas pruebas. El repositorio no guarda secretos (las claves están en los secretos de GitHub y Cloudflare) y el tablero ya es público.
+- **Consecuencia:** no se cambia el cron ni la visibilidad. Se actualizaron `README.md` y `docs/CLOUDFLARE_PAGES.md`, que todavía decían que el repositorio era privado.
+- **Regla que se refuerza:** no guardar en el repositorio secretos, correos, contraseñas ni datos de causas.

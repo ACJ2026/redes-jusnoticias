@@ -6,7 +6,7 @@ Publicar el tablero desde la carpeta `publico/` sin hacer público el repositori
 
 ## Crear el proyecto Pages
 
-**Visibilidad del repositorio:** la consulta de metadatos de GitHub del 21/10/2026 informa `private: true`. Confirmar esta configuración directamente en GitHub antes de cambiar la visibilidad; nunca publicar secretos ni datos que deban mantenerse privados.
+**Visibilidad del repositorio:** público desde el 26/10/2026 y confirmado así el 04/11/2026 (decisión de Ignacio, ver `BITACORA.md`). Nunca publicar secretos ni datos que deban mantenerse privados.
 
 Configurar un proyecto Cloudflare Pages conectado al repositorio `ACJ2026/redes-jusnoticias` una vez confirmada la política de visibilidad:
 
