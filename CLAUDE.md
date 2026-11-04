@@ -18,3 +18,23 @@ Reglas obligatorias (detalle y errores ya cometidos en `docs/REGLAS_IA.md`):
 Comprobaciones antes de abrir un PR:
 - `python3 -m unittest discover -s tests -v`
 - Si cambia `templates/tablero.html`: `python3 scripts/armar_publico.py data/notas2.json data/rep2.json data/redes2.json data/canales.json data/medios.json publico/tablero_publico.html && cp publico/tablero_publico.html publico/index.html`
+
+## Orden de chats (regla de Ignacio, 04/11/2026)
+
+Cada chat es de un solo proyecto, y su nombre empieza con el proyecto:
+
+| Prefijo del chat | Proyecto | Repositorio |
+|---|---|---|
+| «Jurisprudencia ·» | Búsqueda de fallos, fichas y notas para JusNoticias | `ignacervo-cell/panel-agentes` |
+| «AME ·» | AME, incluidos el Financiero, la cartera, Bitso y BTC | `ignacervo-cell/panel2` |
+| «Tablero ·» | Tablero de repercusión de JusNoticias | `ACJ2026/redes-jusnoticias` |
+| «Trading ·» | Copy trading en BingX y otros brokers para lo mismo, separado de AME | `ignacervo-cell/mi-trading` |
+| «Personal ·» | Temas personales | — |
+
+Si Ignacio pide algo de **otro** proyecto, no se hace en este chat:
+1. se le manda al chat de ese proyecto con `send_message`, con el contexto necesario (los chats se buscan con `list_sessions` por el prefijo del título);
+2. si no existe, se crea uno con `create_session`, con su repositorio y un título con el prefijo;
+3. se le avisa a Ignacio a qué chat se pasó;
+4. si no está claro de qué proyecto es, se le pregunta antes.
+
+El chat que recibe el pedido no publica, no sube cambios y no borra nada sin la confirmación de Ignacio en ese chat.
