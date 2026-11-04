@@ -1167,3 +1167,9 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Comprobado:**
   - Con el caso real del 2/11, faltaban 3 claves de LU17 (nota 14356); la fila se reincorpora («Baja») y el control queda en 0.
   - Pruebas nuevas en `tests/test_reincorporar_historial.py`. Suite completa OK.
+
+
+## 2026-11-04 — Regla de orden de chats por proyecto (Claude, pedido de Ignacio)
+
+- Se suma a `CLAUDE.md` y `AGENTS.md` la sección «Orden de chats»: cada chat es de un proyecto («Tablero ·», «Jurisprudencia ·», «AME ·», «Trading ·», «Personal ·»). Lo que corresponde a otro proyecto se deriva a su chat con `send_message`, o se crea uno, y se avisa a Ignacio.
+- Solo documentación: no cambia el relevamiento ni el tablero.
