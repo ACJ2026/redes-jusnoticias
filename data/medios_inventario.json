@@ -218,7 +218,7 @@
       "notas": 59,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -308,11 +308,11 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 58,
+      "publicaciones": 59,
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -342,7 +342,7 @@
       "notas": 46,
       "ejemplo": "https://comodoro24.com.ar/seleccionaron-al-jurado-para-un-juicio-por-abuso-sexual-agravado-contra-una-nina/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "C24",
@@ -364,8 +364,8 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 50,
       "notas": 49,
       "ejemplo": "https://digitalchubut.com/esquel-la-justicia-sanciono-a-ford-y-plan-ovalo-con-una-multa-de-4-millones-por-las-subas-desmedidas-de-cuotas/",
@@ -395,9 +395,9 @@
       "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 47,
       "notas": 42,
-      "ejemplo": "https://argentarnoticias.com.ar/buscan-familia-o-referentes-afectivos-para-una-adolescente-de-17-anos-en-comodoro/",
+      "ejemplo": "https://argentarnoticias.com.ar/juicio-por-jurados-en-comodoro-seleccionaron-a-los-doce-titulares-para-el-debate-por-abuso-sexual-agravado-contra-una-nina/",
       "primera_deteccion": "2026-10-30",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "Dudosa: Dudosa: el sitio linkea Radio del Sur 97.1: /RadioDelSur97.1"
@@ -472,7 +472,7 @@
       "notas": 32,
       "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "/lu20radiochubut"
@@ -514,23 +514,6 @@
           "@chubuthoy1"
         ]
       }
-    },
-    {
-      "nombre": "LU17",
-      "alias": [],
-      "dominio": "lu17.com",
-      "url": "https://lu17.com",
-      "tipo": "Radio",
-      "localidad": "Puerto Madryn",
-      "metodo": "Sitemap / índice propio",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (solo títulos, fecha estimada)",
-      "publicaciones": 28,
-      "notas": 18,
-      "ejemplo": "https://lu17.com/contenido/126990/bubas-condenado-por-violencia-de-genero-en-nuevo-juicio",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
-      "redes": {}
     },
     {
       "nombre": "Diario La Portada",
@@ -625,6 +608,23 @@
           "/channel/UCx0ZTnObZJEuNvOlI-BhDvQ"
         ]
       }
+    },
+    {
+      "nombre": "LU17",
+      "alias": [],
+      "dominio": "lu17.com",
+      "url": "https://lu17.com",
+      "tipo": "Radio",
+      "localidad": "Puerto Madryn",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Sin datos en la última consulta",
+      "cobertura": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
+      "publicaciones": 18,
+      "notas": 18,
+      "ejemplo": "https://lu17.com/contenido/155520/declaran-culpable-a-mauro-pavei-por-el-homicidio-de-nieves-en-comodoro",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-11-04",
+      "redes": {}
     },
     {
       "nombre": "El Valle Online",
@@ -960,6 +960,36 @@
       "redes": {}
     },
     {
+      "nombre": "Diario San Rafael",
+      "alias": [],
+      "dominio": "diariosanrafael.com.ar",
+      "url": "https://diariosanrafael.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "San Rafael",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 7,
+      "notas": 7,
+      "ejemplo": "https://diariosanrafael.com.ar/por-que-estados-unidos-vota-siempre-un-martes-y-en-noviembre/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-11-03",
+      "redes": {
+        "Facebook": [
+          "/DiarioSanRafael"
+        ],
+        "Instagram": [
+          "@diariosanrafael"
+        ],
+        "X": [
+          "@diariosanrafael"
+        ],
+        "YouTube": [
+          "/channel/UCWhsV1YALBkWBsbJQBkGv1g"
+        ]
+      }
+    },
+    {
       "nombre": "La Opinión Austral",
       "alias": [],
       "dominio": "laopinionaustral.com.ar",
@@ -1036,7 +1066,7 @@
       "notas": 6,
       "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "/abcdiarioar"
@@ -1049,36 +1079,6 @@
         ],
         "YouTube": [
           "Dudosa: Dudosa: @abcdiarioar"
-        ]
-      }
-    },
-    {
-      "nombre": "Diario San Rafael",
-      "alias": [],
-      "dominio": "diariosanrafael.com.ar",
-      "url": "https://diariosanrafael.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "San Rafael",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 6,
-      "notas": 6,
-      "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
-      "redes": {
-        "Facebook": [
-          "/DiarioSanRafael"
-        ],
-        "Instagram": [
-          "@diariosanrafael"
-        ],
-        "X": [
-          "@diariosanrafael"
-        ],
-        "YouTube": [
-          "/channel/UCWhsV1YALBkWBsbJQBkGv1g"
         ]
       }
     },
@@ -1138,8 +1138,8 @@
       "tipo": "Portal digital",
       "localidad": "Cobertura patagónica (localidad por verificar)",
       "metodo": "Sitemap / índice propio",
-      "estado": "Sin datos en la última consulta",
-      "cobertura": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
       "publicaciones": 6,
       "notas": 6,
       "ejemplo": "https://www.lateclapatagonia.com.ar/100796-el-stj-se-expidio-sobre-el-conflicto-del-girsu-entre-los-municipios-de-esquel-y-trevelin",
@@ -1174,7 +1174,7 @@
       "notas": 4,
       "ejemplo": "https://www.diariojudicial.com/news-104550-se-realizara-el-ii-congreso-patagonico-de-derecho-civil-y-comercial",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "/diariojudicial"
@@ -1679,7 +1679,7 @@
       "notas": 1,
       "ejemplo": "https://www.centraldenoticiasmadariaga.com/2026/10/pagaba-un-plan-de-ahorro-para-comprar.html",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {}
     },
     {
@@ -1780,7 +1780,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "/DiarioHuarpe"
@@ -1861,7 +1861,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "/el10tv"
@@ -1935,13 +1935,13 @@
       "tipo": "Portal digital",
       "localidad": "Santa Cruz (localidad por verificar)",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {}
     },
     {
@@ -2036,8 +2036,8 @@
       "tipo": "TV",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://eldoce.tv/actualidad/2026/10/21/le-dijo-chorra-a-una-vecina-por-redes-y-debera-pagarle-una-indemnizacion-de-millones/",
@@ -2229,7 +2229,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-24",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {}
     },
     {
@@ -2284,8 +2284,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://lmdiario.com.ar/contenido/532531/convocatoria-de-adopcion-morena-suena-un-nuevo-comienzo-en-un-hogar-afectuoso-y",
@@ -2405,8 +2405,8 @@
       "tipo": "Portal digital",
       "localidad": "San Carlos de Bariloche",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://noticiasdebariloche.com.ar/trato-de-chorra-a-una-vecina-en-redes-sociales-y-la-condenaron-a-pagarle-una-indemnizacion/amp",
@@ -2482,7 +2482,7 @@
       "notas": 1,
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {
         "Facebook": [
           "/perfilcom"
@@ -2512,7 +2512,7 @@
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-03",
+      "ultima_deteccion": "2026-11-04",
       "redes": {}
     },
     {
