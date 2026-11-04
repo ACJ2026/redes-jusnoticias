@@ -38,5 +38,5 @@ python3 -m unittest discover -s tests -v
 
 - No incluir tokens, claves privadas ni credenciales en archivos versionados. Configurar secretos solo en el entorno de ejecución correspondiente.
 - La rama de trabajo se valida mediante una vista previa de Cloudflare Pages; todavía no equivale a una publicación definitiva.
-- La consulta de metadatos del repositorio realizada el 21/10/2026 informa que `ACJ2026/redes-jusnoticias` es privado. Volver a verificar la visibilidad en GitHub antes de cambiarla o incorporar información sensible.
+- El repositorio `ACJ2026/redes-jusnoticias` es **público** desde el 26/10/2026, por decisión de Ignacio, para que GitHub Actions tenga minutos ilimitados; el 04/11/2026 se decidió dejarlo así (ver `BITACORA.md`). Por eso nunca se guardan acá secretos, correos, contraseñas ni datos de causas.
 - El workflow `Reconstruir tablero público` de GitHub Actions terminó correctamente el 21/10/2026 para el commit `915c9c65a3ceb885ef342d2d931e0df444e7a308`. Esto confirma la reconstrucción automatizada del HTML, pero no sustituye la comprobación directa de la URL y de las funciones de servidor en producción.
