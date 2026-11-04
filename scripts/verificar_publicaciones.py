@@ -6,6 +6,7 @@ fuerte. Una URL de Google/Bing nunca sirve como publicación original.
 """
 import html
 import json
+import os
 import re
 import sys
 import time
@@ -22,6 +23,7 @@ from relevancia_publicaciones import evidencia_misma_nota, es_misma_publicacion
 
 BUSCADORES = ("news.google.com", "bing.com", "www.bing.com")
 STOP = set("""para sobre desde entre donde porque cuando hasta durante contra juzgado juzgados justicia judicial poder chubut provincia fallo causa pesos ordena ordenan ordeno penal trelew rawson madryn comodoro esquel puerto rivadavia millones prision tribunal superior ciudad nuevo nueva jusnoticias contenido gobierno provincia""".split())
+TOPE_SEGUNDOS = int(os.environ.get("VERIFICAR_TOPE_SEGUNDOS", "720"))
 MARCAS_CANDIDATA = ("solo título", "solo titulo", "google noticias", "bing noticias", "coincidencia temática", "coincidencia tematica", "fuente no identificada", "a verificar:")
 
 
@@ -146,14 +148,22 @@ def main():
     filas = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8"))
     titulos = {int(n["id"]): n.get("titulo", "") for n in notas}
     cache = {}
-    revisadas = confirmadas = descartadas = pendientes = 0
-    for fila in filas:
+    revisadas = confirmadas = descartadas = pendientes = sin_tiempo = 0
+    # Tope de tiempo: la actualización entera tiene 50 minutos y el relevamiento a veces tarda
+    # más de 30 (04/11/2026: la corrida se cortó por tiempo mientras verificaba). Lo que no
+    # entra queda como está («A verificar») y se revisa en la próxima corrida; las notas más
+    # nuevas van primero.
+    limite = time.monotonic() + TOPE_SEGUNDOS
+    for fila in sorted(filas, key=lambda f: -int(f.get("nota_id") or 0)):
         # Una decisión manual (data/revision_manual.json) manda: el verificador no la reabre.
         if (fila.get("revision_manual") or {}).get("decision") in ("confirmar", "descartar"):
             continue
         metodo = (fila.get("metodo") or "").lower()
         url = (fila.get("url") or "").strip()
         if not any(m in metodo for m in MARCAS_CANDIDATA):
+            continue
+        if time.monotonic() > limite:
+            sin_tiempo += 1
             continue
         texto_previo = ""
         if not url_directa(url):
@@ -243,7 +253,7 @@ def main():
             descartadas += 1
         time.sleep(0.05)
     Path(sys.argv[2]).write_text(json.dumps(filas, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Verificación de candidatas: leídas {revisadas}, verificadas {confirmadas}, descartadas {descartadas}, pendientes {pendientes}")
+    print(f"Verificación de candidatas: leídas {revisadas}, verificadas {confirmadas}, descartadas {descartadas}, pendientes {pendientes}, para la próxima corrida (sin tiempo) {sin_tiempo}")
 
 
 if __name__ == "__main__":
