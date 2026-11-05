@@ -4087,12 +4087,54 @@
     "fecha": "2026-11-05",
     "texto": "Banfi encabezó una capacit",
     "nota_id": null,
+    "me_gusta": 2,
+    "comentarios": 0,
+    "compartidos": 1,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1776822584443329",
+    "url": "https://www.facebook.com/1769483335177254/posts/1776822584443329"
+  },
+  {
+    "red": "TikTok",
+    "cuenta": "JusChubut",
+    "fecha": "2026-11-05",
+    "texto": "La Oficina Judicial Penal ",
+    "nota_id": null,
+    "me_gusta": 0,
+    "comentarios": 0,
+    "compartidos": 0,
+    "vistas": 22,
+    "propia": "Sí",
+    "key": "tt-7704714839855271188",
+    "url": "https://www.tiktok.com/@juschubut/video/7704714839855271188?utm_campaign=tt4d_open_api&utm_source=sbaw9943git83c8l01"
+  },
+  {
+    "red": "Instagram",
+    "cuenta": "jus_chubut",
+    "fecha": "2026-11-05",
+    "texto": "👫Informaron a estudiantes",
+    "nota_id": null,
+    "me_gusta": 5,
+    "comentarios": 0,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "ig-18029371601920524",
+    "url": "https://www.instagram.com/p/DfXYuGnlcRU/"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-05",
+    "texto": "Un equipo de la Oficina Ju",
+    "nota_id": null,
     "me_gusta": 0,
     "comentarios": 0,
     "compartidos": 0,
     "vistas": null,
     "propia": "Sí",
-    "key": "fb-116101835114568_1776822584443329",
-    "url": "https://www.facebook.com/1769483335177254/posts/1776822584443329"
+    "key": "fb-116101835114568_1776934354432152",
+    "url": "https://www.facebook.com/1769483335177254/posts/1776934354432152"
   }
 ]
