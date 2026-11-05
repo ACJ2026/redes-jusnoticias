@@ -393,7 +393,7 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 47,
+      "publicaciones": 46,
       "notas": 42,
       "ejemplo": "https://argentarnoticias.com.ar/juicio-por-jurados-en-comodoro-seleccionaron-a-los-doce-titulares-para-el-debate-por-abuso-sexual-agravado-contra-una-nina/",
       "primera_deteccion": "2026-10-30",
@@ -971,7 +971,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 7,
       "notas": 7,
-      "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
+      "ejemplo": "https://diariosanrafael.com.ar/por-que-estados-unidos-vota-siempre-un-martes-y-en-noviembre/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-05",
       "redes": {
