@@ -1083,6 +1083,23 @@
       }
     },
     {
+      "nombre": "Diario El Libertador",
+      "alias": [],
+      "dominio": "diarioellibertador.com.ar",
+      "url": "https://diarioellibertador.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://www.diarioellibertador.com.ar/corrientes-impulso-la-agenda-en-el-encuentro-nacional-de-mediacion/",
+      "primera_deteccion": "2026-11-05",
+      "ultima_deteccion": "2026-11-05",
+      "redes": {}
+    },
+    {
       "nombre": "FM de la Cordillera",
       "alias": [],
       "dominio": "fmdelacordillera.com.ar",
@@ -1781,23 +1798,6 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
-    },
-    {
-      "nombre": "Diario El Libertador",
-      "alias": [],
-      "dominio": "diarioellibertador.com.ar",
-      "url": "https://diarioellibertador.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.diarioellibertador.com.ar/corrientes-impulso-la-agenda-en-el-encuentro-nacional-de-mediacion/",
-      "primera_deteccion": "2026-11-05",
-      "ultima_deteccion": "2026-11-05",
       "redes": {}
     },
     {
