@@ -15,34 +15,15 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Lectura de justicia.ar por número (solo lectura)
+      - name: Fecha en una novedad de justicia.ar (solo lectura)
         run: |
           mkdir -p salida
           python3 - <<'PY' | tee salida/busqueda.txt
-          import re, html, urllib.request
-          UA = {"User-Agent": "Mozilla/5.0"}
-          def get(url, timeout=30, tries=2):
-              for _ in range(tries):
-                  try:
-                      with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r:
-                          return r.read().decode(r.headers.get_content_charset() or "utf-8", "replace")
-                  except Exception:
-                      pass
-              return None
-          def strip(h): return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", h or ""))).strip()
-          def novedad_justicia_ar(n):
-              h = get(f'https://www.justicia.ar/novedades/{n}/n/n/n', timeout=15, tries=1) or ''
-              ti = re.search(r'<title[^>]*>(.*?)</title>', h, re.S)
-              if not ti: return None
-              canon = re.search(r'<link[^>]+rel="canonical"[^>]+href="([^"]+)"', h) or re.search(r'<meta[^>]+property="og:url"[^>]+content="([^"]+)"', h)
-              fe = re.search(r'\b(\d{1,2})/(\d{1,2})/(\d{4})\b', h)
-              u = html.unescape(canon.group(1)).strip() if canon and '/novedades/' in canon.group(1) else f'https://www.justicia.ar/novedades/{n}/n/n/n'
-              return {'t': re.sub(r'\s*[-|]\s*Justicia\.ar\s*$', '', strip(ti.group(1))), 'u': u,
-                      'd': f'{fe.group(3)}-{int(fe.group(2)):02d}-{int(fe.group(1)):02d}' if fe else ''}
-          numeros = [int(x) for x in re.findall(r"/novedades/(\d+)/\d{4}/\d{2}/", get("https://www.justicia.ar/") or "")]
-          print("máximo en portada:", max(numeros) if numeros else None)
-          for n in list(range(max(numeros), max(numeros) - 25, -1)) + [6342]:
-              print(n, novedad_justicia_ar(n))
+          import re, urllib.request
+          h = urllib.request.urlopen(urllib.request.Request("https://www.justicia.ar/novedades/6342/n/n/n", headers={"User-Agent": "Mozilla/5.0"}), timeout=30).read().decode("utf-8", "replace")
+          for m in re.finditer(r"2026|noviembre|Nov|datetime|published|fecha", h):
+              print(repr(h[max(0, m.start() - 120): m.end() + 80]))
+          print("ENLACES 6342:", sorted(set(re.findall(r'[^"\s]*6342[^"\s]*', h)))[:10])
           PY
       - name: Guardar salida
         run: |
