@@ -1,0 +1,55 @@
+name: Diagnóstico del buscador (solo lectura)
+
+# Corre solo en ramas de diagnóstico; no escribe datos ni toca main.
+on:
+  push:
+    branches:
+      - 'claude/diagnostico-*'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnostico:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Nota 15005 contra cuatro publicaciones (solo lectura)
+        run: |
+          mkdir -p salida
+          cd scripts
+          python3 - <<'PY' | tee ../salida/busqueda.txt
+          import json, re, urllib.request
+          import verificar_publicaciones as vp
+          from relevancia_publicaciones import evidencia_misma_nota, es_misma_publicacion
+          def get(u):
+              return urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=30).read().decode("utf-8", "replace")
+          try:
+              p = json.loads(get("https://jusnoticias.juschubut.gov.ar/wp-json/wp/v2/posts/15005?_fields=date,date_gmt,modified,link"))
+              print("NOTA 15005 fecha WordPress:", p)
+          except Exception as e:
+              print("NOTA 15005 sin fecha WP:", e)
+          tit, cuerpo = vp.nota_oficial(15005, {})
+          print("TITULO:", tit)
+          for u in ["https://www.justicia.ar/novedades/6342/2026/11/banfi-encabezo-una-capacitacion-sobre-justicia-restaurativa-y-responsabilidad-penal-juvenil",
+                    "https://cholilaonline.ar/2026/11/capacitacion-justicia-restaurativa-adolescentes-chubut.html",
+                    "https://www.elpatagonico.com/capacitacion-practicas-restaurativas-adolescentes-procesos-penales-n6341643",
+                    "https://www.diariocronica.com.ar/noticias/2026/11/04/176085-capacitan-a-operadores-judiciales-de-comodoro-en-justicia-restaurativa-juvenil"]:
+              try:
+                  h = get(u)
+                  fechas = sorted(set(re.findall(r'(?:datePublished|article:published_time|"date")["\s:=content]*"?(\d{4}-\d{2}-\d{2}T?[\d:]*)', h)))[:4]
+                  tm = re.search(r'<title[^>]*>(.*?)</title>', h, re.S)
+                  final, texto = vp.descargar(u)
+                  ev = evidencia_misma_nota(tit, cuerpo, tm.group(1).strip() if tm else "", texto)
+                  print("\nMEDIO:", u); print("   fechas:", fechas); print("   titulo:", tm.group(1).strip()[:120] if tm else "")
+                  print("   evidencia:", {k: (round(v, 2) if isinstance(v, float) else v) for k, v in ev.items()}, "| cuenta:", es_misma_publicacion(ev))
+              except Exception as e:
+                  print("\nERROR", u, e)
+          PY
+      - name: Guardar salida
+        run: |
+          git config user.name "jusnoticias-bot"; git config user.email "actions@users.noreply.github.com"
+          git checkout --orphan diagnostico-redes-salida
+          git rm -rq --cached . ; git add salida; git commit -qm "Diagnóstico: nota 15005"
+          git push -f origin diagnostico-redes-salida
