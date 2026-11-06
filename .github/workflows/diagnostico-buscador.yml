@@ -15,22 +15,35 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Enlaces de la página de novedades de justicia.ar (solo lectura)
+      - name: justicia.ar por número y por buscadores (solo lectura)
         run: |
           mkdir -p salida
           python3 - <<'PY' | tee salida/busqueda.txt
-          import re, urllib.request
+          import re, urllib.request, urllib.parse
           def get(u):
-              return urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=30).read().decode("utf-8", "replace")
-          for u in ["https://www.justicia.ar/novedades", "https://www.justicia.ar/novedades?page=2", "https://www.justicia.ar/"]:
+              r = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=30)
+              return r.geturl(), r.read().decode("utf-8", "replace")
+          for u in ["https://www.justicia.ar/novedades/6342", "https://www.justicia.ar/novedades/6342/2026/11/x"]:
               try:
-                  t = get(u)
-                  hrefs = re.findall(r'href="([^"]*novedades/[^"]+)"', t)
-                  print("OK", u, len(t), "enlaces de novedades:", len(hrefs))
-                  for h in hrefs[:15]: print("   ", h)
-                  print("   fechas en la página:", re.findall(r'\b\d{1,2}/\d{1,2}/\d{4}\b', t)[:8])
-              except Exception as e:
-                  print("ERROR", u, e)
+                  f, t = get(u); tm = re.search(r"<title[^>]*>(.*?)</title>", t, re.S)
+                  print("OK", u, "->", f, "|", tm.group(1).strip()[:90] if tm else "")
+              except Exception as e: print("ERROR", u, e)
+          for path in ["/api/novedades", "/api/novedades?page=1", "/novedades.json"]:
+              try:
+                  f, t = get("https://www.justicia.ar" + path); print("OK", path, len(t), t[:200].replace("\n", " "))
+              except Exception as e: print("ERROR", path, e)
+          t0 = get("https://www.justicia.ar/novedades")[1]
+          print("scripts/api en /novedades:", sorted(set(re.findall(r'["\'](/[^"\']*(?:api|json|graphql)[^"\']*)["\']', t0)))[:15])
+          q = "Banfi encabezó una capacitación sobre justicia restaurativa y responsabilidad penal juvenil"
+          for u in ["https://www.bing.com/news/search?q=" + urllib.parse.quote(q) + "&format=rss&setlang=es&cc=AR",
+                    "https://www.bing.com/search?q=" + urllib.parse.quote('"' + q + '"') + "&format=rss&setlang=es&cc=AR",
+                    "https://news.google.com/rss/search?q=" + urllib.parse.quote(q) + "&hl=es-419&gl=AR&ceid=AR:es-419"]:
+              try:
+                  f, t = get(u)
+                  links = re.findall(r"<link>(.*?)</link>", t)
+                  print("\nBUSCADOR", u[:60], "resultados:", len(links), "| justicia.ar:", sum("justicia.ar" in x for x in links))
+                  for x in links[:12]: print("   ", urllib.parse.unquote(x)[:150])
+              except Exception as e: print("ERROR", u[:60], e)
           PY
       - name: Guardar salida
         run: |
