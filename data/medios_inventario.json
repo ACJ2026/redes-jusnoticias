@@ -555,9 +555,9 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 25,
-      "notas": 24,
-      "ejemplo": "https://www.elchubut.com.ar/puerto-madryn/2026-11-5-12-46-0-un-equipo-de-la-oficina-judicial-brindo-una-charla-para-estudiantes-de-la-escuela-n-775",
+      "publicaciones": 26,
+      "notas": 25,
+      "ejemplo": "https://www.elchubut.com.ar/regionales/2026-11-5-20-23-0-banfi-encabezo-una-capacitacion-sobre-justicia-restaurativa-y-responsabilidad-penal-juvenil",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-27",
       "redes": {
@@ -843,9 +843,9 @@
       "metodo": "Sin método automático",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 10,
-      "notas": 7,
-      "ejemplo": "https://examedia.com.ar/portada/post/88149191",
+      "publicaciones": 11,
+      "notas": 8,
+      "ejemplo": "https://examedia.com.ar/portada/post/88189316",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -1343,7 +1343,7 @@
       "notas": 3,
       "ejemplo": "https://www.infobae.com/judiciales/2026/10/03/una-frenada-brusca-la-sube-como-prueba-y-la-discusion-por-la-indemnizacion-una-pasajera-le-gano-un-juicio-a-una-empresa-de-colectivos/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-05",
+      "ultima_deteccion": "2026-11-06",
       "redes": {
         "Facebook": [
           "Infobae"
@@ -2732,7 +2732,7 @@
       "notas": 1,
       "ejemplo": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-05",
+      "ultima_deteccion": "2026-11-06",
       "redes": {}
     },
     {
