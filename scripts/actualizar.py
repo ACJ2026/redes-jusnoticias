@@ -494,6 +494,40 @@ for name, dom, fuente, items in resultados_no_wp:
         print(f'{name}: ERROR aislado en lectura directa ({type(e).__name__}); se conserva el historial')
 print('Medios sin WordPress en lectura directa:', sum(1 for r in resultados_no_wp if r[3]), 'de', len(NO_WP), '| páginas leídas:', lecturas_no_wp)
 
+# ---------- 2b. Justicia.ar (portal judicial que republica notas de JusNoticias) ----------
+# No tiene RSS ni mapa del sitio, y ni Google Noticias ni Bing lo devuelven (diagnóstico del
+# 06/11/2026). Sus novedades se abren por número (/novedades/<n>/...) y los números son
+# correlativos: se toman de la portada los más altos y se revisan las últimas 60.
+MESES_ES = {m: i for i, m in enumerate('enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre'.split(), 1)}
+def novedad_justicia_ar(n):
+    h = get(f'https://www.justicia.ar/novedades/{n}/n/n/n', timeout=15, tries=1) or ''
+    ti = re.search(r'<h1[^>]*detalleTituloNovedad[^>]*>(.*?)</h1>', h, re.S) or re.search(r'<title[^>]*>(.*?)</title>', h, re.S)
+    fe = re.search(r'>\s*(\d{1,2}) de ([a-záéíóú]+) de (\d{4})\s*<', h, re.I)
+    if not ti or not fe or fe.group(2).lower() not in MESES_ES: return None
+    titulo = re.sub(r'\s*[-|]\s*Justicia\.ar\s*$', '', strip(ti.group(1)))
+    anio, mes, dia = int(fe.group(3)), MESES_ES[fe.group(2).lower()], int(fe.group(1))
+    # La página abre con cualquier texto después del número; se arma un enlace estable y legible.
+    slug = re.sub(r'[^a-z0-9]+', '-', norm(titulo)).strip('-')[:120]
+    return {'t': titulo, 'u': f'https://www.justicia.ar/novedades/{n}/{anio}/{mes:02d}/{slug}', 'd': f'{anio}-{mes:02d}-{dia:02d}'}
+try:
+    numeros = [int(x) for x in re.findall(r'/novedades/(\d+)/\d{4}/\d{2}/', get('https://www.justicia.ar/', timeout=20) or '')]
+    items_ja = []
+    if numeros:
+        with ThreadPoolExecutor(8) as ex:
+            items_ja = [it for it in ex.map(novedad_justicia_ar, range(max(numeros), max(numeros) - 60, -1)) if it]
+    items_ja = recientes_de(items_ja)
+    ms = match(items_ja)
+    cerca_ms = cerca(items_ja, ms)
+    with ThreadPoolExecutor(8) as ex:
+        textos = dict(zip([m['u'] for m in ms + cerca_ms], ex.map(texto_pagina, [m['u'] for m in ms + cerca_ms])))
+    for m, c in confirmar_por_texto(ms + cerca_ms, textos):
+        if c: addrow('Justicia.ar', m, m.get('metodo', 'Revisión completa (lectura directa por número)'), c[0], c[1], c[2])
+        else: addrow('Justicia.ar', m, 'Revisión completa (lectura directa por número)')
+    cobertura['Justicia.ar'] = 'Revisión completa (lectura directa por número)' if items_ja else 'Sin novedades legibles'
+    print('Justicia.ar novedades', len(items_ja), '| coinciden por título', len(ms), '| cerca', len(cerca_ms))
+except Exception as e:
+    print(f'Justicia.ar: ERROR aislado en lectura directa ({type(e).__name__}); se conserva el historial')
+
 # ---------- 3. Sitemaps mensuales (ADN Sur, EQS Notas) ----------
 def months():
     d = dt.date.fromisoformat(DESDE); today = dt.date.today(); out = []
@@ -721,7 +755,8 @@ def clave(s): return re.sub(r'^(diario|radio|fm) ', '', norm(s)).replace(' ', ''
 conocidos = {clave(m): m for m in list(cobertura) + ['Crónica', 'El Chubut', 'Diario Jornada', 'El Patagónico', 'Red43']}
 conocidos.update(ALIAS)
 MEDIO_POR_DOMINIO = {d.replace('www.', ''): n for n, d in list(WP.items()) + list(WP_DESCUBIERTOS.items())}
-NO = re.compile(r'jusnoticias|juschubut|poder judicial|justicia\.ar|ministerio p[uú]blico|youtube|facebook|instagram', re.I)
+# Justicia.ar se sacó de esta lista el 06/11/2026 (decisión de Ignacio): republica nuestras notas y cuenta como difusión.
+NO = re.compile(r'jusnoticias|juschubut|poder judicial|ministerio p[uú]blico|youtube|facebook|instagram', re.I)
 def es_google_noticias(u): return (u or '').startswith('https://news.google.com/')
 
 # Segunda oportunidad por texto: un resultado del buscador cuyo título no alcanza (el medio
