@@ -466,8 +466,8 @@
       "tipo": "Radio",
       "localidad": "Trelew",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 34,
       "notas": 32,
       "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
@@ -1023,6 +1023,36 @@
       }
     },
     {
+      "nombre": "La Tecla Patagonia",
+      "alias": [],
+      "dominio": "lateclapatagonia.com.ar",
+      "url": "https://lateclapatagonia.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Cobertura patagónica (localidad por verificar)",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 7,
+      "notas": 7,
+      "ejemplo": "https://www.lateclapatagonia.com.ar/100796-el-stj-se-expidio-sobre-el-conflicto-del-girsu-entre-los-municipios-de-esquel-y-trevelin",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/LaTeclaPatagonia"
+        ],
+        "Instagram": [
+          "@lateclapatagonia"
+        ],
+        "X": [
+          "@teclapatagonia"
+        ],
+        "TikTok": [
+          "Dudosa: Dudosa: ícono sin usuario"
+        ]
+      }
+    },
+    {
       "nombre": "Primera Edición",
       "alias": [],
       "dominio": "primeraedicion.com.ar",
@@ -1144,36 +1174,6 @@
       "redes": {
         "Instagram": [
           "@lanotasanjuan"
-        ]
-      }
-    },
-    {
-      "nombre": "La Tecla Patagonia",
-      "alias": [],
-      "dominio": "lateclapatagonia.com.ar",
-      "url": "https://lateclapatagonia.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Cobertura patagónica (localidad por verificar)",
-      "metodo": "Sitemap / índice propio",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (solo títulos)",
-      "publicaciones": 6,
-      "notas": 6,
-      "ejemplo": "https://www.lateclapatagonia.com.ar/100796-el-stj-se-expidio-sobre-el-conflicto-del-girsu-entre-los-municipios-de-esquel-y-trevelin",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/LaTeclaPatagonia"
-        ],
-        "Instagram": [
-          "@lateclapatagonia"
-        ],
-        "X": [
-          "@teclapatagonia"
-        ],
-        "TikTok": [
-          "Dudosa: Dudosa: ícono sin usuario"
         ]
       }
     },
@@ -2574,8 +2574,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
