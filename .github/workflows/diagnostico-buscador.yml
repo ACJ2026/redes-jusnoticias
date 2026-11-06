@@ -15,22 +15,22 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Listas de noticias de justicia.ar (solo lectura)
+      - name: Enlaces de la página de novedades de justicia.ar (solo lectura)
         run: |
           mkdir -p salida
           python3 - <<'PY' | tee salida/busqueda.txt
           import re, urllib.request
           def get(u):
               return urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=30).read().decode("utf-8", "replace")
-          base = "https://www.justicia.ar"
-          for r in ["/robots.txt", "/feed", "/rss", "/rss.xml", "/feed.xml", "/news-sitemap.xml", "/sitemap-news.xml", "/sitemap.xml", "/sitemap_index.xml", "/novedades"]:
+          for u in ["https://www.justicia.ar/novedades", "https://www.justicia.ar/novedades?page=2", "https://www.justicia.ar/"]:
               try:
-                  t = get(base + r)
-                  print("OK", r, len(t), "| item:", t.count("<item"), "url:", t.count("<url>"), "sitemap:", t.count("<sitemap>"))
-                  if r == "/robots.txt": print(t[:600])
-                  for x in sorted(set(re.findall(r'https?://www\.justicia\.ar/[^"<> ]+', t)))[:12]: print("   ", x)
+                  t = get(u)
+                  hrefs = re.findall(r'href="([^"]*novedades/[^"]+)"', t)
+                  print("OK", u, len(t), "enlaces de novedades:", len(hrefs))
+                  for h in hrefs[:15]: print("   ", h)
+                  print("   fechas en la página:", re.findall(r'\b\d{1,2}/\d{1,2}/\d{4}\b', t)[:8])
               except Exception as e:
-                  print("ERROR", r, e)
+                  print("ERROR", u, e)
           PY
       - name: Guardar salida
         run: |
