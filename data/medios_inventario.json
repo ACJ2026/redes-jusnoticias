@@ -338,9 +338,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 51,
+      "publicaciones": 52,
       "notas": 47,
-      "ejemplo": "https://comodoro24.com.ar/banfi-encabezo-una-capacitacion-sobre-justicia-restaurativa-y-responsabilidad-penal-juvenil/",
+      "ejemplo": "https://comodoro24.com.ar/la-scpl-no-atendera-al-publico-este-lunes-por-el-feriado-nacional/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-06",
       "redes": {
@@ -440,9 +440,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 35,
-      "notas": 32,
-      "ejemplo": "https://www.elcomodorense.net/caso-jorge-nieves-un-jurado-popular-declaro-a-pavei-culpable-de-homicidio/",
+      "publicaciones": 36,
+      "notas": 33,
+      "ejemplo": "https://www.elcomodorense.net/este-lunes-9-de-noviembre-no-habra-atencion-al-publico-en-la-scpl/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -1977,6 +1977,23 @@
           "@eleditormendoza"
         ]
       }
+    },
+    {
+      "nombre": "El Esquiu",
+      "alias": [],
+      "dominio": "elesquiu.com",
+      "url": "https://elesquiu.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.elesquiu.com/policiales/2026/11/6/condenaron-a-tres-anos-de-prision-en-suspenso-a-un-hombre-por-abuso-sexual-agravado-602392.html",
+      "primera_deteccion": "2026-11-06",
+      "ultima_deteccion": "2026-11-06",
+      "redes": {}
     },
     {
       "nombre": "El Mediador - Santa Cruz",
