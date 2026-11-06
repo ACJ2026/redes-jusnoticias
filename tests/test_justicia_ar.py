@@ -26,10 +26,12 @@ class JusticiaArTest(unittest.TestCase):
         self.assertIsNone(cargar(None)(6339))
         self.assertIsNone(cargar('<h1 class="detalleTituloNovedad">Algo</h1>')(6339))
 
-    def test_ya_no_esta_en_la_lista_de_excluidos(self):
+    def test_entra_por_lectura_directa_y_no_por_buscadores(self):
+        # La lista NO filtra Google y Bing; Justicia.ar entra solo por su lectura directa (verificada).
         linea = next(l for l in FUENTE.splitlines() if l.startswith("NO = re.compile("))
-        self.assertNotIn("justicia", linea)
+        self.assertIn("justicia", linea)
         self.assertIn("addrow('Justicia.ar'", FUENTE)
+        self.assertNotIn("NO.search", FUENTE[FUENTE.index("# ---------- 2b. Justicia.ar"):FUENTE.index("# ---------- 3. Sitemaps")])
 
 
 if __name__ == "__main__":

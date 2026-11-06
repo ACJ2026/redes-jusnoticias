@@ -1193,3 +1193,8 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Lectura nueva en `scripts/actualizar.py`: sus novedades se abren por número, que es correlativo. En cada corrida se toma el número más alto de la portada y se revisan las últimas 60 (título, fecha «5 de noviembre de 2026» y enlace). Se comparan con nuestras notas igual que los demás medios.
   - Prueba nueva: `tests/test_justicia_ar.py`.
 - **Pendiente de decisión de Ignacio:** qué hacer con lo publicado la tarde anterior a nuestra nota.
+- **06/11 — Primera corrida con justicia.ar (falló antes de guardar, no se perdió nada):**
+  - La lectura directa anduvo: «Justicia.ar novedades 57 | coinciden por título 6 | cerca 2».
+  - Falló la prueba `test_coincidencias_genericas_de_mujeres_rurales_no_se_cuentan_como_confirmadas`. Al sacar justicia.ar de la lista `NO`, también entraron sus resultados de Google Noticias, y uno de la nota 14851 quedó contado sin verificar el texto.
+  - **Arreglo:** justicia.ar vuelve a la lista `NO`, que solo filtra los resultados de Google y Bing. Entra únicamente por su lectura directa, que compara título y texto con la nota.
+- **Decisión de Ignacio (opción B):** sigue la regla del 30/10. Lo publicado antes que nuestra nota no se cuenta, aunque sea la tarde anterior. Por eso Cholila Online, El Patagónico y Diario Crónica no cuentan para la nota 15005.
