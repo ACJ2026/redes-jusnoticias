@@ -755,8 +755,10 @@ def clave(s): return re.sub(r'^(diario|radio|fm) ', '', norm(s)).replace(' ', ''
 conocidos = {clave(m): m for m in list(cobertura) + ['Crónica', 'El Chubut', 'Diario Jornada', 'El Patagónico', 'Red43']}
 conocidos.update(ALIAS)
 MEDIO_POR_DOMINIO = {d.replace('www.', ''): n for n, d in list(WP.items()) + list(WP_DESCUBIERTOS.items())}
-# Justicia.ar se sacó de esta lista el 06/11/2026 (decisión de Ignacio): republica nuestras notas y cuenta como difusión.
-NO = re.compile(r'jusnoticias|juschubut|poder judicial|ministerio p[uú]blico|youtube|facebook|instagram', re.I)
+# Esta lista filtra solo los resultados de Google y Bing. Justicia.ar sigue acá: sus resultados de
+# buscador traían coincidencias de tema sin verificar (nota 14851, 06/11/2026). Entra por su
+# lectura directa por número (sección 2b), que compara título y texto con la nota.
+NO = re.compile(r'jusnoticias|juschubut|poder judicial|justicia\.ar|ministerio p[uú]blico|youtube|facebook|instagram', re.I)
 def es_google_noticias(u): return (u or '').startswith('https://news.google.com/')
 
 # Segunda oportunidad por texto: un resultado del buscador cuyo título no alcanza (el medio
