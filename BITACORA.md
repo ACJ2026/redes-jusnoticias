@@ -1181,3 +1181,15 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Comprobado** con el diagnóstico de solo lectura en GitHub (desde la sesión de Claude esos sitios no se pueden abrir): los dos cuentan la misma audiencia (Voir Dire del 2/11, 12 titulares y 2 suplentes, debate el 5 y 6/11, pese al feriado). ADN Sur acredita «Foto: JusNoticias».
 - **Cargados como «confirmar»** en `data/revision_manual.json`. Se aplican en la próxima actualización automática.
 - No cambia cómo se detectan las publicaciones.
+
+## 2026-11-06 — Justicia.ar entra al buscador (Claude, OK de Ignacio)
+
+- **Qué vio Ignacio:** en Google, la nota 15005 (Banfi, capacitación en justicia restaurativa, 5/11) aparecía en justicia.ar, Cholila Online, El Patagónico y Diario Crónica. El tablero solo tenía Comodoro 24 y Noticias PMY.
+- **Diagnóstico** (leído en GitHub, desde la sesión de Claude esos sitios no se abren):
+  - **justicia.ar:** copia textual (98 % del cuerpo). No entraba por dos motivos: el código lo excluía a propósito desde la migración del 20/10 (misma lista que JusNoticias y el Poder Judicial, sin motivo anotado), y ningún buscador lo devuelve (Google Noticias y Bing dan 0). Tampoco tiene RSS ni mapa del sitio.
+  - **Cholila Online, El Patagónico y Diario Crónica:** publicaron el 4/11 entre las 18:00 y las 19:43, unas 15 horas **antes** que nuestra nota (5/11 10:13). Desde el 30/10 no se acepta nada anterior a la nota. Además, los textos de El Patagónico y Crónica comparten poco con el nuestro (frases 2-9 %).
+- **Arreglo (parte 1 aprobada por Ignacio; el botón para cargar a mano lo rechazó: el buscador es el tablero):**
+  - Justicia.ar sale de la lista de excluidos.
+  - Lectura nueva en `scripts/actualizar.py`: sus novedades se abren por número, que es correlativo. En cada corrida se toma el número más alto de la portada y se revisan las últimas 60 (título, fecha «5 de noviembre de 2026» y enlace). Se comparan con nuestras notas igual que los demás medios.
+  - Prueba nueva: `tests/test_justicia_ar.py`.
+- **Pendiente de decisión de Ignacio:** qué hacer con lo publicado la tarde anterior a nuestra nota.
