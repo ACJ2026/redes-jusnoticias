@@ -15,35 +15,34 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: justicia.ar por número y por buscadores (solo lectura)
+      - name: Lectura de justicia.ar por número (solo lectura)
         run: |
           mkdir -p salida
           python3 - <<'PY' | tee salida/busqueda.txt
-          import re, urllib.request, urllib.parse
-          def get(u):
-              r = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=30)
-              return r.geturl(), r.read().decode("utf-8", "replace")
-          for u in ["https://www.justicia.ar/novedades/6342", "https://www.justicia.ar/novedades/6342/2026/11/x"]:
-              try:
-                  f, t = get(u); tm = re.search(r"<title[^>]*>(.*?)</title>", t, re.S)
-                  print("OK", u, "->", f, "|", tm.group(1).strip()[:90] if tm else "")
-              except Exception as e: print("ERROR", u, e)
-          for path in ["/api/novedades", "/api/novedades?page=1", "/novedades.json"]:
-              try:
-                  f, t = get("https://www.justicia.ar" + path); print("OK", path, len(t), t[:200].replace("\n", " "))
-              except Exception as e: print("ERROR", path, e)
-          t0 = get("https://www.justicia.ar/novedades")[1]
-          print("scripts/api en /novedades:", sorted(set(re.findall(r'["\'](/[^"\']*(?:api|json|graphql)[^"\']*)["\']', t0)))[:15])
-          q = "Banfi encabezó una capacitación sobre justicia restaurativa y responsabilidad penal juvenil"
-          for u in ["https://www.bing.com/news/search?q=" + urllib.parse.quote(q) + "&format=rss&setlang=es&cc=AR",
-                    "https://www.bing.com/search?q=" + urllib.parse.quote('"' + q + '"') + "&format=rss&setlang=es&cc=AR",
-                    "https://news.google.com/rss/search?q=" + urllib.parse.quote(q) + "&hl=es-419&gl=AR&ceid=AR:es-419"]:
-              try:
-                  f, t = get(u)
-                  links = re.findall(r"<link>(.*?)</link>", t)
-                  print("\nBUSCADOR", u[:60], "resultados:", len(links), "| justicia.ar:", sum("justicia.ar" in x for x in links))
-                  for x in links[:12]: print("   ", urllib.parse.unquote(x)[:150])
-              except Exception as e: print("ERROR", u[:60], e)
+          import re, html, urllib.request
+          UA = {"User-Agent": "Mozilla/5.0"}
+          def get(url, timeout=30, tries=2):
+              for _ in range(tries):
+                  try:
+                      with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r:
+                          return r.read().decode(r.headers.get_content_charset() or "utf-8", "replace")
+                  except Exception:
+                      pass
+              return None
+          def strip(h): return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", h or ""))).strip()
+          def novedad_justicia_ar(n):
+              h = get(f'https://www.justicia.ar/novedades/{n}/n/n/n', timeout=15, tries=1) or ''
+              ti = re.search(r'<title[^>]*>(.*?)</title>', h, re.S)
+              if not ti: return None
+              canon = re.search(r'<link[^>]+rel="canonical"[^>]+href="([^"]+)"', h) or re.search(r'<meta[^>]+property="og:url"[^>]+content="([^"]+)"', h)
+              fe = re.search(r'\b(\d{1,2})/(\d{1,2})/(\d{4})\b', h)
+              u = html.unescape(canon.group(1)).strip() if canon and '/novedades/' in canon.group(1) else f'https://www.justicia.ar/novedades/{n}/n/n/n'
+              return {'t': re.sub(r'\s*[-|]\s*Justicia\.ar\s*$', '', strip(ti.group(1))), 'u': u,
+                      'd': f'{fe.group(3)}-{int(fe.group(2)):02d}-{int(fe.group(1)):02d}' if fe else ''}
+          numeros = [int(x) for x in re.findall(r"/novedades/(\d+)/\d{4}/\d{2}/", get("https://www.justicia.ar/") or "")]
+          print("máximo en portada:", max(numeros) if numeros else None)
+          for n in list(range(max(numeros), max(numeros) - 25, -1)) + [6342]:
+              print(n, novedad_justicia_ar(n))
           PY
       - name: Guardar salida
         run: |
