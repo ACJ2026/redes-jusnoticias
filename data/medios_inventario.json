@@ -747,8 +747,8 @@
     {
       "nombre": "Crónica",
       "alias": [],
-      "dominio": "diariocronica.com.ar",
-      "url": "https://diariocronica.com.ar",
+      "dominio": "",
+      "url": "",
       "tipo": "Prensa gráfica",
       "localidad": "Comodoro Rivadavia",
       "metodo": "Google Noticias y Bing Noticias",
@@ -757,8 +757,8 @@
       "publicaciones": 13,
       "notas": 13,
       "ejemplo": "",
-      "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-10-28",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
       "redes": {
         "Facebook": [
           "Crónica Comodoro Rivadavia",
@@ -861,6 +861,23 @@
       }
     },
     {
+      "nombre": "Prensa Mercosur",
+      "alias": [],
+      "dominio": "prensamercosur.org",
+      "url": "https://prensamercosur.org",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 10,
+      "notas": 9,
+      "ejemplo": "https://prensamercosur.org/2026/11/08/comenzo-el-juicio-contra-un-exfuncionario-acusado-de-abuso-sexual/",
+      "primera_deteccion": "2026-10-26",
+      "ultima_deteccion": "2026-10-29",
+      "redes": {}
+    },
+    {
       "nombre": "Red43",
       "alias": [],
       "dominio": "red43.com.ar",
@@ -914,23 +931,6 @@
           "/@revistaquorumok"
         ]
       }
-    },
-    {
-      "nombre": "Prensa Mercosur",
-      "alias": [],
-      "dominio": "prensamercosur.org",
-      "url": "https://prensamercosur.org",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
-      "publicaciones": 9,
-      "notas": 8,
-      "ejemplo": "https://prensamercosur.org/2026/11/04/junin-sera-sede-del-primer-encuentro-del-foro-laboral/",
-      "primera_deteccion": "2026-10-26",
-      "ultima_deteccion": "2026-10-29",
-      "redes": {}
     },
     {
       "nombre": "Mil Patagonias",
@@ -1896,6 +1896,23 @@
       "ejemplo": "https://www.diariouno.com.ar/tenia-un-plan-ahorro-el-precio-del-auto-subio-un-952-la-crucial-decision-la-justicia-n1611273",
       "primera_deteccion": "",
       "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
+      "nombre": "diariocronica.com.ar",
+      "alias": [],
+      "dominio": "diariocronica.com.ar",
+      "url": "https://diariocronica.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-11-08",
       "redes": {}
     },
     {
