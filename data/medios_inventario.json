@@ -214,9 +214,9 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 69,
-      "notas": 60,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/historico-fallo-en-chubut--obligan-a-seros-a-cubrir-fertilizacion-asistida-para-una-pareja-de-mujeres_a69f36b1f70a58a58f84eb25c",
+      "publicaciones": 70,
+      "notas": 61,
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-09",
       "redes": {
@@ -868,11 +868,11 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 10,
       "notas": 9,
-      "ejemplo": "https://prensamercosur.org/2026/11/04/junin-sera-sede-del-primer-encuentro-del-foro-laboral/",
+      "ejemplo": "https://prensamercosur.org/2026/11/08/comenzo-el-juicio-contra-un-exfuncionario-acusado-de-abuso-sexual/",
       "primera_deteccion": "2026-10-26",
       "ultima_deteccion": "2026-10-29",
       "redes": {}
@@ -1343,7 +1343,7 @@
       "notas": 3,
       "ejemplo": "https://www.infobae.com/judiciales/2026/10/03/una-frenada-brusca-la-sube-como-prueba-y-la-discusion-por-la-indemnizacion-una-pasajera-le-gano-un-juicio-a-una-empresa-de-colectivos/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-07",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "Infobae"
