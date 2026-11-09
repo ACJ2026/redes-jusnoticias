@@ -218,7 +218,7 @@
       "notas": 60,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -312,7 +312,7 @@
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -342,7 +342,7 @@
       "notas": 47,
       "ejemplo": "https://comodoro24.com.ar/la-scpl-no-atendera-al-publico-este-lunes-por-el-feriado-nacional/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "C24",
@@ -623,7 +623,7 @@
       "notas": 18,
       "ejemplo": "https://lu17.com/contenido/155520/declaran-culpable-a-mauro-pavei-por-el-homicidio-de-nieves-en-comodoro",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {}
     },
     {
@@ -973,7 +973,7 @@
       "notas": 7,
       "ejemplo": "https://diariosanrafael.com.ar/por-que-estados-unidos-vota-siempre-un-martes-y-en-noviembre/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "/DiarioSanRafael"
@@ -1208,7 +1208,7 @@
       "notas": 4,
       "ejemplo": "https://www.diariojudicial.com/news-104550-se-realizara-el-ii-congreso-patagonico-de-derecho-civil-y-comercial",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "/diariojudicial"
@@ -1747,7 +1747,7 @@
       "notas": 1,
       "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "/clarincom"
@@ -1831,7 +1831,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "/DiarioHuarpe"
@@ -1906,13 +1906,13 @@
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {}
     },
     {
@@ -1929,7 +1929,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "/el10tv"
@@ -2314,7 +2314,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-24",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {}
     },
     {
@@ -2567,7 +2567,7 @@
       "notas": 1,
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {
         "Facebook": [
           "/perfilcom"
@@ -2766,7 +2766,7 @@
       "notas": 1,
       "ejemplo": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-08",
+      "ultima_deteccion": "2026-11-09",
       "redes": {}
     },
     {
