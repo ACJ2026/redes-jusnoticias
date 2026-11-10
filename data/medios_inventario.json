@@ -157,9 +157,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 76,
-      "notas": 63,
-      "ejemplo": "https://cholilaonline.ar/2026/10/declaran-culpable-a-pavei-por-emocion-violenta.html",
+      "publicaciones": 77,
+      "notas": 64,
+      "ejemplo": "https://cholilaonline.ar/2026/11/chubut-con-el-papa-cumbre-por-trabajo-e-ia.html",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -218,7 +218,7 @@
       "notas": 61,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -312,7 +312,7 @@
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -342,7 +342,7 @@
       "notas": 47,
       "ejemplo": "https://comodoro24.com.ar/la-scpl-no-atendera-al-publico-este-lunes-por-el-feriado-nacional/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "C24",
@@ -468,9 +468,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 34,
-      "notas": 32,
-      "ejemplo": "https://radiochubut.com/la-camara-de-apelaciones-de-puerto-madryn-condeno-a-una-comerciante-por-imputarle-un-delito-a-una-vecina-en-facebook/",
+      "publicaciones": 35,
+      "notas": 33,
+      "ejemplo": "https://radiochubut.com/chubut-mundo-trabajo/",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-11-05",
       "redes": {
@@ -623,7 +623,7 @@
       "notas": 18,
       "ejemplo": "https://lu17.com/contenido/155520/declaran-culpable-a-mauro-pavei-por-el-homicidio-de-nieves-en-comodoro",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {}
     },
     {
@@ -973,7 +973,7 @@
       "notas": 7,
       "ejemplo": "https://diariosanrafael.com.ar/por-que-estados-unidos-vota-siempre-un-martes-y-en-noviembre/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/DiarioSanRafael"
@@ -1208,7 +1208,7 @@
       "notas": 4,
       "ejemplo": "https://www.diariojudicial.com/news-104550-se-realizara-el-ii-congreso-patagonico-de-derecho-civil-y-comercial",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/diariojudicial"
@@ -1343,7 +1343,7 @@
       "notas": 3,
       "ejemplo": "https://www.infobae.com/judiciales/2026/10/03/una-frenada-brusca-la-sube-como-prueba-y-la-discusion-por-la-indemnizacion-una-pasajera-le-gano-un-juicio-a-una-empresa-de-colectivos/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "Infobae"
@@ -1656,8 +1656,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
@@ -1730,7 +1730,7 @@
       "notas": 1,
       "ejemplo": "https://www.centraldenoticiasmadariaga.com/2026/10/pagaba-un-plan-de-ahorro-para-comprar.html",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {}
     },
     {
@@ -1747,7 +1747,7 @@
       "notas": 1,
       "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/clarincom"
@@ -1831,7 +1831,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/DiarioHuarpe"
@@ -1912,7 +1912,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {}
     },
     {
@@ -1929,7 +1929,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/el10tv"
@@ -2314,7 +2314,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-24",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {}
     },
     {
@@ -2332,6 +2332,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Junín 24",
+      "alias": [],
+      "dominio": "junin24.com",
+      "url": "https://junin24.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://junin24.com/locales/fue-absuelto-un-hombre-acusado-de-abuso-sexual-agravado-por-haber-sido-cometido-por-ascendiente/",
+      "primera_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-10",
       "redes": {}
     },
     {
@@ -2567,7 +2584,7 @@
       "notas": 1,
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/perfilcom"
