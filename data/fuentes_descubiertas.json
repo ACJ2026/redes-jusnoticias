@@ -407,17 +407,6 @@
     "wp_revisado": "2026-10-23"
   },
   {
-    "nombre": "Red43",
-    "dominio": "red43.com.ar",
-    "primera_deteccion": "2026-10-27",
-    "ultima_deteccion": "2026-10-27",
-    "detecciones": 1,
-    "ultima_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPZjJhX3NwTEhyZDdaTGZMbU9RSEJNcTZHZTlJRWpNWTBFa2pLV3RWOVJyaHN4R2FoWXFJVkhRZ3BCekRWcnhMbmhLUXBJeWQ5N0RodW01X0JSMzY4Y1FNM1lOU0QwbVpBM0tFanpVQktNdklPYjg2RDhmVFRramY2WmlPd2VJNjFLMF9JRnltaVJLWHVBS1BkcTZkM1BHYmR4eW5BYTRPT2FCMm9fU2JKanp1OVVqamF4LWd4T1Nmamc3NFFhcTR1S0pXMVY?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-10-27"
-  },
-  {
     "nombre": "La Voz del Neuquén",
     "dominio": "weblavoz.com.ar",
     "primera_deteccion": "2026-10-27",
@@ -480,17 +469,6 @@
     "estado": "seguimiento_google_news",
     "wp": true,
     "wp_revisado": "2026-10-25"
-  },
-  {
-    "nombre": "Rio Negro",
-    "dominio": "rionegro.com.ar",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-10-31",
-    "detecciones": 25,
-    "ultima_url": "https://www.rionegro.com.ar/sociedad/estudiantes-de-la-universidad-del-comahue-organizan-el-primer-congreso-patagonico-de-derecho-en-roca-4779536/",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-10-23"
   },
   {
     "nombre": "ANBariloche",
@@ -700,7 +678,7 @@
     "dominio": "centraldenoticiasmadariaga.com",
     "primera_deteccion": "2026-10-28",
     "ultima_deteccion": "2026-11-10",
-    "detecciones": 50,
+    "detecciones": 51,
     "ultima_url": "https://www.centraldenoticiasmadariaga.com/2026/10/pagaba-un-plan-de-ahorro-para-comprar.html",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -711,7 +689,7 @@
     "dominio": "clarin.com",
     "primera_deteccion": "2026-10-23",
     "ultima_deteccion": "2026-11-10",
-    "detecciones": 40,
+    "detecciones": 41,
     "ultima_url": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -733,7 +711,9 @@
     "ultima_deteccion": "2026-11-10",
     "detecciones": 1,
     "ultima_url": "https://www.contextosfueguinos.com/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
-    "estado": "seguimiento_google_news"
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-10"
   },
   {
     "nombre": "diariocronica.com.ar",
@@ -828,7 +808,7 @@
     "dominio": "infobae.com",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-11-10",
-    "detecciones": 39,
+    "detecciones": 40,
     "ultima_url": "https://www.infobae.com/judiciales/2026/10/03/una-frenada-brusca-la-sube-como-prueba-y-la-discusion-por-la-indemnizacion-una-pasajera-le-gano-un-juicio-a-una-empresa-de-colectivos/",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -883,8 +863,8 @@
     "dominio": "lu17.com",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-11-10",
-    "detecciones": 440,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQU1lhVXhvbGlwZzhldlZuRjBkWTk2ejRydThLbUxqR1pOZ2RjenpqSEhIakdwTUxJRnBjNnF6RC1Tekt3ek90MGhXdGNYX0hDdzVFNkdGZUcwa05TblZES2xqZHhuaEwwVDl3NGJLRFBHajM2QkY4SGFWRkZMbHAyTVNJbTVsY0RKVXlFQlI0bkp2TjRLWWNMVHFFZ21OME5TVWltX3Z6bnZVcUdzRWVYMXQ1el9hclJx?oc=5",
+    "detecciones": 441,
+    "ultima_url": "https://lu17.com/contenido/155520/declaran-culpable-a-mauro-pavei-por-el-homicidio-de-nieves-en-comodoro",
     "estado": "seguimiento_google_news",
     "wp": false,
     "wp_revisado": "2026-10-23"
@@ -894,7 +874,7 @@
     "dominio": "msn.com",
     "primera_deteccion": "2026-10-23",
     "ultima_deteccion": "2026-11-10",
-    "detecciones": 70,
+    "detecciones": 71,
     "ultima_url": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -909,6 +889,28 @@
     "ultima_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxObk15OVBrb2htMk1lQ3M1Tll4ZElUUUhoZUdUNHZxTE9jOWpxN2hfM01RcUxjV1VfZXhhVkd3Yjc0ZndsMTVCMWp2cDNYb216dFFfYUhhajJlVnlodmo3cFBpUmxZTURVbWxLMjFsWHphU2pZS2Fqb1RwV2luMnJvb0lETDRDSi1Ndm1tM05MS0J3RE9XLVdUZV82RkFBVXN4SU9HZjgzQlBsNlJGRmZzNl9FUEJaakZpenN1NEVxNDJQdjNBSEdyUDJn?oc=5",
     "estado": "seguimiento_google_news",
     "wp": false,
+    "wp_revisado": "2026-10-23"
+  },
+  {
+    "nombre": "Red43",
+    "dominio": "red43.com.ar",
+    "primera_deteccion": "2026-10-27",
+    "ultima_deteccion": "2026-11-10",
+    "detecciones": 2,
+    "ultima_url": "https://www.red43.com.ar/nota/2026-11-10-14-37-48-chubut-condenado-por-unanimidad-por-seis-hechos-de-abuso-sexual-intrafamiliar",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-10-27"
+  },
+  {
+    "nombre": "Rio Negro",
+    "dominio": "rionegro.com.ar",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-10",
+    "detecciones": 26,
+    "ultima_url": "https://www.rionegro.com.ar/sociedad/estudiantes-de-la-universidad-del-comahue-organizan-el-primer-congreso-patagonico-de-derecho-en-roca-4779536/",
+    "estado": "seguimiento_google_news",
+    "wp": true,
     "wp_revisado": "2026-10-23"
   },
   {

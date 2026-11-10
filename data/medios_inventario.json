@@ -99,7 +99,7 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 105,
+      "publicaciones": 106,
       "notas": 98,
       "ejemplo": "https://delmardigital.net/la-scpl-no-atendera-al-publico-el-lunes-9-de-noviembre-por-el-feriado-nacional/",
       "primera_deteccion": "",
@@ -917,23 +917,6 @@
       }
     },
     {
-      "nombre": "Prensa Mercosur",
-      "alias": [],
-      "dominio": "prensamercosur.org",
-      "url": "https://prensamercosur.org",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 10,
-      "notas": 9,
-      "ejemplo": "https://prensamercosur.org/2026/11/08/comenzo-el-juicio-contra-un-exfuncionario-acusado-de-abuso-sexual/",
-      "primera_deteccion": "2026-10-26",
-      "ultima_deteccion": "2026-10-29",
-      "redes": {}
-    },
-    {
       "nombre": "Red43",
       "alias": [],
       "dominio": "red43.com.ar",
@@ -943,11 +926,11 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 10,
-      "notas": 10,
+      "publicaciones": 11,
+      "notas": 11,
       "ejemplo": "https://www.red43.com.ar/nota/2026-10-27-11-31-27-esquel-fallo-contra-plan-ovalo-y-ford-por-aumentos-desmedidos-en-un-plan-de-ahorro",
       "primera_deteccion": "2026-10-27",
-      "ultima_deteccion": "2026-10-27",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "Red43Noticias",
@@ -963,6 +946,23 @@
           "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
         ]
       }
+    },
+    {
+      "nombre": "Prensa Mercosur",
+      "alias": [],
+      "dominio": "prensamercosur.org",
+      "url": "https://prensamercosur.org",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 10,
+      "notas": 9,
+      "ejemplo": "https://prensamercosur.org/2026/11/08/comenzo-el-juicio-contra-un-exfuncionario-acusado-de-abuso-sexual/",
+      "primera_deteccion": "2026-10-26",
+      "ultima_deteccion": "2026-10-29",
+      "redes": {}
     },
     {
       "nombre": "Revista Quórum",
@@ -1286,7 +1286,7 @@
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 4,
       "notas": 4,
       "ejemplo": "https://genesis24.net/2026/09/14/casacion-ordeno-reparar-a-una-victima-de-abuso-sexual-cometido-en-el-ejercito/",
@@ -1499,9 +1499,9 @@
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 2,
       "notas": 2,
-      "ejemplo": "https://www.rionegro.com.ar/justicia/un-juez-de-chubut-aplico-lenguaje-claro-en-un-fallo-por-abuso-y-anexo-una-carta-para-la-victima-4725770/",
+      "ejemplo": "https://www.rionegro.com.ar/sociedad/estudiantes-de-la-universidad-del-comahue-organizan-el-primer-congreso-patagonico-de-derecho-en-roca-4779536/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-31",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/diariorionegro"
@@ -1829,9 +1829,9 @@
       "url": "https://contextosfueguinos.com",
       "tipo": "Portal digital",
       "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.contextosfueguinos.com/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
