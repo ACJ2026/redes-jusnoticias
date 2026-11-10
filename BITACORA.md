@@ -1228,3 +1228,14 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - No cambia qué se cuenta.
 - **Límite:** lo de Metadata se recupera hacia adelante. Su nota de Banfi (alrededor del 7/11) ya no está en las 3 páginas del RSS.
 - **Pruebas nuevas:** `tests/test_wp_a_rss.py`.
+
+## 2026-11-10 — Redes: se suman las cuentas de Instagram de Comodoro 24 y Noticias PMY (Claude, pedido de Ignacio)
+
+- **Pregunta de Ignacio:** ¿las redes están bien?
+- **Nuestras redes (consulta en vivo):** Facebook, Instagram, TikTok y YouTube responden sin errores. La última publicación es del 5/11 y las APIs lo confirman, así que no es una falla de carga. X sigue siendo a mano.
+- **Redes de otras cuentas:**
+  - En Google aparecían las notas de Banfi en el Instagram de Comodoro 24 (@comodoro.24) y de Noticias PMY (@pmynoticias). Esas cuentas **no estaban** en `data/cuentas_monitoreo.json`: de esos medios solo había Facebook y X, que no se pueden leer por API.
+  - Se agregan las dos cuentas.
+  - Algunas tandas de la búsqueda dieron «503» en la consulta de diagnóstico, que pidió todas las tandas seguidas.
+  - Instagram (etiquetas) sigue sin permiso de Meta.
+- No cambia el criterio: un posteo cuenta si enlaza la nota o repite su título completo, o queda «para confirmar» si viene de un medio que publicó la nota en su web.
