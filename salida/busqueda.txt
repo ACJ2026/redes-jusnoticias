@@ -1,0 +1,27 @@
+errores: {} 
+YouTube publicaciones 10 días: 0 | fechas: []
+Instagram publicaciones 10 días: 1 | fechas: ['2026-11-05']
+TikTok publicaciones 10 días: 1 | fechas: ['2026-11-05']
+Facebook publicaciones 10 días: 3 | fechas: ['2026-11-05']
+panel: Facebook JusNoticias ok | última: 2026-11-05
+panel: Facebook JusNoticias STJ ok | última: 2026-10-20
+panel: Instagram @jus_chubut ok | última: 2026-11-05
+panel: YouTube Poder Judicial del Chubut ok | última: 2026-10-15
+panel: TikTok @juschubut ok | última: 2026-11-05
+panel: X @Jus_Noticias La API de X pide créditos: no se consulta en vivo. | última: None
+busqueda ig-dirigida 0 ok | filas 0 | fuertes 0 | para confirmar 0 
+busqueda instagram 0 ok | filas 1 | fuertes 0 | para confirmar 1 
+     a_verificar Instagram @metadatanoticias 2026-10-16 14873 https://www.instagram.com/p/DekFLxslgub/
+busqueda instagram 1 ok | filas 0 | fuertes 0 | para confirmar 0 
+busqueda instagram 2 ok | filas 0 | fuertes 0 | para confirmar 0 
+busqueda instagram 3 ok | filas 0 | fuertes 0 | para confirmar 0 
+busqueda instagram 4 HTTP Error 503: Service Unavailable | filas 0 | fuertes 0 | para confirmar 0 
+busqueda instagram 5 ok | filas 0 | fuertes 0 | para confirmar 0 
+busqueda ig-etiquetas 0 error | filas 0 | fuertes 0 | para confirmar 0 (#10) Application does not have permission for this action
+busqueda facebook-publico 0 HTTP Error 503: Service Unavailable | filas 0 | fuertes 0 | para confirmar 0 
+busqueda facebook-publico 1 HTTP Error 503: Service Unavailable | filas 0 | fuertes 0 | para confirmar 0 
+busqueda youtube 0 HTTP Error 503: Service Unavailable | filas 0 | fuertes 0 | para confirmar 0 
+busqueda yt-canales 0 ok | filas 0 | fuertes 0 | para confirmar 0 
+busqueda yt-canales 1 HTTP Error 503: Service Unavailable | filas 0 | fuertes 0 | para confirmar 0 
+busqueda yt-canales 2 HTTP Error 503: Service Unavailable | filas 0 | fuertes 0 | para confirmar 0 
+busqueda yt-canales 3 HTTP Error 503: Service Unavailable | filas 0 | fuertes 0 | para confirmar 0 
