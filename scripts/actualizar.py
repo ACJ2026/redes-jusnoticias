@@ -376,6 +376,19 @@ print('WordPress descubiertos en lectura directa:', len(WP_DESCUBIERTOS))
 # Los descubiertos pueden ser sitios grandes: se limita la paginación a 10 lotes (8.000 notas).
 fuentes_wp = [(n, d) for n, d in WP.items()] + [(n, d, 80) for n, d in WP_DESCUBIERTOS.items()]
 WP_A_RSS = {}
+# Un WordPress que viene fallando seguido (o que ya anduvo por RSS) se lee directo por RSS, sin
+# pasar por su API: Metadata Noticias corta con «429» y el intento previo bloqueaba también el RSS.
+try:
+    _estado_previo = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'estado_medios.json'), encoding='utf8'))
+except Exception:
+    _estado_previo = {}
+def usar_rss(nombre, estado=_estado_previo):
+    e = estado.get(nombre) or {}
+    return bool(e.get('usar_rss')) or int(e.get('fallos_seguidos', 0) or 0) >= 3
+for _it in [it for it in fuentes_wp if usar_rss(it[0])]:
+    WP_A_RSS[_it[0]] = _it[1]
+fuentes_wp = [it for it in fuentes_wp if it[0] not in WP_A_RSS]
+if WP_A_RSS: print('WordPress que fallan seguido, directo por RSS:', ', '.join(sorted(WP_A_RSS)))
 with ThreadPoolExecutor(4) as ex:
     futures = {ex.submit(wp_site, item): item[0] for item in fuentes_wp}
     for fut in as_completed(futures):
@@ -1010,6 +1023,10 @@ try:
 except Exception:
     estado_medios = {}
 estado_medios = actualizar_estado_medios(estado_medios, cobertura, dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'))
+# Si un WordPress se pudo leer por RSS, se recuerda para ir directo al RSS en las próximas corridas.
+for _n in WP_A_RSS:
+    if (cobertura.get(_n) or '').startswith('Revisión completa') and _n in estado_medios:
+        estado_medios[_n]['usar_rss'] = True
 json.dump(estado_medios, open(ESTADO_PATH, 'w', encoding='utf8'), ensure_ascii=False, indent=1, sort_keys=True)
 alertas = sorted(m for m, e in estado_medios.items() if e.get('alerta'))
 print('Medios de lectura directa sin revisión correcta hace más de 24 h:', ', '.join(alertas) or 'ninguno')

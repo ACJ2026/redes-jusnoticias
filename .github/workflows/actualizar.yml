@@ -39,7 +39,12 @@ jobs:
     # El repositorio es público: GitHub no cobra minutos. Con 50 se cortaba algunos días (4/11/2026).
     timeout-minutes: 90
     steps:
+      # Se baja la rama al momento de arrancar, no el commit que disparó la corrida: si una
+      # corrida quedó en espera detrás de otra, así arranca con los datos que esa otra guardó
+      # (10/11/2026: la corrida 272 chocó con la 271 al guardar).
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
 
       - uses: actions/setup-python@v5
         with:
