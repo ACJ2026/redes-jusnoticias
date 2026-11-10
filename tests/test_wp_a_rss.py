@@ -31,7 +31,7 @@ class WpARssTest(unittest.TestCase):
 
 
     def test_wordpress_que_falla_seguido_va_directo_al_rss(self):
-        ns = {}
+        ns = {"_estado_previo": {}}
         exec(FUENTE[FUENTE.index("def usar_rss("):FUENTE.index("for _it in [it for it in fuentes_wp")], ns)
         usar = ns["usar_rss"]
         self.assertTrue(usar("M", {"M": {"fallos_seguidos": 116}}))
