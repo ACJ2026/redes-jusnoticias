@@ -489,6 +489,39 @@
       }
     },
     {
+      "nombre": "Vivo Trelew",
+      "alias": [],
+      "dominio": "vivotrelew.com",
+      "url": "https://vivotrelew.com",
+      "tipo": "Portal digital",
+      "localidad": "Trelew",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 34,
+      "notas": 32,
+      "ejemplo": "https://vivotrelew.com/21515-2/",
+      "primera_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-10",
+      "redes": {
+        "Facebook": [
+          "/VivoTrelew"
+        ],
+        "Instagram": [
+          "@vivotrelewok"
+        ],
+        "X": [
+          "@VivoTrelew"
+        ],
+        "YouTube": [
+          "@VivoTrelew"
+        ],
+        "TikTok": [
+          "@vivotrelew"
+        ]
+      }
+    },
+    {
       "nombre": "Chubut Hoy",
       "alias": [],
       "dominio": "chubuthoy.com",
@@ -1035,8 +1068,8 @@
       "publicaciones": 7,
       "notas": 7,
       "ejemplo": "https://www.lateclapatagonia.com.ar/100796-el-stj-se-expidio-sobre-el-conflicto-del-girsu-entre-los-municipios-de-esquel-y-trevelin",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "primera_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/LaTeclaPatagonia"
@@ -1471,14 +1504,14 @@
       "url": "https://0223.com.ar",
       "tipo": "Portal digital",
       "localidad": "Por verificar",
-      "metodo": "Sin método automático",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.0223.com.ar/nota/2026-10-19-19-12-0-escracho-a-una-mujer-por-chorra-la-acusacion-era-falsa-y-debera-pagarle-2-4-millones",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "primera_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/0223com"
@@ -1888,14 +1921,14 @@
       "url": "https://diariouno.com.ar",
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
-      "metodo": "Sin método automático",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.diariouno.com.ar/tenia-un-plan-ahorro-el-precio-del-auto-subio-un-952-la-crucial-decision-la-justicia-n1611273",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "primera_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-10",
       "redes": {}
     },
     {
@@ -2153,14 +2186,14 @@
       "url": "https://elonce.com",
       "tipo": "Portal digital",
       "localidad": "Paraná",
-      "metodo": "Sin método automático",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.elonce.com/amp/acuso-de-ladrona-a-una-vecina-y-debera-pagar-2-4-millones.htm",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "primera_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
           "/eloncecom"
@@ -2819,39 +2852,6 @@
       "primera_deteccion": "2026-10-27",
       "ultima_deteccion": "2026-10-28",
       "redes": {}
-    },
-    {
-      "nombre": "Vivo Trelew",
-      "alias": [],
-      "dominio": "vivotrelew.com",
-      "url": "https://vivotrelew.com",
-      "tipo": "Portal digital",
-      "localidad": "Trelew",
-      "metodo": "Sin método automático",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://vivotrelew.com/puerto-madryn-la-justicia-rechazo-el-homeschooling-y-ordeno-escolarizar-a-una-nena/",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/VivoTrelew"
-        ],
-        "Instagram": [
-          "@vivotrelewok"
-        ],
-        "X": [
-          "@VivoTrelew"
-        ],
-        "YouTube": [
-          "@VivoTrelew"
-        ],
-        "TikTok": [
-          "@vivotrelew"
-        ]
-      }
     },
     {
       "nombre": "La Vanguardia Noticias",
