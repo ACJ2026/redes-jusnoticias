@@ -41,9 +41,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 123,
-      "notas": 98,
-      "ejemplo": "https://canal12web.com/crimen-de-jorge-nieves-mauro-pavei-fue-declarado-culpable-de-homicidio-atenuado-por-emocion-violenta/",
+      "publicaciones": 124,
+      "notas": 99,
+      "ejemplo": "https://canal12web.com/entre-lagrimas-y-fe-el-relato-de-una-chubutense-que-participo-del-encuentro-con-el-papa/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
       "redes": {
@@ -201,6 +201,9 @@
         ],
         "X": [
           "@NoticiasPmy"
+        ],
+        "Instagram": [
+          "@pmynoticias"
         ]
       }
     },
@@ -353,6 +356,9 @@
         ],
         "YouTube": [
           "/channel/UCBc0w72RGAFyvbaKSHO6h_Q"
+        ],
+        "Instagram": [
+          "@comodoro.24"
         ]
       }
     },
@@ -1472,8 +1478,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 2,
       "notas": 2,
       "ejemplo": "https://www.rionegro.com.ar/justicia/un-juez-de-chubut-aplico-lenguaje-claro-en-un-fallo-por-abuso-y-anexo-una-carta-para-la-victima-4725770/",
@@ -1578,6 +1584,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Aire Libre FM 96.3",
+      "alias": [],
+      "dominio": "airelibre.com.ar",
+      "url": "https://airelibre.com.ar",
+      "tipo": "Radio",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-10",
       "redes": {}
     },
     {
@@ -1689,8 +1712,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://atentochubut.com/el-banco-del-chubut-y-el-superior-tribunal-de-justicia-firmaron-un-convenio-de-cooperacion-institucional/",
