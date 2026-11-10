@@ -2568,6 +2568,20 @@
       "estado": "Identificada en el sitio del medio (26/10/2026); sin repercusión confirmada todavía",
       "visto": "2026-10-26",
       "paginas": 1
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@comodoro.24",
+      "tipo": "Medio con sitio web",
+      "medio": "Comodoro 24",
+      "estado": "Visto en Google con notas de JusNoticias (10/11/2026)"
+    },
+    {
+      "red": "Instagram",
+      "cuenta": "@pmynoticias",
+      "tipo": "Medio con sitio web",
+      "medio": "Noticias PMY",
+      "estado": "Visto en Google con notas de JusNoticias (10/11/2026)"
     }
   ],
   "relevamiento": "Claude Chrome, 22/10/2026: pie de página de 30 sitios y búsqueda en Facebook y X de 5 notas. Instagram no permite buscar publicaciones por texto; los resultados de Facebook son aproximados."
