@@ -724,9 +724,9 @@
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 13,
-      "notas": 12,
-      "ejemplo": "https://chacodiapordia.com/la-facultad-de-derecho-sera-sede-del-concurso-nacional-de-litigacion-penal/",
+      "publicaciones": 14,
+      "notas": 13,
+      "ejemplo": "https://chacodiapordia.com/leon-xiv-el-recorrido-que-hara-este-martes-entre-cordoba-y-buenos-aires/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-22",
       "redes": {
@@ -2614,7 +2614,7 @@
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-06",
+      "ultima_deteccion": "2026-11-10",
       "redes": {}
     },
     {
@@ -2783,7 +2783,7 @@
       "notas": 1,
       "ejemplo": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-09",
+      "ultima_deteccion": "2026-11-10",
       "redes": {}
     },
     {
