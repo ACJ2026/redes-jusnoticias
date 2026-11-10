@@ -1214,3 +1214,17 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - No cambia qué se cuenta: solo dónde se busca.
 - **Corrección:** en la conversación había dicho por error que Chubutline, El Valle Online, Madryn Urbana y Revista Quórum solo se buscaban por Google. Ya se leen directo: son WordPress descubiertos.
 - **Prueba nueva:** `tests/test_medios_del_historial.py`.
+
+## 2026-11-10 — Metadata Noticias: lectura por RSS cuando su WordPress corta (Claude, pedido de Ignacio)
+
+- **Qué vio Ignacio:** en Google, la nota 15005 (Banfi) aparecía en Metadata Noticias y en suractual.com.ar, que el tablero no tenía. Ya estaban El Chubut, Comodoro 24, Noticias PMY, Examedia y Justicia.ar.
+- **Diagnóstico:**
+  - **Metadata Noticias:** la lectura directa **falló 115 corridas seguidas** (`estado_medios.json`: «Fuente temporalmente no disponible»). Su sitio corta con «429 demasiados pedidos» después del primer pedido. El lector de WordPress pide 8 páginas en paralelo, lo bloquean y se pierde el medio entero. Su RSS sí responde: 10 notas por página con el texto completo, y se pueden pedir 3 páginas espaciadas (casi un día).
+  - **suractual.com.ar:** responde «403 prohibido» a cualquier lectura automática, y Google Noticias no lo muestra. No se puede leer desde el tablero.
+- **Arreglo** (`scripts/actualizar.py`):
+  - Si la lectura de WordPress de un medio falla, ese medio pasa a la lectura por RSS en la misma corrida.
+  - El RSS guarda el texto completo de cada nota (`content:encoded`), y ese texto se usa para comparar sin volver a pedir cada página.
+  - Un RSS de WordPress se lee en 3 páginas, con 3 segundos entre una y otra.
+  - No cambia qué se cuenta.
+- **Límite:** lo de Metadata se recupera hacia adelante. Su nota de Banfi (alrededor del 7/11) ya no está en las 3 páginas del RSS.
+- **Pruebas nuevas:** `tests/test_wp_a_rss.py`.

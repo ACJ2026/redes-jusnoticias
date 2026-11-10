@@ -375,6 +375,7 @@ WP_DESCUBIERTOS = {r['nombre']: r['dominio'] for r in REGISTRO
 print('WordPress descubiertos en lectura directa:', len(WP_DESCUBIERTOS))
 # Los descubiertos pueden ser sitios grandes: se limita la paginación a 10 lotes (8.000 notas).
 fuentes_wp = [(n, d) for n, d in WP.items()] + [(n, d, 80) for n, d in WP_DESCUBIERTOS.items()]
+WP_A_RSS = {}
 with ThreadPoolExecutor(4) as ex:
     futures = {ex.submit(wp_site, item): item[0] for item in fuentes_wp}
     for fut in as_completed(futures):
@@ -391,6 +392,10 @@ with ThreadPoolExecutor(4) as ex:
             print(name, n, len(out))
         except Exception as e:
             cobertura[name] = 'Fuente temporalmente no disponible; se conserva el historial previo'
+            # Si el WordPress no responde (p. ej. Metadata Noticias corta con «429 demasiados
+            # pedidos»), se intenta igual con su RSS en la lectura directa sin WordPress.
+            dom_fallido = next((it[1] for it in fuentes_wp if it[0] == name), '')
+            if dom_fallido: WP_A_RSS[name] = dom_fallido
             prev_rows = []
             if PREV and os.path.exists(PREV):
                 try:
@@ -413,6 +418,8 @@ for r in REGISTRO:
     if (d and r.get('nombre') and r.get('wp') is False and not WP_NO_DESCUBRIR.search(d) and not EXTRANJERO.search(d)
             and d.replace('www.', '') not in {x.replace('www.', '') for x in NO_WP.values()}):
         NO_WP.setdefault(r['nombre'], d)
+for _n, _d in WP_A_RSS.items(): NO_WP.setdefault(_n, _d)
+if WP_A_RSS: print('WordPress que no respondieron, se leen por RSS:', ', '.join(sorted(WP_A_RSS)))
 RUTAS_FEED = ('/feed', '/rss', '/rss.xml', '/feed.xml', '/rss/', '/index.xml')
 RUTAS_SITEMAP = ('/news-sitemap.xml', '/sitemap-news.xml', '/sitemap_news.xml', '/sitemap.xml', '/sitemap_index.xml')
 LIMITE_LECTURAS_NO_WP = 600
@@ -432,8 +439,10 @@ def items_de_feed(xml):
     for it in re.findall(r'<item[\s>](.*?)</item>', xml, re.S):
         ti = re.search(r'<title[^>]*>(.*?)</title>', it, re.S); lk = re.search(r'<link[^>]*>(.*?)</link>', it, re.S)
         pd = re.search(r'<pubDate>(.*?)</pubDate>', it) or re.search(r'<dc:date>(.*?)</dc:date>', it)
+        ce = re.search(r'<content:encoded>(.*?)</content:encoded>', it, re.S)
         if ti and lk:
             out.append({'t': re.sub(r'\s+[-–—|·]\s+[^-–—|·]{2,60}$', '', strip(re.sub(r'<!\[CDATA\[|\]\]>', '', ti.group(1)))), 'u': html.unescape(lk.group(1)).strip(), 'd': fecha_iso(pd.group(1) if pd else '')})
+            if ce: out[-1]['c'] = strip(re.sub(r'<!\[CDATA\[|\]\]>', '', ce.group(1)))
     for it in re.findall(r'<entry[\s>](.*?)</entry>', xml, re.S):
         ti = re.search(r'<title[^>]*>(.*?)</title>', it, re.S); lk = re.search(r'<link[^>]+href="([^"]+)"', it)
         pd = re.search(r'<(?:published|updated)>(.*?)</', it)
@@ -465,6 +474,14 @@ def ultimas_noticias(dom):
         t = get(base + ruta, timeout=15, tries=1) or ''
         items = recientes_de(items_de_feed(t)) if ('<item' in t or '<entry' in t) else []
         if items:
+            # Un RSS de WordPress trae 10 notas por página: se piden dos más, espaciadas, para cubrir
+            # el tiempo entre corridas (algunos sitios cortan si se piden muy seguido).
+            if ruta == '/feed' and t.count('<item') >= 10:
+                for pg in (2, 3):
+                    time.sleep(3)
+                    t2 = get(f'{base}/feed/?paged={pg}', timeout=15, tries=1) or ''
+                    if '<item' not in t2: break
+                    items += recientes_de(items_de_feed(t2))
             fuentes.append('RSS'); juntos.update({it['u']: it for it in items}); break
     robots = get(base + '/robots.txt', timeout=10, tries=1) or ''
     rutas = [u.strip() for u in re.findall(r'(?im)^sitemap:\s*(\S+)', robots)] + list(RUTAS_SITEMAP)
@@ -501,10 +518,13 @@ for name, dom, fuente, items in resultados_no_wp:
         ms = match(items)
         cerca_ms = cerca(items, ms)
         recientes = pendientes_texto(items, ms + cerca_ms)[:40]
-        a_leer = [m['u'] for m in ms + cerca_ms + recientes][:max(0, LIMITE_LECTURAS_NO_WP - lecturas_no_wp)]
+        # Lo que el RSS ya trae completo no se vuelve a pedir (algunos sitios cortan por exceso de pedidos).
+        del_feed = {it['u']: it['c'] for it in items if len(it.get('c') or '') > 400}
+        a_leer = [m['u'] for m in ms + cerca_ms + recientes if m['u'] not in del_feed][:max(0, LIMITE_LECTURAS_NO_WP - lecturas_no_wp)]
         lecturas_no_wp += len(a_leer)
         with ThreadPoolExecutor(8) as ex:
             textos = dict(zip(a_leer, ex.map(texto_pagina, a_leer)))
+        textos.update(del_feed)
         # Sin WordPress el título suele venir del enlace y puede coincidir por azar (p. ej. «Día
         # de la Astronomía» con un congreso): también lo que coincide por título se confirma leyendo el texto.
         extra = confirmar_por_texto(ms + cerca_ms, textos)
