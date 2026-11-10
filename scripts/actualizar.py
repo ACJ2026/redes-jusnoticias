@@ -274,6 +274,23 @@ def cargar_registro():
         print(f'AVISO: registro de medios no legible ({type(e).__name__}); se inicia vacío')
         return []
 REGISTRO = cargar_registro()
+def sumar_medios_del_historial(registro, historial, conocidos, hoy):
+    """Un medio que ya publicó una nota nuestra (fila contada, enlace directo) entra al registro
+    para leerse directo en su sitio, sin depender de que Google o Bing lo muestren (10/11/2026:
+    Vivo Trelew y La Tecla Patagonia solo se buscaban por buscador). Devuelve cuántos sumó."""
+    ya = {(r.get('dominio') or '').replace('www.', '') for r in registro} | {d.replace('www.', '') for d in conocidos}
+    sumados = 0
+    for f in historial:
+        u = f.get('url') or ''
+        if f.get('confianza') == 'Baja' or not f.get('medio') or not u.startswith('http') or 'news.google.' in u:
+            continue
+        dominio = (urlparse(u).hostname or '').lower().replace('www.', '')
+        if not dominio or dominio in ya or WP_NO_DESCUBRIR.search(dominio) or EXTRANJERO.search(dominio):
+            continue
+        registro.append({'nombre': f['medio'], 'dominio': dominio, 'primera_deteccion': hoy, 'ultima_deteccion': hoy,
+                         'detecciones': 1, 'ultima_url': u, 'estado': 'visto_en_historial'})
+        ya.add(dominio); sumados += 1
+    return sumados
 WP = {'Chubut Hoy': 'www.chubuthoy.com', 'Radio de Camioneros': 'radiodecamioneros.com.ar', 'FM Tropical': 'fmtropicalradio.com', 'Diario La Portada': 'diariolaportada.com.ar', 'FM del Lago Esquel': 'fmdellagoesquel.com.ar', 'Mil Patagonias': 'www.milpatagonias.com', 'FM Bahía Engaño': 'fmbahiaengano.com', 'Digital Chubut': 'digitalchubut.com', 'Noticias PMY': 'noticiaspmy.com', 'Argentar Noticias': 'argentarnoticias.com.ar', 'Radio Chubut': 'radiochubut.com', 'La Posta Comodorense': 'lapostacomodorense.com.ar', 'El Comodorense': 'www.elcomodorense.net', 'Comodoro 24': 'comodoro24.com.ar', 'Del Mar Digital': 'delmardigital.net', 'El Diario Web': 'www.eldiarioweb.com', 'Metadata Noticias': 'www.metadatanoticias.com.ar', 'Canal 12': 'canal12web.com', 'Cholila Online': 'cholilaonline.ar', 'Radio 3 Cadena Patagonia': 'radio3cadenapatagonia.com.ar', 'Atento Chubut': 'atentochubut.com', 'Vibra News': 'vibranews.com.ar'}
 def wp_site(item):
     name, dom = item[0], item[1]
@@ -338,6 +355,13 @@ def detectar_wp(registro):
     j = getj(f"https://{registro['dominio']}/wp-json/wp/v2/posts?per_page=1&_fields=id")
     return registro, isinstance(j, list)
 hoy_reg = dt.date.today().isoformat()
+try:
+    _historial = json.load(open(PREV, encoding='utf8')) if PREV and os.path.exists(PREV) else []
+except Exception:
+    _historial = []
+_conocidos = list(WP.values()) + ['www.elchubut.com.ar', 'www.red43.com.ar', 'www.elpatagonico.com', 'elmonterizo.com', 'examedia.com.ar',
+                                  'www.diariojornada.com.ar', 'canal4esquel.com.ar', 'www.adnsur.com.ar', 'www.eqsnotas.com', 'laopinionaustral.com.ar', 'www.justicia.ar']
+print('Medios del historial sumados a lectura directa:', sumar_medios_del_historial(REGISTRO, _historial, _conocidos, hoy_reg))
 dominios_wp = {d.replace('www.', '') for d in WP.values()}
 pendientes_wp = [r for r in REGISTRO if r.get('dominio') and not WP_NO_DESCUBRIR.search(r['dominio']) and not EXTRANJERO.search(r['dominio'])
                  and r['dominio'].replace('www.', '') not in dominios_wp

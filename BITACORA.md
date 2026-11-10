@@ -1198,3 +1198,19 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Falló la prueba `test_coincidencias_genericas_de_mujeres_rurales_no_se_cuentan_como_confirmadas`. Al sacar justicia.ar de la lista `NO`, también entraron sus resultados de Google Noticias, y uno de la nota 14851 quedó contado sin verificar el texto.
   - **Arreglo:** justicia.ar vuelve a la lista `NO`, que solo filtra los resultados de Google y Bing. Entra únicamente por su lectura directa, que compara título y texto con la nota.
 - **Decisión de Ignacio (opción B):** sigue la regla del 30/10. Lo publicado antes que nuestra nota no se cuenta, aunque sea la tarde anterior. Por eso Cholila Online, El Patagónico y Diario Crónica no cuentan para la nota 15005.
+
+## 2026-11-10 — Medios del historial pasan solos a lectura directa (Claude, OK de Ignacio)
+
+- **Qué vio Ignacio:** en Google, la nota 15016 (estudiantes de Madryn y juicio por jurados, 5/11 11:58) aparecía en Vivo Trelew y Madryn Ahora, y el tablero no los tenía.
+- **Diagnóstico:**
+  - Vivo Trelew publicó el 5/11 a las 11:31, 27 minutos **antes** que nuestra nota, y con redacción propia (0 % de frases en común). Por la regla vigente (opción B, nada anterior a la nota) no cuenta.
+  - Madryn Ahora no tiene RSS, mapa del sitio ni WordPress abierto: no se puede leer directo.
+  - Google los muestra porque busca por tema; el tablero cuenta solo lo que difunde nuestra nota.
+- **Hueco encontrado:** algunos medios que ya publicaron notas nuestras no estaban en la lista de lectura directa. Solo se encontraban si Google o Bing los mostraban.
+- **Arreglo:**
+  - Nueva función `sumar_medios_del_historial` en `scripts/actualizar.py`. En cada corrida, todo medio con una publicación contada y enlace directo en `data/rep2.json`, que todavía no se lea directo, entra solo al registro (`data/fuentes_descubiertas.json`, estado «visto_en_historial»).
+  - Desde ahí, el tablero detecta si es WordPress y lo lee como a los demás. Si no lo es, lo busca por RSS o mapa del sitio.
+  - Con los datos de hoy suma 5: Vivo Trelew, La Tecla Patagonia, Diario UNO, 0223 y Elonce.
+  - No cambia qué se cuenta: solo dónde se busca.
+- **Corrección:** en la conversación había dicho por error que Chubutline, El Valle Online, Madryn Urbana y Revista Quórum solo se buscaban por Google. Ya se leen directo: son WordPress descubiertos.
+- **Prueba nueva:** `tests/test_medios_del_historial.py`.
