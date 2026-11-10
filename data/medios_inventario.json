@@ -70,8 +70,8 @@
       "tipo": "Portal digital",
       "localidad": "Chubut (localidad por verificar)",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 114,
       "notas": 114,
       "ejemplo": "https://www.metadatanoticias.com.ar/2026/10/16/un-fallo-ordeno-la-escolarizacion-presencial-de-una-nina-en-madryn-luego-de-que-sus-padres-buscaban-educarla-bajo-el-sistema-homeschooling/",
@@ -754,6 +754,23 @@
       }
     },
     {
+      "nombre": "Aire Libre FM 96.3",
+      "alias": [],
+      "dominio": "airelibre.com.ar",
+      "url": "https://airelibre.com.ar",
+      "tipo": "Radio",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 14,
+      "notas": 9,
+      "ejemplo": "https://www.airelibre.com.ar/el-stj-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
+      "primera_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-10",
+      "redes": {}
+    },
+    {
       "nombre": "CHACODIAPORDIA.COM",
       "alias": [],
       "dominio": "chacodiapordia.com",
@@ -955,8 +972,8 @@
       "tipo": "Prensa gráfica",
       "localidad": "Cobertura nacional",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 10,
       "notas": 10,
       "ejemplo": "https://revistaquorum.com.ar/2026/09/17/la-carta-de-un-juez-a-una-nina-victima-de-abuso-tu-tio-no-va-a-ir-a-la-carcel-y-no-es-porque-no-te-haya-creido/",
@@ -1587,23 +1604,6 @@
       "redes": {}
     },
     {
-      "nombre": "Aire Libre FM 96.3",
-      "alias": [],
-      "dominio": "airelibre.com.ar",
-      "url": "https://airelibre.com.ar",
-      "tipo": "Radio",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "2026-11-10",
-      "ultima_deteccion": "2026-11-10",
-      "redes": {}
-    },
-    {
       "nombre": "Ambito",
       "alias": [],
       "dominio": "",
@@ -1821,6 +1821,23 @@
           "@clarincom"
         ]
       }
+    },
+    {
+      "nombre": "Contextos Fueguinos",
+      "alias": [],
+      "dominio": "contextosfueguinos.com",
+      "url": "https://contextosfueguinos.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.contextosfueguinos.com/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
+      "primera_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-10",
+      "redes": {}
     },
     {
       "nombre": "Crónica Digital",
