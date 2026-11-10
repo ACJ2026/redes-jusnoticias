@@ -1,0 +1,54 @@
+name: Diagnóstico del buscador (solo lectura)
+
+on:
+  push:
+    branches:
+      - 'claude/diagnostico-*'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnostico:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Redes en vivo (solo lectura)
+        run: |
+          mkdir -p salida
+          python3 - <<'PY' | tee salida/busqueda.txt
+          import json, urllib.request, datetime as dt
+          S = "https://jusnoticias.pages.dev"
+          def pedir(r):
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(S + r, headers={"User-Agent": "diag"}), timeout=120) as x:
+                      return json.load(x)
+              except Exception as e:
+                  return {"_error": str(e)}
+          desde = (dt.date.today() - dt.timedelta(days=10)).isoformat()
+          d = pedir(f"/api/redes?desde={desde}&redes=Facebook,Instagram,YouTube,TikTok")
+          print("errores:", json.dumps(d.get("errores"), ensure_ascii=False)[:500], d.get("_error", ""))
+          for red, v in (d.get("redes") or {}).items():
+              fs = v.get("filas") or []
+              print(red, "publicaciones 10 días:", len(fs), "| fechas:", sorted({f.get("fecha") for f in fs})[-6:])
+          pv = pedir("/api/panel-vivo")
+          for c in pv.get("cuentas", []): print("panel:", c.get("red"), c.get("cuenta"), "ok" if c.get("ok") else c.get("error"), "| última:", c.get("ultimaPublicacion"))
+          plan = pedir("/api/compartidos?plan=1")
+          for f in plan.get("fuentes", []):
+              for l in range(f["lotes"]):
+                  x = pedir(f"/api/compartidos?fuente={f['id']}&lote={l}")
+                  fu = list((x.get("fuentes") or {}).values())
+                  est = fu[0].get("estado") if fu else x.get("_error")
+                  filas = x.get("filas") or []
+                  fuertes = [r for r in filas if r.get("verificacion") == "fuerte"]
+                  conf = [r for r in filas if r.get("medio_publico_nota")]
+                  print("busqueda", f["id"], l, est, "| filas", len(filas), "| fuertes", len(fuertes), "| para confirmar", len(conf), (fu[0].get("error") or "")[:120] if fu else "")
+                  for r in fuertes + conf: print("    ", r.get("verificacion"), r.get("red"), r.get("cuenta"), r.get("fecha"), r.get("nota_id"), r.get("publicacion_url"))
+          PY
+      - name: Guardar salida
+        run: |
+          git config user.name "jusnoticias-bot"; git config user.email "actions@users.noreply.github.com"
+          git checkout --orphan diagnostico-redes-salida
+          git rm -rq --cached . ; git add salida; git commit -qm "Diagnóstico redes"
+          git push -f origin diagnostico-redes-salida
