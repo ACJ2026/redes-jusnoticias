@@ -1239,3 +1239,9 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
   - Algunas tandas de la búsqueda dieron «503» en la consulta de diagnóstico, que pidió todas las tandas seguidas.
   - Instagram (etiquetas) sigue sin permiso de Meta.
 - No cambia el criterio: un posteo cuenta si enlaza la nota o repite su título completo, o queda «para confirmar» si viene de un medio que publicó la nota en su web.
+- **10/11 — Primera corrida con el arreglo:**
+  - Metadata **siguió sin leerse**. Su WordPress falló («429») y, al pasar al RSS segundos después, el sitio ya lo tenía bloqueado («sin lista de noticias legible»).
+  - Además la corrida 272 falló al guardar: chocó con la 271 en `data/*.json`. Había quedado en espera detrás de la 271 y, al arrancar, bajó el commit que la disparó, sin los datos que la 271 acababa de guardar. No se perdió nada.
+- **Arreglo:**
+  - Un WordPress que viene fallando seguido (3 o más veces) o que ya anduvo por RSS (`usar_rss` en `estado_medios.json`) va directo al RSS, sin pasar por su API.
+  - `actualizar.yml` baja la rama al momento de arrancar (`ref: ${{ github.ref }}`). La concurrencia no cambia (`cancel-in-progress: false`).

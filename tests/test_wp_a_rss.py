@@ -30,5 +30,21 @@ class WpARssTest(unittest.TestCase):
         self.assertIn("f'{base}/feed/?paged={pg}'", FUENTE)
 
 
+    def test_wordpress_que_falla_seguido_va_directo_al_rss(self):
+        ns = {}
+        exec(FUENTE[FUENTE.index("def usar_rss("):FUENTE.index("for _it in [it for it in fuentes_wp")], ns)
+        usar = ns["usar_rss"]
+        self.assertTrue(usar("M", {"M": {"fallos_seguidos": 116}}))
+        self.assertTrue(usar("M", {"M": {"usar_rss": True, "fallos_seguidos": 0}}))
+        self.assertFalse(usar("M", {"M": {"fallos_seguidos": 1}}))
+        self.assertFalse(usar("M", {}))
+        self.assertIn("estado_medios[_n]['usar_rss'] = True", FUENTE)
+
+    def test_la_corrida_baja_la_rama_al_arrancar(self):
+        flujo = (ROOT / ".github/workflows/actualizar.yml").read_text(encoding="utf-8")
+        self.assertIn("ref: ${{ github.ref }}", flujo)
+        self.assertIn("cancel-in-progress: false", flujo)
+
+
 if __name__ == "__main__":
     unittest.main()
