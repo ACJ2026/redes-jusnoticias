@@ -1891,6 +1891,23 @@
       "redes": {}
     },
     {
+      "nombre": "Diario El Sureño",
+      "alias": [],
+      "dominio": "surenio.com.ar",
+      "url": "https://surenio.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-11",
+      "redes": {}
+    },
+    {
       "nombre": "Diario Huarpe",
       "alias": [],
       "dominio": "diariohuarpe.com",
@@ -2046,8 +2063,8 @@
       "tipo": "Portal digital",
       "localidad": "Mendoza",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2687,7 +2704,7 @@
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-10",
+      "ultima_deteccion": "2026-11-11",
       "redes": {}
     },
     {

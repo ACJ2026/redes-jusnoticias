@@ -3,7 +3,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -11,7 +11,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -19,7 +19,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -27,7 +27,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (títulos; texto en casos dudosos)",
   "ultimo_fallo": ""
  },
@@ -35,7 +35,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -43,7 +43,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -59,7 +59,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -75,7 +75,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -83,7 +83,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -91,7 +91,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "2026-11-10T12:37:10Z",
   "usar_rss": true
@@ -100,7 +100,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -108,7 +108,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-05T21:45:38Z"
  },
@@ -116,7 +116,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": ""
  },
@@ -124,7 +124,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-09T10:08:15Z"
  },
@@ -148,7 +148,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -156,7 +156,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -164,7 +164,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -172,7 +172,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -180,7 +180,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-01T17:46:39Z"
  },
@@ -188,7 +188,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "",
   "usar_rss": true
@@ -213,7 +213,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-01T17:46:39Z"
  },
@@ -221,7 +221,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": ""
  },
@@ -237,15 +237,23 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
+  "ultimo_fallo": ""
+ },
+ "Diario El Sureño": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": false,
+  "ultima_revision_ok": "",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
   "ultimo_fallo": ""
  },
  "Diario Huarpe": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -261,7 +269,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -269,7 +277,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-07T09:48:56Z"
  },
@@ -293,7 +301,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-04T22:02:32Z"
  },
@@ -309,7 +317,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -317,7 +325,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -325,7 +333,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (títulos; texto en casos dudosos)",
   "ultimo_fallo": ""
  },
@@ -357,7 +365,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -373,7 +381,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-10-26T09:52:50Z"
  },
@@ -382,24 +390,24 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-11T02:23:14Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "El Esquiu": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "El Extremo Sur": {
   "alerta": true,
-  "fallos_seguidos": 121,
+  "fallos_seguidos": 122,
   "lectura_directa": true,
   "ultima_revision_ok": "",
   "ultimo_estado": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
-  "ultimo_fallo": "2026-11-11T02:23:14Z"
+  "ultimo_fallo": "2026-11-11T06:05:10Z"
  },
  "El Mediador - Santa Cruz": {
   "alerta": false,
@@ -413,7 +421,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -445,7 +453,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -453,7 +461,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -469,7 +477,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -485,7 +493,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -493,7 +501,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-01T17:46:39Z"
  },
@@ -501,7 +509,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-01T17:46:39Z"
  },
@@ -509,7 +517,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -517,7 +525,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-01T17:46:39Z"
  },
@@ -533,7 +541,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -541,7 +549,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "",
   "usar_rss": true
@@ -550,7 +558,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -558,7 +566,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -566,7 +574,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -590,7 +598,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por número)",
   "ultimo_fallo": ""
  },
@@ -604,17 +612,17 @@
  },
  "LU17": {
   "alerta": true,
-  "fallos_seguidos": 47,
+  "fallos_seguidos": 48,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-03T21:44:40Z",
   "ultimo_estado": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
-  "ultimo_fallo": "2026-11-11T02:23:14Z"
+  "ultimo_fallo": "2026-11-11T06:05:10Z"
  },
  "La Brújula 24": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -622,7 +630,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -638,7 +646,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -646,7 +654,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-08T14:04:41Z"
  },
@@ -654,7 +662,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": "2026-11-03T21:44:40Z"
  },
@@ -662,7 +670,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -686,7 +694,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -702,7 +710,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -710,7 +718,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -718,7 +726,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "2026-11-10T14:22:27Z",
   "usar_rss": true
@@ -727,7 +735,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-01T17:46:39Z"
  },
@@ -735,7 +743,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -759,7 +767,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -767,7 +775,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -775,7 +783,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -799,7 +807,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-09T18:10:48Z"
  },
@@ -815,7 +823,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -831,7 +839,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-09T14:17:54Z"
  },
@@ -839,7 +847,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -847,7 +855,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -855,7 +863,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-10-27T17:53:42Z"
  },
@@ -879,7 +887,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": "2026-11-10T12:37:10Z",
   "usar_rss": true
@@ -888,7 +896,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -896,7 +904,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -904,7 +912,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-05T21:45:38Z"
  },
@@ -928,7 +936,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -936,7 +944,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -944,7 +952,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-07T17:44:59Z"
  },
@@ -952,7 +960,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -960,7 +968,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -992,7 +1000,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1000,7 +1008,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-11T02:23:14Z",
+  "ultima_revision_ok": "2026-11-11T06:05:10Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  }
