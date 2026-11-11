@@ -4104,7 +4104,7 @@
     "me_gusta": 0,
     "comentarios": 0,
     "compartidos": 0,
-    "vistas": 117,
+    "vistas": 118,
     "propia": "Sí",
     "key": "tt-7704714839855271188",
     "url": "https://www.tiktok.com/@juschubut/video/7704714839855271188?utm_campaign=tt4d_open_api&utm_source=sbaw9943git83c8l01"
@@ -4143,7 +4143,7 @@
     "fecha": "2026-11-10",
     "texto": "",
     "nota_id": null,
-    "me_gusta": 10,
+    "me_gusta": 11,
     "comentarios": 0,
     "compartidos": null,
     "vistas": null,
@@ -4157,12 +4157,26 @@
     "fecha": "2026-11-10",
     "texto": "",
     "nota_id": null,
-    "me_gusta": 6,
+    "me_gusta": 8,
     "comentarios": 1,
     "compartidos": 3,
     "vistas": null,
     "propia": "Sí",
     "key": "fb-116101835114568_1783567543768833",
     "url": "https://www.facebook.com/reel/1963659768303906/"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-11",
+    "texto": "Chubut define políticas pa",
+    "nota_id": null,
+    "me_gusta": 0,
+    "comentarios": 0,
+    "compartidos": 0,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1784383613687226",
+    "url": "https://www.facebook.com/1769483335177254/posts/1784383613687226"
   }
 ]
