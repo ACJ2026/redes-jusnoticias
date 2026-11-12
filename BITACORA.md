@@ -1253,3 +1253,4 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Configuración:** secreto `GEMINI_API_KEY` en Cloudflare Pages (Producción), cargado por Ignacio el 12/11. Proyecto de Google AI Studio «Default Gemini Project», nivel gratuito.
 - **Pruebas:** `tests/test_comentarios_prueba.mjs` (sin clave no llama a nada, la clave de Google no aparece en errores, texto escapado, comentarios vacíos no se mandan). Se suma a `validar-tablero.yml`.
 - **Pendiente:** ver resultados reales con Ignacio antes de decidir si se suma al tablero. Instagram probablemente necesite otro permiso de Meta.
+- **12/11 — Sin clave (pedido de Ignacio):** la página de prueba se abre sin clave (`/api/comentarios-prueba`). Para no gastar consultas de más, el resultado queda 10 minutos en la caché de Cloudflare. Los comentarios ya son públicos en Facebook y la página no se indexa en buscadores.
