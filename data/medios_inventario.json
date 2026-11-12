@@ -99,9 +99,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 106,
-      "notas": 98,
-      "ejemplo": "https://delmardigital.net/la-scpl-no-atendera-al-publico-el-lunes-9-de-noviembre-por-el-feriado-nacional/",
+      "publicaciones": 107,
+      "notas": 99,
+      "ejemplo": "https://delmardigital.net/autoridades-judiciales-recibieron-a-la-vicepresidenta-del-consejo-de-la-magistratura-de-la-nacion/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -271,9 +271,7 @@
     },
     {
       "nombre": "El Diario Web",
-      "alias": [
-        "eldiarioweb.com"
-      ],
+      "alias": [],
       "dominio": "eldiarioweb.com",
       "url": "https://eldiarioweb.com",
       "tipo": "Portal digital",
@@ -281,11 +279,11 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 62,
-      "notas": 58,
+      "publicaciones": 61,
+      "notas": 57,
       "ejemplo": "https://www.eldiarioweb.com/2026/10/la-justicia-sanciono-a-plan-ovalo-y-ford-por-ocultar-informacion-de-un-plan-de-ahorro/",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "/eldiarioonline"
@@ -535,13 +533,13 @@
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 30,
       "notas": 26,
       "ejemplo": "https://www.surenio.com.ar/jornadas-de-formacion-sobre-desarrollo-en-la-primera-infancia/",
       "primera_deteccion": "2026-11-11",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {}
     },
     {
@@ -942,7 +940,7 @@
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 11,
       "notas": 9,
       "ejemplo": "https://prensamercosur.org/2026/11/10/un-jurado-popular-declaro-culpable-a-un-hombre-por-seis-hechos-de-abuso-sexual-y-quedo-detenido/",
@@ -1938,6 +1936,23 @@
       }
     },
     {
+      "nombre": "Diario Mendoza",
+      "alias": [],
+      "dominio": "diariomendoza.com.ar",
+      "url": "https://diariomendoza.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.diariomendoza.com.ar/politica/godoy-cruz-fue-primer-municipio-mendoza-capacitarse-sobre-nuevo-regimen-penal-juvenil-n185378",
+      "primera_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-12",
+      "redes": {}
+    },
+    {
       "nombre": "Diario Río Negro",
       "alias": [],
       "dominio": "",
@@ -2204,6 +2219,23 @@
       "redes": {}
     },
     {
+      "nombre": "eldiarioweb.com",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Puerto Madryn",
+      "metodo": "Sin método automático",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
       "nombre": "ElDoce.tv",
       "alias": [],
       "dominio": "eldoce.tv",
@@ -2432,8 +2464,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Sin clasificar",
-      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://junin24.com/locales/fue-absuelto-un-hombre-acusado-de-abuso-sexual-agravado-por-haber-sido-cometido-por-ascendiente/",

@@ -4089,7 +4089,7 @@
     "nota_id": null,
     "me_gusta": 6,
     "comentarios": 0,
-    "compartidos": 0,
+    "compartidos": 1,
     "vistas": null,
     "propia": "Sí",
     "key": "fb-116101835114568_1776822584443329",
@@ -4188,7 +4188,7 @@
     "me_gusta": 0,
     "comentarios": 0,
     "compartidos": null,
-    "vistas": 11,
+    "vistas": 13,
     "propia": "Sí",
     "key": "yt-8T4oWyGXceg",
     "url": "https://www.youtube.com/watch?v=8T4oWyGXceg"
@@ -4230,7 +4230,7 @@
     "me_gusta": 3,
     "comentarios": 1,
     "compartidos": 1,
-    "vistas": 316,
+    "vistas": 355,
     "propia": "Sí",
     "key": "tt-7707000954201148693",
     "url": "https://www.tiktok.com/@juschubut/video/7707000954201148693?utm_campaign=tt4d_open_api&utm_source=sbaw9943git83c8l01"
@@ -4244,7 +4244,7 @@
     "me_gusta": 1,
     "comentarios": 0,
     "compartidos": 0,
-    "vistas": 58,
+    "vistas": 69,
     "propia": "Sí",
     "key": "tt-7707256670124051718",
     "url": "https://www.tiktok.com/@juschubut/video/7707256670124051718?utm_campaign=tt4d_open_api&utm_source=sbaw9943git83c8l01"
@@ -4255,7 +4255,7 @@
     "fecha": "2026-11-12",
     "texto": "La ministra del STJ partic",
     "nota_id": null,
-    "me_gusta": 0,
+    "me_gusta": 3,
     "comentarios": 0,
     "compartidos": 2,
     "vistas": null,
@@ -4283,12 +4283,26 @@
     "fecha": "2026-11-12",
     "texto": "Autoridades Judiciales rec",
     "nota_id": null,
-    "me_gusta": 0,
+    "me_gusta": 2,
     "comentarios": 0,
     "compartidos": 0,
     "vistas": null,
     "propia": "Sí",
     "key": "fb-116101835114568_1785884243537163",
     "url": "https://www.facebook.com/1769483335177254/posts/1785884243537163"
+  },
+  {
+    "red": "Instagram",
+    "cuenta": "jus_chubut",
+    "fecha": "2026-11-12",
+    "texto": "⚖️ Autoridades Judiciales ",
+    "nota_id": null,
+    "me_gusta": 7,
+    "comentarios": 0,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "ig-18380823148241490",
+    "url": "https://www.instagram.com/p/Dfpv6ipmtue/"
   }
 ]
