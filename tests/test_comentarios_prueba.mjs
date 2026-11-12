@@ -78,3 +78,28 @@ test("un error de Gemini no muestra la clave", async () => {
 test("sin GEMINI_API_KEY avisa en vez de inventar", async () => {
   await assert.rejects(() => mod.armarResultado({ ...ENV, GEMINI_API_KEY: "" }), /GEMINI_API_KEY/);
 });
+
+test("no pide comentarios de publicaciones que no tienen y oculta las vacías", async () => {
+  const pedidos = [];
+  await withFetch(async url => {
+    const u = String(url);
+    pedidos.push(u);
+    if (u.includes("/111/posts")) return ok({ data: [
+      { id: "111_1", message: "con", comments: { summary: { total_count: 1 } } },
+      { id: "111_2", message: "Publicación sin nada", comments: { summary: { total_count: 0 } } }
+    ] });
+    if (u.includes("/111_1/comments")) return ok({ data: [{ message: "Hay favores con fiscales" }] });
+    return ok({ answers: { tono: { choice: "negativo", confidence: 0.9 }, tema: { choice: "independencia", confidence: 0.9 }, revisar: { noul: 0.7, confidence: 0.8 } } });
+  }, async () => {
+    const res = await mod.armarResultado(ENV);
+    assert.ok(!pedidos.some(u => u.includes("/111_2/comments")));
+    const pagina = mod.html(res);
+    assert.ok(pagina.includes("Independencia de jueces y fiscales"));
+    assert.ok(!pagina.includes("Publicación sin nada"));
+  });
+});
+
+test("las preguntas incluyen el tema de independencia y las acusaciones con nombre", () => {
+  assert.ok(mod.PREGUNTAS.tema.criteria.independencia);
+  assert.match(mod.PREGUNTAS.revisar.instructions, /nombre o apellido/);
+});
