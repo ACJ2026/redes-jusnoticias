@@ -188,8 +188,8 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 73,
       "notas": 70,
       "ejemplo": "https://noticiaspmy.com/banfi-encabezo-una-capacitacion-sobre-justicia-restaurativa-y-responsabilidad-penal-juvenil/",
@@ -219,9 +219,9 @@
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
       "publicaciones": 71,
       "notas": 62,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/historico-fallo-en-chubut--obligan-a-seros-a-cubrir-fertilizacion-asistida-para-una-pareja-de-mujeres_a69f36b1f70a58a58f84eb25c",
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -315,7 +315,7 @@
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -345,7 +345,7 @@
       "notas": 48,
       "ejemplo": "https://comodoro24.com.ar/chubut-define-politicas-para-abordar-el-nuevo-regimen-penal-juvenil/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "C24",
@@ -536,7 +536,7 @@
       "localidad": "Chubut (localidad por verificar)",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 29,
       "notas": 29,
       "ejemplo": "https://www.chubuthoy.com/2026/10/27/esquel-la-justicia-sanciono-a-plan-ovalo-y-ford-por-ocultar-informacion-de-un-plan-de-ahorro/",
@@ -679,7 +679,7 @@
       "notas": 18,
       "ejemplo": "https://lu17.com/contenido/155520/declaran-culpable-a-mauro-pavei-por-el-homicidio-de-nieves-en-comodoro",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {}
     },
     {
@@ -942,7 +942,7 @@
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 11,
       "notas": 9,
       "ejemplo": "https://prensamercosur.org/2026/11/10/un-jurado-popular-declaro-culpable-a-un-hombre-por-seis-hechos-de-abuso-sexual-y-quedo-detenido/",
@@ -1044,9 +1044,9 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 7,
       "notas": 7,
-      "ejemplo": "https://diariosanrafael.com.ar/por-que-estados-unidos-vota-siempre-un-martes-y-en-noviembre/",
+      "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "/DiarioSanRafael"
@@ -1061,6 +1061,23 @@
           "/channel/UCWhsV1YALBkWBsbJQBkGv1g"
         ]
       }
+    },
+    {
+      "nombre": "Justicia.ar",
+      "alias": [],
+      "dominio": "justicia.ar",
+      "url": "https://justicia.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por número)",
+      "publicaciones": 7,
+      "notas": 6,
+      "ejemplo": "https://www.justicia.ar/novedades/6390/2026/11/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-b",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
     },
     {
       "nombre": "La Opinión Austral",
@@ -1281,7 +1298,7 @@
       "notas": 4,
       "ejemplo": "https://www.diariojudicial.com/news-104550-se-realizara-el-ii-congreso-patagonico-de-derecho-civil-y-comercial",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "/diariojudicial"
@@ -1320,23 +1337,6 @@
           "@genesiscaseros"
         ]
       }
-    },
-    {
-      "nombre": "Justicia.ar",
-      "alias": [],
-      "dominio": "justicia.ar",
-      "url": "https://justicia.ar",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por número)",
-      "publicaciones": 4,
-      "notas": 4,
-      "ejemplo": "https://www.justicia.ar/novedades/6342/2026/11/banfi-encabezo-una-capacitacion-sobre-justicia-restaurativa-y-responsabilidad-penal-juvenil",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {}
     },
     {
       "nombre": "Canal Doce Misiones",
@@ -1518,7 +1518,7 @@
       "notas": 2,
       "ejemplo": "https://www.rionegro.com.ar/sociedad/estudiantes-de-la-universidad-del-comahue-organizan-el-primer-congreso-patagonico-de-derecho-en-roca-4779536/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "/diariorionegro"
@@ -1820,7 +1820,7 @@
       "notas": 1,
       "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "/clarincom"
@@ -1898,8 +1898,8 @@
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Sin clasificar",
-      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -1921,7 +1921,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "/DiarioHuarpe"
@@ -2019,7 +2019,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "/el10tv"
@@ -2404,7 +2404,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-24",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {}
     },
     {
@@ -2674,7 +2674,7 @@
       "notas": 1,
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {
         "Facebook": [
           "/perfilcom"
@@ -2704,7 +2704,7 @@
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {}
     },
     {
@@ -2873,7 +2873,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-11-10",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-12",
       "redes": {}
     },
     {
