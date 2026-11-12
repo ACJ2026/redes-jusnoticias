@@ -1,5 +1,5 @@
 // Cloudflare Pages Function: PRUEBA de clasificación de comentarios con Gemini Decision 1.
-// Lee los comentarios de las últimas publicaciones de Facebook de JusNoticias y le hace
+// Lee los comentarios de las publicaciones de Facebook e Instagram de JusNoticias y le hace
 // tres preguntas cerradas a cada uno. No guarda nada ni toca data/*.json: solo muestra.
 // Uso: /api/comentarios-prueba  (agregar ?formato=json para JSON). Abierta a pedido de Ignacio
 // (12/11/2026, es una prueba); el resultado se guarda 10 minutos en la caché para no repetir consultas.
@@ -41,6 +41,8 @@ export const PREGUNTAS = {
   }
 };
 
+const ICONO = { Facebook: "📘 Facebook", Instagram: "📷 Instagram" };
+
 const ETIQUETAS = {
   positivo: "🟢 Positivo", neutro: "⚪ Neutro", negativo: "🔴 Negativo",
   decision_judicial: "Decisión judicial", demoras: "Demoras", independencia: "Independencia de jueces y fiscales", atencion: "Atención",
@@ -73,7 +75,7 @@ async function tokenPagina(env, id) {
 }
 
 // Junta los comentarios de las últimas publicaciones. Sin nombres de quien comenta.
-export async function leerComentarios(env) {
+export async function leerFacebook(env) {
   const id = env.FB_PAGE_ID;
   if (!id) throw new Error("Falta FB_PAGE_ID.");
   const token = await tokenPagina(env, id);
@@ -89,7 +91,7 @@ export async function leerComentarios(env) {
   for (const post of lista.slice(0, MAX_PUBLICACIONES)) {
     // Solo se piden los comentarios de las publicaciones que tienen alguno.
     if (post.comments && post.comments.summary && post.comments.summary.total_count === 0) {
-      salida.push({ publicacion: "", url: post.permalink_url || null, fecha: (post.created_time || "").slice(0, 10), comentarios: [], error: null });
+      salida.push({ red: "Facebook", publicacion: "", url: post.permalink_url || null, fecha: (post.created_time || "").slice(0, 10), comentarios: [], error: null });
       continue;
     }
     let comentarios = [];
@@ -101,12 +103,56 @@ export async function leerComentarios(env) {
       error = limpiar(e);
     }
     salida.push({
+      red: "Facebook",
       publicacion: (post.message || "").replace(/\s+/g, " ").trim().slice(0, 200),
       url: post.permalink_url || null,
       fecha: (post.created_time || "").slice(0, 10),
       comentarios,
       error
     });
+  }
+  return salida;
+}
+
+// Instagram: usa META_TOKEN e IG_USER_ID, igual que redes.js. Si Meta no da permiso para
+// leer los comentarios, el error se muestra en la publicación; no se inventa nada.
+export async function leerInstagram(env) {
+  const id = env.IG_USER_ID;
+  if (!id) throw new Error("Falta IG_USER_ID.");
+  if (!env.META_TOKEN) throw new Error("Falta META_TOKEN.");
+  const desde = new Date(Date.now() - DIAS * 86400000).toISOString().slice(0, 10);
+  const lista = [];
+  let url = `${GRAPH}/${id}/media?fields=timestamp,caption,permalink,comments_count&limit=50`;
+  for (let i = 0; url && i < 5 && lista.length < MAX_PUBLICACIONES; i++) {
+    const p = await meta(url, env.META_TOKEN);
+    const posts = p.data || [];
+    const dentro = posts.filter(x => (x.timestamp || "").slice(0, 10) >= desde);
+    lista.push(...dentro);
+    if (dentro.length < posts.length) break;
+    url = p.paging && p.paging.next;
+  }
+  const salida = [];
+  for (const post of lista.slice(0, MAX_PUBLICACIONES)) {
+    const base = { red: "Instagram", publicacion: (post.caption || "").replace(/\s+/g, " ").trim().slice(0, 200), url: post.permalink || null, fecha: (post.timestamp || "").slice(0, 10), comentarios: [], error: null };
+    if (post.comments_count === 0) { salida.push(base); continue; }
+    try {
+      const c = await meta(`${GRAPH}/${post.id}/comments?fields=text,timestamp&limit=${MAX_COMENTARIOS_POR_PUBLICACION}`, env.META_TOKEN);
+      base.comentarios = (c.data || []).map(x => ({ texto: (x.text || "").trim(), fecha: x.timestamp || null })).filter(x => x.texto);
+    } catch (e) {
+      base.error = limpiar(e);
+    }
+    salida.push(base);
+  }
+  return salida;
+}
+
+// Cada red se lee por separado: si una falla, se muestra el error y la otra sigue.
+export async function leerComentarios(env) {
+  const salida = [];
+  const redes = { Facebook: leerFacebook, Instagram: leerInstagram };
+  for (const [red, leer] of Object.entries(redes)) {
+    try { salida.push(...await leer(env)); }
+    catch (e) { salida.push({ red, publicacion: "", url: null, fecha: "", comentarios: [], error: limpiar(e), errorRed: true }); }
   }
   return salida;
 }
@@ -169,16 +215,16 @@ export function html(res) {
     const filas = p.comentarios.map(c => c.error
       ? `<tr><td>${esc(c.texto)}</td><td colspan="3">Error: ${esc(c.error)}</td></tr>`
       : `<tr${c.decision.revisar && c.decision.revisar.prob >= 0.5 ? ' class="ojo"' : ""}><td>${esc(c.texto)}</td><td>${celda(c.decision.tono)}</td><td>${celda(c.decision.tema)}</td><td>${c.decision.revisar && c.decision.revisar.prob >= 0.5 ? "⚠️ Sí" : "No"} <small>(${pct(c.decision.revisar && c.decision.revisar.prob)})</small></td></tr>`).join("");
-    const cuerpo = p.error ? `<p>No se pudieron leer los comentarios: ${esc(p.error)}</p>`
+    const cuerpo = p.error ? `<p>No se pudieron leer los comentarios${p.errorRed ? " de esta red" : ""}: ${esc(p.error)}</p>`
       : p.comentarios.length ? `<table><tr><th>Comentario</th><th>Tono</th><th>Tema</th><th>¿Mirarlo?</th></tr>${filas}</table>`
       : `<p class="gris">Sin comentarios.</p>`;
-    return `<section><h3>${esc(p.fecha)} — ${p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.publicacion || "(sin texto)")}</a>` : esc(p.publicacion)}</h3>${cuerpo}</section>`;
+    return `<section><h3>${esc(ICONO[p.red] || p.red || "")} · ${esc(p.fecha)} — ${p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.publicacion || "(sin texto)")}</a>` : esc(p.publicacion)}</h3>${cuerpo}</section>`;
   }).join("");
   return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Prueba: comentarios con Gemini Decision 1</title>
 <style>body{font-family:system-ui,sans-serif;max-width:960px;margin:1rem auto;padding:0 1rem;color:#222}table{width:100%;border-collapse:collapse;margin:.5rem 0 1.5rem}th,td{border-bottom:1px solid #ddd;padding:.4rem;text-align:left;vertical-align:top;font-size:.92rem}small,.gris{color:#777}.ojo{background:#fff4e0}.resumen{display:flex;gap:1rem;flex-wrap:wrap;font-size:1.05rem}.resumen div{background:#f4f4f4;padding:.6rem .9rem;border-radius:8px}h3{font-size:1rem;margin-top:1.5rem}</style></head><body>
-<h2>Prueba: comentarios de Facebook clasificados con Gemini Decision 1</h2>
+<h2>Prueba: comentarios de Facebook e Instagram clasificados con Gemini Decision 1</h2>
 <p class="gris">Solo de prueba: no guarda nada ni cambia el tablero. ❓ = el modelo está poco seguro (menos de ${Math.round(UMBRAL_DUDA * 100)}%).</p>
-<p>Últimos ${res.dias || 30} días: <b>${res.publicaciones.length}</b> publicaciones, <b>${conComentarios.length}</b> con comentarios. Solo se muestran las que tienen.</p>
+<p>Últimos ${res.dias || 30} días — ${["Facebook", "Instagram"].map(r => { const ps = res.publicaciones.filter(p => p.red === r && !p.errorRed); return `${ICONO[r]}: <b>${ps.length}</b> publicaciones, <b>${ps.filter(p => p.comentarios.length).length}</b> con comentarios`; }).join(" · ")}. Solo se muestran las que tienen.</p>
 <div class="resumen"><div>Comentarios: <b>${todos.length}</b></div><div>🟢 ${pct(cuenta("positivo") / total)}</div><div>⚪ ${pct(cuenta("neutro") / total)}</div><div>🔴 ${pct(cuenta("negativo") / total)}</div><div>⚠️ Para mirar: <b>${aRevisar}</b></div></div>
 ${bloques}</body></html>`;
 }
