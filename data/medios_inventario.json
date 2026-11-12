@@ -370,8 +370,8 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 50,
       "notas": 49,
       "ejemplo": "https://digitalchubut.com/esquel-la-justicia-sanciono-a-ford-y-plan-ovalo-con-una-multa-de-4-millones-por-las-subas-desmedidas-de-cuotas/",
@@ -528,6 +528,23 @@
       }
     },
     {
+      "nombre": "Diario El Sureño",
+      "alias": [],
+      "dominio": "surenio.com.ar",
+      "url": "https://surenio.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 30,
+      "notas": 26,
+      "ejemplo": "https://www.surenio.com.ar/jornadas-de-formacion-sobre-desarrollo-en-la-primera-infancia/",
+      "primera_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-11",
+      "redes": {}
+    },
+    {
       "nombre": "Chubut Hoy",
       "alias": [],
       "dominio": "chubuthoy.com",
@@ -553,23 +570,6 @@
           "@chubuthoy1"
         ]
       }
-    },
-    {
-      "nombre": "Diario El Sureño",
-      "alias": [],
-      "dominio": "surenio.com.ar",
-      "url": "https://surenio.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 29,
-      "notas": 26,
-      "ejemplo": "https://www.surenio.com.ar/ushuaia-fue-sede-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales/",
-      "primera_deteccion": "2026-11-11",
-      "ultima_deteccion": "2026-11-11",
-      "redes": {}
     },
     {
       "nombre": "Diario La Portada",
@@ -1044,7 +1044,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 7,
       "notas": 7,
-      "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
+      "ejemplo": "https://diariosanrafael.com.ar/por-que-estados-unidos-vota-siempre-un-martes-y-en-noviembre/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-12",
       "redes": {
