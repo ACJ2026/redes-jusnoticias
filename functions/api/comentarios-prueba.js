@@ -6,9 +6,11 @@
 
 const GRAPH = "https://graph.facebook.com/v26.0";
 const DECISIONS = "https://generativelanguage.googleapis.com/v1beta/decisions";
-const MAX_PUBLICACIONES = 5;
-const MAX_COMENTARIOS_POR_PUBLICACION = 15;
-const MAX_COMENTARIOS = 50;
+const DIAS = 30;
+const MAX_PUBLICACIONES = 100;
+const MAX_COMENTARIOS_POR_PUBLICACION = 25;
+const MAX_COMENTARIOS = 150;
+const EN_PARALELO = 5;
 const UMBRAL_DUDA = 0.6;
 
 export const PREGUNTAS = {
@@ -27,6 +29,7 @@ export const PREGUNTAS = {
     criteria: {
       decision_judicial: "La resolución, condena, absolución o pena del caso.",
       demoras: "La lentitud o los tiempos de la Justicia.",
+      independencia: "La independencia o imparcialidad de jueces y fiscales: favores, compromisos políticos o personales, presiones del poder.",
       atencion: "La atención o el trato de la Justicia a las personas.",
       la_nota: "La nota o la publicación en sí (cómo está escrita, la foto, un error).",
       otro: "Cualquier otra cosa: saludos, etiquetas a otras personas, temas ajenos."
@@ -34,13 +37,13 @@ export const PREGUNTAS = {
   },
   revisar: {
     type: "noul",
-    instructions: "¿Alguien del equipo debería leer este comentario? Sí si contiene insultos o amenazas, datos personales, o una consulta o pedido de ayuda que merece respuesta."
+    instructions: "¿Alguien del equipo debería leer este comentario? Sí si contiene insultos o amenazas, datos personales, acusaciones o insinuaciones contra personas mencionadas con nombre o apellido, o una consulta o pedido de ayuda que merece respuesta."
   }
 };
 
 const ETIQUETAS = {
   positivo: "🟢 Positivo", neutro: "⚪ Neutro", negativo: "🔴 Negativo",
-  decision_judicial: "Decisión judicial", demoras: "Demoras", atencion: "Atención",
+  decision_judicial: "Decisión judicial", demoras: "Demoras", independencia: "Independencia de jueces y fiscales", atencion: "Atención",
   la_nota: "La nota", otro: "Otro"
 };
 
@@ -74,9 +77,21 @@ export async function leerComentarios(env) {
   const id = env.FB_PAGE_ID;
   if (!id) throw new Error("Falta FB_PAGE_ID.");
   const token = await tokenPagina(env, id);
-  const posts = await meta(`${GRAPH}/${id}/posts?fields=message,permalink_url,created_time&limit=${MAX_PUBLICACIONES}`, token);
+  const desde = new Date(Date.now() - DIAS * 86400000).toISOString().slice(0, 10);
+  const lista = [];
+  let url = `${GRAPH}/${id}/posts?fields=message,permalink_url,created_time,comments.summary(total_count).limit(0)&since=${desde}&limit=50`;
+  for (let i = 0; url && i < 5 && lista.length < MAX_PUBLICACIONES; i++) {
+    const p = await meta(url, token);
+    lista.push(...(p.data || []));
+    url = p.paging && p.paging.next;
+  }
   const salida = [];
-  for (const post of posts.data || []) {
+  for (const post of lista.slice(0, MAX_PUBLICACIONES)) {
+    // Solo se piden los comentarios de las publicaciones que tienen alguno.
+    if (post.comments && post.comments.summary && post.comments.summary.total_count === 0) {
+      salida.push({ publicacion: "", url: post.permalink_url || null, fecha: (post.created_time || "").slice(0, 10), comentarios: [], error: null });
+      continue;
+    }
     let comentarios = [];
     let error = null;
     try {
@@ -124,12 +139,15 @@ export async function armarResultado(env) {
   for (const pub of publicaciones) {
     pub.comentarios = pub.comentarios.slice(0, Math.max(0, MAX_COMENTARIOS - usados));
     usados += pub.comentarios.length;
-    await Promise.all(pub.comentarios.map(async c => {
+  }
+  const tareas = publicaciones.flatMap(pub => pub.comentarios.map(c => ({ c, pub })));
+  for (let i = 0; i < tareas.length; i += EN_PARALELO) {
+    await Promise.all(tareas.slice(i, i + EN_PARALELO).map(async ({ c, pub }) => {
       try { c.decision = await clasificar(c.texto, pub.publicacion, env.GEMINI_API_KEY); }
       catch (e) { c.error = limpiar(e); }
     }));
   }
-  return { generado: new Date().toISOString(), publicaciones };
+  return { generado: new Date().toISOString(), dias: DIAS, publicaciones };
 }
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
@@ -146,7 +164,8 @@ export function html(res) {
   const cuenta = k => todos.filter(c => c.decision.tono && c.decision.tono.valor === k).length;
   const total = todos.length || 1;
   const aRevisar = todos.filter(c => c.decision.revisar && c.decision.revisar.prob >= 0.5).length;
-  const bloques = res.publicaciones.map(p => {
+  const conComentarios = res.publicaciones.filter(p => p.comentarios.length || p.error);
+  const bloques = conComentarios.map(p => {
     const filas = p.comentarios.map(c => c.error
       ? `<tr><td>${esc(c.texto)}</td><td colspan="3">Error: ${esc(c.error)}</td></tr>`
       : `<tr${c.decision.revisar && c.decision.revisar.prob >= 0.5 ? ' class="ojo"' : ""}><td>${esc(c.texto)}</td><td>${celda(c.decision.tono)}</td><td>${celda(c.decision.tema)}</td><td>${c.decision.revisar && c.decision.revisar.prob >= 0.5 ? "⚠️ Sí" : "No"} <small>(${pct(c.decision.revisar && c.decision.revisar.prob)})</small></td></tr>`).join("");
@@ -159,6 +178,7 @@ export function html(res) {
 <style>body{font-family:system-ui,sans-serif;max-width:960px;margin:1rem auto;padding:0 1rem;color:#222}table{width:100%;border-collapse:collapse;margin:.5rem 0 1.5rem}th,td{border-bottom:1px solid #ddd;padding:.4rem;text-align:left;vertical-align:top;font-size:.92rem}small,.gris{color:#777}.ojo{background:#fff4e0}.resumen{display:flex;gap:1rem;flex-wrap:wrap;font-size:1.05rem}.resumen div{background:#f4f4f4;padding:.6rem .9rem;border-radius:8px}h3{font-size:1rem;margin-top:1.5rem}</style></head><body>
 <h2>Prueba: comentarios de Facebook clasificados con Gemini Decision 1</h2>
 <p class="gris">Solo de prueba: no guarda nada ni cambia el tablero. ❓ = el modelo está poco seguro (menos de ${Math.round(UMBRAL_DUDA * 100)}%).</p>
+<p>Últimos ${res.dias || 30} días: <b>${res.publicaciones.length}</b> publicaciones, <b>${conComentarios.length}</b> con comentarios. Solo se muestran las que tienen.</p>
 <div class="resumen"><div>Comentarios: <b>${todos.length}</b></div><div>🟢 ${pct(cuenta("positivo") / total)}</div><div>⚪ ${pct(cuenta("neutro") / total)}</div><div>🔴 ${pct(cuenta("negativo") / total)}</div><div>⚠️ Para mirar: <b>${aRevisar}</b></div></div>
 ${bloques}</body></html>`;
 }
