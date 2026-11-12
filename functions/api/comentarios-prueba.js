@@ -1,7 +1,8 @@
 // Cloudflare Pages Function: PRUEBA de clasificación de comentarios con Gemini Decision 1.
 // Lee los comentarios de las últimas publicaciones de Facebook de JusNoticias y le hace
 // tres preguntas cerradas a cada uno. No guarda nada ni toca data/*.json: solo muestra.
-// Uso: /api/comentarios-prueba?clave=<REVISIONES_CLAVE>  (agregar &formato=json para JSON)
+// Uso: /api/comentarios-prueba  (agregar ?formato=json para JSON). Abierta a pedido de Ignacio
+// (12/11/2026, es una prueba); el resultado se guarda 10 minutos en la caché para no repetir consultas.
 
 const GRAPH = "https://graph.facebook.com/v26.0";
 const DECISIONS = "https://generativelanguage.googleapis.com/v1beta/decisions";
@@ -50,15 +51,6 @@ function limpiar(error) {
     .replace(/\bEA[A-Za-z0-9]{20,}\b/g, "[token omitido]")
     .replace(/\bAIza[A-Za-z0-9_-]{20,}\b/g, "[clave omitida]")
     .slice(0, 300);
-}
-
-function claveCorrecta(value, expected) {
-  if (!value || !expected) return false;
-  const a = new TextEncoder().encode(value);
-  const b = new TextEncoder().encode(expected);
-  let diff = a.length ^ b.length;
-  for (let i = 0; i < Math.max(a.length, b.length); i++) diff |= (a[i] || 0) ^ (b[i] || 0);
-  return diff === 0;
 }
 
 async function meta(url, token) {
@@ -174,16 +166,13 @@ ${bloques}</body></html>`;
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   const comoJson = url.searchParams.get("formato") === "json";
-  const headers = t => ({ "Content-Type": t + "; charset=utf-8", "Cache-Control": "no-store", "X-Robots-Tag": "noindex" });
-  if (!claveCorrecta(url.searchParams.get("clave"), env.REVISIONES_CLAVE)) {
-    return new Response("Falta la clave o es incorrecta. Usá ?clave=… (la misma de los botones de revisión).", { status: 401, headers: headers("text/plain") });
-  }
+  const headers = (t, cache = "s-maxage=600") => ({ "Content-Type": t + "; charset=utf-8", "Cache-Control": cache, "X-Robots-Tag": "noindex" });
   try {
     const res = await armarResultado(env);
     return comoJson
       ? new Response(JSON.stringify(res, null, 2), { headers: headers("application/json") })
       : new Response(html(res), { headers: headers("text/html") });
   } catch (e) {
-    return new Response("No se pudo armar la prueba: " + limpiar(e), { status: 502, headers: headers("text/plain") });
+    return new Response("No se pudo armar la prueba: " + limpiar(e), { status: 502, headers: headers("text/plain", "no-store") });
   }
 }

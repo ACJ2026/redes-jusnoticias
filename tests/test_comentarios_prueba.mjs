@@ -6,7 +6,7 @@ const ROOT = new URL("../", import.meta.url);
 const source = await readFile(new URL("functions/api/comentarios-prueba.js", ROOT), "utf8");
 const mod = await import(`data:text/javascript;base64,${Buffer.from(source).toString("base64")}`);
 
-const ENV = { FB_PAGE_ID: "111", FB_PAGE_TOKEN: "EAApagetokenparaprueba1234567890", GEMINI_API_KEY: "AIzaClaveDePrueba1234567890abcdef", REVISIONES_CLAVE: "secreta" };
+const ENV = { FB_PAGE_ID: "111", FB_PAGE_TOKEN: "EAApagetokenparaprueba1234567890", GEMINI_API_KEY: "AIzaClaveDePrueba1234567890abcdef" };
 const ok = body => new Response(JSON.stringify(body), { status: 200 });
 
 async function withFetch(handler, run) {
@@ -28,17 +28,19 @@ function fakeFetch(llamadasGemini) {
   };
 }
 
-test("sin clave correcta no llama a ningún servicio", async () => {
-  await withFetch(async () => { throw new Error("no debería llamar"); }, async () => {
-    const r = await mod.onRequestGet({ request: new Request("https://x/api/comentarios-prueba?clave=mal"), env: ENV });
-    assert.equal(r.status, 401);
+test("se abre sin clave y guarda el resultado en caché un rato", async () => {
+  const llamadas = [];
+  await withFetch(fakeFetch(llamadas), async () => {
+    const r = await mod.onRequestGet({ request: new Request("https://x/api/comentarios-prueba"), env: ENV });
+    assert.equal(r.status, 200);
+    assert.match(r.headers.get("Cache-Control"), /s-maxage/);
   });
 });
 
 test("clasifica cada comentario con texto y usa la clave en el encabezado", async () => {
   const llamadas = [];
   await withFetch(fakeFetch(llamadas), async () => {
-    const r = await mod.onRequestGet({ request: new Request("https://x/api/comentarios-prueba?clave=secreta&formato=json"), env: ENV });
+    const r = await mod.onRequestGet({ request: new Request("https://x/api/comentarios-prueba?formato=json"), env: ENV });
     assert.equal(r.status, 200);
     const res = await r.json();
     assert.equal(llamadas.length, 1, "los comentarios vacíos no se mandan");
