@@ -1245,3 +1245,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Arreglo:**
   - Un WordPress que viene fallando seguido (3 o más veces) o que ya anduvo por RSS (`usar_rss` en `estado_medios.json`) va directo al RSS, sin pasar por su API.
   - `actualizar.yml` baja la rama al momento de arrancar (`ref: ${{ github.ref }}`). La concurrencia no cambia (`cancel-in-progress: false`).
+
+## 2026-11-12 — Prueba: clasificar comentarios de Facebook con Gemini Decision 1 (Claude, pedido de Ignacio)
+
+- **Qué:** página de prueba nueva `/api/comentarios-prueba?clave=…` (la misma clave de los botones de revisión). Lee los comentarios de las últimas 5 publicaciones de Facebook de JusNoticias (hasta 50 en total) y le pregunta a Gemini Decision 1, por cada uno: tono (positivo / neutro / negativo), tema (decisión judicial / demoras / atención / la nota / otro) y si alguien tiene que mirarlo.
+- **Qué no hace:** no guarda nada, no toca `data/*.json` ni cambia lo que cuenta el tablero. No muestra nombres de quien comenta.
+- **Configuración:** secreto `GEMINI_API_KEY` en Cloudflare Pages (Producción), cargado por Ignacio el 12/11. Proyecto de Google AI Studio «Default Gemini Project», nivel gratuito.
+- **Pruebas:** `tests/test_comentarios_prueba.mjs` (sin clave no llama a nada, la clave de Google no aparece en errores, texto escapado, comentarios vacíos no se mandan). Se suma a `validar-tablero.yml`.
+- **Pendiente:** ver resultados reales con Ignacio antes de decidir si se suma al tablero. Instagram probablemente necesite otro permiso de Meta.
