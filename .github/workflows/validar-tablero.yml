@@ -15,6 +15,7 @@ on:
       - 'functions/api/redes.js'
       - 'functions/api/google-metrics.js'
       - 'functions/api/revisiones.js'
+      - 'functions/api/comentarios-prueba.js'
       - 'migrations/0002_revisiones_publicaciones.sql'
       - 'docs/CLOUDFLARE_PAGES.md'
       - 'BITACORA.md'
@@ -56,7 +57,7 @@ jobs:
           node --check --input-type=module < functions/api/tiktok/auth.js
           node --check --input-type=module < functions/api/tiktok/callback.js
       - name: Probar la API de redes (X, Meta) y la seguridad de TikTok
-        run: node --test tests/test_redes_x.mjs tests/test_redes_meta.mjs tests/test_tiktok.mjs
+        run: node --test tests/test_redes_x.mjs tests/test_redes_meta.mjs tests/test_tiktok.mjs tests/test_comentarios_prueba.mjs
       - name: Comprobar sintaxis del JavaScript del tablero
         run: |
           python3 - <<'PY'
