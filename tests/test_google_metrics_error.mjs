@@ -31,3 +31,33 @@ test("si Google falla, responde 502 con el motivo y el rango", async () => {
     crypto.subtle.sign = original_sign;
   }
 });
+
+
+test("una respuesta ya cacheada se devuelve sin volver a llamar a Google", async () => {
+  const originalCaches = globalThis.caches;
+  const payload = { estado: "ok", actualizado: "2026-11-13T12:00:00.000Z", analytics: {}, searchConsole: {} };
+  let coincidencias = 0;
+  globalThis.caches = {
+    default: {
+      match: async () => { coincidencias++; return new Response(JSON.stringify(payload), { status: 200, headers: { "Content-Type": "application/json" } }); },
+      put: async () => { throw new Error("No debe guardar una respuesta que ya estaba cacheada."); }
+    }
+  };
+  try {
+    const env = {
+      GOOGLE_SERVICE_ACCOUNT_JSON: JSON.stringify({ client_email: "x@y", private_key: "clave-no-usada-por-cache" }),
+      GA4_PROPERTY_ID: "1",
+      GSC_SITE_URL: "https://x/"
+    };
+    const r = await mod.onRequest({
+      request: new Request("https://x/api/google-metrics?desde=2026-11-01&hasta=2026-11-13"),
+      env
+    });
+    assert.equal(r.status, 200);
+    assert.deepEqual(await r.json(), payload);
+    assert.equal(coincidencias, 1);
+  } finally {
+    if (originalCaches === undefined) delete globalThis.caches;
+    else globalThis.caches = originalCaches;
+  }
+});
