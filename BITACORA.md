@@ -1256,3 +1256,16 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **12/11 — Sin clave (pedido de Ignacio):** la página de prueba se abre sin clave (`/api/comentarios-prueba`). Para no gastar consultas de más, el resultado queda 10 minutos en la caché de Cloudflare. Los comentarios ya son públicos en Facebook y la página no se indexa en buscadores.
 - **12/11 — Primera prueba real y ajustes (pedido de Ignacio):** en las últimas 5 publicaciones había 1 solo comentario; el tono salió bien (negativo, 90%), pero el tema cayó en «Otro» porque hablaba de la independencia de los jueces. Cambios: se miran las publicaciones de los últimos 30 días (solo se muestran las que tienen comentarios), se suma el tema «Independencia de jueces y fiscales» y «¿Mirarlo?» incluye acusaciones o insinuaciones contra personas con nombre o apellido.
 - **12/11 — Facebook: 3 comentarios en 30 días, todos bien clasificados.** Como en Facebook casi no se comenta, Ignacio eligió sumar **Instagram** a la prueba. Se leen los comentarios de las publicaciones de @jus_chubut de los últimos 30 días con `META_TOKEN` e `IG_USER_ID`. Si Meta no da permiso para leer comentarios (probablemente falte `instagram_manage_comments`), la página muestra el error en cada publicación y Facebook sigue funcionando.
+
+## 2026-11-13 — Auditoría del tablero y limpieza de herramientas manuales (Claude, OK de Ignacio)
+
+- **Auditoría:** documento para el área de Planificación y Gestión del STJ (programa de calidad): cómo funciona el tablero, qué anda bien, problemas, funciones poco relevantes y propuestas. Datos al 12/11/2026: 297 notas, 1.253 publicaciones en 94 medios, 68 % de notas con repercusión; 94 % de actualizaciones exitosas desde el 4/11.
+- **Ignacio aprobó sacar** (filas «Sacar» de la auditoría):
+  - Formulario «Cargar un post de X a mano» (sin cargas desde octubre; la API de X es paga).
+  - Botón «+ Agregar posteo» y su formulario (el tablero busca solo).
+  - «Analizar enlace» (`functions/api/analizar-enlace.js` borrado).
+  - «Búsqueda asistida en todas las redes».
+  - Archivos viejos: ruta de Vercel (`api/`, `vercel.json`), `antes.html` y `tablero_interno/`. Se quitaron sus chequeos de `actualizar.yml`, `test-historial.yml` y `validar-tablero.yml` (no se tocó la concurrencia).
+- **Qué no cambia:** no se borra historial ni cambia qué se cuenta. Los posts de X y los posteos de otras cuentas ya cargados se siguen mostrando (`/api/x-manual` y `/api/posteo-manual` por GET siguen). «Confirmar» de los posteos «para confirmar» de Redes sigue guardando.
+- **Pendiente de decisión de Ignacio:** unificar secciones repetidas (estado en vivo, rankings, ayuda, historial de redes), Facebook STJ solo como historial, prueba de Gemini, ciudades de 57 medios.
+- **Pruebas:** 219 OK (se adaptaron las que exigían los formularios sacados y se sumó una que comprueba que no vuelvan y que el historial se siga cargando). Probado en el navegador en 1280 y 375 px, sin errores.

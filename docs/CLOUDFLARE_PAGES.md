@@ -25,13 +25,13 @@ En la configuración del proyecto Pages, configurar las variables que consume la
 - `GA4_PROPERTY_ID`: ID numérico de la propiedad de Google Analytics 4.
 - `GSC_SITE_URL`: propiedad exacta de Search Console (por ejemplo, URL-prefix o propiedad de dominio, según cómo esté verificada).
 
-Estas variables corresponden solo a Google. La ruta social de Pages (`functions/api/redes.js`) y la ruta heredada de Vercel usan `META_TOKEN`, `FB_PAGE_ID`, `IG_USER_ID`, `YT_KEY` y, para el canal correcto, `YT_CANAL_ID`; no son intercambiables con las variables de Google.
+Estas variables corresponden solo a Google. La ruta social de Pages (`functions/api/redes.js`) usa `META_TOKEN`, `FB_PAGE_ID`, `IG_USER_ID`, `YT_KEY` y, para el canal correcto, `YT_CANAL_ID`; no son intercambiables con las variables de Google.
 
 La cuenta de servicio debe tener acceso de lectura a la propiedad de GA4 y a Search Console. No copiar credenciales al HTML, al repositorio ni a documentación.
 
 La función `functions/api/google-metrics.js` expone la ruta `/api/google-metrics?desde=AAAA-MM-DD&hasta=AAAA-MM-DD`. La plantilla consulta esa ruta relativa. La plantilla del tablero ya consulta esa ruta relativa, por lo que no requiere cambios de URL.
 
-**Importante para redes sociales:** `api/redes.js` es la ruta heredada de Vercel; `functions/api/redes.js` es la ruta de Cloudflare Pages y la interfaz ya consulta `/api/redes`. La función requiere IDs y secretos verificados y pruebas reales. X ya está conectado a la consulta y requiere `X_BEARER_TOKEN` y, opcionalmente, `X_USER_HANDLE`. TikTok y WhatsApp no están conectados; necesitan evaluación separada de APIs, permisos y disponibilidad de métricas.
+**Importante para redes sociales:** `functions/api/redes.js` es la ruta de Cloudflare Pages y la interfaz ya consulta `/api/redes`. La función requiere IDs y secretos verificados y pruebas reales. X ya está conectado a la consulta y requiere `X_BEARER_TOKEN` y, opcionalmente, `X_USER_HANDLE`. TikTok y WhatsApp no están conectados; necesitan evaluación separada de APIs, permisos y disponibilidad de métricas.
 
 ## Validación de producción en Cloudflare Pages
 
@@ -61,4 +61,4 @@ Los botones no deben considerarse operativos hasta completar esta configuración
 
 - Este cambio agrega la función compatible con Cloudflare Pages; no crea el proyecto Pages ni configura secretos en la cuenta de Cloudflare.
 - La validación con datos reales de Google sigue pendiente hasta comprobar que los secretos estén configurados en el proyecto de producción y que la cuenta de servicio tenga permisos correctos. La herramienta disponible en esta revisión no permitió consultar el dominio `pages.dev` directamente, por lo que no se afirma que la función ya devuelva datos reales.
-- `api/redes.js` es una ruta heredada para Vercel; no confundir su existencia con la validación del despliegue de Cloudflare Pages. No desactivar servicios heredados hasta confirmar qué tráfico y dominios siguen utilizándolos.
+- La ruta heredada de Vercel (`api/redes.js`, `api/google-metrics.js` y `vercel.json`) se eliminó el 13/11/2026: la única dirección del tablero es Cloudflare Pages.

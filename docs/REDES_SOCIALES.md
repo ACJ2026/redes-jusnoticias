@@ -4,11 +4,11 @@
 
 La pestaña **Redes** mantiene una vista histórica basada en `data/redes2.json` y `data/canales.json`. La consulta de `/api/redes` solo se ejecuta cuando la persona pulsa **Consultar fuentes disponibles**; abrir la pestaña no inicia llamadas a las APIs. El panel en vivo muestra por separado el estado, publicaciones y seguidores que respondan las APIs de Facebook, Instagram, YouTube y X. No sustituye ni mezcla el historial con las métricas en vivo.
 
-## Ruta de Cloudflare Pages y ruta heredada de Vercel
+## Ruta de Cloudflare Pages
 
-`functions/api/redes.js` adapta la consulta social al runtime de Cloudflare Pages y usa variables `env.*`; `api/redes.js` sigue como ruta heredada de Vercel. La interfaz ya consulta la ruta de Pages y muestra errores por plataforma cuando faltan permisos o credenciales. **La conexión visual no significa que las cuentas estén autenticadas ni que las cifras ya se hayan validado contra cuentas reales**: eso requiere configurar secretos, verificar IDs y probar respuestas en producción.
+`functions/api/redes.js` adapta la consulta social al runtime de Cloudflare Pages y usa variables `env.*` La ruta heredada de Vercel (`api/redes.js`) se eliminó el 13/11/2026: el tablero solo se publica en Cloudflare Pages. La interfaz ya consulta la ruta de Pages y muestra errores por plataforma cuando faltan permisos o credenciales. **La conexión visual no significa que las cuentas estén autenticadas ni que las cifras ya se hayan validado contra cuentas reales**: eso requiere configurar secretos, verificar IDs y probar respuestas en producción.
 
-Variables que requiere la ruta social de Pages. La ruta heredada de Vercel usa las variables de Meta y YouTube; la integración de X se implementa en Pages:
+Variables que requiere la ruta social de Pages:
 
 - `META_TOKEN`: token de usuario de Meta con `pages_show_list`, `pages_read_engagement` y `read_insights`, y acceso a las páginas. No debe ser un token de página si también se usa para obtener los tokens de ambas páginas y consultar Instagram.
 - `FB_PAGE_ID`: identificador de la página de Facebook JusNoticias (`116101835114568`).

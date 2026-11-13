@@ -33,7 +33,8 @@ class XManualTest(unittest.TestCase):
         self.assertIn("if (!sameOrigin(request))", fuente)
 
     def test_el_tablero_tiene_el_formulario_y_suma_los_posts(self):
-        self.assertIn('<form id="x-form" class="x-form">', PLANTILLA)
+        # El formulario se sacó (auditoría 13/11/2026); los posts ya cargados se siguen sumando.
+        self.assertNotIn('<form id="x-form"', PLANTILLA)
         self.assertIn("Promise.all([cargarRevisiones(), cargarXManual(), cargarPosteosManuales()])", PLANTILLA)
         # Una cifra vacía no pisa una guardada.
         self.assertIn("if (typeof f[k] === 'number') D.redes[i][k] = f[k];", PLANTILLA)
