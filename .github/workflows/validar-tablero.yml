@@ -53,7 +53,7 @@ jobs:
           node --check --input-type=module < functions/api/tiktok/auth.js
           node --check --input-type=module < functions/api/tiktok/callback.js
       - name: Probar la API de redes (X, Meta) y la seguridad de TikTok
-        run: node --test tests/test_redes_x.mjs tests/test_redes_meta.mjs tests/test_tiktok.mjs
+        run: node --test tests/test_redes_x.mjs tests/test_redes_meta.mjs tests/test_tiktok.mjs tests/test_google_metrics_error.mjs
       - name: Comprobar sintaxis del JavaScript del tablero
         run: |
           python3 - <<'PY'

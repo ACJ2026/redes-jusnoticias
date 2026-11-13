@@ -1312,3 +1312,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Por qué:** el relevamiento del 13/11 hecho con Claude in Chrome mostró que los dos posteos de octubre de «JusNoticias STJ» fueron solo cambios de foto de portada y de perfil. Con la regla de 60 días, el tablero la mostraba «Activa».
 - **Qué:** en `data/canales.json` queda «Casi inactiva: desde el 22/04/2026 solo cambió sus fotos de portada y de perfil», con `estado_manual: true`. `scripts/actualizar_redes.py` ya no pisa un estado revisado a mano, pero sigue actualizando los seguidores.
 - **Prueba:** `test_un_estado_revisado_a_mano_no_se_pisa`.
+
+## 2026-11-13 — Visitas: la consulta a Google quedaba «Consultando…» (Claude, aviso de Ignacio)
+
+- **Síntoma:** la pestaña Visitas no mostraba datos de Analytics ni de Search Console.
+- **Causa real:** `/api/google-metrics` respondía «Error 1101: Worker threw exception» para cualquier período (consulta del 13/11 desde GitHub, rama `claude/diagnostico-google`). Cuando Google devolvía un error, el código armaba la respuesta con `rango`, una variable que no existe. Esa segunda falla rompía la función y escondía el motivo.
+- **Arreglo:** `rango: range`. Ahora un error de Google llega al tablero como JSON (502) con su motivo.
+- **Prueba:** `tests/test_google_metrics_error.mjs` falla con el código anterior y pasa con el arreglo. Se suma a `validar-tablero.yml`.
+- **Pendiente:** con el arreglo publicado, ver qué error devuelve Google (permisos, clave o cuota) y resolverlo.
