@@ -1320,3 +1320,17 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Arreglo:** `rango: range`. Ahora un error de Google llega al tablero como JSON (502) con su motivo.
 - **Prueba:** `tests/test_google_metrics_error.mjs` falla con el código anterior y pasa con el arreglo. Se suma a `validar-tablero.yml`.
 - **Pendiente:** con el arreglo publicado, ver qué error devuelve Google (permisos, clave o cuota) y resolverlo.
+
+
+## 2026-11-13 — Visitas: reducir consultas repetidas y picos de cuota de Google
+
+- **Qué informó Ignacio:** la sección «Visitas al sitio y presencia en buscadores» devolvió el error Resource has been exhausted (e.g. check quota).
+- **Diagnóstico del código:** cada apertura solicitaba cinco informes de GA4 y tres de Search Console en paralelo. Aunque la respuesta anunciaba caché HTTP, la función no reutilizaba explícitamente una respuesta guardada en la caché de Cloudflare.
+- **Cambio en rama** fix/google-metrics-quota-cache-2026-11-13:
+  - Reutilizar por 15 minutos la respuesta completa para el mismo rango de fechas mediante la caché de Cloudflare.
+  - Ejecutar en serie los cinco informes de Analytics y los tres de Search Console para evitar ocho solicitudes simultáneas.
+  - Reintentar hasta dos veces los errores temporales de límite por minuto/servicio no disponible, con espera creciente.
+  - Identificar en el error el servicio y el informe que falló.
+- **Alcance:** no se cambian credenciales, permisos, datos históricos, rangos permitidos ni definiciones de métricas.
+- **Prueba añadida:** una respuesta cacheada se devuelve sin volver a llamar a Google.
+- **Pendiente:** ejecutar CI, revisar Cloudflare Pages y comprobar con un rango real si Google vuelve a responder. Si la cuota diaria del proyecto está agotada, solo Google puede renovarla o ampliarla desde Google Cloud Console; la caché y la secuenciación reducen consumo futuro, pero no pueden restablecer una cuota ya agotada.
