@@ -396,7 +396,7 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 46,
       "notas": 42,
       "ejemplo": "https://argentarnoticias.com.ar/juicio-por-jurados-en-comodoro-seleccionaron-a-los-doce-titulares-para-el-debate-por-abuso-sexual-agravado-contra-una-nina/",
@@ -909,6 +909,37 @@
       }
     },
     {
+      "nombre": "Red43",
+      "alias": [],
+      "dominio": "red43.com.ar",
+      "url": "https://red43.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Esquel",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 12,
+      "notas": 12,
+      "ejemplo": "https://www.red43.com.ar/nota/2026-11-13-8-30-26-chubut-tendra-una-camara-de-apelaciones-en-lo-laboral-con-competencia-en-toda-la-provincia",
+      "primera_deteccion": "2026-10-27",
+      "ultima_deteccion": "2026-11-10",
+      "redes": {
+        "Facebook": [
+          "Red43Noticias",
+          "/Red43Noticias"
+        ],
+        "Instagram": [
+          "@Red43Esquel"
+        ],
+        "X": [
+          "@RED43info"
+        ],
+        "YouTube": [
+          "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
+        ]
+      }
+    },
+    {
       "nombre": "El Patagónico",
       "alias": [],
       "dominio": "elpatagonico.com",
@@ -954,37 +985,6 @@
       "redes": {}
     },
     {
-      "nombre": "Red43",
-      "alias": [],
-      "dominio": "red43.com.ar",
-      "url": "https://red43.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Esquel",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 11,
-      "notas": 11,
-      "ejemplo": "https://www.red43.com.ar/nota/2026-10-27-11-31-27-esquel-fallo-contra-plan-ovalo-y-ford-por-aumentos-desmedidos-en-un-plan-de-ahorro",
-      "primera_deteccion": "2026-10-27",
-      "ultima_deteccion": "2026-11-10",
-      "redes": {
-        "Facebook": [
-          "Red43Noticias",
-          "/Red43Noticias"
-        ],
-        "Instagram": [
-          "@Red43Esquel"
-        ],
-        "X": [
-          "@RED43info"
-        ],
-        "YouTube": [
-          "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
-        ]
-      }
-    },
-    {
       "nombre": "Revista Quórum",
       "alias": [],
       "dominio": "revistaquorum.com.ar",
@@ -1006,6 +1006,28 @@
         "YouTube": [
           "/@revistaquorumok"
         ]
+      }
+    },
+    {
+      "nombre": "Justicia.ar",
+      "alias": [],
+      "dominio": "justicia.ar",
+      "url": "https://justicia.ar",
+      "tipo": "Portal digital",
+      "localidad": "Cobertura nacional",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por número)",
+      "publicaciones": 8,
+      "notas": 7,
+      "ejemplo": "https://www.justicia.ar/novedades/6414/2026/11/autoridades-judiciales-recibieron-a-la-vicepresidenta-del-consejo-de-la-magistratura-de-la-nacion",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {},
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://justicia.ar — «Sitio web desarrollado por la Corte Suprema de Justicia de la Nación»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -1068,28 +1090,6 @@
         "YouTube": [
           "/channel/UCWhsV1YALBkWBsbJQBkGv1g"
         ]
-      }
-    },
-    {
-      "nombre": "Justicia.ar",
-      "alias": [],
-      "dominio": "justicia.ar",
-      "url": "https://justicia.ar",
-      "tipo": "Portal digital",
-      "localidad": "Cobertura nacional",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por número)",
-      "publicaciones": 7,
-      "notas": 6,
-      "ejemplo": "https://www.justicia.ar/novedades/6390/2026/11/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-b",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {},
-      "observaciones": "Sitio del medio, leído el 13/11/2026: https://justicia.ar — «Sitio web desarrollado por la Corte Suprema de Justicia de la Nación»",
-      "_manual": {
-        "localidad": true,
-        "observaciones": true
       }
     },
     {

@@ -4230,7 +4230,7 @@
     "me_gusta": 3,
     "comentarios": 1,
     "compartidos": 1,
-    "vistas": 415,
+    "vistas": 416,
     "propia": "Sí",
     "key": "tt-7707000954201148693",
     "url": "https://www.tiktok.com/@juschubut/video/7707000954201148693?utm_campaign=tt4d_open_api&utm_source=sbaw9943git83c8l01"
@@ -4244,7 +4244,7 @@
     "me_gusta": 2,
     "comentarios": 0,
     "compartidos": 0,
-    "vistas": 90,
+    "vistas": 91,
     "propia": "Sí",
     "key": "tt-7707256670124051718",
     "url": "https://www.tiktok.com/@juschubut/video/7707256670124051718?utm_campaign=tt4d_open_api&utm_source=sbaw9943git83c8l01"
@@ -4255,7 +4255,7 @@
     "fecha": "2026-11-12",
     "texto": "La ministra del STJ partic",
     "nota_id": null,
-    "me_gusta": 4,
+    "me_gusta": 5,
     "comentarios": 0,
     "compartidos": 2,
     "vistas": null,
@@ -4304,5 +4304,33 @@
     "propia": "Sí",
     "key": "ig-18380823148241490",
     "url": "https://www.instagram.com/p/Dfpv6ipmtue/"
+  },
+  {
+    "red": "Instagram",
+    "cuenta": "jus_chubut",
+    "fecha": "2026-11-13",
+    "texto": "🤝 Con el respaldo de los ",
+    "nota_id": null,
+    "me_gusta": 7,
+    "comentarios": 0,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "ig-17895016353523240",
+    "url": "https://www.instagram.com/p/DfsNnk3GmOU/"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-13",
+    "texto": "Con el respaldo de los cam",
+    "nota_id": null,
+    "me_gusta": 1,
+    "comentarios": 0,
+    "compartidos": 1,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1787095116749409",
+    "url": "https://www.facebook.com/1769483335177254/posts/1787095116749409"
   }
 ]
