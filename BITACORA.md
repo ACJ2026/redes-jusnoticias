@@ -1306,3 +1306,9 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Nombre de la página de Facebook:** 28 filas de `data/redes2.json` pasan de «JusNoticias (prensastjchubut)» a «JusNoticias», el nombre que devuelve la API. No se borró ninguna fila.
 - **No cambia qué se cuenta en medios.**
 - **Pruebas:** `tests/test_auditoria_redes.py` (5). Se adaptaron las que exigían la tabla sacada. 232 OK y pruebas `.mjs` OK. Probado en el navegador en 1280 y 375 px, sin errores.
+
+## 2026-11-13 — Página de Facebook STJ: «Casi inactiva», revisado a mano (Claude, OK de Ignacio)
+
+- **Por qué:** el relevamiento del 13/11 hecho con Claude in Chrome mostró que los dos posteos de octubre de «JusNoticias STJ» fueron solo cambios de foto de portada y de perfil. Con la regla de 60 días, el tablero la mostraba «Activa».
+- **Qué:** en `data/canales.json` queda «Casi inactiva: desde el 22/04/2026 solo cambió sus fotos de portada y de perfil», con `estado_manual: true`. `scripts/actualizar_redes.py` ya no pisa un estado revisado a mano, pero sigue actualizando los seguidores.
+- **Prueba:** `test_un_estado_revisado_a_mano_no_se_pisa`.

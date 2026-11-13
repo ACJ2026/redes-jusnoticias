@@ -36,6 +36,12 @@ class AuditoriaRedesTest(unittest.TestCase):
         ar.actualizar_canales(canales, [{"red": "Facebook", "cuenta": "JusNoticias STJ", "ok": True, "seguidores": 2, "ultimaPublicacion": "2026-04-22"}], dt.date(2026, 11, 13))
         self.assertEqual(canales[0]["estado"], "Inactiva: último posteo 22/04/2026")
 
+    def test_un_estado_revisado_a_mano_no_se_pisa(self):
+        canales = [{"red": "Facebook", "cuenta": "JusNoticias STJ", "seguidores": 2, "estado": "Casi inactiva", "estado_manual": True}]
+        ar.actualizar_canales(canales, [{"red": "Facebook", "cuenta": "JusNoticias STJ", "ok": True, "seguidores": 30, "ultimaPublicacion": "2026-11-12"}], dt.date(2026, 11, 13))
+        self.assertEqual(canales[0]["estado"], "Casi inactiva")
+        self.assertEqual(canales[0]["seguidores"], 30)
+
     def test_busqueda_en_otras_cuentas_solo_instagram_dirigido(self):
         self.assertIn('const EN_USO = new Set(["ig-dirigida"]);', COMPARTIDOS)
         self.assertIn("FUENTES.filter(f => EN_USO.has(f.id)", COMPARTIDOS)
