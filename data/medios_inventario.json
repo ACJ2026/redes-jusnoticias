@@ -470,8 +470,8 @@
       "tipo": "Radio",
       "localidad": "Trelew",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 35,
       "notas": 33,
       "ejemplo": "https://radiochubut.com/chubut-mundo-trabajo/",
@@ -875,6 +875,35 @@
       }
     },
     {
+      "nombre": "Examedia",
+      "alias": [
+        "examedia.com.ar"
+      ],
+      "dominio": "examedia.com.ar",
+      "url": "https://examedia.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Entre Ríos (localidad por verificar)",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "publicaciones": 12,
+      "notas": 9,
+      "ejemplo": "https://examedia.com.ar/portada/post/88230086",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/examedia"
+        ],
+        "Instagram": [
+          "@examediaok"
+        ],
+        "X": [
+          "@ExamediaAR"
+        ]
+      }
+    },
+    {
       "nombre": "El Patagónico",
       "alias": [],
       "dominio": "elpatagonico.com",
@@ -899,35 +928,6 @@
         ],
         "X": [
           "@elpatagonico"
-        ]
-      }
-    },
-    {
-      "nombre": "Examedia",
-      "alias": [
-        "examedia.com.ar"
-      ],
-      "dominio": "examedia.com.ar",
-      "url": "https://examedia.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Entre Ríos (localidad por verificar)",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 11,
-      "notas": 8,
-      "ejemplo": "https://examedia.com.ar/portada/post/88189316",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/examedia"
-        ],
-        "Instagram": [
-          "@examediaok"
-        ],
-        "X": [
-          "@ExamediaAR"
         ]
       }
     },
@@ -1252,8 +1252,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 6,
       "notas": 6,
       "ejemplo": "https://lanotasj.com.ar/el-gobierno-creo-una-comision-para-reformar-el-codigo-procesal-civil-y-comercial-e-instaurar-la-oralidad-en-los-juicios/",
@@ -3001,8 +3001,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 0,
       "notas": 0,
       "ejemplo": "",
