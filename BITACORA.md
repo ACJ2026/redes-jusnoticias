@@ -1269,3 +1269,12 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Qué no cambia:** no se borra historial ni cambia qué se cuenta. Los posts de X y los posteos de otras cuentas ya cargados se siguen mostrando (`/api/x-manual` y `/api/posteo-manual` por GET siguen). «Confirmar» de los posteos «para confirmar» de Redes sigue guardando.
 - **Pendiente de decisión de Ignacio:** unificar secciones repetidas (estado en vivo, rankings, ayuda, historial de redes), Facebook STJ solo como historial, prueba de Gemini, ciudades de 57 medios.
 - **Pruebas:** 219 OK (se adaptaron las que exigían los formularios sacados y se sumó una que comprueba que no vuelvan y que el historial se siga cargando). Probado en el navegador en 1280 y 375 px, sin errores.
+
+## 2026-11-13 — Reporte mensual para imprimir (Claude, OK de Ignacio, mejora 4 de la auditoría)
+
+- **Qué:** botón «Reporte» en la barra del tablero. Se elige un mes (por defecto, el último mes completo) y se abre una página lista para imprimir o guardar en PDF.
+- **Contenido:** indicadores del mes comparados con el anterior (notas, % con repercusión, publicaciones, medios, medios por nota, % que nombra a JusNoticias, % de copia textual), tabla por tipo de nota, los 5 medios que más publicaron, las 5 notas que más circularon, cuánto tardan los medios (cuando haya `fecha_medio`) y cómo leerlo.
+- **Mismos números que el tablero:** usa `calc()` del tablero (`publico/reporte.js`); probado con octubre: 30 notas, 22 con repercusión (73 %), igual que en pantalla.
+- **Redes:** no entran; se informarán después de su auditoría (pedido de Ignacio).
+- **No guarda nada** ni cambia qué se cuenta. Un dato que falta se muestra «—».
+- **Pruebas:** `tests/test_reporte_mensual.py` (4). Probado en el navegador en 1280 y 375 px, sin errores.
