@@ -1035,7 +1035,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   };
   const regionMedio = localidad => {
     if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)','Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)','Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)'].includes(localidad)) return 'Chubut';
-    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','San Carlos de Bariloche','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','San Carlos de Bariloche','Río Grande','Ushuaia','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
     if (localidad === 'Cobertura nacional') return 'Medios nacionales';
     if (localidad === 'Cobertura patagónica (localidad por verificar)') return 'Cobertura regional';
     if (localidad.startsWith('Entre Ríos')) return 'Resto del país';

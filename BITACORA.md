@@ -1278,3 +1278,10 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Redes:** no entran; se informarán después de su auditoría (pedido de Ignacio).
 - **No guarda nada** ni cambia qué se cuenta. Un dato que falta se muestra «—».
 - **Pruebas:** `tests/test_reporte_mensual.py` (4). Probado en el navegador en 1280 y 375 px, sin errores.
+## 2026-11-13 — Ciudades de 14 medios, sacadas de sus propios sitios (Claude, OK de Ignacio, mejora 3 de la auditoría)
+
+- **Cómo:** un flujo de solo lectura en GitHub (rama `claude/diagnostico-ciudades`, salida en `diagnostico-ciudades-salida`) leyó la portada y las páginas de contacto de los 31 medios «por verificar» que tienen publicaciones contadas.
+- **Se cargaron 14** en `data/medios_inventario.json`, con `_manual` y la fuente textual en `observaciones`: Aire Libre FM (Río Grande), Mil Patagonias (Comodoro Rivadavia), Justicia.ar (cobertura nacional), Río Negro (General Roca), 0223 (Mar del Plata), Ámbito, Página/12, Perfil y TN (Ciudad Autónoma de Buenos Aires), Contextos Fueguinos (Ushuaia), Diario UNO (Las Heras), diariocronica.com.ar (Comodoro Rivadavia), ElDoce.tv (Córdoba) y MejorInformado (Neuquén).
+- **No se inventó ninguna:** los 17 medios sin dirección en su sitio siguen «por verificar» (entre ellos Chubutline, Madryn Urbana, Diario El Sureño, Infobae y Canal 4 Esquel). Una característica telefónica sola no alcanzó.
+- **Regiones:** Río Grande y Ushuaia pasan a «Patagonia fuera de Chubut» (antes caían en «resto del país»).
+- **No cambia qué se cuenta.** Por verificar: de 57 a 43.
