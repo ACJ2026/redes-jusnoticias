@@ -309,6 +309,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <div class="pl-acciones">
         <button class="btn" type="button" id="pl-filtro-btn" aria-haspopup="dialog">Filtro</button>
         <button class="btn" type="button" id="pl-info-btn" aria-controls="infografia">Infografía</button>
+        <button class="btn" type="button" id="pl-reporte-btn" aria-haspopup="dialog">Reporte</button>
         <button class="btn pl-ayuda" type="button" id="pl-ayuda-btn" aria-haspopup="dialog" aria-label="Guía y cómo leer el tablero" title="Guía y cómo leer el tablero">?</button>
       </div>
     </div>
@@ -1034,7 +1035,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
   };
   const regionMedio = localidad => {
     if (['Rawson','Trelew','Puerto Madryn','Comodoro Rivadavia','Esquel','Cholila','Valle Inferior del Río Chubut','Chubut (localidad por verificar)','Cobertura provincial (Comodoro Rivadavia, Trelew y Puerto Madryn)','Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)'].includes(localidad)) return 'Chubut';
-    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','San Carlos de Bariloche','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
+    if (['Río Gallegos','General Roca','Neuquén','El Bolsón','San Carlos de Bariloche','Río Grande','Ushuaia','Santa Cruz (localidad por verificar)'].includes(localidad)) return 'Patagonia fuera de Chubut';
     if (localidad === 'Cobertura nacional') return 'Medios nacionales';
     if (localidad === 'Cobertura patagónica (localidad por verificar)') return 'Cobertura regional';
     if (localidad.startsWith('Entre Ríos')) return 'Resto del país';
@@ -2170,6 +2171,8 @@ const draw = () => {
     $(id).addEventListener('click', () => { if (typeof window.__tableroRender !== 'function') window.__tableroHashPedido = pedido; });
   });
   const scriptResumen = document.createElement('script'); scriptResumen.src = 'tablero-plausible.js?v=__VERSION__'; scriptResumen.defer = true; document.head.appendChild(scriptResumen);
+  // Reporte mensual para imprimir (publico/reporte.js): usa calc() del tablero.
+  const scriptReporte = document.createElement('script'); scriptReporte.src = 'reporte.js?v=__VERSION__'; scriptReporte.defer = true; document.head.appendChild(scriptReporte);
   const hDestino = ({ visitas: 'google', guia: 'resumen' })[h] || h;
   if (h && $(hDestino) && $(hDestino).classList.contains('page')) {
     $('portada').hidden = true;

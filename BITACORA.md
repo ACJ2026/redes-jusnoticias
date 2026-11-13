@@ -1270,6 +1270,21 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Pendiente de decisión de Ignacio:** unificar secciones repetidas (estado en vivo, rankings, ayuda, historial de redes), Facebook STJ solo como historial, prueba de Gemini, ciudades de 57 medios.
 - **Pruebas:** 219 OK (se adaptaron las que exigían los formularios sacados y se sumó una que comprueba que no vuelvan y que el historial se siga cargando). Probado en el navegador en 1280 y 375 px, sin errores.
 
+## 2026-11-13 — Reporte mensual para imprimir (Claude, OK de Ignacio, mejora 4 de la auditoría)
+
+- **Qué:** botón «Reporte» en la barra del tablero. Se elige un mes (por defecto, el último mes completo) y se abre una página lista para imprimir o guardar en PDF.
+- **Contenido:** indicadores del mes comparados con el anterior (notas, % con repercusión, publicaciones, medios, medios por nota, % que nombra a JusNoticias, % de copia textual), tabla por tipo de nota, los 5 medios que más publicaron, las 5 notas que más circularon, cuánto tardan los medios (cuando haya `fecha_medio`) y cómo leerlo.
+- **Mismos números que el tablero:** usa `calc()` del tablero (`publico/reporte.js`); probado con octubre: 30 notas, 22 con repercusión (73 %), igual que en pantalla.
+- **Redes:** no entran; se informarán después de su auditoría (pedido de Ignacio).
+- **No guarda nada** ni cambia qué se cuenta. Un dato que falta se muestra «—».
+- **Pruebas:** `tests/test_reporte_mensual.py` (4). Probado en el navegador en 1280 y 375 px, sin errores.
+## 2026-11-13 — Ciudades de 14 medios, sacadas de sus propios sitios (Claude, OK de Ignacio, mejora 3 de la auditoría)
+
+- **Cómo:** un flujo de solo lectura en GitHub (rama `claude/diagnostico-ciudades`, salida en `diagnostico-ciudades-salida`) leyó la portada y las páginas de contacto de los 31 medios «por verificar» que tienen publicaciones contadas.
+- **Se cargaron 14** en `data/medios_inventario.json`, con `_manual` y la fuente textual en `observaciones`: Aire Libre FM (Río Grande), Mil Patagonias (Comodoro Rivadavia), Justicia.ar (cobertura nacional), Río Negro (General Roca), 0223 (Mar del Plata), Ámbito, Página/12, Perfil y TN (Ciudad Autónoma de Buenos Aires), Contextos Fueguinos (Ushuaia), Diario UNO (Las Heras), diariocronica.com.ar (Comodoro Rivadavia), ElDoce.tv (Córdoba) y MejorInformado (Neuquén).
+- **No se inventó ninguna:** los 17 medios sin dirección en su sitio siguen «por verificar» (entre ellos Chubutline, Madryn Urbana, Diario El Sureño, Infobae y Canal 4 Esquel). Una característica telefónica sola no alcanzó.
+- **Regiones:** Río Grande y Ushuaia pasan a «Patagonia fuera de Chubut» (antes caían en «resto del país»).
+- **No cambia qué se cuenta.** Por verificar: de 57 a 43.
 ## 2026-11-13 — Se guarda la fecha en que publicó cada medio (Claude, OK de Ignacio, mejora 2 de la auditoría)
 
 - **Qué:** cada publicación nueva guarda `fecha_medio`, la fecha que informa la fuente (WordPress, RSS, mapa del sitio o buscador). Sirve para medir cuánto tarda una nota en circular.
