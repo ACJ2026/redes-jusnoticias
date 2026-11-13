@@ -396,7 +396,7 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 46,
       "notas": 42,
       "ejemplo": "https://argentarnoticias.com.ar/juicio-por-jurados-en-comodoro-seleccionaron-a-los-doce-titulares-para-el-debate-por-abuso-sexual-agravado-contra-una-nina/",
@@ -976,7 +976,7 @@
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 11,
       "notas": 9,
       "ejemplo": "https://prensamercosur.org/2026/11/10/un-jurado-popular-declaro-culpable-a-un-hombre-por-seis-hechos-de-abuso-sexual-y-quedo-detenido/",
@@ -1233,6 +1233,33 @@
       "redes": {}
     },
     {
+      "nombre": "Diario Judicial",
+      "alias": [],
+      "dominio": "diariojudicial.com",
+      "url": "https://diariojudicial.com",
+      "tipo": "Prensa gráfica",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://www.diariojudicial.com/news-104875-juraron-cinco-nuevos-integrantes-del-consejo-de-la-magistratura-de-la-nacion",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-11-13",
+      "redes": {
+        "Facebook": [
+          "/diariojudicial"
+        ],
+        "Instagram": [
+          "@diariojudicial"
+        ],
+        "X": [
+          "@diariojudicial"
+        ]
+      }
+    },
+    {
       "nombre": "FM de la Cordillera",
       "alias": [],
       "dominio": "fmdelacordillera.com.ar",
@@ -1277,33 +1304,6 @@
       "redes": {
         "Instagram": [
           "@lanotasanjuan"
-        ]
-      }
-    },
-    {
-      "nombre": "Diario Judicial",
-      "alias": [],
-      "dominio": "diariojudicial.com",
-      "url": "https://diariojudicial.com",
-      "tipo": "Prensa gráfica",
-      "localidad": "Ciudad Autónoma de Buenos Aires",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
-      "publicaciones": 5,
-      "notas": 5,
-      "ejemplo": "https://www.diariojudicial.com/news-104875-juraron-cinco-nuevos-integrantes-del-consejo-de-la-magistratura-de-la-nacion",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-13",
-      "redes": {
-        "Facebook": [
-          "/diariojudicial"
-        ],
-        "Instagram": [
-          "@diariojudicial"
-        ],
-        "X": [
-          "@diariojudicial"
         ]
       }
     },
