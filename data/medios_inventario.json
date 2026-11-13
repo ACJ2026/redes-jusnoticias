@@ -774,7 +774,7 @@
       "dominio": "airelibre.com.ar",
       "url": "https://airelibre.com.ar",
       "tipo": "Radio",
-      "localidad": "Por verificar",
+      "localidad": "Río Grande",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
@@ -783,7 +783,12 @@
       "ejemplo": "https://www.airelibre.com.ar/el-stj-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
       "primera_deteccion": "2026-11-10",
       "ultima_deteccion": "2026-11-10",
-      "redes": {}
+      "redes": {},
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.airelibre.com.ar/contacto/ — «Antártida Argentina Nº 850 9420 Río Grande, Tierra del Fuego»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
+      }
     },
     {
       "nombre": "CHACODIAPORDIA.COM",
@@ -1009,7 +1014,7 @@
       "dominio": "milpatagonias.com",
       "url": "https://milpatagonias.com",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
@@ -1028,6 +1033,11 @@
         "X": [
           "@milpatagonias"
         ]
+      },
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.milpatagonias.com/ — «Ubicados en Maipú 1.233, Comodoro Rivadavia - Chubut»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -1066,7 +1076,7 @@
       "dominio": "justicia.ar",
       "url": "https://justicia.ar",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Cobertura nacional",
       "metodo": "Sin método automático",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por número)",
@@ -1075,7 +1085,12 @@
       "ejemplo": "https://www.justicia.ar/novedades/6390/2026/11/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-b",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
+      "redes": {},
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://justicia.ar — «Sitio web desarrollado por la Corte Suprema de Justicia de la Nación»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
+      }
     },
     {
       "nombre": "La Opinión Austral",
@@ -1508,7 +1523,7 @@
       "dominio": "rionegro.com.ar",
       "url": "https://rionegro.com.ar",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "General Roca",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
@@ -1533,6 +1548,11 @@
         "TikTok": [
           "@rionegrocomar"
         ]
+      },
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.rionegro.com.ar/ — «Domicilio legal: 9 de Julio 733 - General Roca»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -1541,7 +1561,7 @@
       "dominio": "0223.com.ar",
       "url": "https://0223.com.ar",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Mar del Plata",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
@@ -1566,6 +1586,11 @@
         "TikTok": [
           "@0223com"
         ]
+      },
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.0223.com.ar/contacto — «Castelli 1240, Mar del Plata, Provincia de Buenos Aires»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -1641,7 +1666,7 @@
       "dominio": "ambito.com",
       "url": "https://ambito.com",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
@@ -1663,6 +1688,11 @@
         "YouTube": [
           "/channel/UCXKphgduQN0dXiz_ioRTfeA"
         ]
+      },
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.ambito.com/ — «Domicilio: Olleros 3551, CABA»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -1843,7 +1873,7 @@
       "dominio": "contextosfueguinos.com",
       "url": "https://contextosfueguinos.com",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Ushuaia",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
@@ -1852,7 +1882,12 @@
       "ejemplo": "https://www.contextosfueguinos.com/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
       "primera_deteccion": "2026-11-10",
       "ultima_deteccion": "2026-11-13",
-      "redes": {}
+      "redes": {},
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.contextosfueguinos.com/ — «Ushuaia, Tierra del Fuego, Argentina»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
+      }
     },
     {
       "nombre": "Crónica Digital",
@@ -1992,7 +2027,7 @@
       "dominio": "diariouno.com.ar",
       "url": "https://diariouno.com.ar",
       "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
+      "localidad": "Las Heras",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
@@ -2001,7 +2036,12 @@
       "ejemplo": "https://www.diariouno.com.ar/tenia-un-plan-ahorro-el-precio-del-auto-subio-un-952-la-crucial-decision-la-justicia-n1611273",
       "primera_deteccion": "2026-11-10",
       "ultima_deteccion": "2026-11-10",
-      "redes": {}
+      "redes": {},
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.diariouno.com.ar/acerca-de-nosotros — «Manuel A. Sáez 2421, Las Heras, Mendoza»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
+      }
     },
     {
       "nombre": "diariocronica.com.ar",
@@ -2009,7 +2049,7 @@
       "dominio": "diariocronica.com.ar",
       "url": "https://diariocronica.com.ar",
       "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
+      "localidad": "Comodoro Rivadavia",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
@@ -2018,7 +2058,12 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-28",
       "ultima_deteccion": "2026-11-10",
-      "redes": {}
+      "redes": {},
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.diariocronica.com.ar/contacto — «Namuncurá 122 (9000) Comodoro Rivadavia . Chubut»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
+      }
     },
     {
       "nombre": "El 10 TV",
@@ -2241,7 +2286,7 @@
       "dominio": "eldoce.tv",
       "url": "https://eldoce.tv",
       "tipo": "TV",
-      "localidad": "Por verificar",
+      "localidad": "Córdoba",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Solo historial (no se consulta directamente)",
       "cobertura": "Se conservan publicaciones de revisiones anteriores",
@@ -2266,6 +2311,11 @@
         "TikTok": [
           "@eldocetv"
         ]
+      },
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://eldoce.tv — datos del sitio (addressLocality): «Córdoba»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -2597,7 +2647,7 @@
       "dominio": "mejorinformado.com",
       "url": "https://mejorinformado.com",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Neuquén",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
@@ -2619,6 +2669,11 @@
         "TikTok": [
           "@mejorinformado"
         ]
+      },
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.mejorinformado.com/ — datos del sitio (addressLocality): «Neuquén»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -2668,7 +2723,7 @@
       "dominio": "pagina12.com.ar",
       "url": "https://pagina12.com.ar",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
@@ -2690,6 +2745,11 @@
         "YouTube": [
           "/channel/UCJNDedOnljCssaiRZqg8-Dg"
         ]
+      },
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.pagina12.com.ar/contacto/ — «Venezuela 356, C1095AAH CABA»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -2698,7 +2758,7 @@
       "dominio": "perfil.com",
       "url": "https://perfil.com",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
@@ -2720,6 +2780,11 @@
         "YouTube": [
           "/channel/perfilcom"
         ]
+      },
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://perfil.com — «Dirección: California 2715, C1289ABI» (código postal de CABA)",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -2914,7 +2979,7 @@
       "dominio": "tn.com.ar",
       "url": "https://tn.com.ar",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
@@ -2923,7 +2988,12 @@
       "ejemplo": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
       "primera_deteccion": "2026-10-28",
       "ultima_deteccion": "2026-11-13",
-      "redes": {}
+      "redes": {},
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://tn.com.ar — datos del sitio (addressLocality): «CABA»",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
+      }
     },
     {
       "nombre": "TVPerú",

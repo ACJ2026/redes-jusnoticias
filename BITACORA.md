@@ -1269,3 +1269,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Qué no cambia:** no se borra historial ni cambia qué se cuenta. Los posts de X y los posteos de otras cuentas ya cargados se siguen mostrando (`/api/x-manual` y `/api/posteo-manual` por GET siguen). «Confirmar» de los posteos «para confirmar» de Redes sigue guardando.
 - **Pendiente de decisión de Ignacio:** unificar secciones repetidas (estado en vivo, rankings, ayuda, historial de redes), Facebook STJ solo como historial, prueba de Gemini, ciudades de 57 medios.
 - **Pruebas:** 219 OK (se adaptaron las que exigían los formularios sacados y se sumó una que comprueba que no vuelvan y que el historial se siga cargando). Probado en el navegador en 1280 y 375 px, sin errores.
+
+## 2026-11-13 — Ciudades de 14 medios, sacadas de sus propios sitios (Claude, OK de Ignacio, mejora 3 de la auditoría)
+
+- **Cómo:** un flujo de solo lectura en GitHub (rama `claude/diagnostico-ciudades`, salida en `diagnostico-ciudades-salida`) leyó la portada y las páginas de contacto de los 31 medios «por verificar» que tienen publicaciones contadas.
+- **Se cargaron 14** en `data/medios_inventario.json`, con `_manual` y la fuente textual en `observaciones`: Aire Libre FM (Río Grande), Mil Patagonias (Comodoro Rivadavia), Justicia.ar (cobertura nacional), Río Negro (General Roca), 0223 (Mar del Plata), Ámbito, Página/12, Perfil y TN (Ciudad Autónoma de Buenos Aires), Contextos Fueguinos (Ushuaia), Diario UNO (Las Heras), diariocronica.com.ar (Comodoro Rivadavia), ElDoce.tv (Córdoba) y MejorInformado (Neuquén).
+- **No se inventó ninguna:** los 17 medios sin dirección en su sitio siguen «por verificar» (entre ellos Chubutline, Madryn Urbana, Diario El Sureño, Infobae y Canal 4 Esquel). Una característica telefónica sola no alcanzó.
+- **Regiones:** Río Grande y Ushuaia pasan a «Patagonia fuera de Chubut» (antes caían en «resto del país»).
+- **No cambia qué se cuenta.** Por verificar: de 57 a 43.
