@@ -140,7 +140,11 @@ export async function onRequest(context) {
   if (edgeCache) {
     try {
       const cached = await edgeCache.match(cacheKey);
-      if (cached) return cached;
+      if (cached) {
+        const headers = new Headers(cached.headers);
+        headers.set("Cache-Control", "public, max-age=0, s-maxage=900, stale-while-revalidate=300");
+        return new Response(cached.body, { status: cached.status, headers });
+      }
     } catch (_) {
       // La caché es una optimización, nunca debe impedir la consulta.
     }
@@ -238,7 +242,17 @@ export async function onRequest(context) {
       }
     });
     if (edgeCache) {
-      try { await edgeCache.put(cacheKey, respuesta.clone()); }
+      try {
+        const headers = new Headers(respuesta.headers);
+        // Cache API usa max-age; la respuesta al navegador conserva max-age=0.
+        headers.set("Cache-Control", "public, max-age=900");
+        const copiaCacheable = new Response(respuesta.clone().body, {
+          status: respuesta.status,
+          statusText: respuesta.statusText,
+          headers
+        });
+        await edgeCache.put(cacheKey, copiaCacheable);
+      }
       catch (_) { /* La consulta exitosa no depende de que la caché pueda guardarse. */ }
     }
     return respuesta;
