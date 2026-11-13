@@ -1,0 +1,41 @@
+== /api/redes (30 días) errores: {"X": "La API de X requiere créditos o acceso habilitado."} 
+YouTube | publicaciones 30 días: 4 | {"seguidores": 1200}
+    me_gusta promedio 1.0 sobre 4
+    comentarios promedio 0.0 sobre 4
+    vistas promedio 55.2 sobre 4
+TikTok | publicaciones 30 días: 5 | {"seguidores": 26}
+    me_gusta promedio 1.8 sobre 5
+    comentarios promedio 0.2 sobre 5
+    compartidos promedio 0.2 sobre 5
+    vistas promedio 228.6 sobre 5
+Instagram | publicaciones 30 días: 10 | {"seguidores": 2645, "insights": {"views": 19521, "accounts_engaged": 198, "total_interactions": 333, "reach": 3164}, "insightsDesde": "2026-10-16", "insightsHasta": "2026-11-13"}
+    me_gusta promedio 22.3 sobre 10
+    comentarios promedio 0.0 sobre 10
+Facebook | publicaciones 30 días: 17 | {"seguidores": 14243, "parcial": false}
+    me_gusta promedio 2.7 sobre 17
+    comentarios promedio 0.2 sobre 17
+    compartidos promedio 1.2 sobre 17
+== panel-vivo 
+   Facebook JusNoticias ok | seguidores: 3777 | última: 2026-11-12 | 7 días: 5
+   Facebook JusNoticias STJ ok | seguidores: 10466 | última: 2026-10-20 | 7 días: 0
+   Instagram @jus_chubut ok | seguidores: 2645 | última: 2026-11-12 | 7 días: 4
+   YouTube Poder Judicial del Chubut ok | seguidores: 1200 | última: 2026-11-11 | 7 días: 1
+   TikTok @juschubut ok | seguidores: 26 | última: 2026-11-12 | 7 días: 2
+   X @Jus_Noticias La API de X pide créditos: no se consulta en vivo. | seguidores: None | última: None | 7 días: None
+== compartidos plan: {"desde": "2026-10-14", "no_disponibles": {"X": "La API de X para leer publicaciones de terceros es paga.", "TikTok": "La API conectada permite consultar la cuenta autorizada, no buscar publicaciones de terceros de forma general; la búsqueda pública ampliada requiere acceso de investigación aprobado.", "Instagram (hashtags)": "Meta exige aprobar el permiso «Instagram Public Content Access» (revisión de la app) para buscar por hashtags."}}
+   ig-dirigida 0 ok | revisadas 9 | filas 0 | fuertes 0 | para confirmar 0 | errores 0
+   instagram 0 ok | revisadas 12 | filas 1 | fuertes 0 | para confirmar 0 | errores 1
+   instagram 1 ok | revisadas 12 | filas 4 | fuertes 0 | para confirmar 0 | errores 1
+   instagram 2 ok | revisadas 12 | filas 0 | fuertes 0 | para confirmar 0 | errores 0
+   instagram 3 HTTP Error 503: Service Unavailable | revisadas  | filas 0 | fuertes 0 | para confirmar 0 | errores 
+   instagram 4 HTTP Error 503: Service Unavailable | revisadas  | filas 0 | fuertes 0 | para confirmar 0 | errores 
+   instagram 5 ok | revisadas 0 | filas 0 | fuertes 0 | para confirmar 0 | errores 0
+   ig-etiquetas 0 error | revisadas None | filas 0 | fuertes 0 | para confirmar 0 | errores 0
+   facebook-publico 0 ok | revisadas 5 | filas 0 | fuertes 0 | para confirmar 0 | errores 0
+   facebook-publico 1 ok | revisadas 5 | filas 0 | fuertes 0 | para confirmar 0 | errores 0
+   youtube 0 ok | revisadas 10 | filas 0 | fuertes 0 | para confirmar 0 | errores 0
+   yt-canales 0 HTTP Error 503: Service Unavailable | revisadas  | filas 0 | fuertes 0 | para confirmar 0 | errores 
+   yt-canales 1 HTTP Error 503: Service Unavailable | revisadas  | filas 0 | fuertes 0 | para confirmar 0 | errores 
+   yt-canales 2 HTTP Error 503: Service Unavailable | revisadas  | filas 0 | fuertes 0 | para confirmar 0 | errores 
+   yt-canales 3 ok | revisadas 6 | filas 0 | fuertes 0 | para confirmar 0 | errores 1
+== total {'filas': 5, 'fuertes': 0, 'conf': 0}
