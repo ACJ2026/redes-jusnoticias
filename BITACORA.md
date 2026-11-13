@@ -1285,3 +1285,10 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **No se inventó ninguna:** los 17 medios sin dirección en su sitio siguen «por verificar» (entre ellos Chubutline, Madryn Urbana, Diario El Sureño, Infobae y Canal 4 Esquel). Una característica telefónica sola no alcanzó.
 - **Regiones:** Río Grande y Ushuaia pasan a «Patagonia fuera de Chubut» (antes caían en «resto del país»).
 - **No cambia qué se cuenta.** Por verificar: de 57 a 43.
+## 2026-11-13 — Se guarda la fecha en que publicó cada medio (Claude, OK de Ignacio, mejora 2 de la auditoría)
+
+- **Qué:** cada publicación nueva guarda `fecha_medio`, la fecha que informa la fuente (WordPress, RSS, mapa del sitio o buscador). Sirve para medir cuánto tarda una nota en circular.
+- **Hacia adelante (regla 10):** solo para notas desde el 13/11/2026 (`FECHA_MEDIO_DESDE`). No se completan notas anteriores.
+- **No se inventa:** sin fecha válida no se guarda nada. Una fecha anterior a la nota tampoco se guarda. LU17 queda afuera porque su fecha es estimada.
+- **No cambia qué se cuenta** ni cómo se detecta.
+- **Pruebas:** `tests/test_fecha_del_medio.py` (4). 223 OK.
