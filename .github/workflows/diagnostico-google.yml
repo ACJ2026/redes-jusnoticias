@@ -1,0 +1,24 @@
+name: Diagnóstico de Google (solo lectura)
+on:
+  push:
+    branches:
+      - 'claude/diagnostico-google'
+permissions:
+  contents: write
+jobs:
+  google:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Consultar
+        run: |
+          mkdir -p salida
+          python3 diag_google.py > salida/google.txt 2>&1 || true
+          cat salida/google.txt | head -60
+      - name: Guardar salida
+        run: |
+          git config user.name "jusnoticias-bot"; git config user.email "actions@users.noreply.github.com"
+          git checkout --orphan diagnostico-google-salida
+          git rm -rq --cached . ; git add salida; git commit -qm "Diagnóstico google"
+          git push -f origin diagnostico-google-salida
