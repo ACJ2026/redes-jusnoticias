@@ -1269,3 +1269,11 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Qué no cambia:** no se borra historial ni cambia qué se cuenta. Los posts de X y los posteos de otras cuentas ya cargados se siguen mostrando (`/api/x-manual` y `/api/posteo-manual` por GET siguen). «Confirmar» de los posteos «para confirmar» de Redes sigue guardando.
 - **Pendiente de decisión de Ignacio:** unificar secciones repetidas (estado en vivo, rankings, ayuda, historial de redes), Facebook STJ solo como historial, prueba de Gemini, ciudades de 57 medios.
 - **Pruebas:** 219 OK (se adaptaron las que exigían los formularios sacados y se sumó una que comprueba que no vuelvan y que el historial se siga cargando). Probado en el navegador en 1280 y 375 px, sin errores.
+
+## 2026-11-13 — Se guarda la fecha en que publicó cada medio (Claude, OK de Ignacio, mejora 2 de la auditoría)
+
+- **Qué:** cada publicación nueva guarda `fecha_medio`, la fecha que informa la fuente (WordPress, RSS, mapa del sitio o buscador). Sirve para medir cuánto tarda una nota en circular.
+- **Hacia adelante (regla 10):** solo para notas desde el 13/11/2026 (`FECHA_MEDIO_DESDE`). No se completan notas anteriores.
+- **No se inventa:** sin fecha válida no se guarda nada. Una fecha anterior a la nota tampoco se guarda. LU17 queda afuera porque su fecha es estimada.
+- **No cambia qué se cuenta** ni cómo se detecta.
+- **Pruebas:** `tests/test_fecha_del_medio.py` (4). 223 OK.

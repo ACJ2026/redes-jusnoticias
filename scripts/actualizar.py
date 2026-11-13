@@ -247,12 +247,24 @@ def verify(cands, win=8):
             if d and jd <= d <= addd(jd, win): out.append(m)
     return out
 rows = []
+# Fecha en que publicó el medio, tal como la informa la fuente (WordPress, RSS, mapa del sitio o
+# buscador). Sirve para medir cuánto tarda una nota en circular (auditoría, 13/11/2026, OK de
+# Ignacio). No cambia qué se cuenta. Es hacia adelante: solo notas desde FECHA_MEDIO_DESDE.
+# LU17 queda afuera porque su fecha es estimada.
+FECHA_MEDIO_DESDE = '2026-11-13'
+def fecha_del_medio(medio, m, fecha_nota):
+    d = str(m.get('d') or '')[:10]
+    if medio == 'LU17' or not fecha_nota or fecha_nota < FECHA_MEDIO_DESDE: return ''
+    if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', d) or d < fecha_nota: return ''
+    return d
 def addrow(medio, m, metodo, origen='Sin dato', off=False, otros=''):
     # Una redacción propia del mismo caso es repercusión (decisión de Ignacio, 27/10/2026):
     # cuenta con confianza media; si además cita a JusNoticias, alta.
     conf = 'Media' if origen == 'Sin dato' else ('Alta' if (origen != 'Redacción propia' or off) else 'Media')
     fila = {'nota_id': m['nid'], 'medio': medio, 'origen': origen, 'cita_fuente_oficial': ('Sí' if off else 'No') if origen != 'Sin dato' else '', 'cita_otro_medio': otros, 'confianza': conf, 'metodo': metodo, 'url': m.get('u', '')}
     if m.get('motivo'): fila['motivo'] = m['motivo']
+    fm = fecha_del_medio(medio, m, JDATE.get(m['nid'], ''))
+    if fm: fila['fecha_medio'] = fm
     rows.append(fila)
 cobertura = {}
 # Un índice que no respondió no es lo mismo que una revisión sin resultados.
