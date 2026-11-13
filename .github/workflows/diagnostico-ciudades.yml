@@ -1,0 +1,24 @@
+name: Diagnóstico de ciudades de medios (solo lectura)
+on:
+  push:
+    branches:
+      - 'claude/diagnostico-ciudades'
+permissions:
+  contents: write
+jobs:
+  ciudades:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Leer sitios
+        run: |
+          mkdir -p salida
+          python3 ciudades.py > salida/ciudades.txt 2>&1 || true
+          tail -5 salida/ciudades.txt
+      - name: Guardar salida
+        run: |
+          git config user.name "jusnoticias-bot"; git config user.email "actions@users.noreply.github.com"
+          git checkout --orphan diagnostico-ciudades-salida
+          git rm -rq --cached . ; git add salida; git commit -qm "Diagnóstico ciudades"
+          git push -f origin diagnostico-ciudades-salida
