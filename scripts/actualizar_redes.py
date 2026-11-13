@@ -198,6 +198,10 @@ def actualizar_canales(canales, cuentas_vivas, hoy):
         if isinstance(viva.get("seguidores"), (int, float)):
             c["seguidores"] = int(viva["seguidores"])
         ultima = str(viva.get("ultimaPublicacion") or "")[:10]
+        # Un estado revisado a mano («estado_manual»: true) no se pisa: la API cuenta como publicación
+        # un cambio de foto de portada (página STJ, relevamiento del 13/11/2026, decisión de Ignacio).
+        if c.get("estado_manual"):
+            ultima = ""
         if re.fullmatch(r"\d{4}-\d{2}-\d{2}", ultima):
             fecha = "/".join(reversed(ultima.split("-")))
             dias = (hoy - dt.date.fromisoformat(ultima)).days
