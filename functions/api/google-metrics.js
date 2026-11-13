@@ -81,17 +81,26 @@ async function googleAccessToken(service) {
 }
 
 async function googlePost(url, token, body) {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
-    body: JSON.stringify(body)
-  });
-  const data = await response.json();
-  if (!response.ok) {
-    const message = data.error && data.error.message ? data.error.message : "HTTP " + response.status;
-    throw new Error(message);
+  let lastError;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    const data = await response.json();
+    if (response.ok) return data;
+    const apiError = data.error || {};
+    const details = Array.isArray(apiError.errors) ? apiError.errors.map(item => item.reason).filter(Boolean) : [];
+    const status = String(apiError.status || "");
+    const message = apiError.message || "HTTP " + response.status;
+    lastError = new Error(message + (status ? " [" + status + "]" : "") + (details.length ? " (" + [...new Set(details)].join(", ") + ")" : ""));
+    const retryable = response.status === 429 || response.status === 503 ||
+      status === "RESOURCE_EXHAUSTED" || /rateLimitExceeded|userRateLimitExceeded/i.test(details.join(" "));
+    if (!retryable || attempt === 2) throw lastError;
+    await new Promise(resolve => setTimeout(resolve, 300 * (2 ** attempt)));
   }
-  return data;
+  throw lastError || new Error("Google no respondió.");
 }
 
 export async function onRequest(context) {
@@ -123,6 +132,20 @@ export async function onRequest(context) {
     return json({ estado: "error_configuracion", error: error.message }, 400);
   }
 
+  // La misma combinación de fechas no debe volver a consumir cuota en cada apertura.
+  // Cloudflare conserva solo respuestas completas; si la caché no está disponible, la API sigue funcionando.
+  const requestUrl = new URL(request.url);
+  const cacheKey = new Request(requestUrl.origin + requestUrl.pathname + "?desde=" + range.start + "&hasta=" + range.end);
+  const edgeCache = typeof caches !== "undefined" ? caches.default : null;
+  if (edgeCache) {
+    try {
+      const cached = await edgeCache.match(cacheKey);
+      if (cached) return cached;
+    } catch (_) {
+      // La caché es una optimización, nunca debe impedir la consulta.
+    }
+  }
+
   try {
     const token = await googleAccessToken(service);
     const base = "https://analyticsdata.googleapis.com/v1beta/properties/" + encodeURIComponent(env.GA4_PROPERTY_ID) + ":runReport";
@@ -135,16 +158,20 @@ export async function onRequest(context) {
     });
 
     const gscBase = "https://searchconsole.googleapis.com/webmasters/v3/sites/" + encodeURIComponent(env.GSC_SITE_URL) + "/searchAnalytics/query";
-    const [summary, channels, devices, pages, sources, gscSummary, gsc, gscPages] = await Promise.all([
-      runGA([], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 1),
-      runGA(["sessionDefaultChannelGroup"], ["totalUsers", "sessions", "screenPageViews"], 50),
-      runGA(["deviceCategory"], ["totalUsers", "sessions", "screenPageViews"], 20),
-      runGA(["pageTitle", "pagePath"], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 100),
-      runGA(["sessionSource", "sessionMedium"], ["sessions", "screenPageViews", "totalUsers"], 100, [{ metric: { metricName: "sessions" }, desc: true }]),
-      googlePost(gscBase, token, { startDate: range.start, endDate: range.end, rowLimit: 1, dataState: "final" }),
-      googlePost(gscBase, token, { startDate: range.start, endDate: range.end, dimensions: ["query"], rowLimit: 25, dataState: "final" }),
-      googlePost(gscBase, token, { startDate: range.start, endDate: range.end, dimensions: ["page"], rowLimit: 25, dataState: "final" })
-    ]);
+    // Las consultas se ejecutan en serie para no abrir ocho solicitudes simultáneas contra Google.
+    // El prefijo del error permite saber qué servicio agotó su cuota.
+    const consultar = async (servicio, tarea) => {
+      try { return await tarea(); }
+      catch (error) { throw new Error(servicio + ": " + error.message); }
+    };
+    const summary = await consultar("Google Analytics 4 (resumen)", () => runGA([], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 1));
+    const channels = await consultar("Google Analytics 4 (canales)", () => runGA(["sessionDefaultChannelGroup"], ["totalUsers", "sessions", "screenPageViews"], 50));
+    const devices = await consultar("Google Analytics 4 (dispositivos)", () => runGA(["deviceCategory"], ["totalUsers", "sessions", "screenPageViews"], 20));
+    const pages = await consultar("Google Analytics 4 (páginas)", () => runGA(["pageTitle", "pagePath"], ["totalUsers", "sessions", "screenPageViews", "engagedSessions", "averageSessionDuration"], 100));
+    const sources = await consultar("Google Analytics 4 (fuentes)", () => runGA(["sessionSource", "sessionMedium"], ["sessions", "screenPageViews", "totalUsers"], 100, [{ metric: { metricName: "sessions" }, desc: true }]));
+    const gscSummary = await consultar("Search Console (resumen)", () => googlePost(gscBase, token, { startDate: range.start, endDate: range.end, rowLimit: 1, dataState: "final" }));
+    const gsc = await consultar("Search Console (consultas)", () => googlePost(gscBase, token, { startDate: range.start, endDate: range.end, dimensions: ["query"], rowLimit: 25, dataState: "final" }));
+    const gscPages = await consultar("Search Console (páginas)", () => googlePost(gscBase, token, { startDate: range.start, endDate: range.end, dimensions: ["page"], rowLimit: 25, dataState: "final" }));
 
     const metricObj = (row, names) => Object.fromEntries(names.map((name, i) => [
       name,
@@ -189,7 +216,7 @@ export async function onRequest(context) {
       };
     }).sort((a, b) => b.sessions - a.sessions).slice(0, 100);
 
-    return json({
+    const respuesta = json({
       estado: "ok",
       actualizado: new Date().toISOString(),
       rango: range,
@@ -210,6 +237,11 @@ export async function onRequest(context) {
         }))
       }
     });
+    if (edgeCache) {
+      try { await edgeCache.put(cacheKey, respuesta.clone()); }
+      catch (_) { /* La consulta exitosa no depende de que la caché pueda guardarse. */ }
+    }
+    return respuesta;
   } catch (error) {
     // Antes decía «rango» (variable inexistente): el error de Google se convertía en una excepción
     // del servidor (Cloudflare 1101) y la pestaña Visitas quedaba «Consultando…» sin mostrar el motivo.
