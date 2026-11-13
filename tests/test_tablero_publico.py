@@ -180,14 +180,11 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("async function x(desde, env)", function)
         self.assertIn("X_BEARER_TOKEN", function)
         self.assertIn("X: x", function)
-        self.assertIn("const connected = ['Facebook', 'Instagram', 'YouTube', 'X', 'TikTok']", template)
-        self.assertIn("result.limiteAlcanzado", template)
-        self.assertIn("Consultando Facebook, Instagram, YouTube, X y TikTok", template)
+        # La consulta del tablero va solo a Meta (X cobra por consulta): auditoría de Redes, 13/11/2026.
+        self.assertIn("fetch('/api/redes?redes=Facebook,Instagram'", template)
         self.assertIn("La API de X requiere créditos o acceso habilitado.", function)
-        self.assertIn("No disponible: ' + (error || 'la API no devolvió datos')", template)
         self.assertNotIn('id="redes-historial-actualizado"', template)
         self.assertNotIn("Última actualización de los datos históricos:", template)
-        self.assertIn("no se suman plataformas sin datos", template)
         self.assertIn("Última actualización del relevamiento:", template)
         self.assertIn("las métricas de redes y Google se consultan por separado", template)
         self.assertIn('<footer class="wrap" aria-label="Actualización y fuentes">', template)
@@ -204,7 +201,8 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn('id="pl-ayuda-btn"', template)
         self.assertIn('<section class="page" id="guia"', template)
         self.assertNotIn("redesVivoConsultado", template)
-        self.assertIn("addEventListener('click', consultarRedesVivo)", template)
+        # La tabla «Estado del monitoreo en vivo» se unificó con el panel en vivo (auditoría de Redes, 13/11/2026).
+        self.assertNotIn("consultarRedesVivo", template)
         self.assertNotIn("if (page === 'redes' && !redesVivoConsultado)", template)
         self.assertIn("TikTok", template)
         self.assertIn("WhatsApp", template)
@@ -225,16 +223,15 @@ class TableroPublicoTests(unittest.TestCase):
         canales = read_json("data/canales.json")
         self.assertIn("<option>TikTok</option>", template)
         self.assertIn("<option>WhatsApp</option>", template)
-        self.assertIn("TikTok está conectado con la cuenta institucional @juschubut", template)
-        self.assertIn("WhatsApp sigue pendiente de integración", template)
+        self.assertTrue(any("cargados a mano" in c["estado"] for c in canales if c["red"] == "WhatsApp"))
         self.assertTrue(any(c["red"] == "TikTok" for c in canales))
         self.assertTrue(any(c["red"] == "WhatsApp" for c in canales))
         self.assertTrue(any(isinstance(c["seguidores"], int) and c["estado"].startswith("Activa") for c in canales if c["red"] == "TikTok"))
 
     def test_panel_en_vivo_suma_metricas_por_publicacion_sin_insights_de_cuenta(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn("' de la ventana)'", template)
-        self.assertIn("['vistas', 'Vistas'], ['me_gusta', 'Me gusta']", template)
+        # Una métrica sin dato es «no disponible», nunca 0.
+        self.assertIn("typeof insights[m] === 'number' ? fmt(insights[m]) : 'no disponible'", template)
 
     def test_pagina_se_adapta_al_ancho_del_celular(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
@@ -331,7 +328,7 @@ class TableroPublicoTests(unittest.TestCase):
     def test_botones_de_accion_se_destacan(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertIn(".btn.accion{background:var(--accent)", template)
-        for boton in ("info-abrir", "info-generar", "info-descargar", "redes-vivo-consultar", "compartidos-buscar", "g-actualizar"):
+        for boton in ("info-abrir", "info-generar", "info-descargar", "compartidos-buscar", "g-actualizar"):
             self.assertIn(f'class="btn accion" id="{boton}"', template)
 
     def test_inventario_unico_de_medios(self):
@@ -349,9 +346,7 @@ class TableroPublicoTests(unittest.TestCase):
 
     def test_panel_en_vivo_separa_las_paginas_de_facebook(self):
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn("const filaPaginaFacebook = (p, result) =>", template)
-        self.assertIn("'Facebook · ' + nombre", template)
-        self.assertIn("result.paginas.map(p => filaPaginaFacebook(p, result))", template)
+        self.assertIn("redes.Facebook.paginas.forEach(p => partes.push('Facebook · ' + (p.nombre || p.id)", template)
 
     def test_generador_publico_ejecuta_y_usa_la_plantilla_legible(self):
         nombres = ["notas", "repercusion", "redes", "canales", "medios"]

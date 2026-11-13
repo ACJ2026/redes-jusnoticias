@@ -179,8 +179,51 @@ def consultar():
     return filas
 
 
+def nombre_cuenta(texto):
+    """«JusNoticias (prensastjchubut)» y «JusNoticias» son la misma cuenta; «@jus_chubut» y «jus_chubut» también."""
+    return normalizar(re.sub(r"\([^)]*\)", " ", str(texto or "")))
+
+
+def actualizar_canales(canales, cuentas_vivas, hoy):
+    """Seguidores y estado de cada cuenta propia salen de la consulta en vivo (auditoría de Redes,
+    13/11/2026): antes quedaban fijos y la página STJ figuraba «inactiva» aunque publicaba.
+    Solo se pisa con datos que llegaron; una cuenta que no respondió queda como estaba."""
+    cambios = 0
+    for c in canales:
+        viva = next((v for v in cuentas_vivas if v.get("ok") and v.get("red") == c.get("red")
+                     and nombre_cuenta(v.get("cuenta")) == nombre_cuenta(c.get("cuenta"))), None)
+        if not viva:
+            continue
+        antes = (c.get("seguidores"), c.get("estado"))
+        if isinstance(viva.get("seguidores"), (int, float)):
+            c["seguidores"] = int(viva["seguidores"])
+        ultima = str(viva.get("ultimaPublicacion") or "")[:10]
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", ultima):
+            fecha = "/".join(reversed(ultima.split("-")))
+            dias = (hoy - dt.date.fromisoformat(ultima)).days
+            c["estado"] = (f"Activa: última publicación {fecha}" if dias <= 60 else f"Inactiva: último posteo {fecha}")
+        c["actualizado"] = hoy.isoformat()
+        cambios += (c.get("seguidores"), c.get("estado")) != antes
+    return cambios
+
+
+def consultar_panel():
+    req = urllib.request.Request(f"{SITIO}/api/panel-vivo", headers={"Accept": "application/json", "User-Agent": "jusnoticias-relevamiento"})
+    with urllib.request.urlopen(req, timeout=120) as r:
+        return json.load(r).get("cuentas") or []
+
+
 def main():
     ruta = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "data" / "redes2.json"
+    # Seguidores y estado de las cuentas propias (data/canales.json), desde la consulta en vivo.
+    ruta_canales = ruta.parent / "canales.json"
+    try:
+        canales = json.loads(ruta_canales.read_text(encoding="utf-8"))
+        cambios = actualizar_canales(canales, consultar_panel(), dt.date.today())
+        ruta_canales.write_text(json.dumps(canales, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"Cuentas propias: {cambios} con seguidores o estado actualizados.")
+    except Exception as error:  # nunca frena el relevamiento
+        print(f"AVISO: no se pudieron actualizar seguidores y estado de las cuentas ({error}).")
     guardadas = json.loads(ruta.read_text(encoding="utf-8"))
     try:
         nuevas = consultar()

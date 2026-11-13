@@ -2,43 +2,48 @@
   {
     "red": "Facebook",
     "cuenta": "JusNoticias (prensastjchubut)",
-    "seguidores": 3775,
-    "estado": "Activa"
+    "seguidores": 3777,
+    "estado": "Activa: última publicación 12/11/2026",
+    "actualizado": "2026-11-13"
   },
   {
     "red": "Facebook",
     "cuenta": "JusNoticias STJ",
-    "seguidores": 10467,
-    "estado": "Inactiva: último posteo 22/04/2026"
+    "seguidores": 10466,
+    "estado": "Activa: última publicación 20/10/2026",
+    "actualizado": "2026-11-13"
   },
   {
     "red": "Instagram",
     "cuenta": "jus_chubut",
-    "seguidores": 2610,
-    "estado": "Activa"
+    "seguidores": 2645,
+    "estado": "Activa: última publicación 12/11/2026",
+    "actualizado": "2026-11-13"
   },
   {
     "red": "X",
     "cuenta": "@Jus_Noticias",
     "seguidores": 2421,
-    "estado": "Activa"
+    "estado": "Sin datos desde el 23/10/2026: la conexión de X es paga (seguidores al 22/10/2026)"
   },
   {
     "red": "YouTube",
     "cuenta": "Poder Judicial del Chubut (@poderjudicialdelchubut5982)",
     "seguidores": 1200,
-    "estado": "Activa: único canal de YouTube (1,2 K suscriptores al 22/10/2026)"
+    "estado": "Activa: última publicación 11/11/2026",
+    "actualizado": "2026-11-13"
   },
   {
     "red": "WhatsApp",
     "cuenta": "Canal JUSCHUBUT Noticias",
     "seguidores": 318,
-    "estado": "Activa"
+    "estado": "Activa: seguidores cargados a mano el 21/10/2026"
   },
   {
     "red": "TikTok",
     "cuenta": "@juschubut",
     "seguidores": 26,
-    "estado": "Activa: conectada por API (seguidores al 22/10/2026)"
+    "estado": "Activa: última publicación 12/11/2026",
+    "actualizado": "2026-11-13"
   }
 ]

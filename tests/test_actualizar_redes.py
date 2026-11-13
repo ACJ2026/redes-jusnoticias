@@ -151,7 +151,7 @@ class FallasBusquedaTest(unittest.TestCase):
 
     def test_la_seccion_explica_que_se_ve_y_muestra_lo_registrado_sin_enlace(self):
         plantilla = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn("Se busca solo:</b> Instagram · YouTube", plantilla)
+        self.assertIn("Se busca solo:</b> Instagram, en las cuentas de los medios que ya publicaron la nota", plantilla)
         self.assertIn("Registrado antes sin el enlace al posteo: ", plantilla)
 
 

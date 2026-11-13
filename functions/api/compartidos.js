@@ -441,7 +441,11 @@ const NO_DISPONIBLES = {
   TikTok: "La API conectada permite consultar la cuenta autorizada, no buscar publicaciones de terceros de forma general; la búsqueda pública ampliada requiere acceso de investigación aprobado."
 };
 
-const activas = env => FUENTES.filter(f => !f.requiere || env[f.requiere] === "1");
+// Auditoría de Redes (13/11/2026, OK de Ignacio): las demás búsquedas nunca encontraron un posteo
+// comprobado y cortaban por el límite de consultas. Queda solo Instagram en las cuentas de los
+// medios que ya publicaron la nota en su web. El código de las otras queda por si se reactivan.
+const EN_USO = new Set(["ig-dirigida"]);
+const activas = env => FUENTES.filter(f => EN_USO.has(f.id) && (!f.requiere || env[f.requiere] === "1"));
 const noDisponibles = env => env.IG_HASHTAGS === "1" ? NO_DISPONIBLES : {
   ...NO_DISPONIBLES,
   "Instagram (hashtags)": "Meta exige aprobar el permiso «Instagram Public Content Access» (revisión de la app) para buscar por hashtags."
