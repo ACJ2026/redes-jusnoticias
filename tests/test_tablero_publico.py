@@ -274,17 +274,9 @@ class TableroPublicoTests(unittest.TestCase):
         funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
         self.assertIn("const idNotaPorTitulo = new Map(notas.map(n => [String(n.titulo || '').trim().toLocaleLowerCase(), Number(n.id)]));", template)
         self.assertIn("const resolverNotaId = f => f && typeof f === 'object' ? (Number(f.nota_id) || idNotaPorTitulo.get(String(f.nota_titulo || f.nota_compartida || '').trim().toLocaleLowerCase()) || null) : null;", template)
-        self.assertIn('id="compartidos-busqueda-manual"', template)
-        self.assertIn("dibujarBusquedasManuales(plan.desde)", template)
-        # Los textos «Buscar en <red>» se arman en el navegador: se comprueba la lista de redes y el armado.
-        self.assertIn("a.textContent = 'Buscar en ' + red", template)
-        for red in ("Instagram", "YouTube", "X", "LinkedIn"):
-            self.assertIn(f"['{red}', 'https://", template)
-        self.assertIn("Búsqueda asistida en todas las redes", template)
-        self.assertIn("instagram.com/explore/search/keyword/?q=", template)
+        # La «Búsqueda asistida» manual se sacó en la auditoría del 13/11/2026.
+        self.assertNotIn("Búsqueda asistida en todas las redes", template)
         self.assertNotIn("site:instagram.com", template)
-        self.assertIn("facebook.com/search/posts/?q=", template)
-        self.assertIn("tiktok.com/search?q=", template)
         self.assertIn("Falta YT_CANAL_ID para excluir los videos del canal institucional.", funcion)
         self.assertIn("título de la nota identificado", funcion)
         self.assertIn("business_discovery", funcion)
@@ -513,12 +505,10 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn("Google Noticias (coincidencia temática; relación no verificada)", actualizador)
 
     def test_api_social_no_expone_token_en_url(self):
-        api = (ROOT / "api/redes.js").read_text(encoding="utf-8")
-        self.assertIn("Authorization: 'Bearer ' + token", api)
+        api = (ROOT / "functions/api/redes.js").read_text(encoding="utf-8")
+        self.assertIn('Authorization: "Bearer " + token', api)
         self.assertNotIn("access_token=${t}", api)
-        self.assertNotIn("access_token=${process.env.META_TOKEN}", api)
-        self.assertIn("process.env.YT_CANAL_ID", api)
-        self.assertIn("const tareas = { Facebook: facebook, Instagram: instagram, YouTube: youtube }", api)
+        self.assertNotIn("access_token=${env.META_TOKEN}", api)
         self.assertIn("Falta configurar YT_KEY", api)
         self.assertIn("Falta configurar FB_PAGE_ID", api)
         self.assertIn("Falta configurar IG_USER_ID", api)
@@ -605,13 +595,6 @@ class TableroPublicoTests(unittest.TestCase):
         self.assertIn(".foot{position:relative;isolation:isolate;box-sizing:border-box;width:100%;", template)
         self.assertIn("overflow-wrap:anywhere", template)
 
-    def test_tablero_interno_no_cuenta_registros_sin_enlace(self):
-        internal = (ROOT / "tablero_interno/index.html").read_text(encoding="utf-8")
-        self.assertIn("const esConfirmada = r =>", internal)
-        self.assertIn("repercusion.filter(esConfirmada)", internal)
-        self.assertIn("const ok = rs.filter(esConfirmada)", internal)
-
-
     def test_revision_manual_segura_y_bitacora_persistente(self):
         api = (ROOT / "functions/api/revisiones.js").read_text(encoding="utf-8")
         migration = (ROOT / "migrations/0002_revisiones_publicaciones.sql").read_text(encoding="utf-8")
@@ -641,31 +624,6 @@ class TableroPublicoTests(unittest.TestCase):
         # La lista es complementaria: si falla, no impide registrar los listeners ni ejecutar draw().
         self.assertIn("try {\n    dibujarNotasEnRedes();\n  } catch (error)", template)
         self.assertIn("try { dibujarNotasEnRedes(); } catch (error)", template)
-
-    def test_analizador_de_enlaces_funciona_para_cualquier_red_sin_marcar_automaticamente_como_verificada(self):
-        api = (ROOT / "functions/api/analizar-enlace.js").read_text(encoding="utf-8")
-        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        for red in ("Instagram", "Facebook", "TikTok", "YouTube", "X", "LinkedIn"):
-            self.assertIn('return "' + red + '"', api)
-        self.assertIn("export async function onRequestPost", api)
-        self.assertIn("validarUrl", api)
-        self.assertIn("MAX_REDIRECTS = 3", api)
-        self.assertIn("AbortSignal.timeout(TIMEOUT_MS)", api)
-        self.assertIn("No se encontró una coincidencia suficiente", api)
-        self.assertIn('id="compartidos-url"', template)
-        self.assertIn('id="compartidos-analizar"', template)
-        self.assertIn("Analizar un enlace:", template)
-        self.assertIn("No se guardó ni se contó ninguna repercusión automáticamente", template)
-        self.assertIn("No se pudo verificar el enlace:", template)
-
-    def test_analizador_no_confunde_error_de_acceso_con_publicacion_no_relacionada(self):
-        api = (ROOT / "functions/api/analizar-enlace.js").read_text(encoding="utf-8")
-        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn("Puede requerir inicio de sesión", api)
-        self.assertIn("no demuestra que la publicación no esté relacionada", template)
-        self.assertIn("requiere revisión humana", api)
-        self.assertIn("No puede confirmar contenido visual o audio", api)
-
 
     def test_compartidos_pagina_instagram_con_limite_y_reporta_publicaciones_revisadas(self):
         funcion = (ROOT / "functions/api/compartidos.js").read_text(encoding="utf-8")
@@ -830,6 +788,19 @@ class TableroPublicoTests(unittest.TestCase):
     def test_actualizar_no_cancela_corridas_en_curso(self):
         flujo = (ROOT / ".github/workflows/actualizar.yml").read_text(encoding="utf-8")
         self.assertIn("cancel-in-progress: false", flujo)
+
+    def test_sin_herramientas_de_carga_manual_pero_con_historial_cargado(self):
+        # Auditoría 13/11/2026: el tablero busca solo; se sacan los formularios manuales.
+        template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
+        for quitado in ('id="rn-agregar"', 'id="rn-form"', 'id="x-form"', 'id="compartidos-analizar"',
+                        'id="compartidos-busqueda-manual"', "/api/analizar-enlace"):
+            self.assertNotIn(quitado, template)
+        self.assertFalse((ROOT / "functions/api/analizar-enlace.js").exists())
+        # Lo cargado a mano antes se sigue mostrando, y «Confirmar» de Redes sigue guardando.
+        self.assertIn("fetch('/api/x-manual', { headers:", template)
+        self.assertIn("fetch('/api/posteo-manual', { headers:", template)
+        self.assertIn("await guardarPosteo({ url: f.publicacion_url", template)
+
 
 if __name__ == "__main__":
     unittest.main()

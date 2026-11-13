@@ -130,7 +130,8 @@ class PosteoManualTest(unittest.TestCase):
 
     def test_el_tablero_tiene_el_formulario_generico(self):
         plantilla = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
-        self.assertIn('<form id="rn-form" class="x-form">', plantilla)
+        # El formulario manual se sacó (auditoría 13/11/2026); lo ya cargado se sigue mostrando.
+        self.assertNotIn('<form id="rn-form"', plantilla)
         self.assertIn("const vivos = [...postsVivos, ...postsManuales].filter(", plantilla)
         self.assertIn("cargarPosteosManuales()", plantilla)
 
