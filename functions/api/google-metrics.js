@@ -211,6 +211,8 @@ export async function onRequest(context) {
       }
     });
   } catch (error) {
-    return json({ estado: "error_google", error: error.message, rango }, 502);
+    // Antes decía «rango» (variable inexistente): el error de Google se convertía en una excepción
+    // del servidor (Cloudflare 1101) y la pestaña Visitas quedaba «Consultando…» sin mostrar el motivo.
+    return json({ estado: "error_google", error: error.message, rango: range }, 502);
   }
 }
