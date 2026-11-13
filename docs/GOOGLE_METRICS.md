@@ -59,3 +59,11 @@ La respuesta de `/api/google-metrics` incluye `analytics.fuentes`, obtenida de l
 - Las visitas sin referencia identificable se mantienen como “Acceso directo” o “Sin identificar” según los valores que entrega GA4.
 - La API consulta los datos cuando se solicita, pero GA4 puede demorar en procesarlos. No describir estos datos como tiempo real segundo a segundo.
 - Search Console aporta consultas y páginas que aparecen en la Búsqueda de Google; no representa todos los buscadores. El porcentaje de clics es clics dividido por impresiones. La posición es un promedio y el puesto 1 es el más alto.
+
+
+## Protección de cuota y caché
+
+- La función guarda en la caché de Cloudflare la respuesta completa de cada rango de fechas. Las aperturas repetidas del mismo período reutilizan esa respuesta durante 15 minutos y no vuelven a consultar Google.
+- Las ocho consultas (cinco informes de GA4 y tres de Search Console) se ejecutan en serie, no en paralelo, para reducir picos de concurrencia.
+- Los errores temporales de cuota por minuto o servicio no disponible se reintentan hasta dos veces, con espera creciente. No se reintenta indefinidamente un límite diario agotado.
+- Si Google sigue rechazando la consulta, el mensaje identifica el servicio y el informe (por ejemplo, Google Analytics 4 (canales) o Search Console (resumen)). Si el proyecto de Google Cloud agotó una cuota diaria, será necesario esperar su renovación o solicitar un aumento de cuota en Google Cloud; el código no puede ampliar cuotas del proveedor.
