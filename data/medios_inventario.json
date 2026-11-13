@@ -221,7 +221,7 @@
       "notas": 62,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -283,7 +283,7 @@
       "notas": 57,
       "ejemplo": "https://www.eldiarioweb.com/2026/10/la-justicia-sanciono-a-plan-ovalo-y-ford-por-ocultar-informacion-de-un-plan-de-ahorro/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "/eldiarioonline"
@@ -313,7 +313,7 @@
       "notas": 56,
       "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -343,7 +343,7 @@
       "notas": 48,
       "ejemplo": "https://comodoro24.com.ar/chubut-define-politicas-para-abordar-el-nuevo-regimen-penal-juvenil/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "C24",
@@ -539,7 +539,7 @@
       "notas": 26,
       "ejemplo": "https://www.surenio.com.ar/jornadas-de-formacion-sobre-desarrollo-en-la-primera-infancia/",
       "primera_deteccion": "2026-11-11",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {}
     },
     {
@@ -677,7 +677,7 @@
       "notas": 18,
       "ejemplo": "https://lu17.com/contenido/155520/declaran-culpable-a-mauro-pavei-por-el-homicidio-de-nieves-en-comodoro",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {}
     },
     {
@@ -1012,7 +1012,7 @@
       "localidad": "Por verificar",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 8,
       "notas": 8,
       "ejemplo": "https://www.milpatagonias.com/el-municipio-de-comodoro-concreto-una-nueva-jornada-de-prevencion-de-cancer-de-mama/",
@@ -1266,6 +1266,33 @@
       }
     },
     {
+      "nombre": "Diario Judicial",
+      "alias": [],
+      "dominio": "diariojudicial.com",
+      "url": "https://diariojudicial.com",
+      "tipo": "Prensa gráfica",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "publicaciones": 5,
+      "notas": 5,
+      "ejemplo": "https://www.diariojudicial.com/news-104875-juraron-cinco-nuevos-integrantes-del-consejo-de-la-magistratura-de-la-nacion",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-11-13",
+      "redes": {
+        "Facebook": [
+          "/diariojudicial"
+        ],
+        "Instagram": [
+          "@diariojudicial"
+        ],
+        "X": [
+          "@diariojudicial"
+        ]
+      }
+    },
+    {
       "nombre": "TN24",
       "alias": [],
       "dominio": "tn24.com.ar",
@@ -1281,33 +1308,6 @@
       "primera_deteccion": "2026-11-04",
       "ultima_deteccion": "2026-11-04",
       "redes": {}
-    },
-    {
-      "nombre": "Diario Judicial",
-      "alias": [],
-      "dominio": "diariojudicial.com",
-      "url": "https://diariojudicial.com",
-      "tipo": "Prensa gráfica",
-      "localidad": "Ciudad Autónoma de Buenos Aires",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
-      "publicaciones": 4,
-      "notas": 4,
-      "ejemplo": "https://www.diariojudicial.com/news-104550-se-realizara-el-ii-congreso-patagonico-de-derecho-civil-y-comercial",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-12",
-      "redes": {
-        "Facebook": [
-          "/diariojudicial"
-        ],
-        "Instagram": [
-          "@diariojudicial"
-        ],
-        "X": [
-          "@diariojudicial"
-        ]
-      }
     },
     {
       "nombre": "GENESIS24.NET",
@@ -1414,7 +1414,7 @@
       "notas": 3,
       "ejemplo": "https://www.infobae.com/judiciales/2026/10/03/una-frenada-brusca-la-sube-como-prueba-y-la-discusion-por-la-indemnizacion-una-pasajera-le-gano-un-juicio-a-una-empresa-de-colectivos/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-11",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "Infobae"
@@ -1516,7 +1516,7 @@
       "notas": 2,
       "ejemplo": "https://www.rionegro.com.ar/sociedad/estudiantes-de-la-universidad-del-comahue-organizan-el-primer-congreso-patagonico-de-derecho-en-roca-4779536/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "/diariorionegro"
@@ -1818,7 +1818,7 @@
       "notas": 1,
       "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "/clarincom"
@@ -1851,7 +1851,7 @@
       "notas": 1,
       "ejemplo": "https://www.contextosfueguinos.com/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
       "primera_deteccion": "2026-11-10",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {}
     },
     {
@@ -1919,7 +1919,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "/DiarioHuarpe"
@@ -1943,13 +1943,13 @@
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.diariomendoza.com.ar/politica/godoy-cruz-fue-primer-municipio-mendoza-capacitarse-sobre-nuevo-regimen-penal-juvenil-n185378",
       "primera_deteccion": "2026-11-12",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {}
     },
     {
@@ -2034,7 +2034,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "/el10tv"
@@ -2436,7 +2436,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-10-24",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {}
     },
     {
@@ -2464,8 +2464,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://junin24.com/locales/fue-absuelto-un-hombre-acusado-de-abuso-sexual-agravado-por-haber-sido-cometido-por-ascendiente/",
@@ -2706,7 +2706,7 @@
       "notas": 1,
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {
         "Facebook": [
           "/perfilcom"
@@ -2905,7 +2905,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-11-10",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {}
     },
     {
