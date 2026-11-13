@@ -570,6 +570,39 @@
       }
     },
     {
+      "nombre": "El Chubut",
+      "alias": [],
+      "dominio": "elchubut.com.ar",
+      "url": "https://elchubut.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Trelew",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 27,
+      "notas": 26,
+      "ejemplo": "https://www.elchubut.com.ar/regionales/2026-11-12-20-38-0-autoridades-judiciales-recibieron-a-vicepresidenta-del-consejo-de-la-magistratura-de-la-nacion",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-10-27",
+      "redes": {
+        "Facebook": [
+          "/diarioelchubut"
+        ],
+        "Instagram": [
+          "@diarioelchubut"
+        ],
+        "X": [
+          "@elchubut"
+        ],
+        "YouTube": [
+          "@DiarioELCHUBUTwebTV"
+        ],
+        "TikTok": [
+          "@diarioelchubut"
+        ]
+      }
+    },
+    {
       "nombre": "Diario La Portada",
       "alias": [],
       "dominio": "diariolaportada.com.ar",
@@ -596,39 +629,6 @@
         ],
         "YouTube": [
           "@laportadadiario2895"
-        ]
-      }
-    },
-    {
-      "nombre": "El Chubut",
-      "alias": [],
-      "dominio": "elchubut.com.ar",
-      "url": "https://elchubut.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Trelew",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 26,
-      "notas": 25,
-      "ejemplo": "https://www.elchubut.com.ar/regionales/2026-11-5-20-23-0-banfi-encabezo-una-capacitacion-sobre-justicia-restaurativa-y-responsabilidad-penal-juvenil",
-      "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-27",
-      "redes": {
-        "Facebook": [
-          "/diarioelchubut"
-        ],
-        "Instagram": [
-          "@diarioelchubut"
-        ],
-        "X": [
-          "@elchubut"
-        ],
-        "YouTube": [
-          "@DiarioELCHUBUTwebTV"
-        ],
-        "TikTok": [
-          "@diarioelchubut"
         ]
       }
     },
@@ -2736,7 +2736,7 @@
       "notas": 1,
       "ejemplo": "https://www.msn.com/es-ar/noticias/argentina/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook/ar-AA2fVzBD",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {}
     },
     {
@@ -2922,7 +2922,7 @@
       "notas": 1,
       "ejemplo": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-12",
+      "ultima_deteccion": "2026-11-13",
       "redes": {}
     },
     {
