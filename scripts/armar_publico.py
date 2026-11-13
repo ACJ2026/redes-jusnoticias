@@ -41,7 +41,7 @@ js = json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\
 # Versión de los archivos de código: cambia cuando cambian, así el navegador no usa una copia vieja.
 import hashlib
 huella = hashlib.sha1()
-for nombre in ("panel-vivo.js", "panel-vivo.css", "tablero-plausible.js", "tablero-plausible.css"):
+for nombre in ("panel-vivo.js", "panel-vivo.css", "tablero-plausible.js", "tablero-plausible.css", "reporte.js"):
     try:
         huella.update((ROOT / "publico" / nombre).read_bytes())
     except OSError:
