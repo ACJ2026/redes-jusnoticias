@@ -139,7 +139,7 @@ class ArreglosMenoresTest(unittest.TestCase):
         self.assertIn("[r => sinDatoGuion(r.vi), 'num']", PLANTILLA)
 
     def test_x_tiene_el_mismo_mensaje_simple_en_todas_las_versiones(self):
-        self.assertIn("la API de X pide créditos pagos. Se usan los registros guardados.", PLANTILLA)
+        self.assertIn("La API de X pide créditos pagos. Se usan los registros guardados.", PLANTILLA)
 
     def test_la_lista_de_la_portada_no_repite_el_titulo(self):
         cliente = (ROOT / "publico/panel-vivo.js").read_text(encoding="utf-8")

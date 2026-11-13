@@ -1292,3 +1292,17 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **No se inventa:** sin fecha válida no se guarda nada. Una fecha anterior a la nota tampoco se guarda. LU17 queda afuera porque su fecha es estimada.
 - **No cambia qué se cuenta** ni cómo se detecta.
 - **Pruebas:** `tests/test_fecha_del_medio.py` (4). 223 OK.
+
+## 2026-11-13 — Auditoría de Redes: cambios aprobados por Ignacio (Claude)
+
+- **Auditoría:** documento «Auditoría de Redes del tablero» (PDF y Word), con datos consultados en vivo el 13/11 desde GitHub (rama `claude/diagnostico-redes`, salida en `diagnostico-redes-auditoria`). Ignacio aprobó las nueve propuestas.
+- **Búsqueda en cuentas de otros:** queda solo Instagram en las cuentas de los medios que ya publicaron la nota (`EN_USO` en `functions/api/compartidos.js`). Las demás nunca guardaron un posteo comprobado y cortaban por el límite de consultas; su código queda por si se reactivan.
+- **Tabla «Estado del monitoreo en vivo»:** se sacó porque repetía el panel de la portada. Lo único que no estaba en otro lado, el alcance de Facebook e Instagram de 28 días, pasa a una línea en la tarjeta de seguidores. Se consulta solo a Meta al abrir Redes.
+- **Historial de posteos por mes:** desde septiembre de 2026, con todas las redes (se suma TikTok).
+- **Seguidores y estado:** `scripts/actualizar_redes.py` los actualiza solos cada 4 horas desde `/api/panel-vivo`. Una cuenta que no responde queda como estaba. Con más de 60 días sin publicar figura «Inactiva». La página STJ pasa a «Activa: última publicación 20/10/2026».
+- **X:** queda como historial, con el estado «Sin datos desde el 23/10/2026: la conexión de X es paga».
+- **WhatsApp:** se mantiene el dato, con su fecha: «seguidores cargados a mano el 21/10/2026».
+- **Prueba de comentarios con Gemini:** se sacó (`functions/api/comentarios-prueba.js` y su prueba). El secreto `GEMINI_API_KEY` sigue en Cloudflare: Ignacio puede borrarlo.
+- **Nombre de la página de Facebook:** 28 filas de `data/redes2.json` pasan de «JusNoticias (prensastjchubut)» a «JusNoticias», el nombre que devuelve la API. No se borró ninguna fila.
+- **No cambia qué se cuenta en medios.**
+- **Pruebas:** `tests/test_auditoria_redes.py` (5). Se adaptaron las que exigían la tabla sacada. 232 OK y pruebas `.mjs` OK. Probado en el navegador en 1280 y 375 px, sin errores.

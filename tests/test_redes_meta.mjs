@@ -320,15 +320,14 @@ test("?redes acepta TikTok y no consulta Meta", async () => {
   assert.equal(body.redes.Facebook, undefined);
 });
 
-test("el tablero muestra Insights de Facebook por página y marca los faltantes como no disponibles", async () => {
+test("el alcance de Redes se consulta en vivo por página y marca los faltantes como no disponibles", async () => {
+  // Auditoría de Redes (13/11/2026): la tabla «Estado del monitoreo en vivo» se unificó con el panel de la portada;
+  // en Redes queda el alcance de los últimos 28 días, consultado solo a Meta.
   for (const path of ["templates/tablero.html", "publico/tablero_publico.html", "publico/index.html"]) {
     const html = await readFile(new URL(path, ROOT), "utf8");
-    assert.match(html, /const resumenInsights = \(red, result, data\) =>/, path);
-    assert.match(html, /red === 'Facebook' && Array\.isArray\(result\.paginas\)/, path);
+    assert.match(html, /fetch\('\/api\/redes\?redes=Facebook,Instagram'/, path);
+    assert.match(html, /redes\.Facebook\.paginas\.forEach/, path);
     assert.match(html, /'no disponible'/, path);
     assert.match(html, /page_media_view: 'Visualizaciones de contenido'/, path);
-    assert.match(html, /insights: resumenInsights\(red, result, data\)/, path);
-    assert.match(html, /result\.parcial/, path);
-    assert.match(html, /result\.publicacionesCompletas === false/, path);
   }
 });
