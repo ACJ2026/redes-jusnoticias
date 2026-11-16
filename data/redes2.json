@@ -4089,7 +4089,7 @@
     "nota_id": null,
     "me_gusta": 7,
     "comentarios": 0,
-    "compartidos": 0,
+    "compartidos": 1,
     "vistas": null,
     "propia": "Sí",
     "key": "fb-116101835114568_1776822584443329",
@@ -4311,7 +4311,7 @@
     "fecha": "2026-11-13",
     "texto": "🤝 Con el respaldo de los ",
     "nota_id": null,
-    "me_gusta": 40,
+    "me_gusta": 41,
     "comentarios": 0,
     "compartidos": null,
     "vistas": null,
@@ -4332,5 +4332,19 @@
     "propia": "Sí",
     "key": "fb-116101835114568_1787095116749409",
     "url": "https://www.facebook.com/1769483335177254/posts/1787095116749409"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-16",
+    "texto": "Fallo resolvió que una abu",
+    "nota_id": null,
+    "me_gusta": 0,
+    "comentarios": 0,
+    "compartidos": 0,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1791180053007582",
+    "url": "https://www.facebook.com/1769483335177254/posts/1791180053007582"
   }
 ]

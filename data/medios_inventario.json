@@ -11,9 +11,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 180,
-      "notas": 136,
-      "ejemplo": "https://radio3cadenapatagonia.com.ar/el-stj-de-chubut-participo-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales/",
+      "publicaciones": 181,
+      "notas": 137,
+      "ejemplo": "https://radio3cadenapatagonia.com.ar/fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-10-29",
       "redes": {
@@ -72,9 +72,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 114,
-      "notas": 114,
-      "ejemplo": "https://www.metadatanoticias.com.ar/2026/10/16/un-fallo-ordeno-la-escolarizacion-presencial-de-una-nina-en-madryn-luego-de-que-sus-padres-buscaban-educarla-bajo-el-sistema-homeschooling/",
+      "publicaciones": 115,
+      "notas": 115,
+      "ejemplo": "https://www.metadatanoticias.com.ar/2026/11/16/un-fallo-en-trelew-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -130,8 +130,8 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 87,
-      "notas": 74,
+      "publicaciones": 88,
+      "notas": 75,
       "ejemplo": "https://lapostacomodorense.com.ar/2026/10/30/declaran-culpable-a-pavei-por-el-homicidio-de-jorge-david-nieves/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
@@ -247,7 +247,7 @@
       "localidad": "Rawson",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 63,
       "notas": 55,
       "ejemplo": "https://fmbahiaengano.com/puerto-madryn-condenan-a-una-comerciante-por-difamar-a-una-vecina-en-redes-sociales/",
@@ -339,9 +339,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 53,
-      "notas": 48,
-      "ejemplo": "https://comodoro24.com.ar/chubut-define-politicas-para-abordar-el-nuevo-regimen-penal-juvenil/",
+      "publicaciones": 54,
+      "notas": 49,
+      "ejemplo": "https://comodoro24.com.ar/fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-16",
       "redes": {
@@ -396,7 +396,7 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 46,
       "notas": 42,
       "ejemplo": "https://argentarnoticias.com.ar/juicio-por-jurados-en-comodoro-seleccionaron-a-los-doce-titulares-para-el-debate-por-abuso-sexual-agravado-contra-una-nina/",
@@ -579,11 +579,11 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 27,
-      "notas": 26,
+      "publicaciones": 28,
+      "notas": 27,
       "ejemplo": "https://www.elchubut.com.ar/regionales/2026-11-12-20-38-0-autoridades-judiciales-recibieron-a-vicepresidenta-del-consejo-de-la-magistratura-de-la-nacion",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-10-27",
+      "ultima_deteccion": "2026-11-16",
       "redes": {
         "Facebook": [
           "/diarioelchubut"
@@ -673,9 +673,9 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Sin datos en la última consulta",
       "cobertura": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
-      "publicaciones": 18,
-      "notas": 18,
-      "ejemplo": "https://lu17.com/contenido/155520/declaran-culpable-a-mauro-pavei-por-el-homicidio-de-nieves-en-comodoro",
+      "publicaciones": 19,
+      "notas": 19,
+      "ejemplo": "https://lu17.com/contenido/157894/trelew-limitan-el-tiempo-de-un-nino-con-su-abuela-durante-los-viajes-de-su-padre",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-16",
       "redes": {}
@@ -880,6 +880,34 @@
       }
     },
     {
+      "nombre": "El Patagónico",
+      "alias": [],
+      "dominio": "elpatagonico.com",
+      "url": "https://elpatagonico.com",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 12,
+      "notas": 12,
+      "ejemplo": "https://www.elpatagonico.com/una-abuela-no-puede-reemplazar-al-padre-su-tiempo-el-hijo-dijo-un-fallo-n6345668",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "El Patagónico",
+          "/elpatagonico"
+        ],
+        "Instagram": [
+          "@elpatagonico"
+        ],
+        "X": [
+          "@elpatagonico"
+        ]
+      }
+    },
+    {
       "nombre": "Examedia",
       "alias": [
         "examedia.com.ar"
@@ -936,34 +964,6 @@
         ],
         "YouTube": [
           "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
-        ]
-      }
-    },
-    {
-      "nombre": "El Patagónico",
-      "alias": [],
-      "dominio": "elpatagonico.com",
-      "url": "https://elpatagonico.com",
-      "tipo": "Portal digital",
-      "localidad": "Comodoro Rivadavia",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 11,
-      "notas": 11,
-      "ejemplo": "https://www.elpatagonico.com/homicidio-jorge-nieves-declararon-culpable-pavei-la-figura-emocion-violenta-n6339724",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "El Patagónico",
-          "/elpatagonico"
-        ],
-        "Instagram": [
-          "@elpatagonico"
-        ],
-        "X": [
-          "@elpatagonico"
         ]
       }
     },
