@@ -129,7 +129,7 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 88,
       "notas": 75,
       "ejemplo": "https://lapostacomodorense.com.ar/2026/10/30/declaran-culpable-a-pavei-por-el-homicidio-de-jorge-david-nieves/",
@@ -219,7 +219,7 @@
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
       "publicaciones": 72,
       "notas": 63,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/una-abuela-pidio-quedarse-con-su-nieto-cuando-el-padre-viajara-y-la-justicia-tomo-una-drastica-decision_a6afb258bd159b0329ac015e6",
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-16",
       "redes": {
@@ -396,10 +396,10 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 46,
-      "notas": 42,
-      "ejemplo": "https://argentarnoticias.com.ar/juicio-por-jurados-en-comodoro-seleccionaron-a-los-doce-titulares-para-el-debate-por-abuso-sexual-agravado-contra-una-nina/",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "publicaciones": 47,
+      "notas": 43,
+      "ejemplo": "https://argentarnoticias.com.ar/la-justicia-de-trelew-freno-el-reemplazo-paterno-una-abuela-no-ocupara-los-dias-de-cuidado-del-padre-cuando-viaje/",
       "primera_deteccion": "2026-10-30",
       "ultima_deteccion": "2026-11-05",
       "redes": {
@@ -852,6 +852,35 @@
       }
     },
     {
+      "nombre": "Examedia",
+      "alias": [
+        "examedia.com.ar"
+      ],
+      "dominio": "examedia.com.ar",
+      "url": "https://examedia.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Entre Ríos (localidad por verificar)",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "publicaciones": 14,
+      "notas": 10,
+      "ejemplo": "https://examedia.com.ar/portada/post/88249564",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/examedia"
+        ],
+        "Instagram": [
+          "@examediaok"
+        ],
+        "X": [
+          "@ExamediaAR"
+        ]
+      }
+    },
+    {
       "nombre": "Crónica",
       "alias": [],
       "dominio": "",
@@ -880,31 +909,33 @@
       }
     },
     {
-      "nombre": "Examedia",
-      "alias": [
-        "examedia.com.ar"
-      ],
-      "dominio": "examedia.com.ar",
-      "url": "https://examedia.com.ar",
+      "nombre": "Red43",
+      "alias": [],
+      "dominio": "red43.com.ar",
+      "url": "https://red43.com.ar",
       "tipo": "Portal digital",
-      "localidad": "Entre Ríos (localidad por verificar)",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "localidad": "Esquel",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
       "publicaciones": 13,
-      "notas": 10,
-      "ejemplo": "https://examedia.com.ar/portada/post/88248499",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "notas": 13,
+      "ejemplo": "https://www.red43.com.ar/nota/2026-11-16-15-16-33-puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-que-resolvio-la-justicia-de-chubut",
+      "primera_deteccion": "2026-10-27",
+      "ultima_deteccion": "2026-11-10",
       "redes": {
         "Facebook": [
-          "/examedia"
+          "Red43Noticias",
+          "/Red43Noticias"
         ],
         "Instagram": [
-          "@examediaok"
+          "@Red43Esquel"
         ],
         "X": [
-          "@ExamediaAR"
+          "@RED43info"
+        ],
+        "YouTube": [
+          "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
         ]
       }
     },
@@ -933,37 +964,6 @@
         ],
         "X": [
           "@elpatagonico"
-        ]
-      }
-    },
-    {
-      "nombre": "Red43",
-      "alias": [],
-      "dominio": "red43.com.ar",
-      "url": "https://red43.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Esquel",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 12,
-      "notas": 12,
-      "ejemplo": "https://www.red43.com.ar/nota/2026-11-13-8-30-26-chubut-tendra-una-camara-de-apelaciones-en-lo-laboral-con-competencia-en-toda-la-provincia",
-      "primera_deteccion": "2026-10-27",
-      "ultima_deteccion": "2026-11-10",
-      "redes": {
-        "Facebook": [
-          "Red43Noticias",
-          "/Red43Noticias"
-        ],
-        "Instagram": [
-          "@Red43Esquel"
-        ],
-        "X": [
-          "@RED43info"
-        ],
-        "YouTube": [
-          "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
         ]
       }
     },
@@ -1325,6 +1325,23 @@
       "redes": {}
     },
     {
+      "nombre": "El Monterizo",
+      "alias": [],
+      "dominio": "elmonterizo.com",
+      "url": "https://elmonterizo.com",
+      "tipo": "Portal digital",
+      "localidad": "San Miguel de Tucumán",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "publicaciones": 4,
+      "notas": 4,
+      "ejemplo": "https://elmonterizo.com/el-padre-viaja-por-trabajo-y-la-justicia-limito-cuantos-dias-el-nene-puede-quedarse-con-su-abuela",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
       "nombre": "GENESIS24.NET",
       "alias": [],
       "dominio": "genesis24.net",
@@ -1394,23 +1411,6 @@
       "publicaciones": 3,
       "notas": 3,
       "ejemplo": "",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {}
-    },
-    {
-      "nombre": "El Monterizo",
-      "alias": [],
-      "dominio": "elmonterizo.com",
-      "url": "https://elmonterizo.com",
-      "tipo": "Portal digital",
-      "localidad": "San Miguel de Tucumán",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 3,
-      "notas": 3,
-      "ejemplo": "https://elmonterizo.com/compro-un-auto-en-plan-de-ahorro-en-esquel-y-la-cuota-subio-952-la-justicia-fallo-contra-ford-y-plan-ovalo",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {}
@@ -2652,7 +2652,7 @@
       "localidad": "Neuquén",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
