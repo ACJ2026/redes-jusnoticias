@@ -1,0 +1,48 @@
+== /api/google-metrics?desde=2026-11-01&hasta=2026-11-16 | estado 200 | segundos 4.6 | bytes 19150
+estado: ok
+actualizado: 2026-11-17T18:42:19.759Z
+rango: dict(2)
+  start: 2026-11-01
+  end: 2026-11-16
+analytics: dict(9)
+  totalUsers: 3107
+  sessions: 4390
+  screenPageViews: 5381
+  engagedSessions: 2251
+  averageSessionDuration: 125.02598070318908
+  canales: list(6)
+  dispositivos: list(3)
+  paginas: list(25)
+  fuentes: list(32)
+searchConsole: dict(3)
+  resumen: dict(4)
+    clicks: 1174
+    impressions: 52304
+    ctr: 0.02244570204955644
+    position: 5.172357754665035
+  consultas: list(25)
+  paginas: list(25)
+== /api/google-metrics?desde=2026-10-01&hasta=2026-10-31 | estado 200 | segundos 4.2 | bytes 20034
+estado: ok
+actualizado: 2026-11-17T18:42:24.011Z
+rango: dict(2)
+  start: 2026-10-01
+  end: 2026-10-31
+analytics: dict(9)
+  totalUsers: 7360
+  sessions: 10522
+  screenPageViews: 12451
+  engagedSessions: 4477
+  averageSessionDuration: 117.22686831400874
+  canales: list(6)
+  dispositivos: list(3)
+  paginas: list(25)
+  fuentes: list(37)
+searchConsole: dict(3)
+  resumen: dict(4)
+    clicks: 2870
+    impressions: 124921
+    ctr: 0.022974519896574636
+    position: 5.133732518951978
+  consultas: list(25)
+  paginas: list(25)
