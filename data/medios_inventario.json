@@ -219,7 +219,7 @@
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
       "publicaciones": 72,
       "notas": 63,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/una-abuela-pidio-quedarse-con-su-nieto-cuando-el-padre-viajara-y-la-justicia-tomo-una-drastica-decision_a6afb258bd159b0329ac015e6",
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-17",
       "redes": {
@@ -396,7 +396,7 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 47,
       "notas": 43,
       "ejemplo": "https://argentarnoticias.com.ar/la-justicia-de-trelew-freno-el-reemplazo-paterno-una-abuela-no-ocupara-los-dias-de-cuidado-del-padre-cuando-viaje/",
@@ -738,6 +738,37 @@
       }
     },
     {
+      "nombre": "Diario Jornada",
+      "alias": [],
+      "dominio": "diariojornada.com.ar",
+      "url": "https://diariojornada.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Trelew",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 15,
+      "notas": 14,
+      "ejemplo": "https://www.diariojornada.com.ar/427178/magazine/prohibieron_que_una_abuela_cuide_a_su_nieto_en_ausencia_del_padre",
+      "primera_deteccion": "2026-10-30",
+      "ultima_deteccion": "2026-11-16",
+      "redes": {
+        "Facebook": [
+          "Diario Jornada",
+          "/jornadaweb"
+        ],
+        "Instagram": [
+          "@jornadaweb"
+        ],
+        "X": [
+          "@jornadaweb"
+        ],
+        "YouTube": [
+          "/c/DiarioJornadaChubut"
+        ]
+      }
+    },
+    {
       "nombre": "FM Tropical",
       "alias": [],
       "dominio": "fmtropicalradio.com",
@@ -817,37 +848,6 @@
         ],
         "YouTube": [
           "/@ciudadtvcontenidosok"
-        ]
-      }
-    },
-    {
-      "nombre": "Diario Jornada",
-      "alias": [],
-      "dominio": "diariojornada.com.ar",
-      "url": "https://diariojornada.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Trelew",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 14,
-      "notas": 14,
-      "ejemplo": "https://diariojornada.com.ar/423711/policiales/declaran_culpable_a_agustin_vera_por_el_crimen_de_matias_nieves",
-      "primera_deteccion": "2026-10-30",
-      "ultima_deteccion": "2026-11-16",
-      "redes": {
-        "Facebook": [
-          "Diario Jornada",
-          "/jornadaweb"
-        ],
-        "Instagram": [
-          "@jornadaweb"
-        ],
-        "X": [
-          "@jornadaweb"
-        ],
-        "YouTube": [
-          "/c/DiarioJornadaChubut"
         ]
       }
     },
@@ -975,8 +975,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 11,
       "notas": 9,
       "ejemplo": "https://prensamercosur.org/2026/11/10/un-jurado-popular-declaro-culpable-a-un-hombre-por-seis-hechos-de-abuso-sexual-y-quedo-detenido/",
@@ -994,9 +994,9 @@
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 10,
-      "notas": 10,
-      "ejemplo": "https://revistaquorum.com.ar/2026/09/17/la-carta-de-un-juez-a-una-nina-victima-de-abuso-tu-tio-no-va-a-ir-a-la-carcel-y-no-es-porque-no-te-haya-creido/",
+      "publicaciones": 11,
+      "notas": 11,
+      "ejemplo": "https://revistaquorum.com.ar/2026/11/17/puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-el-fallo-que-puso-limites-al-cuidado-de-los-nietos/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
       "redes": {
@@ -1308,6 +1308,23 @@
       }
     },
     {
+      "nombre": "El Monterizo",
+      "alias": [],
+      "dominio": "elmonterizo.com",
+      "url": "https://elmonterizo.com",
+      "tipo": "Portal digital",
+      "localidad": "San Miguel de Tucumán",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "publicaciones": 5,
+      "notas": 4,
+      "ejemplo": "https://elmonterizo.com/el-padre-viaja-por-trabajo-y-la-justicia-limito-cuantos-dias-el-nene-puede-quedarse-con-su-abuela",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
       "nombre": "TN24",
       "alias": [],
       "dominio": "tn24.com.ar",
@@ -1322,23 +1339,6 @@
       "ejemplo": "https://www.tn24.com.ar/2026/11/reconocieron-a-la-justicia-chaquena-como-pionera-durante-el-encuentro-nacional-de-mediacion-de-jufejus/",
       "primera_deteccion": "2026-11-04",
       "ultima_deteccion": "2026-11-04",
-      "redes": {}
-    },
-    {
-      "nombre": "El Monterizo",
-      "alias": [],
-      "dominio": "elmonterizo.com",
-      "url": "https://elmonterizo.com",
-      "tipo": "Portal digital",
-      "localidad": "San Miguel de Tucumán",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 4,
-      "notas": 4,
-      "ejemplo": "https://elmonterizo.com/el-padre-viaja-por-trabajo-y-la-justicia-limito-cuantos-dias-el-nene-puede-quedarse-con-su-abuela",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
       "redes": {}
     },
     {
@@ -1538,6 +1538,33 @@
         ],
         "YouTube": [
           "/@lmneuquenenvivo"
+        ]
+      }
+    },
+    {
+      "nombre": "Madryn Ahora",
+      "alias": [],
+      "dominio": "madrynahora.com",
+      "url": "https://madrynahora.com",
+      "tipo": "Portal digital",
+      "localidad": "Puerto Madryn",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-17",
+      "ultima_deteccion": "2026-11-17",
+      "redes": {
+        "Facebook": [
+          "Dudosa: Dudosa: /ChubutAhora"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: @madrynahora"
+        ],
+        "X": [
+          "Dudosa: Dudosa: @MadrynAhora"
         ]
       }
     },
@@ -2450,7 +2477,7 @@
       "localidad": "Santiago del Estero",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2585,33 +2612,6 @@
       "primera_deteccion": "2026-10-27",
       "ultima_deteccion": "2026-10-27",
       "redes": {}
-    },
-    {
-      "nombre": "Madryn Ahora",
-      "alias": [],
-      "dominio": "",
-      "url": "",
-      "tipo": "Portal digital",
-      "localidad": "Puerto Madryn",
-      "metodo": "Sin método automático",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "Dudosa: Dudosa: /ChubutAhora"
-        ],
-        "Instagram": [
-          "Dudosa: Dudosa: @madrynahora"
-        ],
-        "X": [
-          "Dudosa: Dudosa: @MadrynAhora"
-        ]
-      }
     },
     {
       "nombre": "mdz online",
