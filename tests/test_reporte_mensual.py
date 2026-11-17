@@ -22,6 +22,10 @@ class ReporteMensualTest(unittest.TestCase):
         self.assertIn("isFinite(n) ? nf.format(n) : '—'", REPORTE)
         self.assertIn("Sin datos todavía: la fecha de publicación de cada medio se registra desde el 13/11/2026.", REPORTE)
 
+    def test_incluye_seguidores_del_mes(self):
+        self.assertIn("const seguidoresMes = m =>", REPORTE)
+        self.assertIn("<h2>Seguidores de nuestras cuentas</h2>", REPORTE)
+
     def test_escapa_textos_de_los_datos(self):
         self.assertIn("const esc = s =>", REPORTE)
         self.assertIn("${esc(n.titulo)}", REPORTE)

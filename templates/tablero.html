@@ -510,7 +510,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
         <div class="tbox"><table id="t-red"><thead><tr><th>Red</th><th>Publicaciones</th><th>Me gusta por publicación</th><th>Vistas por publicación</th><th>Publicación destacada</th></tr></thead><tbody></tbody></table></div></div>
       <div class="card"><h2>Cuántas personas siguen nuestras cuentas</h2><p class="note">Seguidores y estado de cada cuenta: se actualizan solos cada 4 horas con la consulta en vivo. No cambian al elegir otro mes.</p>
         <p class="note"><b>Alcance de los últimos 28 días:</b> <span id="redes-alcance" aria-live="polite">se consulta al abrir Redes…</span></p>
-        <div class="tbox"><table id="t-canales"><thead><tr><th>Red</th><th>Cuenta</th><th>Seguidores</th><th>Estado</th></tr></thead><tbody></tbody></table></div></div>
+        <div class="tbox"><table id="t-canales"><thead><tr><th>Red</th><th>Cuenta</th><th>Seguidores</th><th>Cambio</th><th>Estado</th></tr></thead><tbody></tbody></table></div></div>
     </div>
     <div class="card">
       <h2>Publicaciones del período</h2>
@@ -552,7 +552,10 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       <div class="card"><h2>Canales de tráfico</h2><p class="note">Agrupa las visitas por el tipo de vía por la que llegaron. Para ver nombres concretos, consultá la tabla de fuentes de abajo.</p><div class="tbox"><table id="g-tabla-canales"><thead><tr><th>Tipo de canal</th><th>Visitas</th><th>Páginas vistas</th></tr></thead><tbody></tbody></table></div></div>
       <div class="card"><h2>Dispositivos</h2><div class="tbox"><table id="g-tabla-dispositivos"><thead><tr><th>Dispositivo</th><th>Visitas</th><th>Páginas vistas</th></tr></thead><tbody></tbody></table></div></div>
     </div>
-    <div class="card"><h2>Fuentes concretas de las visitas</h2><p class="note">De dónde llegaron las visitas: buscadores, redes, otros sitios o asistentes de IA. «Acceso directo» y «Sin identificar» van aparte.</p><div class="tbox"><table id="g-tabla-fuentes"><thead><tr><th>Fuente registrada</th><th>Tipo de origen</th><th>Medio de tráfico</th><th>Visitas</th><th>Páginas vistas</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h2>Fuentes concretas de las visitas</h2><p class="note">De dónde llegaron las visitas: buscadores, redes, otros sitios o asistentes de IA. «Acceso directo» y «Sin identificar» van aparte.</p><p class="note" id="g-whatsapp" aria-live="polite"></p><div class="tbox"><table id="g-tabla-fuentes"><thead><tr><th>Fuente registrada</th><th>Tipo de origen</th><th>Medio de tráfico</th><th>Visitas</th><th>Páginas vistas</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card" id="wa-enlace"><h2>Enlaces para el canal de WhatsApp</h2><p class="note">Pegá el enlace de la nota y copiá el que aparece abajo para publicarlo en el canal. Así, en esta pestaña se ven las visitas que llegan desde el canal («Canal de WhatsApp» en la tabla de fuentes).</p>
+      <div class="tools"><input id="wa-url" type="url" inputmode="url" placeholder="https://jusnoticias.juschubut.gov.ar/…" aria-label="Enlace de la nota" style="flex:1;min-width:200px;max-width:100%;padding:10px;border:1px solid var(--line);border-radius:8px"><button class="btn accion" id="wa-copiar" type="button">Copiar enlace para el canal</button></div>
+      <p class="note" id="wa-resultado" role="status" style="overflow-wrap:anywhere"></p></div>
     <div class="card"><h2>Búsquedas que llevan a Juschubut Noticias</h2><p class="note">Qué buscó la gente en Google antes de entrar. Porcentaje de clics: de las veces que apareció, cuántas entraron. Ejemplo: 50 clics entre 1.000 apariciones = 5 %. Posición promedio: en qué lugar apareció, donde 1 es el primer resultado.</p><div class="tbox"><table id="g-tabla-consultas"><thead><tr><th>Qué buscaron</th><th>Clics desde Google</th><th>Veces que apareció en Google</th><th>Porcentaje de clics</th><th>Posición promedio</th></tr></thead><tbody></tbody></table></div></div>
     <div class="card"><h2>Páginas que aparecen en buscadores</h2><p class="note">Las páginas que más aparecen en Google. Posición promedio: en qué lugar apareció, donde 1 es el primer resultado.</p><div class="tbox"><table id="g-tabla-search-paginas"><thead><tr><th>Página publicada</th><th>Clics desde Google</th><th>Veces que apareció en Google</th><th>Porcentaje de clics</th><th>Posición promedio</th></tr></thead><tbody></tbody></table></div></div>
   </section>
@@ -1343,6 +1346,18 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     }
   };
 
+  // Cambio de seguidores en los últimos 30 días (o desde el primer dato guardado), con data/seguidores_historial.json.
+  // Sin historial, o en una cuenta sin datos en vivo (X), se muestra «—»: un dato que falta no es 0.
+  const cambioSeguidores = c => {
+    const hs = (D.seguidores_historial || []).filter(h => h.red === c.red && h.cuenta === c.cuenta).sort((a, b) => a.fecha.localeCompare(b.fecha));
+    if (!hs.length || typeof c.seguidores !== 'number' || /^Sin datos/i.test(c.estado || '')) return '—';
+    const ultima = hs[hs.length - 1].fecha;
+    const limite = new Date(Date.parse(ultima + 'T00:00:00Z') - 30 * 864e5).toISOString().slice(0, 10);
+    const base = hs.filter(h => h.fecha <= limite).pop() || hs[0];
+    if (base.fecha === ultima) return '—';
+    const d = c.seguidores - base.seguidores;
+    return (d > 0 ? '+' : '') + fmt(d) + ' desde el ' + ddmm(base.fecha);
+  };
   const drawRedes = (c) => {
     try { dibujarNotasEnRedes(); } catch (error) { console.error('[JusNoticias] No se pudo actualizar «Nuestras notas en las redes de otras cuentas».', error); }
     c = c || calc();
@@ -1353,7 +1368,7 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
     const val = (m, s) => cnt.get(m + '|' + s.red) || 0;
     chart('ch-redes', 'tip-redes', ms, series, val, true, m => series.filter(s => val(m, s)).map(s => [s.color, s.red + ': ' + fmt(val(m, s))]));
     tbl('#t-red', c.porRed, [[r => r.red], [r => fmt(r.posteos), 'num'], [r => r.mg === null || r.mg === undefined ? '—' : String(r.mg).replace('.', ','), 'num'], [r => sinDatoGuion(r.vi), 'num'], [r => r.mejor || '—']]);
-    tbl('#t-canales', D.canales, [[r => r.red], [r => r.cuenta], [r => fmt(r.seguidores), 'num'], [r => ({ t: r.estado, c: /Inactiva|No existe|Pendiente|no computar|referencia institucional/i.test(r.estado) ? 'zero' : '' })]]);
+    tbl('#t-canales', D.canales, [[r => r.red], [r => r.cuenta], [r => fmt(r.seguidores), 'num'], [r => cambioSeguidores(r), 'num'], [r => ({ t: r.estado, c: /Inactiva|No existe|Pendiente|no computar|referencia institucional/i.test(r.estado) ? 'zero' : '' })]]);
     const fr = $('fred').value, fp = $('fprop').value;
     const score = r => (Number(r.vistas) || 0) + 10 * ((Number(r.me_gusta) || 0) + (Number(r.comentarios) || 0) + (Number(r.compartidos) || 0));
     const rows = D.redes.filter(r => en(r.fecha.slice(0, 7)) && (!fr || r.red === fr) && (!fp || r.propia === fp)).sort((a, b) => score(b) - score(a));
@@ -1533,6 +1548,10 @@ footer.wrap{display:block;position:relative;clear:both;flex:none;margin:24px aut
       fill('g-tabla-dispositivos', a.dispositivos, [
         { value: r => r.nombre === 'mobile' ? 'Celular' : r.nombre === 'desktop' ? 'Computadora' : r.nombre === 'tablet' ? 'Tableta' : r.nombre }, { value: r => number(r.sessions) }, { value: r => number(r.screenPageViews) }
       ]);
+      const delCanal = (a.fuentes || []).filter(r => r.tipo === 'Canal de WhatsApp');
+      $('g-whatsapp').textContent = delCanal.length
+        ? 'Visitas desde el canal de WhatsApp en el período: ' + number(delCanal.reduce((t, r) => t + (Number(r.sessions) || 0), 0)) + '.'
+        : 'Visitas desde el canal de WhatsApp: todavía no hay. Se cuentan las que llegan por enlaces marcados (ver «Enlaces para el canal de WhatsApp»).';
       fill('g-tabla-fuentes', a.fuentes, [
         { value: r => r.fuente }, { value: r => r.tipo }, { value: r => r.medio },
         { value: r => number(r.sessions) }, { value: r => number(r.screenPageViews) }
@@ -1608,6 +1627,22 @@ const draw = () => {
       caja.textContent = 'no disponible ahora: la consulta no respondió.';
     }
   };
+  // Enlace marcado para el canal de WhatsApp: agrega utm_source=whatsapp y utm_medium=canal (17/11/2026).
+  const enlaceCanal = url => {
+    const u = new URL(String(url || '').trim());
+    if (!/^https?:$/.test(u.protocol)) throw new Error('El enlace tiene que empezar con http o https.');
+    u.searchParams.set('utm_source', 'whatsapp');
+    u.searchParams.set('utm_medium', 'canal');
+    return u.toString();
+  };
+  $('wa-copiar').addEventListener('click', async () => {
+    const out = $('wa-resultado');
+    try {
+      const enlace = enlaceCanal($('wa-url').value);
+      out.textContent = enlace;
+      try { await navigator.clipboard.writeText(enlace); out.textContent = 'Copiado: ' + enlace; } catch (e) { /* sin permiso de portapapeles: queda a la vista para copiar */ }
+    } catch (e) { out.textContent = 'Pegá un enlace completo de la nota (https://…).'; }
+  });
   const show = (pedida) => {
     const page = ALIAS_SECCION[pedida] || pedida;
     if (!$(page) || !$(page).classList.contains('page')) return;

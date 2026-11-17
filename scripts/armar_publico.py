@@ -37,6 +37,11 @@ try:
                 d["alias_medios"][alias] = m["nombre"]
 except OSError:
     d["alias_medios"] = {}
+# Seguidores día por día (opcional: el tablero funciona sin el archivo).
+try:
+    d["seguidores_historial"] = L(ROOT / "data" / "seguidores_historial.json")
+except OSError:
+    d["seguidores_historial"] = []
 js = json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 # Versión de los archivos de código: cambia cuando cambian, así el navegador no usa una copia vieja.
 import hashlib

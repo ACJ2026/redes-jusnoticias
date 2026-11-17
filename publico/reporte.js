@@ -36,6 +36,18 @@
     const mediana = dias.length % 2 ? dias[(dias.length - 1) / 2] : (dias[dias.length / 2 - 1] + dias[dias.length / 2]) / 2;
     return { n: dias.length, mediana, mismoDia: pct(dias.filter(d => d === 0).length, dias.length) };
   };
+  // Seguidores al cierre del mes y cambio en el mes, con data/seguidores_historial.json (desde el 22/10/2026).
+  const seguidoresMes = m => {
+    const hs = D.seguidores_historial || [];
+    const fin = m + '-31', inicio = m + '-01';
+    return (D.canales || []).filter(c => typeof c.seguidores === 'number').map(c => {
+      const propios = hs.filter(h => h.red === c.red && h.cuenta === c.cuenta).sort((a, b) => a.fecha.localeCompare(b.fecha));
+      const cierre = propios.filter(h => h.fecha <= fin).pop();
+      const antes = propios.filter(h => h.fecha < inicio).pop() || propios.find(h => h.fecha >= inicio && h.fecha <= fin);
+      const sinDatos = /^Sin datos/i.test(c.estado || '');
+      return { red: c.red, cuenta: c.cuenta, cierre: cierre && !sinDatos ? cierre.seguidores : null, cambio: cierre && antes && antes !== cierre && !sinDatos ? cierre.seguidores - antes.seguidores : null, desde: antes ? antes.fecha : '' };
+    });
+  };
   const mesPorDefecto = () => {
     const actual = new Date().toISOString().slice(0, 7);
     const completos = meses.filter(m => m < actual);
@@ -70,6 +82,8 @@
     const topMedios = c.porMedio.slice(0, 5).map(x => `<tr><td>${esc(x.medio)}</td><td class="n">${fmt(x.notas)}</td></tr>`).join('') || '<tr><td colspan="2">Sin publicaciones en el mes.</td></tr>';
     const topNotas = c.notasP.filter(n => n.n_medios > 0).sort((x, y) => y.n_medios - x.n_medios || x.fecha.localeCompare(y.fecha)).slice(0, 5)
       .map(n => `<tr><td>${esc(n.fecha.slice(8, 10) + '/' + n.fecha.slice(5, 7))}</td><td>${esc(n.titulo)}</td><td class="n">${fmt(n.n_medios)}</td></tr>`).join('') || '<tr><td colspan="3">Ninguna nota salió en otros medios.</td></tr>';
+    const seg = seguidoresMes(m);
+    const filasSeg = seg.map(x => `<tr><td>${esc(x.red)}</td><td>${esc(x.cuenta)}</td><td class="n">${fmt(x.cierre)}</td><td class="n">${x.cambio === null ? '—' : (x.cambio > 0 ? '+' : '') + nf.format(x.cambio) + ' (desde el ' + x.desde.slice(8, 10) + '/' + x.desde.slice(5, 7) + ')'}</td></tr>`).join('');
     const dm = demora(m);
     const demoraTxt = dm
       ? `Mediana: ${nf.format(dm.mediana)} ${dm.mediana === 1 ? 'día' : 'días'} entre nuestra nota y la publicación del medio. El ${dm.mismoDia} % salió el mismo día (sobre ${fmt(dm.n)} publicaciones con fecha).`
@@ -109,8 +123,11 @@ ${filas.map(f => `<tr><td>${esc(f[0])}</td><td class="n">${esc(f[1])}</td><td cl
 <div><h2>Cuánto tardan los medios</h2><p>${esc(demoraTxt)}</p></div></div>
 <h2>Notas que salieron en más medios</h2>
 <table><thead><tr><th>Fecha</th><th>Nota</th><th class="n">Medios</th></tr></thead><tbody>${topNotas}</tbody></table>
+<h2>Seguidores de nuestras cuentas</h2>
+<table><thead><tr><th>Red</th><th>Cuenta</th><th class="n">Al cierre del mes</th><th class="n">Cambio</th></tr></thead><tbody>${filasSeg}</tbody></table>
+<p class="nota">Los seguidores se guardan día por día desde el 22/10/2026. «—»: sin dato para ese mes (X no se consulta en vivo).</p>
 <h2>Cómo leer este reporte</h2>
-<p class="nota">Las cifras son un mínimo detectado, no el total real: el tablero no ve radio y TV fuera de la web, grupos privados ni contenido no indexado. Se cuentan las publicaciones del mismo día de la nota o posteriores, con enlace, verificadas y a verificar, igual que en el tablero. Cada medio cuenta una vez por nota. «Nombran a JusNoticias» indica que el texto del medio cita a Juschubut Noticias o a la Agencia de Comunicación Judicial. Las redes sociales se informarán por separado.</p>
+<p class="nota">Las cifras son un mínimo detectado, no el total real: el tablero no ve radio y TV fuera de la web, grupos privados ni contenido no indexado. Se cuentan las publicaciones del mismo día de la nota o posteriores, con enlace, verificadas y a verificar, igual que en el tablero. Cada medio cuenta una vez por nota. «Nombran a JusNoticias» indica que el texto del medio cita a Juschubut Noticias o a la Agencia de Comunicación Judicial. De las redes se informan solo los seguidores; el resto se informa por separado.</p>
 </main></body></html>`;
   };
 

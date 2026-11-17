@@ -246,6 +246,21 @@ def consultar_whatsapp():
         return r.read().decode("utf-8", "replace")
 
 
+def registrar_historial(historial, canales, hoy):
+    """Un valor de seguidores por cuenta y por día (el último del día manda). Nunca borra filas.
+    Sirve para ver cuánto crece cada cuenta (pedido de Ignacio, 17/11/2026)."""
+    fecha = hoy.isoformat()
+    for c in canales:
+        if not isinstance(c.get("seguidores"), (int, float)):
+            continue
+        fila = next((h for h in historial if h["fecha"] == fecha and h["red"] == c["red"] and h["cuenta"] == c["cuenta"]), None)
+        if fila:
+            fila["seguidores"] = int(c["seguidores"])
+        else:
+            historial.append({"fecha": fecha, "red": c["red"], "cuenta": c["cuenta"], "seguidores": int(c["seguidores"])})
+    return historial
+
+
 def consultar_panel():
     req = urllib.request.Request(f"{SITIO}/api/panel-vivo", headers={"Accept": "application/json", "User-Agent": "jusnoticias-relevamiento"})
     with urllib.request.urlopen(req, timeout=120) as r:
@@ -266,6 +281,10 @@ def main():
         except Exception as error:
             print(f"AVISO: no se pudo leer el canal de WhatsApp ({error}).")
         ruta_canales.write_text(json.dumps(canales, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        ruta_historial = ruta.parent / "seguidores_historial.json"
+        historial = json.loads(ruta_historial.read_text(encoding="utf-8")) if ruta_historial.exists() else []
+        registrar_historial(historial, canales, dt.date.today())
+        ruta_historial.write_text(json.dumps(historial, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         print(f"Cuentas propias: {cambios} con seguidores o estado actualizados.")
     except Exception as error:  # nunca frena el relevamiento
         print(f"AVISO: no se pudieron actualizar seguidores y estado de las cuentas ({error}).")
