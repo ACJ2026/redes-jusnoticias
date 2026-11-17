@@ -10,6 +10,7 @@ Uso: python3 scripts/actualizar_redes.py [data/redes2.json]
 """
 import datetime as dt
 import hashlib
+import html
 import json
 import os
 import re
@@ -211,6 +212,40 @@ def actualizar_canales(canales, cuentas_vivas, hoy):
     return cambios
 
 
+WHATSAPP_CANAL = "https://www.whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p"
+
+
+def seguidores_whatsapp(pagina):
+    """La página pública del canal dice «Canal • 383 seguidores» (17/11/2026). No hace falta API:
+    WhatsApp no tiene una para canales, y las vistas de cada mensaje solo las ven los administradores."""
+    m = re.search(r"Canal\s*•\s*([\d.,]+)\s*(mil\s+)?seguidores", html.unescape(pagina or ""), re.I)
+    if not m:
+        return None
+    numero = m.group(1).replace(".", "")
+    if m.group(2):
+        return int(round(float(numero.replace(",", ".")) * 1000))
+    return int(numero.replace(",", ""))
+
+
+def actualizar_whatsapp(canales, pagina, hoy):
+    n = seguidores_whatsapp(pagina)
+    if n is None:
+        return False
+    for c in canales:
+        if c.get("red") == "WhatsApp":
+            c["seguidores"] = n
+            c["estado"] = f"Activa: seguidores leídos de la página pública del canal el {hoy.strftime('%d/%m/%Y')}"
+            c["actualizado"] = hoy.isoformat()
+            return True
+    return False
+
+
+def consultar_whatsapp():
+    req = urllib.request.Request(WHATSAPP_CANAL, headers={"User-Agent": "Mozilla/5.0 (jusnoticias-relevamiento)", "Accept-Language": "es-AR,es;q=0.9"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return r.read().decode("utf-8", "replace")
+
+
 def consultar_panel():
     req = urllib.request.Request(f"{SITIO}/api/panel-vivo", headers={"Accept": "application/json", "User-Agent": "jusnoticias-relevamiento"})
     with urllib.request.urlopen(req, timeout=120) as r:
@@ -224,6 +259,12 @@ def main():
     try:
         canales = json.loads(ruta_canales.read_text(encoding="utf-8"))
         cambios = actualizar_canales(canales, consultar_panel(), dt.date.today())
+        # WhatsApp: los seguidores salen de la página pública del canal; si no responde, queda el dato anterior.
+        try:
+            if actualizar_whatsapp(canales, consultar_whatsapp(), dt.date.today()):
+                cambios += 1
+        except Exception as error:
+            print(f"AVISO: no se pudo leer el canal de WhatsApp ({error}).")
         ruta_canales.write_text(json.dumps(canales, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"Cuentas propias: {cambios} con seguidores o estado actualizados.")
     except Exception as error:  # nunca frena el relevamiento

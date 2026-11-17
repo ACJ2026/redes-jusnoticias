@@ -42,6 +42,21 @@ class AuditoriaRedesTest(unittest.TestCase):
         self.assertEqual(canales[0]["estado"], "Casi inactiva")
         self.assertEqual(canales[0]["seguidores"], 30)
 
+    def test_whatsapp_toma_los_seguidores_de_la_pagina_publica(self):
+        pagina = '<meta property="og:description" content="Canal &#x2022; 383 seguidores( &#x2022; Canal de noticias)">'
+        self.assertEqual(ar.seguidores_whatsapp(pagina), 383)
+        self.assertEqual(ar.seguidores_whatsapp("Canal • 1.204 seguidores"), 1204)
+        self.assertEqual(ar.seguidores_whatsapp("Canal • 1,2 mil seguidores"), 1200)
+        canales = [{"red": "WhatsApp", "cuenta": "Canal", "seguidores": 318, "estado": "cargado a mano"}]
+        self.assertTrue(ar.actualizar_whatsapp(canales, pagina, dt.date(2026, 11, 17)))
+        self.assertEqual(canales[0]["seguidores"], 383)
+        self.assertIn("17/11/2026", canales[0]["estado"])
+
+    def test_whatsapp_sin_dato_no_pisa_nada(self):
+        canales = [{"red": "WhatsApp", "cuenta": "Canal", "seguidores": 318, "estado": "cargado a mano"}]
+        self.assertFalse(ar.actualizar_whatsapp(canales, "<html>sin datos</html>", dt.date(2026, 11, 17)))
+        self.assertEqual((canales[0]["seguidores"], canales[0]["estado"]), (318, "cargado a mano"))
+
     def test_busqueda_en_otras_cuentas_solo_instagram_dirigido(self):
         self.assertIn('const EN_USO = new Set(["ig-dirigida"]);', COMPARTIDOS)
         self.assertIn("FUENTES.filter(f => EN_USO.has(f.id)", COMPARTIDOS)
