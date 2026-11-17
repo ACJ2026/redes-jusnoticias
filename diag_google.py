@@ -1,6 +1,6 @@
 import json, time, urllib.request, urllib.error
 S = "https://jusnoticias.pages.dev"
-for ruta in ["/api/google-metrics?desde=2026-11-01&hasta=2026-11-13", "/api/google-metrics?desde=2026-10-01&hasta=2026-10-31"]:
+for ruta in ["/api/google-metrics?desde=2026-11-01&hasta=2026-11-16", "/api/google-metrics?desde=2026-10-01&hasta=2026-10-31"]:
     t = time.time()
     try:
         with urllib.request.urlopen(urllib.request.Request(S + ruta, headers={"User-Agent": "diag", "Accept": "application/json"}), timeout=120) as r:
