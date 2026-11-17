@@ -13,9 +13,9 @@
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 181,
       "notas": 137,
-      "ejemplo": "https://radio3cadenapatagonia.com.ar/fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
+      "ejemplo": "https://radio3cadenapatagonia.com.ar/el-stj-de-chubut-participo-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-29",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "/radio3cp"
@@ -72,9 +72,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 115,
-      "notas": 115,
-      "ejemplo": "https://www.metadatanoticias.com.ar/2026/11/16/un-fallo-en-trelew-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
+      "publicaciones": 116,
+      "notas": 116,
+      "ejemplo": "https://www.metadatanoticias.com.ar/2026/11/17/comodoro-pavei-recibio-5-anos-de-carcel-por-el-homicidio-de-jorge-david-nieves/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -99,9 +99,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 107,
-      "notas": 99,
-      "ejemplo": "https://delmardigital.net/autoridades-judiciales-recibieron-a-la-vicepresidenta-del-consejo-de-la-magistratura-de-la-nacion/",
+      "publicaciones": 108,
+      "notas": 100,
+      "ejemplo": "https://delmardigital.net/condenaron-a-mauro-pavei-a-cinco-anos-de-prision-por-el-crimen-de-jorge-david-nieves/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -157,9 +157,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 80,
-      "notas": 66,
-      "ejemplo": "https://cholilaonline.ar/2026/11/trelew-limitan-tiempo-nino-abuela-viajes-padre.html",
+      "publicaciones": 81,
+      "notas": 67,
+      "ejemplo": "https://cholilaonline.ar/2026/11/comodoro-condenaron-5-anos-prision-mauro-pavei-homicidio-jorge-david-nieves.html",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -177,6 +177,37 @@
         ],
         "TikTok": [
           "@cholilaonlive"
+        ]
+      }
+    },
+    {
+      "nombre": "ADN Sur",
+      "alias": [],
+      "dominio": "adnsur.com.ar",
+      "url": "https://adnsur.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
+      "publicaciones": 73,
+      "notas": 64,
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/condenaron-a-5-anos-de-carcel-a-mauro-pavei-por-el-crimen-de-jorge-nieves-en-comodoro_a6afc9ddb8ea6799f1be02567",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-11-17",
+      "redes": {
+        "Facebook": [
+          "ADN Sur",
+          "/ADNSUR"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: el sitio linkea @yasabes.arg; también existe @adnsur"
+        ],
+        "X": [
+          "@ADNsur"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: @ADNSURTV"
         ]
       }
     },
@@ -204,37 +235,6 @@
         ],
         "Instagram": [
           "@pmynoticias"
-        ]
-      }
-    },
-    {
-      "nombre": "ADN Sur",
-      "alias": [],
-      "dominio": "adnsur.com.ar",
-      "url": "https://adnsur.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Comodoro Rivadavia",
-      "metodo": "Sitemap / índice propio",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 72,
-      "notas": 63,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-17",
-      "redes": {
-        "Facebook": [
-          "ADN Sur",
-          "/ADNSUR"
-        ],
-        "Instagram": [
-          "Dudosa: Dudosa: el sitio linkea @yasabes.arg; también existe @adnsur"
-        ],
-        "X": [
-          "@ADNsur"
-        ],
-        "YouTube": [
-          "Dudosa: Dudosa: @ADNSURTV"
         ]
       }
     },
@@ -339,9 +339,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 54,
-      "notas": 49,
-      "ejemplo": "https://comodoro24.com.ar/fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
+      "publicaciones": 55,
+      "notas": 50,
+      "ejemplo": "https://comodoro24.com.ar/condenaron-a-mauro-pavei-a-5-anos-de-prision-por-el-crimen-de-jorge-nieves/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-17",
       "redes": {
@@ -396,7 +396,7 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 47,
       "notas": 43,
       "ejemplo": "https://argentarnoticias.com.ar/la-justicia-de-trelew-freno-el-reemplazo-paterno-una-abuela-no-ocupara-los-dias-de-cuidado-del-padre-cuando-viaje/",
@@ -444,9 +444,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 37,
-      "notas": 33,
-      "ejemplo": "https://www.elcomodorense.net/juicio-por-jurados-declaran-culpable-a-un-imputado-por-delitos-contra-la-integridad-sexual-en-el-ambito-familiar/",
+      "publicaciones": 38,
+      "notas": 34,
+      "ejemplo": "https://www.elcomodorense.net/condenaron-a-mauro-pavei-a-cinco-anos-de-prision-por-el-asesinato-de-jorge-nieves/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -579,9 +579,9 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 28,
-      "notas": 27,
-      "ejemplo": "https://www.elchubut.com.ar/trelew/2026-11-16-12-46-0-fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo",
+      "publicaciones": 29,
+      "notas": 28,
+      "ejemplo": "https://www.elchubut.com.ar/judiciales/2026-11-17-15-43-0-condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-11-16",
       "redes": {
@@ -881,6 +881,23 @@
       }
     },
     {
+      "nombre": "Agencia de Noticias San Luis",
+      "alias": [],
+      "dominio": "agenciasanluis.com",
+      "url": "https://agenciasanluis.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 13,
+      "notas": 12,
+      "ejemplo": "https://agenciasanluis.com/2026/10/21/1222926-evaluaron-la-salud-mental-de-mas-de-5-200-integrantes-de-la-policia-y-el-servicio-penitenciario/",
+      "primera_deteccion": "2026-11-17",
+      "ultima_deteccion": "2026-11-17",
+      "redes": {}
+    },
+    {
       "nombre": "Crónica",
       "alias": [],
       "dominio": "",
@@ -905,6 +922,34 @@
         ],
         "X": [
           "@cronicacrd"
+        ]
+      }
+    },
+    {
+      "nombre": "El Patagónico",
+      "alias": [],
+      "dominio": "elpatagonico.com",
+      "url": "https://elpatagonico.com",
+      "tipo": "Portal digital",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 13,
+      "notas": 13,
+      "ejemplo": "https://www.elpatagonico.com/por-el-crimen-jorge-nieves-fue-condenado-pavei-5-anos-n6346280",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "El Patagónico",
+          "/elpatagonico"
+        ],
+        "Instagram": [
+          "@elpatagonico"
+        ],
+        "X": [
+          "@elpatagonico"
         ]
       }
     },
@@ -936,34 +981,6 @@
         ],
         "YouTube": [
           "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
-        ]
-      }
-    },
-    {
-      "nombre": "El Patagónico",
-      "alias": [],
-      "dominio": "elpatagonico.com",
-      "url": "https://elpatagonico.com",
-      "tipo": "Portal digital",
-      "localidad": "Comodoro Rivadavia",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 12,
-      "notas": 12,
-      "ejemplo": "https://www.elpatagonico.com/una-abuela-no-puede-reemplazar-al-padre-su-tiempo-el-hijo-dijo-un-fallo-n6345668",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "El Patagónico",
-          "/elpatagonico"
-        ],
-        "Instagram": [
-          "@elpatagonico"
-        ],
-        "X": [
-          "@elpatagonico"
         ]
       }
     },
@@ -1060,6 +1077,36 @@
       "_manual": {
         "localidad": true,
         "observaciones": true
+      }
+    },
+    {
+      "nombre": "ABC Diario",
+      "alias": [],
+      "dominio": "abcdiario.com.ar",
+      "url": "https://abcdiario.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 7,
+      "notas": 7,
+      "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-11-17",
+      "redes": {
+        "Facebook": [
+          "/abcdiarioar"
+        ],
+        "Instagram": [
+          "@abcdiarioar"
+        ],
+        "X": [
+          "@abcdiarioar"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: @abcdiarioar"
+        ]
       }
     },
     {
@@ -1186,36 +1233,6 @@
       }
     },
     {
-      "nombre": "ABC Diario",
-      "alias": [],
-      "dominio": "abcdiario.com.ar",
-      "url": "https://abcdiario.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (solo títulos)",
-      "publicaciones": 6,
-      "notas": 6,
-      "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-05",
-      "redes": {
-        "Facebook": [
-          "/abcdiarioar"
-        ],
-        "Instagram": [
-          "@abcdiarioar"
-        ],
-        "X": [
-          "@abcdiarioar"
-        ],
-        "YouTube": [
-          "Dudosa: Dudosa: @abcdiarioar"
-        ]
-      }
-    },
-    {
       "nombre": "Diario El Libertador",
       "alias": [],
       "dominio": "diarioellibertador.com.ar",
@@ -1244,7 +1261,7 @@
       "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 6,
       "notas": 6,
-      "ejemplo": "https://www.diariojudicial.com/news-104882-charla-a-estudiantes-sobre-el-juicio-por-jurados",
+      "ejemplo": "https://www.diariojudicial.com/news-104875-juraron-cinco-nuevos-integrantes-del-consejo-de-la-magistratura-de-la-nacion",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-17",
       "redes": {
@@ -1332,8 +1349,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Temporalmente no disponible",
-      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 5,
       "notas": 5,
       "ejemplo": "https://www.tn24.com.ar/2026/11/reconocieron-a-la-justicia-chaquena-como-pionera-durante-el-encuentro-nacional-de-mediacion-de-jufejus/",
@@ -1477,6 +1494,33 @@
       "_manual": {
         "localidad": true,
         "observaciones": true
+      }
+    },
+    {
+      "nombre": "FM del Lago Esquel",
+      "alias": [],
+      "dominio": "fmdellagoesquel.com.ar",
+      "url": "https://fmdellagoesquel.com.ar",
+      "tipo": "Radio",
+      "localidad": "Esquel",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (texto comparado)",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://fmdellagoesquel.com.ar/esquel-fue-sede-de-una-jornada-sobre-fideicomiso-en-la-universidad-nacional-de-la-patagonia-san-juan-bosco/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/FmdelLagoOK"
+        ],
+        "Instagram": [
+          "@fmdellagoesquel"
+        ],
+        "X": [
+          "@fmdellagoesquel"
+        ]
       }
     },
     {
@@ -1692,23 +1736,6 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
-      "redes": {}
-    },
-    {
-      "nombre": "Agencia de Noticias San Luis",
-      "alias": [],
-      "dominio": "agenciasanluis.com",
-      "url": "https://agenciasanluis.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://agenciasanluis.com/2026/11/17/1232441-el-senado-convirtio-en-ley-la-adecuacion-del-regimen-procesal-penal-juvenil/",
-      "primera_deteccion": "2026-11-17",
-      "ultima_deteccion": "2026-11-17",
       "redes": {}
     },
     {
@@ -2455,33 +2482,6 @@
         ],
         "X": [
           "@flipr_ar"
-        ]
-      }
-    },
-    {
-      "nombre": "FM del Lago Esquel",
-      "alias": [],
-      "dominio": "fmdellagoesquel.com.ar",
-      "url": "https://fmdellagoesquel.com.ar",
-      "tipo": "Radio",
-      "localidad": "Esquel",
-      "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://fmdellagoesquel.com.ar/el-dr-daniel-baez-califico-de-vergonzosa-la-restitucion-de-la-jueza-mariel-suarez/",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/FmdelLagoOK"
-        ],
-        "Instagram": [
-          "@fmdellagoesquel"
-        ],
-        "X": [
-          "@fmdellagoesquel"
         ]
       }
     },
