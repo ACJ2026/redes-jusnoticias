@@ -132,9 +132,9 @@
       "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 88,
       "notas": 75,
-      "ejemplo": "https://lapostacomodorense.com.ar/2026/10/30/declaran-culpable-a-pavei-por-el-homicidio-de-jorge-david-nieves/",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "ejemplo": "https://lapostacomodorense.com.ar/2026/11/16/la-camara-de-trelew-limito-el-regimen-de-visitas-de-una-abuela-y-ratifico-que-no-puede-sustituir-al-padre/",
+      "primera_deteccion": "2026-11-17",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "Dudosa: Dudosa: salió del buscador; el sitio no linkea redes"
@@ -221,7 +221,7 @@
       "notas": 63,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -283,7 +283,7 @@
       "notas": 57,
       "ejemplo": "https://www.eldiarioweb.com/2026/10/la-justicia-sanciono-a-plan-ovalo-y-ford-por-ocultar-informacion-de-un-plan-de-ahorro/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "/eldiarioonline"
@@ -309,11 +309,11 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 58,
-      "notas": 56,
-      "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
+      "publicaciones": 60,
+      "notas": 57,
+      "ejemplo": "https://www.eqsnotas.com/judiciales/abuela-nieto-viajes-padre-fallo-justicia-trelew_a6afb47fbee61a5b77f3734ca",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -343,7 +343,7 @@
       "notas": 49,
       "ejemplo": "https://comodoro24.com.ar/fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "C24",
@@ -396,7 +396,7 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 47,
       "notas": 43,
       "ejemplo": "https://argentarnoticias.com.ar/la-justicia-de-trelew-freno-el-reemplazo-paterno-una-abuela-no-ocupara-los-dias-de-cuidado-del-padre-cuando-viaje/",
@@ -502,9 +502,9 @@
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 34,
-      "notas": 32,
-      "ejemplo": "https://vivotrelew.com/21515-2/",
+      "publicaciones": 35,
+      "notas": 33,
+      "ejemplo": "https://vivotrelew.com/24492-2/",
       "primera_deteccion": "2026-11-10",
       "ultima_deteccion": "2026-11-10",
       "redes": {
@@ -539,7 +539,7 @@
       "notas": 26,
       "ejemplo": "https://www.surenio.com.ar/jornadas-de-formacion-sobre-desarrollo-en-la-primera-infancia/",
       "primera_deteccion": "2026-11-11",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {}
     },
     {
@@ -677,7 +677,7 @@
       "notas": 19,
       "ejemplo": "https://lu17.com/contenido/157894/trelew-limitan-el-tiempo-de-un-nino-con-su-abuela-durante-los-viajes-de-su-padre",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {}
     },
     {
@@ -692,7 +692,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 17,
       "notas": 17,
-      "ejemplo": "https://www.elvalleonline.com.ar/un-nino-de-rawson-fue-escuchado-por-la-justicia-y-podra-seguir-viviendo-con-sus-abuelos/",
+      "ejemplo": "https://www.elvalleonline.com.ar/una-abuela-pretendia-ocupar-el-lugar-del-padre-y-la-justicia-puso-limites-por-pedido-de-la-madre/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-16",
       "redes": {
@@ -1246,7 +1246,7 @@
       "notas": 6,
       "ejemplo": "https://www.diariojudicial.com/news-104882-charla-a-estudiantes-sobre-el-juicio-por-jurados",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "/diariojudicial"
@@ -1872,7 +1872,7 @@
       "notas": 1,
       "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "/clarincom"
@@ -1905,7 +1905,7 @@
       "notas": 1,
       "ejemplo": "https://www.contextosfueguinos.com/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
       "primera_deteccion": "2026-11-10",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {},
       "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.contextosfueguinos.com/ — «Ushuaia, Tierra del Fuego, Argentina»",
       "_manual": {
@@ -2008,7 +2008,7 @@
       "notas": 1,
       "ejemplo": "https://www.diariomendoza.com.ar/politica/godoy-cruz-fue-primer-municipio-mendoza-capacitarse-sobre-nuevo-regimen-penal-juvenil-n185378",
       "primera_deteccion": "2026-11-12",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {}
     },
     {
@@ -2450,7 +2450,7 @@
       "localidad": "Santiago del Estero",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2768,7 +2768,7 @@
       "notas": 1,
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "/perfilcom"
@@ -2989,7 +2989,7 @@
       "notas": 1,
       "ejemplo": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {},
       "observaciones": "Sitio del medio, leído el 13/11/2026: https://tn.com.ar — datos del sitio (addressLocality): «CABA»",
       "_manual": {
