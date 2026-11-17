@@ -89,6 +89,7 @@ class TableroPublicoTests(unittest.TestCase):
                                if m.get("localidad") and m["localidad"] != "Por verificar" for n in [m["nombre"]] + m.get("alias", [])}
         data["alias_medios"] = {a: m["nombre"] for m in read_json("data/medios_inventario.json")["medios"]
                                 for a in (m.get("alias") or []) if a and a != m["nombre"]}
+        data["seguidores_historial"] = read_json("data/seguidores_historial.json")
         self.assertEqual(json.loads(payload), data)
         template = (ROOT / "templates/tablero.html").read_text(encoding="utf-8")
         self.assertEqual(template.count("/*DATOS*/"), 1)

@@ -57,6 +57,24 @@ class AuditoriaRedesTest(unittest.TestCase):
         self.assertFalse(ar.actualizar_whatsapp(canales, "<html>sin datos</html>", dt.date(2026, 11, 17)))
         self.assertEqual((canales[0]["seguidores"], canales[0]["estado"]), (318, "cargado a mano"))
 
+    def test_historial_de_seguidores_un_valor_por_dia_sin_borrar(self):
+        hist = [{"fecha": "2026-11-16", "red": "WhatsApp", "cuenta": "Canal", "seguidores": 318}]
+        canales = [{"red": "WhatsApp", "cuenta": "Canal", "seguidores": 380}, {"red": "X", "cuenta": "@x", "seguidores": None}]
+        ar.registrar_historial(hist, canales, dt.date(2026, 11, 17))
+        canales[0]["seguidores"] = 383
+        ar.registrar_historial(hist, canales, dt.date(2026, 11, 17))
+        self.assertEqual([(h["fecha"], h["seguidores"]) for h in hist], [("2026-11-16", 318), ("2026-11-17", 383)])
+
+    def test_cambio_de_seguidores_y_enlace_para_el_canal(self):
+        self.assertIn("const cambioSeguidores = c =>", PLANTILLA)
+        self.assertIn("[r => cambioSeguidores(r), 'num']", PLANTILLA)
+        self.assertIn("u.searchParams.set('utm_source', 'whatsapp');", PLANTILLA)
+        self.assertIn("u.searchParams.set('utm_medium', 'canal');", PLANTILLA)
+        google = (ROOT / "functions/api/google-metrics.js").read_text(encoding="utf-8")
+        self.assertIn('if (s === "whatsapp" && m === "canal") return "Canal de WhatsApp";', google)
+        armar = (ROOT / "scripts/armar_publico.py").read_text(encoding="utf-8")
+        self.assertIn('d["seguidores_historial"]', armar)
+
     def test_busqueda_en_otras_cuentas_solo_instagram_dirigido(self):
         self.assertIn('const EN_USO = new Set(["ig-dirigida"]);', COMPARTIDOS)
         self.assertIn("FUENTES.filter(f => EN_USO.has(f.id)", COMPARTIDOS)

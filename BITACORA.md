@@ -1341,3 +1341,12 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **No hace falta API:** WhatsApp no tiene una para canales. Las vistas de cada mensaje solo las ven los administradores en la app, así que no entran.
 - **Dato:** de 318 (cargado a mano el 21/10) a 383 (leído el 17/11, consulta desde GitHub, rama `claude/diagnostico-whatsapp`).
 - **Pruebas:** dos en `tests/test_auditoria_redes.py` (lee «383», «1.204» y «1,2 mil»; sin dato no pisa nada).
+
+## 2026-11-17 — WhatsApp y redes: crecimiento de seguidores y enlaces marcados para el canal (Claude, OK de Ignacio)
+
+- **Seguidores día por día:** `data/seguidores_historial.json` guarda un valor por cuenta y por día; lo escribe `scripts/actualizar_redes.py` y nunca borra filas. Se armó hacia atrás con las versiones de `data/canales.json` guardadas en GitHub, desde el 22/10/2026. El 20 y el 21/10 se dejaron afuera porque tenían cifras redondeadas a mano.
+- **Tablero:** columna «Cambio» en la tabla de seguidores de Redes (por ejemplo, WhatsApp «+65 desde el 22/10»). X muestra «—» porque no se consulta en vivo.
+- **Reporte mensual:** se suma la tabla «Seguidores de nuestras cuentas», con el valor al cierre del mes y el cambio, indicando desde qué fecha se mide.
+- **Enlaces para el canal:** en Visitas hay una cajita que agrega `?utm_source=whatsapp&utm_medium=canal` al enlace de una nota. `functions/api/google-metrics.js` clasifica esas visitas como «Canal de WhatsApp», y Visitas muestra el total del período.
+- **Sin Chrome ni API:** las vistas y reacciones de cada mensaje no se traen (Ignacio descartó Claude in Chrome por el consumo).
+- **Pruebas:** historial (un valor por día, sin borrar), columna de cambio, enlace marcado, clasificación de la fuente y seguidores en el reporte. Todas OK. Probado en el navegador en 1280 y 375 px.

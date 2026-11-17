@@ -198,6 +198,8 @@ export async function onRequest(context) {
       const hostMatches = (domains) => domains.some(hostIs);
       if (["(not set)", "(unknown)", ""].includes(s) || ["(not set)", "(unknown)", ""].includes(m)) return "Sin identificar";
       if (s === "(direct)" || m === "(none)" || m === "direct") return "Acceso directo";
+      // Enlaces publicados en el canal con ?utm_source=whatsapp&utm_medium=canal (17/11/2026).
+      if (s === "whatsapp" && m === "canal") return "Canal de WhatsApp";
       if (hostMatches(["chatgpt.com", "chat.openai.com", "openai.com", "copilot.microsoft.com", "gemini.google.com", "perplexity.ai", "claude.ai", "poe.com", "you.com", "phind.com", "mistral.ai"])) return "Asistente de IA";
       if (hostMatches(["facebook.com", "instagram.com", "linkedin.com", "tiktok.com", "twitter.com", "x.com", "t.co", "youtube.com", "youtu.be", "pinterest.com", "reddit.com", "threads.net", "whatsapp.com", "telegram.org", "bsky.app"])) return "Red social";
       const searchAliases = ["google", "bing", "yahoo", "duckduckgo", "ecosia", "baidu", "yandex", "brave", "qwant"];
