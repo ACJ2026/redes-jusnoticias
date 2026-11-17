@@ -1,0 +1,10 @@
+== UA Mozilla/5.0 (Windows estado 200 url https://www.whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p bytes 200119
+   <meta[^>]+property="og:ti ['JUSCHUBUT Noticias del  Poder Judicial de Chubut']
+   <meta[^>]+property="og:de ['Canal • 383 seguidores( • Canal de noticias de la Agencia de Comunicación Judicial del Superior Tribunal de Justicia de la Provincia del Chubut)']
+   <title>([^<]*)</title> []
+   … dicial del Superior Tribunal de Justicia de la Provincia del Chubut Canal • 383 seguidores Ver en WhatsApp Parece que no tienes 
+== UA facebookexternalhit/ estado 200 url https://www.whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p bytes 201608
+   <meta[^>]+property="og:ti ['JUSCHUBUT Noticias del  Poder Judicial de Chubut']
+   <meta[^>]+property="og:de ['Canal • 383 seguidores( • Canal de noticias de la Agencia de Comunicación Judicial del Superior Tribunal de Justicia de la Provincia del Chubut)']
+   <title>([^<]*)</title> []
+   … dicial del Superior Tribunal de Justicia de la Provincia del Chubut Canal • 383 seguidores Ver en WhatsApp Parece que no tienes 
