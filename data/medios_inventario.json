@@ -39,8 +39,8 @@
       "tipo": "TV",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (texto comparado)",
+      "estado": "Temporalmente no disponible",
+      "cobertura": "Fuente temporalmente no disponible; se conserva el historial previo",
       "publicaciones": 126,
       "notas": 101,
       "ejemplo": "https://canal12web.com/la-justicia-de-trelew-marco-limites-una-abuela-no-puede-ocupar-el-lugar-del-padre-en-su-tiempo-con-el-hijo/",
@@ -476,7 +476,7 @@
       "notas": 33,
       "ejemplo": "https://radiochubut.com/chubut-mundo-trabajo/",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-16",
+      "ultima_deteccion": "2026-11-17",
       "redes": {
         "Facebook": [
           "/lu20radiochubut"
