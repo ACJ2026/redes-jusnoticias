@@ -1334,3 +1334,10 @@ Cambio: el tablero ahora muestra, debajo del resumen, un desplegable «Ver qué 
 - **Alcance:** no se cambian credenciales, permisos, datos históricos, rangos permitidos ni definiciones de métricas.
 - **Prueba añadida:** una respuesta cacheada se devuelve sin volver a llamar a Google.
 - **Pendiente:** ejecutar CI, revisar Cloudflare Pages y comprobar con un rango real si Google vuelve a responder. Si la cuota diaria del proyecto está agotada, solo Google puede renovarla o ampliarla desde Google Cloud Console; la caché y la secuenciación reducen consumo futuro, pero no pueden restablecer una cuota ya agotada.
+
+## 2026-11-17 — WhatsApp: los seguidores se leen solos de la página pública del canal (Claude, pedido de Ignacio)
+
+- **Qué:** la página pública del canal (`whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p`) dice «Canal • 383 seguidores». `scripts/actualizar_redes.py` la lee en cada actualización y guarda el número en `data/canales.json`. Si no responde, queda el dato anterior.
+- **No hace falta API:** WhatsApp no tiene una para canales. Las vistas de cada mensaje solo las ven los administradores en la app, así que no entran.
+- **Dato:** de 318 (cargado a mano el 21/10) a 383 (leído el 17/11, consulta desde GitHub, rama `claude/diagnostico-whatsapp`).
+- **Pruebas:** dos en `tests/test_auditoria_redes.py` (lee «383», «1.204» y «1,2 mil»; sin dato no pisa nada).

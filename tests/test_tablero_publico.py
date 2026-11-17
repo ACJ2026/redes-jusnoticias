@@ -223,7 +223,7 @@ class TableroPublicoTests(unittest.TestCase):
         canales = read_json("data/canales.json")
         self.assertIn("<option>TikTok</option>", template)
         self.assertIn("<option>WhatsApp</option>", template)
-        self.assertTrue(any("cargados a mano" in c["estado"] for c in canales if c["red"] == "WhatsApp"))
+        self.assertTrue(any(isinstance(c["seguidores"], int) and c["estado"].startswith("Activa") for c in canales if c["red"] == "WhatsApp"))
         self.assertTrue(any(c["red"] == "TikTok" for c in canales))
         self.assertTrue(any(c["red"] == "WhatsApp" for c in canales))
         self.assertTrue(any(isinstance(c["seguidores"], int) and c["estado"].startswith("Activa") for c in canales if c["red"] == "TikTok"))
