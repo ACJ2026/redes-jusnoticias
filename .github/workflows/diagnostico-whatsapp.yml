@@ -1,0 +1,37 @@
+name: Diagnóstico de WhatsApp (solo lectura)
+on:
+  push:
+    branches:
+      - 'claude/diagnostico-whatsapp'
+permissions:
+  contents: write
+jobs:
+  wa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Leer la página pública del canal
+        run: |
+          mkdir -p salida
+          python3 - <<'PY' > salida/whatsapp.txt 2>&1 || true
+          import re, html, urllib.request
+          for ua in ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36", "facebookexternalhit/1.1"]:
+              try:
+                  r = urllib.request.urlopen(urllib.request.Request("https://whatsapp.com/channel/0029VaGP0tX0lwgpiNAnBb1p", headers={"User-Agent": ua, "Accept-Language": "es-AR,es;q=0.9"}), timeout=30)
+                  t = r.read().decode("utf-8", "replace"); print("== UA", ua[:20], "estado", r.status, "url", r.geturl(), "bytes", len(t))
+              except Exception as e:
+                  print("== UA", ua[:20], "error", e); continue
+              for pat in [r'<meta[^>]+property="og:title"[^>]+content="([^"]*)"', r'<meta[^>]+property="og:description"[^>]+content="([^"]*)"', r'<title>([^<]*)</title>']:
+                  print("  ", pat[:25], [html.unescape(x) for x in re.findall(pat, t)[:2]])
+              txt = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", t)))
+              for m in re.finditer(r"(seguidor|follower)", txt, re.I):
+                  print("   …", html.unescape(txt[max(0, m.start()-80): m.end()+40]))
+          PY
+          cat salida/whatsapp.txt
+      - name: Guardar salida
+        run: |
+          git config user.name "jusnoticias-bot"; git config user.email "actions@users.noreply.github.com"
+          git checkout --orphan diagnostico-whatsapp-salida
+          git rm -rq --cached . ; git add salida; git commit -qm "Diagnóstico whatsapp"
+          git push -f origin diagnostico-whatsapp-salida
