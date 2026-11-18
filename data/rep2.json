@@ -195,7 +195,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://fmtropicalradio.com/2026/02/prision-preventiva-para-la-banda-de-boqueteros-de-trelew/",
-    "motivo": "frases en común 99%; datos coincidentes 100% (efraccion, vliet, boquete, huida, escalamiento, botin); validación misma nota: 1 términos del título, 223 del cuerpo, frases 99%",
+    "motivo": "frases en común 99%; datos coincidentes 100% (mundin, escalamiento, botin, mencionando, efraccion, vliet); validación misma nota: 1 términos del título, 223 del cuerpo, frases 99%",
     "key": "p13"
   },
   {
@@ -541,8 +541,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://diariolaportada.com.ar/2026/03/12/el-ministerio-publico-fiscal-entrego-un-vehiculo-a-la-unidad-regional-esquel/",
     "evidencia_verificacion": {
       "titulo_medio": "El Ministerio Público Fiscal entregó un vehículo a la Unidad Regional Esquel - Diario La Portada",
@@ -564,7 +564,7 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota · otro artículo del mismo medio (por revisar)",
     "url": "https://diariolaportada.com.ar/2026/03/11/condenado-por-acosar-a-una-mujer-a-traves-de-las-redes-sociales/",
     "evidencia_verificacion": {
       "titulo_medio": "Condenado por acosar a una mujer a través de las redes sociales - Diario La Portada",
@@ -610,7 +610,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://diariolaportada.com.ar/2026/09/04/el-stj-ordeno-que-trevelin-pueda-seguir-depositando-sus-residuos-en-esquel-durante-seis-meses/",
-    "motivo": "frases en común 100%; datos coincidentes 99% (solicitada, resolverse, depositar, desechos, usufructo, derogo); validación misma nota: 2 términos del título, 225 del cuerpo, frases 100%",
+    "motivo": "frases en común 100%; datos coincidentes 99% (pasivos, precautorio, gravosa, sustanciarse, interjurisdiccional, peticionada); validación misma nota: 2 términos del título, 225 del cuerpo, frases 100%",
     "key": "p38"
   },
   {
@@ -1170,8 +1170,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://comodoro24.com.ar/el-viernes-13-se-conocera-la-pena-para-el-autor-del-homicidio-de-carita-de-bebe/",
     "evidencia_verificacion": {
       "titulo_medio": "El viernes 13 se conocerá la pena para el autor del homicidio de “Carita de bebé” - Comodoro 24",
@@ -1203,8 +1203,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://comodoro24.com.ar/homicidio-de-carita-de-bebe-el-debate-ante-un-tribunal-popular-comenzara-el-jueves-26-de-febrero/",
     "evidencia_verificacion": {
       "titulo_medio": "Homicidio de \"Carita de bebé\": El debate ante un tribunal popular comenzará el jueves 26 de febrero - Comodoro 24",
@@ -1261,7 +1261,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://comodoro24.com.ar/la-condenaron-por-difamar-a-una-vecina-en-facebook-y-debera-pagar-24-millones/",
-    "motivo": "frases en común 12%; datos coincidentes 46% (subjetivo, excede, mantenerla, archivada, represalias, disculpas); validación misma nota: 2 términos del título, 139 del cuerpo, frases 12%",
+    "motivo": "frases en común 12%; datos coincidentes 46% (archivada, comentarios, subjetivo, billetera, excede, componente); validación misma nota: 2 términos del título, 139 del cuerpo, frases 12%",
     "evidencia_verificacion": {
       "titulo_medio": "La condenaron por difamar a una vecina en Facebook y deberá pagar $2,4 millones - Comodoro 24",
       "terminos_titulo_en_comun": 2,
@@ -1722,8 +1722,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://www.elcomodorense.net/homicidio-de-carita-de-bebe-piden-15-anos-de-prision-para-silva-en-comodoro/",
     "evidencia_verificacion": {
       "titulo_medio": "Homicidio de “Carita de bebé”: piden 15 años de prisión para Silva en Comodoro",
@@ -1769,7 +1769,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.elcomodorense.net/indemnizacion-millonaria-por-un-choque-en-comodoro-debera-cubrir-cuidados-de-por-vida/",
-    "motivo": "frases en común 8%; datos coincidentes 60% (severos, prestacional, ranger, motociclista, honda, extremo); validación misma nota: 2 términos del título, 90 del cuerpo, frases 8%",
+    "motivo": "frases en común 8%; datos coincidentes 60% (motocicleta, ranger, motociclista, kinesiologicos, extremo, neurologicos); validación misma nota: 2 términos del título, 90 del cuerpo, frases 8%",
     "key": "p117"
   },
   {
@@ -2743,8 +2743,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://delmardigital.net/provincia-avanza-junto-a-nacion-y-el-bid-en-un-programa-de-modernizacion-y-optimizacion-del-estado/",
     "evidencia_verificacion": {
       "titulo_medio": "Del Mar Digital",
@@ -2777,7 +2777,7 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota · otro artículo del mismo medio (por revisar)",
     "url": "https://delmardigital.net/homicidio-de-carita-de-bebe-definiran-la-pena-para-enrique-silva/",
     "evidencia_verificacion": {
       "titulo_medio": "Del Mar Digital",
@@ -2798,8 +2798,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://delmardigital.net/provincia-intensifica-el-trabajo-para-fortalecer-estrategias-de-intervencion-con-adolescentes/",
     "evidencia_verificacion": {
       "titulo_medio": "Del Mar Digital",
@@ -2832,7 +2832,7 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota · otro artículo del mismo medio (por revisar)",
     "url": "https://delmardigital.net/declararon-culpable-al-acusado-por-el-crimen-de-kim-gomez/",
     "evidencia_verificacion": {
       "titulo_medio": "Del Mar Digital",
@@ -2955,7 +2955,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://delmardigital.net/hubo-38-femicidios-en-los-ultimos-13-anos-en-chubut/",
-    "motivo": "frases en común 99%; datos coincidentes 99% (suenos, empresarios, empresarias, changarines, obstruyen, trabajaban); validación misma nota: 5 términos del título, 222 del cuerpo, frases 99%",
+    "motivo": "frases en común 99%; datos coincidentes 99% (maduras, mitos, pregunta, convocarse, refuerce, prejuicios); validación misma nota: 5 términos del título, 222 del cuerpo, frases 99%",
     "key": "p205"
   },
   {
@@ -2967,7 +2967,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://delmardigital.net/el-dr-lisandro-benitez-renuncio-a-su-cargo-en-pleno-jury-y-archivaron-la-causa/",
-    "motivo": "frases en común 5%; datos coincidentes 35% (dimision, alcoholemia, darse, benitez, lisandro, renuncia); validación misma nota: 3 términos del título, 58 del cuerpo, frases 5%",
+    "motivo": "frases en común 5%; datos coincidentes 35% (dimision, darse, alcoholemia, benitez, renuncia, lisandro); validación misma nota: 3 términos del título, 58 del cuerpo, frases 5%",
     "key": "p206"
   },
   {
@@ -2979,7 +2979,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://delmardigital.net/la-justicia-condeno-al-banco-del-chubut-por-un-fraude-digital-contra-una-pareja-de-jubilados/",
-    "motivo": "frases en común 1%; datos coincidentes 31% (homebanking, ofrecio, operaciones, electronica, fraude, sustraido); validación misma nota: 2 términos del título, 68 del cuerpo, frases 1%",
+    "motivo": "frases en común 1%; datos coincidentes 31% (homebanking, ofrecio, fraude, operaciones, resarcir, estres); validación misma nota: 2 términos del título, 68 del cuerpo, frases 1%",
     "key": "p207"
   },
   {
@@ -4396,7 +4396,7 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Media",
-    "metodo": "A verificar: no se pudo leer la publicación original; se reintentará",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + A verificar: no se pudo leer la publicación original; se reintentará",
     "url": "https://canal12web.com/causa-elias-la-justicia-decidio-mantener-la-domiciliaria-del-padre/",
     "motivo": "No se pudo leer la publicación automáticamente. Abrí el enlace para comprobarla.",
     "evidencia_verificacion": {
@@ -4440,7 +4440,7 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "A verificar: no se pudo leer la publicación original; se reintentará",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + A verificar: no se pudo leer la publicación original; se reintentará · otro artículo del mismo medio (por revisar)",
     "url": "https://canal12web.com/el-clima-en-chubut-como-estara-el-tiempo-este-jueves-26-de-febrero/",
     "motivo": "No se pudo leer la publicación automáticamente. Abrí el enlace para comprobarla.",
     "evidencia_verificacion": {
@@ -4484,7 +4484,7 @@
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
     "confianza": "Baja",
-    "metodo": "A verificar: no se pudo leer la publicación original; se reintentará",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + A verificar: no se pudo leer la publicación original; se reintentará · otro artículo del mismo medio (por revisar)",
     "url": "https://canal12web.com/el-clima-en-chubut-como-estara-el-tiempo-este-jueves-19-de-febrero/",
     "motivo": "No se pudo leer la publicación automáticamente. Abrí el enlace para comprobarla.",
     "evidencia_verificacion": {
@@ -4574,7 +4574,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto) + Descartada automáticamente: es otra noticia",
     "url": "https://canal12web.com/por-una-prueba-clave-excluida-revocaron-la-absolucion-y-ordenan-repetir-el-juicio-por-abuso-sexual/",
-    "motivo": "frases en común 88%; datos coincidentes 97% (flexibilizar, concedido, revocan, intermedia, decisiva, condicionando); validación misma nota: 3 términos del título, 141 del cuerpo, frases 88%",
+    "motivo": "frases en común 88%; datos coincidentes 97% (decisiva, concedido, absolutorio, revocan, intermedia, privo); validación misma nota: 3 términos del título, 141 del cuerpo, frases 88%",
     "evidencia_verificacion": {
       "titulo_medio": "",
       "terminos_titulo_en_comun": 0,
@@ -4595,7 +4595,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://canal12web.com/tragedia-de-ruta-25-condenaron-a-tres-anos-de-prision-condicional-al-conductor-del-fiat-uno/",
-    "motivo": "frases en común 9%; datos coincidentes 67% (aprobar, alexis, sobrepaso, carril, antirreglamentaria, portico); validación misma nota: 2 términos del título, 84 del cuerpo, frases 9%",
+    "motivo": "frases en común 9%; datos coincidentes 67% (portico, carril, ramos, antirreglamentaria, abstenerse, defensivo); validación misma nota: 2 términos del título, 84 del cuerpo, frases 9%",
     "key": "p310"
   },
   {
@@ -4607,7 +4607,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://canal12web.com/tragedia-de-ruta-25-pidieron-condenar-al-conductor-del-fiat-uno-por-la-muerte-de-los-motociclistas/",
-    "motivo": "frases en común 0%; datos coincidentes 31% (defendido, janet, palabra, culposo, circulaban, imprudente); validación misma nota: 3 términos del título, 60 del cuerpo, frases 0%",
+    "motivo": "frases en común 0%; datos coincidentes 31% (janet, defendido, palabra, alegato, davies, motociclistas); validación misma nota: 3 términos del título, 60 del cuerpo, frases 0%",
     "key": "p311"
   },
   {
@@ -4619,7 +4619,7 @@
     "confianza": "Baja",
     "metodo": "Revisión completa (confirmado por texto) + Revisión completa (confirmado por texto) · otro artículo del mismo medio (por revisar)",
     "url": "https://canal12web.com/reanudan-el-juicio-por-la-tragedia-en-la-ruta-25-que-provoco-la-muerte-de-dos-motociclistas/",
-    "motivo": "frases en común 1%; datos coincidentes 32% (objetividad, castagno, janet, pocos, culposo, circulaban); validación misma nota: 4 términos del título, 61 del cuerpo, frases 1%",
+    "motivo": "frases en común 1%; datos coincidentes 32% (objetividad, janet, castagno, davies, saucedo, culposo); validación misma nota: 4 términos del título, 61 del cuerpo, frases 1%",
     "key": "p312"
   },
   {
@@ -4631,7 +4631,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://canal12web.com/trelew-ordenan-embargar-el-sueldo-de-un-hombre-acusado-de-ejercer-violencia-economica-contra-su-expareja/",
-    "motivo": "frases en común 12%; datos coincidentes 65% (menoscabo, denuncio, amplias, manipulada, perpetuar, sustancian); validación misma nota: 3 términos del título, 140 del cuerpo, frases 12%",
+    "motivo": "frases en común 12%; datos coincidentes 65% (manipulada, verbales, desconocer, menoscabo, amplias, perpetuar); validación misma nota: 3 términos del título, 140 del cuerpo, frases 12%",
     "key": "p313"
   },
   {
@@ -4863,7 +4863,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://madrynurbana.com/planeta-madryn-la-justicia-suspendio-un-tratamiento-hormonal-en-un-adolescente-hasta-completar-la-evaluacion-medica-y-psicologica/",
-    "motivo": "frases en común 8%; datos coincidentes 37% (complete, viani, recomendado, puberal, desacuerdo, asentimiento); validación misma nota: 2 términos del título, 113 del cuerpo, frases 8%",
+    "motivo": "frases en común 8%; datos coincidentes 37% (recomendado, delma, tempranas, inician, asentimiento, endocrinologia); validación misma nota: 2 términos del título, 113 del cuerpo, frases 8%",
     "key": "p326"
   },
   {
@@ -4875,7 +4875,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://madrynurbana.com/planeta-madryn-jurado-popular-declaro-culpable-a-un-hombre-por-un-homicidio-ocurrido-en-gan-gan-y-este-lunes-habra-audiencia-en-la-causa-estremador/",
-    "motivo": "frases en común 5%; datos coincidentes 57% (primo, norte, jovino, celedonio, jesica, justo); validación misma nota: 3 términos del título, 45 del cuerpo, frases 5%",
+    "motivo": "frases en común 5%; datos coincidentes 57% (norte, jovino, primo, celedonio, jesica, yamila); validación misma nota: 3 términos del título, 45 del cuerpo, frases 5%",
     "key": "p327"
   },
   {
@@ -4887,7 +4887,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://madrynurbana.com/planeta-madryn-ordenan-a-un-hombre-indemnizar-a-su-ex-por-el-uso-exclusivo-de-la-vivienda-tras-la-separacion/",
-    "motivo": "frases en común 3%; datos coincidentes 51% (mascotas, retroactivo, iguales, doradillo, permanecio, equivalente); validación misma nota: 3 términos del título, 105 del cuerpo, frases 3%",
+    "motivo": "frases en común 3%; datos coincidentes 51% (equivalente, permanecio, iguales, doradillo, convivencial, afrontando); validación misma nota: 3 términos del título, 105 del cuerpo, frases 3%",
     "key": "p328"
   },
   {
@@ -4899,7 +4899,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://madrynurbana.com/la-destitucion-de-mariel-suarez-llega-al-stj-revisan-el-proceso-y-apuntan-a-la-imparcialidad-del-jury/",
-    "motivo": "frases en común 5%; datos coincidentes 39% (contrapartida, destituida, suarez, apartamiento, subrogantes, destitucion); validación misma nota: 3 términos del título, 55 del cuerpo, frases 5%",
+    "motivo": "frases en común 5%; datos coincidentes 39% (contrapartida, destituida, apartamiento, subrogantes, suarez, impugnacion); validación misma nota: 3 términos del título, 55 del cuerpo, frases 5%",
     "key": "p329"
   },
   {
@@ -4911,7 +4911,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://madrynurbana.com/aunque-rechazo-el-adn-la-justicia-determino-la-paternidad-de-una-nina-en-comodoro/",
-    "motivo": "frases en común 2%; datos coincidentes 37% (extramatrimonial, concepcion, presuncion, provisoria, examen, nacimiento); validación misma nota: 2 términos del título, 59 del cuerpo, frases 2%",
+    "motivo": "frases en común 2%; datos coincidentes 37% (extramatrimonial, presuncion, concepcion, nacimiento, provisoria, examen); validación misma nota: 2 términos del título, 59 del cuerpo, frases 2%",
     "key": "p330"
   },
   {
@@ -4928,7 +4928,7 @@
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 12,
       "coincidencia_cuerpo_oficial": 0.0556,
-      "coincidencia_cuerpo_medio": 0.0732,
+      "coincidencia_cuerpo_medio": 0.0727,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
@@ -4970,14 +4970,14 @@
     "evidencia_verificacion": {
       "titulo_medio": "El InSSSeP impulsa la prevención y el acceso a tratamientos innovadores contra el cáncer de mama - CHACODIAPORDIA.COM",
       "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 16,
-      "coincidencia_cuerpo_oficial": 0.3556,
-      "coincidencia_cuerpo_medio": 0.0618,
+      "terminos_nota_oficial_en_comun": 17,
+      "coincidencia_cuerpo_oficial": 0.3778,
+      "coincidencia_cuerpo_medio": 0.0656,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 18 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 19 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
     "key": "p333"
   },
   {
@@ -5106,7 +5106,7 @@
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 5,
       "coincidencia_cuerpo_oficial": 0.2,
-      "coincidencia_cuerpo_medio": 0.0286,
+      "coincidencia_cuerpo_medio": 0.0284,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
@@ -5221,6 +5221,317 @@
     "key": "p344"
   },
   {
+    "nota_id": 15023,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Reescritura parcial",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Alta",
+    "metodo": "Revisión completa + Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "url": "https://www.airelibre.com.ar/el-stj-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
+    "motivo": "Coincidencia específica confirmada: 4 términos distintivos del título, 149 del cuerpo; frases compartidas 26%",
+    "evidencia_verificacion": {
+      "titulo_medio": "El STJ fue sede por primera vez del Foro de Directores y Responsables de Bibliotecas Judiciales del país | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 4,
+      "terminos_nota_oficial_en_comun": 144,
+      "coincidencia_cuerpo_oficial": 0.9412,
+      "coincidencia_cuerpo_medio": 0.3913,
+      "coincidencia_frases": 0.2586,
+      "misma_nota": true,
+      "mismo_caso": true
+    },
+    "url_alternativas": [
+      "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQkZ0TkhrMlR2c3lPSG5CaE1zYVVPRmM1XzZjLTdfaGtVWExwdFFqdkFwYXFIRFl4V1ZveXFfQmQ2OUwtbkVVeV92bzBzWUdzOUVOSFp1WTlKSFZFc3UwVDA1YjVMNDk0U19LU2Jncnk4ejVTNmRYYmlWb3oyWnlzTmFaZFNjekI2NmhRY2wwZ09zWkh3ZkdnZ3U5Rk1NSVZzLW02QnJYbFNOTmhfQzZqREVRV293eTRHczYzaUZCeF9WWmdtQkwtbzBYcGE1TDg?oc=5"
+    ],
+    "key": "p345"
+  },
+  {
+    "nota_id": 14884,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/una-resolucion-de-la-camara-de-apelaciones-en-una-causa-por-estafa/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Una resolución de la Cámara de Apelaciones, en una causa por estafa | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 0,
+      "terminos_nota_oficial_en_comun": 22,
+      "coincidencia_cuerpo_oficial": 0.0849,
+      "coincidencia_cuerpo_medio": 0.1287,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 28 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p346"
+  },
+  {
+    "nota_id": 14870,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/octubre-rosa-jornada-de-prevencion-autocuidado-y-movimiento/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Octubre Rosa: Jornada de prevención, autocuidado y movimiento | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 1,
+      "terminos_nota_oficial_en_comun": 10,
+      "coincidencia_cuerpo_oficial": 0.2222,
+      "coincidencia_cuerpo_medio": 0.0826,
+      "coincidencia_frases": 0.006,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 11 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p347"
+  },
+  {
+    "nota_id": 14870,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/cion-en-movimiento-una-actividad-en-el-marco-de-la-concientizacion-sobre-el-cancer-de-mama/",
+    "evidencia_verificacion": {
+      "titulo_medio": "“CION en Movimiento”: una actividad en el marco de la concientización sobre el cáncer de mama | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 0,
+      "terminos_nota_oficial_en_comun": 11,
+      "coincidencia_cuerpo_oficial": 0.2444,
+      "coincidencia_cuerpo_medio": 0.1048,
+      "coincidencia_frases": 0.0035,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 12 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p348"
+  },
+  {
+    "nota_id": 14564,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/este-martes-comienzan-los-alegatos-en-el-juicio-por-un-intento-de-homicidio-en-una-estancia/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Este martes comienzan los alegatos en el juicio por un intento de homicidio en una estancia | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 1,
+      "terminos_nota_oficial_en_comun": 20,
+      "coincidencia_cuerpo_oficial": 0.1429,
+      "coincidencia_cuerpo_medio": 0.1709,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 22 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p349"
+  },
+  {
+    "nota_id": 14564,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/en-rg-se-inicio-un-juicio-por-un-intento-de-homicidio/",
+    "evidencia_verificacion": {
+      "titulo_medio": "En RG se inició el juicio por un intento de homicidio | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 1,
+      "terminos_nota_oficial_en_comun": 20,
+      "coincidencia_cuerpo_oficial": 0.1429,
+      "coincidencia_cuerpo_medio": 0.1493,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 22 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p350"
+  },
+  {
+    "nota_id": 14509,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/absolvieron-a-un-hombre-acusado-de-abuso-sexual-simple/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Absolvieron a un hombre acusado de abuso sexual simple | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 2,
+      "terminos_nota_oficial_en_comun": 20,
+      "coincidencia_cuerpo_oficial": 0.0885,
+      "coincidencia_cuerpo_medio": 0.1724,
+      "coincidencia_frases": 0.0058,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 26 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p351"
+  },
+  {
+    "nota_id": 14469,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/condenaron-a-16-anos-de-prision-a-un-hombre-por-abuso-sexual-contra-tres-menores/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Condenaron a 16 años de prisión a un hombre por abuso sexual contra tres menores | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 2,
+      "terminos_nota_oficial_en_comun": 14,
+      "coincidencia_cuerpo_oficial": 0.1061,
+      "coincidencia_cuerpo_medio": 0.1197,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 16 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p352"
+  },
+  {
+    "nota_id": 14469,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/juicio-por-abuso-sexual-un-jubilado-de-70-anos-en-el-banquillo/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Juicio por abuso sexual: Un jubilado de 70 años, en el banquillo | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 3,
+      "terminos_nota_oficial_en_comun": 12,
+      "coincidencia_cuerpo_oficial": 0.0909,
+      "coincidencia_cuerpo_medio": 0.1176,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 3 términos distintivos del título, 13 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p353"
+  },
+  {
+    "nota_id": 14469,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/juicio-en-ushuaia-un-hombre-sera-juzgado-por-abuso-sexual-contra-dos-menores/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Juicio en Ushuaia: un hombre será juzgado por abuso sexual contra dos menores | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 3,
+      "terminos_nota_oficial_en_comun": 18,
+      "coincidencia_cuerpo_oficial": 0.1364,
+      "coincidencia_cuerpo_medio": 0.1651,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 3 términos distintivos del título, 20 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p354"
+  },
+  {
+    "nota_id": 14032,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/juicio-por-abuso-sexual-el-fiscal-solicito-14-anos-de-prision-para-el-acusado/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Juicio por abuso sexual: el fiscal solicitó 14 años de prisión para el acusado | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 0,
+      "terminos_nota_oficial_en_comun": 18,
+      "coincidencia_cuerpo_oficial": 0.1241,
+      "coincidencia_cuerpo_medio": 0.1765,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 17 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p355"
+  },
+  {
+    "nota_id": 13839,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/juicio-por-abuso-sexual-en-rio-grande-manana-se-conocera-el-veredicto-contra-el-acusado/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Juicio por abuso sexual en Río Grande: Este miércoles, el veredicto | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 2,
+      "terminos_nota_oficial_en_comun": 19,
+      "coincidencia_cuerpo_oficial": 0.1939,
+      "coincidencia_cuerpo_medio": 0.1743,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 21 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p356"
+  },
+  {
+    "nota_id": 13839,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/este-viernes-comienza-un-nuevo-juicio-por-abuso-sexual/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Este viernes comienza un nuevo juicio por abuso sexual | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 2,
+      "terminos_nota_oficial_en_comun": 15,
+      "coincidencia_cuerpo_oficial": 0.1531,
+      "coincidencia_cuerpo_medio": 0.1442,
+      "coincidencia_frases": 0.0041,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 18 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p357"
+  },
+  {
+    "nota_id": 13231,
+    "medio": "Aire Libre FM 96.3",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.airelibre.com.ar/invitan-a-participar-del-programa-conectando-con-la-crianza/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Invitan a participar del programa “Conectando con la crianza” | Aire Libre FM 96.3",
+      "terminos_titulo_en_comun": 0,
+      "terminos_nota_oficial_en_comun": 8,
+      "coincidencia_cuerpo_oficial": 0.0941,
+      "coincidencia_cuerpo_medio": 0.093,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 9 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p358"
+  },
+  {
     "nota_id": 15097,
     "medio": "Cholila Online",
     "origen": "Reescritura parcial",
@@ -5230,7 +5541,7 @@
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/11/comodoro-condenaron-5-anos-prision-mauro-pavei-homicidio-jorge-david-nieves.html",
     "fecha_medio": "2026-11-17",
-    "key": "p345"
+    "key": "p359"
   },
   {
     "nota_id": 15092,
@@ -5242,7 +5553,7 @@
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/11/trelew-limitan-tiempo-nino-abuela-viajes-padre.html",
     "fecha_medio": "2026-11-16",
-    "key": "p346"
+    "key": "p360"
   },
   {
     "nota_id": 15092,
@@ -5254,7 +5565,7 @@
     "metodo": "Revisión completa + Revisión completa · otro artículo del mismo medio (por revisar)",
     "url": "https://cholilaonline.ar/2026/11/fallo-historico-una-abuela-no-puede-reemplazar-a-un-padre.html",
     "fecha_medio": "2026-11-16",
-    "key": "p347"
+    "key": "p361"
   },
   {
     "nota_id": 15050,
@@ -5276,7 +5587,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 12 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p348"
+    "key": "p362"
   },
   {
     "nota_id": 14980,
@@ -5298,7 +5609,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 24 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p349"
+    "key": "p363"
   },
   {
     "nota_id": 14943,
@@ -5309,7 +5620,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/10/declaran-culpable-a-pavei-por-emocion-violenta.html",
-    "key": "p350"
+    "key": "p364"
   },
   {
     "nota_id": 14943,
@@ -5323,15 +5634,15 @@
     "evidencia_verificacion": {
       "titulo_medio": "Chubut sorteó a 6.000 ciudadanos para jurados 2027",
       "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 31,
-      "coincidencia_cuerpo_oficial": 0.1409,
-      "coincidencia_cuerpo_medio": 0.1286,
+      "terminos_nota_oficial_en_comun": 30,
+      "coincidencia_cuerpo_oficial": 0.1364,
+      "coincidencia_cuerpo_medio": 0.1245,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 38 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p351"
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 37 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p365"
   },
   {
     "nota_id": 14913,
@@ -5353,7 +5664,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 96 del cuerpo; frases compartidas 7%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p352"
+    "key": "p366"
   },
   {
     "nota_id": 14913,
@@ -5364,7 +5675,7 @@
     "confianza": "Baja",
     "metodo": "Revisión completa + Revisión completa · otro artículo del mismo medio (por revisar)",
     "url": "https://cholilaonline.ar/2026/10/la-justicia-freno-el-homeschooling-a-una-nina.html",
-    "key": "p353"
+    "key": "p367"
   },
   {
     "nota_id": 14870,
@@ -5378,15 +5689,15 @@
     "evidencia_verificacion": {
       "titulo_medio": "El Municipio concretó una nueva jornada de prevención",
       "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 10,
-      "coincidencia_cuerpo_oficial": 0.2222,
-      "coincidencia_cuerpo_medio": 0.0524,
+      "terminos_nota_oficial_en_comun": 11,
+      "coincidencia_cuerpo_oficial": 0.2444,
+      "coincidencia_cuerpo_medio": 0.0576,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 13 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p354"
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 14 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p368"
   },
   {
     "nota_id": 14884,
@@ -5410,7 +5721,7 @@
       "fecha": "2026-10-27",
       "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
     },
-    "key": "p355"
+    "key": "p369"
   },
   {
     "nota_id": 14604,
@@ -5432,7 +5743,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 11 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p356"
+    "key": "p370"
   },
   {
     "nota_id": 14624,
@@ -5443,7 +5754,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/09/mario-vivas-doctor-honoris-causa-universidad-de-moron.html",
-    "key": "p357"
+    "key": "p371"
   },
   {
     "nota_id": 14593,
@@ -5459,13 +5770,13 @@
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 23,
       "coincidencia_cuerpo_oficial": 0.0909,
-      "coincidencia_cuerpo_medio": 0.092,
+      "coincidencia_cuerpo_medio": 0.0924,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 23 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p358"
+    "key": "p372"
   },
   {
     "nota_id": 14593,
@@ -5476,7 +5787,7 @@
     "confianza": "Baja",
     "metodo": "Revisión completa + Revisión completa · otro artículo del mismo medio (por revisar)",
     "url": "https://cholilaonline.ar/2026/09/condenan-colectivos-por-frenar.html",
-    "key": "p359"
+    "key": "p373"
   },
   {
     "nota_id": 14520,
@@ -5498,7 +5809,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 52 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p360"
+    "key": "p374"
   },
   {
     "nota_id": 14545,
@@ -5509,7 +5820,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/09/confirman-la-condena-a-peugeot-y-a-una-concesionaria-por-el-vuelco-de-un-auto-cero-kilometro-en-chubut.html",
-    "key": "p361"
+    "key": "p375"
   },
   {
     "nota_id": 14520,
@@ -5523,15 +5834,15 @@
     "evidencia_verificacion": {
       "titulo_medio": "Causa Nieves: culpable por jurado popular aislado en Comodoro",
       "terminos_titulo_en_comun": 1,
-      "terminos_nota_oficial_en_comun": 117,
-      "coincidencia_cuerpo_oficial": 0.4398,
-      "coincidencia_cuerpo_medio": 0.4239,
+      "terminos_nota_oficial_en_comun": 116,
+      "coincidencia_cuerpo_oficial": 0.4361,
+      "coincidencia_cuerpo_medio": 0.4218,
       "coincidencia_frases": 0.0854,
       "misma_nota": false,
       "mismo_caso": false
     },
-    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 130 del cuerpo; frases compartidas 9%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p362"
+    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 129 del cuerpo; frases compartidas 9%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p376"
   },
   {
     "nota_id": 14448,
@@ -5542,7 +5853,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/09/camila-banfi-analizo-los-cambios-de-la-ley-27-801-de-regimen-penal-juvenil-en-chubut.html",
-    "key": "p363"
+    "key": "p377"
   },
   {
     "nota_id": 14330,
@@ -5553,7 +5864,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/08/el-superior-tribunal-resolvera-en-los-proximos-dias-el-conflicto-entre-esquel-y-trevelin.html",
-    "key": "p364"
+    "key": "p378"
   },
   {
     "nota_id": 14279,
@@ -5564,7 +5875,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/08/vacaciones-en-brasil-y-terapia-pagada-inedita-condena-al-banco-bbva-por-mandar-al-veraz-a-un-vecino-con-una-tarjeta-de-regalo.html",
-    "key": "p365"
+    "key": "p379"
   },
   {
     "nota_id": 14213,
@@ -5586,7 +5897,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 34 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p366"
+    "key": "p380"
   },
   {
     "nota_id": 14223,
@@ -5597,7 +5908,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/08/infraestructura-judicial-en-puerto-madryn-el-stj-superviso-la-ampliacion-de-100-m%c2%b2-para-la-justicia-laboral.html",
-    "key": "p367"
+    "key": "p381"
   },
   {
     "nota_id": 14195,
@@ -5608,7 +5919,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/08/las-provincias-estan-a-la-vanguardia-positivo-balance-de-la-iv-mesa-federal-de-juicio-por-jurados-en-puerto-madryn.html",
-    "key": "p368"
+    "key": "p382"
   },
   {
     "nota_id": 14171,
@@ -5619,7 +5930,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/08/puerto-madryn-es-sede-de-la-iv-mesa-federal-de-juicio-por-jurados.html",
-    "key": "p369"
+    "key": "p383"
   },
   {
     "nota_id": 14148,
@@ -5635,13 +5946,13 @@
       "terminos_titulo_en_comun": 4,
       "terminos_nota_oficial_en_comun": 20,
       "coincidencia_cuerpo_oficial": 0.2564,
-      "coincidencia_cuerpo_medio": 0.1399,
+      "coincidencia_cuerpo_medio": 0.1389,
       "coincidencia_frases": 0.0163,
       "misma_nota": false,
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 5 términos distintivos del título, 23 del cuerpo; frases compartidas 2%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p370"
+    "key": "p384"
   },
   {
     "nota_id": 14135,
@@ -5652,7 +5963,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/08/juzgados-de-paz-de-chubut-starlink-obras-meseta.html",
-    "key": "p371"
+    "key": "p385"
   },
   {
     "nota_id": 14057,
@@ -5663,7 +5974,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/08/el-superior-tribunal-y-la-defensoria-del-pueblo-firman-convenio-para-fortalecer-el-acceso-a-la-justicia.html",
-    "key": "p372"
+    "key": "p386"
   },
   {
     "nota_id": 14054,
@@ -5674,7 +5985,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/08/comenzo-el-juicio-contra-un-hombre-acusado-de-envenenar-a-tres-perros-en-rawson.html",
-    "key": "p373"
+    "key": "p387"
   },
   {
     "nota_id": 14032,
@@ -5696,7 +6007,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 57 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p374"
+    "key": "p388"
   },
   {
     "nota_id": 14032,
@@ -5707,7 +6018,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/08/comienza-el-juicio-contra-una-docente-de-la-escuela-201-de-trelew-por-presuntos-abusos-a-alumnos.html",
-    "key": "p375"
+    "key": "p389"
   },
   {
     "nota_id": 14010,
@@ -5718,7 +6029,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/07/jurisprudencia-nacional-la-corte-suprema-destaco-un-fallo-por-femicidio-del-superior-tribunal-de-chubut.html",
-    "key": "p376"
+    "key": "p390"
   },
   {
     "nota_id": 14003,
@@ -5729,7 +6040,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/07/madryn-frenan-un-tratamiento-de-inhibicion-puberal-a-un-adolescente-por-falta-de-consenso-familiar.html",
-    "key": "p377"
+    "key": "p391"
   },
   {
     "nota_id": 14003,
@@ -5740,7 +6051,7 @@
     "confianza": "Baja",
     "metodo": "Revisión completa + Revisión completa · otro artículo del mismo medio (por revisar)",
     "url": "https://cholilaonline.ar/2026/07/frenan-el-tratamiento-de-inhibicion-puberal-a-un-adolescente-en-puerto-madryn-por-dudas-medicas-y-falta-de-acuerdo-familiar.html",
-    "key": "p378"
+    "key": "p392"
   },
   {
     "nota_id": 13971,
@@ -5751,7 +6062,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/07/nuevo-codigo-general-de-los-procesos-no-penales.html",
-    "key": "p379"
+    "key": "p393"
   },
   {
     "nota_id": 13940,
@@ -5762,7 +6073,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/07/chubut-triplico-la-cantidad-de-ninos-bajo-el-amparo-de-la-ley-brisa.html",
-    "key": "p380"
+    "key": "p394"
   },
   {
     "nota_id": 13919,
@@ -5773,7 +6084,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/07/chubut-autorizan-a-una-mujer-de-madryn-el-uso-de-embriones-post-mortem-de-su-esposo.html",
-    "key": "p381"
+    "key": "p395"
   },
   {
     "nota_id": 13614,
@@ -5795,7 +6106,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 38 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p382"
+    "key": "p396"
   },
   {
     "nota_id": 13656,
@@ -5806,7 +6117,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/06/cambio-de-genero-por-segunda-vez.html",
-    "key": "p383"
+    "key": "p397"
   },
   {
     "nota_id": 13648,
@@ -5828,7 +6139,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 4 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p384"
+    "key": "p398"
   },
   {
     "nota_id": 13626,
@@ -5850,7 +6161,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 26 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p385"
+    "key": "p399"
   },
   {
     "nota_id": 13637,
@@ -5861,7 +6172,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/06/la-justicia-de-esquel-declaro-a-un-caballo-como-sujeto-de-derecho-tras-ser-rescatado.html",
-    "key": "p386"
+    "key": "p400"
   },
   {
     "nota_id": 13614,
@@ -5872,7 +6183,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/06/giro-judicial-en-chubut-el-stj-anulo-la-destitucion-de-mariel-suarez-y-vuelve-a-ser-jueza.html",
-    "key": "p387"
+    "key": "p401"
   },
   {
     "nota_id": 13576,
@@ -5894,7 +6205,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 37 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p388"
+    "key": "p402"
   },
   {
     "nota_id": 13576,
@@ -5905,7 +6216,7 @@
     "confianza": "Baja",
     "metodo": "Revisión completa + Revisión completa · otro artículo del mismo medio (por revisar)",
     "url": "https://cholilaonline.ar/2026/06/un-informe-judicial-revelo-que-entre-2013-y-2025-chubut-registro-38-femicidios.html",
-    "key": "p389"
+    "key": "p403"
   },
   {
     "nota_id": 13542,
@@ -5916,7 +6227,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/06/fallo-historico-en-trelew-la-justicia-reconocio-el-valor-economico-de-las-tareas-de-cuidado-de-una-abuela.html",
-    "key": "p390"
+    "key": "p404"
   },
   {
     "nota_id": 13514,
@@ -5927,7 +6238,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/05/ratifican-condena-millonaria-por-un-violento-accidente-vial-en-el-centro-de-la-ciudad.html",
-    "key": "p391"
+    "key": "p405"
   },
   {
     "nota_id": 13404,
@@ -5949,7 +6260,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 140 del cuerpo; frases compartidas 9%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p392"
+    "key": "p406"
   },
   {
     "nota_id": 13452,
@@ -5971,7 +6282,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 4 términos distintivos del título, 44 del cuerpo; frases compartidas 2%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p393"
+    "key": "p407"
   },
   {
     "nota_id": 13270,
@@ -5993,7 +6304,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 24 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p394"
+    "key": "p408"
   },
   {
     "nota_id": 13270,
@@ -6015,7 +6326,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 23 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p395"
+    "key": "p409"
   },
   {
     "nota_id": 13179,
@@ -6026,7 +6337,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/04/la-justicia-de-chubut-condeno-a-facebook-argentina-por-no-eliminar-perfiles-falsos.html",
-    "key": "p396"
+    "key": "p410"
   },
   {
     "nota_id": 13166,
@@ -6048,7 +6359,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 87 del cuerpo; frases compartidas 3%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p397"
+    "key": "p411"
   },
   {
     "nota_id": 13090,
@@ -6064,13 +6375,13 @@
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 50,
       "coincidencia_cuerpo_oficial": 0.4902,
-      "coincidencia_cuerpo_medio": 0.1701,
+      "coincidencia_cuerpo_medio": 0.1695,
       "coincidencia_frases": 0.0029,
       "misma_nota": false,
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 55 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p398"
+    "key": "p412"
   },
   {
     "nota_id": 12992,
@@ -6081,7 +6392,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/04/veredicto-cesura-homicidio-gaston-acosta.html",
-    "key": "p399"
+    "key": "p413"
   },
   {
     "nota_id": 12907,
@@ -6097,13 +6408,13 @@
       "terminos_titulo_en_comun": 0,
       "terminos_nota_oficial_en_comun": 9,
       "coincidencia_cuerpo_oficial": 0.0796,
-      "coincidencia_cuerpo_medio": 0.0464,
+      "coincidencia_cuerpo_medio": 0.0466,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 10 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p400"
+    "key": "p414"
   },
   {
     "nota_id": 12941,
@@ -6114,7 +6425,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/04/puerto-madryn-ordenan-a-un-hombre-pagar-alquiler-a-su-ex-por-uso-exclusivo-de-la-vivienda.html",
-    "key": "p401"
+    "key": "p415"
   },
   {
     "nota_id": 12907,
@@ -6130,13 +6441,13 @@
       "terminos_titulo_en_comun": 1,
       "terminos_nota_oficial_en_comun": 34,
       "coincidencia_cuerpo_oficial": 0.3009,
-      "coincidencia_cuerpo_medio": 0.1303,
+      "coincidencia_cuerpo_medio": 0.1308,
       "coincidencia_frases": 0.0087,
       "misma_nota": false,
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 37 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p402"
+    "key": "p416"
   },
   {
     "nota_id": 12907,
@@ -6147,7 +6458,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/04/andres-giacomone-asumio-en-el-stj-y-definio-ejes-de-trabajo-con-camaristas-de-chubut.html",
-    "key": "p403"
+    "key": "p417"
   },
   {
     "nota_id": 12862,
@@ -6158,7 +6469,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/03/el-stj-de-chubut-delibera-sobre-la-impugnacion-de-mariel-suarez.html",
-    "key": "p404"
+    "key": "p418"
   },
   {
     "nota_id": 12841,
@@ -6180,7 +6491,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 9 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p405"
+    "key": "p419"
   },
   {
     "nota_id": 12683,
@@ -6191,7 +6502,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/03/raidan-informe-justicia-chubut-digital-ciudad-judicial.html",
-    "key": "p406"
+    "key": "p420"
   },
   {
     "nota_id": 12677,
@@ -6202,7 +6513,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/03/polemica-por-inteligencia-artificial-el-stj-dejo-sin-efecto-el-fallo-de-camara-y-respaldo-a-richeri.html",
-    "key": "p407"
+    "key": "p421"
   },
   {
     "nota_id": 12469,
@@ -6210,8 +6521,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://cholilaonline.ar/2026/03/chubut-moderniza-estado-nacion-bid.html",
     "evidencia_verificacion": {
       "titulo_medio": "Provincia avanza junto a Nación y el BID en un programa de modernización y optimización del Estado",
@@ -6224,7 +6535,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 36 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p408"
+    "key": "p422"
   },
   {
     "nota_id": 12473,
@@ -6235,7 +6546,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/03/juicio-escabinado-exfuncionaria-contrato-pareja.html",
-    "key": "p409"
+    "key": "p423"
   },
   {
     "nota_id": 12295,
@@ -6243,8 +6554,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "Radio 3",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://cholilaonline.ar/2026/03/comodoro-cae-un-joven-con-pedido-de-captura-en-plena-terminal.html",
     "evidencia_verificacion": {
       "titulo_medio": "Detención de prófugo en Comodoro Rivadavia",
@@ -6257,7 +6568,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 16 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p410"
+    "key": "p424"
   },
   {
     "nota_id": 12295,
@@ -6268,7 +6579,7 @@
     "confianza": "Baja",
     "metodo": "Revisión completa + Revisión completa · otro artículo del mismo medio (por revisar)",
     "url": "https://cholilaonline.ar/2026/03/una-jueza-de-comodoro-rivadavia-permitio-que-un-adolescente-mantenga-el-apellido-de-su-padre-socioafectivo.html",
-    "key": "p411"
+    "key": "p425"
   },
   {
     "nota_id": 12170,
@@ -6279,7 +6590,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/02/juicio-jurados-lago-puelo.html",
-    "key": "p412"
+    "key": "p426"
   },
   {
     "nota_id": 12112,
@@ -6290,7 +6601,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/02/golpe-judicial-cooperativa-esquel-cargo-extra.html",
-    "key": "p413"
+    "key": "p427"
   },
   {
     "nota_id": 12036,
@@ -6301,7 +6612,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/02/confirman-multa-despegar-pasajes-cancelados-pandemia.html",
-    "key": "p414"
+    "key": "p428"
   },
   {
     "nota_id": 12034,
@@ -6312,7 +6623,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/02/prision-preventiva-cuatro-acusados-robo-millonario-trelew.html",
-    "key": "p415"
+    "key": "p429"
   },
   {
     "nota_id": 11975,
@@ -6323,7 +6634,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/02/trelew-juicio-abreviado-por-el-robo-a-una-conocida-farmacia.html",
-    "key": "p416"
+    "key": "p430"
   },
   {
     "nota_id": 11968,
@@ -6334,7 +6645,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa",
     "url": "https://cholilaonline.ar/2026/02/el-banco-del-chubut-debera-indemnizar-a-dos-ancianos-por-una-estafa-electronica.html",
-    "key": "p417"
+    "key": "p431"
   },
   {
     "nota_id": 11944,
@@ -6342,8 +6653,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://cholilaonline.ar/2026/02/unicef-destaca-fallo-pluriparentalidad-rawson.html",
     "evidencia_verificacion": {
       "titulo_medio": "Unicef destaca fallo por pluriparentalidad en Rawson",
@@ -6356,428 +6667,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 65 del cuerpo; frases compartidas 5%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p418"
-  },
-  {
-    "nota_id": 15023,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Reescritura parcial",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Revisión completa + Verificada automáticamente: título y contenido comparados con la nota oficial",
-    "url": "https://www.airelibre.com.ar/el-stj-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
-    "motivo": "Coincidencia específica confirmada: 4 términos distintivos del título, 149 del cuerpo; frases compartidas 26%",
-    "evidencia_verificacion": {
-      "titulo_medio": "El STJ fue sede por primera vez del Foro de Directores y Responsables de Bibliotecas Judiciales del país | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 4,
-      "terminos_nota_oficial_en_comun": 144,
-      "coincidencia_cuerpo_oficial": 0.9412,
-      "coincidencia_cuerpo_medio": 0.3913,
-      "coincidencia_frases": 0.2586,
-      "misma_nota": true,
-      "mismo_caso": true
-    },
-    "url_alternativas": [
-      "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQkZ0TkhrMlR2c3lPSG5CaE1zYVVPRmM1XzZjLTdfaGtVWExwdFFqdkFwYXFIRFl4V1ZveXFfQmQ2OUwtbkVVeV92bzBzWUdzOUVOSFp1WTlKSFZFc3UwVDA1YjVMNDk0U19LU2Jncnk4ejVTNmRYYmlWb3oyWnlzTmFaZFNjekI2NmhRY2wwZ09zWkh3ZkdnZ3U5Rk1NSVZzLW02QnJYbFNOTmhfQzZqREVRV293eTRHczYzaUZCeF9WWmdtQkwtbzBYcGE1TDg?oc=5"
-    ],
-    "key": "p419"
-  },
-  {
-    "nota_id": 14884,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/una-resolucion-de-la-camara-de-apelaciones-en-una-causa-por-estafa/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Una resolución de la Cámara de Apelaciones, en una causa por estafa | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 22,
-      "coincidencia_cuerpo_oficial": 0.0849,
-      "coincidencia_cuerpo_medio": 0.1287,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 28 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p420"
-  },
-  {
-    "nota_id": 14870,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/octubre-rosa-jornada-de-prevencion-autocuidado-y-movimiento/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Octubre Rosa: Jornada de prevención, autocuidado y movimiento | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 1,
-      "terminos_nota_oficial_en_comun": 10,
-      "coincidencia_cuerpo_oficial": 0.2222,
-      "coincidencia_cuerpo_medio": 0.0826,
-      "coincidencia_frases": 0.006,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 11 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p421"
-  },
-  {
-    "nota_id": 14870,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/cion-en-movimiento-una-actividad-en-el-marco-de-la-concientizacion-sobre-el-cancer-de-mama/",
-    "evidencia_verificacion": {
-      "titulo_medio": "“CION en Movimiento”: una actividad en el marco de la concientización sobre el cáncer de mama | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 11,
-      "coincidencia_cuerpo_oficial": 0.2444,
-      "coincidencia_cuerpo_medio": 0.1048,
-      "coincidencia_frases": 0.0035,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 12 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p422"
-  },
-  {
-    "nota_id": 14564,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/este-martes-comienzan-los-alegatos-en-el-juicio-por-un-intento-de-homicidio-en-una-estancia/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Este martes comienzan los alegatos en el juicio por un intento de homicidio en una estancia | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 1,
-      "terminos_nota_oficial_en_comun": 20,
-      "coincidencia_cuerpo_oficial": 0.1429,
-      "coincidencia_cuerpo_medio": 0.1709,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 22 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p423"
-  },
-  {
-    "nota_id": 14564,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/en-rg-se-inicio-un-juicio-por-un-intento-de-homicidio/",
-    "evidencia_verificacion": {
-      "titulo_medio": "En RG se inició el juicio por un intento de homicidio | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 1,
-      "terminos_nota_oficial_en_comun": 20,
-      "coincidencia_cuerpo_oficial": 0.1429,
-      "coincidencia_cuerpo_medio": 0.1493,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 22 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p424"
-  },
-  {
-    "nota_id": 14509,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/absolvieron-a-un-hombre-acusado-de-abuso-sexual-simple/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Absolvieron a un hombre acusado de abuso sexual simple | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 2,
-      "terminos_nota_oficial_en_comun": 20,
-      "coincidencia_cuerpo_oficial": 0.0885,
-      "coincidencia_cuerpo_medio": 0.1724,
-      "coincidencia_frases": 0.0058,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 26 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p425"
-  },
-  {
-    "nota_id": 14469,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/condenaron-a-16-anos-de-prision-a-un-hombre-por-abuso-sexual-contra-tres-menores/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Condenaron a 16 años de prisión a un hombre por abuso sexual contra tres menores | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 2,
-      "terminos_nota_oficial_en_comun": 14,
-      "coincidencia_cuerpo_oficial": 0.1061,
-      "coincidencia_cuerpo_medio": 0.1197,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 16 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p426"
-  },
-  {
-    "nota_id": 14469,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/juicio-por-abuso-sexual-un-jubilado-de-70-anos-en-el-banquillo/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Juicio por abuso sexual: Un jubilado de 70 años, en el banquillo | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 3,
-      "terminos_nota_oficial_en_comun": 12,
-      "coincidencia_cuerpo_oficial": 0.0909,
-      "coincidencia_cuerpo_medio": 0.1176,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 3 términos distintivos del título, 13 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p427"
-  },
-  {
-    "nota_id": 14469,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/juicio-en-ushuaia-un-hombre-sera-juzgado-por-abuso-sexual-contra-dos-menores/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Juicio en Ushuaia: un hombre será juzgado por abuso sexual contra dos menores | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 3,
-      "terminos_nota_oficial_en_comun": 18,
-      "coincidencia_cuerpo_oficial": 0.1364,
-      "coincidencia_cuerpo_medio": 0.1651,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 3 términos distintivos del título, 20 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p428"
-  },
-  {
-    "nota_id": 14032,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/juicio-por-abuso-sexual-el-fiscal-solicito-14-anos-de-prision-para-el-acusado/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Juicio por abuso sexual: el fiscal solicitó 14 años de prisión para el acusado | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 18,
-      "coincidencia_cuerpo_oficial": 0.1241,
-      "coincidencia_cuerpo_medio": 0.1765,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 17 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p429"
-  },
-  {
-    "nota_id": 13839,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/juicio-por-abuso-sexual-en-rio-grande-manana-se-conocera-el-veredicto-contra-el-acusado/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Juicio por abuso sexual en Río Grande: Este miércoles, el veredicto | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 2,
-      "terminos_nota_oficial_en_comun": 19,
-      "coincidencia_cuerpo_oficial": 0.1939,
-      "coincidencia_cuerpo_medio": 0.1743,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 21 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p430"
-  },
-  {
-    "nota_id": 13839,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/este-viernes-comienza-un-nuevo-juicio-por-abuso-sexual/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Este viernes comienza un nuevo juicio por abuso sexual | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 2,
-      "terminos_nota_oficial_en_comun": 15,
-      "coincidencia_cuerpo_oficial": 0.1531,
-      "coincidencia_cuerpo_medio": 0.1442,
-      "coincidencia_frases": 0.0041,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 18 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p431"
-  },
-  {
-    "nota_id": 13231,
-    "medio": "Aire Libre FM 96.3",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.airelibre.com.ar/invitan-a-participar-del-programa-conectando-con-la-crianza/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Invitan a participar del programa “Conectando con la crianza” | Aire Libre FM 96.3",
-      "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 8,
-      "coincidencia_cuerpo_oficial": 0.0941,
-      "coincidencia_cuerpo_medio": 0.093,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 9 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
     "key": "p432"
-  },
-  {
-    "nota_id": 14980,
-    "medio": "TN24",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.tn24.com.ar/2026/11/reconocieron-a-la-justicia-chaquena-como-pionera-durante-el-encuentro-nacional-de-mediacion-de-jufejus/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Reconocieron a la justicia chaqueña como pionera durante el encuentro nacional de mediación de JUFEJUS - TN24",
-      "terminos_titulo_en_comun": 3,
-      "terminos_nota_oficial_en_comun": 49,
-      "coincidencia_cuerpo_oficial": 0.49,
-      "coincidencia_cuerpo_medio": 0.2016,
-      "coincidencia_frases": 0.0272,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 49 del cuerpo; frases compartidas 3%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p433"
-  },
-  {
-    "nota_id": 14552,
-    "medio": "TN24",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.tn24.com.ar/2026/09/tras-seis-dias-de-investigacion-detienen-al-segundo-acusado-de-un-intento-de-robo/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Tras seis días de investigación detienen al segundo acusado de un intento de robo - TN24",
-      "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 10,
-      "coincidencia_cuerpo_oficial": 0.084,
-      "coincidencia_cuerpo_medio": 0.0926,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 14 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p434"
-  },
-  {
-    "nota_id": 14356,
-    "medio": "TN24",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.tn24.com.ar/2026/09/primera-nacional-for-ever-le-gano-a-estudiantes-y-la-permanencia-es-casi-un-hecho/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Primera Nacional: For Ever le ganó a Estudiantes y la permanencia es casi un hecho - TN24",
-      "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 8,
-      "coincidencia_cuerpo_oficial": 0.058,
-      "coincidencia_cuerpo_medio": 0.062,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 11 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p435"
-  },
-  {
-    "nota_id": 14010,
-    "medio": "TN24",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.tn24.com.ar/2026/08/la-corte-suprema-destaco-un-fallo-de-corrientes-por-su-enfoque-con-perspectiva-de-genero/",
-    "evidencia_verificacion": {
-      "titulo_medio": "La Corte Suprema destacó un fallo de Corrientes por su enfoque con perspectiva de género - TN24",
-      "terminos_titulo_en_comun": 2,
-      "terminos_nota_oficial_en_comun": 34,
-      "coincidencia_cuerpo_oficial": 0.2086,
-      "coincidencia_cuerpo_medio": 0.2086,
-      "coincidencia_frases": 0.0217,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 42 del cuerpo; frases compartidas 2%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p436"
-  },
-  {
-    "nota_id": 13648,
-    "medio": "TN24",
-    "origen": "Redacción propia",
-    "cita_fuente_oficial": "No",
-    "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.tn24.com.ar/2026/06/dia-nacional-del-geologo-por-que-se-celebra-cada-9-de-junio-en-argentina/",
-    "evidencia_verificacion": {
-      "titulo_medio": "Día Nacional del Geólogo: por qué se celebra cada 9 de junio en Argentina - TN24",
-      "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 6,
-      "coincidencia_cuerpo_oficial": 0.1429,
-      "coincidencia_cuerpo_medio": 0.0361,
-      "coincidencia_frases": 0.0,
-      "misma_nota": false,
-      "mismo_caso": false
-    },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 6 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p437"
   },
   {
     "nota_id": 14980,
@@ -6799,7 +6689,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 65 del cuerpo; frases compartidas 2%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p438"
+    "key": "p433"
   },
   {
     "nota_id": 14624,
@@ -6821,7 +6711,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 3 términos distintivos del título, 46 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p439"
+    "key": "p434"
   },
   {
     "nota_id": 14579,
@@ -6843,7 +6733,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 8 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p440"
+    "key": "p435"
   },
   {
     "nota_id": 14406,
@@ -6865,7 +6755,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 28 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p441"
+    "key": "p436"
   },
   {
     "nota_id": 14089,
@@ -6887,7 +6777,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 28 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p442"
+    "key": "p437"
   },
   {
     "nota_id": 13166,
@@ -6909,6 +6799,116 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 16 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p438"
+  },
+  {
+    "nota_id": 14980,
+    "medio": "TN24",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.tn24.com.ar/2026/11/reconocieron-a-la-justicia-chaquena-como-pionera-durante-el-encuentro-nacional-de-mediacion-de-jufejus/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Reconocieron a la justicia chaqueña como pionera durante el encuentro nacional de mediación de JUFEJUS - TN24",
+      "terminos_titulo_en_comun": 3,
+      "terminos_nota_oficial_en_comun": 50,
+      "coincidencia_cuerpo_oficial": 0.5,
+      "coincidencia_cuerpo_medio": 0.2008,
+      "coincidencia_frases": 0.0273,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 50 del cuerpo; frases compartidas 3%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p439"
+  },
+  {
+    "nota_id": 14552,
+    "medio": "TN24",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.tn24.com.ar/2026/09/tras-seis-dias-de-investigacion-detienen-al-segundo-acusado-de-un-intento-de-robo/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Tras seis días de investigación detienen al segundo acusado de un intento de robo - TN24",
+      "terminos_titulo_en_comun": 0,
+      "terminos_nota_oficial_en_comun": 9,
+      "coincidencia_cuerpo_oficial": 0.0756,
+      "coincidencia_cuerpo_medio": 0.0796,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 12 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p440"
+  },
+  {
+    "nota_id": 14356,
+    "medio": "TN24",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.tn24.com.ar/2026/09/primera-nacional-for-ever-le-gano-a-estudiantes-y-la-permanencia-es-casi-un-hecho/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Primera Nacional: For Ever le ganó a Estudiantes y la permanencia es casi un hecho - TN24",
+      "terminos_titulo_en_comun": 0,
+      "terminos_nota_oficial_en_comun": 8,
+      "coincidencia_cuerpo_oficial": 0.058,
+      "coincidencia_cuerpo_medio": 0.0625,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 11 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p441"
+  },
+  {
+    "nota_id": 14010,
+    "medio": "TN24",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.tn24.com.ar/2026/08/la-corte-suprema-destaco-un-fallo-de-corrientes-por-su-enfoque-con-perspectiva-de-genero/",
+    "evidencia_verificacion": {
+      "titulo_medio": "La Corte Suprema destacó un fallo de Corrientes por su enfoque con perspectiva de género - TN24",
+      "terminos_titulo_en_comun": 2,
+      "terminos_nota_oficial_en_comun": 33,
+      "coincidencia_cuerpo_oficial": 0.2025,
+      "coincidencia_cuerpo_medio": 0.205,
+      "coincidencia_frases": 0.0221,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 2 términos distintivos del título, 40 del cuerpo; frases compartidas 2%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "key": "p442"
+  },
+  {
+    "nota_id": 13648,
+    "medio": "TN24",
+    "origen": "Redacción propia",
+    "cita_fuente_oficial": "No",
+    "cita_otro_medio": "",
+    "confianza": "Baja",
+    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.tn24.com.ar/2026/06/dia-nacional-del-geologo-por-que-se-celebra-cada-9-de-junio-en-argentina/",
+    "evidencia_verificacion": {
+      "titulo_medio": "Día Nacional del Geólogo: por qué se celebra cada 9 de junio en Argentina - TN24",
+      "terminos_titulo_en_comun": 0,
+      "terminos_nota_oficial_en_comun": 5,
+      "coincidencia_cuerpo_oficial": 0.119,
+      "coincidencia_cuerpo_medio": 0.0292,
+      "coincidencia_frases": 0.0,
+      "misma_nota": false,
+      "mismo_caso": false
+    },
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 4 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
     "key": "p443"
   },
   {
@@ -7339,7 +7339,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://vivotrelew.com/rayos-x-de-la-violencia-de-genero-en-chubut-la-oficina-de-la-mujer-difundio-datos-claves-a-11-anos-de-ni-una-menos/",
-    "motivo": "frases en común 2%; datos coincidentes 26% (iceberg, mitos, maduras, migrantes, pesca, interprovinciales); validación misma nota: 2 términos del título, 64 del cuerpo, frases 2%",
+    "motivo": "frases en común 2%; datos coincidentes 26% (empresarias, maduras, iceberg, mitos, pesca, migrantes); validación misma nota: 2 términos del título, 64 del cuerpo, frases 2%",
     "key": "p471"
   },
   {
@@ -7351,7 +7351,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://vivotrelew.com/puerto-madryn-debera-pagar-un-alquiler-a-su-expareja-por-usar-en-exclusividad-la-casa-compartida/",
-    "motivo": "frases en común 4%; datos coincidentes 51% (mascotas, retroactivo, iguales, doradillo, permanecio, equivalente); validación misma nota: 2 términos del título, 107 del cuerpo, frases 4%",
+    "motivo": "frases en común 4%; datos coincidentes 51% (equivalente, permanecio, iguales, doradillo, convivencial, gatos); validación misma nota: 2 términos del título, 107 del cuerpo, frases 4%",
     "key": "p472"
   },
   {
@@ -7363,7 +7363,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://vivotrelew.com/piden-1-ano-y-medio-de-prision-condicional-para-acusada-en-el-primer-juicio-escabinado-por-corrupcion-en-chubut/",
-    "motivo": "frases en común 1%; datos coincidentes 37% (mixto, pardo, escabinado, mecanicas, acuna, vicente); validación misma nota: 2 términos del título, 74 del cuerpo, frases 1%",
+    "motivo": "frases en común 1%; datos coincidentes 37% (mixto, pardo, escabinado, acuna, mecanicas, vicente); validación misma nota: 2 términos del título, 74 del cuerpo, frases 1%",
     "key": "p473"
   },
   {
@@ -7375,7 +7375,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://vivotrelew.com/su-ex-la-obligo-a-sacar-un-prestamo-dejo-de-pagarlo-y-la-justicia-resolvio-embargarle-el-sueldo/",
-    "motivo": "frases en común 99%; datos coincidentes 96% (produciendo, menoscabo, denuncio, amplias, manipulada, perpetuar); validación misma nota: 1 términos del título, 203 del cuerpo, frases 99%",
+    "motivo": "frases en común 99%; datos coincidentes 96% (manipulada, verbales, produciendo, desconocer, protectoria, menoscabo); validación misma nota: 1 términos del título, 203 del cuerpo, frases 99%",
     "key": "p474"
   },
   {
@@ -7387,7 +7387,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://vivotrelew.com/jueza-de-rawson-el-dni-es-el-mismo-la-persona-es-la-misma-lo-unico-que-cambia-es-su-genero/",
-    "motivo": "frases en común 47%; datos coincidentes 25% (multidisciplinaria, transitamos, hormonales, quirurgicas, nacer, originario); validación misma nota: 2 términos del título, 77 del cuerpo, frases 47%",
+    "motivo": "frases en común 47%; datos coincidentes 25% (multidisciplinaria, quirurgicas, transitamos, hormonales, originario, nacer); validación misma nota: 2 términos del título, 77 del cuerpo, frases 47%",
     "key": "p475"
   },
   {
@@ -7399,7 +7399,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://vivotrelew.com/tres-anos-de-prision-en-suspenso-por-abusar-de-su-sobrina-la-carta-que-el-juez-dirigio-a-la-nina/",
-    "motivo": "frases en común 3%; datos coincidentes 14% (suspenso, richeri, sencillo, carta, mensajes, reglas); validación misma nota: 2 términos del título, 52 del cuerpo, frases 3%",
+    "motivo": "frases en común 3%; datos coincidentes 14% (suspenso, sencillo, richeri, mensajes, carta, reglas); validación misma nota: 2 términos del título, 52 del cuerpo, frases 3%",
     "key": "p476"
   },
   {
@@ -7411,7 +7411,7 @@
     "confianza": "Baja",
     "metodo": "Revisión completa (confirmado por texto) + Revisión completa (confirmado por texto) · otro artículo del mismo medio (por revisar)",
     "url": "https://vivotrelew.com/anularon-la-destitucion-de-la-jueza-que-beso-a-un-preso-y-se-ordeno-su-regreso-a-la-justicia-de-comodoro/",
-    "motivo": "frases en común 3%; datos coincidentes 61% (firmada, suarez, subrogantes, adrian, grabacion, barrios); validación misma nota: 2 términos del título, 65 del cuerpo, frases 3%",
+    "motivo": "frases en común 3%; datos coincidentes 61% (firmada, adrian, grabacion, subrogantes, suarez, barrios); validación misma nota: 2 términos del título, 65 del cuerpo, frases 3%",
     "key": "p477"
   },
   {
@@ -7585,8 +7585,8 @@
     "origen": "Redacción propia",
     "cita_fuente_oficial": "No",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa · coincidencia temática (a verificar) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://www.elvalleonline.com.ar/hay-actividades-por-el-dia-de-la-mujer-en-todas-las-localidades/",
     "evidencia_verificacion": {
       "titulo_medio": "Hay actividades por el Día de la Mujer en todas las localidades",
@@ -7610,7 +7610,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.elvalleonline.com.ar/historico-un-banco-de-chubut-condenado-por-generar-deuda-con-una-tarjeta-que-una-persona-nunca-pidio/",
-    "motivo": "frases en común 1%; datos coincidentes 19% (irrecuperable, moroso, financiero, inexistente, brasil, veraz); validación misma nota: 3 términos del título, 68 del cuerpo, frases 1%",
+    "motivo": "frases en común 1%; datos coincidentes 19% (moroso, irrecuperable, financiero, emitir, veraz, plastico); validación misma nota: 3 términos del título, 68 del cuerpo, frases 1%",
     "key": "p488"
   },
   {
@@ -7622,7 +7622,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.elvalleonline.com.ar/inedito-en-chubut-autorizan-tratamiento-de-fertilidad-con-embriones-de-un-hombre-fallecido/",
-    "motivo": "frases en común 100%; datos coincidentes 96% (laguna, morula, procrearte, cultivo, embrionaria, marcando); validación misma nota: 2 términos del título, 196 del cuerpo, frases 100%",
+    "motivo": "frases en común 100%; datos coincidentes 96% (monoparental, donacion, implantacion, legislador, truncado, esperma); validación misma nota: 2 términos del título, 196 del cuerpo, frases 100%",
     "key": "p489"
   },
   {
@@ -7634,7 +7634,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.elvalleonline.com.ar/pablo-korn-fue-absuelto-por-no-alcanzar-el-estandar-de-prueba-para-dictar-una-condena/",
-    "motivo": "frases en común 10%; datos coincidentes 53% (exfuncionario, prescripcion, querellantes, subsecretario, anticorrupcion, ruffa); validación misma nota: 2 términos del título, 79 del cuerpo, frases 10%",
+    "motivo": "frases en común 10%; datos coincidentes 53% (prescripcion, exfuncionario, novarino, querellantes, negociaciones, anticorrupcion); validación misma nota: 2 términos del título, 79 del cuerpo, frases 10%",
     "key": "p490"
   },
   {
@@ -7646,7 +7646,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.elvalleonline.com.ar/juicio-envenenamiento-perros-rawson-alegatos/",
-    "motivo": "frases en común 0%; datos coincidentes 33% (cominetti, arrojado, manija, chacra, chorizos, futaleufu); validación misma nota: 2 términos del título, 51 del cuerpo, frases 0%",
+    "motivo": "frases en común 0%; datos coincidentes 33% (chacra, arrojado, cominetti, futaleufu, romano, manija); validación misma nota: 2 términos del título, 51 del cuerpo, frases 0%",
     "key": "p491"
   },
   {
@@ -7661,14 +7661,14 @@
     "evidencia_verificacion": {
       "titulo_medio": "¿Por qué Estados Unidos vota siempre un martes y en noviembre? - Diario San Rafael",
       "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 15,
-      "coincidencia_cuerpo_oficial": 0.0682,
-      "coincidencia_cuerpo_medio": 0.0556,
+      "terminos_nota_oficial_en_comun": 14,
+      "coincidencia_cuerpo_oficial": 0.0636,
+      "coincidencia_cuerpo_medio": 0.0526,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 20 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 19 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
     "key": "p492"
   },
   {
@@ -7683,14 +7683,14 @@
     "evidencia_verificacion": {
       "titulo_medio": "El Rally de San Rafael tendrá su 22ª edición del 9 al 11 de octubre - Diario San Rafael",
       "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 12,
-      "coincidencia_cuerpo_oficial": 0.1379,
-      "coincidencia_cuerpo_medio": 0.0397,
+      "terminos_nota_oficial_en_comun": 13,
+      "coincidencia_cuerpo_oficial": 0.1494,
+      "coincidencia_cuerpo_medio": 0.0435,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 11 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 12 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
     "key": "p493"
   },
   {
@@ -7705,14 +7705,14 @@
     "evidencia_verificacion": {
       "titulo_medio": "Confirmó el Vaticano la agenda oficial de León XIV en la Argentina - Diario San Rafael",
       "terminos_titulo_en_comun": 0,
-      "terminos_nota_oficial_en_comun": 16,
-      "coincidencia_cuerpo_oficial": 0.0565,
-      "coincidencia_cuerpo_medio": 0.0565,
+      "terminos_nota_oficial_en_comun": 12,
+      "coincidencia_cuerpo_oficial": 0.0424,
+      "coincidencia_cuerpo_medio": 0.0436,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
-    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 17 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 13 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
     "key": "p494"
   },
   {
@@ -7727,14 +7727,14 @@
     "evidencia_verificacion": {
       "titulo_medio": "Detuvieron a un hombre tras una pelea y amenazas en un caso de violencia de género en San Rafael - Diario San Rafael",
       "terminos_titulo_en_comun": 1,
-      "terminos_nota_oficial_en_comun": 16,
-      "coincidencia_cuerpo_oficial": 0.0804,
-      "coincidencia_cuerpo_medio": 0.0821,
+      "terminos_nota_oficial_en_comun": 15,
+      "coincidencia_cuerpo_oficial": 0.0754,
+      "coincidencia_cuerpo_medio": 0.0765,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
-    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 23 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 22 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
     "key": "p495"
   },
   {
@@ -7749,14 +7749,14 @@
     "evidencia_verificacion": {
       "titulo_medio": "El aeropuerto que avanza y el desafío de la conectividad integral - Diario San Rafael",
       "terminos_titulo_en_comun": 1,
-      "terminos_nota_oficial_en_comun": 23,
-      "coincidencia_cuerpo_oficial": 0.1329,
-      "coincidencia_cuerpo_medio": 0.0788,
+      "terminos_nota_oficial_en_comun": 24,
+      "coincidencia_cuerpo_oficial": 0.1387,
+      "coincidencia_cuerpo_medio": 0.0814,
       "coincidencia_frases": 0.0,
       "misma_nota": false,
       "mismo_caso": false
     },
-    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 24 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
+    "motivo": "No se confirmó la misma publicación: 1 términos distintivos del título, 27 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
     "key": "p496"
   },
   {
@@ -8032,7 +8032,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.elchubut.com.ar/judiciales/2026-11-17-15-43-0-condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves",
-    "motivo": "frases en común 58%; datos coincidentes 100% (recolectadas, escucho, carcamo, varas, cerradas, quirno); validación misma nota: 6 términos del título, 103 del cuerpo, frases 58%",
+    "motivo": "frases en común 58%; datos coincidentes 100% (escucho, recolectadas, cerradas, varas, carcamo, pavei); validación misma nota: 6 términos del título, 103 del cuerpo, frases 58%",
     "fecha_medio": "2026-11-17",
     "key": "p509"
   },
@@ -8045,7 +8045,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.elchubut.com.ar/trelew/2026-11-16-12-46-0-fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo",
-    "motivo": "frases en común 79%; datos coincidentes 100% (intergeneracional, justificadas, estuviera, repercuten, reviso, reemplazaba); validación misma nota: 7 términos del título, 204 del cuerpo, frases 79%",
+    "motivo": "frases en común 79%; datos coincidentes 100% (reemplazaba, acotado, alternados, impedido, dejaba, supeditadas); validación misma nota: 7 términos del título, 204 del cuerpo, frases 79%",
     "fecha_medio": "2026-11-16",
     "evidencia_verificacion": {
       "titulo_medio": "Fallo resolvió que una abuela no puede reemplazar al padre en su tiempo con el hijo - Últimas Noticias: El Chubut",
@@ -8071,7 +8071,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.red43.com.ar/nota/2026-11-16-15-16-33-puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-que-resolvio-la-justicia-de-chubut",
-    "motivo": "frases en común 58%; datos coincidentes 97% (intergeneracional, justificadas, estuviera, repercuten, reviso, reemplazaba); validación misma nota: 5 términos del título, 199 del cuerpo, frases 58%",
+    "motivo": "frases en común 58%; datos coincidentes 97% (reemplazaba, acotado, alternados, impedido, supeditadas, repercuten); validación misma nota: 5 términos del título, 199 del cuerpo, frases 58%",
     "fecha_medio": "2026-11-16",
     "key": "p511"
   },
@@ -8084,7 +8084,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.elpatagonico.com/por-el-crimen-jorge-nieves-fue-condenado-pavei-5-anos-n6346280",
-    "motivo": "frases en común 53%; datos coincidentes 93% (recolectadas, escucho, carcamo, varas, cerradas, quirno); validación misma nota: 3 términos del título, 98 del cuerpo, frases 53%",
+    "motivo": "frases en común 53%; datos coincidentes 93% (escucho, recolectadas, cerradas, varas, carcamo, pavei); validación misma nota: 3 términos del título, 98 del cuerpo, frases 53%",
     "fecha_medio": "2026-11-17",
     "key": "p512"
   },
@@ -8097,7 +8097,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.elpatagonico.com/una-abuela-no-puede-reemplazar-al-padre-su-tiempo-el-hijo-dijo-un-fallo-n6345668",
-    "motivo": "frases en común 76%; datos coincidentes 96% (intergeneracional, justificadas, estuviera, repercuten, reviso, reemplazaba); validación misma nota: 6 términos del título, 199 del cuerpo, frases 76%",
+    "motivo": "frases en común 76%; datos coincidentes 96% (reemplazaba, acotado, alternados, impedido, supeditadas, repercuten); validación misma nota: 6 términos del título, 199 del cuerpo, frases 76%",
     "fecha_medio": "2026-11-16",
     "key": "p513"
   },
@@ -8110,7 +8110,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://elmonterizo.com/el-padre-viaja-por-trabajo-y-la-justicia-limito-cuantos-dias-el-nene-puede-quedarse-con-su-abuela",
-    "motivo": "frases en común 7%; datos coincidentes 50% (avisarle, anticipacion, alternados, viajes, ocasionales, homologado); validación misma nota: 3 términos del título, 118 del cuerpo, frases 7%",
+    "motivo": "frases en común 7%; datos coincidentes 50% (alternados, viajes, ocasionales, anticipacion, avisarle, homologado); validación misma nota: 3 términos del título, 118 del cuerpo, frases 7%",
     "fecha_medio": "2026-11-16",
     "key": "p514"
   },
@@ -8123,7 +8123,7 @@
     "confianza": "Baja",
     "metodo": "Revisión completa (confirmado por texto) + Revisión completa (confirmado por texto) · otro artículo del mismo medio (por revisar)",
     "url": "https://elmonterizo.com/una-abuela-peleo-por-quedarse-con-su-nieto-cuando-el-papa-viaja-que-resolvio-la-camara",
-    "motivo": "frases en común 24%; datos coincidentes 80% (intergeneracional, justificadas, repercuten, reviso, reemplazaba, avisarle); validación misma nota: 2 términos del título, 163 del cuerpo, frases 24%",
+    "motivo": "frases en común 24%; datos coincidentes 80% (reemplazaba, alternados, impedido, supeditadas, repercuten, discutia); validación misma nota: 2 términos del título, 163 del cuerpo, frases 24%",
     "fecha_medio": "2026-11-17",
     "key": "p515"
   },
@@ -8136,7 +8136,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.eqsnotas.com/judiciales/abuela-nieto-viajes-padre-fallo-justicia-trelew_a6afb47fbee61a5b77f3734ca",
-    "motivo": "frases en común 99%; datos coincidentes 96% (intergeneracional, justificadas, estuviera, repercuten, reviso, reemplazaba); validación misma nota: 2 términos del título, 199 del cuerpo, frases 99%",
+    "motivo": "frases en común 99%; datos coincidentes 96% (reemplazaba, acotado, alternados, impedido, supeditadas, repercuten); validación misma nota: 2 términos del título, 199 del cuerpo, frases 99%",
     "fecha_medio": "2026-11-16",
     "key": "p516"
   },
@@ -8149,7 +8149,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.eldiarioweb.com/2026/11/comodoro-condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves/",
-    "motivo": "frases en común 100%; datos coincidentes 95% (recolectadas, escucho, carcamo, varas, cerradas, quirno); validación misma nota: 6 términos del título, 100 del cuerpo, frases 100%",
+    "motivo": "frases en común 100%; datos coincidentes 95% (escucho, recolectadas, cerradas, varas, carcamo, pavei); validación misma nota: 6 términos del título, 100 del cuerpo, frases 100%",
     "fecha_medio": "2026-11-17",
     "key": "p517"
   },
@@ -8162,7 +8162,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.metadatanoticias.com.ar/2026/11/17/comodoro-pavei-recibio-5-anos-de-carcel-por-el-homicidio-de-jorge-david-nieves/",
-    "motivo": "frases en común 100%; datos coincidentes 95% (recolectadas, escucho, carcamo, varas, cerradas, quirno); validación misma nota: 4 términos del título, 100 del cuerpo, frases 100%",
+    "motivo": "frases en común 100%; datos coincidentes 95% (escucho, recolectadas, cerradas, varas, carcamo, pavei); validación misma nota: 4 términos del título, 100 del cuerpo, frases 100%",
     "fecha_medio": "2026-11-17",
     "key": "p518"
   },
@@ -8175,7 +8175,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://revistaquorum.com.ar/2026/11/17/puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-el-fallo-que-puso-limites-al-cuidado-de-los-nietos/",
-    "motivo": "frases en común 1%; datos coincidentes 57% (justificadas, estuviera, acotado, anticipacion, impedido, alternados); validación misma nota: 4 términos del título, 129 del cuerpo, frases 1%",
+    "motivo": "frases en común 1%; datos coincidentes 57% (acotado, alternados, impedido, viajes, ocasionales, anticipacion); validación misma nota: 4 términos del título, 129 del cuerpo, frases 1%",
     "fecha_medio": "2026-11-17",
     "key": "p519"
   },
@@ -8188,7 +8188,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.justicia.ar/novedades/6422/2026/11/con-el-respaldo-de-los-camaristas-se-aprobo-la-ley-que-creo-la-camara-de-apelaciones-en-lo-laboral",
-    "motivo": "frases en común 81%; datos coincidentes 35% (crecido, ascender, afirmativos, arriba, vemos, dificultoso); validación misma nota: 7 términos del título, 226 del cuerpo, frases 81%",
+    "motivo": "frases en común 81%; datos coincidentes 35% (abarcar, ascender, avalado, arriba, pensada, acercar); validación misma nota: 7 términos del título, 226 del cuerpo, frases 81%",
     "fecha_medio": "2026-11-13",
     "key": "p520"
   },
@@ -8201,7 +8201,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.justicia.ar/novedades/6414/2026/11/autoridades-judiciales-recibieron-a-la-vicepresidenta-del-consejo-de-la-magistratura-de-la-nacion",
-    "motivo": "frases en común 65%; datos coincidentes 100% (agustina, cordero, froment, disertante, maximas, miquelarena); validación misma nota: 5 términos del título, 101 del cuerpo, frases 65%",
+    "motivo": "frases en común 65%; datos coincidentes 100% (cordero, agustina, disertante, froment, altos, procurador); validación misma nota: 5 términos del título, 101 del cuerpo, frases 65%",
     "key": "p521"
   },
   {
@@ -8213,7 +8213,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.justicia.ar/novedades/6390/2026/11/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-b",
-    "motivo": "frases en común 25%; datos coincidentes 93% (ushuaia, bibliotecarios, atlantico, geopolitica, orquera, saldano); validación misma nota: 4 términos del título, 149 del cuerpo, frases 25%",
+    "motivo": "frases en común 25%; datos coincidentes 93% (geopolitica, mingorance, guido, saenz, orquera, bibliotecarios); validación misma nota: 4 términos del título, 149 del cuerpo, frases 25%",
     "key": "p522"
   },
   {
@@ -8225,7 +8225,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.justicia.ar/novedades/6388/2026/11/chubut-define-politicas-para-abordar-el-nuevo-regimen-penal-juvenil",
-    "motivo": "frases en común 81%; datos coincidentes 100% (transitando, expuestos, diferenciadas, aprovechar, empezar, contemplar); validación misma nota: 4 términos del título, 244 del cuerpo, frases 81%",
+    "motivo": "frases en común 81%; datos coincidentes 100% (reuna, transitando, empezar, desvinculados, punibilidad, aprovechar); validación misma nota: 4 términos del título, 244 del cuerpo, frases 81%",
     "key": "p523"
   },
   {
@@ -8237,7 +8237,7 @@
     "confianza": "Baja",
     "metodo": "Revisión completa (confirmado por texto) + Revisión completa (confirmado por texto) · otro artículo del mismo medio (por revisar)",
     "url": "https://www.justicia.ar/novedades/6386/2026/11/biblioteca-del-stj-participo-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales",
-    "motivo": "frases en común 72%; datos coincidentes 100% (ushuaia, islas, bibliotecarios, atlantico, geopolitica, orquera); validación misma nota: 6 términos del título, 158 del cuerpo, frases 72%",
+    "motivo": "frases en común 72%; datos coincidentes 100% (geopolitica, mingorance, guido, saenz, orquera, bibliotecarios); validación misma nota: 6 términos del título, 158 del cuerpo, frases 72%",
     "key": "p524"
   },
   {
@@ -8246,8 +8246,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
     "evidencia_verificacion": {
       "titulo_medio": "Fallo histórico contra Despegar: deberá devolver el dinero o reprogramar vuelos que canceló en la pandemia - ADNSUR",
@@ -8268,8 +8268,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://www.adnsur.com.ar/policiales---judiciales/fallo-en-chubut--restituyen-el-cuidado-personal-de-una-adolescente-a-su-madre-por-pedido-de-la-menor_a698a85f7016767281c5a1b01",
     "evidencia_verificacion": {
       "titulo_medio": "Fallo en Chubut: restituyen el cuidado personal de una adolescente a su madre por pedido de la menor - ADNSUR",
@@ -8400,8 +8400,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.adnsur.com.ar/policiales---judiciales/primer-juicio-escabinado-por-corrupcion-en-chubut--carolina-pardo-said-fue-declarada-culpable_a69b1c7385f742cbad28fa795",
     "evidencia_verificacion": {
       "titulo_medio": "Primer juicio escabinado por corrupción en Chubut: Carolina Pardo Said fue declarada culpable - ADNSUR",
@@ -8422,8 +8422,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Baja",
-    "metodo": "Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
     "url": "https://www.adnsur.com.ar/policiales---judiciales/homicidio-en-comodoro--jurado-popular-declaro-culpable-al-acusado-por-la-muerte-de--carita-de-bebe-_a69a588c7b1573f6e5a6ed404",
     "evidencia_verificacion": {
       "titulo_medio": "Homicidio en Comodoro: jurado popular declaró culpable al acusado por la muerte de “Carita de Bebé” - ADNSUR",
@@ -9378,7 +9378,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.adnsur.com.ar/policiales---judiciales/un-famoso-banco-fue-condenado-a-pagar--20-000-000-por-el-hackeo-del-home-banking-de-una-clienta_a69aafe87b251d45547f8dcf6",
-    "motivo": "frases en común 3%; datos coincidentes 57% (hackearon, banking, clienta, extrapatrimonial, swapping, quebro); validación misma nota: 3 términos del título, 98 del cuerpo, frases 3%",
+    "motivo": "frases en común 3%; datos coincidentes 57% (accedieron, legitimas, extrapatrimonial, quebro, hackearon, swapping); validación misma nota: 3 términos del título, 98 del cuerpo, frases 3%",
     "key": "p576"
   },
   {
@@ -9390,7 +9390,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.adnsur.com.ar/policiales---judiciales/un-marinero-de-chubut-logro-una-millonaria-indemnizacion-contra-una-art-tras-sufrir-un-grave-accidente_a69e64d1335fd4a108ad2e72d",
-    "motivo": "frases en común 2%; datos coincidentes 56% (testino, contuso, habil, amorina, pesquero, pinza); validación misma nota: 2 términos del título, 101 del cuerpo, frases 2%",
+    "motivo": "frases en común 2%; datos coincidentes 56% (testino, contuso, kinesiologia, operario, traumatismo, empunadura); validación misma nota: 2 términos del título, 101 del cuerpo, frases 2%",
     "key": "p577"
   },
   {
@@ -9402,7 +9402,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.adnsur.com.ar/policiales---judiciales/el-defensor-oficial-lisandro-benitez-renuncio-y-evito-que-avance-el-jury-en-su-contra_a6a0e06b9ca034ba79f3b38dd",
-    "motivo": "frases en común 34%; datos coincidentes 88% (dimision, culminado, dimitia, formalizaran, renunciar, acusaba); validación misma nota: 5 términos del título, 135 del cuerpo, frases 34%",
+    "motivo": "frases en común 34%; datos coincidentes 88% (dimision, acusaba, dimitia, formalizaran, culminado, renunciar); validación misma nota: 5 términos del título, 135 del cuerpo, frases 34%",
     "key": "p578"
   },
   {
@@ -9414,7 +9414,7 @@
     "confianza": "Media",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.adnsur.com.ar/sociedad/se-triplico-la-cantidad-de-chicos-que-reciben-la-reparacion-economica-de-la-ley-brisa-en-chubut_a6a47fc569897fff6f9ce972e",
-    "motivo": "frases en común 9%; datos coincidentes 58% (destrabar, intrafamiliar, senaf, acceden, brisa, minimas); validación misma nota: 3 términos del título, 95 del cuerpo, frases 9%",
+    "motivo": "frases en común 9%; datos coincidentes 58% (destrabar, intrafamiliar, acceden, acelerar, senaf, minimas); validación misma nota: 3 términos del título, 95 del cuerpo, frases 9%",
     "key": "p579"
   },
   {
@@ -9426,7 +9426,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.adnsur.com.ar/policiales---judiciales/una-clinica-de-chubut-debera-pagar-mas-de--20-millones-por-una-grave-quemadura-sufrida-durante-una-cirugia_a6a9ee029b148f9d71ec23e84",
-    "motivo": "frases en común 1%; datos coincidentes 30% (internada, cirugia, transitoria, salio, quemadura, quirofano); validación misma nota: 2 términos del título, 150 del cuerpo, frases 1%",
+    "motivo": "frases en común 1%; datos coincidentes 30% (reconstructiva, cirujano, quirurgicos, quemaduras, cirugia, internada); validación misma nota: 2 términos del título, 150 del cuerpo, frases 1%",
     "evidencia_verificacion": {
       "titulo_medio": "Una clínica de Chubut deberá pagar más de $20 millones por una grave quemadura sufrida durante una cirugía - ADNSUR",
       "terminos_titulo_en_comun": 2,
@@ -9444,8 +9444,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
     "evidencia_verificacion": {
       "titulo_medio": "Revés para la Cooperativa 16 de Octubre: la Justicia falló a favor de un usuario por un cargo extra en la factura - EQSnotas",
@@ -9466,8 +9466,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.eqsnotas.com/actualidad/la-justicia-confirmo-una-multa-a-despegar-por-incumplir-la-reprogramacion-de-vuelos-cancelados-en-pandemia_a698c742f480494dfe80c9a2b",
     "evidencia_verificacion": {
       "titulo_medio": "La Justicia confirmó una multa a Despegar por incumplir la reprogramación de vuelos cancelados en pandemia - EQSnotas",
@@ -9488,8 +9488,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.eqsnotas.com/judiciales/choco-a-un-motociclista-con-su-camioneta-y-ahora-debera-pagarle-los-gastos-medicos-de-por-vida_a698b20348c666f6b02dc6615",
     "evidencia_verificacion": {
       "titulo_medio": "Chocó a un motociclista con su camioneta y ahora deberá pagarle los gastos médicos de por vida - EQSnotas",
@@ -9510,8 +9510,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.eqsnotas.com/actualidad/la-justicia-tuvo-en-cuenta-el-pedido-de-una-adolescente-y-ordeno-su-regreso-con-la-madre_a698a0a7f8c547fb045825e79",
     "evidencia_verificacion": {
       "titulo_medio": "La Justicia tuvo en cuenta el pedido de una adolescente y ordenó su regreso con la madre - EQSnotas",
@@ -9532,8 +9532,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.eqsnotas.com/actualidad/historico--una-joven-de-chubut-podra-borrar-su-apellido-paterno-por-abandono-afectivo_a6986086ba0767193cc4c7baf",
     "evidencia_verificacion": {
       "titulo_medio": "Histórico: una joven de Chubut podrá borrar su apellido paterno por abandono afectivo - EQSnotas",
@@ -9554,8 +9554,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.eqsnotas.com/actualidad/pluriparentalidad--el-innovador-fallo-de-chubut-que-revoluciona-el-derecho-de-familia-en-argentina_a698494f12f7be64efd45de09",
     "evidencia_verificacion": {
       "titulo_medio": "Pluriparentalidad: el innovador fallo de Chubut que revoluciona el derecho de familia en Argentina - EQSnotas",
@@ -9576,8 +9576,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.eqsnotas.com/judiciales/fallo-judicial-ordeno-al-banco-del-chubut-indemnizar-a-dos-adultos-mayores-por-una-estafa-electronica_a6984f4472f7be64efd496806",
     "evidencia_verificacion": {
       "titulo_medio": "Fallo judicial ordenó al Banco del Chubut indemnizar a dos adultos mayores por una estafa electrónica - EQSnotas",
@@ -9686,8 +9686,8 @@
     "origen": "Sin dato",
     "cita_fuente_oficial": "",
     "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "confianza": "Media",
+    "metodo": "Revisión completa (solo títulos) + Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.eqsnotas.com/judiciales/un-fallo-judicial-respeto-la-decision-de-un-joven-de-no-usar-el-apellido-de-su-padre-biologico_a69a8571751a3eb8dd6b231fd",
     "evidencia_verificacion": {
       "titulo_medio": "Un fallo judicial respetó la decisión de un joven de no usar el apellido de su padre biológico - EQSnotas",
@@ -10374,7 +10374,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.eqsnotas.com/judiciales/renuncio-el-defensor-oficial-lisandro-benitez-en-medio-del-jury-y-quedo-cerrado-el-proceso_a6a0e06805d3545bac3286b2e",
-    "motivo": "frases en común 27%; datos coincidentes 73% (concluida, dimision, culminado, fuese, informara, dimitia); validación misma nota: 5 términos del título, 112 del cuerpo, frases 27%",
+    "motivo": "frases en común 27%; datos coincidentes 73% (dimision, fuese, concluida, dimitia, formalizaran, culminado); validación misma nota: 5 términos del título, 112 del cuerpo, frases 27%",
     "key": "p623"
   },
   {
@@ -10386,7 +10386,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.eqsnotas.com/judiciales/le-hackearon-el-celular--vaciaron-su-cuenta-y-la-justicia-condeno-al-banco_a69ac2905f368e9a84ea193af",
-    "motivo": "frases en común 53%; datos coincidentes 93% (duplicado, hackearon, culpar, zozobra, referida, banking); validación misma nota: 2 términos del título, 152 del cuerpo, frases 53%",
+    "motivo": "frases en común 53%; datos coincidentes 93% (duplicado, vaciaron, negligente, suplantaron, fundamentados, accedieron); validación misma nota: 2 términos del título, 152 del cuerpo, frases 53%",
     "key": "p624"
   },
   {
@@ -10398,7 +10398,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.eqsnotas.com/judiciales/la-justicia-de-chubut-embargo-el-sueldo-de-un-hombre-que-obligo-a-endeudarse-a-su-expareja_a6a870c8cd02e0ef33459ad06",
-    "motivo": "frases en común 28%; datos coincidentes 84% (produciendo, menoscabo, denuncio, amplias, manipulada, perpetuar); validación misma nota: 2 términos del título, 178 del cuerpo, frases 28%",
+    "motivo": "frases en común 28%; datos coincidentes 84% (manipulada, verbales, produciendo, desconocer, protectoria, menoscabo); validación misma nota: 2 términos del título, 178 del cuerpo, frases 28%",
     "key": "p625"
   },
   {
@@ -10410,7 +10410,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.eqsnotas.com/judiciales/dos-concesionarias-de-autos-deberan-pagar-terapia-e-indemnizar-a-una-familia-de-chubut-que-volco-en-la-ruta-3_a6ab14774e94cc39576815583",
-    "motivo": "frases en común 62%; datos coincidentes 97% (verosimil, ensayos, mecanicos, rechazaron, metalograficos, vendedor); validación misma nota: 0 términos del título, 297 del cuerpo, frases 62%",
+    "motivo": "frases en común 62%; datos coincidentes 97% (deberse, verosimil, indemnizatorias, fabricacion, enfrentando, postraumatico); validación misma nota: 0 términos del título, 297 del cuerpo, frases 62%",
     "key": "p626"
   },
   {
@@ -10422,7 +10422,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto) + Buscador web",
     "url": "https://www.eqsnotas.com/judiciales/chubut--querian-educar-a-su-hija-en-casa-con-un-sistema-virtual-y-la-justicia-les-ordeno-que-la-enviaran-a-la-escuela_a6ad223526951bbd28cdf2b63",
-    "motivo": "frases en común 69%; datos coincidentes 97% (matriculada, manifestaron, aprender, desadaptacion, satisfecha, reincorporacion); validación misma nota: 0 términos del título, 376 del cuerpo, frases 69%",
+    "motivo": "frases en común 69%; datos coincidentes 97% (impartido, continuaria, satisfecha, convertida, optativo, acatamiento); validación misma nota: 0 términos del título, 376 del cuerpo, frases 69%",
     "key": "p627"
   },
   {
@@ -10434,7 +10434,7 @@
     "confianza": "Alta",
     "metodo": "Revisión completa (confirmado por texto)",
     "url": "https://www.eqsnotas.com/judiciales/el-asesor-de-familia-de-esquel--hugo-sanchez--enfrenta-un-juicio-politico-por-violencia-laboral-y-de-genero_a6a3a998f102dfdd9836f4124",
-    "motivo": "frases en común 5%; datos coincidentes 55% (represalia, instructora, nombres, inequidad, continuadas, probidad); validación misma nota: 3 términos del título, 128 del cuerpo, frases 5%",
+    "motivo": "frases en común 5%; datos coincidentes 55% (decoro, pettinari, carlen, inequidad, consejeras, instructora); validación misma nota: 3 términos del título, 128 del cuerpo, frases 5%",
     "key": "p628"
   },
   {
@@ -11801,7 +11801,6 @@
     "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://radio3cadenapatagonia.com.ar/condenaron-a-5-anos-de-prision-al-responsable-del-homicidio-de-jorge-nieves-en-comodoro/",
     "fecha_medio": "2026-11-17",
-    "key": "p724",
     "evidencia_verificacion": {
       "titulo_medio": "Condenaron a 5 años de prisión al responsable del homicidio de Jorge Nieves en Comodoro - Radio 3 Cadena Patagonia",
       "terminos_titulo_en_comun": 2,
@@ -11812,7 +11811,8 @@
       "misma_nota": false,
       "mismo_caso": true
     },
-    "motivo": "Mismo caso contado con palabras propias del medio: 3 términos distintivos del título, 72 del cuerpo; frases compartidas 5%"
+    "motivo": "Mismo caso contado con palabras propias del medio: 3 términos distintivos del título, 72 del cuerpo; frases compartidas 5%",
+    "key": "p724"
   },
   {
     "nota_id": 15097,
@@ -11826,19 +11826,6 @@
     "fecha_medio": "2026-11-17",
     "motivo": "No se pudo llegar a una publicación directa del medio",
     "key": "p725"
-  },
-  {
-    "nota_id": 15097,
-    "medio": "Flipr.news",
-    "origen": "Sin dato",
-    "cita_fuente_oficial": "",
-    "cita_otro_medio": "",
-    "confianza": "Media",
-    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
-    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTEZxS2JtanhNcnJidk0tVlhyc2oxVWp5UmRQd2N5aGMtaUJsYkx2R1pPQm1SMDJ4V2tZUTgwbGZfUTJ5NUFxZVJLMXlTS05rNzE3RnZXMUJLMl8xM3l3VTkwcHA1N1BnX2RTdVNJQXoyX3NxRXlVQ3l6LUk4ZTNIcGRVamZjSWVwYWd4LWE2QjFIdVF3NVZEYXl4NGp2aFZhTm9z?oc=5",
-    "fecha_medio": "2026-11-18",
-    "key": "p726",
-    "motivo": "No se pudo llegar a una publicación directa del medio"
   },
   {
     "nota_id": 15092,
@@ -11861,7 +11848,7 @@
       "misma_nota": false,
       "mismo_caso": true
     },
-    "key": "p727"
+    "key": "p726"
   },
   {
     "nota_id": 15092,
@@ -11884,7 +11871,7 @@
       "misma_nota": false,
       "mismo_caso": true
     },
-    "key": "p728"
+    "key": "p727"
   },
   {
     "nota_id": 15092,
@@ -11896,7 +11883,7 @@
     "metodo": "A verificar: no se pudo leer la publicación original; se reintentará",
     "url": "https://lu17.com/contenido/157894/trelew-limitan-el-tiempo-de-un-nino-con-su-abuela-durante-los-viajes-de-su-padre",
     "motivo": "El medio bloqueó el acceso automático. Abrí el enlace para comprobar la publicación.",
-    "key": "p729"
+    "key": "p728"
   },
   {
     "nota_id": 15092,
@@ -11919,7 +11906,30 @@
       "misma_nota": false,
       "mismo_caso": true
     },
-    "key": "p730"
+    "key": "p729"
+  },
+  {
+    "nota_id": 15092,
+    "medio": "Radio 3 Cadena Patagonia",
+    "origen": "Sin dato",
+    "cita_fuente_oficial": "Sí",
+    "cita_otro_medio": "",
+    "confianza": "Alta",
+    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
+    "url": "https://radio3cadenapatagonia.com.ar/fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
+    "fecha_medio": "2026-11-16",
+    "key": "p730",
+    "evidencia_verificacion": {
+      "titulo_medio": "Fallo resolvió que una abuela no puede reemplazar al padre en su tiempo con el hijo",
+      "terminos_titulo_en_comun": 6,
+      "terminos_nota_oficial_en_comun": 98,
+      "coincidencia_cuerpo_oficial": 0.5297,
+      "coincidencia_cuerpo_medio": 0.3256,
+      "coincidencia_frases": 0.0917,
+      "misma_nota": false,
+      "mismo_caso": true
+    },
+    "motivo": "Mismo caso contado con palabras propias del medio: 7 términos distintivos del título, 108 del cuerpo; frases compartidas 9%"
   },
   {
     "nota_id": 15092,
@@ -11943,7 +11953,6 @@
     "confianza": "Alta",
     "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial",
     "url": "https://www.diariojudicial.com/news-104900-sigue-la-organizacion-sobre-el-nuevo-regimen-penal-juvenil",
-    "key": "p732",
     "evidencia_verificacion": {
       "titulo_medio": "Sigue la organización sobre el nuevo régimen penal juvenil",
       "terminos_titulo_en_comun": 2,
@@ -11954,7 +11963,8 @@
       "misma_nota": true,
       "mismo_caso": false
     },
-    "motivo": "Coincidencia específica confirmada: 0 términos distintivos del título, 186 del cuerpo; frases compartidas 48%"
+    "motivo": "Coincidencia específica confirmada: 0 términos distintivos del título, 186 del cuerpo; frases compartidas 48%",
+    "key": "p732"
   },
   {
     "nota_id": 15036,
@@ -12023,6 +12033,71 @@
     "key": "p735"
   },
   {
+    "nota_id": 14817,
+    "medio": "EQS Notas",
+    "origen": "Sin dato",
+    "cita_fuente_oficial": "",
+    "cita_otro_medio": "",
+    "confianza": "Media",
+    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
+    "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPYmRkc2QtbjJQenFuUjMxaDRENVM5ay11VGdCajZPejBhQWl1SS1wVUt0VXFheVAwdFpPOGdhRDJMR1hkT2hsazBYTXJWUWxGWFNIWFRsZm1qRUtmS242dXVERDJFWHRxdjJaaFlHdU53OWtxamJDQk9BNUdrbHBMVVZPTUJoMVEwUDVvNXl3YWRHcWR1WlpXaVpudUhaazVlU1didTI3VTN3djJBNkl3cVd3VDlOaWNzdkFnazdMVTlVVnpnenpadzRFWDk1UktvajF3OGFieUFsTHlrZjVLNTBKN1pjcjR3WlHSAfgBQVVfeXFMTmVsc09DU011NXE1by1QN2ZrNGhFM1lfT1lPSU1OOVJJSlJSTnFUUXJYU3B2Y3gtWHlSQ3hYVmF4MWRHZUt5bVdYRnVqV2VpSUtmVlhCaGtsWFpJbl9WNm01V00yLWJ0bjBzanZOOHk1dVQxZVhlLS1iempBdHlfSkhDNHhLbFFiU2ZTbWxSTHoyREMweWdqalpON0x0MU5acGZrYjJyOC1BenpxZTAwemhMbWhSSkNtNjRrd2dna2J4TFFHdnh5SENzaExod2Y5bDR6Wlc5eEM0VjRTSW5ZXzRZeFdDSzJPbWZEQTl2Wmt6UVNqTnFsTC0?oc=5",
+    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "url_alternativas": [
+      "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPYmRkc2QtbjJQenFuUjMxaDRENVM5ay11VGdCajZPejBhQWl1SS1wVUt0VXFheVAwdFpPOGdhRDJMR1hkT2hsazBYTXJWUWxGWFNIWFRsZm1qRUtmS242dXVERDJFWHRxdjJaaFlHdU53OWtxamJDQk9BNUdrbHBMVVZPTUJoMVEwUDVvNXl3YWRHcWR1WlpXaVpudUhaazVlU1didTI3VTN3djJBNkl3cVd3VDlOaWNzdkFnazdMVTlVVnpnenpadzRFWDk1UktvajF3OGFieUFsTHlrZjVLNTBKN1pjcjR3WlE?oc=5"
+    ],
+    "key": "p736"
+  },
+  {
+    "nota_id": 14705,
+    "medio": "ADN Sur",
+    "origen": "Sin dato",
+    "cita_fuente_oficial": "",
+    "cita_otro_medio": "",
+    "confianza": "Media",
+    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
+    "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQYzlrWEJqMWY3NFNQQXM5SVU1cUNtM0U4RlJnNzNQYVdfTG5vTVJMV25lODhHcERmcTJINlktelpVNjF5b0lVTEZKTU1Oa2FsN1duZ1pLam9NZTlDSUh6ZW5qNWdjRzZTdzlUcE5ySE9hMUpzOGFaV0V4YTk5Q3dnVEFab3JwcDkwZUhvSkNydk9BTUxBb1ZXZ3ZLOVk0d21IYUlSSjRxOVNHdjNwclZlZnZ3MGIzMDNpTGlqRlpObVF0NC05bHVWd1YxMGthRjFmaENLNkV0Y3BJZkJJQThvYjZ0cEN2OEpINjFEVEdYbG52T09jdUVVOHRB?oc=5",
+    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "key": "p737"
+  },
+  {
+    "nota_id": 14593,
+    "medio": "EQS Notas",
+    "origen": "Sin dato",
+    "cita_fuente_oficial": "",
+    "cita_otro_medio": "",
+    "confianza": "Alta",
+    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
+    "url": "https://www.eqsnotas.com/judiciales/frenada-brusca-en-un-colectivo-indemnizacion-millonaria",
+    "url_alternativas": [
+      "https://www.eqsnotas.com/judiciales/una-frenada-brusca-en-un-colectivo-termino-en-una-indemnizacion-de-mas-de--27-millones_a6abbbcab06f9f6e175f3bf48"
+    ],
+    "evidencia_verificacion": {
+      "titulo_medio": "La Cámara de Apelaciones de Comodoro elevó a $27 millones la indemnización de una pasajera lesionada en un colectivo - EQSnotas",
+      "terminos_titulo_en_comun": 2,
+      "terminos_nota_oficial_en_comun": 108,
+      "coincidencia_cuerpo_oficial": 0.4269,
+      "coincidencia_cuerpo_medio": 0.3776,
+      "coincidencia_frases": 0.0579,
+      "misma_nota": false,
+      "mismo_caso": true
+    },
+    "motivo": "Mismo caso contado con palabras propias del medio: 2 términos distintivos del título, 116 del cuerpo; frases compartidas 6%",
+    "key": "p738"
+  },
+  {
+    "nota_id": 15097,
+    "medio": "Flipr.news",
+    "origen": "Sin dato",
+    "cita_fuente_oficial": "",
+    "cita_otro_medio": "",
+    "confianza": "Media",
+    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
+    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTEZxS2JtanhNcnJidk0tVlhyc2oxVWp5UmRQd2N5aGMtaUJsYkx2R1pPQm1SMDJ4V2tZUTgwbGZfUTJ5NUFxZVJLMXlTS05rNzE3RnZXMUJLMl8xM3l3VTkwcHA1N1BnX2RTdVNJQXoyX3NxRXlVQ3l6LUk4ZTNIcGRVamZjSWVwYWd4LWE2QjFIdVF3NVZEYXl4NGp2aFZhTm9z?oc=5",
+    "fecha_medio": "2026-11-18",
+    "motivo": "No se pudo llegar a una publicación directa del medio",
+    "key": "p739"
+  },
+  {
     "nota_id": 15016,
     "medio": "Diario Judicial",
     "origen": "Sin dato",
@@ -12042,7 +12117,10 @@
       "misma_nota": true,
       "mismo_caso": true
     },
-    "key": "p736"
+    "url_alternativas": [
+      "https://news.google.com/rss/articles/CBMilgFBVV95cUxONDN2Y2tpZDZUMDNETk1vSEwyTXVuWnJmd0Zid1RFamJ4aGZMSDY2eDlYZ0I5T0FFa3FZMTVZY0huVmhhREdJRmlnWjBOTDNnSGVKMzBhei00SHM5S2NRdHFtLV9acmhCeXVZdGpHaTYxUUw1dzBCSF9leWttRzVGNmZteGQ1dHZSb2s5Vm8zR1dSMjNPSVE?oc=5"
+    ],
+    "key": "p740"
   },
   {
     "nota_id": 14960,
@@ -12064,7 +12142,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 3 términos distintivos del título, 25 del cuerpo; frases compartidas 0%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p737"
+    "key": "p741"
   },
   {
     "nota_id": 14943,
@@ -12090,7 +12168,7 @@
       "https://lu17.com/contenido/155520/",
       "https://news.google.com/rss/articles/CBMipwFBVV95cUxPVjZDZmxQaVJ3TGRFVzJEQmVEaDYzcWpadTdxdmV5VWxlUUp4OFhrUHZhanpPajktbUtqOFU2ZDN3WmNueHdPNUw3T0VxMlZJeGxmaVpNY0Z3Szhmc1M2YUxPWmk4akhjc214NVRWMFVLV25rVndyN0JIOWNMaG1PeUduNnYtTWhZeVVWajIzR2N1bEl5LWpCR2plaGZ1c1h3TFF0cjBZQQ?oc=5"
     ],
-    "key": "p738"
+    "key": "p742"
   },
   {
     "nota_id": 14925,
@@ -12112,7 +12190,7 @@
       "misma_nota": false,
       "mismo_caso": true
     },
-    "key": "p739"
+    "key": "p743"
   },
   {
     "nota_id": 14884,
@@ -12128,8 +12206,8 @@
       "terminos_titulo_en_comun": 3,
       "terminos_nota_oficial_en_comun": 204,
       "coincidencia_cuerpo_oficial": 0.7876,
-      "coincidencia_cuerpo_medio": 0.6823,
-      "coincidencia_frases": 0.5076,
+      "coincidencia_cuerpo_medio": 0.6892,
+      "coincidencia_frases": 0.5088,
       "misma_nota": true,
       "mismo_caso": true
     },
@@ -12138,7 +12216,7 @@
       "https://news.google.com/rss/articles/CBMiygFBVV95cUxObk15OVBrb2htMk1lQ3M1Tll4ZElUUUhoZUdUNHZxTE9jOWpxN2hfM01RcUxjV1VfZXhhVkd3Yjc0ZndsMTVCMWp2cDNYb216dFFfYUhhajJlVnlodmo3cFBpUmxZTURVbWxLMjFsWHphU2pZS2Fqb1RwV2luMnJvb0lETDRDSi1Ndm1tM05MS0J3RE9XLVdUZV82RkFBVXN4SU9HZjgzQlBsNlJGRmZzNl9FUEJaakZpenN1NEVxNDJQdjNBSEdyUDJn0gHPAUFVX3lxTE9OMWJSNWR5UFpaWVhDamRQdGw4clBGS19sY0s3MWZyd19DMXZiNEU1Rk50X3NTTEJCa1hjZmFnczBXeXV5TzVjTG1Vb21hN2tlTENVSHJyRG5fZHp2YjFha1pGenB1R3Q1VjgyR3NjeUpzY3plZDRmSmEyMXlsNEFfT3Ftd2FOLVcwVmx5S0podW1pS2Z0WUR6Skg5V3cxa1piaExNNjVFTEpTT0tYOXZzalFmT3FjaU5aa2pmUS1EY2V0R2ZuaDhrMk1qZ2ZxWQ?oc=5",
       "https://news.google.com/rss/articles/CBMiygFBVV95cUxObk15OVBrb2htMk1lQ3M1Tll4ZElUUUhoZUdUNHZxTE9jOWpxN2hfM01RcUxjV1VfZXhhVkd3Yjc0ZndsMTVCMWp2cDNYb216dFFfYUhhajJlVnlodmo3cFBpUmxZTURVbWxLMjFsWHphU2pZS2Fqb1RwV2luMnJvb0lETDRDSi1Ndm1tM05MS0J3RE9XLVdUZV82RkFBVXN4SU9HZjgzQlBsNlJGRmZzNl9FUEJaakZpenN1NEVxNDJQdjNBSEdyUDJn?oc=5"
     ],
-    "key": "p740"
+    "key": "p744"
   },
   {
     "nota_id": 14884,
@@ -12162,59 +12240,7 @@
       "fecha": "2026-10-27",
       "motivo": "URL comprobada manualmente (antes fija en scripts/actualizar.py)"
     },
-    "key": "p741"
-  },
-  {
-    "nota_id": 14817,
-    "medio": "EQS Notas",
-    "origen": "Sin dato",
-    "cita_fuente_oficial": "",
-    "cita_otro_medio": "",
-    "confianza": "Media",
-    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
-    "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPYmRkc2QtbjJQenFuUjMxaDRENVM5ay11VGdCajZPejBhQWl1SS1wVUt0VXFheVAwdFpPOGdhRDJMR1hkT2hsazBYTXJWUWxGWFNIWFRsZm1qRUtmS242dXVERDJFWHRxdjJaaFlHdU53OWtxamJDQk9BNUdrbHBMVVZPTUJoMVEwUDVvNXl3YWRHcWR1WlpXaVpudUhaazVlU1didTI3VTN3djJBNkl3cVd3VDlOaWNzdkFnazdMVTlVVnpnenpadzRFWDk1UktvajF3OGFieUFsTHlrZjVLNTBKN1pjcjR3WlHSAfgBQVVfeXFMTmVsc09DU011NXE1by1QN2ZrNGhFM1lfT1lPSU1OOVJJSlJSTnFUUXJYU3B2Y3gtWHlSQ3hYVmF4MWRHZUt5bVdYRnVqV2VpSUtmVlhCaGtsWFpJbl9WNm01V00yLWJ0bjBzanZOOHk1dVQxZVhlLS1iempBdHlfSkhDNHhLbFFiU2ZTbWxSTHoyREMweWdqalpON0x0MU5acGZrYjJyOC1BenpxZTAwemhMbWhSSkNtNjRrd2dna2J4TFFHdnh5SENzaExod2Y5bDR6Wlc5eEM0VjRTSW5ZXzRZeFdDSzJPbWZEQTl2Wmt6UVNqTnFsTC0?oc=5",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
-    "url_alternativas": [
-      "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPYmRkc2QtbjJQenFuUjMxaDRENVM5ay11VGdCajZPejBhQWl1SS1wVUt0VXFheVAwdFpPOGdhRDJMR1hkT2hsazBYTXJWUWxGWFNIWFRsZm1qRUtmS242dXVERDJFWHRxdjJaaFlHdU53OWtxamJDQk9BNUdrbHBMVVZPTUJoMVEwUDVvNXl3YWRHcWR1WlpXaVpudUhaazVlU1didTI3VTN3djJBNkl3cVd3VDlOaWNzdkFnazdMVTlVVnpnenpadzRFWDk1UktvajF3OGFieUFsTHlrZjVLNTBKN1pjcjR3WlE?oc=5"
-    ],
-    "key": "p742"
-  },
-  {
-    "nota_id": 14705,
-    "medio": "ADN Sur",
-    "origen": "Sin dato",
-    "cita_fuente_oficial": "",
-    "cita_otro_medio": "",
-    "confianza": "Media",
-    "metodo": "A verificar: el buscador no entregó un enlace original; se reintentará",
-    "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQYzlrWEJqMWY3NFNQQXM5SVU1cUNtM0U4RlJnNzNQYVdfTG5vTVJMV25lODhHcERmcTJINlktelpVNjF5b0lVTEZKTU1Oa2FsN1duZ1pLam9NZTlDSUh6ZW5qNWdjRzZTdzlUcE5ySE9hMUpzOGFaV0V4YTk5Q3dnVEFab3JwcDkwZUhvSkNydk9BTUxBb1ZXZ3ZLOVk0d21IYUlSSjRxOVNHdjNwclZlZnZ3MGIzMDNpTGlqRlpObVF0NC05bHVWd1YxMGthRjFmaENLNkV0Y3BJZkJJQThvYjZ0cEN2OEpINjFEVEdYbG52T09jdUVVOHRB?oc=5",
-    "motivo": "No se pudo llegar a una publicación directa del medio",
-    "key": "p743"
-  },
-  {
-    "nota_id": 14593,
-    "medio": "EQS Notas",
-    "origen": "Sin dato",
-    "cita_fuente_oficial": "",
-    "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Verificada automáticamente: título y contenido comparados con la nota oficial + Excluida del conteo: no hay evidencia suficiente de que sea la misma nota",
-    "url": "https://www.eqsnotas.com/judiciales/frenada-brusca-en-un-colectivo-indemnizacion-millonaria",
-    "url_alternativas": [
-      "https://www.eqsnotas.com/judiciales/una-frenada-brusca-en-un-colectivo-termino-en-una-indemnizacion-de-mas-de--27-millones_a6abbbcab06f9f6e175f3bf48"
-    ],
-    "evidencia_verificacion": {
-      "titulo_medio": "La Cámara de Apelaciones de Comodoro elevó a $27 millones la indemnización de una pasajera lesionada en un colectivo - EQSnotas",
-      "terminos_titulo_en_comun": 2,
-      "terminos_nota_oficial_en_comun": 108,
-      "coincidencia_cuerpo_oficial": 0.4269,
-      "coincidencia_cuerpo_medio": 0.3789,
-      "coincidencia_frases": 0.058,
-      "misma_nota": false,
-      "mismo_caso": true
-    },
-    "motivo": "Mismo caso contado con palabras propias del medio: 2 términos distintivos del título, 116 del cuerpo; frases compartidas 6%",
-    "key": "p744"
+    "key": "p745"
   },
   {
     "nota_id": 15050,
@@ -12236,7 +12262,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 3 términos distintivos del título, 17 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p745"
+    "key": "p746"
   },
   {
     "nota_id": 15036,
@@ -12258,7 +12284,7 @@
       "mismo_caso": false
     },
     "motivo": "No se confirmó la misma publicación: 0 términos distintivos del título, 34 del cuerpo; frases compartidas 1%. Se conserva el registro histórico, pero no cuenta como repercusión confirmada ni pendiente.",
-    "key": "p746"
+    "key": "p747"
   },
   {
     "nota_id": 14960,
@@ -12280,18 +12306,6 @@
       "misma_nota": false,
       "mismo_caso": false
     },
-    "key": "p747"
-  },
-  {
-    "nota_id": 15092,
-    "medio": "Radio 3 Cadena Patagonia",
-    "origen": "Reescritura parcial",
-    "cita_fuente_oficial": "Sí",
-    "cita_otro_medio": "",
-    "confianza": "Alta",
-    "metodo": "Revisión completa",
-    "url": "https://radio3cadenapatagonia.com.ar/fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
-    "fecha_medio": "2026-11-16",
     "key": "p748"
   },
   {
