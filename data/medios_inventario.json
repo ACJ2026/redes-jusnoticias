@@ -130,9 +130,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 88,
-      "notas": 75,
-      "ejemplo": "https://lapostacomodorense.com.ar/2026/11/16/la-camara-de-trelew-limito-el-regimen-de-visitas-de-una-abuela-y-ratifico-que-no-puede-sustituir-al-padre/",
+      "publicaciones": 89,
+      "notas": 76,
+      "ejemplo": "https://lapostacomodorense.com.ar/2026/11/18/condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves/",
       "primera_deteccion": "2026-11-17",
       "ultima_deteccion": "2026-11-18",
       "redes": {
@@ -192,7 +192,7 @@
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
       "publicaciones": 73,
       "notas": 64,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/una-abuela-pidio-quedarse-con-su-nieto-cuando-el-padre-viajara-y-la-justicia-tomo-una-drastica-decision_a6afb258bd159b0329ac015e6",
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-18",
       "redes": {
@@ -311,7 +311,7 @@
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
       "publicaciones": 60,
       "notas": 57,
-      "ejemplo": "https://www.eqsnotas.com/judiciales/abuela-nieto-viajes-padre-fallo-justicia-trelew_a6afb47fbee61a5b77f3734ca",
+      "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-18",
       "redes": {
@@ -396,7 +396,7 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 47,
       "notas": 43,
       "ejemplo": "https://argentarnoticias.com.ar/la-justicia-de-trelew-freno-el-reemplazo-paterno-una-abuela-no-ocupara-los-dias-de-cuidado-del-padre-cuando-viaje/",
@@ -470,8 +470,8 @@
       "tipo": "Radio",
       "localidad": "Trelew",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 35,
       "notas": 33,
       "ejemplo": "https://radiochubut.com/chubut-mundo-trabajo/",
@@ -769,6 +769,35 @@
       }
     },
     {
+      "nombre": "Examedia",
+      "alias": [
+        "examedia.com.ar"
+      ],
+      "dominio": "examedia.com.ar",
+      "url": "https://examedia.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Entre Ríos (localidad por verificar)",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "publicaciones": 15,
+      "notas": 11,
+      "ejemplo": "https://examedia.com.ar/portada/post/88249564",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "/examedia"
+        ],
+        "Instagram": [
+          "@examediaok"
+        ],
+        "X": [
+          "@ExamediaAR"
+        ]
+      }
+    },
+    {
       "nombre": "FM Tropical",
       "alias": [],
       "dominio": "fmtropicalradio.com",
@@ -848,35 +877,6 @@
         ],
         "YouTube": [
           "/@ciudadtvcontenidosok"
-        ]
-      }
-    },
-    {
-      "nombre": "Examedia",
-      "alias": [
-        "examedia.com.ar"
-      ],
-      "dominio": "examedia.com.ar",
-      "url": "https://examedia.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Entre Ríos (localidad por verificar)",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 14,
-      "notas": 10,
-      "ejemplo": "https://examedia.com.ar/portada/post/88249564",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/examedia"
-        ],
-        "Instagram": [
-          "@examediaok"
-        ],
-        "X": [
-          "@ExamediaAR"
         ]
       }
     },
@@ -993,7 +993,7 @@
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 11,
       "notas": 9,
       "ejemplo": "https://prensamercosur.org/2026/11/10/un-jurado-popular-declaro-culpable-a-un-hombre-por-seis-hechos-de-abuso-sexual-y-quedo-detenido/",
@@ -1015,7 +1015,7 @@
       "notas": 11,
       "ejemplo": "https://revistaquorum.com.ar/2026/11/17/puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-el-fallo-que-puso-limites-al-cuidado-de-los-nietos/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-11-18",
       "redes": {
         "Instagram": [
           "@revistaquorumok"
@@ -1045,6 +1045,39 @@
       "_manual": {
         "localidad": true,
         "observaciones": true
+      }
+    },
+    {
+      "nombre": "La Opinión Austral",
+      "alias": [],
+      "dominio": "laopinionaustral.com.ar",
+      "url": "https://laopinionaustral.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Río Gallegos",
+      "metodo": "Sitemap / índice propio",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 8,
+      "notas": 7,
+      "ejemplo": "https://laopinionaustral.com.ar/comodoro-rivadavia/caso-ivan-torres-ya-excavaron-ocho-tumbas-en-el-cementerio-oeste-660437.html",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-18",
+      "redes": {
+        "Facebook": [
+          "/opinionaustral"
+        ],
+        "Instagram": [
+          "@laopinionaustral"
+        ],
+        "X": [
+          "@opinionaustral"
+        ],
+        "YouTube": [
+          "/channel/UCcx4mXTC2uuN9Oe1paH1ozg"
+        ],
+        "TikTok": [
+          "@laopinionaustral"
+        ]
       }
     },
     {
@@ -1163,39 +1196,6 @@
         ],
         "YouTube": [
           "/channel/UCWhsV1YALBkWBsbJQBkGv1g"
-        ]
-      }
-    },
-    {
-      "nombre": "La Opinión Austral",
-      "alias": [],
-      "dominio": "laopinionaustral.com.ar",
-      "url": "https://laopinionaustral.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Río Gallegos",
-      "metodo": "Sitemap / índice propio",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (solo títulos)",
-      "publicaciones": 7,
-      "notas": 6,
-      "ejemplo": "https://laopinionaustral.com.ar/comodoro-rivadavia/caso-ivan-torres-ya-excavaron-ocho-tumbas-en-el-cementerio-oeste-660437.html",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/opinionaustral"
-        ],
-        "Instagram": [
-          "@laopinionaustral"
-        ],
-        "X": [
-          "@opinionaustral"
-        ],
-        "YouTube": [
-          "/channel/UCcx4mXTC2uuN9Oe1paH1ozg"
-        ],
-        "TikTok": [
-          "@laopinionaustral"
         ]
       }
     },
