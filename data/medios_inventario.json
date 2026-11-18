@@ -41,9 +41,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 126,
-      "notas": 101,
-      "ejemplo": "https://canal12web.com/la-justicia-de-trelew-marco-limites-una-abuela-no-puede-ocupar-el-lugar-del-padre-en-su-tiempo-con-el-hijo/",
+      "publicaciones": 127,
+      "notas": 102,
+      "ejemplo": "https://canal12web.com/la-camara-penal-confirmo-la-condena-a-canumir-por-abuso-sexual/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
       "redes": {
@@ -72,9 +72,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 116,
-      "notas": 116,
-      "ejemplo": "https://www.metadatanoticias.com.ar/2026/11/17/comodoro-pavei-recibio-5-anos-de-carcel-por-el-homicidio-de-jorge-david-nieves/",
+      "publicaciones": 118,
+      "notas": 118,
+      "ejemplo": "https://www.metadatanoticias.com.ar/2026/11/18/esquel-confirmaron-una-condena-de-7-anos-y-6-meses-por-abuso-sexual-y-ordenaron-registrar-el-adn-del-condenado/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -157,9 +157,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 81,
-      "notas": 67,
-      "ejemplo": "https://cholilaonline.ar/2026/11/comodoro-condenaron-5-anos-prision-mauro-pavei-homicidio-jorge-david-nieves.html",
+      "publicaciones": 84,
+      "notas": 69,
+      "ejemplo": "https://cholilaonline.ar/2026/11/condena-por-abuso-sexual-en-comodoro-rivadavia-13-anos-prision.html",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -190,9 +190,9 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 73,
-      "notas": 64,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
+      "publicaciones": 75,
+      "notas": 66,
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/condenaron-a-13-anos-de-prision-a-un-hombre-por-seis-hechos-de-abuso-sexual-intrafamiliar-en-comodoro_a6afe0555d6e1c370fea2976f",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-18",
       "redes": {
@@ -309,9 +309,9 @@
       "metodo": "Sitemap / índice propio",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
-      "publicaciones": 60,
-      "notas": 57,
-      "ejemplo": "https://www.eqsnotas.com/judiciales/reves-para-la-cooperativa-16-de-octubre--la-justicia-fallo-a-favor-de-un-usuario-por-un-cargo-extra-en-la-factura_a69986c060ea49d5d7db934bf",
+      "publicaciones": 61,
+      "notas": 58,
+      "ejemplo": "https://www.eqsnotas.com/judiciales/esquel--confirman-la-condena-a-siete-anos-y-seis-meses-de-prision-para-un-hombre-que-abuso-de-su-pareja_a6afdfc1cb1cad7c18c61cff4",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-18",
       "redes": {
@@ -470,8 +470,8 @@
       "tipo": "Radio",
       "localidad": "Trelew",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Sin clasificar",
-      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 35,
       "notas": 33,
       "ejemplo": "https://radiochubut.com/chubut-mundo-trabajo/",
@@ -526,6 +526,39 @@
       }
     },
     {
+      "nombre": "El Chubut",
+      "alias": [],
+      "dominio": "elchubut.com.ar",
+      "url": "https://elchubut.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Trelew",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 31,
+      "notas": 30,
+      "ejemplo": "https://www.elchubut.com.ar/judiciales/2026-11-18-16-57-0-confirman-condena-por-abuso-sexual-y-orden-remision-de-perfil-genetico-a-un-registro-de-abusadores",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-11-16",
+      "redes": {
+        "Facebook": [
+          "/diarioelchubut"
+        ],
+        "Instagram": [
+          "@diarioelchubut"
+        ],
+        "X": [
+          "@elchubut"
+        ],
+        "YouTube": [
+          "@DiarioELCHUBUTwebTV"
+        ],
+        "TikTok": [
+          "@diarioelchubut"
+        ]
+      }
+    },
+    {
       "nombre": "Diario El Sureño",
       "alias": [],
       "dominio": "surenio.com.ar",
@@ -566,39 +599,6 @@
         ],
         "X": [
           "@chubuthoy1"
-        ]
-      }
-    },
-    {
-      "nombre": "El Chubut",
-      "alias": [],
-      "dominio": "elchubut.com.ar",
-      "url": "https://elchubut.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Trelew",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 29,
-      "notas": 28,
-      "ejemplo": "https://www.elchubut.com.ar/judiciales/2026-11-17-15-43-0-condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves",
-      "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-16",
-      "redes": {
-        "Facebook": [
-          "/diarioelchubut"
-        ],
-        "Instagram": [
-          "@diarioelchubut"
-        ],
-        "X": [
-          "@elchubut"
-        ],
-        "YouTube": [
-          "@DiarioELCHUBUTwebTV"
-        ],
-        "TikTok": [
-          "@diarioelchubut"
         ]
       }
     },
@@ -1181,7 +1181,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 7,
       "notas": 7,
-      "ejemplo": "https://diariosanrafael.com.ar/por-que-estados-unidos-vota-siempre-un-martes-y-en-noviembre/",
+      "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-12",
       "redes": {
@@ -1336,7 +1336,7 @@
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 5,
       "notas": 4,
-      "ejemplo": "https://elmonterizo.com/el-padre-viaja-por-trabajo-y-la-justicia-limito-cuantos-dias-el-nene-puede-quedarse-con-su-abuela",
+      "ejemplo": "https://elmonterizo.com/una-abuela-peleo-por-quedarse-con-su-nieto-cuando-el-papa-viaja-que-resolvio-la-camara",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {}
@@ -1450,6 +1450,60 @@
       "redes": {
         "Facebook": [
           "Infobae"
+        ]
+      }
+    },
+    {
+      "nombre": "Canal 4 Esquel",
+      "alias": [],
+      "dominio": "canal4esquel.com.ar",
+      "url": "https://canal4esquel.com.ar",
+      "tipo": "TV",
+      "localidad": "Por verificar",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://canal4esquel.com.ar/abuso-sexual-rechazaron-el-planteo-de-la-defensa-y-ratificaron-una-condena-dictada-por-un-jurado-popular/",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {
+        "Facebook": [
+          "Canal 4 Esquel"
+        ]
+      }
+    },
+    {
+      "nombre": "Clarín",
+      "alias": [],
+      "dominio": "clarin.com",
+      "url": "https://clarin.com",
+      "tipo": "Portal digital",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://www.clarin.com/policiales/confirman-condena-ex-gobernador-jose-alperovich-abuso-sexual-bajan-pena-16-14-anos_0_vIqLIBP61O.html",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-11-18",
+      "redes": {
+        "Facebook": [
+          "/clarincom"
+        ],
+        "Instagram": [
+          "@clarincom"
+        ],
+        "X": [
+          "@clarincom"
+        ],
+        "YouTube": [
+          "/@clarincom"
+        ],
+        "TikTok": [
+          "@clarincom"
         ]
       }
     },
@@ -1902,25 +1956,21 @@
       }
     },
     {
-      "nombre": "Canal 4 Esquel",
+      "nombre": "Border Periodismo",
       "alias": [],
-      "dominio": "canal4esquel.com.ar",
-      "url": "https://canal4esquel.com.ar",
-      "tipo": "TV",
+      "dominio": "borderperiodismo.com",
+      "url": "https://borderperiodismo.com",
+      "tipo": "Portal digital",
       "localidad": "Por verificar",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
-      "ejemplo": "https://canal4esquel.com.ar/un-auto-aumento-un-952-y-la-justicia-de-esquel-elevo-a-4-millones-la-sancion-contra-plan-ovalo-y-ford/",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "Canal 4 Esquel"
-        ]
-      }
+      "ejemplo": "https://borderperiodismo.com/actualidad/casacion-redujo-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual/",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-18",
+      "redes": {}
     },
     {
       "nombre": "Caracol Radio",
@@ -1955,39 +2005,6 @@
       "primera_deteccion": "2026-10-28",
       "ultima_deteccion": "2026-11-11",
       "redes": {}
-    },
-    {
-      "nombre": "Clarín",
-      "alias": [],
-      "dominio": "clarin.com",
-      "url": "https://clarin.com",
-      "tipo": "Portal digital",
-      "localidad": "Ciudad Autónoma de Buenos Aires",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
-      "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-18",
-      "redes": {
-        "Facebook": [
-          "/clarincom"
-        ],
-        "Instagram": [
-          "@clarincom"
-        ],
-        "X": [
-          "@clarincom"
-        ],
-        "YouTube": [
-          "/@clarincom"
-        ],
-        "TikTok": [
-          "@clarincom"
-        ]
-      }
     },
     {
       "nombre": "Contextos Fueguinos",
@@ -2060,6 +2077,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-23",
+      "redes": {}
+    },
+    {
+      "nombre": "Diario EL NORTE",
+      "alias": [],
+      "dominio": "diarioelnorte.com.ar",
+      "url": "https://diarioelnorte.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://diarioelnorte.com.ar/la-justicia-redujo-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual/",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-18",
       "redes": {}
     },
     {
@@ -2597,6 +2631,23 @@
       }
     },
     {
+      "nombre": "LA GACETA",
+      "alias": [],
+      "dominio": "lagaceta.com.ar",
+      "url": "https://lagaceta.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.lagaceta.com.ar/nota/1163138/politica/casacion-redujo-16-14-anos-condena-abuso-sexual-jose-alperovich.html",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-18",
+      "redes": {}
+    },
+    {
       "nombre": "La Nueva Mañana",
       "alias": [],
       "dominio": "lmdiario.com.ar",
@@ -2940,6 +2991,23 @@
       "ejemplo": "https://radiosintonia.com/las-mujeres-rurales-de-fuerteventura-2026-son-las-protagonistas-de-la-rosa-de-fuerteventura/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Sitio Andino",
+      "alias": [],
+      "dominio": "sitioandino.com.ar",
+      "url": "https://sitioandino.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.sitioandino.com.ar/policiales/piden-condenar-4-acusados-abuso-sexual-una-fiesta-lujan-cuyo-n5734069",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-18",
       "redes": {}
     },
     {

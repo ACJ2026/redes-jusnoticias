@@ -4341,10 +4341,24 @@
     "nota_id": null,
     "me_gusta": 1,
     "comentarios": 0,
-    "compartidos": 0,
+    "compartidos": 1,
     "vistas": null,
     "propia": "Sí",
     "key": "fb-116101835114568_1791180053007582",
     "url": "https://www.facebook.com/1769483335177254/posts/1791180053007582"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-18",
+    "texto": "⚖️🏛️ Epuyén tendrá su nue",
+    "nota_id": null,
+    "me_gusta": 31,
+    "comentarios": 4,
+    "compartidos": 19,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1793921299400124",
+    "url": "https://www.facebook.com/1769483335177254/posts/1793921299400124"
   }
 ]
