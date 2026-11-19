@@ -130,9 +130,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 89,
-      "notas": 76,
-      "ejemplo": "https://lapostacomodorense.com.ar/2026/11/18/condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves/",
+      "publicaciones": 90,
+      "notas": 77,
+      "ejemplo": "https://lapostacomodorense.com.ar/2026/11/16/la-camara-de-trelew-limito-el-regimen-de-visitas-de-una-abuela-y-ratifico-que-no-puede-sustituir-al-padre/",
       "primera_deteccion": "2026-11-17",
       "ultima_deteccion": "2026-11-19",
       "redes": {
@@ -192,7 +192,7 @@
       "cobertura": "Revisión completa (títulos; texto en casos dudosos)",
       "publicaciones": 75,
       "notas": 66,
-      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/condenaron-a-13-anos-de-prision-a-un-hombre-por-seis-hechos-de-abuso-sexual-intrafamiliar-en-comodoro_a6afe0555d6e1c370fea2976f",
+      "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/fallo-historico-contra-despegar--debera-devolver-el-dinero-o-reprogramar-vuelos-que-cancelo-en-la-pandemia_a698c76adb1c82e7acc2c97dd",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-19",
       "redes": {
@@ -397,9 +397,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 47,
-      "notas": 43,
-      "ejemplo": "https://argentarnoticias.com.ar/la-justicia-de-trelew-freno-el-reemplazo-paterno-una-abuela-no-ocupara-los-dias-de-cuidado-del-padre-cuando-viaje/",
+      "publicaciones": 48,
+      "notas": 44,
+      "ejemplo": "https://argentarnoticias.com.ar/comodoro-recibio-13-anos-de-prision-por-seis-hechos-de-abuso-sexual-intrafamiliar/",
       "primera_deteccion": "2026-10-30",
       "ultima_deteccion": "2026-11-19",
       "redes": {
@@ -612,9 +612,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 26,
-      "notas": 24,
-      "ejemplo": "https://diariolaportada.com.ar/2026/10/29/trevelin-sera-sede-del-2-congreso-patagonico-de-derecho-publico/",
+      "publicaciones": 27,
+      "notas": 25,
+      "ejemplo": "https://diariolaportada.com.ar/2026/11/19/se-confirmo-la-condena-por-abuso-sexual-dictada-en-juicio-por-jurados/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -829,6 +829,23 @@
       }
     },
     {
+      "nombre": "Agencia de Noticias San Luis",
+      "alias": [],
+      "dominio": "agenciasanluis.com",
+      "url": "https://agenciasanluis.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 14,
+      "notas": 13,
+      "ejemplo": "https://agenciasanluis.com/2026/11/19/1233364-despliegan-actividades-por-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer/",
+      "primera_deteccion": "2026-11-17",
+      "ultima_deteccion": "2026-11-19",
+      "redes": {}
+    },
+    {
       "nombre": "Aire Libre FM 96.3",
       "alias": [],
       "dominio": "airelibre.com.ar",
@@ -879,23 +896,6 @@
           "/@ciudadtvcontenidosok"
         ]
       }
-    },
-    {
-      "nombre": "Agencia de Noticias San Luis",
-      "alias": [],
-      "dominio": "agenciasanluis.com",
-      "url": "https://agenciasanluis.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 13,
-      "notas": 12,
-      "ejemplo": "https://agenciasanluis.com/2026/10/21/1222926-evaluaron-la-salud-mental-de-mas-de-5-200-integrantes-de-la-policia-y-el-servicio-penitenciario/",
-      "primera_deteccion": "2026-11-17",
-      "ultima_deteccion": "2026-11-19",
-      "redes": {}
     },
     {
       "nombre": "Crónica",
@@ -1294,6 +1294,23 @@
       "redes": {}
     },
     {
+      "nombre": "Diario EL NORTE",
+      "alias": [],
+      "dominio": "diarioelnorte.com.ar",
+      "url": "https://diarioelnorte.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 6,
+      "notas": 5,
+      "ejemplo": "https://diarioelnorte.com.ar/anses-quienes-cobran-este-jueves-19-de-noviembre/",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-18",
+      "redes": {}
+    },
+    {
       "nombre": "FM de la Cordillera",
       "alias": [],
       "dominio": "fmdelacordillera.com.ar",
@@ -1342,20 +1359,20 @@
       }
     },
     {
-      "nombre": "Diario EL NORTE",
+      "nombre": "TN24",
       "alias": [],
-      "dominio": "diarioelnorte.com.ar",
-      "url": "https://diarioelnorte.com.ar",
-      "tipo": "Prensa gráfica",
+      "dominio": "tn24.com.ar",
+      "url": "https://tn24.com.ar",
+      "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 5,
-      "notas": 4,
-      "ejemplo": "https://diarioelnorte.com.ar/la-justicia-redujo-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual/",
-      "primera_deteccion": "2026-11-18",
-      "ultima_deteccion": "2026-11-18",
+      "publicaciones": 6,
+      "notas": 6,
+      "ejemplo": "https://www.tn24.com.ar/2026/11/nuevo-juicio-al-catequista-acusado-de-abuso-en-el-san-jose-obrero/",
+      "primera_deteccion": "2026-11-04",
+      "ultima_deteccion": "2026-11-04",
       "redes": {}
     },
     {
@@ -1373,23 +1390,6 @@
       "ejemplo": "https://elmonterizo.com/una-abuela-peleo-por-quedarse-con-su-nieto-cuando-el-papa-viaja-que-resolvio-la-camara",
       "primera_deteccion": "",
       "ultima_deteccion": "",
-      "redes": {}
-    },
-    {
-      "nombre": "TN24",
-      "alias": [],
-      "dominio": "tn24.com.ar",
-      "url": "https://tn24.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 5,
-      "notas": 5,
-      "ejemplo": "https://www.tn24.com.ar/2026/11/reconocieron-a-la-justicia-chaquena-como-pionera-durante-el-encuentro-nacional-de-mediacion-de-jufejus/",
-      "primera_deteccion": "2026-11-04",
-      "ultima_deteccion": "2026-11-04",
       "redes": {}
     },
     {
@@ -1725,6 +1725,41 @@
         "X": [
           "Dudosa: Dudosa: @MadrynAhora"
         ]
+      }
+    },
+    {
+      "nombre": "Perfil",
+      "alias": [],
+      "dominio": "perfil.com",
+      "url": "https://perfil.com",
+      "tipo": "Portal digital",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://www.perfil.com/sociedad/la-camara-de-casacion-le-redujo-de-16-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual-ac20c6M23Xzn",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-11-19",
+      "redes": {
+        "Facebook": [
+          "/perfilcom"
+        ],
+        "Instagram": [
+          "@perfilcom"
+        ],
+        "X": [
+          "@perfilcom"
+        ],
+        "YouTube": [
+          "/channel/perfilcom"
+        ]
+      },
+      "observaciones": "Sitio del medio, leído el 13/11/2026: https://perfil.com — «Dirección: California 2715, C1289ABI» (código postal de CABA)",
+      "_manual": {
+        "localidad": true,
+        "observaciones": true
       }
     },
     {
@@ -2297,6 +2332,23 @@
       "redes": {}
     },
     {
+      "nombre": "El Liberal",
+      "alias": [],
+      "dominio": "elliberal.com.ar",
+      "url": "https://elliberal.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.elliberal.com.ar/nota/98509/2026/11/casacion-confirmo-la-condena-contra-jose-alperovich-por-abuso-sexual-pero-le-redujo-la-pena-a-14-anos",
+      "primera_deteccion": "2026-11-19",
+      "ultima_deteccion": "2026-11-19",
+      "redes": {}
+    },
+    {
       "nombre": "El Mediador - Santa Cruz",
       "alias": [],
       "dominio": "elmediadortv.com.ar",
@@ -2719,8 +2771,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.mejorinformado.com/policiales/casacion-confirmo-condena-jose-alperovich-abuso-sexual-redujo-pena_1795048349",
@@ -2736,8 +2788,8 @@
       "tipo": "Portal digital",
       "localidad": "Neuquén",
       "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2834,41 +2886,6 @@
         ]
       },
       "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.pagina12.com.ar/contacto/ — «Venezuela 356, C1095AAH CABA»",
-      "_manual": {
-        "localidad": true,
-        "observaciones": true
-      }
-    },
-    {
-      "nombre": "Perfil",
-      "alias": [],
-      "dominio": "perfil.com",
-      "url": "https://perfil.com",
-      "tipo": "Portal digital",
-      "localidad": "Ciudad Autónoma de Buenos Aires",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
-      "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-19",
-      "redes": {
-        "Facebook": [
-          "/perfilcom"
-        ],
-        "Instagram": [
-          "@perfilcom"
-        ],
-        "X": [
-          "@perfilcom"
-        ],
-        "YouTube": [
-          "/channel/perfilcom"
-        ]
-      },
-      "observaciones": "Sitio del medio, leído el 13/11/2026: https://perfil.com — «Dirección: California 2715, C1289ABI» (código postal de CABA)",
       "_manual": {
         "localidad": true,
         "observaciones": true
@@ -3114,6 +3131,23 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Uno Entre Ríos",
+      "alias": [],
+      "dominio": "unoentrerios.com.ar",
+      "url": "https://unoentrerios.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.unoentrerios.com.ar/el-pais/confirmaron-la-condena-jose-alperovich-abuso-sexual-pero-le-redujeron-la-pena-14-anos-carcel-n10293070.html",
+      "primera_deteccion": "2026-11-19",
+      "ultima_deteccion": "2026-11-19",
       "redes": {}
     },
     {
