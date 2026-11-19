@@ -15,7 +15,7 @@
       "notas": 138,
       "ejemplo": "https://radio3cadenapatagonia.com.ar/condenaron-a-5-anos-de-prision-al-responsable-del-homicidio-de-jorge-nieves-en-comodoro/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "/radio3cp"
@@ -99,9 +99,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 108,
-      "notas": 100,
-      "ejemplo": "https://delmardigital.net/condenaron-a-mauro-pavei-a-cinco-anos-de-prision-por-el-crimen-de-jorge-david-nieves/",
+      "publicaciones": 109,
+      "notas": 101,
+      "ejemplo": "https://delmardigital.net/confirman-condena-de-7-anos-por-abuso-sexual-y-ordenan-registro-genetico/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -134,7 +134,7 @@
       "notas": 76,
       "ejemplo": "https://lapostacomodorense.com.ar/2026/11/18/condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves/",
       "primera_deteccion": "2026-11-17",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "Dudosa: Dudosa: salió del buscador; el sitio no linkea redes"
@@ -194,7 +194,7 @@
       "notas": 66,
       "ejemplo": "https://www.adnsur.com.ar/policiales---judiciales/condenaron-a-13-anos-de-prision-a-un-hombre-por-seis-hechos-de-abuso-sexual-intrafamiliar-en-comodoro_a6afe0555d6e1c370fea2976f",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "ADN Sur",
@@ -283,7 +283,7 @@
       "notas": 58,
       "ejemplo": "https://www.eldiarioweb.com/2026/11/comodoro-condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves/",
       "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "/eldiarioonline"
@@ -313,7 +313,7 @@
       "notas": 58,
       "ejemplo": "https://www.eqsnotas.com/judiciales/esquel--confirman-la-condena-a-siete-anos-y-seis-meses-de-prision-para-un-hombre-que-abuso-de-su-pareja_a6afdfc1cb1cad7c18c61cff4",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "/eqsnotas"
@@ -343,7 +343,7 @@
       "notas": 50,
       "ejemplo": "https://comodoro24.com.ar/condenaron-a-mauro-pavei-a-5-anos-de-prision-por-el-crimen-de-jorge-nieves/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "C24",
@@ -396,12 +396,12 @@
       "localidad": "Comodoro Rivadavia",
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 47,
       "notas": 43,
       "ejemplo": "https://argentarnoticias.com.ar/la-justicia-de-trelew-freno-el-reemplazo-paterno-una-abuela-no-ocupara-los-dias-de-cuidado-del-padre-cuando-viaje/",
       "primera_deteccion": "2026-10-30",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "Dudosa: Dudosa: el sitio linkea Radio del Sur 97.1: /RadioDelSur97.1"
@@ -427,11 +427,11 @@
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 40,
-      "notas": 39,
+      "publicaciones": 41,
+      "notas": 40,
       "ejemplo": "https://chubutline.com/crimen-de-nieves-en-comodoro-pavei-fue-declarado-culpable-de-homicidio-bajo-emocion-violenta/",
       "primera_deteccion": "2026-10-27",
-      "ultima_deteccion": "2026-10-27",
+      "ultima_deteccion": "2026-11-19",
       "redes": {}
     },
     {
@@ -476,7 +476,7 @@
       "notas": 33,
       "ejemplo": "https://radiochubut.com/chubut-mundo-trabajo/",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "/lu20radiochubut"
@@ -677,7 +677,7 @@
       "notas": 19,
       "ejemplo": "https://lu17.com/contenido/157894/trelew-limitan-el-tiempo-de-un-nino-con-su-abuela-durante-los-viajes-de-su-padre",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {}
     },
     {
@@ -894,7 +894,7 @@
       "notas": 12,
       "ejemplo": "https://agenciasanluis.com/2026/10/21/1222926-evaluaron-la-salud-mental-de-mas-de-5-200-integrantes-de-la-policia-y-el-servicio-penitenciario/",
       "primera_deteccion": "2026-11-17",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {}
     },
     {
@@ -1015,7 +1015,7 @@
       "notas": 11,
       "ejemplo": "https://revistaquorum.com.ar/2026/11/17/puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-el-fallo-que-puso-limites-al-cuidado-de-los-nietos/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Instagram": [
           "@revistaquorumok"
@@ -1048,6 +1048,36 @@
       }
     },
     {
+      "nombre": "ABC Diario",
+      "alias": [],
+      "dominio": "abcdiario.com.ar",
+      "url": "https://abcdiario.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (solo títulos)",
+      "publicaciones": 8,
+      "notas": 8,
+      "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-11-19",
+      "redes": {
+        "Facebook": [
+          "/abcdiarioar"
+        ],
+        "Instagram": [
+          "@abcdiarioar"
+        ],
+        "X": [
+          "@abcdiarioar"
+        ],
+        "YouTube": [
+          "Dudosa: Dudosa: @abcdiarioar"
+        ]
+      }
+    },
+    {
       "nombre": "La Opinión Austral",
       "alias": [],
       "dominio": "laopinionaustral.com.ar",
@@ -1061,7 +1091,7 @@
       "notas": 7,
       "ejemplo": "https://laopinionaustral.com.ar/comodoro-rivadavia/caso-ivan-torres-ya-excavaron-ocho-tumbas-en-el-cementerio-oeste-660437.html",
       "primera_deteccion": "2026-11-18",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "/opinionaustral"
@@ -1113,36 +1143,6 @@
       }
     },
     {
-      "nombre": "ABC Diario",
-      "alias": [],
-      "dominio": "abcdiario.com.ar",
-      "url": "https://abcdiario.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Cobertura provincial (Comodoro Rivadavia, Trelew y Rawson)",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (solo títulos)",
-      "publicaciones": 7,
-      "notas": 7,
-      "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-18",
-      "redes": {
-        "Facebook": [
-          "/abcdiarioar"
-        ],
-        "Instagram": [
-          "@abcdiarioar"
-        ],
-        "X": [
-          "@abcdiarioar"
-        ],
-        "YouTube": [
-          "Dudosa: Dudosa: @abcdiarioar"
-        ]
-      }
-    },
-    {
       "nombre": "Diario Judicial",
       "alias": [],
       "dominio": "diariojudicial.com",
@@ -1156,7 +1156,7 @@
       "notas": 7,
       "ejemplo": "https://www.diariojudicial.com/news-104900-sigue-la-organizacion-sobre-el-nuevo-regimen-penal-juvenil",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "/diariojudicial"
@@ -1181,7 +1181,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 7,
       "notas": 7,
-      "ejemplo": "https://diariosanrafael.com.ar/el-rally-de-san-rafael-tendra-su-22a-edicion-del-9-al-11-de-octubre/",
+      "ejemplo": "https://diariosanrafael.com.ar/por-que-estados-unidos-vota-siempre-un-martes-y-en-noviembre/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-12",
       "redes": {
@@ -1260,6 +1260,23 @@
       }
     },
     {
+      "nombre": "Border Periodismo",
+      "alias": [],
+      "dominio": "borderperiodismo.com",
+      "url": "https://borderperiodismo.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 6,
+      "notas": 5,
+      "ejemplo": "https://borderperiodismo.com/actualidad/argentina-volvio-a-quedar-al-margen-de-un-amplio-consenso-en-la-onu-y-se-abstuvo-ante-una-resolucion-sobre-violencia-de-genero/",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
+      "redes": {}
+    },
+    {
       "nombre": "Diario El Libertador",
       "alias": [],
       "dominio": "diarioellibertador.com.ar",
@@ -1323,6 +1340,23 @@
           "@lanotasanjuan"
         ]
       }
+    },
+    {
+      "nombre": "Diario EL NORTE",
+      "alias": [],
+      "dominio": "diarioelnorte.com.ar",
+      "url": "https://diarioelnorte.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 5,
+      "notas": 4,
+      "ejemplo": "https://diarioelnorte.com.ar/la-justicia-redujo-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual/",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-18",
+      "redes": {}
     },
     {
       "nombre": "El Monterizo",
@@ -1488,7 +1522,7 @@
       "notas": 2,
       "ejemplo": "https://www.clarin.com/policiales/confirman-condena-ex-gobernador-jose-alperovich-abuso-sexual-bajan-pena-16-14-anos_0_vIqLIBP61O.html",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "/clarincom"
@@ -1680,7 +1714,7 @@
       "notas": 2,
       "ejemplo": "",
       "primera_deteccion": "2026-11-17",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "Dudosa: Dudosa: /ChubutAhora"
@@ -1956,23 +1990,6 @@
       }
     },
     {
-      "nombre": "Border Periodismo",
-      "alias": [],
-      "dominio": "borderperiodismo.com",
-      "url": "https://borderperiodismo.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://borderperiodismo.com/actualidad/casacion-redujo-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual/",
-      "primera_deteccion": "2026-11-18",
-      "ultima_deteccion": "2026-11-18",
-      "redes": {}
-    },
-    {
       "nombre": "Caracol Radio",
       "alias": [],
       "dominio": "caracol.com.co",
@@ -2020,7 +2037,7 @@
       "notas": 1,
       "ejemplo": "https://www.contextosfueguinos.com/el-superior-tribunal-de-justicia-de-tierra-del-fuego-fue-sede-por-primera-vez-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales-del-pais/",
       "primera_deteccion": "2026-11-10",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {},
       "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.contextosfueguinos.com/ — «Ushuaia, Tierra del Fuego, Argentina»",
       "_manual": {
@@ -2077,23 +2094,6 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-10-23",
-      "redes": {}
-    },
-    {
-      "nombre": "Diario EL NORTE",
-      "alias": [],
-      "dominio": "diarioelnorte.com.ar",
-      "url": "https://diarioelnorte.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://diarioelnorte.com.ar/la-justicia-redujo-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual/",
-      "primera_deteccion": "2026-11-18",
-      "ultima_deteccion": "2026-11-18",
       "redes": {}
     },
     {
@@ -2638,13 +2638,13 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.lagaceta.com.ar/nota/1163138/politica/casacion-redujo-16-14-anos-condena-abuso-sexual-jose-alperovich.html",
       "primera_deteccion": "2026-11-18",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {}
     },
     {
@@ -2712,20 +2712,37 @@
       }
     },
     {
-      "nombre": "MejorInformado.com",
+      "nombre": "Mejor Informado",
       "alias": [],
       "dominio": "mejorinformado.com",
       "url": "https://mejorinformado.com",
       "tipo": "Portal digital",
-      "localidad": "Neuquén",
+      "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.mejorinformado.com/policiales/casacion-confirmo-condena-jose-alperovich-abuso-sexual-redujo-pena_1795048349",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-11-19",
+      "redes": {}
+    },
+    {
+      "nombre": "MejorInformado.com",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Neuquén",
+      "metodo": "Sin método automático",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
-      "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-11-01",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
       "redes": {
         "Facebook": [
           "/mejor.informado.diario"
@@ -2836,7 +2853,7 @@
       "notas": 1,
       "ejemplo": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
       "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {
         "Facebook": [
           "/perfilcom"
@@ -3001,13 +3018,13 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.sitioandino.com.ar/policiales/piden-condenar-4-acusados-abuso-sexual-una-fiesta-lujan-cuyo-n5734069",
       "primera_deteccion": "2026-11-18",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {}
     },
     {
@@ -3074,7 +3091,7 @@
       "notas": 1,
       "ejemplo": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-19",
       "redes": {},
       "observaciones": "Sitio del medio, leído el 13/11/2026: https://tn.com.ar — datos del sitio (addressLocality): «CABA»",
       "_manual": {
