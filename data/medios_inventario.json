@@ -11,9 +11,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 182,
-      "notas": 138,
-      "ejemplo": "https://radio3cadenapatagonia.com.ar/condenaron-a-5-anos-de-prision-al-responsable-del-homicidio-de-jorge-nieves-en-comodoro/",
+      "publicaciones": 183,
+      "notas": 139,
+      "ejemplo": "https://radio3cadenapatagonia.com.ar/epuyen-inauguro-su-primer-edificio-propio-para-el-juzgado-de-paz/",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-11-20",
       "redes": {
@@ -1035,9 +1035,9 @@
       "metodo": "Sin método automático",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por número)",
-      "publicaciones": 9,
-      "notas": 8,
-      "ejemplo": "https://www.justicia.ar/novedades/6422/2026/11/con-el-respaldo-de-los-camaristas-se-aprobo-la-ley-que-creo-la-camara-de-apelaciones-en-lo-laboral",
+      "publicaciones": 10,
+      "notas": 9,
+      "ejemplo": "https://www.justicia.ar/novedades/6494/2026/11/giacomone-y-banfi-inauguraron-el-nuevo-juzgado-de-paz-de-epuyen",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {},
@@ -1195,7 +1195,7 @@
       "localidad": "San Rafael",
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 7,
       "notas": 7,
       "ejemplo": "https://diariosanrafael.com.ar/por-que-estados-unidos-vota-siempre-un-martes-y-en-noviembre/",
@@ -1275,6 +1275,23 @@
           "/@primeraedicioncomar"
         ]
       }
+    },
+    {
+      "nombre": "TN24",
+      "alias": [],
+      "dominio": "tn24.com.ar",
+      "url": "https://tn24.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 7,
+      "notas": 7,
+      "ejemplo": "https://www.tn24.com.ar/2026/11/cote-lai-se-realizo-una-jornada-de-reflexion-y-prevencion-de-la-violencia-contra-las-mujeres/",
+      "primera_deteccion": "2026-11-04",
+      "ultima_deteccion": "2026-11-04",
+      "redes": {}
     },
     {
       "nombre": "Border Periodismo",
@@ -1357,23 +1374,6 @@
           "@lanotasanjuan"
         ]
       }
-    },
-    {
-      "nombre": "TN24",
-      "alias": [],
-      "dominio": "tn24.com.ar",
-      "url": "https://tn24.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 6,
-      "notas": 6,
-      "ejemplo": "https://www.tn24.com.ar/2026/11/nuevo-juicio-al-catequista-acusado-de-abuso-en-el-san-jose-obrero/",
-      "primera_deteccion": "2026-11-04",
-      "ultima_deteccion": "2026-11-04",
-      "redes": {}
     },
     {
       "nombre": "El Monterizo",
@@ -1724,6 +1724,36 @@
         ],
         "X": [
           "Dudosa: Dudosa: @MadrynAhora"
+        ]
+      }
+    },
+    {
+      "nombre": "mdz online",
+      "alias": [],
+      "dominio": "mdzol.com",
+      "url": "https://mdzol.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://www.mdzol.com/policiales/2026/11/20/abuso-sexual-y-venta-de-drogas-la-justicia-portena-ordeno-la-prision-preventiva-1996852.html",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-11-20",
+      "redes": {
+        "Facebook": [
+          "/DiarioMDZOnline"
+        ],
+        "Instagram": [
+          "@mdzol"
+        ],
+        "X": [
+          "@mdzol"
+        ],
+        "YouTube": [
+          "/@MDZOL"
         ]
       }
     },
@@ -2734,36 +2764,6 @@
       "redes": {}
     },
     {
-      "nombre": "mdz online",
-      "alias": [],
-      "dominio": "mdzol.com",
-      "url": "https://mdzol.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.mdzol.com/politica/2026/9/16/que-penas-podran-recibir-los-jovenes-el-nuevo-regimen-penal-juvenil-1981295.html",
-      "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-10-23",
-      "redes": {
-        "Facebook": [
-          "/DiarioMDZOnline"
-        ],
-        "Instagram": [
-          "@mdzol"
-        ],
-        "X": [
-          "@mdzol"
-        ],
-        "YouTube": [
-          "/@MDZOL"
-        ]
-      }
-    },
-    {
       "nombre": "Mejor Informado",
       "alias": [],
       "dominio": "mejorinformado.com",
@@ -3042,6 +3042,23 @@
       "ejemplo": "https://radiosintonia.com/las-mujeres-rurales-de-fuerteventura-2026-son-las-protagonistas-de-la-rosa-de-fuerteventura/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "revistacodigos.com",
+      "alias": [],
+      "dominio": "revistacodigos.com",
+      "url": "https://revistacodigos.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://revistacodigos.com/posadas-condena-abuso-sexual-nina-7-anos/",
+      "primera_deteccion": "2026-11-20",
+      "ultima_deteccion": "2026-11-20",
       "redes": {}
     },
     {
