@@ -1567,7 +1567,7 @@
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 2,
       "notas": 2,
-      "ejemplo": "https://www.clarin.com/policiales/confirman-condena-ex-gobernador-jose-alperovich-abuso-sexual-bajan-pena-16-14-anos_0_vIqLIBP61O.html",
+      "ejemplo": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
       "primera_deteccion": "2026-10-23",
       "ultima_deteccion": "2026-11-22",
       "redes": {
@@ -2700,6 +2700,23 @@
       "notas": 1,
       "ejemplo": "https://www.filo.news/noticia/2026/11/18/se-confirmo-la-condena-a-jose-alperovich-por-abuso-sexual-pero-le-redujeron-la-pena-de-16-a-14-anos",
       "primera_deteccion": "2026-11-21",
+      "ultima_deteccion": "2026-11-22",
+      "redes": {}
+    },
+    {
+      "nombre": "Impacto Castex Diario Digital",
+      "alias": [],
+      "dominio": "impactocastex.com.ar",
+      "url": "https://impactocastex.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://impactocastex.com.ar/la-pampa/19514/condena-por-abuso-sexual-no-ira-a-prision-en-santa-rosa",
+      "primera_deteccion": "2026-11-22",
       "ultima_deteccion": "2026-11-22",
       "redes": {}
     },
