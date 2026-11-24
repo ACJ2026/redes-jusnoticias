@@ -4353,7 +4353,7 @@
     "fecha": "2026-11-18",
     "texto": "⚖️🏛️ Epuyén tendrá su nue",
     "nota_id": null,
-    "me_gusta": 69,
+    "me_gusta": 70,
     "comentarios": 11,
     "compartidos": 21,
     "vistas": null,
@@ -4437,7 +4437,7 @@
     "fecha": "2026-11-19",
     "texto": "Giacomone y Banfi inaugura",
     "nota_id": null,
-    "me_gusta": 14,
+    "me_gusta": 15,
     "comentarios": 0,
     "compartidos": 8,
     "vistas": null,
@@ -4486,5 +4486,33 @@
     "propia": "Sí",
     "key": "tt-7710356680604667156",
     "url": "https://www.tiktok.com/@juschubut/video/7710356680604667156?utm_campaign=tt4d_open_api&utm_source=sbaw9943git83c8l01"
+  },
+  {
+    "red": "YouTube",
+    "cuenta": "Poder Judicial del Chubut",
+    "fecha": "2026-11-24",
+    "texto": "El juzgado de Paz de Epuyé",
+    "nota_id": null,
+    "me_gusta": 0,
+    "comentarios": 0,
+    "compartidos": null,
+    "vistas": 21,
+    "propia": "Sí",
+    "key": "yt-XTX4uUVOH3c",
+    "url": "https://www.youtube.com/watch?v=XTX4uUVOH3c"
+  },
+  {
+    "red": "YouTube",
+    "cuenta": "Poder Judicial del Chubut",
+    "fecha": "2026-11-24",
+    "texto": "La comunidad de Epuyén cel",
+    "nota_id": null,
+    "me_gusta": 1,
+    "comentarios": 0,
+    "compartidos": null,
+    "vistas": 58,
+    "propia": "Sí",
+    "key": "yt-jkV1hG70-4c",
+    "url": "https://www.youtube.com/watch?v=jkV1hG70-4c"
   }
 ]

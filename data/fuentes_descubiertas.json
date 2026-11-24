@@ -495,17 +495,6 @@
     "wp_revisado": "2026-11-10"
   },
   {
-    "nombre": "Aire Libre FM 96.3",
-    "dominio": "airelibre.com.ar",
-    "primera_deteccion": "2026-11-10",
-    "ultima_deteccion": "2026-11-10",
-    "detecciones": 1,
-    "ultima_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQkZ0TkhrMlR2c3lPSG5CaE1zYVVPRmM1XzZjLTdfaGtVWExwdFFqdkFwYXFIRFl4V1ZveXFfQmQ2OUwtbkVVeV92bzBzWUdzOUVOSFp1WTlKSFZFc3UwVDA1YjVMNDk0U19LU2Jncnk4ejVTNmRYYmlWb3oyWnlzTmFaZFNjekI2NmhRY2wwZ09zWkh3ZkdnZ3U5Rk1NSVZzLW02QnJYbFNOTmhfQzZqREVRV293eTRHczYzaUZCeF9WWmdtQkwtbzBYcGE1TDg?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-10"
-  },
-  {
     "nombre": "diariocronica.com.ar",
     "dominio": "diariocronica.com.ar",
     "primera_deteccion": "2026-10-28",
@@ -834,28 +823,6 @@
     "estado": "seguimiento_google_news"
   },
   {
-    "nombre": "Rio Negro",
-    "dominio": "rionegro.com.ar",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-22",
-    "detecciones": 52,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNUnFFNDJjUmkyZy1penJabmNSdTRMM1BfS0NUVUJpMkpjcEhVdS13bVh3dWFYMTNBYXdyNV9qUXR4S29QSV9JSy12bXJiNDR6MEM0b3N0UmlzQVNqamp4MnRNV3BtSlNZWlhSSVhPZEZtVm01TVZYSERnOXBmeVRobUpNR0ZQbEVPczVPc2xZT2hlLVVzNGMwa3pkV1VvMzdlY0haSlh0aEtNMXVRTmlZdlltSk9SMWtJX05STngtSUJRMHZpVVNlMzJBNktWNW0tNWJHNDJ1VnE0ZnhTbW9n0gHnAUFVX3lxTE82emNKTXpVSGo2elJRcWRDVnd6Rk1OVEQtWHpINmVPQnFrZWZzV1Uwc1RrbXhUS01NOUw4WGJzRDRwdHZvNUFyV2dqNmVnSzJMREUtak0tRTl3bHp6X2l2ejlmdjFyejlSMTN6SGlEZml6R25KSHFQQXZRUlVIMzQ1WnYxMVI1UWd0Y3pqUFV1ajN6Y0UxWWt4ay1QOWtNSXVSeUhnUlVuUFhIdFpmeWVIR3lZUzNCSGxZWGJuS3ROY216NUYyR3JuYXQ1YkZzV04tOG54S2pqYTVZamRvT0s3TG1VNnBtQQ?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "Border Periodismo",
-    "dominio": "borderperiodismo.com",
-    "primera_deteccion": "2026-11-18",
-    "ultima_deteccion": "2026-11-23",
-    "detecciones": 14,
-    "ultima_url": "https://borderperiodismo.com/actualidad/casacion-redujo-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual/",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-19"
-  },
-  {
     "nombre": "El Destape",
     "dominio": "eldestapeweb.com",
     "primera_deteccion": "2026-11-21",
@@ -902,20 +869,42 @@
     "dominio": "abcdiario.com.ar",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 132,
+    "detecciones": 134,
     "ultima_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPd3FURWlWblhKb1FaRjRlM3FpZm5HVDVoeFh2WGxCMWhoM09xS3dhUkdtV1BzVnFXVW9jUHZsQVRXWm5WX2ppU3ZaTkZ6UVNLZUxUOGZURy0wYVZPVXR4VzAzdy1yRzM5LTlSbmowelF2Y3hjZUwzZ1A1UTVZblg4NktrNlZ3Y0RPWWlseXFQWjBKX1F2VXFCOW1BUFhTNmFMeHZSLWdjU3B3cEd4QUo5bkFuRmNmN2t2MmRSWXlmSWJyS2dtbERjU3NSQXJKa1RmRUtCZVFBYVBvcUVocVp4c0xJbFA1WEpjOXgxSl9R0gHkAUFVX3lxTE9vcUgxeDdwTklUZDIxZUNTdlJBQk14cmFqcGlrbnVaaC1JRkJ6VFBGWGVrNUpsb2Z0OXJsaTVwUTZEalBXM3M1RllRTlc4ank0bTYyS0I2Zm1HWUZoaWItWEhMUWlkNk9nVnpCWnlvdWdCLWY4ZFJkSzZwemZuTU83V2RXUUx6RG5XbUFaMjFZZUg5STZJZl9EakpiZXppOVRSSmxXTEhGNUJ1aGhmOTVfUHhGVHA0WjRWUHBVbm9tRV9JNVpFdDNXLTFoZFJGbDdnQlZUVzEtYzBzYkNsTnRzYXdxcg?oc=5",
     "estado": "seguimiento_google_news",
     "wp": false,
     "wp_revisado": "2026-11-22"
   },
   {
+    "nombre": "Aire Libre FM 96.3",
+    "dominio": "airelibre.com.ar",
+    "primera_deteccion": "2026-11-10",
+    "ultima_deteccion": "2026-11-24",
+    "detecciones": 2,
+    "ultima_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQkZ0TkhrMlR2c3lPSG5CaE1zYVVPRmM1XzZjLTdfaGtVWExwdFFqdkFwYXFIRFl4V1ZveXFfQmQ2OUwtbkVVeV92bzBzWUdzOUVOSFp1WTlKSFZFc3UwVDA1YjVMNDk0U19LU2Jncnk4ejVTNmRYYmlWb3oyWnlzTmFaZFNjekI2NmhRY2wwZ09zWkh3ZkdnZ3U5Rk1NSVZzLW02QnJYbFNOTmhfQzZqREVRV293eTRHczYzaUZCeF9WWmdtQkwtbzBYcGE1TDg?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-10"
+  },
+  {
     "nombre": "Argentar Noticias",
     "dominio": "argentarnoticias.com.ar",
     "primera_deteccion": "2026-10-30",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 55,
+    "detecciones": 57,
     "ultima_url": "https://argentarnoticias.com.ar/la-justicia-de-trelew-freno-el-reemplazo-paterno-una-abuela-no-ocupara-los-dias-de-cuidado-del-padre-cuando-viaje/",
     "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Border Periodismo",
+    "dominio": "borderperiodismo.com",
+    "primera_deteccion": "2026-11-18",
+    "ultima_deteccion": "2026-11-24",
+    "detecciones": 15,
+    "ultima_url": "https://borderperiodismo.com/actualidad/casacion-redujo-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual/",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-19"
   },
   {
     "nombre": "canal10",
@@ -933,7 +922,7 @@
     "dominio": "clarin.com",
     "primera_deteccion": "2026-10-23",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 114,
+    "detecciones": 116,
     "ultima_url": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -944,7 +933,7 @@
     "dominio": "comodoro24.com.ar",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 195,
+    "detecciones": 204,
     "ultima_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNOF9YMlZEdFZZZDczdV9XYi1yYWhWWUptQllZbnlEeVp1ZjNXN1NaZWt2eFBSMmpQQUhKRFQ0Qk80MEpoNjQzV2REeWN0ZW04WXQwQVdBdHZubGJLalNJZXdMWm1NVlUtVTRUcUxhNTBTZ254VXBYSE5jck1WOHZwQ2dNbnEtcU5ySmR2WnRWd2RjdEdxY2NwYXdaVFdlS2ZMeExqWXRVSTFfdTZuNEptZEd2bDM4QQ?oc=5",
     "estado": "seguimiento_google_news"
   },
@@ -964,19 +953,19 @@
     "dominio": "diariojudicial.com",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 392,
+    "detecciones": 396,
     "ultima_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQZm1QYUZOc1o5TUlaanVmNnhiRlN6b0l2MmsyUGlONGxFQ2piRmxFZkRDc0lsMmZGUERBTUM2czVxWnhGODRtUDNVcGdTUWlKYkZBM3U2NE4tWDlfNW1aNHJFLWlwRkRCa201NmFCdy1PYW14bG1kdGY4cUJLQnF0NThiVGpvcEgtZ2JCRHJsREpDQ01IdDBrMEgwNXRYT0daelhVNVlTdVRtTkVNU0p5NVJoRmM?oc=5",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-10-23"
+    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "El Diario Web",
     "dominio": "eldiarioweb.com",
     "primera_deteccion": "2026-10-22",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 86,
-    "ultima_url": "https://www.eldiarioweb.com/2026/11/comodoro-condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves/",
+    "detecciones": 88,
+    "ultima_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOcDZIdG93MmdCSzIzdWkxaUh2VG9VeklGektKWjItR05vRm5ON1M0WlNWQXFLVUJhbTl0TW0tZ3FoclJXbnR1VXkwM2hiVVZHVUgzbXJ0dWxmcU9DTzh4RHZudGNfS2JMWS00WHVoR203MDR2ZEwyWUgxcDBrNDBFVXRNdmMwOHkyeFZXaHBOejdIazdQTDdjSmJqNDRuZkstWktvdDVoREpKRmp3LWlEc2VaUnpKTl91UXo4Sw?oc=5",
     "estado": "seguimiento_google_news"
   },
   {
@@ -984,7 +973,7 @@
     "dominio": "elgong.cl",
     "primera_deteccion": "2026-11-24",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 1,
+    "detecciones": 2,
     "ultima_url": "https://elgong.cl/carabineros-detiene-en-puerto-montt-a-conductor-de-furgon-escolar-con-condena-previa-por-abuso-sexual-a-menor-de-edad/",
     "estado": "seguimiento_google_news"
   },
@@ -993,7 +982,7 @@
     "dominio": "elliberal.com.ar",
     "primera_deteccion": "2026-11-19",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 13,
+    "detecciones": 14,
     "ultima_url": "https://www.elliberal.com.ar/nota/98509/2026/11/casacion-confirmo-la-condena-contra-jose-alperovich-por-abuso-sexual-pero-le-redujo-la-pena-a-14-anos",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -1004,29 +993,29 @@
     "dominio": "elvalleonline.com.ar",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 27,
+    "detecciones": 28,
     "ultima_url": "https://www.elvalleonline.com.ar/una-abuela-pretendia-ocupar-el-lugar-del-padre-y-la-justicia-puso-limites-por-pedido-de-la-madre/",
     "estado": "seguimiento_google_news",
     "wp": true,
-    "wp_revisado": "2026-10-23"
+    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "EQS Notas",
     "dominio": "eqsnotas.com",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 554,
+    "detecciones": 557,
     "ultima_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPYmRkc2QtbjJQenFuUjMxaDRENVM5ay11VGdCajZPejBhQWl1SS1wVUt0VXFheVAwdFpPOGdhRDJMR1hkT2hsazBYTXJWUWxGWFNIWFRsZm1qRUtmS242dXVERDJFWHRxdjJaaFlHdU53OWtxamJDQk9BNUdrbHBMVVZPTUJoMVEwUDVvNXl3YWRHcWR1WlpXaVpudUhaazVlU1didTI3VTN3djJBNkl3cVd3VDlOaWNzdkFnazdMVTlVVnpnenpadzRFWDk1UktvajF3OGFieUFsTHlrZjVLNTBKN1pjcjR3WlHSAfgBQVVfeXFMTmVsc09DU011NXE1by1QN2ZrNGhFM1lfT1lPSU1OOVJJSlJSTnFUUXJYU3B2Y3gtWHlSQ3hYVmF4MWRHZUt5bVdYRnVqV2VpSUtmVlhCaGtsWFpJbl9WNm01V00yLWJ0bjBzanZOOHk1dVQxZVhlLS1iempBdHlfSkhDNHhLbFFiU2ZTbWxSTHoyREMweWdqalpON0x0MU5acGZrYjJyOC1BenpxZTAwemhMbWhSSkNtNjRrd2dna2J4TFFHdnh5SENzaExod2Y5bDR6Wlc5eEM0VjRTSW5ZXzRZeFdDSzJPbWZEQTl2Wmt6UVNqTnFsTC0?oc=5",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-10-23"
+    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "Impacto Castex Diario Digital",
     "dominio": "impactocastex.com.ar",
     "primera_deteccion": "2026-11-22",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 2,
+    "detecciones": 3,
     "ultima_url": "https://impactocastex.com.ar/la-pampa/19514/condena-por-abuso-sexual-no-ira-a-prision-en-santa-rosa",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -1037,16 +1026,18 @@
     "dominio": "justiciadeprimera.com",
     "primera_deteccion": "2026-11-23",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 3,
+    "detecciones": 4,
     "ultima_url": "https://justiciadeprimera.com/2026/11/22/la-justicia-limito-el-tiempo-que-una-abuela-puede-cuidar-a-su-nieto-durante-ausencias-laborales-del-padre/",
-    "estado": "seguimiento_google_news"
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "La Opinión Austral",
     "dominio": "laopinionaustral.com.ar",
     "primera_deteccion": "2026-11-18",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 16,
+    "detecciones": 17,
     "ultima_url": "https://laopinionaustral.com.ar/comodoro-rivadavia/condenaron-a-mauro-pavei-a-cinco-anos-de-prision-por-matar-de-tres-disparos-a-jorge-nieves-en-comodoro-733541.html",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -1057,7 +1048,7 @@
     "dominio": "lapostacomodorense.com.ar",
     "primera_deteccion": "2026-11-17",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 64,
+    "detecciones": 66,
     "ultima_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPdTlieWo1Nl9BejVRRGpxUkpfY21QU3pfQ2xDQjVBbHpSMFVxVDNSMTI3RFZ1aXU0MWdpNGVXalcyNU5uZHZ4aXVoUlNrcXh0SHlFcHkxNVh5LXVmN3R2dmIyS243QmxFck53alZReV9XQ2k5Y0l4anZrdGx3R0RCZUhsR2Qyalk0M2Y4ZFlQeFlPNFhsVGpFeDVZQUEzWXhJdk1DVlZLOEQ2a1FnUEZFN19KMHA4MHZuVjgzM1haekNJM2ttUlRzT0lfUUNjcllPU09RRndpMFRUTXJNOTRJ?oc=5",
     "estado": "seguimiento_google_news"
   },
@@ -1066,18 +1057,18 @@
     "dominio": "lu17.com",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 573,
+    "detecciones": 574,
     "ultima_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPMUJlMTlFNkJIaERLSnVyYy1JYlUwZG9hSVRNQU9PNGpVcE1SOWJIbkpfZ0d2V0NLUmpWdm1ES1lmTUR1WWFwVDY4WXRzU3NPek81Y05VMU1GMWR0NzFuR3VMeVo3SjdKLXNaSWxxLUJQYWNmY1JkeWlIbkZ6clhPXzhaOElDMHB4d01TY0pjQWU1SThwamEzLUNlOE5yVlMxMWVGMEotMUNEMWdsa2h5WDY0UjdZaFoycFpfdUhyZ3Bidw?oc=5",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-10-23"
+    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "Madryn Ahora",
     "dominio": "madrynahora.com",
     "primera_deteccion": "2026-11-17",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 22,
+    "detecciones": 23,
     "ultima_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPOGFOeWdzaEZnajdnVjBUWnpGRzRETTZ5YkYtMV9uaWJQM1ktT0tiTEhNV0R1TjQycHVVTjdGQmNPajhvc0M0SF9xQ3ZaWDVpdWZLaVBQR1Z2THN5VDVqTXNSSVllNGFXYVFVNDAtbjRPMjM2UE1nYm9xamhFQXd4dlpfcVBuUkdIQWdSUndUSjRuWm40YVR5SV8tc1lUMWU2S0h5V29FRlZLdjZ0TzVxdFZVYUJjN2FGTmxaVjN5d2VFczBzcnlkV1dlWHo1c1BRbGkzcEFiWS15d9IB1gFBVV95cUxNZElOd2JJY1V3cGFaQVZsSS1FcnJPczJYRUNaY0d3MUh5Nzc1QTlBWVk5cHIwbGNsNXAzaEZBVHNYU2syOEhmaFdxcjVrOXhkbUZHU1Vta2Uwb3RkLTJjcmRMejZFQnA5RGRlMEhzbGJMc3Y0LTQ1MWJDT0dOcGQ2MmxCZTU3WEppaWNOamxxb2VsME01a0J6OThQN0tlY19JTEgxQWRHZ0lBbi1SQmp6RERXbGFqNnpCcEo1cjh5RkdRTzZ6U3dwZkFPd08xb0VlMWJCbzRR?oc=5",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -1088,11 +1079,11 @@
     "dominio": "mdzol.com",
     "primera_deteccion": "2026-10-22",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 25,
+    "detecciones": 26,
     "ultima_url": "https://www.mdzol.com/policiales/2026/11/20/abuso-sexual-y-venta-de-drogas-la-justicia-portena-ordeno-la-prision-preventiva-1996852.html",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-10-23"
+    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "Mejor Informado",
@@ -1103,25 +1094,25 @@
     "ultima_url": "https://www.mejorinformado.com/policiales/casacion-confirmo-condena-jose-alperovich-abuso-sexual-redujo-pena_1795048349",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-10-23"
+    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "Perfil",
     "dominio": "perfil.com",
     "primera_deteccion": "2026-10-23",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 177,
+    "detecciones": 178,
     "ultima_url": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-10-23"
+    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "Primera Fuente",
     "dominio": "primerafuente.com.ar",
     "primera_deteccion": "2026-11-20",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 12,
+    "detecciones": 13,
     "ultima_url": "https://www.primerafuente.com.ar/noticias/133635/confirmaron-condena-alperovich-abuso-sexual-agravado-redujeron-dos-anos-pena",
     "estado": "seguimiento_google_news",
     "wp": false,
@@ -1132,7 +1123,7 @@
     "dominio": "radio3cadenapatagonia.com.ar",
     "primera_deteccion": "2026-10-22",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 91,
+    "detecciones": 96,
     "ultima_url": "https://radio3cadenapatagonia.com.ar/el-stj-de-chubut-participo-del-foro-de-directores-y-responsables-de-bibliotecas-judiciales/",
     "estado": "seguimiento_google_news"
   },
@@ -1141,11 +1132,22 @@
     "dominio": "revistaquorum.com.ar",
     "primera_deteccion": "2026-10-21",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 37,
+    "detecciones": 38,
     "ultima_url": "https://revistaquorum.com.ar/2026/11/17/puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-el-fallo-que-puso-limites-al-cuidado-de-los-nietos/",
     "estado": "seguimiento_google_news",
     "wp": true,
-    "wp_revisado": "2026-10-23"
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Rio Negro",
+    "dominio": "rionegro.com.ar",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-24",
+    "detecciones": 53,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNUnFFNDJjUmkyZy1penJabmNSdTRMM1BfS0NUVUJpMkpjcEhVdS13bVh3dWFYMTNBYXdyNV9qUXR4S29QSV9JSy12bXJiNDR6MEM0b3N0UmlzQVNqamp4MnRNV3BtSlNZWlhSSVhPZEZtVm01TVZYSERnOXBmeVRobUpNR0ZQbEVPczVPc2xZT2hlLVVzNGMwa3pkV1VvMzdlY0haSlh0aEtNMXVRTmlZdlltSk9SMWtJX05STngtSUJRMHZpVVNlMzJBNktWNW0tNWJHNDJ1VnE0ZnhTbW9n0gHnAUFVX3lxTE82emNKTXpVSGo2elJRcWRDVnd6Rk1OVEQtWHpINmVPQnFrZWZzV1Uwc1RrbXhUS01NOUw4WGJzRDRwdHZvNUFyV2dqNmVnSzJMREUtak0tRTl3bHp6X2l2ejlmdjFyejlSMTN6SGlEZml6R25KSHFQQXZRUlVIMzQ1WnYxMVI1UWd0Y3pqUFV1ajN6Y0UxWWt4ay1QOWtNSXVSeUhnUlVuUFhIdFpmeWVIR3lZUzNCSGxZWGJuS3ROY216NUYyR3JuYXQ1YkZzV04tOG54S2pqYTVZamRvT0s3TG1VNnBtQQ?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "Sitio Andino",
@@ -1170,11 +1172,20 @@
     "wp_revisado": "2026-11-11"
   },
   {
+    "nombre": "Tiempo de San Juan",
+    "dominio": "tiempodesanjuan.com",
+    "primera_deteccion": "2026-11-24",
+    "ultima_deteccion": "2026-11-24",
+    "detecciones": 1,
+    "ultima_url": "https://www.tiempodesanjuan.com/policiales/dieron-vuelta-un-fallo-por-abuso-sexual-volvio-a-determinacion-de-pena-y-el-responsable-fue-condenado-a-9-anos_1795004228",
+    "estado": "seguimiento_google_news"
+  },
+  {
     "nombre": "Todo Noticias",
     "dominio": "tn.com.ar",
     "primera_deteccion": "2026-10-28",
     "ultima_deteccion": "2026-11-24",
-    "detecciones": 64,
+    "detecciones": 65,
     "ultima_url": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
     "estado": "seguimiento_google_news",
     "wp": false,
