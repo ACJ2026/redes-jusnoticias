@@ -277,11 +277,11 @@
       "tipo": "Portal digital",
       "localidad": "Puerto Madryn",
       "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 63,
       "notas": 59,
-      "ejemplo": "https://www.eldiarioweb.com/2026/11/giacomone-y-banfi-inauguraron-el-nuevo-juzgado-de-paz-de-epuyen/",
+      "ejemplo": "https://www.eldiarioweb.com/2026/11/comodoro-condena-de-5-anos-de-prision-por-el-asesinato-de-jorge-david-nieves/",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-11-25",
       "redes": {
@@ -427,9 +427,9 @@
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 41,
-      "notas": 40,
-      "ejemplo": "https://chubutline.com/crimen-de-nieves-en-comodoro-pavei-fue-declarado-culpable-de-homicidio-bajo-emocion-violenta/",
+      "publicaciones": 42,
+      "notas": 41,
+      "ejemplo": "https://chubutline.com/convocatoria-publica-provincial-de-adopcion-para-trelew-y-puerto-madryn/",
       "primera_deteccion": "2026-10-27",
       "ultima_deteccion": "2026-11-19",
       "redes": {}
@@ -1078,6 +1078,23 @@
       }
     },
     {
+      "nombre": "Diario EL NORTE",
+      "alias": [],
+      "dominio": "diarioelnorte.com.ar",
+      "url": "https://diarioelnorte.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 8,
+      "notas": 6,
+      "ejemplo": "https://diarioelnorte.com.ar/detuvieron-a-un-hombre-de-46-anos-en-una-causa-por-abuso-sexual/",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-18",
+      "redes": {}
+    },
+    {
       "nombre": "La Opinión Austral",
       "alias": [],
       "dominio": "laopinionaustral.com.ar",
@@ -1157,23 +1174,6 @@
       "ejemplo": "https://www.tn24.com.ar/2026/11/resistencia-detuvieron-a-un-hombre-por-el-presunto-abuso-sexual-de-una-menor/",
       "primera_deteccion": "2026-11-04",
       "ultima_deteccion": "2026-11-04",
-      "redes": {}
-    },
-    {
-      "nombre": "Diario EL NORTE",
-      "alias": [],
-      "dominio": "diarioelnorte.com.ar",
-      "url": "https://diarioelnorte.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 7,
-      "notas": 6,
-      "ejemplo": "https://diarioelnorte.com.ar/abuso-sexual-infantil-alerta-por-7-de-cada-10-testimonios/",
-      "primera_deteccion": "2026-11-18",
-      "ultima_deteccion": "2026-11-18",
       "redes": {}
     },
     {
@@ -1339,7 +1339,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 6,
       "notas": 5,
-      "ejemplo": "https://flipr.com.ar/rio-negro/bariloche/elcordillerano/convocan-a-marchar-en-bariloche-por-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-las-mujeres/",
+      "ejemplo": "https://flipr.com.ar/mendoza/diariouno/el-crimen-de-un-finquero-en-san-martin-hay-2-acusados-frente-al-jurado-popular/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-18",
       "redes": {
@@ -2407,8 +2407,8 @@
       "tipo": "Portal digital",
       "localidad": "Mendoza",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2734,7 +2734,7 @@
       "notas": 1,
       "ejemplo": "https://impactocastex.com.ar/la-pampa/19514/condena-por-abuso-sexual-no-ira-a-prision-en-santa-rosa",
       "primera_deteccion": "2026-11-22",
-      "ultima_deteccion": "2026-11-24",
+      "ultima_deteccion": "2026-11-25",
       "redes": {}
     },
     {
@@ -3261,7 +3261,7 @@
       "notas": 1,
       "ejemplo": "",
       "primera_deteccion": "2026-11-10",
-      "ultima_deteccion": "2026-11-24",
+      "ultima_deteccion": "2026-11-25",
       "redes": {}
     },
     {
