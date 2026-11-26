@@ -4451,7 +4451,7 @@
     "fecha": "2026-11-20",
     "texto": "La comunidad de Epuyén cel",
     "nota_id": null,
-    "me_gusta": 67,
+    "me_gusta": 68,
     "comentarios": 7,
     "compartidos": 9,
     "vistas": null,
@@ -4496,7 +4496,7 @@
     "me_gusta": 2,
     "comentarios": 0,
     "compartidos": null,
-    "vistas": 121,
+    "vistas": 127,
     "propia": "Sí",
     "key": "yt-XTX4uUVOH3c",
     "url": "https://www.youtube.com/watch?v=XTX4uUVOH3c"
@@ -4510,7 +4510,7 @@
     "me_gusta": 5,
     "comentarios": 0,
     "compartidos": null,
-    "vistas": 319,
+    "vistas": 323,
     "propia": "Sí",
     "key": "yt-jkV1hG70-4c",
     "url": "https://www.youtube.com/watch?v=jkV1hG70-4c"
@@ -4562,5 +4562,33 @@
     "url": "https://www.instagram.com/p/DgLoopTTvTi/",
     "cuenta_url": "https://www.instagram.com/canal12web/",
     "carga": "búsqueda en redes de otras cuentas (título de la nota identificado)"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-26",
+    "texto": "⚖️🐧 Causa Pingüinos: el S",
+    "nota_id": null,
+    "me_gusta": 0,
+    "comentarios": 0,
+    "compartidos": 1,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1804139208378333",
+    "url": "https://www.facebook.com/1769483335177254/posts/1804139208378333"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-26",
+    "texto": "El Poder Judicial del Chub",
+    "nota_id": null,
+    "me_gusta": 1,
+    "comentarios": 0,
+    "compartidos": 0,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1804080725050848",
+    "url": "https://www.facebook.com/1769483335177254/posts/1804080725050848"
   }
 ]

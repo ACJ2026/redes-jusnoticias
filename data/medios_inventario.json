@@ -41,9 +41,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 128,
-      "notas": 103,
-      "ejemplo": "https://canal12web.com/dia-nacional-de-la-defensa-civil-por-que-se-conmemora-cada-23-de-noviembre/",
+      "publicaciones": 129,
+      "notas": 104,
+      "ejemplo": "https://canal12web.com/punta-tombo-la-justicia-confirmo-la-condena-por-destruir-nidos-y-matar-pinguinos/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-23",
       "redes": {
@@ -99,9 +99,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (texto comparado)",
-      "publicaciones": 113,
-      "notas": 105,
-      "ejemplo": "https://delmardigital.net/violencia-de-genero-advierten-sobre-el-impacto-de-la-vulnerabilidad-economica-en-las-mujeres/",
+      "publicaciones": 114,
+      "notas": 106,
+      "ejemplo": "https://delmardigital.net/el-stj-rechazo-la-impugnacion-de-la-regina-y-confirmo-su-condena-por-maltrato-animal-y-dano-ambiental/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -130,9 +130,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 90,
-      "notas": 77,
-      "ejemplo": "https://lapostacomodorense.com.ar/2026/11/16/la-camara-de-trelew-limito-el-regimen-de-visitas-de-una-abuela-y-ratifico-que-no-puede-sustituir-al-padre/",
+      "publicaciones": 91,
+      "notas": 78,
+      "ejemplo": "https://lapostacomodorense.com.ar/2026/11/26/quedo-firme-la-condena-por-la-muerte-de-pinguinos-en-punta-tombo/",
       "primera_deteccion": "2026-11-17",
       "ultima_deteccion": "2026-11-26",
       "redes": {
@@ -221,9 +221,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 73,
-      "notas": 70,
-      "ejemplo": "https://noticiaspmy.com/banfi-encabezo-una-capacitacion-sobre-justicia-restaurativa-y-responsabilidad-penal-juvenil/",
+      "publicaciones": 74,
+      "notas": 71,
+      "ejemplo": "https://noticiaspmy.com/causa-pinguinos-el-stj-declaro-inadmisible-la-impugnacion-de-la-regina-y-quedo-ratificada-la-condena-por-maltrato-animal-y-dano-ambiental/",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
@@ -235,6 +235,36 @@
         ],
         "Instagram": [
           "@pmynoticias"
+        ]
+      }
+    },
+    {
+      "nombre": "El Diario Web",
+      "alias": [],
+      "dominio": "eldiarioweb.com",
+      "url": "https://eldiarioweb.com",
+      "tipo": "Portal digital",
+      "localidad": "Puerto Madryn",
+      "metodo": "WordPress (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
+      "publicaciones": 64,
+      "notas": 60,
+      "ejemplo": "https://www.eldiarioweb.com/2026/11/el-superior-tribunal-confirmo-la-condena-por-la-masacre-de-pinguinos-en-punta-tombo/",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {
+        "Facebook": [
+          "/eldiarioonline"
+        ],
+        "Instagram": [
+          "@eldiarioweb"
+        ],
+        "X": [
+          "@ElDiario_web"
+        ],
+        "YouTube": [
+          "/user/diariodemadryn"
         ]
       }
     },
@@ -266,36 +296,6 @@
         ],
         "YouTube": [
           "/channel/UCnmDT7eGbQ_3V_retGGcGYA"
-        ]
-      }
-    },
-    {
-      "nombre": "El Diario Web",
-      "alias": [],
-      "dominio": "eldiarioweb.com",
-      "url": "https://eldiarioweb.com",
-      "tipo": "Portal digital",
-      "localidad": "Puerto Madryn",
-      "metodo": "WordPress (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS)",
-      "publicaciones": 63,
-      "notas": 59,
-      "ejemplo": "https://www.eldiarioweb.com/2026/11/giacomone-y-banfi-inauguraron-el-nuevo-juzgado-de-paz-de-epuyen/",
-      "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-11-26",
-      "redes": {
-        "Facebook": [
-          "/eldiarioonline"
-        ],
-        "Instagram": [
-          "@eldiarioweb"
-        ],
-        "X": [
-          "@ElDiario_web"
-        ],
-        "YouTube": [
-          "/user/diariodemadryn"
         ]
       }
     },
@@ -339,9 +339,9 @@
       "metodo": "WordPress (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 55,
-      "notas": 50,
-      "ejemplo": "https://comodoro24.com.ar/condenaron-a-mauro-pavei-a-5-anos-de-prision-por-el-crimen-de-jorge-nieves/",
+      "publicaciones": 56,
+      "notas": 51,
+      "ejemplo": "https://comodoro24.com.ar/causa-pinguinos-el-stj-rechazo-el-recurso-de-la-regina-y-quedo-firme-su-condena/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-26",
       "redes": {
@@ -472,9 +472,9 @@
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 36,
-      "notas": 34,
-      "ejemplo": "https://vivotrelew.com/puerto-madryn-confirmaron-la-condena-a-18-anos-de-prision-para-un-hombre-que-abuso-de-su-hija-durante-17-anos/",
+      "publicaciones": 37,
+      "notas": 35,
+      "ejemplo": "https://vivotrelew.com/muerte-de-pinguinos-en-punta-tombo-ratificaron-la-condena-por-maltrato-animal-y-dano-ambiental/",
       "primera_deteccion": "2026-11-10",
       "ultima_deteccion": "2026-11-10",
       "redes": {
@@ -492,6 +492,39 @@
         ],
         "TikTok": [
           "@vivotrelew"
+        ]
+      }
+    },
+    {
+      "nombre": "El Chubut",
+      "alias": [],
+      "dominio": "elchubut.com.ar",
+      "url": "https://elchubut.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Trelew",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 35,
+      "notas": 33,
+      "ejemplo": "https://www.elchubut.com.ar/regionales/2026-11-26-13-52-0-declararon-inadmisible-la-impugnacion-y-quedo-ratificada-la-condena-por-maltrato-animal-y-dano-ambiental",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-11-20",
+      "redes": {
+        "Facebook": [
+          "/diarioelchubut"
+        ],
+        "Instagram": [
+          "@diarioelchubut"
+        ],
+        "X": [
+          "@elchubut"
+        ],
+        "YouTube": [
+          "@DiarioELCHUBUTwebTV"
+        ],
+        "TikTok": [
+          "@diarioelchubut"
         ]
       }
     },
@@ -522,39 +555,6 @@
         ],
         "YouTube": [
           "/channel/UC6js59w4zjafpwmxIPCilsg"
-        ]
-      }
-    },
-    {
-      "nombre": "El Chubut",
-      "alias": [],
-      "dominio": "elchubut.com.ar",
-      "url": "https://elchubut.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Trelew",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 34,
-      "notas": 32,
-      "ejemplo": "https://www.elchubut.com.ar/regionales/2026-11-19-21-1-0-giacomone-y-banfi-inauguraron-el-nuevo-juzgado-de-paz-de-epuyen",
-      "primera_deteccion": "2026-10-23",
-      "ultima_deteccion": "2026-11-20",
-      "redes": {
-        "Facebook": [
-          "/diarioelchubut"
-        ],
-        "Instagram": [
-          "@diarioelchubut"
-        ],
-        "X": [
-          "@elchubut"
-        ],
-        "YouTube": [
-          "@DiarioELCHUBUTwebTV"
-        ],
-        "TikTok": [
-          "@diarioelchubut"
         ]
       }
     },
@@ -664,6 +664,33 @@
       }
     },
     {
+      "nombre": "Flipr.news",
+      "alias": [],
+      "dominio": "flipr.com.ar",
+      "url": "https://flipr.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Cobertura nacional",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 22,
+      "notas": 8,
+      "ejemplo": "https://flipr.com.ar/chubut/elapatagonico/masivo-clamor-por-la-eliminacion-de-la-violencia-contra-las-mujeres-2/",
+      "primera_deteccion": "2026-10-21",
+      "ultima_deteccion": "2026-11-18",
+      "redes": {
+        "Facebook": [
+          "/flipr.ar"
+        ],
+        "Instagram": [
+          "@flipr.news"
+        ],
+        "X": [
+          "@flipr_ar"
+        ]
+      }
+    },
+    {
       "nombre": "LU17",
       "alias": [],
       "dominio": "lu17.com",
@@ -690,9 +717,9 @@
       "metodo": "WordPress descubierto (lectura directa)",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 17,
-      "notas": 17,
-      "ejemplo": "https://www.elvalleonline.com.ar/una-abuela-pretendia-ocupar-el-lugar-del-padre-y-la-justicia-puso-limites-por-pedido-de-la-madre/",
+      "publicaciones": 18,
+      "notas": 18,
+      "ejemplo": "https://www.elvalleonline.com.ar/la-justicia-dejo-firme-condena-contra-el-hombre-que-aplasto-a-los-pinguinos-en-punta-tombo/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-26",
       "redes": {
@@ -707,33 +734,6 @@
         ],
         "YouTube": [
           "/@elvalleonline"
-        ]
-      }
-    },
-    {
-      "nombre": "Flipr.news",
-      "alias": [],
-      "dominio": "flipr.com.ar",
-      "url": "https://flipr.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Cobertura nacional",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 17,
-      "notas": 7,
-      "ejemplo": "https://flipr.com.ar/rio-negro/bariloche/elcordillerano/dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-por-que-se-conmemora-el-25-de-noviembre/",
-      "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-18",
-      "redes": {
-        "Facebook": [
-          "/flipr.ar"
-        ],
-        "Instagram": [
-          "@flipr.news"
-        ],
-        "X": [
-          "@flipr_ar"
         ]
       }
     },
@@ -780,6 +780,34 @@
       "primera_deteccion": "2026-11-17",
       "ultima_deteccion": "2026-11-22",
       "redes": {}
+    },
+    {
+      "nombre": "Crónica",
+      "alias": [],
+      "dominio": "cronica.com.ar",
+      "url": "https://cronica.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Comodoro Rivadavia",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 15,
+      "notas": 15,
+      "ejemplo": "https://www.cronica.com.ar/politica/dia-de-la-eliminacion-de-la-violencia-hacia-las-mujeres-advertencia-de-amnistia-internacional-por-el-recorte-en-politicas-de-genero/",
+      "primera_deteccion": "2026-10-28",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {
+        "Facebook": [
+          "Crónica Comodoro Rivadavia",
+          "/diariocronicacomodoro"
+        ],
+        "Instagram": [
+          "@cronicacrd"
+        ],
+        "X": [
+          "@cronicacrd"
+        ]
+      }
     },
     {
       "nombre": "Diario Jornada",
@@ -896,30 +924,62 @@
       }
     },
     {
-      "nombre": "Crónica",
-      "alias": [],
-      "dominio": "",
-      "url": "",
-      "tipo": "Prensa gráfica",
-      "localidad": "Comodoro Rivadavia",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 13,
-      "notas": 13,
-      "ejemplo": "",
+      "nombre": "Examedia",
+      "alias": [
+        "www.examedia.com.ar"
+      ],
+      "dominio": "examedia.com.ar",
+      "url": "https://examedia.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Entre Ríos (localidad por verificar)",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+      "publicaciones": 14,
+      "notas": 10,
+      "ejemplo": "https://examedia.com.ar/portada/post/88310116",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {
         "Facebook": [
-          "Crónica Comodoro Rivadavia",
-          "/diariocronicacomodoro"
+          "/examedia"
         ],
         "Instagram": [
-          "@cronicacrd"
+          "@examediaok"
         ],
         "X": [
-          "@cronicacrd"
+          "@ExamediaAR"
+        ]
+      }
+    },
+    {
+      "nombre": "Red43",
+      "alias": [],
+      "dominio": "red43.com.ar",
+      "url": "https://red43.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Esquel",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
+      "publicaciones": 14,
+      "notas": 14,
+      "ejemplo": "https://www.red43.com.ar/nota/2026-11-26-13-24-8-punta-tombo-quedo-firme-la-condena-a-ricardo-la-regina-por-la-destruccion-de-nidos-y-la-muerte-de-pinguinos",
+      "primera_deteccion": "2026-10-27",
+      "ultima_deteccion": "2026-11-10",
+      "redes": {
+        "Facebook": [
+          "Red43Noticias",
+          "/Red43Noticias"
+        ],
+        "Instagram": [
+          "@Red43Esquel"
+        ],
+        "X": [
+          "@RED43info"
+        ],
+        "YouTube": [
+          "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
         ]
       }
     },
@@ -952,66 +1012,6 @@
       }
     },
     {
-      "nombre": "Examedia",
-      "alias": [
-        "www.examedia.com.ar"
-      ],
-      "dominio": "examedia.com.ar",
-      "url": "https://examedia.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Entre Ríos (localidad por verificar)",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
-      "publicaciones": 13,
-      "notas": 9,
-      "ejemplo": "https://examedia.com.ar/portada/post/88249564",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
-      "redes": {
-        "Facebook": [
-          "/examedia"
-        ],
-        "Instagram": [
-          "@examediaok"
-        ],
-        "X": [
-          "@ExamediaAR"
-        ]
-      }
-    },
-    {
-      "nombre": "Red43",
-      "alias": [],
-      "dominio": "red43.com.ar",
-      "url": "https://red43.com.ar",
-      "tipo": "Portal digital",
-      "localidad": "Esquel",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Sin índice propio: se busca por Google Noticias (últimos 45 días)",
-      "publicaciones": 13,
-      "notas": 13,
-      "ejemplo": "https://www.red43.com.ar/nota/2026-11-16-15-16-33-puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-que-resolvio-la-justicia-de-chubut",
-      "primera_deteccion": "2026-10-27",
-      "ultima_deteccion": "2026-11-10",
-      "redes": {
-        "Facebook": [
-          "Red43Noticias",
-          "/Red43Noticias"
-        ],
-        "Instagram": [
-          "@Red43Esquel"
-        ],
-        "X": [
-          "@RED43info"
-        ],
-        "YouTube": [
-          "/channel/UCU8Wfj82wQ-Eea7kx5lwU6g"
-        ]
-      }
-    },
-    {
       "nombre": "Justicia.ar",
       "alias": [],
       "dominio": "justicia.ar",
@@ -1021,9 +1021,9 @@
       "metodo": "Sin método automático",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por número)",
-      "publicaciones": 11,
-      "notas": 10,
-      "ejemplo": "https://www.justicia.ar/novedades/6507/2026/11/convocatoria-publica-provincial",
+      "publicaciones": 13,
+      "notas": 12,
+      "ejemplo": "https://www.justicia.ar/novedades/6546/2026/11/25n-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer",
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {},
@@ -1075,23 +1075,6 @@
       }
     },
     {
-      "nombre": "Diario EL NORTE",
-      "alias": [],
-      "dominio": "diarioelnorte.com.ar",
-      "url": "https://diarioelnorte.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
-      "metodo": "WordPress descubierto (lectura directa)",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
-      "publicaciones": 9,
-      "notas": 7,
-      "ejemplo": "https://diarioelnorte.com.ar/detuvieron-a-un-hombre-de-46-anos-en-una-causa-por-abuso-sexual/",
-      "primera_deteccion": "2026-11-18",
-      "ultima_deteccion": "2026-11-18",
-      "redes": {}
-    },
-    {
       "nombre": "ABC Diario",
       "alias": [],
       "dominio": "abcdiario.com.ar",
@@ -1101,8 +1084,8 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (solo títulos)",
-      "publicaciones": 8,
-      "notas": 8,
+      "publicaciones": 9,
+      "notas": 9,
       "ejemplo": "https://www.abcdiario.com.ar/locales/fallo-historico-en-chubut-ordenan-a-seros-cubrir-un-tratamiento-de-fertilizacion-para-una-pareja-de-mujeres/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-26",
@@ -1120,6 +1103,23 @@
           "Dudosa: Dudosa: @abcdiarioar"
         ]
       }
+    },
+    {
+      "nombre": "Diario EL NORTE",
+      "alias": [],
+      "dominio": "diarioelnorte.com.ar",
+      "url": "https://diarioelnorte.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 9,
+      "notas": 7,
+      "ejemplo": "https://diarioelnorte.com.ar/detuvieron-a-un-hombre-de-46-anos-en-una-causa-por-abuso-sexual/",
+      "primera_deteccion": "2026-11-18",
+      "ultima_deteccion": "2026-11-18",
+      "redes": {}
     },
     {
       "nombre": "La Opinión Austral",
@@ -1403,6 +1403,23 @@
       }
     },
     {
+      "nombre": "El Ciudadano",
+      "alias": [],
+      "dominio": "elciudadanoweb.com",
+      "url": "https://elciudadanoweb.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 5,
+      "notas": 5,
+      "ejemplo": "https://elciudadanoweb.com/quien-es-veronica-perez-la-funcionaria-que-se-hace-cargo-del-pami/",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
       "nombre": "El Monterizo",
       "alias": [],
       "dominio": "elmonterizo.com",
@@ -1418,6 +1435,36 @@
       "primera_deteccion": "",
       "ultima_deteccion": "",
       "redes": {}
+    },
+    {
+      "nombre": "mdz online",
+      "alias": [],
+      "dominio": "mdzol.com",
+      "url": "https://mdzol.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "publicaciones": 5,
+      "notas": 4,
+      "ejemplo": "https://www.mdzol.com/policiales/2026/11/26/condenaron-al-hijo-de-nancy-godoy-a-14-anos-de-prision-por-el-abuso-sexual-de-dos-nenas-1998080.html",
+      "primera_deteccion": "2026-10-22",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {
+        "Facebook": [
+          "/DiarioMDZOnline"
+        ],
+        "Instagram": [
+          "@mdzol"
+        ],
+        "X": [
+          "@mdzol"
+        ],
+        "YouTube": [
+          "/@MDZOL"
+        ]
+      }
     },
     {
       "nombre": "revistacodigos.com",
@@ -1447,14 +1494,14 @@
       "url": "https://msn.com",
       "tipo": "Portal digital",
       "localidad": "Por verificar",
-      "metodo": "Sin método automático",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 4,
       "notas": 4,
       "ejemplo": "https://www.msn.com/es-co/noticias/otras/qu%C3%A9-se-conmemora-el-25-de-noviembre-el-origen-del-d%C3%ADa-de-la-eliminaci%C3%B3n-de-la-violencia-contra-la-mujer-y-la-historia-detr%C3%A1s-de-las-marchas-del-25n/ar-AA2idsvY",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "primera_deteccion": "2026-10-23",
+      "ultima_deteccion": "2026-11-26",
       "redes": {}
     },
     {
@@ -1502,36 +1549,6 @@
       "redes": {
         "Facebook": [
           "Infobae"
-        ]
-      }
-    },
-    {
-      "nombre": "mdz online",
-      "alias": [],
-      "dominio": "mdzol.com",
-      "url": "https://mdzol.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
-      "publicaciones": 4,
-      "notas": 4,
-      "ejemplo": "https://www.mdzol.com/policiales/2026/11/20/abuso-sexual-y-venta-de-drogas-la-justicia-portena-ordeno-la-prision-preventiva-1996852.html",
-      "primera_deteccion": "2026-10-22",
-      "ultima_deteccion": "2026-11-26",
-      "redes": {
-        "Facebook": [
-          "/DiarioMDZOnline"
-        ],
-        "Instagram": [
-          "@mdzol"
-        ],
-        "X": [
-          "@mdzol"
-        ],
-        "YouTube": [
-          "/@MDZOL"
         ]
       }
     },
@@ -1650,8 +1667,8 @@
       "tipo": "Portal digital",
       "localidad": "Paraná",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 3,
       "notas": 3,
       "ejemplo": "https://www.elonce.com/sociedad/dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer.htm",
@@ -1716,6 +1733,33 @@
         ],
         "X": [
           "@fmdellagoesquel"
+        ]
+      }
+    },
+    {
+      "nombre": "Madryn Ahora",
+      "alias": [],
+      "dominio": "madrynahora.com",
+      "url": "https://madrynahora.com",
+      "tipo": "Portal digital",
+      "localidad": "Puerto Madryn",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
+      "publicaciones": 3,
+      "notas": 3,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-17",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {
+        "Facebook": [
+          "Dudosa: Dudosa: /ChubutAhora"
+        ],
+        "Instagram": [
+          "Dudosa: Dudosa: @madrynahora"
+        ],
+        "X": [
+          "Dudosa: Dudosa: @MadrynAhora"
         ]
       }
     },
@@ -1879,6 +1923,23 @@
       "redes": {}
     },
     {
+      "nombre": "El Universal",
+      "alias": [],
+      "dominio": "eluniversal.com.mx",
+      "url": "https://eluniversal.com.mx",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 2,
+      "notas": 1,
+      "ejemplo": "https://www.eluniversal.com.mx/mundo/fotos-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-asi-se-vive-el-25n-en-el-mundo/",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
       "nombre": "LA GACETA",
       "alias": [],
       "dominio": "lagaceta.com.ar",
@@ -1890,7 +1951,7 @@
       "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 2,
       "notas": 2,
-      "ejemplo": "https://www.lagaceta.com.ar/nota/1163138/politica/casacion-redujo-16-14-anos-condena-abuso-sexual-jose-alperovich.html",
+      "ejemplo": "https://www.lagaceta.com.ar/nota/1164201/sociedad/dia-internacional-eliminacion-violencia-contra-mujer-solo-tres-cada-10-argentinos-tienen-alto-nivel-concientizacion.html",
       "primera_deteccion": "2026-11-18",
       "ultima_deteccion": "2026-11-26",
       "redes": {}
@@ -1928,7 +1989,7 @@
     {
       "nombre": "LM Neuquén",
       "alias": [
-        "Lmneuquen.com"
+        "LMNeuquén"
       ],
       "dominio": "lmneuquen.com",
       "url": "https://lmneuquen.com",
@@ -1954,33 +2015,6 @@
         ],
         "YouTube": [
           "/@lmneuquenenvivo"
-        ]
-      }
-    },
-    {
-      "nombre": "Madryn Ahora",
-      "alias": [],
-      "dominio": "madrynahora.com",
-      "url": "https://madrynahora.com",
-      "tipo": "Portal digital",
-      "localidad": "Puerto Madryn",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Sin clasificar",
-      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
-      "publicaciones": 2,
-      "notas": 2,
-      "ejemplo": "",
-      "primera_deteccion": "2026-11-17",
-      "ultima_deteccion": "2026-11-26",
-      "redes": {
-        "Facebook": [
-          "Dudosa: Dudosa: /ChubutAhora"
-        ],
-        "Instagram": [
-          "Dudosa: Dudosa: @madrynahora"
-        ],
-        "X": [
-          "Dudosa: Dudosa: @MadrynAhora"
         ]
       }
     },
@@ -2060,7 +2094,7 @@
       "notas": 2,
       "ejemplo": "https://www.rionegro.com.ar/sociedad/estudiantes-de-la-universidad-del-comahue-organizan-el-primer-congreso-patagonico-de-derecho-en-roca-4779536/",
       "primera_deteccion": "2026-10-21",
-      "ultima_deteccion": "2026-11-25",
+      "ultima_deteccion": "2026-11-26",
       "redes": {
         "Facebook": [
           "/diariorionegro"
@@ -2275,6 +2309,23 @@
       "redes": {}
     },
     {
+      "nombre": "AMSAFE La Capital",
+      "alias": [],
+      "dominio": "amsafelacapital.org.ar",
+      "url": "https://amsafelacapital.org.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
       "nombre": "ANBariloche",
       "alias": [],
       "dominio": "anbariloche.com.ar",
@@ -2395,8 +2446,8 @@
     {
       "nombre": "Atresmedia",
       "alias": [],
-      "dominio": "amp.atresmedia.com",
-      "url": "https://amp.atresmedia.com",
+      "dominio": "atresmedia.com",
+      "url": "https://atresmedia.com",
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
@@ -2417,8 +2468,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2468,8 +2519,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2485,8 +2536,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://cadenaser.com/andalucia/2026/11/26/25-n-dia-internacional-para-la-eliminacion-de-la-violencia-contra-las-mujeres-en-jodar-con-la-implicacion-de-centros-educativos-asociaciones-y-colectivos-radio-jodar/",
@@ -2670,6 +2721,23 @@
       "redes": {}
     },
     {
+      "nombre": "Diario El 9 de Julio",
+      "alias": [],
+      "dominio": "diarioel9dejulio.com.ar",
+      "url": "https://diarioel9dejulio.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
       "nombre": "Diario El Cordillerano",
       "alias": [],
       "dominio": "elcordillerano.com.ar",
@@ -2677,8 +2745,8 @@
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2741,8 +2809,8 @@
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2792,8 +2860,8 @@
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2804,18 +2872,18 @@
     {
       "nombre": "diariocronica.com.ar",
       "alias": [],
-      "dominio": "diariocronica.com.ar",
-      "url": "https://diariocronica.com.ar",
+      "dominio": "",
+      "url": "",
       "tipo": "Prensa gráfica",
       "localidad": "Comodoro Rivadavia",
-      "metodo": "Google Noticias y Bing Noticias",
+      "metodo": "Sin método automático",
       "estado": "Activo: lectura directa",
       "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
-      "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-10",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
       "redes": {},
       "observaciones": "Sitio del medio, leído el 13/11/2026: https://www.diariocronica.com.ar/contacto — «Namuncurá 122 (9000) Comodoro Rivadavia . Chubut»",
       "_manual": {
@@ -2831,8 +2899,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.dw.com/es/25n-por-qu%C3%A9-hace-falta-un-d%C3%ADa-internacional-para-la-eliminaci%C3%B3n-de-la-violencia-contra-la-mujer/a-80051007",
@@ -2865,8 +2933,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2882,8 +2950,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2959,23 +3027,6 @@
       "redes": {}
     },
     {
-      "nombre": "El Ciudadano",
-      "alias": [],
-      "dominio": "elciudadanoweb.com",
-      "url": "https://elciudadanoweb.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "2026-11-26",
-      "ultima_deteccion": "2026-11-26",
-      "redes": {}
-    },
-    {
       "nombre": "El Destape",
       "alias": [],
       "dominio": "eldestapeweb.com",
@@ -2993,6 +3044,23 @@
       "redes": {}
     },
     {
+      "nombre": "El Diario de Carlos Paz",
+      "alias": [],
+      "dominio": "eldiariodecarlospaz.com.ar",
+      "url": "https://eldiariodecarlospaz.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.eldiariodecarlospaz.com.ar/sociedad/2026/11/25/carlos-paz-tendra-actividades-por-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-265186.html",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
       "nombre": "El Diario Vasco",
       "alias": [],
       "dominio": "diariovasco.com",
@@ -3000,8 +3068,8 @@
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3034,8 +3102,8 @@
       "tipo": "Portal digital",
       "localidad": "Mendoza",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Sin clasificar",
-      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3175,32 +3243,15 @@
       }
     },
     {
-      "nombre": "El Universal",
-      "alias": [],
-      "dominio": "eluniversal.com.mx",
-      "url": "https://eluniversal.com.mx",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.eluniversal.com.mx/tendencias/25n-en-mexico-claves-y-datos-sobre-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-las-mujeres/",
-      "primera_deteccion": "2026-11-26",
-      "ultima_deteccion": "2026-11-26",
-      "redes": {}
-    },
-    {
       "nombre": "el1.com.ar",
       "alias": [],
       "dominio": "el1.com.ar",
       "url": "https://el1.com.ar",
       "tipo": "Portal digital",
       "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3288,12 +3339,29 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://elgong.cl/carabineros-detiene-en-puerto-montt-a-conductor-de-furgon-escolar-con-condena-previa-por-abuso-sexual-a-menor-de-edad/",
       "primera_deteccion": "2026-11-24",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
+      "nombre": "elperiodic.com",
+      "alias": [],
+      "dominio": "elperiodic.com",
+      "url": "https://elperiodic.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
       "ultima_deteccion": "2026-11-26",
       "redes": {}
     },
@@ -3310,6 +3378,40 @@
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
+      "nombre": "Exitosa Noticias",
+      "alias": [],
+      "dominio": "exitosanoticias.pe",
+      "url": "https://exitosanoticias.pe",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
+      "nombre": "extremodiario",
+      "alias": [],
+      "dominio": "extremodiario.com.ar",
+      "url": "https://extremodiario.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://extremodiario.com.ar/noticias/fighiera/107370-condenaron-a-9-anos-y-6-meses-de-prision-efectiva-por-abuso-sexual-contra-una-menor-en-fighiera.html",
       "primera_deteccion": "2026-11-26",
       "ultima_deteccion": "2026-11-26",
       "redes": {}
@@ -3407,8 +3509,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3654,8 +3756,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3715,6 +3817,40 @@
       "redes": {}
     },
     {
+      "nombre": "lasflores.gob.ar",
+      "alias": [],
+      "dominio": "lasflores.gob.ar",
+      "url": "https://lasflores.gob.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
+      "nombre": "Lmneuquen.com",
+      "alias": [],
+      "dominio": "",
+      "url": "",
+      "tipo": "Portal digital",
+      "localidad": "Neuquén",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
       "nombre": "Los Andes",
       "alias": [],
       "dominio": "losandes.com.ar",
@@ -3756,8 +3892,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3816,6 +3952,23 @@
         "localidad": true,
         "observaciones": true
       }
+    },
+    {
+      "nombre": "Municipio de Villa Constitución",
+      "alias": [],
+      "dominio": "villaconstitucion.gob.ar",
+      "url": "https://villaconstitucion.gob.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
     },
     {
       "nombre": "Noticias de Bariloche",
@@ -3937,6 +4090,40 @@
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Solo historial (no se consulta directamente)",
       "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
+      "nombre": "Pilar a Diario",
+      "alias": [],
+      "dominio": "pilaradiario.com",
+      "url": "https://pilaradiario.com",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
+      "nombre": "Policía Nacional de Colombia",
+      "alias": [],
+      "dominio": "policia.gov.co",
+      "url": "https://policia.gov.co",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -4213,8 +4400,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -4303,8 +4490,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -4320,8 +4507,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
