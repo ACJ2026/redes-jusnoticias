@@ -1086,7 +1086,7 @@
       "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
       "publicaciones": 9,
       "notas": 7,
-      "ejemplo": "https://diarioelnorte.com.ar/comenzo-la-marcha-por-el-dia-internacional-por-la-eliminacion-de-la-violencia-de-genero/",
+      "ejemplo": "https://diarioelnorte.com.ar/detuvieron-a-un-hombre-de-46-anos-en-una-causa-por-abuso-sexual/",
       "primera_deteccion": "2026-11-18",
       "ultima_deteccion": "2026-11-18",
       "redes": {}
@@ -1437,6 +1437,27 @@
       "redes": {}
     },
     {
+      "nombre": "El Tiempo on MSN",
+      "alias": [
+        "El Universal on MSN",
+        "Perfil on MSN",
+        "elDiario.es on MSN"
+      ],
+      "dominio": "msn.com",
+      "url": "https://msn.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Sin método automático",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "publicaciones": 4,
+      "notas": 4,
+      "ejemplo": "https://www.msn.com/es-co/noticias/otras/qu%C3%A9-se-conmemora-el-25-de-noviembre-el-origen-del-d%C3%ADa-de-la-eliminaci%C3%B3n-de-la-violencia-contra-la-mujer-y-la-historia-detr%C3%A1s-de-las-marchas-del-25n/ar-AA2idsvY",
+      "primera_deteccion": "",
+      "ultima_deteccion": "",
+      "redes": {}
+    },
+    {
       "nombre": "GENESIS24.NET",
       "alias": [],
       "dominio": "genesis24.net",
@@ -1496,7 +1517,7 @@
       "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 4,
       "notas": 4,
-      "ejemplo": "https://www.mdzol.com/mundo/2026/11/25/como-el-asesinato-de-las-hermanas-mirabal-en-republica-dominicana-dio-origen-al-dia-internacional-de-la-eliminacion-de-la-violenci-1997952.html",
+      "ejemplo": "https://www.mdzol.com/policiales/2026/11/20/abuso-sexual-y-venta-de-drogas-la-justicia-portena-ordeno-la-prision-preventiva-1996852.html",
       "primera_deteccion": "2026-10-22",
       "ultima_deteccion": "2026-11-26",
       "redes": {
@@ -1513,6 +1534,23 @@
           "/@MDZOL"
         ]
       }
+    },
+    {
+      "nombre": "Amanecer Querétaro",
+      "alias": [],
+      "dominio": "amanecerqro.com",
+      "url": "https://amanecerqro.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 3,
+      "notas": 3,
+      "ejemplo": "https://amanecerqro.com/ssc-dia-eliminacion-violencia-mujer/",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
     },
     {
       "nombre": "Canal Doce Misiones",
@@ -1543,6 +1581,23 @@
           "/c/tv12misiones"
         ]
       }
+    },
+    {
+      "nombre": "Diario Digital Conclusión",
+      "alias": [],
+      "dominio": "conclusion.com.ar",
+      "url": "https://conclusion.com.ar",
+      "tipo": "Prensa gráfica",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 3,
+      "notas": 3,
+      "ejemplo": "https://www.conclusion.com.ar/politica/dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-por-que-se-conmemora-cada-25-de-noviembre/11/2026/",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
     },
     {
       "nombre": "Diario UNO",
@@ -1586,24 +1641,39 @@
       "redes": {}
     },
     {
-      "nombre": "El Tiempo on MSN",
+      "nombre": "Elonce.com",
       "alias": [
-        "El Universal on MSN",
-        "Perfil on MSN"
+        "Elonce"
       ],
-      "dominio": "msn.com",
-      "url": "https://msn.com",
+      "dominio": "elonce.com",
+      "url": "https://elonce.com",
       "tipo": "Portal digital",
-      "localidad": "Por verificar",
+      "localidad": "Paraná",
       "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 3,
       "notas": 3,
-      "ejemplo": "https://www.msn.com/es-co/noticias/otras/qu%C3%A9-se-conmemora-el-25-de-noviembre-el-origen-del-d%C3%ADa-de-la-eliminaci%C3%B3n-de-la-violencia-contra-la-mujer-y-la-historia-detr%C3%A1s-de-las-marchas-del-25n/ar-AA2idsvY",
-      "primera_deteccion": "2026-10-23",
+      "ejemplo": "https://www.elonce.com/sociedad/dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer.htm",
+      "primera_deteccion": "2026-11-10",
       "ultima_deteccion": "2026-11-26",
-      "redes": {}
+      "redes": {
+        "Facebook": [
+          "/eloncecom"
+        ],
+        "Instagram": [
+          "@eloncecom"
+        ],
+        "X": [
+          "@eloncecom"
+        ],
+        "YouTube": [
+          "/@eloncecom"
+        ],
+        "TikTok": [
+          "@elonce.com"
+        ]
+      }
     },
     {
       "nombre": "examedia.com.ar",
@@ -1713,8 +1783,8 @@
       "tipo": "Radio",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 2,
       "notas": 2,
       "ejemplo": "https://caracol.com.co/2026/11/26/en-magangue-policia-conmemoro-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer/",
@@ -1772,6 +1842,40 @@
       "ejemplo": "",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-11-01",
+      "redes": {}
+    },
+    {
+      "nombre": "Diócesis de Bilbao",
+      "alias": [],
+      "dominio": "bizkeliza.org",
+      "url": "https://bizkeliza.org",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "WordPress descubierto (lectura directa)",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (fuente descubierta, lectura directa)",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://bizkeliza.org/noticia/dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-queda-mucho-por-hacer/",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
+      "nombre": "El Esquiu",
+      "alias": [],
+      "dominio": "elesquiu.com",
+      "url": "https://elesquiu.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
+      "publicaciones": 2,
+      "notas": 2,
+      "ejemplo": "https://www.elesquiu.com/policiales/2026/11/6/condenaron-a-tres-anos-de-prision-en-suspenso-a-un-hombre-por-abuso-sexual-agravado-602392.html",
+      "primera_deteccion": "2026-11-06",
+      "ultima_deteccion": "2026-11-26",
       "redes": {}
     },
     {
@@ -2043,8 +2147,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2154,23 +2258,6 @@
       "redes": {}
     },
     {
-      "nombre": "Amanecer Querétaro",
-      "alias": [],
-      "dominio": "amanecerqro.com",
-      "url": "https://amanecerqro.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "2026-11-26",
-      "ultima_deteccion": "2026-11-26",
-      "redes": {}
-    },
-    {
       "nombre": "Ambito",
       "alias": [],
       "dominio": "",
@@ -2225,8 +2312,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2313,6 +2400,23 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
+      "nombre": "Ayuntamiento de la Nucia",
+      "alias": [],
+      "dominio": "lanucia.es",
+      "url": "https://lanucia.es",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
       "estado": "Activo: solo por buscadores",
       "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
@@ -2330,8 +2434,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.bariloche2000.com/sociedad/25n-movilizacion-por-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-20261125-0020.html",
@@ -2347,8 +2451,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2369,6 +2473,23 @@
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
+      "nombre": "Cadena SER",
+      "alias": [],
+      "dominio": "cadenaser.com",
+      "url": "https://cadenaser.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://cadenaser.com/andalucia/2026/11/26/25-n-dia-internacional-para-la-eliminacion-de-la-violencia-contra-las-mujeres-en-jodar-con-la-implicacion-de-centros-educativos-asociaciones-y-colectivos-radio-jodar/",
       "primera_deteccion": "2026-11-26",
       "ultima_deteccion": "2026-11-26",
       "redes": {}
@@ -2398,8 +2519,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS y mapa del sitio)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2432,8 +2553,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Activo: lectura directa",
+      "cobertura": "Revisión completa (lectura directa por RSS)",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2546,23 +2667,6 @@
       "ejemplo": "https://www.diariodelaltoaragon.es/noticias/huesca/2026/11/22/supremo-confirma-condena-por-abuso-sexual-una-menor-edad-2070679.html",
       "primera_deteccion": "2026-11-22",
       "ultima_deteccion": "2026-11-25",
-      "redes": {}
-    },
-    {
-      "nombre": "Diario Digital Conclusión",
-      "alias": [],
-      "dominio": "conclusion.com.ar",
-      "url": "https://conclusion.com.ar",
-      "tipo": "Prensa gráfica",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "2026-11-26",
-      "ultima_deteccion": "2026-11-26",
       "redes": {}
     },
     {
@@ -2720,23 +2824,6 @@
       }
     },
     {
-      "nombre": "Diócesis de Bilbao",
-      "alias": [],
-      "dominio": "bizkeliza.org",
-      "url": "https://bizkeliza.org",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "2026-11-26",
-      "ultima_deteccion": "2026-11-26",
-      "redes": {}
-    },
-    {
       "nombre": "DW",
       "alias": [],
       "dominio": "dw.com",
@@ -2761,8 +2848,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Sin clasificar",
+      "cobertura": "Sin lista de noticias legible: se busca por Google y Bing",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -2902,7 +2989,7 @@
       "notas": 1,
       "ejemplo": "https://www.eldestapeweb.com/sociedad/le-redujeron-condena-jose-alperovich-abuso-sexual-argumentos-fallo-casacion-2026111914325",
       "primera_deteccion": "2026-11-21",
-      "ultima_deteccion": "2026-11-23",
+      "ultima_deteccion": "2026-11-26",
       "redes": {}
     },
     {
@@ -2968,23 +3055,6 @@
           "@eleditormendoza"
         ]
       }
-    },
-    {
-      "nombre": "El Esquiu",
-      "alias": [],
-      "dominio": "elesquiu.com",
-      "url": "https://elesquiu.com",
-      "tipo": "Portal digital",
-      "localidad": "Por verificar",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.elesquiu.com/policiales/2026/11/6/condenaron-a-tres-anos-de-prision-en-suspenso-a-un-hombre-por-abuso-sexual-agravado-602392.html",
-      "primera_deteccion": "2026-11-06",
-      "ultima_deteccion": "2026-11-18",
-      "redes": {}
     },
     {
       "nombre": "El Liberal",
@@ -3218,63 +3288,13 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://elgong.cl/carabineros-detiene-en-puerto-montt-a-conductor-de-furgon-escolar-con-condena-previa-por-abuso-sexual-a-menor-de-edad/",
       "primera_deteccion": "2026-11-24",
-      "ultima_deteccion": "2026-11-25",
-      "redes": {}
-    },
-    {
-      "nombre": "Elonce",
-      "alias": [],
-      "dominio": "elonce.com",
-      "url": "https://elonce.com",
-      "tipo": "Portal digital",
-      "localidad": "Paraná",
-      "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: lectura directa",
-      "cobertura": "Revisión completa (lectura directa por mapa del sitio)",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "https://www.elonce.com/amp/acuso-de-ladrona-a-una-vecina-y-debera-pagar-2-4-millones.htm",
-      "primera_deteccion": "2026-11-10",
-      "ultima_deteccion": "2026-11-10",
-      "redes": {
-        "Facebook": [
-          "/eloncecom"
-        ],
-        "Instagram": [
-          "@eloncecom"
-        ],
-        "X": [
-          "@eloncecom"
-        ],
-        "YouTube": [
-          "/@eloncecom"
-        ],
-        "TikTok": [
-          "@elonce.com"
-        ]
-      }
-    },
-    {
-      "nombre": "Elonce.com",
-      "alias": [],
-      "dominio": "",
-      "url": "",
-      "tipo": "Portal digital",
-      "localidad": "Paraná",
-      "metodo": "Sin método automático",
-      "estado": "Solo historial (no se consulta directamente)",
-      "cobertura": "Se conservan publicaciones de revisiones anteriores",
-      "publicaciones": 1,
-      "notas": 1,
-      "ejemplo": "",
-      "primera_deteccion": "",
-      "ultima_deteccion": "",
+      "ultima_deteccion": "2026-11-26",
       "redes": {}
     },
     {
@@ -3471,8 +3491,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3583,8 +3603,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3617,8 +3637,8 @@
       "tipo": "Prensa gráfica",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3651,8 +3671,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.latercera.com/paula/noticia/dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-acompanar-sin-juzgar/",
@@ -3712,6 +3732,23 @@
       "redes": {}
     },
     {
+      "nombre": "lt9.com.ar",
+      "alias": [],
+      "dominio": "lt9.com.ar",
+      "url": "https://lt9.com.ar",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
+      "redes": {}
+    },
+    {
       "nombre": "MARCA",
       "alias": [],
       "dominio": "marca.com",
@@ -3719,8 +3756,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -3898,8 +3935,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "",
@@ -4031,6 +4068,23 @@
       "ejemplo": "https://radiosintonia.com/las-mujeres-rurales-de-fuerteventura-2026-son-las-protagonistas-de-la-rosa-de-fuerteventura/",
       "primera_deteccion": "2026-10-21",
       "ultima_deteccion": "2026-10-21",
+      "redes": {}
+    },
+    {
+      "nombre": "Reporte Índigo",
+      "alias": [],
+      "dominio": "reporteindigo.com",
+      "url": "https://reporteindigo.com",
+      "tipo": "Portal digital",
+      "localidad": "Por verificar",
+      "metodo": "Google Noticias y Bing Noticias",
+      "estado": "Activo: solo por buscadores",
+      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "publicaciones": 1,
+      "notas": 1,
+      "ejemplo": "https://www.reporteindigo.com/entretenimiento/que-se-celebra-hoy-25-de-noviembre-dia-internacional-para-la-eliminacion-de-la-violencia-contra-la-mujer-efemerides-20261124-0076.html",
+      "primera_deteccion": "2026-11-26",
+      "ultima_deteccion": "2026-11-26",
       "redes": {}
     },
     {
@@ -4216,7 +4270,7 @@
       "notas": 1,
       "ejemplo": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
       "primera_deteccion": "2026-10-28",
-      "ultima_deteccion": "2026-11-25",
+      "ultima_deteccion": "2026-11-26",
       "redes": {},
       "observaciones": "Sitio del medio, leído el 13/11/2026: https://tn.com.ar — datos del sitio (addressLocality): «CABA»",
       "_manual": {
@@ -4334,8 +4388,8 @@
       "tipo": "Radio",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://wradio.com.mx/2026/11/25/25-de-noviembre-por-que-se-conmemora-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer/",
@@ -4351,8 +4405,8 @@
       "tipo": "Portal digital",
       "localidad": "Por verificar",
       "metodo": "Google Noticias y Bing Noticias",
-      "estado": "Activo: solo por buscadores",
-      "cobertura": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+      "estado": "Solo historial (no se consulta directamente)",
+      "cobertura": "Se conservan publicaciones de revisiones anteriores",
       "publicaciones": 1,
       "notas": 1,
       "ejemplo": "https://www.ultimahora.com/25n-los-14-puntos-exigidos-durante-la-marcha-por-la-eliminacion-de-la-violencia-contra-la-mujer",

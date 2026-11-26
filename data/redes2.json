@@ -4188,7 +4188,7 @@
     "me_gusta": 0,
     "comentarios": 0,
     "compartidos": null,
-    "vistas": 28,
+    "vistas": 29,
     "propia": "Sí",
     "key": "yt-8T4oWyGXceg",
     "url": "https://www.youtube.com/watch?v=8T4oWyGXceg"
@@ -4496,7 +4496,7 @@
     "me_gusta": 2,
     "comentarios": 0,
     "compartidos": null,
-    "vistas": 119,
+    "vistas": 121,
     "propia": "Sí",
     "key": "yt-XTX4uUVOH3c",
     "url": "https://www.youtube.com/watch?v=XTX4uUVOH3c"
@@ -4510,7 +4510,7 @@
     "me_gusta": 5,
     "comentarios": 0,
     "compartidos": null,
-    "vistas": 287,
+    "vistas": 319,
     "propia": "Sí",
     "key": "yt-jkV1hG70-4c",
     "url": "https://www.youtube.com/watch?v=jkV1hG70-4c"
@@ -4545,6 +4545,22 @@
     "key": "cp-061f16916a1a8820",
     "url": "https://www.instagram.com/p/DgIjz30hklU/",
     "cuenta_url": "https://www.instagram.com/comodoro.24/",
+    "carga": "búsqueda en redes de otras cuentas (título de la nota identificado)"
+  },
+  {
+    "red": "Instagram",
+    "cuenta": "@canal12web",
+    "fecha": "2026-11-25",
+    "texto": "#PUERTOMADRYN | ⚖️ ABUSÓ DE SU HIJASTRA, LO ABSOLVIERON POR 20 MINUTOS Y 10 AÑOS DESPUÉS LO CONDENARON El Superior Tribunal de Justicia conf",
+    "nota_id": 15156,
+    "me_gusta": null,
+    "comentarios": null,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "No",
+    "key": "cp-8bf2343e5651022c",
+    "url": "https://www.instagram.com/p/DgLoopTTvTi/",
+    "cuenta_url": "https://www.instagram.com/canal12web/",
     "carga": "búsqueda en redes de otras cuentas (título de la nota identificado)"
   }
 ]
