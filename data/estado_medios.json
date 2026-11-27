@@ -3,7 +3,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -11,7 +11,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -27,7 +27,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -43,7 +43,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -51,7 +51,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (títulos; texto en casos dudosos)",
   "ultimo_fallo": ""
  },
@@ -60,14 +60,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "ANBariloche": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -75,7 +75,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -91,7 +91,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -100,7 +100,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-15T17:40:15Z",
   "usar_rss": true
  },
@@ -109,16 +109,17 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
   "ultimo_fallo": ""
  },
  "Amanecer Querétaro": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
-  "ultimo_fallo": ""
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+  "ultimo_fallo": "",
+  "usar_rss": true
  },
  "Ambito": {
   "alerta": false,
@@ -132,7 +133,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -157,7 +158,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-07T17:44:59Z",
   "usar_rss": true
  },
@@ -165,7 +166,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "2026-11-10T12:37:10Z",
   "usar_rss": true
@@ -183,14 +184,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
   "ultimo_fallo": ""
  },
  "BBC": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -207,14 +208,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
   "ultimo_fallo": ""
  },
  "Border Periodismo": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -222,7 +223,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -238,7 +239,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-23T08:39:26Z"
  },
@@ -247,14 +248,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "Canal Doce Misiones": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-09T10:08:15Z"
  },
@@ -270,7 +271,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -286,7 +287,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": ""
  },
@@ -294,7 +295,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -303,7 +304,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-07T17:44:59Z",
   "usar_rss": true
  },
@@ -311,8 +312,8 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
+  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "",
   "usar_rss": true
  },
@@ -320,7 +321,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -328,7 +329,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": "2026-11-01T17:46:39Z",
   "usar_rss": true
@@ -337,7 +338,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "",
   "usar_rss": true
@@ -362,7 +363,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -386,7 +387,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-01T17:46:39Z"
  },
@@ -395,14 +396,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "Diario Chaco": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": ""
  },
@@ -410,7 +411,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -418,7 +419,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -427,14 +428,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "Diario El Cordillerano": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -442,7 +443,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -458,7 +459,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -474,7 +475,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -482,7 +483,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-07T09:48:56Z"
  },
@@ -490,7 +491,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -506,7 +507,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -522,7 +523,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": "2026-11-04T22:02:32Z",
   "usar_rss": true
@@ -539,7 +540,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": ""
  },
@@ -547,7 +548,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -564,7 +565,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-12T14:33:49Z",
   "usar_rss": true
  },
@@ -572,7 +573,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -581,14 +582,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
   "ultimo_fallo": ""
  },
  "EQS Notas": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (títulos; texto en casos dudosos)",
   "ultimo_fallo": ""
  },
@@ -596,7 +597,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": ""
  },
@@ -636,7 +637,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -644,7 +645,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": ""
  },
@@ -652,7 +653,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -668,7 +669,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -676,7 +677,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "2026-10-26T09:52:50Z",
   "usar_rss": true
@@ -684,9 +685,9 @@
  "El Diario de Carlos Paz": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "El Economista": {
@@ -701,7 +702,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -709,23 +710,23 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "El Extremo Sur": {
   "alerta": true,
-  "fallos_seguidos": 188,
+  "fallos_seguidos": 189,
   "lectura_directa": true,
   "ultima_revision_ok": "",
   "ultimo_estado": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
-  "ultimo_fallo": "2026-11-26T19:17:20Z"
+  "ultimo_fallo": "2026-11-27T03:40:06Z"
  },
  "El Liberal": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -741,7 +742,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -781,15 +782,15 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T09:30:06Z",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "El Tribuno": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -814,7 +815,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-15T17:40:15Z",
   "usar_rss": true
  },
@@ -838,7 +839,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -854,7 +855,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -863,14 +864,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
   "ultimo_fallo": ""
  },
  "FM Bahía Engaño": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": "2026-11-01T17:46:39Z",
   "usar_rss": true
@@ -879,7 +880,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-01T17:46:39Z"
  },
@@ -888,7 +889,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-12T10:04:58Z",
   "usar_rss": true
  },
@@ -896,7 +897,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (texto comparado)",
   "ultimo_fallo": "2026-11-01T17:46:39Z"
  },
@@ -912,7 +913,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -920,7 +921,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -936,7 +937,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "",
   "usar_rss": true
@@ -954,7 +955,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
   "ultimo_fallo": ""
  },
  "Ideal": {
@@ -962,14 +963,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
   "ultimo_fallo": ""
  },
  "Impacto Castex Diario Digital": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -977,7 +978,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -985,7 +986,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -993,7 +994,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1017,7 +1018,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1025,7 +1026,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -1033,7 +1034,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por número)",
   "ultimo_fallo": ""
  },
@@ -1041,7 +1042,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1056,18 +1057,18 @@
  "LMNeuquén": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "LU17": {
   "alerta": true,
-  "fallos_seguidos": 114,
+  "fallos_seguidos": 115,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-03T21:44:40Z",
   "ultimo_estado": "Sin datos: el índice del sitio no respondió; se conserva el historial previo",
-  "ultimo_fallo": "2026-11-26T19:17:20Z"
+  "ultimo_fallo": "2026-11-27T03:40:06Z"
  },
  "La Bancaria": {
   "alerta": false,
@@ -1082,7 +1083,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
  "La Crónica de Salamanca": {
@@ -1098,7 +1099,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-13T13:27:45Z",
   "usar_rss": true
  },
@@ -1114,7 +1115,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -1131,7 +1132,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-15T17:40:15Z",
   "usar_rss": true
  },
@@ -1140,14 +1141,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
   "ultimo_fallo": ""
  },
  "La Tecla Patagonia": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": "2026-11-03T21:44:40Z"
  },
@@ -1163,7 +1164,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (solo títulos)",
   "ultimo_fallo": ""
  },
@@ -1196,14 +1197,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
+  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
   "ultimo_fallo": ""
  },
  "Los Andes": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1227,7 +1228,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -1235,7 +1236,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1252,7 +1253,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-10T14:22:27Z",
   "usar_rss": true
  },
@@ -1260,10 +1261,18 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": "2026-11-01T17:46:39Z",
   "usar_rss": true
+ },
+ "Minuto Neuquen": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": false,
+  "ultima_revision_ok": "",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_fallo": ""
  },
  "Municipio de Villa Constitución": {
   "alerta": false,
@@ -1278,7 +1287,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-11T18:12:24Z",
   "usar_rss": true
  },
@@ -1306,6 +1315,14 @@
   "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
+ "Novedades del Sur": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": false,
+  "ultima_revision_ok": "",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_fallo": ""
+ },
  "Onda Cero": {
   "alerta": false,
   "fallos_seguidos": 0,
@@ -1326,7 +1343,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1340,11 +1357,11 @@
  },
  "Periódico EL JAYA": {
   "alerta": false,
-  "fallos_seguidos": 0,
+  "fallos_seguidos": 1,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
-  "ultimo_fallo": "2026-11-15T17:40:15Z"
+  "ultimo_estado": "Fuente temporalmente no disponible; se conserva el historial previo",
+  "ultimo_fallo": "2026-11-27T03:40:06Z"
  },
  "Pilar a Diario": {
   "alerta": false,
@@ -1390,7 +1407,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "2026-11-11T10:07:14Z",
   "usar_rss": true
@@ -1407,7 +1424,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "",
   "usar_rss": true
@@ -1416,7 +1433,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": ""
  },
@@ -1440,7 +1457,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": "2026-11-09T14:17:54Z",
   "usar_rss": true
@@ -1450,26 +1467,34 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-13T13:27:45Z",
   "usar_rss": true
  },
  "Radio Sintonía": {
   "alerta": false,
-  "fallos_seguidos": 0,
+  "fallos_seguidos": 1,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
-  "ultimo_fallo": "2026-11-15T17:40:15Z"
+  "ultimo_estado": "Fuente temporalmente no disponible; se conserva el historial previo",
+  "ultimo_fallo": "2026-11-27T03:40:06Z"
  },
  "Radio de Camioneros": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": "2026-10-27T17:53:42Z",
   "usar_rss": true
+ },
+ "Radiomundo En Perspectiva": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": false,
+  "ultima_revision_ok": "",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_fallo": ""
  },
  "Red43": {
   "alerta": false,
@@ -1484,7 +1509,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
   "ultimo_fallo": ""
  },
  "Revista Quórum": {
@@ -1492,7 +1517,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-10T14:22:27Z",
   "usar_rss": true
  },
@@ -1500,7 +1525,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": "2026-11-10T12:37:10Z",
   "usar_rss": true
@@ -1533,7 +1558,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1542,14 +1567,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
   "ultimo_fallo": ""
  },
  "Somos Jujuy": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1565,7 +1590,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1573,7 +1598,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": "2026-11-21T16:57:21Z"
  },
@@ -1597,7 +1622,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1605,15 +1630,23 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS y mapa del sitio)",
+  "ultimo_fallo": ""
+ },
+ "United Nations Development Programme": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": false,
+  "ultima_revision_ok": "",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
   "ultimo_fallo": ""
  },
  "Universidad Nacional de Cuyo": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por RSS)",
   "ultimo_fallo": ""
  },
@@ -1622,14 +1655,14 @@
   "fallos_seguidos": 0,
   "lectura_directa": false,
   "ultima_revision_ok": "",
-  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
   "ultimo_fallo": ""
  },
  "Uno Entre Ríos": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1637,7 +1670,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1646,7 +1679,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por RSS)",
+  "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": "2026-11-13T13:27:45Z",
   "usar_rss": true
  },
@@ -1654,7 +1687,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -1682,12 +1715,20 @@
   "ultimo_estado": "Sin lista de noticias legible: se busca por Google y Bing",
   "ultimo_fallo": ""
  },
+ "caritas.org": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": false,
+  "ultima_revision_ok": "",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_fallo": ""
+ },
  "diariocronica.com.ar": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
+  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
   "ultimo_fallo": ""
  },
  "diariouno.com.ar": {
@@ -1698,11 +1739,19 @@
   "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
   "ultimo_fallo": ""
  },
+ "economiasustentable": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": false,
+  "ultima_revision_ok": "",
+  "ultimo_estado": "Encontrado por buscador; fuente descubierta automáticamente",
+  "ultimo_fallo": ""
+ },
  "el1.com.ar": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },
@@ -1711,7 +1760,7 @@
   "fallos_seguidos": 0,
   "lectura_directa": true,
   "ultima_revision_ok": "2026-11-26T19:17:20Z",
-  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
+  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
   "ultimo_fallo": ""
  },
  "elatlantico.do": {
@@ -1741,9 +1790,9 @@
  "elperiodic.com": {
   "alerta": false,
   "fallos_seguidos": 0,
-  "lectura_directa": false,
-  "ultima_revision_ok": "",
-  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "lectura_directa": true,
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
+  "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
  "examedia.com.ar": {
@@ -1755,6 +1804,22 @@
   "ultimo_fallo": ""
  },
  "extremodiario": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": false,
+  "ultima_revision_ok": "",
+  "ultimo_estado": "Se conservan publicaciones de revisiones anteriores",
+  "ultimo_fallo": ""
+ },
+ "https://diariolapluma.com.ar/": {
+  "alerta": false,
+  "fallos_seguidos": 0,
+  "lectura_directa": false,
+  "ultima_revision_ok": "",
+  "ultimo_estado": "Encontrado por Google Noticias; fuente descubierta automáticamente",
+  "ultimo_fallo": ""
+ },
+ "iProfesional": {
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": false,
@@ -1782,7 +1847,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1790,7 +1855,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (lectura directa por mapa del sitio)",
   "ultimo_fallo": ""
  },
@@ -1798,7 +1863,7 @@
   "alerta": false,
   "fallos_seguidos": 0,
   "lectura_directa": true,
-  "ultima_revision_ok": "2026-11-26T19:17:20Z",
+  "ultima_revision_ok": "2026-11-27T03:40:06Z",
   "ultimo_estado": "Revisión completa (fuente descubierta, lectura directa)",
   "ultimo_fallo": ""
  },

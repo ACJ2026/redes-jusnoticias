@@ -309,7 +309,7 @@
     "ultima_url": "https://weblavoz.com.ar/secciones/sociedad/157191-banco-despidio-a-trabajador-con-licencia-medica-y-debera-pagar-indemnizacion-multimillonaria",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-10-27"
+    "wp_revisado": "2026-11-27"
   },
   {
     "nombre": "Urgente24",
@@ -320,7 +320,7 @@
     "ultima_url": "https://urgente24.com/actualidad/la-justicia-rechazo-una-demanda-despido-y-responsabilizo-al-abogado-que-debera-pagar-excederse-n635028",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-10-27"
+    "wp_revisado": "2026-11-27"
   },
   {
     "nombre": "Prensa Mercosur",
@@ -494,7 +494,7 @@
     "ultima_url": "https://www.red43.com.ar/nota/2026-11-10-14-37-48-chubut-condenado-por-unanimidad-por-seis-hechos-de-abuso-sexual-intrafamiliar",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-10-27"
+    "wp_revisado": "2026-11-27"
   },
   {
     "nombre": "Vivo Trelew",
@@ -637,7 +637,7 @@
     "ultima_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQemx2ZHJsVGNuNGN1R0RfcF9FVmJUOUVudnloVDJLbnFERUx2WWtMRmhzSW42TkpSSURkbUMzTmRCYjdrOWdTUW9YcjB6WUZCWEVBS0REMTdpZTY3S2FnRUZVdWl3c1dYbm5HTE5LVlBOQy1jdk0xdmswdHg3M1hSZlpqY3VUWFNNQUR4OEVhMmJzbWVnQy1CREVrdGN2UkRwdHZ1NUh5dkFxaVl4Y2Rr?oc=5",
     "estado": "seguimiento_google_news",
     "wp": true,
-    "wp_revisado": "2026-10-27"
+    "wp_revisado": "2026-11-27"
   },
   {
     "nombre": "Uno Entre Ríos",
@@ -757,17 +757,6 @@
     "wp_revisado": "2026-11-22"
   },
   {
-    "nombre": "Sur54",
-    "dominio": "sur54.com",
-    "primera_deteccion": "2026-11-10",
-    "ultima_deteccion": "2026-11-25",
-    "detecciones": 40,
-    "ultima_url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxNZEU4djRHbUN1UXh6RC12NjlaZWdpdW1PLWRsN0p5QkxpSEpJMHVxR180VEVtQTdWMFBiTzJEOHpTTnNndVg0bnFkaFFJWXJiQzNtaVZHRHFrNzdEaEpRVVUxVThTUkh4UWVpMmpYckl5UGZXTFU4M2JpTDg3a0ZrSEFDQTNRZ256T3c5VDhFU3pWeHliUWZBNWRhRWpyTDdMUld5ZHJNQlh6NzdFdFZTbjRUb3dZdGJXSzFJRmE4enpOQUQ5aTd1NkRBc0I5YVBfQkRfQkdBcmpVTHVGZ09OYkItT19pX3drRy1hZG9GaTlyYlpwN1VFQzk4QWZTUzZydHA3VtIBigJBVV95cUxQMTFXNHJmTElLamFFQmpZTnBaVFlwalFDbHdXdUlEckRoR0VEbnF5UUVxQ1BRLVM5VEI2NEd1TWwtdEI2bHJySVBFQWJQd3pNcFZLZERMVE84LXREOFJSdEZyVFNNeEowN0dvNUxPdElFMVZwUVM1OGRjTTZ5ME5wLVJTWHNGWENtX0VJOHo4cmE2RjlHSFZCRlM2RXBaVm9QdEo3RFhqT251dHFsb3gxajE0OG5lNjhaMmJZalFLbjZ5UEFldE9zSXNGTERsaXJUS21DRmM1clctV1JSSHpkOHBfbTFuT3pmb0VMSjM0WFY2M28yNjVpeXc4VXlMMmJGVC11WkhXNVYwQQ?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-11"
-  },
-  {
     "nombre": "Tiempo de San Juan",
     "dominio": "tiempodesanjuan.com",
     "primera_deteccion": "2026-11-24",
@@ -777,57 +766,6 @@
     "estado": "seguimiento_google_news",
     "wp": false,
     "wp_revisado": "2026-11-25"
-  },
-  {
-    "nombre": "0264Noticias",
-    "dominio": "0264noticias.com.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxObTdLQTcwdHhfWFRwak0xN05fN1dkd3hmcE5BbzNHN21QcWxPYkdCQ3JFSkVtRnBlY1FiRDhWWUl5NWVHXzJvWlI2NzJSZ2E5T2pSaUVwSUlzazhWNUpwWXlSTjNwVFpIUDNSQ25vSlJnUmNLUTVkUi01aGNlcFg0VHZpXzM2X0VqdUREbWhOLVBXTEZLZEV0QlQxTEc2dTJjaTc4LXVTbkN4bmdrT2xyOTVFeW80TXdlQ25tTV96dHhQTEU0eXZzNEVoSWM4bFVPcDE5VF84MnFjamI5SjRSNkpzRTRidWZnaUdwek1yMEZ2MzczdENRazRqSzNuX2dGVjBjSdIBigJBVV95cUxQVHl3UlUyNWxEZkRaVzByOHMtQ0RPbUxqQlA0X1dlc2I4bmVtaGVCQlVreEJ6eER2ZW5UOTNvd3V2VTNvZWZra0RTNGh6YUJMTXhrWW45TE5qWldrcjB1Y2I5TFNrV25XcGZUQUxuNkE2SUExM2tONmtRWnZFTWM4QVdjbWw1UmdpOGlQQlc3OXhBVHAwekNLLTVEOFFXNV80RzJfZXJ1Q3R5Nm1UUWtGb2d4SzVuQjdkU2ZoTkxtOFB2bERfckNQdEhQVEJHekllMlEzZ0hkcFJGTGJLWUxXZzZSZTJZcHBmelBBMWZhRDBhS1VJWkhWYzNLNlZRSzhhOHR3Ty1NY3BlQQ?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "20 Minutos",
-    "dominio": "20minutos.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQM3FoV3F0bG1QVTc2TWEwSzBnVkg0NkxtckJZX1RrUFZlOXB3UlNYS1BjdldpRm1HclV1TF9UM3AwT1VjQ1owdmRDdlJEY2Fob1dRMDYyckRnSHp5ZkItb3hJd3ZUVmJXVWE3MnBWMExnM00yN1I5SnhZV1pGWWdJUFExc2dESE4yUUw3Zm4xd1hYLVZlcy02a0FhaW9McUVNY0dwelJKN0NaQnRPTjAtQ1VaWUxlYXQ0RV9UWFNmVWo1WDdLNUdTdGYtSzcxbC02NDd6UVlWTmJjUFE?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "ABC",
-    "dominio": "abc.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPSG5Bbl9abC1rVS11Tng0U0VWdGkzeklRbnN1a09KUmk0cFM2M1QyYmZDY0hrVmllRVppN0YwUzVNcG1BMEdFeklPRzNUWjNHV1lCUUtrXzBkVndzelhINTZuS0FSLTVHQktSNGNfbFl2M1h0akpCVE5Pa0ZOMzQ1VldsOVoyNGtrTHdQTXpGMzV4ejAwcEZYYUFaU0pUYUh0Z1dWZGdUTUg0UEV3ejdyT2Z5b3HSAboBQVVfeXFMTjNLUWhrejNKdGFBM1U4YTBFRFhFQnY4ZUV6X0dnWklCYm1CVHVSZkxTdms3ck9Cai1ueGdyaFVXM0tVUl9LQTFNMU9EMmhvRU0zU3Z1MWNsWEg3WmdaVGJCQWJJbDctbl9sN2xCMjhrUWdtdG1zaEgtc1gtRnhjLV9WOTNxXzQ4eWpDZXJkY2xGSHk0WmlRbFFkY2cwSlE2M25TVUdBWEpFSDlZQXViM0VScjFJUVdCaU9R?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "ABC Diario",
-    "dominio": "abcdiario.com.ar",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 145,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPd3FURWlWblhKb1FaRjRlM3FpZm5HVDVoeFh2WGxCMWhoM09xS3dhUkdtV1BzVnFXVW9jUHZsQVRXWm5WX2ppU3ZaTkZ6UVNLZUxUOGZURy0wYVZPVXR4VzAzdy1yRzM5LTlSbmowelF2Y3hjZUwzZ1A1UTVZblg4NktrNlZ3Y0RPWWlseXFQWjBKX1F2VXFCOW1BUFhTNmFMeHZSLWdjU3B3cEd4QUo5bkFuRmNmN2t2MmRSWXlmSWJyS2dtbERjU3NSQXJKa1RmRUtCZVFBYVBvcUVocVp4c0xJbFA1WEpjOXgxSl9R0gHkAUFVX3lxTE9vcUgxeDdwTklUZDIxZUNTdlJBQk14cmFqcGlrbnVaaC1JRkJ6VFBGWGVrNUpsb2Z0OXJsaTVwUTZEalBXM3M1RllRTlc4ank0bTYyS0I2Zm1HWUZoaWItWEhMUWlkNk9nVnpCWnlvdWdCLWY4ZFJkSzZwemZuTU83V2RXUUx6RG5XbUFaMjFZZUg5STZJZl9EakpiZXppOVRSSmxXTEhGNUJ1aGhmOTVfUHhGVHA0WjRWUHBVbm9tRV9JNVpFdDNXLTFoZFJGbDdnQlZUVzEtYzBzYkNsTnRzYXdxcg?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-22"
-  },
-  {
-    "nombre": "Aire Libre FM 96.3",
-    "dominio": "airelibre.com.ar",
-    "primera_deteccion": "2026-11-10",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 6,
-    "ultima_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQkZ0TkhrMlR2c3lPSG5CaE1zYVVPRmM1XzZjLTdfaGtVWExwdFFqdkFwYXFIRFl4V1ZveXFfQmQ2OUwtbkVVeV92bzBzWUdzOUVOSFp1WTlKSFZFc3UwVDA1YjVMNDk0U19LU2Jncnk4ejVTNmRYYmlWb3oyWnlzTmFaZFNjekI2NmhRY2wwZ09zWkh3ZkdnZ3U5Rk1NSVZzLW02QnJYbFNOTmhfQzZqREVRV293eTRHczYzaUZCeF9WWmdtQkwtbzBYcGE1TDg?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-10"
   },
   {
     "nombre": "Amanecer Querétaro",
@@ -841,48 +779,6 @@
     "wp_revisado": "2026-11-26"
   },
   {
-    "nombre": "Ambito Financiero",
-    "dominio": "ambito.com",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 36,
-    "ultima_url": "https://www.ambito.com/informacion-general/25-noviembre-dia-internacional-la-eliminacion-la-violencia-contra-la-mujer-que-se-conmemora-y-origen-la-fecha-n6349144",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-22"
-  },
-  {
-    "nombre": "Atresmedia",
-    "dominio": "amp.atresmedia.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 2,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNaFFONUhjSG9BU1NuN0hxMjl5ckQxVzhIVWN1OGF0YTRHYVduakhINnpDV0NzVjlYSnh6akwxSU1kQzlRSUlqc2huWTF6c3VaeGlrOVRLVWs0TlVWNnFwbUpUbXRZdXV1Y3BBRHJYUWlfX0t3Y3kwNThVTXdaMVFYX2s1Z0dPcWRxV3RhQ3lXbGRSWXhZQm43REVpREluVGlteFhCOTRoVm5MT3cxTV9XUFc3b0xTblVvZGM2MllXNnVlWnU0M2t5OUZIUmM0Q2xVems5UTJOUHRfOTkt0gHcAUFVX3lxTE1oUU41SGNIb0FTU243SHEyOXlyRDFXOEhVY3U4YXRhNEdhV25qSEg2ekNXQ3NWOVhKeHpqTDFJTWRDOVFJSWpzaG5ZMXpzdVp4aWs5VEtVazROVVY2cXBtSlRtdFl1dXVjcEFEclhRaV9fS3djeTA1OFVNd1oxUVhfazVnR09xZHFXdGFDeVdsZFJZeFlCbjdERWlESW5UaW14WEI5NGhWbkxPdzFNX1dQVzdvTFNuVW9kYzYyWVc2dWVadTQza3k5RkhSYzRDbFV6azlRMk5QdF85OS0?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "DW.com",
-    "dominio": "amp.dw.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQZmpfS2daOGNwTW5HZzJzcWJMaVNzZzc5eW96X3hyYUN6RGg2NWlBMWJDWF9HQU9EQkFSeFJqV3luYXQyUVpuTDJkcnp6RzAyRlpxaUYzZ1RGdTU4YWRGVVkwcXR6VUJkbzdhbHBBZVlYR001Y3pqenh4ay13OHNPYWZoeTJ2dVgwelpkYXUwOTRXVmRNWGRramlHbF9ESzMyWHA5S3Uwcm5VOURWejhsSkY3bEo2eEswUnY2VHd3N1Q0eUkxUk5ZTDg2UC1mbU41d09IZS0tNUNDWjjSAdsBQVVfeXFMUGZqX0tnWjhjcE1uR2cyc3FiTGlTc2c3OXlvel94cmFDekRoNjVpQTFiQ1hfR0FPREJBUnhSald5bmF0MlFabkwyZHJ6ekcwMkZacWlGM2dURnU1OGFkRlVZMHF0elVCZG83YWxwQWVZWEdNNWN6anp4eGstdzhzT2FmaHkydnVYMHpaZGF1MDk0V1ZkTVhka2ppR2xfREszMlhwOUt1MHJuVTlEVno4bEpGN2xKNnhLMFJ2NlR3dzdUNHlJMVJOWUw4NlAtZm1ONXdPSGUtLTVDQ1o4?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "AMSAFE La Capital",
-    "dominio": "amsafelacapital.org.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 1,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQa3ZaWVlUTTJaZ2FkMDVhSVhnTGVaTExwdi1ETUNxUEV3UG1qalMzS2MtbjZoNk5SRHJpOE5rYTEzNV9Nc2tzWTRvVWJsTGI0MEROT1lXdmZpajBhbUUtbTVSWHQ0N3YzbGZBNVRVandBdmtJWkxaUVc3UWZ5NFBwcUVvTWpyT3AwMnRLalMzajRkYWRaSjk0ZXBIYXJEQWtfaVVmY1drUk9HTXRxbzB1RXM4dFhUZDdOMmN6ZVZQZGRFMm9HSmZWQm1hcUhZS2txLXhMSDJJTmhKZmhud0VzcGJ4aFU4Zw?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
     "nombre": "Andalucía Información",
     "dominio": "andaluciainformacion.es",
     "primera_deteccion": "2026-11-26",
@@ -892,53 +788,15 @@
     "estado": "seguimiento_google_news"
   },
   {
-    "nombre": "Aragón Play",
-    "dominio": "aragonplay.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQc0xLOERGRUhhUVo5ZWNGRnVRRHFPTHhjMjlYRXMwRWxhY2FFa2hESWtPYlNyNEYtdkhqRk85amNUOGJMN3dpOEpLX095MkZzWXVNT2h2ZVo3N3ozaEphRHNLTUFHNVlUNWE0TnVpM091eVF3VDlhc2VQUFdVcWRrTzZfOFBCUXk2SWVyZ2tjMmxFQzFuM19VV2tDQ3NQZkhlcXFxdU9TYUw5cTRVM3FBbDNxYlNUSGpfOU1hN1NqdXdqQnh0cldlWGV2RFE?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Argentar Noticias",
-    "dominio": "argentarnoticias.com.ar",
-    "primera_deteccion": "2026-10-30",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 70,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQSm8tSkFmVjBTTUZHVnU4QnNBVS1DNTU1RU9yYUl1SEhab2RxSUs4OElVd3l3VzQ3aVlFVHB6bjBLcWVxWXFqaWIyaDljSzYycFFyTlRGUzI5UnZCRVNsYllCU0FqVkNlWGNEaGtaVzVSMlFzb081YTl4OVN6aHMzY3k1Z29rSThQOFRPV3BLNHYwVGJDYmd1YUt3cVBzTXlTbGF1ckpoOXE4RjNtVVQ1dE44MVBTeWdicjk3ekxxd3pZbDA4b1dENjRmY0N4TVFrQzRaZjdxaEk2OWpSaXk4M3VqeTVsMUVPbUU0?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
     "nombre": "Atresmedia",
     "dominio": "atresmedia.com",
     "primera_deteccion": "2026-11-26",
     "ultima_deteccion": "2026-11-26",
     "detecciones": 1,
     "ultima_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQZGhBTFhYSnlkbDNLcWpYQ2JIdUEyRTZFbWJHR0lhSTlXdTlGSlpDTmJjUmRiVktyUUJ3YXFHdUx2NXZmRm02LWhXYlNITTRSTGJxdHBJWXVXdWFJMXRscF9WdWxLbzJwb2tsOEtFZV9OdHY4bGRiWmI4VWlWQVlZeWkxVTRWM3ZuUVJzNzdLVnNkT2dRc3NLVlRBWENLOVdqTWpSdk5rVU9fNkJVT2VqOXVFQ1Q4S0kybFJSUEFZdWV2Tzh5bldWRWN6TDd6TVB3RVdUaG01ZGlhR3k50gHcAUFVX3lxTE1oUU41SGNIb0FTU243SHEyOXlyRDFXOEhVY3U4YXRhNEdhV25qSEg2ekNXQ3NWOVhKeHpqTDFJTWRDOVFJSWpzaG5ZMXpzdVp4aWs5VEtVazROVVY2cXBtSlRtdFl1dXVjcEFEclhRaV9fS3djeTA1OFVNd1oxUVhfazVnR09xZHFXdGFDeVdsZFJZeFlCbjdERWlESW5UaW14WEI5NGhWbkxPdzFNX1dQVzdvTFNuVW9kYzYyWVc2dWVadTQza3k5RkhSYzRDbFV6azlRMk5QdF85OS0?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Bariloche2000",
-    "dominio": "bariloche2000.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://www.bariloche2000.com/sociedad/25n-movilizacion-por-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-20261125-0020.html",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "BBC",
-    "dominio": "bbc.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1pVEJYVkx6RkpaVjl5QlFXcjZrZGt0Qno1V0MtTG5qaW5iUmc1SmRiX1A2WlRDYmxBWVU2YnVZRjRINjVLQUtNUm1NQTZiMkdvaFBBd05iVEFPLXZJ0gFiQVVfeXFMTkdRNDVSWUJZVjJiR1ZUUnpvMVZRZDNwaFpDdThvbXBOQjlsMWRWU3p0TFppZWtsQ3UyMmYtRE5fMWR0b3dFdUJvcWgteWhVVkp1MUdvajg2bEVJeTZsdkthekE?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
+    "wp_revisado": "2026-11-27"
   },
   {
     "nombre": "Diócesis de Bilbao",
@@ -950,15 +808,6 @@
     "estado": "seguimiento_google_news",
     "wp": true,
     "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "Bogota.gov.co",
-    "dominio": "bogota.gov.co",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 2,
-    "ultima_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQWkxwZXU1YTlrUDk3SkJGTl95d2tEdV9EaWZBY3RJMThZQXlZLTVtNGlwVTJ3Sm9mY2Fnak9SdmpkQXNsSlI4SVUxVTNWTUcwajhsTE1fTHpsdmRsREFUcXhrTDY0Rm92eDJFaFBtSHRjQkI3dWJMMW1aaEl6ZFpQcm5iZXVURF9MU2VrN1BvdEo4TU5IalhYc0xQd1dHbm14REpvaVRZNndZTmw3QXNNeTd6LTJFNHc?oc=5",
-    "estado": "seguimiento_google_news"
   },
   {
     "nombre": "Cadena SER",
@@ -981,48 +830,6 @@
     "estado": "seguimiento_google_news"
   },
   {
-    "nombre": "Cba24n",
-    "dominio": "cba24n.com.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOcDhZSGZQa2duQ3ROV1B4RnBGMjV0amNGSFVKcEhETE9mYndIU2Y1NWVySkRJbXJPUUJnNW84dkhOZV9BUFdTQTRxZWFnY09wTi01N3J6MzNyT0lCa01IdENRa1pRdW9BY1VBVzVKaG9jYnRPVFlmSVVqYTVsOU55aEZsdW5ycjNyTGx0eWpZc1YweDNZWGtBZ252T09FX3VOeDFqYmJTRkZEakhSQWFkZ3RhTGV1VmVsb3pQai02WDJ4Z05hekwxSVBrWkxMSWplZjZVWkRCS0hJZDZvWmgyUTNyczVUUQ?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "Ceuta Televisión",
-    "dominio": "ceutatv.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOZENDNC1lTE1uMEkyb1FFSjFyNktRZFRvX2tybXJzSDBEb2VuOWtEd0NMQlZHTTFKYU1hNnpxR21KUm16SzRFZ1Vxc2Z6S3MtRk5VOXhMNHhQVVBFYzRSZjJZWVVIajZCTURvZGFFUUlQUEl5RU81czllYnM4ZWJwLUQ2ZWJBNUxGRTF0NUh2N3plTnkyOW1nakJ5TzhCQlQ3bmJFS0tpWllGVmUxVkNHSlh0SHhYbTjSAbwBQVVfeXFMTjM1cXh5eFNfd2dSa1ppeEhLdmJIVnpnRHVoaElWZHpoOFVOYjBFcnY1U3dYcFVsQ1pFN0FOM2RlV29xcTNMUXc4M0V5SHJXUUxXZm1JOXpqazdFQndqT2RfVk9vdExnT0UxYlFRbVVYNGVwcDVTSVhLVjlmS0tCSGhvV0pvTExNUDNLdnI3cVZtM19yU0twNERDZ3JUU1RzM3U4VlpaekU5TkNDVFJnQ3FNZjZuQUZCZ3pvdDc?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "Clarín",
-    "dominio": "clarin.com",
-    "primera_deteccion": "2026-10-23",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 126,
-    "ultima_url": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "Comodoro 24",
-    "dominio": "comodoro24.com.ar",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 249,
-    "ultima_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNOF9YMlZEdFZZZDczdV9XYi1yYWhWWUptQllZbnlEeVp1ZjNXN1NaZWt2eFBSMmpQQUhKRFQ0Qk80MEpoNjQzV2REeWN0ZW04WXQwQVdBdHZubGJLalNJZXdMWm1NVlUtVTRUcUxhNTBTZ254VXBYSE5jck1WOHZwQ2dNbnEtcU5ySmR2WnRWd2RjdEdxY2NwYXdaVFdlS2ZMeExqWXRVSTFfdTZuNEptZEd2bDM4QQ?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
     "nombre": "Diario Digital Conclusión",
     "dominio": "conclusion.com.ar",
     "primera_deteccion": "2026-11-26",
@@ -1040,16 +847,9 @@
     "ultima_deteccion": "2026-11-26",
     "detecciones": 1,
     "ultima_url": "https://www.cronica.com.ar/politica/dia-de-la-eliminacion-de-la-violencia-hacia-las-mujeres-advertencia-de-amnistia-internacional-por-el-recorte-en-politicas-de-genero/",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Defensoria del Pueblo Peru",
-    "dominio": "defensoria.gob.pe",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPNWpfZjJCbUFxSnBsdlFGc1B3dFFJWTg0ODFTdF94Yk1tTklKQjduQ0h2dmtOUUxEVFdkM29XSWg1OXczOVBaRUZIVFRBTFhDdllqYzFQc0J5bDRWSXFTc2ZGS0Z6d2RkQTktdmppeno0WUlPYlB2a1oxYkNfbVBYSkFkRktTaHNDVkN5QlhIeEFrb2NuSmxydDFfYVhZVWs?oc=5",
-    "estado": "seguimiento_google_news"
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-27"
   },
   {
     "nombre": "Crónica",
@@ -1063,43 +863,12 @@
     "wp_revisado": "2026-10-28"
   },
   {
-    "nombre": "Diario El 9 de Julio",
-    "dominio": "diarioel9dejulio.com.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 1,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE4yY0huYlJWUEFjX2VyNDBXcnJtQzF2REVZUDRzUW5QR1pyZHNoLTg4V2JramdaOTU0LTJuMXh6Q2ZHUkhVN3NlNS1KYnhiNDBmQlhwOTMzRDRjeTVHWXZv?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Diario Judicial",
-    "dominio": "diariojudicial.com",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 411,
-    "ultima_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQZm1QYUZOc1o5TUlaanVmNnhiRlN6b0l2MmsyUGlONGxFQ2piRmxFZkRDc0lsMmZGUERBTUM2czVxWnhGODRtUDNVcGdTUWlKYkZBM3U2NE4tWDlfNW1aNHJFLWlwRkRCa201NmFCdy1PYW14bG1kdGY4cUJLQnF0NThiVGpvcEgtZ2JCRHJsREpDQ01IdDBrMEgwNXRYT0daelhVNVlTdVRtTkVNU0p5NVJoRmM?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-24"
-  },
-  {
     "nombre": "Diario Panorama",
     "dominio": "diariopanorama.com",
     "primera_deteccion": "2026-11-26",
     "ultima_deteccion": "2026-11-26",
     "detecciones": 2,
     "ultima_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQQ1RKQ2V2Tll4cGtWUjNMQ2g2dXZtODd6TXBLV09BOWZIcHdQQzhadjh0LTlLRGRxbFBvS29OdU0yaVhuLU9JdlJoTmplMjBjWmlFN21JcV9yZmpMOHByVThCM1ZBNlJBRWdLYUxDSDlfVWJRYllZZmlBdEJIaHFCU0cwcUlpZjFlY252QUNMOUxicHM4eEJmdXVUMHhqS0pqRlF3dGtpcXZFbklBYWw4YnRLRkpMbHc?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "Diario Tiempo Digital - 9 de Julio",
-    "dominio": "diariotiempodigital.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNWFFyVmF4WGE1Qjh1X0E5SEVZWkYyaWZ3M19WSFczNmtCVGRDYlJvT3RvWkh6Ykk1cE9pR3RWaFhxT0VqODZUX2M4NUxZOElmdDd1dE1raUVEbjljemI1YlRPdm1sdk5rRUN6MFBUNU40QlFKelNBTmw4dHhqWUttMzBydThhNmtjMFdwXzZjZF9nSkZFeXZJMnFiUFV5NHNPSmo4OHBwY0F0QXBKOG9GaDduRjY0bHJrcEVrUUp5MDB6cTg2bkE?oc=5",
     "estado": "seguimiento_google_news",
     "wp": false,
     "wp_revisado": "2026-11-26"
@@ -1116,96 +885,12 @@
     "wp_revisado": "2026-11-10"
   },
   {
-    "nombre": "El Diario Vasco",
-    "dominio": "diariovasco.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNNGVXZTdXb0lkWjNPd0l4Mk5nZXkydmlxNkpOZ1RGMjR0QXBJdXVNbXZmdW54TW5GdklEWmJvTUQ5MTRxdUo4LTA3bkctanM2VWVZcEhSRE1KdWFRYjNWUkM2R3ZORzZYSV9HLU9zc3hCbHFTWGFmVV9YN19uc21GU25KdjFsMXY5cFpMckJGdUNlMFJZT21PSk9nUkhGcVlSdUZRcFJueGM1R01TbUMzZlVBUFRQOEZUc2dyR2JRVm1sdnR0T1hjYnZjbXA0VlJCa2fSAdcBQVVfeXFMTmRCbTVqUVNZUkxhREozUzFZUnN3MTNVal9IX0hTbGxMa3J4UmJ4T05TcmFMTG5lQW1qQmE4RVVON0RvVVRWWkIzbUFzd1JEcnR4Tmt0UHA1TkRzempIZGpjWWtlRXZ4VXlkU09lV3laWlB3TktJemQ0LUdlUFlZVUNrd0d3b0UzS3NDZm9XQi1mZHdVV3NCbFlfaEhoQXlUZVJGbGU2dWhHdV8xY2FTWmZ0MEVsM2hLeU9YRXNsc0lvMWdXcGxrN1NOSm5hb0o4VnZrNWhOMUk?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "DW",
-    "dominio": "dw.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://www.dw.com/es/25n-por-qu%C3%A9-hace-falta-un-d%C3%ADa-internacional-para-la-eliminaci%C3%B3n-de-la-violencia-contra-la-mujer/a-80051007",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "EAPN España",
-    "dominio": "eapn.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 2,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNdjg5TU8waDhFSlYzcUluQURNNjIyQkdVNXF1b0JocGVQbEF0bkIxdXFfTGtKOTJEcnpvS0dNUUtoVkhMNGptVV9zOFhNSzg2YWphbm5hMHJEZWFzUjN5c0xhSy1FWS11TXFBLU1VS3haQW82ZllFYXdjd2h1azl6YmZlUTJ3Nk9nQzJ6RTRid3JvOUR0TXR4eXZxcWZvcDZ2cEsxTTNZcmRMQQ?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
     "nombre": "Ecijaweb",
     "dominio": "ecijaweb.com",
     "primera_deteccion": "2026-11-26",
     "ultima_deteccion": "2026-11-26",
     "detecciones": 2,
     "ultima_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOdkUycmFuLXdwUUJZcnhENGhialFuSDZLWHh2Zk1YUjRBTkJ4d1VZS1ZWMlVYVUVqVXdtQ2Y3cWdpVlREQW9GNjlDdjgtWlFJQTVSdkFsak9SLU04N3QzbllWeldMUzJVWk9IN3BWVXVnUW8xMThleDUyNE5CNW5GNm04N3pMaVM1WkZMNWVRRnBIMjh6SkdVOW9GVldpeDBIZGVMNFd4X0UtVW50TjZYNklwQUgyT3NTS0hXb2gwMGp1c1IxMnc?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "Ecuador 221",
-    "dominio": "ecuador221.com.ec",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPR1dfNnd3QVRqWUhRUW9reUhEcHA4Vm9UcGVLMU1KUS0xMTVQc2V4Y3lva0xZUlZfNFB0UXEzNVJSVVNVU0VTWGxyRjRCZHF2dFNqeWRiVFJGcWFNb2NjeFVUT2RFeG5zVV9ScEZ5ank3YnFUS3kzQVVaZ3ctbER3VHpYYTIyLUxIb3I5ZFYwb3R3VXFmVDhKNWd0MXU?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Universidad Nacional de Cuyo",
-    "dominio": "educacion.uncuyo.edu.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNHZwRm1KY2NFdXhnc0ZBdld2S3FjRDBzSk4yUHhTWUwtNDhJNFZ6SkNXV0hlWFY4a2t2RnNYeU04VjdWX0ZkVDN0bUV0bGVnWEI0YkN4cC1MdHVRRVgtLWZTeGxoUm9XUlJlT0RpRHo3VDNnUGJLdE5MWlk4RnFWbWlNcHFzT1FCY2d0cnNHMEI0cjhUTWlBTnFFQ3ZLMUxTN2xZY19R?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "el1.com.ar",
-    "dominio": "el1.com.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQZGV0YWYyb2NTeDAzV2s3VlIxa0kzeXd2ckg4blR1cmdDSGJKUmlSUXFIMlAxVmhUWUZ6a3VBV3Q4LUFjSG9fdG9XYmhaUFh5Ti1FUmNLQkxWSzlSdVZRdGNVVjhkSDAxY0dSaVRUMHdXbUtmYlJFWWFkSWFmSG9SOE9nSW9UNEFzajUwcVNFeDcwYjkybk9IQ1NvM3BJRzF5c1Q0S0VPbUxhQ21XOEVrcWR4enVLVDl3dm54OFU3SQ?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "El Ciudadano",
-    "dominio": "elciudadanoweb.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQdWh4NXp3NFZEbC1zZWtoY045aDJISzl4Wnh3SV9tU2NEQXdiS3hMRDNwTU91RU1PUnhVWE5mUlcyOWpkSEx3TkRfTmVOVjFxUDVjQmNKQmlPazRILXNoV0hVVjJKaG4tbnI5QXhrNmFMYkZhM191eDVTZjZ3QWU5MlJucnFNR3o3RjYxWFVWaFlEN01sRkVoTENlc0xMaVJEcGJmMnR2MTlGWHRtMk9VbDN3Tk1mQdIBtgFBVV95cUxQdWh4NXp3NFZEbC1zZWtoY045aDJISzl4Wnh3SV9tU2NEQXdiS3hMRDNwTU91RU1PUnhVWE5mUlcyOWpkSEx3TkRfTmVOVjFxUDVjQmNKQmlPazRILXNoV0hVVjJKaG4tbnI5QXhrNmFMYkZhM191eDVTZjZ3QWU5MlJucnFNR3o3RjYxWFVWaFlEN01sRkVoTENlc0xMaVJEcGJmMnR2MTlGWHRtMk9VbDN3Tk1mQQ?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-26"
-  },
-  {
-    "nombre": "Diario El Cordillerano",
-    "dominio": "elcordillerano.com.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPSFc5ZDBtcEJUbXQxSW81aWg3eHEtaFR3ZVIxVEFPOEhuR0lKNzkzX05LNm1XUWFGWVFLUk5GTVRBOUl2WkxYR20tdFpiU1FwM1F0ZnNkUEVIcV9fdjN4OFVyV2RrYXRURFRuTTJRVklDRklDNk9ZT3hodjQ0ZEk2U1lOV3UyN3ljNTBGVmM0aGxNV1JWb25reEQ2N05hc084WGNOYjNrd0JqbGo1X0I0U3NaNXpOQnNiT1JKTUlLZHRSTzY3ZUotOXhIYnFWV0kySGQ5LW1EOHNMU1poMDllNHRGUjExWDZOQ0ZoaC1lR3BSVHE3cDNsc0tUTGLSAYICQVVfeXFMTzFlSHQwX2xhVnZZem55MkNCblZhclpjVUg4VktPNUFwWTVhSldpa1FUaUZFZGt0Q3o3U1haU2szQTU3bHBHVEJoNjBsSW9reE5wQW41N0VueDNUSTJKREhCNEo3VjY2THl4aWF4S1ZocWwtUHhBQ3JmTjVmaGxPVDhWT1NkQVVZX1FGQmVZYTRoNXljM1V2SHpZcmQ5d1N1TjFpeVAzY0h3aGtFdUo2MEtuZzhrSm9iTm5pSERyM2lENDEtWUFDdzJMbFZuR2NORnV6WUtVV28yMVluN3ZuZWQ2Y3JLUkplVDVZMUdmY2g0Ul9KcDFuc3JXbTFYbndibHlR?oc=5",
     "estado": "seguimiento_google_news",
     "wp": false,
     "wp_revisado": "2026-11-26"
@@ -1228,36 +913,9 @@
     "ultima_deteccion": "2026-11-26",
     "detecciones": 1,
     "ultima_url": "https://www.eldiariodecarlospaz.com.ar/sociedad/2026/11/25/carlos-paz-tendra-actividades-por-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-265186.html",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "El Diario Web",
-    "dominio": "eldiarioweb.com",
-    "primera_deteccion": "2026-10-22",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 96,
-    "ultima_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOcDZIdG93MmdCSzIzdWkxaUh2VG9VeklGektKWjItR05vRm5ON1M0WlNWQXFLVUJhbTl0TW0tZ3FoclJXbnR1VXkwM2hiVVZHVUgzbXJ0dWxmcU9DTzh4RHZudGNfS2JMWS00WHVoR203MDR2ZEwyWUgxcDBrNDBFVXRNdmMwOHkyeFZXaHBOejdIazdQTDdjSmJqNDRuZkstWktvdDVoREpKRmp3LWlEc2VaUnpKTl91UXo4Sw?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "El Economista",
-    "dominio": "eleconomista.com.mx",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPVThWclQwUFV5RXFwZE5TM0k5Y0Z5OXRJcjJnX2pieW5yOWVaTGFHZVVWZ2xrQUJFWUdzdkhSYkpxVmZsWEtZT1hLeXpKSkY1dkZNYVFLLVE5YW92S3NscTdYVGlHZU1xU0xMQjlFQ1A2Q2FpcHpzQ3FpQUxZX092UWs0Sk1rYks4NHRmblh0VldyUklhb0wzS2x4bFZmSDVaZFNQMElXclpxckMtOTJ4THBLS2ZTUU9xMHVsLTBGdkszVElCb3fSAcsBQVVfeXFMTzVjQ01MZmx4aWl1aUlkRGdwX0xBMEJkZ21EdW1YLUpTU0VaQ1lmaTZhNHJ1T21pSEQ3YjRlYXpSR2I5TExkWTZPS2NRanFuYnRuRDdkaDdwRFNPa2tMQXFLMlVGYUFURDdxZE9meTZxT1dSWFgwUzhaX1BKc0NOR3VzV0ZWMVViLThENnNUWG5zTGFtbDlVekREdWxTVlVSSTFFbXhXXzBwcXBlWWlPVUlJeWY5VUM3SGtEaUZNemJRQ056eFhFLWpTTVU?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "El Esquiu",
-    "dominio": "elesquiu.com",
-    "primera_deteccion": "2026-11-06",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 13,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxPRWM4UXFDRTExLWhEMDNwNXE3VklWRUNQNGx1RDBVX1RId3g5OGdXZ2tYb0V5Z25hNVZGY0Y5YmJieVpLLTY3TVAtM2xlVkp1MmhpNzJZMWp0X1VEQTJ2Tk5hME1rUUdHejExdllhRFhEZ2NMb0dsYTA0YlU0M2h5Q2tYZ1czMWJ0a25IYWxKaXZWa19ibUZncE40ZmpFM3pZV3duMlJRUEpaUFBVNG9hdHJDNHVocGhxLWtoNFRSMm42T3M4SmNSRDJRYmJ3ZHNFd1BoY3FQWTROWTFrWFhXWlJUZnIzWFBHTTFrUGVWWDBBTU15RmZrelU0MDNBTXh3S2p2ME04dEk5UQ?oc=5",
     "estado": "seguimiento_google_news",
     "wp": false,
-    "wp_revisado": "2026-11-07"
+    "wp_revisado": "2026-11-27"
   },
   {
     "nombre": "elgong.cl",
@@ -1280,15 +938,6 @@
     "wp_revisado": "2026-11-20"
   },
   {
-    "nombre": "El Norte de Castilla",
-    "dominio": "elnortedecastilla.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPc29BNnIxQUlubFEyeFc3Rkpfc1g3NF95dW5rUUotUlY0MFVsdTVFbGVqdjh0LWZnU3hCZlB0M0JIMkVmVmFZWjJNeFFsWkx0VEhhYlZ0LW8wQS15eVZCTTFBdHo5aUl2QUxvaWJ5U2hmd3hzOVIzVkRsclBkcmQ1VmZRdXRxbDg4SDA4cnpycGVHVUFVdjRJQjB3cEFiUVBiUlU4cXRoWnc5dTlnWFVBV2toTWFxbzVucUQ3cXRFQU1RZXl4VHNRc0o1RFhUd9IB0wFBVV95cUxNdTFfT3R1U3RqWEtQT1RUd0xxZHpteWxtUzVhT2hkSEpTSE9OblN0TXVVa1phTm5pWWltWVJSaklXLTFvUnZVMHZYVWZwckx2R3pPS2p4MndVcFRlWWtiaUd5UU14bVZnaUREa2lhM0JKU3NDQmMzWnJWbjI0QjFaNDRxLTdIVk1lZzU0N3RhWUIzZVFpSl9HNk9MQjdpODdSWEJKMzBXOUpqbm5fandEa0N6cU9nczlXbHh0aWpJWjdkakEwT2tFZmJKZTJNbGM5S1Uw?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
     "nombre": "Elonce.com",
     "dominio": "elonce.com",
     "primera_deteccion": "2026-11-10",
@@ -1298,66 +947,6 @@
     "estado": "visto_en_historial",
     "wp": false,
     "wp_revisado": "2026-11-10"
-  },
-  {
-    "nombre": "elperiodic.com",
-    "dominio": "elperiodic.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 1,
-    "ultima_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOUzBPaDFJZjU2Y0NEZDNNSDFnQnl3STBnb2FTTnF5QzhWSDdVSzRSWkFsbmx1N2tIYzZKRC1rZW1YZGNoMUtCZ3ZEZFkyaG5pS2Q0NUI3NVhfVjhPaG9xZkl5dDM4RThDRXFCX2pRUnduQjhycWtCa0s0Nm9xWDlHd2tqQTFxYkI0aWVnYVdpbGVjMmJIYThnMENhZ1l5T2RUMmxndW5HcXQ2eGpCbjBXLWs3eVV0d2lpRjR0RUotQzBVV1h1?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "El Universal",
-    "dominio": "eluniversal.com.mx",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://www.eluniversal.com.mx/mundo/fotos-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-asi-se-vive-el-25n-en-el-mundo/",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "El Valle Online",
-    "dominio": "elvalleonline.com.ar",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 33,
-    "ultima_url": "https://www.elvalleonline.com.ar/una-abuela-pretendia-ocupar-el-lugar-del-padre-y-la-justicia-puso-limites-por-pedido-de-la-madre/",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "EQS Notas",
-    "dominio": "eqsnotas.com",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 571,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPYmRkc2QtbjJQenFuUjMxaDRENVM5ay11VGdCajZPejBhQWl1SS1wVUt0VXFheVAwdFpPOGdhRDJMR1hkT2hsazBYTXJWUWxGWFNIWFRsZm1qRUtmS242dXVERDJFWHRxdjJaaFlHdU53OWtxamJDQk9BNUdrbHBMVVZPTUJoMVEwUDVvNXl3YWRHcWR1WlpXaVpudUhaazVlU1didTI3VTN3djJBNkl3cVd3VDlOaWNzdkFnazdMVTlVVnpnenpadzRFWDk1UktvajF3OGFieUFsTHlrZjVLNTBKN1pjcjR3WlHSAfgBQVVfeXFMTmVsc09DU011NXE1by1QN2ZrNGhFM1lfT1lPSU1OOVJJSlJSTnFUUXJYU3B2Y3gtWHlSQ3hYVmF4MWRHZUt5bVdYRnVqV2VpSUtmVlhCaGtsWFpJbl9WNm01V00yLWJ0bjBzanZOOHk1dVQxZVhlLS1iempBdHlfSkhDNHhLbFFiU2ZTbWxSTHoyREMweWdqalpON0x0MU5acGZrYjJyOC1BenpxZTAwemhMbWhSSkNtNjRrd2dna2J4TFFHdnh5SENzaExod2Y5bDR6Wlc5eEM0VjRTSW5ZXzRZeFdDSzJPbWZEQTl2Wmt6UVNqTnFsTC0?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "Europa Press",
-    "dominio": "europapress.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNOXJaY2F6TUpxZC01dURXd1YxUmI5ODctSVlpUmYtN0Z6VDJ1bnpJdWpvZFIyc3RIdGlWTnI0TEhNTVBVMUxKRzRnTTkwY0ZKdDZvZUVqV25JZHBCOHlTRFEyZzFlVXRnMWpIQlFvTVBxU2RUNTk5c0FxZnFhRWhtYnEyLVdoZ2syNHNqdU5FbjlKZEZ6a0s5aXI1aHNtMmZKZ1FUcUVZSE9wdkhHZGdzZ1NKNllKUkdlOVFhU09jSXpsaU1wS2hCeE5VeFRmZEtoLTlHbkNNXzJ5dlRI?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "www.examedia.com.ar",
-    "dominio": "examedia.com.ar",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 62,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9tTjVFVkhiVXlBWGlZbEE2UElQZUlJTlJRZzlqaXpJbDM3TFFHemhCNnZCb19hc1NMX05pWVBzMi1CbDhMVUQxZW5zdFBrd0lneFQ5R1NPWFVGUHl5Nnc?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-24"
   },
   {
     "nombre": "Exitosa Noticias",
@@ -1389,79 +978,12 @@
     "wp_revisado": "2026-11-21"
   },
   {
-    "nombre": "Fuego24",
-    "dominio": "fuego24.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPUzJ0Q19SYWxqME5IZGZtZU55VEZYQzV1SHpRQ1M3VDJVLTlxSldEUVFsdmo4LVBKa2VRdzdjWmFWVDBheUpqWkp4SmVZN0dCZ0RSTDJRdTNUWl80V1hYTUpnRkhsN01VYWZIRjBGOHo0cmQzMy1WRmdXVmJJVXBjOFF3X3FDUW9GaDZzcW14TlVsZk0tOXgzd3hqX2d6Q1pEaUE?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Secretaría Distrital de Gobierno de Bogotá",
-    "dominio": "gobiernobogota.gov.co",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPWjVuYVZNZ0NBdlFYY3k3ZFA4bHRxRWNCWWZwUjNmcElTUElkWUo0RlBfQjJ0VDRReVg5WjA0cFBsRHpJLTRPOTB4bUw5YkJISkdJdEIxZE9PSEFSM3NQUXE0YzZNaFY4cU1jejZkM0E1RVQtNWVURTcxZ0lLUE16T3A4dDRWUzg1?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "GUB.UY",
-    "dominio": "gub.uy",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNTE1qVk1feEhxQlU2ZHA4V1VpeHFBYnJ2U2hjUUFSMVZhdGJaYWxja0JJODVTdnVzbXl1VGF5VlBfNmhBU25acXFxbVhrNUVUTTBYUm5XRHRwbGs0RXp4WkJaazNRV2tsWWxMdUREanJpNkNaWHdVM09MOXZVZ2pYa0NIVnkxTWJuR1YyU19iODAzTFdwdzFfTllBNFNfc3VQWWNqcThtWHhiaTFKUVgtS21senpMcTRHVENVcHE2YWkwOFBLME5j?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Ideal",
-    "dominio": "ideal.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 2,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNQzVJZ0ZCamx6bi1ySXpDVko4ZVM4VXhhWjBfOUdzM0hmZFNlTnl1eE9HakVZd0dNZVZmbmtQeWJuSnFkZno4UFc0Q3R3TzVUODN0NEhQVXczOTYxLWNTNkFqVEJXSy1qZU1RZmVpNzZnZTViRGY2eGRuWnNMUnFsNzBVNk5ZRHJOOU1ZMTltQmhhdXhrUWNfLVpqckktM2g1WFpFTmxPVzlWQ2xaMzkwVjBxVmpmWDBveEVJczhDM2wzZ1dBUE5MamlNYmZzbjlR0gHWAUFVX3lxTE15N0JnWGt6OTYxWHJqVFBUdU9TaEhFTmxISHYtOXNGM3p2SG55QVd1d01rb21GZDA3RTFoRElGMHMxOWNrZng3d2lFOEN4Tm9kUzg5ZUdOa1FleDdfenNmUmhWM3dCM1NFM0ZLWTA1TTA2YUpDZFo0Smh1c3h3SWFoS3Fld2xZeDdHY2FTNzFITXpOZUpFVURQUkh0Q0hsQjVQZEtvZFhEZnllQ2laQUFseHg0LWV0blZrVHlZSkxPeUpYU2VkdXpSc1JPM0F0UUFacXVHcXc?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Infobae",
-    "dominio": "infobae.com",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 50,
-    "ultima_url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOd1hSeVR5WldKeGhqTmEzREJOQ0NTSk1SZUN5N0tnejViZndkcEN5VkNiUF9DZGZCc0tVMUVVV0UxZFlsamJwWExKM2N3MnljR1hYUXRTRW4xR0dFMzZqejhEcE5raUhfbHQ2X2pjUUllV0UzdUxHN0pOdWJSb2xvMFdHbktvTnBvYkVhcXc5dFRrVjFsTjRNWGlGRVdDcVlOR2hUMXJmRDJhVnhidnhVMUpUdGVoY3pzbDViT1R6WHYzZTUxcTNjS3RpZmV3c3haNU9reWdseFNQRWRMZlJVcmtGTVA3MGNCN2hfdlhYRWRiY09UdkxzZnhUbFlmemlQWVR5YlN1YU1fTDdGaFV3T9IBqwJBVV95cUxQWFBRNGduanh2bkJuNFJKN0RpM2p6dm1zeGVpZHQ0bnA0em9aYlpCT2VSdGVmaG5vNEk4N2VyS215dWhQY3JDVlktNi10VzkyUjVaRU5kUzNSb2tjU29rS2RqdE12VmxEQmdLYlNsR2VDRFkwMG95T2kyeGUwcEgxR0Rub3hJMzBQX0M5RndUYU1tQ3NERkxYSllUbHdTTV9KMURUYV91akZBTWxMc1NmR0tEeWNNTTZZZWtxRzFHc25kc2Q4dnNRLU1SRk0zemlHN2tKOHhSUXY3eU5Yd0VlcEFEeWpxWGkyckJmQmQ0Ym9pV3h3VngxelhwTnN5RHc5OTZMZnBGa3ZkVHRXVXJDeVVSTWs3ZzAza3NtdHpET3NHd2FDY0xUdGlLNA?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-22"
-  },
-  {
     "nombre": "Información",
     "dominio": "informacion.es",
     "primera_deteccion": "2026-11-26",
     "ultima_deteccion": "2026-11-26",
     "detecciones": 1,
     "ultima_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPRFpaa1FtZDJfekNHRXVQNHhCbF9KTjYwOTRRYTRNODFzdy1jSkp1Q1NMTDVrUmF2V0c3WFFqV2pPak80LXhtWkdPeDFRZFZzRVF5WGRnUm5idFBGelhINlR5b29WeUs2QzdVYWxoWXhQbENSWFRCeG44NF9ybWJNRkh2UDZuS3NaYjdJbThDcGVXTUY0WXYxcnlKcVhiajJhV05zVF8yTW96OWNZUU1USHBRaGsyUWg3aFHSAb8BQVVfeXFMTmVDOHNWYzdFTm5pOXY4UGRYVUxnRzNTVmRpY0VvdmV4U18zSGdySzhVM19OMWV0Q21JbjIyanFVWDVaeWVkUUMteEVrVUVkYW1XSnZ0RUY4VVd2Y2ViX1ZsTkZQbVgybXE1NzRlX3JoaE5aYXBYS2RxODdlWE9hY0NkT1R6X1dwd2ZwTWpWYWdwaEZSRnplS2RhY01hWmJUeW1LUHJza1I4OWpnb1FwOWpfdFVVQ1FzSVBHMmNoYjA?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Justicia de Primera",
-    "dominio": "justiciadeprimera.com",
-    "primera_deteccion": "2026-11-23",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 9,
-    "ultima_url": "https://justiciadeprimera.com/2026/11/22/la-justicia-limito-el-tiempo-que-una-abuela-puede-cuidar-a-su-nieto-durante-ausencias-laborales-del-padre/",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "La Bancaria",
-    "dominio": "labancaria.org",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPU3Jma0RSdEkxVVY1bXBRa0NFb2xYMlU0b21IMHVqekhMeVlYa1hNLWNaXzVVRHptTDY4NVREU3h4WVdvM2ZQUS1MOGdxY29LZkJXcWZ4b2d6b01PdUFPOU41Ym1IcWxVSExjcjgyRUtMWDZZZDh2SUxlZFg3bnY5TmNVU09kSFpuTmttRV9MbWpxN09FQzJMVFFMZEZQV24wY0hWSWQ0bk55bm5PVGc?oc=5",
     "estado": "seguimiento_google_news"
   },
   {
@@ -1474,37 +996,6 @@
     "estado": "seguimiento_google_news"
   },
   {
-    "nombre": "LA GACETA",
-    "dominio": "lagaceta.com.ar",
-    "primera_deteccion": "2026-11-18",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 8,
-    "ultima_url": "https://www.lagaceta.com.ar/nota/1164201/sociedad/dia-internacional-eliminacion-violencia-contra-mujer-solo-tres-cada-10-argentinos-tienen-alto-nivel-concientizacion.html",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-19"
-  },
-  {
-    "nombre": "Ayuntamiento de la Nucia",
-    "dominio": "lanucia.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 1,
-    "ultima_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNZ3RPWXBubVpFam9Ib1BvY3BQNDlkVjlfNzRVUXl1aUxMeXBqc095WThqQWRFSUFqVUpNa3QtQXhsR3RMeDhLSmxTSmxmZ1hST2dxX3JkdTBvVmUwbzdPWnUzOVAwekc1LW1ZZFlsaUhISXFNUVhUYmh3MlhoMlB4eDE4MW03OWhJZjRwR04yZFBtb2VIWVg1b2JURDNabkNmbUF5a1RIYnJwMzFVUFQ0?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "La Opinión Austral",
-    "dominio": "laopinionaustral.com.ar",
-    "primera_deteccion": "2026-11-18",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 22,
-    "ultima_url": "https://laopinionaustral.com.ar/comodoro-rivadavia/condenaron-a-mauro-pavei-a-cinco-anos-de-prision-por-matar-de-tres-disparos-a-jorge-nieves-en-comodoro-733541.html",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-18"
-  },
-  {
     "nombre": "La Opinión | Pergamino",
     "dominio": "laopinionline.ar",
     "primera_deteccion": "2026-11-26",
@@ -1514,48 +1005,12 @@
     "estado": "seguimiento_google_news"
   },
   {
-    "nombre": "La Posta Comodorense",
-    "dominio": "lapostacomodorense.com.ar",
-    "primera_deteccion": "2026-11-17",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 80,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPdTlieWo1Nl9BejVRRGpxUkpfY21QU3pfQ2xDQjVBbHpSMFVxVDNSMTI3RFZ1aXU0MWdpNGVXalcyNU5uZHZ4aXVoUlNrcXh0SHlFcHkxNVh5LXVmN3R2dmIyS243QmxFck53alZReV9XQ2k5Y0l4anZrdGx3R0RCZUhsR2Qyalk0M2Y4ZFlQeFlPNFhsVGpFeDVZQUEzWXhJdk1DVlZLOEQ2a1FnUEZFN19KMHA4MHZuVjgzM1haekNJM2ttUlRzT0lfUUNjcllPU09RRndpMFRUTXJNOTRJ?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "La Rioja",
-    "dominio": "larioja.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 2,
-    "ultima_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOeWdKWHhvTjdwNEU2X2NUaExwdzNtdE1NNmo4ZXpJWWFhWTltUXlDZWJnSXRpRW5kem1UZkg3eFMxY0hVdkN4cmVWQUhhcWdqNDNHZlZkNmxKVEJnZ2t0R3h6eVhLbmdDYTJvVHVTWVpnRkd6VW15T3gweGN1aC1aNjhUS0FrSDVLTXU2U3NDNTdNVDhlTWVXRlhiTHBXZFR1RjN6TWVvV19NSllqVWVvcm91TWY0R2hvemF5ZDlEWTBLT0xXX0dyWDhXcFA4UdIB0wFBVV95cUxOeHZuNXB5ZkhjelFJcE5iLUY3Tk5DQVQ1MHU4X3BqdVJHQmppVFNRbTJsYlhiMDREMk9CcWJzYUp6bno3MWc4LUNneHFMRGxrZVd0RnBaZmh1XzQzb1Y1R1lFZnZiOWVNV1NiWVU2bm9Qak5MNW9DZk45Tkk2a05wUkNVaWVIVkFfTnpXN2l6Z1UyZXFSQWpKeW81bFhSbm9BbjI2NXkyRGIwa19RTGdoams1MDNkUWpHR2UxdHdyU0Y3aC1TRXM2UkVhZ2d1RktMaXlz?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "lasflores.gob.ar",
-    "dominio": "lasflores.gob.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 1,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPM0pqMmg3aDBRN0pMaXFZZ0ZicDd2UVJLeWVpYW1nb3hUeFJrMDlQVlNXaDFOZk1wVHY0UWJTWG55SDVCTTRmajluWHRNb0twWlZhckxYT3JXSExFdTRWdVVISVZPU1ZjMWhfY3c5eVk5S254dFRFNDlHaEI4TTloZXo5amJNem8xczhhUEkxMHZGWVhjbjhNb0RWOEg5b0haSmhWWlNGZ1E4eW1UZmRrUzFRbl9ldWN3cnc?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
     "nombre": "La Tercera",
     "dominio": "latercera.com",
     "primera_deteccion": "2026-11-26",
     "ultima_deteccion": "2026-11-26",
     "detecciones": 1,
     "ultima_url": "https://www.latercera.com/paula/noticia/dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-acompanar-sin-juzgar/",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "La Voz de Galicia",
-    "dominio": "lavozdegalicia.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNM2RVZF9MRjdUSVQ4dDFQUGVTc3RzbnVGbHYwYlBBTWJJWDN5OUFLc05ZSzhXWmMyd21kdkR4MWtrTXUwRlZfTzB4ZmxqSlZtVWVqTDZQblRkcThXd0dZYmRzMUZFY1RlWExsVS1nSGdDSnNxUERQcFNOZnJvbG1lVUxWTVRRX0RDTzFLSGVjNXhpRjNMdWFvc0dIYkg0cEJyLVg5MlY1eTBub2pFUk1Jb0c4VURTY0RiVVp3WFR1b3QwNEd3c1dXa3l5R1R0Y1kzRGdaOUJuZG42MW14WlFYdVhBcTFKTFdMbzhB?oc=5",
     "estado": "seguimiento_google_news"
   },
   {
@@ -1581,57 +1036,6 @@
     "wp_revisado": "2026-11-21"
   },
   {
-    "nombre": "lt9.com.ar",
-    "dominio": "lt9.com.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 2,
-    "ultima_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBwb3A0MmtXOGZkSDJ1ay1Dcm9iTFBmek5RaE1MT25yZ2R0cktQWjRHSVlKenFMZHktc2Z5OEVpMXdHMmswUV9POTVCMjRHTldVajhLeEN4OENrUnpPSzk5eXVxSWZINVlxQTd3MElZYzViWVdxT29kVTlDNWJoQdIBgwFBVV95cUxPUzhLVnVITW13Mi1ERE5zb01fd2hDT1F1a0VTdlNfUVQ0U3ZlNHRUZVFWd21KRWtCQVVnQmRrNktvaDhWWjBOZGtQTHNMUHphSVpKbC1oWnRid3ozdWRtTEpGOGJMU3lJakIwbjhHbEp4WnNoVjNnQmpNYy1YbWtCd3hhTQ?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "LU17",
-    "dominio": "lu17.com",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 579,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPMUJlMTlFNkJIaERLSnVyYy1JYlUwZG9hSVRNQU9PNGpVcE1SOWJIbkpfZ0d2V0NLUmpWdm1ES1lmTUR1WWFwVDY4WXRzU3NPek81Y05VMU1GMWR0NzFuR3VMeVo3SjdKLXNaSWxxLUJQYWNmY1JkeWlIbkZ6clhPXzhaOElDMHB4d01TY0pjQWU1SThwamEzLUNlOE5yVlMxMWVGMEotMUNEMWdsa2h5WDY0UjdZaFoycFpfdUhyZ3Bidw?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "Madryn Ahora",
-    "dominio": "madrynahora.com",
-    "primera_deteccion": "2026-11-17",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 29,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPOGFOeWdzaEZnajdnVjBUWnpGRzRETTZ5YkYtMV9uaWJQM1ktT0tiTEhNV0R1TjQycHVVTjdGQmNPajhvc0M0SF9xQ3ZaWDVpdWZLaVBQR1Z2THN5VDVqTXNSSVllNGFXYVFVNDAtbjRPMjM2UE1nYm9xamhFQXd4dlpfcVBuUkdIQWdSUndUSjRuWm40YVR5SV8tc1lUMWU2S0h5V29FRlZLdjZ0TzVxdFZVYUJjN2FGTmxaVjN5d2VFczBzcnlkV1dlWHo1c1BRbGkzcEFiWS15d9IB1gFBVV95cUxNZElOd2JJY1V3cGFaQVZsSS1FcnJPczJYRUNaY0d3MUh5Nzc1QTlBWVk5cHIwbGNsNXAzaEZBVHNYU2syOEhmaFdxcjVrOXhkbUZHU1Vta2Uwb3RkLTJjcmRMejZFQnA5RGRlMEhzbGJMc3Y0LTQ1MWJDT0dOcGQ2MmxCZTU3WEppaWNOamxxb2VsME01a0J6OThQN0tlY19JTEgxQWRHZ0lBbi1SQmp6RERXbGFqNnpCcEo1cjh5RkdRTzZ6U3dwZkFPd08xb0VlMWJCbzRR?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-17"
-  },
-  {
-    "nombre": "MARCA",
-    "dominio": "marca.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 2,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQb01Ubk9zM0N0MWdLbG1ZSWVxSVhhT0ZqMk9ZUWllUHgxQUJBNjI0TlVCLUxJSGw4Zng2V25kaXBfRHNVY3QzdV9WS3Y2MndmY0NQT3c3djNYcjY2OC1tTF9ZdlVrQVUzX3ZZcnBRaDdoV0M5RW9kcjBSamh4UXlsbmhfWHlrYUNNTlVLSFFqMW05Z205WHF1TmRGSWRVTml5OWJ5dkpyeG1SXy1MVVVOZzZEaDRmeVNXc0pjZjJWVXZ5XzQ3QzZoY0pQbm51YVVzUjZMX2tuWdIB1wFBVV95cUxNQU9CTlR6cGVKaUF3S1g4QVVIWmEwTmZId3pCT21OSFpxeGRucTFmMEZRYWZYek5yQXZEQnBuNFlDeENGeEtCR0xobUhGSHlwR1FvS2JUbGZ2cDJMWXlsZVdqbFNqSmtzRC1wZWZaVUYwSFBibmY2bmt4MWVPSEtVclJUSnlIb2poVzBidnloN3BtVTdUWG1CNDllTEhCeUs2Z2p0MGNSZXlVc2g0VHZFM29ETzNkeWtxVUR2QWkxUlRDNFdTV0szb1QzLXIwcW1sRkE3WjRTaw?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "mdz online",
-    "dominio": "mdzol.com",
-    "primera_deteccion": "2026-10-22",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 34,
-    "ultima_url": "https://www.mdzol.com/politica/2026/11/18/la-camara-de-casacion-redujo-a-14-anos-la-condena-a-jose-alperovich-por-abuso-sexual-1996360.html",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-24"
-  },
-  {
     "nombre": "Alcaldía de Medellín",
     "dominio": "medellin.gov.co",
     "primera_deteccion": "2026-11-26",
@@ -1652,79 +1056,12 @@
     "wp_revisado": "2026-11-24"
   },
   {
-    "nombre": "Portal Educativo DGE",
-    "dominio": "mendoza.edu.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNbEx5cE5QRkQzNm90MmpVYktVNG9Iek9JQThCMkI2cFFNTklVWmdQQ09IQ3UwSktEY2s1MjN0d0tVRnJocE9Ha1N0ajN3eE5lWm9LRXdrZnN6TDJLWkhUY3NYWE1yMzM0Q3AwNXRGOEJwUnRnMXhCM2dWLUdYM2VvbVNYdkhFZzhNWDcwU1JHWWt5aEp3dDFybkdGRzZFVFdibXRMbEpmLWQ3SVRBdzJ5Sg?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "El Tiempo on MSN",
-    "dominio": "msn.com",
-    "primera_deteccion": "2026-10-23",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 101,
-    "ultima_url": "https://www.msn.com/es-co/noticias/otras/qu%C3%A9-se-conmemora-el-25-de-noviembre-el-origen-del-d%C3%ADa-de-la-eliminaci%C3%B3n-de-la-violencia-contra-la-mujer-y-la-historia-detr%C3%A1s-de-las-marchas-del-25n/ar-AA2idsvY",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "Noticias Radio Reflejos",
-    "dominio": "noticiasradioreflejos.com.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOQkJFYlBNaE1oUVlpNkxiUEMxZ0E3MTQyRC1VUmRhS0FsbmNxM2hoUkdCRlVlQlVaYjJrM1VwdXdpcm55V05mZjg1Nnp2WWhsVFc5d0RTUTdBTVJLeVRhZjM5b1g2N2V0MEoya3BjbHZuM1pXZFpUamRPTjNUTC04NFN3N3BqMVdBX1VUdHJoSTVScWZZQnp0WnpIVE9iRGdSX2hYc0hKUWZEdE1xMGJjMkt2TmRRWEphS3RIUGdn?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Onda Cero",
-    "dominio": "ondacero.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiqgJBVV95cUxQYTFramlYTHlZb2RQU1VTSVF3OXU5VVVIb284NjRLd1BUZ2lMQ1BpQVVoMGZaLVprMUNZZ1dyZjQxOVF2TGdRdGVJbnBzN1hndHo4ODZQNEp3MU9xcTN5c1NTeHV5ckdPTHFXQ1k0TEdnZjRmUUN2OXdMdGsxWWVmSUtKS3NwOHVGN29yVHJyTlVMd1NJWlRqcE9veUVNMHpORWxxcnpqbUx5YjZSSElBcHVhRHBMNVIxYmQyWnJZOHNHQTdJc25NWFR3ZHRaLXNDbWxkdDZmanZOQllRU2gxVm1RNG94MTFodUdTU1R1UmdrSnV6dlNVX3dpRzhVZm1VWlJBTHNCby1Wd0tVUWhBdDk5elQwTHBLN2tUbXNhSFNpQ3pCczl2RGRR0gGqAkFVX3lxTE56b3FOS3hTNHk2OENZRTU3OHljZDVMRkg4S3RJaHRJcF9tWnhMMllkUFFvN2hYYVVqM3pXcGNsXzI2RGNla1dLWnQ4bWJGY0ZsN2UyeWtVMmRHa1RkTlpfcUdhVFdmUkJTUVoyWnppX1lBWEdkamVtVHA5aW94SkFhOVhiZ0JGb2x6ZjZJcURlcUYtdWplTjBzcFVUYXYzTzlWWUdXbE5wRmhrZFFtdVJUbTlQWm43XzFGOFVZaDdEaEZsazBMOWxkTlJzOHRxMWtZRm9vc1Fxb1NONGZxSGt1Q2ZkSHUzSGN4aHN0ckI3M3p3em9hekdsY1ZnT2lxcXQzd1R6TnlicEUzVExjQWhlQkhXeUtESkFMbjhKMHpNdEdBdFdoR2tKVGc?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
     "nombre": "Parlamentario",
     "dominio": "parlamentario.com",
     "primera_deteccion": "2026-11-26",
     "ultima_deteccion": "2026-11-26",
     "detecciones": 1,
     "ultima_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdGVPd29SWUhLZDB5UWE0SDNzR2NNQ21CcjNZZkFJNW03a0VkUktFT1ZfNS03X3NUYVlUTGN5TEJjSVFXRzlFaElRZnNMdW9pYjg2OXpTOFNsckUzUFhVdEZURExJWDB5cmx5OFVzUXJ3NldQbTVxZ2ZvUjg2RzNhbExLRklBYXZPVzVTUFRwUFd6LTBkSkZyZWpkV19Jb2JERS04Yg?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Perfil",
-    "dominio": "perfil.com",
-    "primera_deteccion": "2026-10-23",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 183,
-    "ultima_url": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "Pilar a Diario",
-    "dominio": "pilaradiario.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 1,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPVnVFSHlja0RseS11cTMxX2FHZGU0STF3dWlYRHFHM3Y1U0Q3QUR1bG1xb1JXYXBTT3dqaUFjZ0VjYTY2djNYUmttQVJrdklkeE5Cb1U5Zms2Wng1VVFnQWc0RjlPYnpDTHhGY1pGTUp0Zm9YZzVlUmM1OWRvQUphZzZiNUY2YWw2aGdUcldoWWhpWUMtdEFQYVJGSUY4ei0wcEZJclhpZEV4Y0oxZVdocFk3UdIBuAFBVV95cUxQeU9kT1FLcFlQdzgyY0lNb0M5YnUzWkZJdy1GNzZnbUdPTWJuRWE0bG1jbDJ0UGpGNEJkY0FLaEM5dWppSWVEUHFNbmlVU0R4cFNDTGFSU2ZSUzAxSXVYdTUtYl9LY3dxX2RJbERfbnJ3QVh3WWJBc2dFS2NnTmd5SGNtOWY1SVNIa3RuSXc4SWpaLW93TjZyR3NaeGtKVW1YUE9wVkRQSXNYRXBJem54ZnBtZzNNcUJx?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Policía Nacional de Colombia",
-    "dominio": "policia.gov.co",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 1,
-    "ultima_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQQmlreFRQdE9GYXdDazZ2VWVRRUhpbUFkUG1ndGV3QlFmX1F4MlcwMkdHaWd5TlFUM0hla1FzNUxSQmtSTVFXdDk3VjFPOXVFdV84RHBFOEJkdTNkNHVaTEZacTBSVUlMcW15SFlhTGpLWmJuQ3pfc2RRSlFxcWt5MkZQR25YMUZVTGpfb0Vsd0tPMWdYNGc?oc=5",
     "estado": "seguimiento_google_news"
   },
   {
@@ -1739,61 +1076,12 @@
     "wp_revisado": "2026-11-20"
   },
   {
-    "nombre": "Radio 3 Cadena Patagonia",
-    "dominio": "radio3cadenapatagonia.com.ar",
-    "primera_deteccion": "2026-10-22",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 122,
-    "ultima_url": "https://radio3cadenapatagonia.com.ar/fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
-    "estado": "seguimiento_google_news"
-  },
-  {
     "nombre": "Reporte Índigo",
     "dominio": "reporteindigo.com",
     "primera_deteccion": "2026-11-26",
     "ultima_deteccion": "2026-11-26",
     "detecciones": 2,
     "ultima_url": "https://www.reporteindigo.com/entretenimiento/que-se-celebra-hoy-25-de-noviembre-dia-internacional-para-la-eliminacion-de-la-violencia-contra-la-mujer-efemerides-20261124-0076.html",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Revista Quórum",
-    "dominio": "revistaquorum.com.ar",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 43,
-    "ultima_url": "https://revistaquorum.com.ar/2026/11/17/puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-el-fallo-que-puso-limites-al-cuidado-de-los-nietos/",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "Rio Negro",
-    "dominio": "rionegro.com.ar",
-    "primera_deteccion": "2026-10-21",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 56,
-    "ultima_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNUnFFNDJjUmkyZy1penJabmNSdTRMM1BfS0NUVUJpMkpjcEhVdS13bVh3dWFYMTNBYXdyNV9qUXR4S29QSV9JSy12bXJiNDR6MEM0b3N0UmlzQVNqamp4MnRNV3BtSlNZWlhSSVhPZEZtVm01TVZYSERnOXBmeVRobUpNR0ZQbEVPczVPc2xZT2hlLVVzNGMwa3pkV1VvMzdlY0haSlh0aEtNMXVRTmlZdlltSk9SMWtJX05STngtSUJRMHZpVVNlMzJBNktWNW0tNWJHNDJ1VnE0ZnhTbW9n0gHnAUFVX3lxTE82emNKTXpVSGo2elJRcWRDVnd6Rk1OVEQtWHpINmVPQnFrZWZzV1Uwc1RrbXhUS01NOUw4WGJzRDRwdHZvNUFyV2dqNmVnSzJMREUtak0tRTl3bHp6X2l2ejlmdjFyejlSMTN6SGlEZml6R25KSHFQQXZRUlVIMzQ1WnYxMVI1UWd0Y3pqUFV1ajN6Y0UxWWt4ay1QOWtNSXVSeUhnUlVuUFhIdFpmeWVIR3lZUzNCSGxZWGJuS3ROY216NUYyR3JuYXQ1YkZzV04tOG54S2pqYTVZamRvT0s3TG1VNnBtQQ?oc=5",
-    "estado": "seguimiento_google_news",
-    "wp": true,
-    "wp_revisado": "2026-11-24"
-  },
-  {
-    "nombre": "RTVE.es",
-    "dominio": "rtve.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcDcxTl9ZdDc3X1FqRi1ZUkNvQlhwZTh6OHd0eWkxV1lJUTRVb1k3NUNHSzZUQzZyVDJGLXMzZmlmRkVyYWNINnRaQVhxcWRZbl9wRkNYQnpVZFJENDNIdWlGWk9CYXZWY010emdYRGZzcnJNR0ctQzZsMlNlU0w0bndoSnZPd1FvdlFZWFVLdXFyXzl0SlRHTW1tYU5oVG1qSlo1WXo3eU10MldkblVIYWJoSk1IM3QwckE?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Salamanca24horas",
-    "dominio": "salamanca24horas.com",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOdWU0VEc2am1QdzNLTDZwbnN1ZVNqcHUtTTNvWl9TbmlSYU10S25NelJmckEwc3BYWWJUVHRNUllYc0F0ZTF4Y2Y2Mzg3dmloNjFqeFFLR1g2VUhYQk9GNDZqNV9UbndhWExWN1p5Y1hxRmFPVlY4dTZjdkM2X2g4VlJfdE5nYXMySE5qX0p6VEMwRzFMdUVxUzhlcHNzQWpyMGV0ZDhtWkdkX1R4YXoxS3pBTno2M0FY?oc=5",
     "estado": "seguimiento_google_news"
   },
   {
@@ -1826,41 +1114,12 @@
     "estado": "seguimiento_google_news"
   },
   {
-    "nombre": "Servicio Penitenciario Bonaerense",
-    "dominio": "spb.gba.gob.ar",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
-    "ultima_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQUi1TWEdIQmVuVnU2TGg1TmF2UkNNV193X01qSnBfWk5lNnhLMlZxbHB3Vi1YeWhkbWVmUkRYUUFubkJkVDNQRk5Dcl9JY3BYWTN4Yk80a2ZFLWpkNThJcldIbzBqQ2JNMDc4VDBvMGtEWkpHTF9fUzVFSlVqQlkyelV5NTVTanE3OVB0dUo0Mzhldm04NFV4cTBnNmpEVnRKMXNlNHZybU51ekpWbEZET2dfdjRXVFF3SkdLMzQ1YjlTbXF0WU1HSTdSUmE?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Todo Noticias",
-    "dominio": "tn.com.ar",
-    "primera_deteccion": "2026-10-28",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 69,
-    "ultima_url": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
-    "estado": "seguimiento_google_news",
-    "wp": false,
-    "wp_revisado": "2026-10-28"
-  },
-  {
     "nombre": "Última Hora",
     "dominio": "ultimahora.com",
     "primera_deteccion": "2026-11-26",
     "ultima_deteccion": "2026-11-26",
     "detecciones": 1,
     "ultima_url": "https://www.ultimahora.com/25n-los-14-puntos-exigidos-durante-la-marcha-por-la-eliminacion-de-la-violencia-contra-la-mujer",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "Universitat de València",
-    "dominio": "uv.es",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 2,
-    "ultima_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOaFhoMjFkb2NPLTRwV2daN3VaQi05S1RLdW5sWlRZRFBwSTFaNkhVb0dqdDlYV2YzYVRIWFlaek1MaW5LUUhlSEh1bzRwX1lTX3JYVElRUGtDUXQ1a0dZYUVXZHAyZDd0VGljNWdKNUxZNlN3c3gwY05uYWRwZDNkTE9SZWhuTEs4djFKVm9Obks3ZnBTS2stSElTWmoxNWlSSTZsa2xmYmEzZWdlXzNMNXJPRjl6MG5SVTNCQmJxcEQ0UDhtYWprQ29nRWw2QQ?oc=5",
     "estado": "seguimiento_google_news"
   },
   {
@@ -1873,11 +1132,836 @@
     "estado": "seguimiento_google_news"
   },
   {
+    "nombre": "W Radio México",
+    "dominio": "wradio.com.mx",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-26",
+    "detecciones": 1,
+    "ultima_url": "https://wradio.com.mx/2026/11/25/25-de-noviembre-por-que-se-conmemora-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer/",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "0264Noticias",
+    "dominio": "0264noticias.com.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPcXJBRElWc2NRUkV2a05sSzhVMHpPd3JxdWZfaGo3Q0xBYmoteUctdmNKZ3Q2RUhnZmNzTVhJbzdGbzNMdDJ2ZDlaUnBncG5XQ0Jmano4T2FQdzE4aUlnX2V6MFpTWXRCSG1oUGdqaDN1QTdYcGM0bFlacHctUS1IcmUzcXYtSDVuUVpBaC1nOUFuTzdGQTRqQXRYelRrbXAyNHFqbU11aV9XWnBkWDY4Xy1vQWlrWW45elpvbTFJUmhLSGhjYmF0cXZUQlhCdjZQU25IT1RfX0hsdmNQZU1RbFFiWWhfZTRjNVpON05aLXhLVUc5dTg0UUJUWWJZSnVDT2ZXTzNOQdIBjAJBVV95cUxORnA4YWlHZmFsR2EzaWg5cFBLR0pOTnBackV3bVl4NmlxbFp0QUhMQ0IxX1AxaVpxVjV0OXdOQ0pReTNndWpKTlRqN1MtT2w0bWlZOUlCZExpZ2tMZFJ5REZoLVpVUHhOeENYZGVfd2VZQ19XaGhvUHktcTFzd0RZOHI2WHU3T3k1MFZfOWFUUnlPWGY2Z3E5VkRNSTM3QU83Wk94LVltNlhpYkFudE1wZ1c0a2p2dXBSM1ZJTVh1VDUzcVNaM1kxemFuMFBocHZWSUhJNE9ualZhTU5BalJZUXVRUnJ4THVGaTExSlZEWUtEaHllcDFmY1BYNXQ2ME9HdEFDdF91TVRnRDBO?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "20 Minutos",
+    "dominio": "20minutos.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQM3FoV3F0bG1QVTc2TWEwSzBnVkg0NkxtckJZX1RrUFZlOXB3UlNYS1BjdldpRm1HclV1TF9UM3AwT1VjQ1owdmRDdlJEY2Fob1dRMDYyckRnSHp5ZkItb3hJd3ZUVmJXVWE3MnBWMExnM00yN1I5SnhZV1pGWWdJUFExc2dESE4yUUw3Zm4xd1hYLVZlcy02a0FhaW9McUVNY0dwelJKN0NaQnRPTjAtQ1VaWUxlYXQ0RV9UWFNmVWo1WDdLNUdTdGYtSzcxbC02NDd6UVlWTmJjUFE?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "ABC",
+    "dominio": "abc.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPSG5Bbl9abC1rVS11Tng0U0VWdGkzeklRbnN1a09KUmk0cFM2M1QyYmZDY0hrVmllRVppN0YwUzVNcG1BMEdFeklPRzNUWjNHV1lCUUtrXzBkVndzelhINTZuS0FSLTVHQktSNGNfbFl2M1h0akpCVE5Pa0ZOMzQ1VldsOVoyNGtrTHdQTXpGMzV4ejAwcEZYYUFaU0pUYUh0Z1dWZGdUTUg0UEV3ejdyT2Z5b3HSAboBQVVfeXFMTjNLUWhrejNKdGFBM1U4YTBFRFhFQnY4ZUV6X0dnWklCYm1CVHVSZkxTdms3ck9Cai1ueGdyaFVXM0tVUl9LQTFNMU9EMmhvRU0zU3Z1MWNsWEg3WmdaVGJCQWJJbDctbl9sN2xCMjhrUWdtdG1zaEgtc1gtRnhjLV9WOTNxXzQ4eWpDZXJkY2xGSHk0WmlRbFFkY2cwSlE2M25TVUdBWEpFSDlZQXViM0VScjFJUVdCaU9R?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "ABC Diario",
+    "dominio": "abcdiario.com.ar",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 148,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPd3FURWlWblhKb1FaRjRlM3FpZm5HVDVoeFh2WGxCMWhoM09xS3dhUkdtV1BzVnFXVW9jUHZsQVRXWm5WX2ppU3ZaTkZ6UVNLZUxUOGZURy0wYVZPVXR4VzAzdy1yRzM5LTlSbmowelF2Y3hjZUwzZ1A1UTVZblg4NktrNlZ3Y0RPWWlseXFQWjBKX1F2VXFCOW1BUFhTNmFMeHZSLWdjU3B3cEd4QUo5bkFuRmNmN2t2MmRSWXlmSWJyS2dtbERjU3NSQXJKa1RmRUtCZVFBYVBvcUVocVp4c0xJbFA1WEpjOXgxSl9R0gHkAUFVX3lxTE9vcUgxeDdwTklUZDIxZUNTdlJBQk14cmFqcGlrbnVaaC1JRkJ6VFBGWGVrNUpsb2Z0OXJsaTVwUTZEalBXM3M1RllRTlc4ank0bTYyS0I2Zm1HWUZoaWItWEhMUWlkNk9nVnpCWnlvdWdCLWY4ZFJkSzZwemZuTU83V2RXUUx6RG5XbUFaMjFZZUg5STZJZl9EakpiZXppOVRSSmxXTEhGNUJ1aGhmOTVfUHhGVHA0WjRWUHBVbm9tRV9JNVpFdDNXLTFoZFJGbDdnQlZUVzEtYzBzYkNsTnRzYXdxcg?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-22"
+  },
+  {
+    "nombre": "Aire Libre FM 96.3",
+    "dominio": "airelibre.com.ar",
+    "primera_deteccion": "2026-11-10",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 7,
+    "ultima_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQkZ0TkhrMlR2c3lPSG5CaE1zYVVPRmM1XzZjLTdfaGtVWExwdFFqdkFwYXFIRFl4V1ZveXFfQmQ2OUwtbkVVeV92bzBzWUdzOUVOSFp1WTlKSFZFc3UwVDA1YjVMNDk0U19LU2Jncnk4ejVTNmRYYmlWb3oyWnlzTmFaZFNjekI2NmhRY2wwZ09zWkh3ZkdnZ3U5Rk1NSVZzLW02QnJYbFNOTmhfQzZqREVRV293eTRHczYzaUZCeF9WWmdtQkwtbzBYcGE1TDg?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-10"
+  },
+  {
+    "nombre": "Ambito Financiero",
+    "dominio": "ambito.com",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 37,
+    "ultima_url": "https://www.ambito.com/informacion-general/25-noviembre-dia-internacional-la-eliminacion-la-violencia-contra-la-mujer-que-se-conmemora-y-origen-la-fecha-n6349144",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-22"
+  },
+  {
+    "nombre": "Atresmedia",
+    "dominio": "amp.atresmedia.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 3,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNaFFONUhjSG9BU1NuN0hxMjl5ckQxVzhIVWN1OGF0YTRHYVduakhINnpDV0NzVjlYSnh6akwxSU1kQzlRSUlqc2huWTF6c3VaeGlrOVRLVWs0TlVWNnFwbUpUbXRZdXV1Y3BBRHJYUWlfX0t3Y3kwNThVTXdaMVFYX2s1Z0dPcWRxV3RhQ3lXbGRSWXhZQm43REVpREluVGlteFhCOTRoVm5MT3cxTV9XUFc3b0xTblVvZGM2MllXNnVlWnU0M2t5OUZIUmM0Q2xVems5UTJOUHRfOTkt0gHcAUFVX3lxTE1oUU41SGNIb0FTU243SHEyOXlyRDFXOEhVY3U4YXRhNEdhV25qSEg2ekNXQ3NWOVhKeHpqTDFJTWRDOVFJSWpzaG5ZMXpzdVp4aWs5VEtVazROVVY2cXBtSlRtdFl1dXVjcEFEclhRaV9fS3djeTA1OFVNd1oxUVhfazVnR09xZHFXdGFDeVdsZFJZeFlCbjdERWlESW5UaW14WEI5NGhWbkxPdzFNX1dQVzdvTFNuVW9kYzYyWVc2dWVadTQza3k5RkhSYzRDbFV6azlRMk5QdF85OS0?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "DW.com",
+    "dominio": "amp.dw.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQZmpfS2daOGNwTW5HZzJzcWJMaVNzZzc5eW96X3hyYUN6RGg2NWlBMWJDWF9HQU9EQkFSeFJqV3luYXQyUVpuTDJkcnp6RzAyRlpxaUYzZ1RGdTU4YWRGVVkwcXR6VUJkbzdhbHBBZVlYR001Y3pqenh4ay13OHNPYWZoeTJ2dVgwelpkYXUwOTRXVmRNWGRramlHbF9ESzMyWHA5S3Uwcm5VOURWejhsSkY3bEo2eEswUnY2VHd3N1Q0eUkxUk5ZTDg2UC1mbU41d09IZS0tNUNDWjjSAdsBQVVfeXFMUGZqX0tnWjhjcE1uR2cyc3FiTGlTc2c3OXlvel94cmFDekRoNjVpQTFiQ1hfR0FPREJBUnhSald5bmF0MlFabkwyZHJ6ekcwMkZacWlGM2dURnU1OGFkRlVZMHF0elVCZG83YWxwQWVZWEdNNWN6anp4eGstdzhzT2FmaHkydnVYMHpaZGF1MDk0V1ZkTVhka2ppR2xfREszMlhwOUt1MHJuVTlEVno4bEpGN2xKNnhLMFJ2NlR3dzdUNHlJMVJOWUw4NlAtZm1ONXdPSGUtLTVDQ1o4?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "AMSAFE La Capital",
+    "dominio": "amsafelacapital.org.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 2,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQa3ZaWVlUTTJaZ2FkMDVhSVhnTGVaTExwdi1ETUNxUEV3UG1qalMzS2MtbjZoNk5SRHJpOE5rYTEzNV9Nc2tzWTRvVWJsTGI0MEROT1lXdmZpajBhbUUtbTVSWHQ0N3YzbGZBNVRVandBdmtJWkxaUVc3UWZ5NFBwcUVvTWpyT3AwMnRLalMzajRkYWRaSjk0ZXBIYXJEQWtfaVVmY1drUk9HTXRxbzB1RXM4dFhUZDdOMmN6ZVZQZGRFMm9HSmZWQm1hcUhZS2txLXhMSDJJTmhKZmhud0VzcGJ4aFU4Zw?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-27"
+  },
+  {
+    "nombre": "Aragón Play",
+    "dominio": "aragonplay.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQc0xLOERGRUhhUVo5ZWNGRnVRRHFPTHhjMjlYRXMwRWxhY2FFa2hESWtPYlNyNEYtdkhqRk85amNUOGJMN3dpOEpLX095MkZzWXVNT2h2ZVo3N3ozaEphRHNLTUFHNVlUNWE0TnVpM091eVF3VDlhc2VQUFdVcWRrTzZfOFBCUXk2SWVyZ2tjMmxFQzFuM19VV2tDQ3NQZkhlcXFxdU9TYUw5cTRVM3FBbDNxYlNUSGpfOU1hN1NqdXdqQnh0cldlWGV2RFE?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Argentar Noticias",
+    "dominio": "argentarnoticias.com.ar",
+    "primera_deteccion": "2026-10-30",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 74,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQSm8tSkFmVjBTTUZHVnU4QnNBVS1DNTU1RU9yYUl1SEhab2RxSUs4OElVd3l3VzQ3aVlFVHB6bjBLcWVxWXFqaWIyaDljSzYycFFyTlRGUzI5UnZCRVNsYllCU0FqVkNlWGNEaGtaVzVSMlFzb081YTl4OVN6aHMzY3k1Z29rSThQOFRPV3BLNHYwVGJDYmd1YUt3cVBzTXlTbGF1ckpoOXE4RjNtVVQ1dE44MVBTeWdicjk3ekxxd3pZbDA4b1dENjRmY0N4TVFrQzRaZjdxaEk2OWpSaXk4M3VqeTVsMUVPbUU0?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Bariloche2000",
+    "dominio": "bariloche2000.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://www.bariloche2000.com/sociedad/25n-movilizacion-por-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer-20261125-0020.html",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "BBC",
+    "dominio": "bbc.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1pVEJYVkx6RkpaVjl5QlFXcjZrZGt0Qno1V0MtTG5qaW5iUmc1SmRiX1A2WlRDYmxBWVU2YnVZRjRINjVLQUtNUm1NQTZiMkdvaFBBd05iVEFPLXZJ0gFiQVVfeXFMTkdRNDVSWUJZVjJiR1ZUUnpvMVZRZDNwaFpDdThvbXBOQjlsMWRWU3p0TFppZWtsQ3UyMmYtRE5fMWR0b3dFdUJvcWgteWhVVkp1MUdvajg2bEVJeTZsdkthekE?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "Bogota.gov.co",
+    "dominio": "bogota.gov.co",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 3,
+    "ultima_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQWkxwZXU1YTlrUDk3SkJGTl95d2tEdV9EaWZBY3RJMThZQXlZLTVtNGlwVTJ3Sm9mY2Fnak9SdmpkQXNsSlI4SVUxVTNWTUcwajhsTE1fTHpsdmRsREFUcXhrTDY0Rm92eDJFaFBtSHRjQkI3dWJMMW1aaEl6ZFpQcm5iZXVURF9MU2VrN1BvdEo4TU5IalhYc0xQd1dHbm14REpvaVRZNndZTmw3QXNNeTd6LTJFNHc?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "caritas.org",
+    "dominio": "caritas.org",
+    "primera_deteccion": "2026-11-27",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 1,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPb0VobmNzVHVNZ243MnJQV09SbWhEcXNZQ1ZCY1Nkckl4TFpYN29yZWdDWTVVeWRKMDVfY3JqeURtS2FzQ1Q2XzRQZldqV0tlZU0wdGQ5UWNxR2xCZ0l6SlFZMk5JRXhqUG1vZTVkMnRkX0R0S095Q1VZek80aEMzMU9KMV8wWG9XWGNGUmNSWmNpWm0yelR3em9JUll3bWtRT28tUEljbXN3WTVkalFRbGRrblVpU3lN?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Cba24n",
+    "dominio": "cba24n.com.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOcDhZSGZQa2duQ3ROV1B4RnBGMjV0amNGSFVKcEhETE9mYndIU2Y1NWVySkRJbXJPUUJnNW84dkhOZV9BUFdTQTRxZWFnY09wTi01N3J6MzNyT0lCa01IdENRa1pRdW9BY1VBVzVKaG9jYnRPVFlmSVVqYTVsOU55aEZsdW5ycjNyTGx0eWpZc1YweDNZWGtBZ252T09FX3VOeDFqYmJTRkZEakhSQWFkZ3RhTGV1VmVsb3pQai02WDJ4Z05hekwxSVBrWkxMSWplZjZVWkRCS0hJZDZvWmgyUTNyczVUUQ?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "Ceuta Televisión",
+    "dominio": "ceutatv.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPWXE5Sms1Q2VfT1gxMlZYak90V21VSzB3RnFzYXNRRkZiWFdJcGxvYVQtSWFhWlJUQkZhNzdydkNWejd1UFE3dTZEV1JDQkNSQlB3cG5NUmI0MmowdW0tZXFncVdETmxPalpEOWN3LXZzdHg5aGljUmlweWNzektWNWJIa1JZSkYtaHoxTVQzNDVnTllBQ251NjJfWjdxTWFvdDdPNlprYUhPeEV5OUZqMEVqZ25iUloxLWgyWnBtSG5FZmtuaHllZlFWMUcwSmh4aTlXcTl30gHbAUFVX3lxTE9mWFQtNktCY0RvU2I2b3lOaF9GVTNlVjlZelpwSG9MTGJ3d1BFaUVuUm84S2Rnc0d3N0NlWlNMYTFUMTA1d2FpZkRnUDV0SVpsTU4yVkhKM1ZPWTJ4NWl0cTVFMWRSQTQ0RlFFdUxhZW9DSGVkc0FzVmg2azkxSk9LYkt6aHQ2WG9tZHRJS2MzSFBSbWROdS1TRGdlbHhOeGt3V3hxSzVVUzA1RXhtZm55Ync0alQ3SXA1Z29VOTFqc3AzcTlMTlN2RmZtdGFTazg2TFFsUUlwU1R0Zw?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "Clarín",
+    "dominio": "clarin.com",
+    "primera_deteccion": "2026-10-23",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 127,
+    "ultima_url": "https://www.clarin.com/policiales/trato-chorra-vecina-redes-sociales-condenaron-pagarle-indemnizacion_0_MNPIWZlcHv.html",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Comodoro 24",
+    "dominio": "comodoro24.com.ar",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 258,
+    "ultima_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNOF9YMlZEdFZZZDczdV9XYi1yYWhWWUptQllZbnlEeVp1ZjNXN1NaZWt2eFBSMmpQQUhKRFQ0Qk80MEpoNjQzV2REeWN0ZW04WXQwQVdBdHZubGJLalNJZXdMWm1NVlUtVTRUcUxhNTBTZ254VXBYSE5jck1WOHZwQ2dNbnEtcU5ySmR2WnRWd2RjdEdxY2NwYXdaVFdlS2ZMeExqWXRVSTFfdTZuNEptZEd2bDM4QQ?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Defensoria del Pueblo Peru",
+    "dominio": "defensoria.gob.pe",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPNWpfZjJCbUFxSnBsdlFGc1B3dFFJWTg0ODFTdF94Yk1tTklKQjduQ0h2dmtOUUxEVFdkM29XSWg1OXczOVBaRUZIVFRBTFhDdllqYzFQc0J5bDRWSXFTc2ZGS0Z6d2RkQTktdmppeno0WUlPYlB2a1oxYkNfbVBYSkFkRktTaHNDVkN5QlhIeEFrb2NuSmxydDFfYVhZVWs?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Diario El 9 de Julio",
+    "dominio": "diarioel9dejulio.com.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 2,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE4yY0huYlJWUEFjX2VyNDBXcnJtQzF2REVZUDRzUW5QR1pyZHNoLTg4V2JramdaOTU0LTJuMXh6Q2ZHUkhVN3NlNS1KYnhiNDBmQlhwOTMzRDRjeTVHWXZv?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-27"
+  },
+  {
+    "nombre": "Diario Judicial",
+    "dominio": "diariojudicial.com",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 415,
+    "ultima_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQZm1QYUZOc1o5TUlaanVmNnhiRlN6b0l2MmsyUGlONGxFQ2piRmxFZkRDc0lsMmZGUERBTUM2czVxWnhGODRtUDNVcGdTUWlKYkZBM3U2NE4tWDlfNW1aNHJFLWlwRkRCa201NmFCdy1PYW14bG1kdGY4cUJLQnF0NThiVGpvcEgtZ2JCRHJsREpDQ01IdDBrMEgwNXRYT0daelhVNVlTdVRtTkVNU0p5NVJoRmM?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "https://diariolapluma.com.ar/",
+    "dominio": "diariolapluma.com.ar",
+    "primera_deteccion": "2026-11-27",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 1,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNZzU4M0dYaXZKb1huZllLVW5zYUVCTF9QNWlaQy1VbDM5elJTUkNjTGlQTFFMcjJNVFJUOGlKU0pqSURlZDMxZS1UaTNBaVNQRF9rVDVzM1R3Mk1OZEtfSzZib0pOUVNVVF83TklrMnRNaHhyTVFELXJFcnFLQ2wwdGh0U3hBMk5ScG9uODRHWXhjaU1VZWctQl9ZYy10OU9aUmpBaWMtTnRBOXR5WHRxbVg4d0VvRklKb2pz?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Diario Tiempo Digital - 9 de Julio",
+    "dominio": "diariotiempodigital.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNWFFyVmF4WGE1Qjh1X0E5SEVZWkYyaWZ3M19WSFczNmtCVGRDYlJvT3RvWkh6Ykk1cE9pR3RWaFhxT0VqODZUX2M4NUxZOElmdDd1dE1raUVEbjljemI1YlRPdm1sdk5rRUN6MFBUNU40QlFKelNBTmw4dHhqWUttMzBydThhNmtjMFdwXzZjZF9nSkZFeXZJMnFiUFV5NHNPSmo4OHBwY0F0QXBKOG9GaDduRjY0bHJrcEVrUUp5MDB6cTg2bkE?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "El Diario Vasco",
+    "dominio": "diariovasco.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNNGVXZTdXb0lkWjNPd0l4Mk5nZXkydmlxNkpOZ1RGMjR0QXBJdXVNbXZmdW54TW5GdklEWmJvTUQ5MTRxdUo4LTA3bkctanM2VWVZcEhSRE1KdWFRYjNWUkM2R3ZORzZYSV9HLU9zc3hCbHFTWGFmVV9YN19uc21GU25KdjFsMXY5cFpMckJGdUNlMFJZT21PSk9nUkhGcVlSdUZRcFJueGM1R01TbUMzZlVBUFRQOEZUc2dyR2JRVm1sdnR0T1hjYnZjbXA0VlJCa2fSAdcBQVVfeXFMTmRCbTVqUVNZUkxhREozUzFZUnN3MTNVal9IX0hTbGxMa3J4UmJ4T05TcmFMTG5lQW1qQmE4RVVON0RvVVRWWkIzbUFzd1JEcnR4Tmt0UHA1TkRzempIZGpjWWtlRXZ4VXlkU09lV3laWlB3TktJemQ0LUdlUFlZVUNrd0d3b0UzS3NDZm9XQi1mZHdVV3NCbFlfaEhoQXlUZVJGbGU2dWhHdV8xY2FTWmZ0MEVsM2hLeU9YRXNsc0lvMWdXcGxrN1NOSm5hb0o4VnZrNWhOMUk?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "DW",
+    "dominio": "dw.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://www.dw.com/es/25n-por-qu%C3%A9-hace-falta-un-d%C3%ADa-internacional-para-la-eliminaci%C3%B3n-de-la-violencia-contra-la-mujer/a-80051007",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "EAPN España",
+    "dominio": "eapn.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 3,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNdjg5TU8waDhFSlYzcUluQURNNjIyQkdVNXF1b0JocGVQbEF0bkIxdXFfTGtKOTJEcnpvS0dNUUtoVkhMNGptVV9zOFhNSzg2YWphbm5hMHJEZWFzUjN5c0xhSy1FWS11TXFBLU1VS3haQW82ZllFYXdjd2h1azl6YmZlUTJ3Nk9nQzJ6RTRid3JvOUR0TXR4eXZxcWZvcDZ2cEsxTTNZcmRMQQ?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Ecuador 221",
+    "dominio": "ecuador221.com.ec",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPR1dfNnd3QVRqWUhRUW9reUhEcHA4Vm9UcGVLMU1KUS0xMTVQc2V4Y3lva0xZUlZfNFB0UXEzNVJSVVNVU0VTWGxyRjRCZHF2dFNqeWRiVFJGcWFNb2NjeFVUT2RFeG5zVV9ScEZ5ank3YnFUS3kzQVVaZ3ctbER3VHpYYTIyLUxIb3I5ZFYwb3R3VXFmVDhKNWd0MXU?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Universidad Nacional de Cuyo",
+    "dominio": "educacion.uncuyo.edu.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNHZwRm1KY2NFdXhnc0ZBdld2S3FjRDBzSk4yUHhTWUwtNDhJNFZ6SkNXV0hlWFY4a2t2RnNYeU04VjdWX0ZkVDN0bUV0bGVnWEI0YkN4cC1MdHVRRVgtLWZTeGxoUm9XUlJlT0RpRHo3VDNnUGJLdE5MWlk4RnFWbWlNcHFzT1FCY2d0cnNHMEI0cjhUTWlBTnFFQ3ZLMUxTN2xZY19R?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "el1.com.ar",
+    "dominio": "el1.com.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQZGV0YWYyb2NTeDAzV2s3VlIxa0kzeXd2ckg4blR1cmdDSGJKUmlSUXFIMlAxVmhUWUZ6a3VBV3Q4LUFjSG9fdG9XYmhaUFh5Ti1FUmNLQkxWSzlSdVZRdGNVVjhkSDAxY0dSaVRUMHdXbUtmYlJFWWFkSWFmSG9SOE9nSW9UNEFzajUwcVNFeDcwYjkybk9IQ1NvM3BJRzF5c1Q0S0VPbUxhQ21XOEVrcWR4enVLVDl3dm54OFU3SQ?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "El Ciudadano",
+    "dominio": "elciudadanoweb.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQdWh4NXp3NFZEbC1zZWtoY045aDJISzl4Wnh3SV9tU2NEQXdiS3hMRDNwTU91RU1PUnhVWE5mUlcyOWpkSEx3TkRfTmVOVjFxUDVjQmNKQmlPazRILXNoV0hVVjJKaG4tbnI5QXhrNmFMYkZhM191eDVTZjZ3QWU5MlJucnFNR3o3RjYxWFVWaFlEN01sRkVoTENlc0xMaVJEcGJmMnR2MTlGWHRtMk9VbDN3Tk1mQdIBtgFBVV95cUxQdWh4NXp3NFZEbC1zZWtoY045aDJISzl4Wnh3SV9tU2NEQXdiS3hMRDNwTU91RU1PUnhVWE5mUlcyOWpkSEx3TkRfTmVOVjFxUDVjQmNKQmlPazRILXNoV0hVVjJKaG4tbnI5QXhrNmFMYkZhM191eDVTZjZ3QWU5MlJucnFNR3o3RjYxWFVWaFlEN01sRkVoTENlc0xMaVJEcGJmMnR2MTlGWHRtMk9VbDN3Tk1mQQ?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "Diario El Cordillerano",
+    "dominio": "elcordillerano.com.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPSFc5ZDBtcEJUbXQxSW81aWg3eHEtaFR3ZVIxVEFPOEhuR0lKNzkzX05LNm1XUWFGWVFLUk5GTVRBOUl2WkxYR20tdFpiU1FwM1F0ZnNkUEVIcV9fdjN4OFVyV2RrYXRURFRuTTJRVklDRklDNk9ZT3hodjQ0ZEk2U1lOV3UyN3ljNTBGVmM0aGxNV1JWb25reEQ2N05hc084WGNOYjNrd0JqbGo1X0I0U3NaNXpOQnNiT1JKTUlLZHRSTzY3ZUotOXhIYnFWV0kySGQ5LW1EOHNMU1poMDllNHRGUjExWDZOQ0ZoaC1lR3BSVHE3cDNsc0tUTGLSAYICQVVfeXFMTzFlSHQwX2xhVnZZem55MkNCblZhclpjVUg4VktPNUFwWTVhSldpa1FUaUZFZGt0Q3o3U1haU2szQTU3bHBHVEJoNjBsSW9reE5wQW41N0VueDNUSTJKREhCNEo3VjY2THl4aWF4S1ZocWwtUHhBQ3JmTjVmaGxPVDhWT1NkQVVZX1FGQmVZYTRoNXljM1V2SHpZcmQ5d1N1TjFpeVAzY0h3aGtFdUo2MEtuZzhrSm9iTm5pSERyM2lENDEtWUFDdzJMbFZuR2NORnV6WUtVV28yMVluN3ZuZWQ2Y3JLUkplVDVZMUdmY2g0Ul9KcDFuc3JXbTFYbndibHlR?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-26"
+  },
+  {
+    "nombre": "El Diario Web",
+    "dominio": "eldiarioweb.com",
+    "primera_deteccion": "2026-10-22",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 98,
+    "ultima_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOcDZIdG93MmdCSzIzdWkxaUh2VG9VeklGektKWjItR05vRm5ON1M0WlNWQXFLVUJhbTl0TW0tZ3FoclJXbnR1VXkwM2hiVVZHVUgzbXJ0dWxmcU9DTzh4RHZudGNfS2JMWS00WHVoR203MDR2ZEwyWUgxcDBrNDBFVXRNdmMwOHkyeFZXaHBOejdIazdQTDdjSmJqNDRuZkstWktvdDVoREpKRmp3LWlEc2VaUnpKTl91UXo4Sw?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "El Economista",
+    "dominio": "eleconomista.com.mx",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPVThWclQwUFV5RXFwZE5TM0k5Y0Z5OXRJcjJnX2pieW5yOWVaTGFHZVVWZ2xrQUJFWUdzdkhSYkpxVmZsWEtZT1hLeXpKSkY1dkZNYVFLLVE5YW92S3NscTdYVGlHZU1xU0xMQjlFQ1A2Q2FpcHpzQ3FpQUxZX092UWs0Sk1rYks4NHRmblh0VldyUklhb0wzS2x4bFZmSDVaZFNQMElXclpxckMtOTJ4THBLS2ZTUU9xMHVsLTBGdkszVElCb3fSAcsBQVVfeXFMTzVjQ01MZmx4aWl1aUlkRGdwX0xBMEJkZ21EdW1YLUpTU0VaQ1lmaTZhNHJ1T21pSEQ3YjRlYXpSR2I5TExkWTZPS2NRanFuYnRuRDdkaDdwRFNPa2tMQXFLMlVGYUFURDdxZE9meTZxT1dSWFgwUzhaX1BKc0NOR3VzV0ZWMVViLThENnNUWG5zTGFtbDlVekREdWxTVlVSSTFFbXhXXzBwcXBlWWlPVUlJeWY5VUM3SGtEaUZNemJRQ056eFhFLWpTTVU?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "El Esquiu",
+    "dominio": "elesquiu.com",
+    "primera_deteccion": "2026-11-06",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 14,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxPRWM4UXFDRTExLWhEMDNwNXE3VklWRUNQNGx1RDBVX1RId3g5OGdXZ2tYb0V5Z25hNVZGY0Y5YmJieVpLLTY3TVAtM2xlVkp1MmhpNzJZMWp0X1VEQTJ2Tk5hME1rUUdHejExdllhRFhEZ2NMb0dsYTA0YlU0M2h5Q2tYZ1czMWJ0a25IYWxKaXZWa19ibUZncE40ZmpFM3pZV3duMlJRUEpaUFBVNG9hdHJDNHVocGhxLWtoNFRSMm42T3M4SmNSRDJRYmJ3ZHNFd1BoY3FQWTROWTFrWFhXWlJUZnIzWFBHTTFrUGVWWDBBTU15RmZrelU0MDNBTXh3S2p2ME04dEk5UQ?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-07"
+  },
+  {
+    "nombre": "El Norte de Castilla",
+    "dominio": "elnortedecastilla.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPc29BNnIxQUlubFEyeFc3Rkpfc1g3NF95dW5rUUotUlY0MFVsdTVFbGVqdjh0LWZnU3hCZlB0M0JIMkVmVmFZWjJNeFFsWkx0VEhhYlZ0LW8wQS15eVZCTTFBdHo5aUl2QUxvaWJ5U2hmd3hzOVIzVkRsclBkcmQ1VmZRdXRxbDg4SDA4cnpycGVHVUFVdjRJQjB3cEFiUVBiUlU4cXRoWnc5dTlnWFVBV2toTWFxbzVucUQ3cXRFQU1RZXl4VHNRc0o1RFhUd9IB0wFBVV95cUxNdTFfT3R1U3RqWEtQT1RUd0xxZHpteWxtUzVhT2hkSEpTSE9OblN0TXVVa1phTm5pWWltWVJSaklXLTFvUnZVMHZYVWZwckx2R3pPS2p4MndVcFRlWWtiaUd5UU14bVZnaUREa2lhM0JKU3NDQmMzWnJWbjI0QjFaNDRxLTdIVk1lZzU0N3RhWUIzZVFpSl9HNk9MQjdpODdSWEJKMzBXOUpqbm5fandEa0N6cU9nczlXbHh0aWpJWjdkakEwT2tFZmJKZTJNbGM5S1Uw?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "elperiodic.com",
+    "dominio": "elperiodic.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 2,
+    "ultima_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOUzBPaDFJZjU2Y0NEZDNNSDFnQnl3STBnb2FTTnF5QzhWSDdVSzRSWkFsbmx1N2tIYzZKRC1rZW1YZGNoMUtCZ3ZEZFkyaG5pS2Q0NUI3NVhfVjhPaG9xZkl5dDM4RThDRXFCX2pRUnduQjhycWtCa0s0Nm9xWDlHd2tqQTFxYkI0aWVnYVdpbGVjMmJIYThnMENhZ1l5T2RUMmxndW5HcXQ2eGpCbjBXLWs3eVV0d2lpRjR0RUotQzBVV1h1?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-27"
+  },
+  {
+    "nombre": "El Universal",
+    "dominio": "eluniversal.com.mx",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://www.eluniversal.com.mx/tendencias/25n-en-mexico-claves-y-datos-sobre-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-las-mujeres/",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "El Valle Online",
+    "dominio": "elvalleonline.com.ar",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 35,
+    "ultima_url": "https://www.elvalleonline.com.ar/una-abuela-pretendia-ocupar-el-lugar-del-padre-y-la-justicia-puso-limites-por-pedido-de-la-madre/",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Radiomundo En Perspectiva",
+    "dominio": "enperspectiva.uy",
+    "primera_deteccion": "2026-11-27",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 1,
+    "ultima_url": "https://enperspectiva.uy/en-perspectiva-programa/la-mesa/en-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-las-mujeres-que-dicen-los-numeros-en-uruguay/",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "EQS Notas",
+    "dominio": "eqsnotas.com",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 574,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPYmRkc2QtbjJQenFuUjMxaDRENVM5ay11VGdCajZPejBhQWl1SS1wVUt0VXFheVAwdFpPOGdhRDJMR1hkT2hsazBYTXJWUWxGWFNIWFRsZm1qRUtmS242dXVERDJFWHRxdjJaaFlHdU53OWtxamJDQk9BNUdrbHBMVVZPTUJoMVEwUDVvNXl3YWRHcWR1WlpXaVpudUhaazVlU1didTI3VTN3djJBNkl3cVd3VDlOaWNzdkFnazdMVTlVVnpnenpadzRFWDk1UktvajF3OGFieUFsTHlrZjVLNTBKN1pjcjR3WlHSAfgBQVVfeXFMTmVsc09DU011NXE1by1QN2ZrNGhFM1lfT1lPSU1OOVJJSlJSTnFUUXJYU3B2Y3gtWHlSQ3hYVmF4MWRHZUt5bVdYRnVqV2VpSUtmVlhCaGtsWFpJbl9WNm01V00yLWJ0bjBzanZOOHk1dVQxZVhlLS1iempBdHlfSkhDNHhLbFFiU2ZTbWxSTHoyREMweWdqalpON0x0MU5acGZrYjJyOC1BenpxZTAwemhMbWhSSkNtNjRrd2dna2J4TFFHdnh5SENzaExod2Y5bDR6Wlc5eEM0VjRTSW5ZXzRZeFdDSzJPbWZEQTl2Wmt6UVNqTnFsTC0?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Europa Press",
+    "dominio": "europapress.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNOXJaY2F6TUpxZC01dURXd1YxUmI5ODctSVlpUmYtN0Z6VDJ1bnpJdWpvZFIyc3RIdGlWTnI0TEhNTVBVMUxKRzRnTTkwY0ZKdDZvZUVqV25JZHBCOHlTRFEyZzFlVXRnMWpIQlFvTVBxU2RUNTk5c0FxZnFhRWhtYnEyLVdoZ2syNHNqdU5FbjlKZEZ6a0s5aXI1aHNtMmZKZ1FUcUVZSE9wdkhHZGdzZ1NKNllKUkdlOVFhU09jSXpsaU1wS2hCeE5VeFRmZEtoLTlHbkNNXzJ5dlRI?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "www.examedia.com.ar",
+    "dominio": "examedia.com.ar",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 63,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9tTjVFVkhiVXlBWGlZbEE2UElQZUlJTlJRZzlqaXpJbDM3TFFHemhCNnZCb19hc1NMX05pWVBzMi1CbDhMVUQxZW5zdFBrd0lneFQ5R1NPWFVGUHl5Nnc?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Fuego24",
+    "dominio": "fuego24.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPUzJ0Q19SYWxqME5IZGZtZU55VEZYQzV1SHpRQ1M3VDJVLTlxSldEUVFsdmo4LVBKa2VRdzdjWmFWVDBheUpqWkp4SmVZN0dCZ0RSTDJRdTNUWl80V1hYTUpnRkhsN01VYWZIRjBGOHo0cmQzMy1WRmdXVmJJVXBjOFF3X3FDUW9GaDZzcW14TlVsZk0tOXgzd3hqX2d6Q1pEaUE?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Secretaría Distrital de Gobierno de Bogotá",
+    "dominio": "gobiernobogota.gov.co",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPWjVuYVZNZ0NBdlFYY3k3ZFA4bHRxRWNCWWZwUjNmcElTUElkWUo0RlBfQjJ0VDRReVg5WjA0cFBsRHpJLTRPOTB4bUw5YkJISkdJdEIxZE9PSEFSM3NQUXE0YzZNaFY4cU1jejZkM0E1RVQtNWVURTcxZ0lLUE16T3A4dDRWUzg1?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "GUB.UY",
+    "dominio": "gub.uy",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQUc2RDBwejBQalg0MV9QVzY5SnRpSHpOWmhyZlpxWG96Q0NFblZVRWY3RGNadmxjV3Z2RElsSjJEWUF0cjFtM21QOXZLVVdiTW5RekU5YVA1WVJHSGhEUENscTZMb29ieUJIWG5kb0Q1bHFfSktIN0lleFhkNUVSYzJvSlNaOFdaUDhZdFowQ1ZyeGxEbXpPcDlLRTh3cXN0bEdaUHFMaF83NGRFa0pLM0ZpWnJVcURVX3pDTS1MX01SeWs?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Ideal",
+    "dominio": "ideal.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 3,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNQzVJZ0ZCamx6bi1ySXpDVko4ZVM4VXhhWjBfOUdzM0hmZFNlTnl1eE9HakVZd0dNZVZmbmtQeWJuSnFkZno4UFc0Q3R3TzVUODN0NEhQVXczOTYxLWNTNkFqVEJXSy1qZU1RZmVpNzZnZTViRGY2eGRuWnNMUnFsNzBVNk5ZRHJOOU1ZMTltQmhhdXhrUWNfLVpqckktM2g1WFpFTmxPVzlWQ2xaMzkwVjBxVmpmWDBveEVJczhDM2wzZ1dBUE5MamlNYmZzbjlR0gHWAUFVX3lxTE15N0JnWGt6OTYxWHJqVFBUdU9TaEhFTmxISHYtOXNGM3p2SG55QVd1d01rb21GZDA3RTFoRElGMHMxOWNrZng3d2lFOEN4Tm9kUzg5ZUdOa1FleDdfenNmUmhWM3dCM1NFM0ZLWTA1TTA2YUpDZFo0Smh1c3h3SWFoS3Fld2xZeDdHY2FTNzFITXpOZUpFVURQUkh0Q0hsQjVQZEtvZFhEZnllQ2laQUFseHg0LWV0blZrVHlZSkxPeUpYU2VkdXpSc1JPM0F0UUFacXVHcXc?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Infobae",
+    "dominio": "infobae.com",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 52,
+    "ultima_url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOd1hSeVR5WldKeGhqTmEzREJOQ0NTSk1SZUN5N0tnejViZndkcEN5VkNiUF9DZGZCc0tVMUVVV0UxZFlsamJwWExKM2N3MnljR1hYUXRTRW4xR0dFMzZqejhEcE5raUhfbHQ2X2pjUUllV0UzdUxHN0pOdWJSb2xvMFdHbktvTnBvYkVhcXc5dFRrVjFsTjRNWGlGRVdDcVlOR2hUMXJmRDJhVnhidnhVMUpUdGVoY3pzbDViT1R6WHYzZTUxcTNjS3RpZmV3c3haNU9reWdseFNQRWRMZlJVcmtGTVA3MGNCN2hfdlhYRWRiY09UdkxzZnhUbFlmemlQWVR5YlN1YU1fTDdGaFV3T9IBqwJBVV95cUxQWFBRNGduanh2bkJuNFJKN0RpM2p6dm1zeGVpZHQ0bnA0em9aYlpCT2VSdGVmaG5vNEk4N2VyS215dWhQY3JDVlktNi10VzkyUjVaRU5kUzNSb2tjU29rS2RqdE12VmxEQmdLYlNsR2VDRFkwMG95T2kyeGUwcEgxR0Rub3hJMzBQX0M5RndUYU1tQ3NERkxYSllUbHdTTV9KMURUYV91akZBTWxMc1NmR0tEeWNNTTZZZWtxRzFHc25kc2Q4dnNRLU1SRk0zemlHN2tKOHhSUXY3eU5Yd0VlcEFEeWpxWGkyckJmQmQ0Ym9pV3h3VngxelhwTnN5RHc5OTZMZnBGa3ZkVHRXVXJDeVVSTWs3ZzAza3NtdHpET3NHd2FDY0xUdGlLNA?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-22"
+  },
+  {
+    "nombre": "iProfesional",
+    "dominio": "iprofesional.com",
+    "primera_deteccion": "2026-11-27",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 1,
+    "ultima_url": "https://www.iprofesional.com/legales/470193-ratificaron-la-condena-contra-el-productor-que-mato-a-105-pinguinos-en-chubut",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Justicia de Primera",
+    "dominio": "justiciadeprimera.com",
+    "primera_deteccion": "2026-11-23",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 10,
+    "ultima_url": "https://justiciadeprimera.com/2026/11/22/la-justicia-limito-el-tiempo-que-una-abuela-puede-cuidar-a-su-nieto-durante-ausencias-laborales-del-padre/",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "La Bancaria",
+    "dominio": "labancaria.org",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPU3Jma0RSdEkxVVY1bXBRa0NFb2xYMlU0b21IMHVqekhMeVlYa1hNLWNaXzVVRHptTDY4NVREU3h4WVdvM2ZQUS1MOGdxY29LZkJXcWZ4b2d6b01PdUFPOU41Ym1IcWxVSExjcjgyRUtMWDZZZDh2SUxlZFg3bnY5TmNVU09kSFpuTmttRV9MbWpxN09FQzJMVFFMZEZQV24wY0hWSWQ0bk55bm5PVGc?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "LA GACETA",
+    "dominio": "lagaceta.com.ar",
+    "primera_deteccion": "2026-11-18",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 9,
+    "ultima_url": "https://www.lagaceta.com.ar/nota/1164201/sociedad/dia-internacional-eliminacion-violencia-contra-mujer-solo-tres-cada-10-argentinos-tienen-alto-nivel-concientizacion.html",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-19"
+  },
+  {
+    "nombre": "Ayuntamiento de la Nucia",
+    "dominio": "lanucia.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 2,
+    "ultima_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNZ3RPWXBubVpFam9Ib1BvY3BQNDlkVjlfNzRVUXl1aUxMeXBqc095WThqQWRFSUFqVUpNa3QtQXhsR3RMeDhLSmxTSmxmZ1hST2dxX3JkdTBvVmUwbzdPWnUzOVAwekc1LW1ZZFlsaUhISXFNUVhUYmh3MlhoMlB4eDE4MW03OWhJZjRwR04yZFBtb2VIWVg1b2JURDNabkNmbUF5a1RIYnJwMzFVUFQ0?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "La Opinión Austral",
+    "dominio": "laopinionaustral.com.ar",
+    "primera_deteccion": "2026-11-18",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 24,
+    "ultima_url": "https://laopinionaustral.com.ar/comodoro-rivadavia/condenaron-a-mauro-pavei-a-cinco-anos-de-prision-por-matar-de-tres-disparos-a-jorge-nieves-en-comodoro-733541.html",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-18"
+  },
+  {
+    "nombre": "La Posta Comodorense",
+    "dominio": "lapostacomodorense.com.ar",
+    "primera_deteccion": "2026-11-17",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 84,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPdTlieWo1Nl9BejVRRGpxUkpfY21QU3pfQ2xDQjVBbHpSMFVxVDNSMTI3RFZ1aXU0MWdpNGVXalcyNU5uZHZ4aXVoUlNrcXh0SHlFcHkxNVh5LXVmN3R2dmIyS243QmxFck53alZReV9XQ2k5Y0l4anZrdGx3R0RCZUhsR2Qyalk0M2Y4ZFlQeFlPNFhsVGpFeDVZQUEzWXhJdk1DVlZLOEQ2a1FnUEZFN19KMHA4MHZuVjgzM1haekNJM2ttUlRzT0lfUUNjcllPU09RRndpMFRUTXJNOTRJ?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "La Rioja",
+    "dominio": "larioja.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 3,
+    "ultima_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOeWdKWHhvTjdwNEU2X2NUaExwdzNtdE1NNmo4ZXpJWWFhWTltUXlDZWJnSXRpRW5kem1UZkg3eFMxY0hVdkN4cmVWQUhhcWdqNDNHZlZkNmxKVEJnZ2t0R3h6eVhLbmdDYTJvVHVTWVpnRkd6VW15T3gweGN1aC1aNjhUS0FrSDVLTXU2U3NDNTdNVDhlTWVXRlhiTHBXZFR1RjN6TWVvV19NSllqVWVvcm91TWY0R2hvemF5ZDlEWTBLT0xXX0dyWDhXcFA4UdIB0wFBVV95cUxOeHZuNXB5ZkhjelFJcE5iLUY3Tk5DQVQ1MHU4X3BqdVJHQmppVFNRbTJsYlhiMDREMk9CcWJzYUp6bno3MWc4LUNneHFMRGxrZVd0RnBaZmh1XzQzb1Y1R1lFZnZiOWVNV1NiWVU2bm9Qak5MNW9DZk45Tkk2a05wUkNVaWVIVkFfTnpXN2l6Z1UyZXFSQWpKeW81bFhSbm9BbjI2NXkyRGIwa19RTGdoams1MDNkUWpHR2UxdHdyU0Y3aC1TRXM2UkVhZ2d1RktMaXlz?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "lasflores.gob.ar",
+    "dominio": "lasflores.gob.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 2,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPM0pqMmg3aDBRN0pMaXFZZ0ZicDd2UVJLeWVpYW1nb3hUeFJrMDlQVlNXaDFOZk1wVHY0UWJTWG55SDVCTTRmajluWHRNb0twWlZhckxYT3JXSExFdTRWdVVISVZPU1ZjMWhfY3c5eVk5S254dFRFNDlHaEI4TTloZXo5amJNem8xczhhUEkxMHZGWVhjbjhNb0RWOEg5b0haSmhWWlNGZ1E4eW1UZmRrUzFRbl9ldWN3cnc?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "La Voz de Galicia",
+    "dominio": "lavozdegalicia.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNM2RVZF9MRjdUSVQ4dDFQUGVTc3RzbnVGbHYwYlBBTWJJWDN5OUFLc05ZSzhXWmMyd21kdkR4MWtrTXUwRlZfTzB4ZmxqSlZtVWVqTDZQblRkcThXd0dZYmRzMUZFY1RlWExsVS1nSGdDSnNxUERQcFNOZnJvbG1lVUxWTVRRX0RDTzFLSGVjNXhpRjNMdWFvc0dIYkg0cEJyLVg5MlY1eTBub2pFUk1Jb0c4VURTY0RiVVp3WFR1b3QwNEd3c1dXa3l5R1R0Y1kzRGdaOUJuZG42MW14WlFYdVhBcTFKTFdMbzhB?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "lt9.com.ar",
+    "dominio": "lt9.com.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 3,
+    "ultima_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBwb3A0MmtXOGZkSDJ1ay1Dcm9iTFBmek5RaE1MT25yZ2R0cktQWjRHSVlKenFMZHktc2Z5OEVpMXdHMmswUV9POTVCMjRHTldVajhLeEN4OENrUnpPSzk5eXVxSWZINVlxQTd3MElZYzViWVdxT29kVTlDNWJoQdIBgwFBVV95cUxPUzhLVnVITW13Mi1ERE5zb01fd2hDT1F1a0VTdlNfUVQ0U3ZlNHRUZVFWd21KRWtCQVVnQmRrNktvaDhWWjBOZGtQTHNMUHphSVpKbC1oWnRid3ozdWRtTEpGOGJMU3lJakIwbjhHbEp4WnNoVjNnQmpNYy1YbWtCd3hhTQ?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "LU17",
+    "dominio": "lu17.com",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 580,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPMUJlMTlFNkJIaERLSnVyYy1JYlUwZG9hSVRNQU9PNGpVcE1SOWJIbkpfZ0d2V0NLUmpWdm1ES1lmTUR1WWFwVDY4WXRzU3NPek81Y05VMU1GMWR0NzFuR3VMeVo3SjdKLXNaSWxxLUJQYWNmY1JkeWlIbkZ6clhPXzhaOElDMHB4d01TY0pjQWU1SThwamEzLUNlOE5yVlMxMWVGMEotMUNEMWdsa2h5WDY0UjdZaFoycFpfdUhyZ3Bidw?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Madryn Ahora",
+    "dominio": "madrynahora.com",
+    "primera_deteccion": "2026-11-17",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 31,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPOGFOeWdzaEZnajdnVjBUWnpGRzRETTZ5YkYtMV9uaWJQM1ktT0tiTEhNV0R1TjQycHVVTjdGQmNPajhvc0M0SF9xQ3ZaWDVpdWZLaVBQR1Z2THN5VDVqTXNSSVllNGFXYVFVNDAtbjRPMjM2UE1nYm9xamhFQXd4dlpfcVBuUkdIQWdSUndUSjRuWm40YVR5SV8tc1lUMWU2S0h5V29FRlZLdjZ0TzVxdFZVYUJjN2FGTmxaVjN5d2VFczBzcnlkV1dlWHo1c1BRbGkzcEFiWS15d9IB1gFBVV95cUxNZElOd2JJY1V3cGFaQVZsSS1FcnJPczJYRUNaY0d3MUh5Nzc1QTlBWVk5cHIwbGNsNXAzaEZBVHNYU2syOEhmaFdxcjVrOXhkbUZHU1Vta2Uwb3RkLTJjcmRMejZFQnA5RGRlMEhzbGJMc3Y0LTQ1MWJDT0dOcGQ2MmxCZTU3WEppaWNOamxxb2VsME01a0J6OThQN0tlY19JTEgxQWRHZ0lBbi1SQmp6RERXbGFqNnpCcEo1cjh5RkdRTzZ6U3dwZkFPd08xb0VlMWJCbzRR?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-17"
+  },
+  {
+    "nombre": "MARCA",
+    "dominio": "marca.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 3,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQb01Ubk9zM0N0MWdLbG1ZSWVxSVhhT0ZqMk9ZUWllUHgxQUJBNjI0TlVCLUxJSGw4Zng2V25kaXBfRHNVY3QzdV9WS3Y2MndmY0NQT3c3djNYcjY2OC1tTF9ZdlVrQVUzX3ZZcnBRaDdoV0M5RW9kcjBSamh4UXlsbmhfWHlrYUNNTlVLSFFqMW05Z205WHF1TmRGSWRVTml5OWJ5dkpyeG1SXy1MVVVOZzZEaDRmeVNXc0pjZjJWVXZ5XzQ3QzZoY0pQbm51YVVzUjZMX2tuWdIB1wFBVV95cUxNQU9CTlR6cGVKaUF3S1g4QVVIWmEwTmZId3pCT21OSFpxeGRucTFmMEZRYWZYek5yQXZEQnBuNFlDeENGeEtCR0xobUhGSHlwR1FvS2JUbGZ2cDJMWXlsZVdqbFNqSmtzRC1wZWZaVUYwSFBibmY2bmt4MWVPSEtVclJUSnlIb2poVzBidnloN3BtVTdUWG1CNDllTEhCeUs2Z2p0MGNSZXlVc2g0VHZFM29ETzNkeWtxVUR2QWkxUlRDNFdTV0szb1QzLXIwcW1sRkE3WjRTaw?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "mdz online",
+    "dominio": "mdzol.com",
+    "primera_deteccion": "2026-10-22",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 35,
+    "ultima_url": "https://www.mdzol.com/policiales/2026/11/26/condenaron-al-hijo-de-nancy-godoy-a-14-anos-de-prision-por-el-abuso-sexual-de-dos-nenas-1998080.html",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Portal Educativo DGE",
+    "dominio": "mendoza.edu.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNbEx5cE5QRkQzNm90MmpVYktVNG9Iek9JQThCMkI2cFFNTklVWmdQQ09IQ3UwSktEY2s1MjN0d0tVRnJocE9Ha1N0ajN3eE5lWm9LRXdrZnN6TDJLWkhUY3NYWE1yMzM0Q3AwNXRGOEJwUnRnMXhCM2dWLUdYM2VvbVNYdkhFZzhNWDcwU1JHWWt5aEp3dDFybkdGRzZFVFdibXRMbEpmLWQ3SVRBdzJ5Sg?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Minuto Neuquen",
+    "dominio": "minutoneuquen.com",
+    "primera_deteccion": "2026-11-27",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 1,
+    "ultima_url": "https://www.minutoneuquen.com/regionales/chubut/2026/11/26/chubut-confirmo-la-condena-a-la-regina-por-la-matanza-de-pinguinos-414551.html",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "El Tiempo on MSN",
+    "dominio": "msn.com",
+    "primera_deteccion": "2026-10-23",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 103,
+    "ultima_url": "https://www.msn.com/es-co/noticias/otras/qu%C3%A9-se-conmemora-el-25-de-noviembre-el-origen-del-d%C3%ADa-de-la-eliminaci%C3%B3n-de-la-violencia-contra-la-mujer-y-la-historia-detr%C3%A1s-de-las-marchas-del-25n/ar-AA2idsvY",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Noticias Radio Reflejos",
+    "dominio": "noticiasradioreflejos.com.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOQkJFYlBNaE1oUVlpNkxiUEMxZ0E3MTQyRC1VUmRhS0FsbmNxM2hoUkdCRlVlQlVaYjJrM1VwdXdpcm55V05mZjg1Nnp2WWhsVFc5d0RTUTdBTVJLeVRhZjM5b1g2N2V0MEoya3BjbHZuM1pXZFpUamRPTjNUTC04NFN3N3BqMVdBX1VUdHJoSTVScWZZQnp0WnpIVE9iRGdSX2hYc0hKUWZEdE1xMGJjMkt2TmRRWEphS3RIUGdn?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Novedades del Sur",
+    "dominio": "novedadesdelsur.com.ar",
+    "primera_deteccion": "2026-11-27",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 1,
+    "ultima_url": "https://novedadesdelsur.com.ar/contenido/95415/hombre-condenado-a-mas-de-12-anos-por-abuso-en-vera",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Onda Cero",
+    "dominio": "ondacero.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiqgJBVV95cUxQYTFramlYTHlZb2RQU1VTSVF3OXU5VVVIb284NjRLd1BUZ2lMQ1BpQVVoMGZaLVprMUNZZ1dyZjQxOVF2TGdRdGVJbnBzN1hndHo4ODZQNEp3MU9xcTN5c1NTeHV5ckdPTHFXQ1k0TEdnZjRmUUN2OXdMdGsxWWVmSUtKS3NwOHVGN29yVHJyTlVMd1NJWlRqcE9veUVNMHpORWxxcnpqbUx5YjZSSElBcHVhRHBMNVIxYmQyWnJZOHNHQTdJc25NWFR3ZHRaLXNDbWxkdDZmanZOQllRU2gxVm1RNG94MTFodUdTU1R1UmdrSnV6dlNVX3dpRzhVZm1VWlJBTHNCby1Wd0tVUWhBdDk5elQwTHBLN2tUbXNhSFNpQ3pCczl2RGRR0gGqAkFVX3lxTE56b3FOS3hTNHk2OENZRTU3OHljZDVMRkg4S3RJaHRJcF9tWnhMMllkUFFvN2hYYVVqM3pXcGNsXzI2RGNla1dLWnQ4bWJGY0ZsN2UyeWtVMmRHa1RkTlpfcUdhVFdmUkJTUVoyWnppX1lBWEdkamVtVHA5aW94SkFhOVhiZ0JGb2x6ZjZJcURlcUYtdWplTjBzcFVUYXYzTzlWWUdXbE5wRmhrZFFtdVJUbTlQWm43XzFGOFVZaDdEaEZsazBMOWxkTlJzOHRxMWtZRm9vc1Fxb1NONGZxSGt1Q2ZkSHUzSGN4aHN0ckI3M3p3em9hekdsY1ZnT2lxcXQzd1R6TnlicEUzVExjQWhlQkhXeUtESkFMbjhKMHpNdEdBdFdoR2tKVGc?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Perfil",
+    "dominio": "perfil.com",
+    "primera_deteccion": "2026-10-23",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 184,
+    "ultima_url": "https://www.perfil.com/noticias/cordoba/condenaron-a-una-comerciante-por-difamar-y-tratar-de-chorra-a-una-vecina-en-facebook.phtml",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Pilar a Diario",
+    "dominio": "pilaradiario.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 2,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPVnVFSHlja0RseS11cTMxX2FHZGU0STF3dWlYRHFHM3Y1U0Q3QUR1bG1xb1JXYXBTT3dqaUFjZ0VjYTY2djNYUmttQVJrdklkeE5Cb1U5Zms2Wng1VVFnQWc0RjlPYnpDTHhGY1pGTUp0Zm9YZzVlUmM1OWRvQUphZzZiNUY2YWw2aGdUcldoWWhpWUMtdEFQYVJGSUY4ei0wcEZJclhpZEV4Y0oxZVdocFk3UdIBuAFBVV95cUxQeU9kT1FLcFlQdzgyY0lNb0M5YnUzWkZJdy1GNzZnbUdPTWJuRWE0bG1jbDJ0UGpGNEJkY0FLaEM5dWppSWVEUHFNbmlVU0R4cFNDTGFSU2ZSUzAxSXVYdTUtYl9LY3dxX2RJbERfbnJ3QVh3WWJBc2dFS2NnTmd5SGNtOWY1SVNIa3RuSXc4SWpaLW93TjZyR3NaeGtKVW1YUE9wVkRQSXNYRXBJem54ZnBtZzNNcUJx?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Policía Nacional de Colombia",
+    "dominio": "policia.gov.co",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 2,
+    "ultima_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQQmlreFRQdE9GYXdDazZ2VWVRRUhpbUFkUG1ndGV3QlFmX1F4MlcwMkdHaWd5TlFUM0hla1FzNUxSQmtSTVFXdDk3VjFPOXVFdV84RHBFOEJkdTNkNHVaTEZacTBSVUlMcW15SFlhTGpLWmJuQ3pfc2RRSlFxcWt5MkZQR25YMUZVTGpfb0Vsd0tPMWdYNGc?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Radio 3 Cadena Patagonia",
+    "dominio": "radio3cadenapatagonia.com.ar",
+    "primera_deteccion": "2026-10-22",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 126,
+    "ultima_url": "https://radio3cadenapatagonia.com.ar/fallo-resolvio-que-una-abuela-no-puede-reemplazar-al-padre-en-su-tiempo-con-el-hijo/",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Revista Quórum",
+    "dominio": "revistaquorum.com.ar",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 44,
+    "ultima_url": "https://revistaquorum.com.ar/2026/11/17/puede-una-abuela-reemplazar-al-padre-cuando-viaja-por-trabajo-el-fallo-que-puso-limites-al-cuidado-de-los-nietos/",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "Rio Negro",
+    "dominio": "rionegro.com.ar",
+    "primera_deteccion": "2026-10-21",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 57,
+    "ultima_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNUnFFNDJjUmkyZy1penJabmNSdTRMM1BfS0NUVUJpMkpjcEhVdS13bVh3dWFYMTNBYXdyNV9qUXR4S29QSV9JSy12bXJiNDR6MEM0b3N0UmlzQVNqamp4MnRNV3BtSlNZWlhSSVhPZEZtVm01TVZYSERnOXBmeVRobUpNR0ZQbEVPczVPc2xZT2hlLVVzNGMwa3pkV1VvMzdlY0haSlh0aEtNMXVRTmlZdlltSk9SMWtJX05STngtSUJRMHZpVVNlMzJBNktWNW0tNWJHNDJ1VnE0ZnhTbW9n0gHnAUFVX3lxTE82emNKTXpVSGo2elJRcWRDVnd6Rk1OVEQtWHpINmVPQnFrZWZzV1Uwc1RrbXhUS01NOUw4WGJzRDRwdHZvNUFyV2dqNmVnSzJMREUtak0tRTl3bHp6X2l2ejlmdjFyejlSMTN6SGlEZml6R25KSHFQQXZRUlVIMzQ1WnYxMVI1UWd0Y3pqUFV1ajN6Y0UxWWt4ay1QOWtNSXVSeUhnUlVuUFhIdFpmeWVIR3lZUzNCSGxZWGJuS3ROY216NUYyR3JuYXQ1YkZzV04tOG54S2pqYTVZamRvT0s3TG1VNnBtQQ?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": true,
+    "wp_revisado": "2026-11-24"
+  },
+  {
+    "nombre": "RTVE.es",
+    "dominio": "rtve.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcDcxTl9ZdDc3X1FqRi1ZUkNvQlhwZTh6OHd0eWkxV1lJUTRVb1k3NUNHSzZUQzZyVDJGLXMzZmlmRkVyYWNINnRaQVhxcWRZbl9wRkNYQnpVZFJENDNIdWlGWk9CYXZWY010emdYRGZzcnJNR0ctQzZsMlNlU0w0bndoSnZPd1FvdlFZWFVLdXFyXzl0SlRHTW1tYU5oVG1qSlo1WXo3eU10MldkblVIYWJoSk1IM3QwckE?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Salamanca24horas",
+    "dominio": "salamanca24horas.com",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOdWU0VEc2am1QdzNLTDZwbnN1ZVNqcHUtTTNvWl9TbmlSYU10S25NelJmckEwc3BYWWJUVHRNUllYc0F0ZTF4Y2Y2Mzg3dmloNjFqeFFLR1g2VUhYQk9GNDZqNV9UbndhWExWN1p5Y1hxRmFPVlY4dTZjdkM2X2g4VlJfdE5nYXMySE5qX0p6VEMwRzFMdUVxUzhlcHNzQWpyMGV0ZDhtWkdkX1R4YXoxS3pBTno2M0FY?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Servicio Penitenciario Bonaerense",
+    "dominio": "spb.gba.gob.ar",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
+    "ultima_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQUi1TWEdIQmVuVnU2TGg1TmF2UkNNV193X01qSnBfWk5lNnhLMlZxbHB3Vi1YeWhkbWVmUkRYUUFubkJkVDNQRk5Dcl9JY3BYWTN4Yk80a2ZFLWpkNThJcldIbzBqQ2JNMDc4VDBvMGtEWkpHTF9fUzVFSlVqQlkyelV5NTVTanE3OVB0dUo0Mzhldm04NFV4cTBnNmpEVnRKMXNlNHZybU51ekpWbEZET2dfdjRXVFF3SkdLMzQ1YjlTbXF0WU1HSTdSUmE?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Sur54",
+    "dominio": "sur54.com",
+    "primera_deteccion": "2026-11-10",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 41,
+    "ultima_url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxNZEU4djRHbUN1UXh6RC12NjlaZWdpdW1PLWRsN0p5QkxpSEpJMHVxR180VEVtQTdWMFBiTzJEOHpTTnNndVg0bnFkaFFJWXJiQzNtaVZHRHFrNzdEaEpRVVUxVThTUkh4UWVpMmpYckl5UGZXTFU4M2JpTDg3a0ZrSEFDQTNRZ256T3c5VDhFU3pWeHliUWZBNWRhRWpyTDdMUld5ZHJNQlh6NzdFdFZTbjRUb3dZdGJXSzFJRmE4enpOQUQ5aTd1NkRBc0I5YVBfQkRfQkdBcmpVTHVGZ09OYkItT19pX3drRy1hZG9GaTlyYlpwN1VFQzk4QWZTUzZydHA3VtIBigJBVV95cUxQMTFXNHJmTElLamFFQmpZTnBaVFlwalFDbHdXdUlEckRoR0VEbnF5UUVxQ1BRLVM5VEI2NEd1TWwtdEI2bHJySVBFQWJQd3pNcFZLZERMVE84LXREOFJSdEZyVFNNeEowN0dvNUxPdElFMVZwUVM1OGRjTTZ5ME5wLVJTWHNGWENtX0VJOHo4cmE2RjlHSFZCRlM2RXBaVm9QdEo3RFhqT251dHFsb3gxajE0OG5lNjhaMmJZalFLbjZ5UEFldE9zSXNGTERsaXJUS21DRmM1clctV1JSSHpkOHBfbTFuT3pmb0VMSjM0WFY2M28yNjVpeXc4VXlMMmJGVC11WkhXNVYwQQ?oc=5",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-11-11"
+  },
+  {
+    "nombre": "Todo Noticias",
+    "dominio": "tn.com.ar",
+    "primera_deteccion": "2026-10-28",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 70,
+    "ultima_url": "https://tn.com.ar/policiales/2026/10/28/pagaba-un-plan-de-ahorro-para-comprar-un-auto-el-precio-aumento-un-952-y-la-justicia-sanciono-a-las-empresas/",
+    "estado": "seguimiento_google_news",
+    "wp": false,
+    "wp_revisado": "2026-10-28"
+  },
+  {
+    "nombre": "United Nations Development Programme",
+    "dominio": "undp.org",
+    "primera_deteccion": "2026-11-27",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 1,
+    "ultima_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPZ0NIc2Q3Ym81MXY1Nl9TcHRnWFlCc2czV2NRRTNqeF9aLTFRczhoWjBwUEkybW1JMFdsd2xlMmh5amhqZ0FQbUNaeHVfOUV0SVNtcWV2XzN3S2xDYU1hQVNtMHc2SGxVZmVpOC1SVHZzZ2kxaFJHSVpuYmpLbmtteWNSMnY5QjJ4MWlPZXJFRVlZOXZaTVZTOTlxS3liT096LUN5WUNzQllkWnlVZklFUU5OUHhodGFzdmFIYTBITnQ4dEU0TmMwVkhIbw?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
+    "nombre": "Universitat de València",
+    "dominio": "uv.es",
+    "primera_deteccion": "2026-11-26",
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 3,
+    "ultima_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOaFhoMjFkb2NPLTRwV2daN3VaQi05S1RLdW5sWlRZRFBwSTFaNkhVb0dqdDlYV2YzYVRIWFlaek1MaW5LUUhlSEh1bzRwX1lTX3JYVElRUGtDUXQ1a0dZYUVXZHAyZDd0VGljNWdKNUxZNlN3c3gwY05uYWRwZDNkTE9SZWhuTEs4djFKVm9Obks3ZnBTS2stSElTWmoxNWlSSTZsa2xmYmEzZWdlXzNMNXJPRjl6MG5SVTNCQmJxcEQ0UDhtYWprQ29nRWw2QQ?oc=5",
+    "estado": "seguimiento_google_news"
+  },
+  {
     "nombre": "Vía País",
     "dominio": "viapais.com.ar",
     "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 3,
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 4,
     "ultima_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNZWxTNDRSZ3BjdkZ5cTZkSVNxWWxEOEFESThKVkM3d3FIM0lqbUlJOHhsWjVRZENGdmJrUDVNaVZ4WHJwMFpTX1BiSnBXNTN4ckdDQnRPRXhMMG1LRzlFanJ5eHVrb2NMSHdhRFA1RjBVdDVVa0hfTnREWEtfVW95dGZuRDg1WmdITjNwWVJ3ckJYTlFXZEozWHNBQmJ5OWhMdzVZeGFtaU1tLVM5WWdwSkM4RURYVGhldkNDZEgyMk1ZSnpmMmZ2cEVPSHZua1pSVnltUEotTkJJMTBFUEthaktGUjRwSWM?oc=5",
     "estado": "seguimiento_google_news"
   },
@@ -1885,18 +1969,9 @@
     "nombre": "Municipio de Villa Constitución",
     "dominio": "villaconstitucion.gob.ar",
     "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 1,
+    "ultima_deteccion": "2026-11-27",
+    "detecciones": 2,
     "ultima_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQTS13NzRFUWMwTW9BVzE3bkVmaWZWY3hwcUt0SFJjUUxRdzk2UllBbmU2bVczZS1xU3RBeDFRXy1PVVJwOUl1SmdTZWMwZ2c3dDRqZC1LZjlYdkdQdVFoOXM0U01kZzdwVFI5R21jR2hXSGtNdXh1UHBjSkhYVkpUdU5EUnFtQzA2Y3o2OWhOVGZ5bk9hbENySl9hX2pDSGx4NzZQWm9uQUk3c0tR?oc=5",
-    "estado": "seguimiento_google_news"
-  },
-  {
-    "nombre": "W Radio México",
-    "dominio": "wradio.com.mx",
-    "primera_deteccion": "2026-11-26",
-    "ultima_deteccion": "2026-11-26",
-    "detecciones": 1,
-    "ultima_url": "https://wradio.com.mx/2026/11/25/25-de-noviembre-por-que-se-conmemora-el-dia-internacional-de-la-eliminacion-de-la-violencia-contra-la-mujer/",
     "estado": "seguimiento_google_news"
   }
 ]
