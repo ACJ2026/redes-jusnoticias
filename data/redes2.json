@@ -4496,7 +4496,7 @@
     "me_gusta": 2,
     "comentarios": 0,
     "compartidos": null,
-    "vistas": 127,
+    "vistas": 125,
     "propia": "Sí",
     "key": "yt-XTX4uUVOH3c",
     "url": "https://www.youtube.com/watch?v=XTX4uUVOH3c"
@@ -4510,7 +4510,7 @@
     "me_gusta": 5,
     "comentarios": 0,
     "compartidos": null,
-    "vistas": 323,
+    "vistas": 324,
     "propia": "Sí",
     "key": "yt-jkV1hG70-4c",
     "url": "https://www.youtube.com/watch?v=jkV1hG70-4c"
@@ -4622,5 +4622,61 @@
     "url": "https://www.instagram.com/reel/DgLBBjejcFY/",
     "cuenta_url": "https://www.instagram.com/cronicacrd/",
     "carga": "búsqueda en redes de otras cuentas (título de la nota identificado)"
+  },
+  {
+    "red": "Instagram",
+    "cuenta": "jus_chubut",
+    "fecha": "2026-11-27",
+    "texto": "⚖️💜 Banfi participó de un",
+    "nota_id": null,
+    "me_gusta": 23,
+    "comentarios": 0,
+    "compartidos": null,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "ig-18137239873675710",
+    "url": "https://www.instagram.com/reel/DgQwi0bgQze/"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-27",
+    "texto": "⚖️💜 Banfi participó de un",
+    "nota_id": null,
+    "me_gusta": 3,
+    "comentarios": 0,
+    "compartidos": 0,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1805785994880321",
+    "url": "https://www.facebook.com/reel/1135367795942452/"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-27",
+    "texto": "Caso Colihuinca: el juez d",
+    "nota_id": null,
+    "me_gusta": 0,
+    "comentarios": 0,
+    "compartidos": 0,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1805449568247297",
+    "url": "https://www.facebook.com/1769483335177254/posts/1805449568247297"
+  },
+  {
+    "red": "Facebook",
+    "cuenta": "JusNoticias",
+    "fecha": "2026-11-27",
+    "texto": "Juró nuevo juez de la Cáma",
+    "nota_id": null,
+    "me_gusta": 16,
+    "comentarios": 2,
+    "compartidos": 0,
+    "vistas": null,
+    "propia": "Sí",
+    "key": "fb-116101835114568_1805422598249994",
+    "url": "https://www.facebook.com/1769483335177254/posts/1805422598249994"
   }
 ]
